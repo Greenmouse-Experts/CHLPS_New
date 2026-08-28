@@ -63,7 +63,7 @@ function NavLink({
       <Link
         href={item.href}
         onClick={onNavigate}
-        className="text-text text-[13px] font-medium hover:text-primary transition-colors duration-200 whitespace-nowrap"
+        className="text-[#302D39] text-[20px] font-bold hover:text-primary transition-colors duration-200 whitespace-nowrap"
       >
         {item.label}
       </Link>
@@ -75,7 +75,7 @@ function NavLink({
       <Link
         href={item.href}
         onClick={onNavigate}
-        className="flex items-center gap-0.5 text-text text-[13px] font-medium hover:text-primary transition-colors duration-200 whitespace-nowrap"
+        className="flex items-center text-[#302D39] gap-0.5 text-[20px] font-bold hover:text-primary transition-colors duration-200 whitespace-nowrap"
       >
         {item.label}
         <HugeiconsIcon icon={ArrowDown01Icon} size={14} color="currentColor" />

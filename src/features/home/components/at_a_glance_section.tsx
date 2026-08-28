@@ -87,14 +87,14 @@ export default function AtAGlanceSection() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[min(34rem,75vw)] w-[min(34rem,75vw)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full opacity-[0.07] mix-blend-multiply"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-0 w-[min(34rem,80vw)] -translate-x-1/2 -translate-y-1/2"
       >
         <Image
-          src={Assets.icons.logo}
+          src={Assets.images.footerLogo}
           alt=""
-          width={560}
-          height={560}
-          className="h-[145%] w-auto max-w-none -translate-x-[6%] -translate-y-[10%]"
+          width={2560}
+          height={2528}
+          className="h-auto w-full"
         />
       </div>
 
