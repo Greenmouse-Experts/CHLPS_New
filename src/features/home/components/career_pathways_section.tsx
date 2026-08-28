@@ -104,7 +104,7 @@ const careers: Career[] = [
 
 function CareerCard({ career }: { career: Career }) {
   return (
-    <article className="flex items-start gap-3.5 rounded-lg border border-secondary bg-[#182636] px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem]">
+    <article className="flex items-start gap-3.5 rounded-lg border border-secondary bg-white/5 px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem]">
       <span
         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md"
         style={{ backgroundColor: career.color }}
@@ -132,7 +132,7 @@ export default function CareerPathwaysSection() {
   return (
     <section
       id="careers"
-      className="relative overflow-hidden bg-[#111E2A] py-16 md:py-24"
+      className="relative overflow-hidden bg-[#161058] py-16 md:py-24"
     >
       <div
         aria-hidden

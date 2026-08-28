@@ -35,7 +35,7 @@ const marqueePartners = [...partners, ...partners];
 
 function PartnerCard({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex h-[8.75rem] w-[13.5rem] shrink-0 items-center justify-center rounded-2xl bg-white px-6 shadow-[0_10px_28px_rgba(48,45,57,0.07)] sm:h-[9.5rem] sm:w-[15.25rem] sm:px-7">
+    <div className="flex h-[8.75rem] w-[13.5rem] shrink-0 items-center justify-center border border-gray-100 rounded-2xl bg-white px-6 sm:h-[9.5rem] sm:w-[15.25rem] sm:px-7">
       <Image
         src={src}
         alt={alt}
@@ -51,14 +51,14 @@ export default function PartnersSection() {
   return (
     <section
       id="partners"
-      className="relative overflow-hidden bg-[#F3F1EC] py-16 md:py-24"
+      className="relative overflow-hidden bg-[#FFFFFF] py-16 md:py-24"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
           src={Assets.images.partners}
           alt=""
           fill
-          className="object-cover object-center opacity-[0.16] mix-blend-multiply invert grayscale"
+          className="object-cover object-center opacity-5 mix-blend-multiply invert grayscale"
           sizes="100vw"
         />
       </div>
@@ -67,14 +67,14 @@ export default function PartnersSection() {
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <span
-              className="cut-tr-bl inline-block bg-primary px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white"
+              className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white"
               style={{ "--cut": "0.55rem" } as CSSProperties}
             >
               AFFILIATIONS AND PARTNERSHIPS
             </span>
           </Reveal>
           <Reveal delay={80}>
-            <h2 className="mt-5 text-[1.75rem] font-bold leading-tight tracking-tight text-text sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.6rem]">
+            <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-text sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px] mx-auto max-w-[600px]">
               Connected to professional and education networks.
             </h2>
           </Reveal>
@@ -99,11 +99,11 @@ export default function PartnersSection() {
         </div>
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#F3F1EC] to-transparent sm:w-24 lg:w-32"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent sm:w-24 lg:w-32"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#F3F1EC] to-transparent sm:w-24 lg:w-32"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent sm:w-24 lg:w-32"
         />
       </div>
     </section>

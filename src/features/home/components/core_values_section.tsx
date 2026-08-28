@@ -98,7 +98,7 @@ function ValueCard({ value }: { value: CoreValue }) {
 
 export default function CoreValuesSection() {
   return (
-    <section id="values" className="bg-[#111E2A] py-16 md:py-24">
+    <section id="values" className="bg-[#161058] py-16 md:py-24">
       <PageContainer>
         <Reveal className="flex justify-center">
           <span className="inline-block rounded-md bg-[#8B86C9] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white">
