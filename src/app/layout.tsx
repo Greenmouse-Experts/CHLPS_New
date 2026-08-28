@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   description:
     "The Association of Chartered Loss Prevention Specialists of Canada — advancing professional standards, education, and membership in loss prevention.",
   icons: {
-    icon: "/assets/icons/logo.png",
-    apple: "/assets/icons/logo.png",
+    icon: "/assets/images/chips-logo.png",
+    apple: "/assets/images/chips-logo.png",
   },
 };
 
