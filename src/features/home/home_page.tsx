@@ -5,7 +5,7 @@ import WhyJoinSection from "@/features/home/components/why_join_section";
 import CareerPathwaysSection from "@/features/home/components/career_pathways_section";
 import MembershipCategoriesSection from "@/features/home/components/membership_categories_section";
 import CertificationSection from "@/features/home/components/certification_section";
-import Footer from "@/features/components/footer";
+// import Footer from "@/features/components/footer";
 
 const HomePage = () => {
   return (
