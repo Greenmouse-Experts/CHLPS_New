@@ -5,7 +5,10 @@ import WhyJoinSection from "@/features/home/components/why_join_section";
 import CareerPathwaysSection from "@/features/home/components/career_pathways_section";
 import MembershipCategoriesSection from "@/features/home/components/membership_categories_section";
 import CertificationSection from "@/features/home/components/certification_section";
-// import Footer from "@/features/components/footer";
+import CoreValuesSection from "@/features/home/components/core_values_section";
+import PartnersSection from "@/features/home/components/partners_section";
+import UpcomingEventsSection from "@/features/home/components/upcoming_events_section";
+import Footer from "@/features/components/footer";
 
 const HomePage = () => {
   return (
@@ -17,7 +20,10 @@ const HomePage = () => {
       <CareerPathwaysSection />
       <MembershipCategoriesSection />
       <CertificationSection />
-      {/* <Footer /> */}
+      <CoreValuesSection />
+      <PartnersSection />
+      <UpcomingEventsSection />
+      <Footer />
     </div>
   );
 };

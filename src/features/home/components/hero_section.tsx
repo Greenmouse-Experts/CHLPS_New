@@ -54,7 +54,7 @@ function PathwayCard({ className = "" }: { className?: string }) {
 
 export default function HeroSection() {
   return (
-    <section className="relative z-10 w-full overflow-hidden bg-[#111E2A] rounded-b-[2.5rem]">
+    <section className="relative z-10 w-full overflow-hidden bg-[#111E2A] ">
       <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-0 lg:h-full">
         <Image
           src={Assets.images.heroBg}

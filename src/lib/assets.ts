@@ -5,8 +5,19 @@ export const Assets = {
   images: {
     heroBg: "/assets/images/hero_bg_img.png",
     whyJoin: "/assets/images/why_join_chips.jpg",
+    upcomingEvent: "/assets/images/upcoming_event_img.jpg",
     border: "/assets/images/Border.png",
     partners: "/assets/images/parttners.png",
+    footerPattern: "/assets/images/footer_bg_parttern.png",
+    footerLogo: "/assets/images/chips_logo_faded_logo.png.png",
+    partnerLogos: {
+      p1: "/assets/images/p1.png",
+      p2: "/assets/images/p2.png",
+      p3: "/assets/images/p3.png",
+      p4: "/assets/images/p4.png",
+      p5: "/assets/images/p5.png",
+      p6: "/assets/images/p6.png",
+    },
     membership: {
       student: "/assets/images/student-membership.png",
       affiliate: "/assets/images/affliate-membership.png",

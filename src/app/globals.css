@@ -37,6 +37,17 @@ html {
   padding-inline: 1.25rem;
 }
 
+.cut-tl {
+  --cut: 0.55rem;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--cut)
+  );
+}
+
 .cut-tr {
   --cut: 0.7rem;
   clip-path: polygon(
@@ -68,6 +79,22 @@ html {
     var(--cut) 100%,
     0 calc(100% - var(--cut))
   );
+}
+
+.cut-tr-bl {
+  --cut: 0.55rem;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut),
+    100% 100%,
+    var(--cut) 100%,
+    0 calc(100% - var(--cut))
+  );
+}
+
+.core-value-arrow {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
 .outline-stat {
@@ -164,4 +191,27 @@ body {
     transition: none;
     will-change: auto;
   }
+
+  .partners-marquee-track {
+    animation: none;
+    transform: none;
+  }
+}
+
+@keyframes partners-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.partners-marquee-track {
+  animation: partners-marquee-right 45s linear infinite;
+  width: max-content;
+}
+
+.partners-marquee:hover .partners-marquee-track {
+  animation-play-state: paused;
 }
