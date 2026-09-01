@@ -8,6 +8,7 @@ export const Assets = {
     upcomingEvent: "/assets/images/upcoming_event_img.jpg",
     border: "/assets/images/Border.png",
     partners: "/assets/images/parttners.png",
+    chipsBg: "/assets/images/chips_bg_img.png",
     footerPattern: "/assets/images/footer_bg_parttern.png",
     footerLogo: "/assets/images/chips_logo_faded_logo.png.png",
     partnerLogos: {

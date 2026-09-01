@@ -137,6 +137,28 @@ html {
   flex-shrink: 0;
 }
 
+.nav-mega {
+  background-color: #fcfcfd;
+  background-image: url("/assets/images/chips_bg_img.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+  box-shadow: 0 18px 40px rgba(33, 26, 115, 0.06);
+}
+
+.nav-option-chip {
+  background-color: transparent;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.nav-option-chip:hover,
+.nav-option-chip:focus-visible {
+  background-image: url("/assets/images/chips_bg_img.png");
+}
+
 @media (max-width: 1279px) {
   .header-right {
     display: none;
