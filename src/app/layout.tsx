@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
+import Providers from "@/lib/providers/providers";
 import "./globals.css";
 
 const como = localFont({
@@ -37,10 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${como.variable} h-full antialiased`}>
+    <html lang="en" className={`${como.variable} h-full antialiased`} data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col font-sans bg-cream text-text">
-        {children}
-        <Toaster position="top-center" richColors />
+        <Providers>
+          {children}
+          <Toaster position="top-center" richColors />
+        </Providers>
       </body>
     </html>
   );

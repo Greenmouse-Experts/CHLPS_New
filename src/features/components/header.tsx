@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { useSelector } from "react-redux";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowDown01Icon,
@@ -12,6 +13,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Assets } from "@/lib/assets";
 import PageContainer from "@/features/components/page_container";
+import { RootState } from "@/lib/store/store";
 
 type NavItem = {
   label: string;
@@ -101,6 +103,8 @@ function NavLink({
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const token = useSelector((state: RootState) => state.user.token);
+  const isLoggedIn = Boolean(token);
 
   function handleSearch(e: FormEvent) {
     e.preventDefault();
@@ -141,18 +145,29 @@ export default function Header() {
                 </button>
               </form>
 
-              <Link
-                href="#login"
-                className="h-9 px-4 rounded-full border border-primary text-primary text-[13px] font-semibold inline-flex items-center hover:bg-primary hover:text-white transition-colors duration-200 whitespace-nowrap"
-              >
-                My ChLPS
-              </Link>
-              <Link
-                href="#register"
-                className="h-9 px-4 rounded-full bg-secondary text-primary text-[13px] font-semibold inline-flex items-center hover:brightness-95 transition-all duration-200 whitespace-nowrap"
-              >
-                Register
-              </Link>
+              {isLoggedIn ? (
+                <Link
+                  href="/dashboard"
+                  className="h-9 px-4 rounded-full bg-secondary text-primary text-[13px] font-semibold inline-flex items-center hover:brightness-95 transition-all duration-200 whitespace-nowrap"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/dashboard/sign-in"
+                    className="h-9 px-4 rounded-full border border-primary text-primary text-[13px] font-semibold inline-flex items-center hover:bg-primary hover:text-white transition-colors duration-200 whitespace-nowrap"
+                  >
+                    My ChLPS
+                  </Link>
+                  <Link
+                    href="/dashboard/register"
+                    className="h-9 px-4 rounded-full bg-secondary text-primary text-[13px] font-semibold inline-flex items-center hover:brightness-95 transition-all duration-200 whitespace-nowrap"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
 
             <nav className="flex flex-row flex-nowrap items-center gap-5">
@@ -228,20 +243,32 @@ export default function Header() {
               </form>
 
               <div className="flex flex-row flex-nowrap gap-2">
-                <Link
-                  href="#login"
-                  onClick={() => setMobileOpen(false)}
-                  className="h-10 px-4 rounded-full border border-primary text-primary text-sm font-semibold flex items-center justify-center"
-                >
-                  My ChLPS
-                </Link>
-                <Link
-                  href="#register"
-                  onClick={() => setMobileOpen(false)}
-                  className="h-10 px-4 rounded-full bg-secondary text-primary text-sm font-semibold flex items-center justify-center"
-                >
-                  Register
-                </Link>
+                {isLoggedIn ? (
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setMobileOpen(false)}
+                    className="h-10 px-4 rounded-full bg-secondary text-primary text-sm font-semibold flex items-center justify-center"
+                  >
+                    Dashboard
+                  </Link>
+                ) : (
+                  <>
+                    <Link
+                      href="/dashboard/sign-in"
+                      onClick={() => setMobileOpen(false)}
+                      className="h-10 px-4 rounded-full border border-primary text-primary text-sm font-semibold flex items-center justify-center"
+                    >
+                      My ChLPS
+                    </Link>
+                    <Link
+                      href="/dashboard/register"
+                      onClick={() => setMobileOpen(false)}
+                      className="h-10 px-4 rounded-full bg-secondary text-primary text-sm font-semibold flex items-center justify-center"
+                    >
+                      Register
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </PageContainer>

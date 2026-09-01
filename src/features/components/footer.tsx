@@ -27,7 +27,7 @@ const supportLinks = [
   { label: "Privacy Policy", href: "#privacy" },
   { label: "Terms", href: "#terms" },
   { label: "Code of Ethics", href: "#ethics" },
-  { label: "Login / Register", href: "#login" },
+  { label: "Login / Register", href: "/dashboard/sign-in" },
 ];
 
 const socialLinks: { label: string; href: string; icon: IconSvgElement }[] = [
