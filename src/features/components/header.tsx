@@ -171,7 +171,7 @@ function MegaPanel({
       <PageContainer>
         <div className="flex items-stretch gap-0 py-10">
           <div className="flex w-[17.5rem] shrink-0 flex-col pr-8 lg:w-[19.5rem] lg:pr-12">
-            <h3 className="text-[1.85rem] font-bold leading-tight tracking-tight text-primary">
+            <h3 className="text-[20px] font-medium leading-tight tracking-tight text-primary">
               {menu.heading}
             </h3>
             <p className="mt-3 max-w-[16.5rem] text-[14px] leading-relaxed text-[#6E6B78]">
@@ -259,7 +259,7 @@ function NavLink({
         onMouseEnter={onClose}
         onFocus={onClose}
         onClick={onNavigate}
-        className="text-[20px] font-bold whitespace-nowrap text-[#302D39] transition-colors duration-200 hover:text-primary"
+        className="text-[18px] font-semibold whitespace-nowrap text-[#302D39] transition-colors duration-200 hover:text-primary"
       >
         {item.label}
       </Link>
@@ -277,7 +277,7 @@ function NavLink({
         onClick={onNavigate}
         aria-expanded={open}
         aria-haspopup="true"
-        className={`relative flex items-center gap-0.5 text-[20px] font-bold whitespace-nowrap text-[#302D39] transition-colors duration-200 hover:text-primary ${
+        className={`relative flex items-center gap-0.5 text-[18px] font-semibold whitespace-nowrap text-[#302D39] transition-colors duration-200 hover:text-primary ${
           open ? "text-primary" : ""
         }`}
       >
@@ -393,19 +393,22 @@ export default function Header() {
 
           <div className="header-right">
             <div className="header-actions">
-              <form onSubmit={handleSearch} className="header-search">
+              <form
+                onSubmit={handleSearch}
+                className="header-search overflow-hidden rounded-full border border-sand bg-white"
+              >
                 <input
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search site"
                   aria-label="Search site"
-                  className="min-w-0 flex-1 rounded-l-full border border-r-0 border-sand bg-white px-4 text-sm text-text outline-none placeholder:text-text/45"
+                  className="min-w-0 flex-1 bg-transparent px-4 text-sm text-text outline-none placeholder:text-text/45"
                 />
                 <button
                   type="submit"
                   aria-label="Search"
-                  className="flex h-9 w-9 items-center justify-center bg-primary text-white transition-colors duration-200 hover:bg-accent"
+                  className="flex h-full w-9 shrink-0 items-center justify-center rounded-r-full bg-primary text-white transition-colors duration-200 hover:bg-accent"
                 >
                   <HugeiconsIcon icon={Search01Icon} size={16} color="currentColor" />
                 </button>
@@ -524,19 +527,22 @@ export default function Header() {
                 </div>
               ))}
 
-              <form onSubmit={handleSearch} className="mt-2 flex h-10 items-stretch">
+              <form
+                onSubmit={handleSearch}
+                className="mt-2 flex h-10 items-stretch overflow-hidden rounded-full border border-sand bg-white"
+              >
                 <input
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search site"
                   aria-label="Search site"
-                  className="flex-1 rounded-l-full border border-r-0 border-sand bg-white px-4 text-sm text-text outline-none placeholder:text-text/45"
+                  className="min-w-0 flex-1 bg-transparent px-4 text-sm text-text outline-none placeholder:text-text/45"
                 />
                 <button
                   type="submit"
                   aria-label="Search"
-                  className="flex h-10 w-10 items-center justify-center bg-primary text-white"
+                  className="flex h-full w-10 shrink-0 items-center justify-center rounded-r-full bg-primary text-white"
                 >
                   <HugeiconsIcon icon={Search01Icon} size={16} color="currentColor" />
                 </button>
