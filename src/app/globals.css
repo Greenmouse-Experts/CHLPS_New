@@ -148,15 +148,11 @@ html {
 
 .nav-option-chip {
   background-color: transparent;
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 .nav-option-chip:hover,
 .nav-option-chip:focus-visible {
-  background-image: url("/assets/images/chips_bg_img.png");
+  background-color: #F9F5EC;
 }
 
 @media (max-width: 1279px) {
