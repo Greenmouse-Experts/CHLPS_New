@@ -44,11 +44,11 @@ export default function WhyJoinSection() {
   return (
     <section id="why-join" className="bg-cream py-16 md:py-24">
       <PageContainer>
-        <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
           <div className="flex min-w-0 flex-col">
             <Reveal>
               <span
-                className="cut-bl inline-block bg-primary px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 WHY JOIN CHLPS CANADA
@@ -66,7 +66,7 @@ export default function WhyJoinSection() {
                 needed to grow from entry-level practice into leadership.
               </p>
             </Reveal>
-            <Reveal delay={240} className="mt-8 flex min-h-0 flex-1 flex-col lg:mt-10">
+            <Reveal delay={240} className="mt-8 lg:mt-10">
               <div className="mt-auto w-full pb-3.5 pr-3.5">
                 <div className="shadow-[12px_12px_0_0_#111111] sm:shadow-[14px_14px_0_0_#111111]">
                   <Image
@@ -86,10 +86,10 @@ export default function WhyJoinSection() {
             {features.map((feature, index) => (
               <article
                 key={feature.title}
-                className="reveal flex h-full flex-col rounded-[1.25rem] bg-white p-6 shadow-[0_8px_24px_rgba(48,45,57,0.05)] sm:p-7 border border-[#CDA54E]"
+                className="reveal flex flex-col rounded-[1.25rem] bg-white p-6 shadow-[0_8px_24px_rgba(48,45,57,0.05)] sm:p-7 border border-[#CDA54E]"
                 style={revealStyle(index)}
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sand">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sand border border-[#BDB6BDCE]">
                   <HugeiconsIcon
                     icon={feature.icon}
                     size={22}
@@ -97,10 +97,10 @@ export default function WhyJoinSection() {
                     strokeWidth={1.8}
                   />
                 </div>
-                <h3 className="mt-5 text-base font-bold text-text sm:text-[1.05rem]">
+                <h3 className="mt-5 text-[20px] font-bold text-[#151515] leading-tight tracking-tight sm:text-[35px]">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-text/65 sm:text-sm">
+                <p className="mt-2 text-[16px] leading-tight text-[#676672] sm:text-[20px]">
                   {feature.body}
                 </p>
               </article>

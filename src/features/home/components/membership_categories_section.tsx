@@ -94,30 +94,25 @@ function MembershipBadge({
 
 export default function MembershipCategoriesSection() {
   return (
-    <section id="membership" className="bg-cream py-16 md:py-24">
+    <section id="membership" className="bg-[#F5F5F5] py-16 md:py-24">
       <PageContainer>
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
-          <div className="max-w-xl">
+        <div className="flex items-center justify-center ">
+          <div className="max-w-xl flex items-center justify-center flex-col">
             <Reveal>
               <span
-                className="cut-tr inline-block bg-primary px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 sm:text-[20px] text-base font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 MEMBERSHIP CATEGORIES
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-bold leading-tight tracking-tight text-text sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.6rem]">
-                Find the level that reflects where you are now.
+              <h2 className="mt-5 max-w-[400px] text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px] text-center">
+              Find the level that fits your career stage.
               </h2>
             </Reveal>
           </div>
-          <Reveal delay={140} className="max-w-md shrink-0 lg:pt-14">
-            <p className="text-[15px] leading-relaxed text-text/70 sm:text-base lg:text-right">
-              ChLPS Canada offers six membership levels for professionals and
-              organizations committed to higher standards.
-            </p>
-          </Reveal>
+          
         </div>
 
         <RevealGroup className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
@@ -125,23 +120,33 @@ export default function MembershipCategoriesSection() {
             <article
               id={`membership-${category.key}`}
               key={category.key}
-              className="reveal flex h-full flex-col rounded-2xl bg-[#141549] p-6 sm:p-8"
+              className="reveal relative flex h-full flex-col overflow-hidden rounded-2xl bg-[#141549] p-6 sm:p-8"
               style={revealStyle(index)}
             >
+              <div aria-hidden className="pointer-events-none absolute inset-0">
+                <Image
+                  src={Assets.images.membershipCardBg}
+                  alt=""
+                  fill
+                  className="object-cover object-bottom"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+              <div className="relative z-10 flex h-full flex-col">
               <MembershipBadge
                 src={category.badge}
                 alt={`${category.title} badge`}
                 cropLogo={"cropLogo" in category && category.cropLogo}
               />
-              <h3 className="mt-6 text-xl font-bold leading-snug text-white sm:text-[1.35rem]">
+              <h3 className="mt-6 text-xl font-bold leading-snug text-white sm:text-[30px]">
                 {category.title}
               </h3>
-              <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-sm">
+              <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-[20px]">
                 {category.body}
               </p>
               <Link
                 href={category.href}
-                className="mt-auto inline-flex items-center gap-1.5 pt-8 text-[13px] font-semibold text-secondary transition-opacity hover:opacity-80 sm:text-sm"
+                className="mt-auto inline-flex items-center gap-1.5 pt-8 text-[13px] font-bold text-secondary transition-opacity hover:opacity-80 sm:text-[20px]"
               >
                 {category.cta}
                 <HugeiconsIcon
@@ -151,6 +156,7 @@ export default function MembershipCategoriesSection() {
                   strokeWidth={2}
                 />
               </Link>
+              </div>
             </article>
           ))}
         </RevealGroup>
