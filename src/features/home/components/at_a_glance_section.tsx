@@ -59,7 +59,7 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
           {card.title}
         </h3>
         <p
-          className={`mt-1.5 text-[13px] leading-relaxed sm:text-[16px] ${
+          className={`mt-1.5 text-[13px] leading-relaxed font-medium sm:text-[16px] ${
             isPrimary ? "text-white/90" : "opacity-90"
           }`}
         >
