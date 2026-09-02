@@ -7,7 +7,7 @@ export const Assets = {
     heroBg1: "/assets/images/hero_bg_img_1.png",
     heroBg2: "/assets/images/hero_bg_img_2.png",
     heroBg3: "/assets/images/hero_bg_img_3.png",
-    whyJoin: "/assets/images/why_join_chips.jpg",
+    whyJoin: "/assets/images/ttt.jpg",
     upcomingEvent: "/assets/images/upcoming_event_img.jpg",
     border: "/assets/images/Border.png",
     partners: "/assets/images/parttners.png",

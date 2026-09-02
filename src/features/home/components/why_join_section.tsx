@@ -55,12 +55,12 @@ export default function WhyJoinSection() {
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-bold leading-tight tracking-tight text-text sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.6rem]">
+              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
                 For professionals ready to grow.
               </h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-text/70 sm:text-base lg:mt-5">
+              <p className="mt-4 max-w-[612px] text-[15px] leading-relaxed text-[#383740] sm:text-[24px] lg:mt-5">
                 ChLPS Canada connects professional recognition with the
                 knowledge, standards, community and development opportunities
                 needed to grow from entry-level practice into leadership.
@@ -86,7 +86,7 @@ export default function WhyJoinSection() {
             {features.map((feature, index) => (
               <article
                 key={feature.title}
-                className="reveal flex h-full flex-col rounded-[1.25rem] bg-white p-6 shadow-[0_8px_24px_rgba(48,45,57,0.05)] sm:p-7"
+                className="reveal flex h-full flex-col rounded-[1.25rem] bg-white p-6 shadow-[0_8px_24px_rgba(48,45,57,0.05)] sm:p-7 border border-[#CDA54E]"
                 style={revealStyle(index)}
               >
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sand">
