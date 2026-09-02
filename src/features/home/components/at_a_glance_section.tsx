@@ -38,9 +38,9 @@ const cards: GlanceCard[] = [
 ];
 
 const toneClass: Record<GlanceCard["tone"], string> = {
-  lilac: "bg-lilac text-primary",
-  gold: "bg-secondary text-[#3D2E14]",
-  primary: "bg-primary text-white",
+  lilac: "bg-[#EEEAF8] text-[#161058]",
+  gold: "bg-[#CDA54E] text-[#161058]",
+  primary: "bg-[#5F59B7] text-white",
 };
 
 function GlanceStatCard({ card }: { card: GlanceCard }) {
@@ -55,22 +55,23 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
         {card.value}
       </span>
       <div className="flex min-w-0 flex-1 flex-col">
-        <h3 className="text-[13px] font-bold uppercase tracking-[0.12em] sm:text-sm">
+        <h3 className="text-[18px] font-bold uppercase tracking-[0.12em] sm:text-[20px]">
           {card.title}
         </h3>
         <p
-          className={`mt-1.5 text-[13px] leading-relaxed sm:text-sm ${
+          className={`mt-1.5 text-[13px] leading-relaxed sm:text-[16px] ${
             isPrimary ? "text-white/90" : "opacity-90"
           }`}
         >
           {card.body}
         </p>
         <span
-          className={`mt-3 self-end rounded-full px-3 py-1 text-[11px] font-semibold sm:mt-4 ${
+          className={`mt-3 self-end cut-tr-br-bl-tl inline-block px-3.5 py-1.5 text-[11px] font-semibold sm:mt-4 ${
             isPrimary
               ? "border border-white/90 bg-transparent text-white"
               : "bg-white"
           }`}
+          style={{ "--cut": "0.4rem" } as CSSProperties}
         >
           {card.badge}
         </span>
@@ -85,37 +86,34 @@ export default function AtAGlanceSection() {
       id="about"
       className="relative z-0 -mt-10 overflow-hidden bg-white pb-16 pt-20 md:pb-24 md:pt-28"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 w-[min(34rem,80vw)] -translate-x-1/2 -translate-y-1/2"
-      >
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src={Assets.images.footerLogo}
+          src={Assets.images.atAGlanceBg}
           alt=""
-          width={2560}
-          height={2528}
-          className="h-auto w-full"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
         />
       </div>
 
-      <PageContainer className="relative">
+      <PageContainer className="relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
           <div className="max-w-xl">
             <Reveal>
               <span
-                className="cut-tr inline-block bg-primary px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-[18px] font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 CHLPS CANADA AT A GLANCE
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-bold leading-tight tracking-tight text-text sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.6rem]">
+              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-text sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
                 A structured professional body built for long-term development.
               </h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-4 max-w-md text-[15px] leading-relaxed text-text/70 sm:text-base lg:mt-5">
+              <p className="mt-4 max-w-[500px] text-[15px] leading-relaxed text-[#383740] sm:text-[20px] lg:mt-5">
                 From membership and certification to professional standards and
                 business resilience, these figures highlight the framework
                 behind the Association and show how professionals can progress

@@ -104,7 +104,7 @@ const careers: Career[] = [
 
 function CareerCard({ career }: { career: Career }) {
   return (
-    <article className="flex items-start gap-3.5 rounded-lg border border-secondary bg-white/5 px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem]">
+    <article className="flex h-full items-start gap-3.5 rounded-lg border border-secondary bg-white/5 px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem] max-w-[581px]">
       <span
         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md"
         style={{ backgroundColor: career.color }}
@@ -134,28 +134,25 @@ export default function CareerPathwaysSection() {
       id="careers"
       className="relative overflow-hidden bg-[#161058] py-16 md:py-24"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-36 -right-28 z-0 h-[min(52rem,120vw)] w-[min(46rem,100vw)] sm:-bottom-44 sm:-right-32"
-      >
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src={Assets.images.border}
+          src={Assets.images.careerPathwaysBg}
           alt=""
           fill
-          className="object-contain object-center"
-          sizes="(max-width: 768px) 90vw, 40rem"
+          className="object-cover object-bottom"
+          sizes="100vw"
         />
       </div>
 
       <PageContainer className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <span className="inline-block rounded-full bg-secondary px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-primary">
+            <span className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5 text-[20px] font-bold uppercase tracking-[0.14em] text-primary">
               CAREER PATHWAYS
             </span>
           </Reveal>
           <Reveal delay={80}>
-            <h2 className="mt-5 text-[1.75rem] font-normal leading-[1.15] tracking-tight text-white sm:text-3xl lg:mt-6 lg:text-[2.5rem] xl:text-[2.75rem]">
+            <h2 className="mt-5 text-[1.75rem] font-normal leading-[1.15] tracking-tight text-white sm:text-3xl lg:mt-6 lg:text-[2.5rem] xl:text-[60px]">
               Career Opportunities in
               <br />
               <span className="text-secondary">Loss Prevention</span>
@@ -178,9 +175,9 @@ export default function CareerPathwaysSection() {
           </Reveal>
         </div>
 
-        <RevealGroup className="mt-10 grid grid-cols-1 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-4">
+        <RevealGroup className="mx-auto mt-10 grid auto-rows-fr grid-cols-1 gap-3 sm:mt-12 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:grid-cols-2 lg:gap-x-5 lg:gap-y-4 xl:max-w-6xl">
           {careers.map((career, index) => (
-            <div key={career.title} className="reveal" style={revealStyle(index)}>
+            <div key={career.title} className="reveal h-full" style={revealStyle(index)}>
               <CareerCard career={career} />
             </div>
           ))}

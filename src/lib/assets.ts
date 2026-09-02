@@ -4,11 +4,16 @@ export const Assets = {
   },
   images: {
     heroBg: "/assets/images/hero_bg_img.png",
+    heroBg1: "/assets/images/hero_bg_img_1.png",
+    heroBg2: "/assets/images/hero_bg_img_2.png",
+    heroBg3: "/assets/images/hero_bg_img_3.png",
     whyJoin: "/assets/images/why_join_chips.jpg",
     upcomingEvent: "/assets/images/upcoming_event_img.jpg",
     border: "/assets/images/Border.png",
     partners: "/assets/images/parttners.png",
     chipsBg: "/assets/images/chips_bg_img.png",
+    careerPathwaysBg: "/assets/images/career_pathways_bg_img.png",
+    atAGlanceBg: "/assets/images/at_a_glance_bg_img.png",
     footerPattern: "/assets/images/footer_bg_parttern.png",
     footerLogo: "/assets/images/chips_logo_faded_logo.png.png",
     partnerLogos: {
