@@ -15,6 +15,7 @@ export const Assets = {
     careerPathwaysBg: "/assets/images/career_pathways_bg_img.png",
     atAGlanceBg: "/assets/images/at_a_glance_bg_img.png",
     membershipCardBg: "/assets/images/membership_catigory_card.png",
+    certificateCardBg: "/assets/images/certificate_bg.png",
     footerPattern: "/assets/images/footer_bg_parttern.png",
     footerLogo: "/assets/images/chips_logo_faded_logo.png.png",
     partnerLogos: {

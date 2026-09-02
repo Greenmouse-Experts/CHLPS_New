@@ -21,8 +21,8 @@ const HomePage = () => {
       <MembershipCategoriesSection />
       <CertificationSection />
       <CoreValuesSection />
-      <PartnersSection />
       <UpcomingEventsSection />
+      <PartnersSection />
       <Footer />
     </div>
   );

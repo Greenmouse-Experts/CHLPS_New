@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
@@ -146,14 +146,15 @@ export default function MembershipCategoriesSection() {
               </p>
               <Link
                 href={category.href}
-                className="mt-auto inline-flex items-center gap-1.5 pt-8 text-[13px] font-bold text-secondary transition-opacity hover:opacity-80 sm:text-[20px]"
+                className="mt-auto inline-flex min-w-0 items-center gap-1.5 pt-8 text-[13px] font-bold text-secondary transition-opacity hover:opacity-80 sm:text-[20px]"
               >
-                {category.cta}
+                <span className="min-w-0">{category.cta}</span>
                 <HugeiconsIcon
-                  icon={ArrowRight01Icon}
-                  size={16}
+                  icon={ArrowRight02Icon}
+                  size={20}
                   color="currentColor"
                   strokeWidth={2}
+                  className="shrink-0"
                 />
               </Link>
               </div>
