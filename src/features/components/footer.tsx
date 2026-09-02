@@ -3,6 +3,7 @@ import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { IconSvgElement } from "@hugeicons/react";
 import {
+  ArrowRight01Icon,
   CallIcon,
   Facebook01Icon,
   InstagramIcon,
@@ -14,12 +15,16 @@ import {
 import { Assets } from "@/lib/assets";
 import PageContainer from "@/features/components/page_container";
 
+const GOLD = "#CDA54E";
+const NAVY = "#0B0A3A";
+
 const exploreLinks = [
   { label: "Membership", href: "#membership" },
-  { label: "Certification", href: "#certification" },
+  { label: "Certifications", href: "#certification" },
   { label: "About Us", href: "#about" },
   { label: "Events", href: "#events" },
-  { label: "Jobs", href: "#careers" },
+  { label: "News & Blogs", href: "#news" },
+  { label: "CareerCentre", href: "#careers" },
 ];
 
 const supportLinks = [
@@ -27,7 +32,7 @@ const supportLinks = [
   { label: "Privacy Policy", href: "#privacy" },
   { label: "Terms", href: "#terms" },
   { label: "Code of Ethics", href: "#ethics" },
-  { label: "Login / Register", href: "/dashboard/sign-in" },
+  { label: "My ChLPS", href: "/dashboard/sign-in" },
 ];
 
 const socialLinks: { label: string; href: string; icon: IconSvgElement }[] = [
@@ -46,17 +51,24 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <p className="mb-5 text-[12px] font-bold uppercase tracking-[0.16em] text-secondary">
+      <p className="mb-5 text-[13px] font-bold uppercase tracking-[0.14em] text-secondary">
         {title}
       </p>
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-3.5">
         {links.map((link) => (
           <li key={link.label}>
             <Link
               href={link.href}
-              className="text-[14px] text-white/90 transition-colors duration-200 hover:text-secondary"
+              className="group inline-flex items-center gap-2 text-[14px] text-white transition-colors duration-200 hover:text-secondary"
             >
-              {link.label}
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={12}
+                color={GOLD}
+                strokeWidth={2.2}
+                className="shrink-0"
+              />
+              <span>{link.label}</span>
             </Link>
           </li>
         ))}
@@ -67,34 +79,22 @@ function FooterColumn({
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#130F44] pt-16 md:pt-20">
+    <footer className="relative overflow-hidden bg-[#0B0A3A] pt-16 md:pt-20 lg:pt-24">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
-          src={Assets.images.footerPattern}
+          src={Assets.images.footerBg}
           alt=""
           fill
-          className="object-cover object-center opacity-5 mix-blend-screen"
+          className="object-cover object-center"
           sizes="100vw"
-        />
-      </div>
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[42%] z-0 w-[min(34rem,80vw)] -translate-x-1/2 -translate-y-1/2"
-      >
-        <Image
-          src={Assets.images.footerLogo}
-          alt=""
-          width={2560}
-          height={2528}
-          className="h-auto w-full opacity-70 mix-blend-screen"
         />
       </div>
 
       <PageContainer className="relative z-10">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 xl:gap-12">
-          <div className="max-w-xs sm:max-w-sm">
-            <Link href="/" className="flex items-center gap-3">
-              <span className="relative h-[3.75rem] w-[3.75rem] shrink-0 overflow-hidden rounded-full sm:h-16 sm:w-16">
+        <div className="grid grid-cols-1 items-start gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,0.72fr)_minmax(0,0.72fr)_minmax(0,1.15fr)] lg:gap-x-10 xl:gap-x-16">
+          <div className="sm:col-span-2 lg:col-auto lg:max-w-[22.5rem]">
+            <Link href="/" className="flex items-center gap-3.5">
+              <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full">
                 <Image
                   src={Assets.icons.logo}
                   alt=""
@@ -103,13 +103,15 @@ export default function Footer() {
                   className="object-cover object-left"
                 />
               </span>
-              <span className="text-[12px] font-bold uppercase leading-snug tracking-[0.02em] text-white sm:text-[13px]">
+              <span className="text-[13px] font-bold uppercase leading-[1.3] tracking-[0.02em] text-white">
                 Association of Chartered Loss Prevention Specialists of Canada
               </span>
             </Link>
-            <p className="mt-5 text-[13px] leading-relaxed text-white/85 sm:text-sm">
-              Advancing loss prevention through membership, certification and
-              professional development.
+            <p className="mt-6 text-[14px] leading-[1.7] text-white">
+              ChLPS Canada is a professional membership and certification body
+              advancing excellence in loss prevention, corporate security, and
+              asset protection through training, certification, and professional
+              development.
             </p>
           </div>
 
@@ -117,47 +119,50 @@ export default function Footer() {
           <FooterColumn title="Support" links={supportLinks} />
 
           <div>
-            <p className="mb-5 text-[12px] font-bold uppercase tracking-[0.16em] text-secondary">
+            <p className="mb-5 text-[13px] font-bold uppercase tracking-[0.14em] text-secondary">
               Contact
             </p>
-            <ul className="flex flex-col gap-4 text-[13px] text-white/90 sm:text-sm">
+            <ul className="flex flex-col gap-4 text-[14px] leading-[1.5] text-white">
               <li className="flex items-start gap-3">
                 <HugeiconsIcon
                   icon={Location01Icon}
                   size={18}
-                  color="#ffffff"
+                  color={GOLD}
                   strokeWidth={1.8}
+                  className="mt-0.5 shrink-0"
                 />
-                <span className="leading-relaxed">
-                  Victoria Avenue Windsor
+                <span>
+                  Victoria Avenue Suite 3 Windsor Ontario
                   <br />
-                  Ontario N9A 4N1 Canada
+                  N9A 4N1 Canada
                 </span>
               </li>
               <li>
                 <a
-                  href="tel:+14375451684"
-                  className="flex items-center gap-3 transition-colors hover:text-secondary"
+                  href="tel:+19054522470"
+                  className="flex items-start gap-3 transition-colors hover:text-secondary"
                 >
                   <HugeiconsIcon
                     icon={CallIcon}
                     size={18}
-                    color="currentColor"
+                    color={GOLD}
                     strokeWidth={1.8}
+                    className="mt-0.5 shrink-0"
                   />
-                  +1 437-545-1684
+                  +1 905-452-2470
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:info@chlpscanada.ca"
-                  className="flex items-center gap-3 transition-colors hover:text-secondary"
+                  className="flex items-start gap-3 transition-colors hover:text-secondary"
                 >
                   <HugeiconsIcon
                     icon={Mail01Icon}
                     size={18}
-                    color="currentColor"
+                    color={GOLD}
                     strokeWidth={1.8}
+                    className="mt-0.5 shrink-0"
                   />
                   info@chlpscanada.ca
                 </a>
@@ -169,12 +174,12 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-[#111E2A] transition-transform hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary transition-transform hover:scale-105"
                 >
                   <HugeiconsIcon
                     icon={social.icon}
                     size={16}
-                    color="currentColor"
+                    color={NAVY}
                     strokeWidth={1.8}
                   />
                 </Link>
@@ -183,14 +188,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/15 py-6 text-center md:mt-16 md:py-8">
-          <p className="text-[11px] leading-relaxed text-white/80 sm:text-xs">
-            CLPA™, CLPO™, CLPM™, ChLPS™ are Trademarks of the Association of
-            Chartered Loss Prevention Specialists of Canada
-          </p>
-          <p className="mt-2 text-[11px] text-white/80 sm:text-xs">
+        <div className="mt-16 pb-8 text-center md:mt-20 md:pb-10 lg:mt-24">
+          <p className="text-[12px] leading-relaxed text-white sm:text-[13px]">
             © 2026 Association of Chartered Loss Prevention Specialists of
-            Canada. All rights reserved.
+            Canada.
+          </p>
+          <p className="mt-1 text-[12px] text-white sm:text-[13px]">
+            All rights reserved.
           </p>
         </div>
       </PageContainer>

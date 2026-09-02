@@ -55,10 +55,10 @@ export default function PartnersSection() {
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
-          src={Assets.images.partners}
+          src={Assets.images.partnersBg}
           alt=""
           fill
-          className="object-cover object-center opacity-5 mix-blend-multiply invert grayscale"
+          className="object-cover object-center"
           sizes="100vw"
         />
       </div>
