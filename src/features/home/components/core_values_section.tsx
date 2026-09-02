@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { IconSvgElement } from "@hugeicons/react";
 import {
@@ -5,12 +7,13 @@ import {
   CourtHouseIcon,
   JusticeScale01Icon,
   LockIcon,
+  ScanEyeIcon,
   ShieldCheckIcon,
-  ViewIcon,
 } from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
+import { Assets } from "@/lib/assets";
 
 type CoreValue = {
   icon: IconSvgElement;
@@ -45,7 +48,7 @@ const values: CoreValue[] = [
     tone: "gold",
   },
   {
-    icon: ViewIcon,
+    icon: ScanEyeIcon,
     title: "Objectivity",
     body: "Base professional judgement on facts, evidence, competence, fairness and sound assessment.",
     tone: "cream",
@@ -65,11 +68,11 @@ function ValueCard({ value }: { value: CoreValue }) {
   return (
     <article className="flex w-full items-stretch">
       <div
-        className={`flex min-w-0 flex-1 items-center gap-4 rounded-l-2xl py-3.5 pl-4 pr-3 sm:gap-5 sm:py-4 sm:pl-5 ${fill}`}
+        className={`flex min-w-0 flex-1 items-center gap-4 rounded-l-lg py-3.5 pl-4 pr-3 sm:gap-5 sm:pl-5 ${fill}`}
       >
         <span
-          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full sm:h-[3.35rem] sm:w-[3.35rem] ${
-            isGold ? "bg-[#E8D39A]" : "bg-[#ECE9E3]"
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white sm:h-[3.25rem] sm:w-[3.25rem] ${
+            isGold ? "border-[#111E2A]" : "border-secondary"
           }`}
         >
           <HugeiconsIcon
@@ -80,17 +83,21 @@ function ValueCard({ value }: { value: CoreValue }) {
           />
         </span>
         <div className="min-w-0">
-          <h3 className="text-[15px] font-bold leading-snug text-[#111E2A] sm:text-base">
+          <h3 className="text-[20px] font-bold leading-snug text-[#111E2A] sm:text-[25px]">
             {value.title}
           </h3>
-          <p className="mt-0.5 text-[12px] leading-relaxed text-[#111E2A]/80 sm:text-[13px]">
+          <p
+            className={`mt-0.5 text-[12px] leading-relaxed sm:text-[17px] ${
+              isGold ? "text-[#111E2A]" : "text-[#111E2A]/70"
+            }`}
+          >
             {value.body}
           </p>
         </div>
       </div>
       <span
         aria-hidden
-        className={`core-value-arrow w-5 shrink-0 sm:w-6 ${fill}`}
+        className={`core-value-arrow -ml-px w-5 shrink-0 sm:w-6 ${fill}`}
       />
     </article>
   );
@@ -98,15 +105,31 @@ function ValueCard({ value }: { value: CoreValue }) {
 
 export default function CoreValuesSection() {
   return (
-    <section id="values" className="bg-[#161058] py-16 md:py-24">
-      <PageContainer>
+    <section
+      id="values"
+      className="relative overflow-hidden bg-[#161058] py-16 md:py-24"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <Image
+          src={Assets.images.careerPathwaysBg}
+          alt=""
+          fill
+          className="object-cover object-bottom"
+          sizes="100vw"
+        />
+      </div>
+
+      <PageContainer className="relative z-10">
         <Reveal className="flex justify-center">
-          <span className="inline-block rounded-md bg-[#8B86C9] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white">
+          <span
+            className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:text-[13px]"
+            style={{ "--cut": "0.55rem" } as CSSProperties}
+          >
             OUR CORE VALUES
           </span>
         </Reveal>
 
-        <div className="mt-10 grid items-center gap-12 lg:mt-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.2fr)] lg:gap-16 xl:gap-24">
+        <div className="mt-10 grid items-start gap-12 lg:mt-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.2fr)] lg:gap-12 xl:gap-16">
           <div className="mx-auto flex max-w-md flex-col items-center text-center">
             <Reveal>
               <div className="flex h-[12.5rem] w-[12.5rem] items-center justify-center rounded-full bg-white sm:h-[14.5rem] sm:w-[14.5rem]">
@@ -134,7 +157,7 @@ export default function CoreValuesSection() {
               </h2>
             </Reveal>
             <Reveal delay={200}>
-              <p className="mt-5 max-w-[24rem] text-[13px] leading-relaxed text-white/75 sm:text-sm">
+              <p className="mt-5 max-w-[24rem] text-[13px] leading-relaxed text-white/80 sm:text-sm">
                 ChLPS Canada is guided by six professional values that shape how
                 members serve, lead, protect information, make decisions and
                 uphold public trust.
@@ -142,12 +165,12 @@ export default function CoreValuesSection() {
             </Reveal>
           </div>
 
-          <RevealGroup className="flex min-w-0 flex-col gap-3 sm:gap-3.5">
+          <RevealGroup className="flex min-w-0 flex-col gap-4 sm:gap-5">
             {values.map((value, index) => (
               <div
                 key={value.title}
-                className={`reveal w-[calc(100%-2rem)] sm:w-[calc(100%-3.5rem)] ${
-                  index % 2 === 1 ? "ml-8 sm:ml-14" : "mr-8 sm:mr-14"
+                className={`reveal w-full max-w-[641px] ${
+                  index % 2 === 1 ? "ml-10 sm:ml-16" : ""
                 }`}
                 style={revealStyle(index)}
               >
