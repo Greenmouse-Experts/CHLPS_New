@@ -2,40 +2,53 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import type { IconSvgElement } from "@hugeicons/react";
+import {
+  ArrowUpRight01Icon,
+  City03Icon,
+  OfficeIcon,
+  UserGroup03Icon,
+} from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
 
-const events = [
+const events: {
+  title: string;
+  body: string;
+  href: string;
+  icon: IconSvgElement;
+}[] = [
   {
     title: "Professional Conference",
     body: "Industry discussion, knowledge exchange and continuing professional development.",
     href: "#events-conference",
+    icon: OfficeIcon,
   },
   {
     title: "Specialist Workshop",
     body: "Practical sessions on investigation, risk analysis and operational loss prevention.",
     href: "#events-workshop",
+    icon: City03Icon,
   },
   {
     title: "Member Networking Session",
     body: "Meet peers, share practice insights and grow professional relationships.",
     href: "#events-networking",
+    icon: UserGroup03Icon,
   },
-] as const;
+];
 
-function DateBadge() {
+function EventIconBadge({ icon }: { icon: IconSvgElement }) {
   return (
-    <span className="flex h-[4.75rem] w-[4.75rem] shrink-0 items-center justify-center rounded-xl bg-lilac px-1.5 text-center sm:h-[5.25rem] sm:w-[5.25rem]">
-      <span className="text-[10px] font-bold uppercase leading-[1.2] tracking-[0.04em] text-primary sm:text-[11px]">
-        Date
-        <br />
-        to be
-        <br />
-        announced
-      </span>
+    <span className="flex h-[4.75rem] w-[4.75rem] shrink-0 items-center justify-center rounded-xl bg-lilac sm:h-[5.25rem] sm:w-[5.25rem]">
+      <HugeiconsIcon
+        icon={icon}
+        size={36}
+        color="#211A73"
+        strokeWidth={1.8}
+      />
     </span>
   );
 }
@@ -44,29 +57,23 @@ export default function UpcomingEventsSection() {
   return (
     <section id="events" className="bg-cream py-16 md:py-24">
       <PageContainer>
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
-          <div className="max-w-xl">
+        <div className="flex items-center justify-center">
+          <div className="max-w-xl flex flex-col items-center justify-center">
             <Reveal>
               <span
-                className="cut-tl inline-block bg-accent px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tl inline-block bg-accent px-3 py-1.5 text-[20px] font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 UPCOMING EVENTS
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-bold leading-tight tracking-tight text-text sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.6rem]">
+              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight text-center tracking-tight text-text sm:text-[40px]">
                 Learn, connect and stay current with the profession.
               </h2>
             </Reveal>
           </div>
-          <Reveal delay={140} className="max-w-md shrink-0 lg:pt-14">
-            <p className="text-[15px] leading-relaxed text-text/70 sm:text-base lg:text-right">
-              ChLPS Canada supports continuing professional development through
-              conferences, seminars, workshops, professional meetings and
-              networking activities.
-            </p>
-          </Reveal>
+          
         </div>
 
         <div className="mt-10 grid items-stretch gap-5 lg:mt-12 lg:grid-cols-2 lg:gap-6 xl:gap-8">
@@ -81,7 +88,10 @@ export default function UpcomingEventsSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                <span className="inline-block bg-secondary px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#111E2A] sm:text-[11px]">
+                <span
+                  className="cut-tl-br inline-block bg-secondary px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#1C1662] sm:text-[20px]"
+                  style={{ "--cut": "0.55rem" } as CSSProperties}
+                >
                   PROFESSIONAL DEVELOPMENT
                 </span>
                 <h3 className="mt-3 text-2xl font-bold text-white sm:text-[1.75rem]">
@@ -102,7 +112,7 @@ export default function UpcomingEventsSection() {
                 className="reveal flex flex-1 items-center gap-4 rounded-2xl border border-secondary/35 bg-white p-4 shadow-[0_8px_24px_rgba(48,45,57,0.05)] sm:gap-5 sm:p-5"
                 style={revealStyle(index)}
               >
-                <DateBadge />
+                <EventIconBadge icon={event.icon} />
                 <div className="min-w-0 flex-1">
                   <h3 className="text-[15px] font-bold leading-snug text-primary sm:text-base">
                     {event.title}

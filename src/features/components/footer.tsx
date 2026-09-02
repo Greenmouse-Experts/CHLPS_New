@@ -188,7 +188,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pb-8 text-center md:mt-20 md:pb-10 lg:mt-24">
+        <div className="mt-16 border-t border-[#CDA54E80] pb-8 pt-6 text-center md:mt-20 md:pb-10 md:pt-8 lg:mt-24">
           <p className="text-[12px] leading-relaxed text-white sm:text-[13px]">
             © 2026 Association of Chartered Loss Prevention Specialists of
             Canada.
