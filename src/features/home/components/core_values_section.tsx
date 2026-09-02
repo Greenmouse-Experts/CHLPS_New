@@ -31,7 +31,7 @@ const values: CoreValue[] = [
   },
   {
     icon: LockIcon,
-    title: "Confidentiality",
+    title: "Confidentiality ",
     body: "Protect sensitive information and handle professional matters with care and discretion.",
     tone: "gold",
   },
