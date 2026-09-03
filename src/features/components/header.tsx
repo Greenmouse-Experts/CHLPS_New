@@ -370,6 +370,16 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    function onResize() {
+      if (window.matchMedia("(min-width: 1536px)").matches) {
+        setMobileOpen(false);
+      }
+    }
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
     return () => cancelClose();
   }, []);
 
@@ -439,7 +449,7 @@ export default function Header() {
               )}
             </div>
 
-            <nav className="flex flex-row flex-nowrap items-center gap-5">
+            <nav className="hidden flex-row flex-nowrap items-center gap-5 2xl:flex">
               {navLinks.map((item) => (
                 <NavLink
                   key={item.label}
@@ -451,25 +461,25 @@ export default function Header() {
                 />
               ))}
             </nav>
-          </div>
 
-          <button
-            className="ml-auto p-1 text-primary xl:hidden"
-            onClick={() => setMobileOpen((prev) => !prev)}
-            aria-label="Toggle navigation menu"
-            aria-expanded={mobileOpen}
-          >
-            <HugeiconsIcon
-              icon={mobileOpen ? Cancel01Icon : Menu01Icon}
-              size={22}
-              color="currentColor"
-            />
-          </button>
+            <button
+              className="p-1 text-primary 2xl:hidden"
+              onClick={() => setMobileOpen((prev) => !prev)}
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileOpen}
+            >
+              <HugeiconsIcon
+                icon={mobileOpen ? Cancel01Icon : Menu01Icon}
+                size={22}
+                color="currentColor"
+              />
+            </button>
+          </div>
         </div>
       </PageContainer>
 
       <div
-        className={`absolute inset-x-0 top-full z-50 hidden origin-top xl:block ${
+        className={`absolute inset-x-0 top-full z-50 hidden origin-top 2xl:block ${
           openMega
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -482,7 +492,7 @@ export default function Header() {
       </div>
 
       <div
-        className={`grid transition-all duration-300 ease-in-out xl:hidden ${
+        className={`grid transition-all duration-300 ease-in-out 2xl:hidden ${
           mobileOpen
             ? "grid-rows-[1fr] opacity-100"
             : "pointer-events-none grid-rows-[0fr] opacity-0"
@@ -529,7 +539,7 @@ export default function Header() {
 
               <form
                 onSubmit={handleSearch}
-                className="mt-2 flex h-10 items-stretch overflow-hidden rounded-full border border-sand bg-white"
+                className="mt-2 flex h-10 items-stretch overflow-hidden rounded-full border border-sand bg-white md:hidden"
               >
                 <input
                   type="search"
@@ -548,7 +558,7 @@ export default function Header() {
                 </button>
               </form>
 
-              <div className="flex flex-row flex-nowrap gap-2">
+              <div className="flex flex-row flex-nowrap gap-2 md:hidden">
                 {isLoggedIn ? (
                   <Link
                     href="/dashboard"

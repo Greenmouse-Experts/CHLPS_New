@@ -97,7 +97,7 @@ export default function WhyJoinSection() {
                     strokeWidth={1.8}
                   />
                 </div>
-                <h3 className="mt-5 text-[20px] font-bold text-[#151515] leading-tight tracking-tight sm:text-[35px]">
+                <h3 className="mt-5 text-[25px] font-bold text-[#151515] leading-tight tracking-tight">
                   {feature.title}
                 </h3>
                 <p className="mt-2 text-[16px] leading-tight text-[#676672] sm:text-[20px]">

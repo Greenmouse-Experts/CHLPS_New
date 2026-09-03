@@ -178,7 +178,7 @@ export default function HeroSection() {
                         <span className="text-secondary">{slide.accent}</span>
                       </h1>
 
-                      <p className="mt-5 max-w-[812px] text-[15px] leading-relaxed text-white/95 sm:text-base text-medium lg:mt-6 lg:text-[30px]">
+                      <p className="mt-5 max-w-[36rem] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-6 lg:max-w-[28rem] lg:text-lg xl:max-w-[34rem] xl:text-xl 2xl:max-w-[40rem] 2xl:text-[1.75rem] 2xl:leading-snug">
                         {slide.body}
                       </p>
 
