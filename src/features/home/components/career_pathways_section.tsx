@@ -104,7 +104,7 @@ const careers: Career[] = [
 
 function CareerCard({ career }: { career: Career }) {
   return (
-    <article className="flex h-full items-start gap-3.5 rounded-lg border border-secondary bg-white/5 px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem] max-w-[581px]">
+    <article className="flex h-full w-full items-start gap-3.5 rounded-lg border border-secondary bg-white/5 px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem]">
       <span
         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md"
         style={{ backgroundColor: career.color }}
@@ -147,12 +147,12 @@ export default function CareerPathwaysSection() {
       <PageContainer className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <span className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5 text-[20px] font-bold uppercase tracking-[0.14em] text-primary">
+            <span className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-primary">
               CAREER PATHWAYS
             </span>
           </Reveal>
           <Reveal delay={80}>
-            <h2 className="mt-5 text-[1.75rem] font-normal leading-[1.15] tracking-tight text-white sm:text-3xl lg:mt-6 lg:text-[2.5rem] xl:text-[60px]">
+            <h2 className="mt-5 text-[1.75rem] font-normal leading-[1.15] tracking-tight text-white sm:text-3xl lg:mt-6 lg:text-[2.5rem] xl:text-[3rem]">
               Career Opportunities in
               <br />
               <span className="text-secondary">Loss Prevention</span>
@@ -175,7 +175,7 @@ export default function CareerPathwaysSection() {
           </Reveal>
         </div>
 
-        <RevealGroup className="mx-auto mt-10 grid auto-rows-fr grid-cols-1 gap-3 sm:mt-12 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:grid-cols-2 lg:gap-x-5 lg:gap-y-4 xl:max-w-6xl">
+        <RevealGroup className="mx-auto mt-10 grid max-w-xl auto-rows-fr grid-cols-1 gap-3 sm:mt-12 sm:max-w-none sm:grid-cols-2 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:gap-x-5 lg:gap-y-4 xl:max-w-6xl">
           {careers.map((career, index) => (
             <div key={career.title} className="reveal h-full" style={revealStyle(index)}>
               <CareerCard career={career} />

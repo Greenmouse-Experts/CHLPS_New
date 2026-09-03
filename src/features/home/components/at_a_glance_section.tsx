@@ -55,11 +55,11 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
         {card.value}
       </span>
       <div className="flex min-w-0 flex-1 flex-col">
-        <h3 className="text-[18px] font-bold uppercase tracking-[0.12em] sm:text-[20px]">
+        <h3 className="text-[15px] font-bold uppercase tracking-[0.12em] sm:text-[17px]">
           {card.title}
         </h3>
         <p
-          className={`mt-1.5 text-[13px] leading-relaxed font-medium sm:text-[16px] ${
+          className={`mt-1.5 text-[13px] leading-relaxed font-medium sm:text-sm ${
             isPrimary ? "text-white/90" : "opacity-90"
           }`}
         >
@@ -101,7 +101,7 @@ export default function AtAGlanceSection() {
           <div className="max-w-xl">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-[18px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 CHLPS CANADA AT A GLANCE
@@ -113,7 +113,7 @@ export default function AtAGlanceSection() {
               </h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[500px] text-[15px] leading-relaxed text-[#383740] sm:text-[20px] lg:mt-5">
+              <p className="mt-4 max-w-[500px] text-[15px] leading-relaxed text-[#383740] sm:text-base lg:text-lg lg:mt-5">
                 From membership and certification to professional standards and
                 business resilience, these figures highlight the framework
                 behind the Association and show how professionals can progress

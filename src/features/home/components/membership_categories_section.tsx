@@ -100,7 +100,7 @@ export default function MembershipCategoriesSection() {
           <div className="max-w-xl flex items-center justify-center flex-col">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 sm:text-[20px] text-base font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 MEMBERSHIP CATEGORIES
@@ -138,15 +138,15 @@ export default function MembershipCategoriesSection() {
                 alt={`${category.title} badge`}
                 cropLogo={"cropLogo" in category && category.cropLogo}
               />
-              <h3 className="mt-6 text-xl font-bold leading-snug text-white sm:text-[30px]">
+              <h3 className="mt-6 text-lg font-bold leading-snug text-white sm:text-xl lg:text-2xl">
                 {category.title}
               </h3>
-              <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-[20px]">
+              <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-sm">
                 {category.body}
               </p>
               <Link
                 href={category.href}
-                className="mt-auto inline-flex min-w-0 items-center gap-1.5 pt-8 text-[13px] font-bold text-secondary transition-opacity hover:opacity-80 sm:text-[20px]"
+                className="mt-auto inline-flex min-w-0 items-center gap-1.5 pt-8 text-[13px] font-bold text-secondary transition-opacity hover:opacity-80 sm:text-sm"
               >
                 <span className="min-w-0">{category.cta}</span>
                 <HugeiconsIcon

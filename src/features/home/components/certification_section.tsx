@@ -68,7 +68,7 @@ export default function CertificationSection() {
           <div className="max-w-xl flex flex-col items-center">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[20px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 FEATURED PROGRAMMES
@@ -110,10 +110,10 @@ export default function CertificationSection() {
                   className="h-full w-auto object-contain"
                 />
               </div>
-              <h3 className="mt-6 text-[1.05rem] font-bold leading-snug text-[#151515] sm:text-[24px]">
+              <h3 className="mt-6 text-[1.05rem] font-bold leading-snug text-[#151515] sm:text-lg">
                 {programme.title}
               </h3>
-              <p className="mt-3 text-[13px] leading-relaxed font-semibold text-[#676672] sm:text-[18px]">
+              <p className="mt-3 text-[13px] leading-relaxed font-semibold text-[#676672] sm:text-sm">
                 {programme.body}
               </p>
               <Link

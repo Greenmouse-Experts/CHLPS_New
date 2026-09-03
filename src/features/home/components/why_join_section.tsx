@@ -48,7 +48,7 @@ export default function WhyJoinSection() {
           <div className="flex min-w-0 flex-col">
             <Reveal>
               <span
-                className="cut-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 WHY JOIN CHLPS CANADA
@@ -60,7 +60,7 @@ export default function WhyJoinSection() {
               </h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[612px] text-[15px] leading-relaxed text-[#383740] sm:text-[24px] lg:mt-5">
+              <p className="mt-4 max-w-[612px] text-[15px] leading-relaxed text-[#383740] sm:text-base lg:text-lg lg:mt-5">
                 ChLPS Canada connects professional recognition with the
                 knowledge, standards, community and development opportunities
                 needed to grow from entry-level practice into leadership.
@@ -97,10 +97,10 @@ export default function WhyJoinSection() {
                     strokeWidth={1.8}
                   />
                 </div>
-                <h3 className="mt-5 text-[25px] font-bold text-[#151515] leading-tight tracking-tight">
+                <h3 className="mt-5 text-lg font-bold text-[#151515] leading-tight tracking-tight sm:text-xl">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-[16px] leading-tight text-[#676672] sm:text-[20px]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[#676672] sm:text-sm">
                   {feature.body}
                 </p>
               </article>

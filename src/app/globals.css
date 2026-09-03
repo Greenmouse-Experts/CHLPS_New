@@ -176,7 +176,7 @@ html {
   }
 }
 
-@media (min-width: 1326px) {
+@media (min-width: 1024px) {
   .header-right {
     flex-direction: column;
     align-items: flex-end;
@@ -184,6 +184,10 @@ html {
 
   .header-nav {
     display: flex;
+  }
+
+  .header-nav-full {
+    display: none;
   }
 
   .header-menu-btn {
@@ -196,6 +200,12 @@ html {
 
   .header-mobile-drawer {
     display: none;
+  }
+}
+
+@media (min-width: 1326px) {
+  .header-nav-full {
+    display: block;
   }
 }
 

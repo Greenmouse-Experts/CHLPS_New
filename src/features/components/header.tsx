@@ -38,6 +38,7 @@ type NavItem = {
   label: string;
   href: string;
   menu?: MegaMenu | CompactMenu;
+  hideCompact?: boolean;
 };
 
 const navLinks: NavItem[] = [
@@ -117,9 +118,9 @@ const navLinks: NavItem[] = [
       ],
     },
   },
-  { label: "Events", href: "#events" },
-  { label: "News & Blogs", href: "#news" },
-  { label: "Careers Centre", href: "#careers" },
+  { label: "Events", href: "#events", hideCompact: true },
+  { label: "News & Blogs", href: "#news", hideCompact: true },
+  { label: "Careers Centre", href: "#careers", hideCompact: true },
   { label: "Contact Us", href: "#contact" },
 ];
 
@@ -371,7 +372,7 @@ export default function Header() {
 
   useEffect(() => {
     function onResize() {
-      if (window.matchMedia("(min-width: 1326px)").matches) {
+      if (window.matchMedia("(min-width: 1024px)").matches) {
         setMobileOpen(false);
       }
     }
@@ -451,14 +452,15 @@ export default function Header() {
 
             <nav className="header-nav flex-row flex-nowrap items-center gap-5">
               {navLinks.map((item) => (
-                <NavLink
-                  key={item.label}
-                  item={item}
-                  open={openMenu === item.label}
-                  onOpen={() => open(item.label)}
-                  onClose={scheduleClose}
-                  onNavigate={closeAll}
-                />
+                <div key={item.label} className={item.hideCompact ? "header-nav-full" : ""}>
+                  <NavLink
+                    item={item}
+                    open={openMenu === item.label}
+                    onOpen={() => open(item.label)}
+                    onClose={scheduleClose}
+                    onNavigate={closeAll}
+                  />
+                </div>
               ))}
             </nav>
 

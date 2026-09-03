@@ -83,11 +83,11 @@ function ValueCard({ value }: { value: CoreValue }) {
           />
         </span>
         <div className="min-w-0">
-          <h3 className="text-[20px] font-bold leading-snug text-[#111E2A] sm:text-[25px]">
+          <h3 className="text-base font-bold leading-snug text-[#111E2A] sm:text-lg lg:text-xl">
             {value.title}
           </h3>
           <p
-            className={`mt-0.5 text-[12px] leading-relaxed sm:text-[17px] ${
+            className={`mt-0.5 text-[12px] leading-relaxed sm:text-[13px] lg:text-sm ${
               isGold ? "text-[#111E2A]" : "text-[#111E2A]/70"
             }`}
           >
@@ -169,8 +169,8 @@ export default function CoreValuesSection() {
             {values.map((value, index) => (
               <div
                 key={value.title}
-                className={`reveal w-full max-w-[641px] ${
-                  index % 2 === 1 ? "ml-10 sm:ml-16" : ""
+                className={`reveal max-w-[641px] ${
+                  index % 2 === 1 ? "ml-4 sm:ml-10 lg:ml-16" : ""
                 }`}
                 style={revealStyle(index)}
               >

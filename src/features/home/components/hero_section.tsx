@@ -100,10 +100,10 @@ function PathwayCard({ className = "" }: { className?: string }) {
         ))}
       </div>
       <div className="min-w-0 text-[#111E2A]">
-        <p className="text-[20px] font-medium text-white leading-snug">
+        <p className="text-[15px] font-medium text-white leading-snug sm:text-[17px] lg:text-[20px]">
           Membership. Certification. Professional development.
         </p>
-        <p className="mt-0.5 text-[15px] text-white leading-snug">
+        <p className="mt-0.5 text-[13px] text-white leading-snug sm:text-[14px] lg:text-[15px]">
           One progressive career pathway.
         </p>
       </div>
@@ -178,7 +178,7 @@ export default function HeroSection() {
                         <span className="text-secondary">{slide.accent}</span>
                       </h1>
 
-                      <p className="mt-5 max-w-[36rem] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-6 lg:max-w-[28rem] lg:text-lg xl:max-w-[34rem] xl:text-xl 2xl:max-w-[40rem] 2xl:text-[1.75rem] 2xl:leading-snug">
+                      <p className="mt-5 max-w-[36rem] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-6 lg:max-w-[28rem] lg:text-lg xl:max-w-[34rem] xl:text-xl 2xl:max-w-[40rem]">
                         {slide.body}
                       </p>
 

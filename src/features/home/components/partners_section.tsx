@@ -67,7 +67,7 @@ export default function PartnersSection() {
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <span
-              className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-1.5 text-[20px] font-bold uppercase tracking-[0.14em] text-white"
+              className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
               style={{ "--cut": "0.55rem" } as CSSProperties}
             >
               AFFILIATIONS AND PARTNERSHIPS
@@ -75,7 +75,7 @@ export default function PartnersSection() {
           </Reveal>
 
           <Reveal delay={140}>
-            <p className="mx-auto mt-4 max-w-xl text-[18px] leading-relaxed text-[#383740] sm:text-[20px]">
+            <p className="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed text-[#383740] sm:text-base lg:text-lg">
               Professional affiliations and education partnerships that support
               the wider ChLPS Canada ecosystem.
             </p>

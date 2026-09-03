@@ -61,14 +61,14 @@ export default function UpcomingEventsSection() {
           <div className="max-w-xl flex flex-col items-center justify-center">
             <Reveal>
               <span
-                className="cut-tl inline-block bg-accent px-3 py-1.5 text-[20px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tl inline-block bg-accent px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 UPCOMING EVENTS
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight text-center tracking-tight text-text sm:text-[40px]">
+              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight text-center tracking-tight text-text sm:text-3xl lg:text-[2.35rem] xl:text-[40px]">
                 Learn, connect and stay current with the profession.
               </h2>
             </Reveal>
@@ -89,7 +89,7 @@ export default function UpcomingEventsSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                 <span
-                  className="cut-tl-br inline-block bg-secondary px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#1C1662] sm:text-[20px]"
+                  className="cut-tl-br inline-block bg-secondary px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#1C1662] sm:text-xs"
                   style={{ "--cut": "0.55rem" } as CSSProperties}
                 >
                   PROFESSIONAL DEVELOPMENT
