@@ -34,7 +34,7 @@ html {
   width: 100%;
   max-width: var(--max-width-page);
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1rem;
 }
 
 .cut-tl {
@@ -229,25 +229,25 @@ html {
 
 @media (min-width: 640px) {
   .page-container {
-    padding-inline: 2rem;
+    padding-inline: 1.25rem;
   }
 }
 
 @media (min-width: 1024px) {
   .page-container {
-    padding-inline: 4rem;
+    padding-inline: 2rem;
   }
 }
 
 @media (min-width: 1280px) {
   .page-container {
-    padding-inline: 5rem;
+    padding-inline: 2.5rem;
   }
 }
 
 @media (min-width: 1536px) {
   .page-container {
-    padding-inline: 6rem;
+    padding-inline: 3rem;
   }
 }
 
