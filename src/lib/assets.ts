@@ -20,6 +20,7 @@ export const Assets = {
     footerPattern: "/assets/images/footer_bg_parttern.png",
     footerBg: "/assets/images/footer_bg_img.png",
     footerLogo: "/assets/images/chips_logo_faded_logo.png.png",
+    fullLogo: "/assets/images/chips-ful-logo-1.png",
     partnerLogos: {
       p1: "/assets/images/p1.png",
       p2: "/assets/images/p2.png",

@@ -93,19 +93,14 @@ export default function Footer() {
       <PageContainer className="relative z-10">
         <div className="grid grid-cols-1 items-start gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,0.72fr)_minmax(0,0.72fr)_minmax(0,1.15fr)] lg:gap-x-10 xl:gap-x-16">
           <div className="sm:col-span-2 lg:col-auto lg:max-w-[22.5rem]">
-            <Link href="/" className="flex items-center gap-3.5">
-              <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full">
-                <Image
-                  src={Assets.icons.logo}
-                  alt=""
-                  fill
-                  sizes="64px"
-                  className="object-cover object-left"
-                />
-              </span>
-              <span className="text-[13px] font-bold uppercase leading-[1.3] tracking-[0.02em] text-white">
-                Association of Chartered Loss Prevention Specialists of Canada
-              </span>
+            <Link href="/" className="inline-block">
+              <Image
+                src={Assets.images.fullLogo}
+                alt="Association of Chartered Loss Prevention Specialists of Canada"
+                width={1993}
+                height={789}
+                className="h-auto w-60 sm:w-72"
+              />
             </Link>
             <p className="mt-6 text-[14px] leading-[1.7] text-white">
               ChLPS Canada is a professional membership and certification body
