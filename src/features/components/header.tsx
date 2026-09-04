@@ -113,7 +113,7 @@ const navLinks: NavItem[] = [
       type: "compact",
       items: [
         { label: "Our History", href: "/about-us" },
-        { label: "Our Governance", href: "/#values" },
+        { label: "Our Governance", href: "/about-us/governance" },
       ],
     },
   },

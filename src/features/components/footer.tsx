@@ -51,7 +51,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <p className="mb-5 text-[13px] font-bold uppercase tracking-[0.14em] text-secondary">
+      <p className="mb-5 sm:text-[23px] font-bold uppercase tracking-[0.14em] text-secondary">
         {title}
       </p>
       <ul className="flex flex-col gap-3.5">
@@ -114,7 +114,7 @@ export default function Footer() {
           <FooterColumn title="Support" links={supportLinks} />
 
           <div>
-            <p className="mb-5 text-[13px] font-bold uppercase tracking-[0.14em] text-secondary">
+            <p className="mb-5 sm:text-[23px] font-bold uppercase tracking-[0.14em] text-secondary">
               Contact
             </p>
             <ul className="flex flex-col gap-4 text-[14px] leading-[1.5] text-white">

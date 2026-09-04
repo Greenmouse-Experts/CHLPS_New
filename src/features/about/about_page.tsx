@@ -10,7 +10,12 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-cream">
       <Header />
-      <AboutHeroSection />
+      <AboutHeroSection
+        badge="About CHLPS Canada"
+        title="Advancing modern"
+        accent="loss prevention."
+        body="A credible professional home for loss prevention, security, risk and related professionals."
+      />
       <OurStorySection />
       <MissionVisionSection />
       <CoreValuesSection />

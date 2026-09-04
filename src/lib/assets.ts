@@ -10,6 +10,12 @@ export const Assets = {
     aboutHeroBg: "/assets/images/about_us_hero_bg.png",
     ourStoryBg: "/assets/images/our_story_bg_img.png",
     ourStory: "/assets/images/our_story_left_img.png",
+    howWeAreGoverned: "/assets/images/how_we_are_governed.jpg",
+    leadership: {
+      victoriaOgbuehi: "/assets/images/victoria_ogbuehi.png",
+      josephOkpotu: "/assets/images/joseph_okpotu.png",
+      adegbengaKoko: "/assets/images/adegbenga_koko.png",
+    },
     whyJoin: "/assets/images/ttt.jpg",
     upcomingEvent: "/assets/images/upcoming_event_img.jpg",
     border: "/assets/images/Border.png",
