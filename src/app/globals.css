@@ -186,10 +186,6 @@ html {
     display: flex;
   }
 
-  .header-nav-full {
-    display: none;
-  }
-
   .header-menu-btn {
     display: none;
   }
@@ -203,9 +199,27 @@ html {
   }
 }
 
+/* Between tablet and 1326px every nav link stays visible, so scale the type
+   down in steps to keep the row from running into the logo. */
 @media (min-width: 1024px) and (max-width: 1325px) {
   .header-nav {
-    gap: 0.875rem;
+    gap: 0.5rem;
+  }
+
+  .header-nav a:not(.nav-option-chip) {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1325px) {
+  .header-nav a:not(.nav-option-chip) {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1180px) and (max-width: 1325px) {
+  .header-nav {
+    gap: 0.625rem;
   }
 
   .header-nav a:not(.nav-option-chip) {
@@ -213,19 +227,13 @@ html {
   }
 }
 
-@media (min-width: 1180px) and (max-width: 1325px) {
+@media (min-width: 1280px) and (max-width: 1325px) {
   .header-nav {
-    gap: 1.125rem;
+    gap: 0.75rem;
   }
 
   .header-nav a:not(.nav-option-chip) {
     font-size: 16px;
-  }
-}
-
-@media (min-width: 1326px) {
-  .header-nav-full {
-    display: block;
   }
 }
 
