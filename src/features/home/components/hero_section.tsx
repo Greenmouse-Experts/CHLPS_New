@@ -127,7 +127,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative z-10 w-full overflow-hidden bg-[#111E2A] ">
+    <section className="relative z-10 w-full overflow-hidden bg-[#111E2A] lg:h-[502px]">
       <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-0 lg:h-full">
         {heroSlides.map((slide, index) => (
           <div
@@ -143,7 +143,7 @@ export default function HeroSection() {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-[right_center]"
+              className="object-cover object-[right_top]"
             />
           </div>
         ))}
@@ -153,9 +153,9 @@ export default function HeroSection() {
         />
       </div>
 
-      <PageContainer className="relative z-10">
-        <div className="flex items-center py-10 sm:py-12 lg:min-h-[38rem] lg:py-16 xl:min-h-[42rem] xl:py-20">
-          <div className="w-full max-w-[812px]">
+      <PageContainer className="relative h-full">
+        <div className="flex h-full items-center py-10 sm:py-12 lg:py-8">
+          <div className="w-full max-w-[640px] xl:max-w-[720px]">
             <Reveal delay={80}>
               <div className="grid">
                 {heroSlides.map((slide, index) => {
@@ -172,21 +172,21 @@ export default function HeroSection() {
                       style={{ transitionDuration: `${FADE_MS}ms` }}
                       aria-hidden={!isActive}
                     >
-                      <h1 className="mt-5 text-[2rem] font-normal leading-[1.12] tracking-tight text-white sm:text-4xl lg:mt-6 lg:text-[2.75rem] xl:text-[3.35rem] xl:leading-[1.08]">
+                      <h1 className="text-[2rem] font-normal leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] xl:leading-[1.08]">
                         {slide.title}
                         <br />
                         <span className="text-secondary">{slide.accent}</span>
                       </h1>
 
-                      <p className="mt-5 max-w-[36rem] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-6 lg:max-w-[28rem] lg:text-lg xl:max-w-[34rem] xl:text-xl 2xl:max-w-[40rem]">
+                      <p className="mt-4 max-w-[36rem] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:max-w-[28rem] lg:text-base xl:max-w-[32rem] xl:text-lg">
                         {slide.body}
                       </p>
 
-                      <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+                      <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4 lg:mt-7">
                         <Link
                           href={slide.primary.href}
                           tabIndex={isActive ? undefined : -1}
-                          className="rounded-full inline-flex h-12 items-center gap-2 bg-secondary px-6 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:text-sm"
+                          className="rounded-full inline-flex h-11 items-center gap-2 bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-sm"
                           style={{ "--cut": "0.85rem" } as CSSProperties}
                         >
                           {slide.primary.label}
@@ -200,7 +200,7 @@ export default function HeroSection() {
                         <Link
                           href={slide.secondary.href}
                           tabIndex={isActive ? undefined : -1}
-                          className="inline-flex h-12 items-center gap-2 rounded-full border border-white/85 px-6 text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-white/10 sm:text-sm"
+                          className="inline-flex h-11 items-center gap-2 rounded-full border border-white/85 px-5 text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-white/10 sm:h-12 sm:px-6 sm:text-sm"
                         >
                           {slide.secondary.label}
                           <HugeiconsIcon
@@ -217,21 +217,18 @@ export default function HeroSection() {
               </div>
             </Reveal>
 
-            <Reveal delay={320} className="mt-8 lg:hidden">
+            <div className="mt-8 lg:hidden">
               <PathwayCard />
-            </Reveal>
+            </div>
           </div>
         </div>
       </PageContainer>
 
-      <Reveal
-        delay={280}
-        className="pointer-events-none absolute bottom-8 right-6 z-10 hidden lg:block xl:bottom-10 xl:right-10 2xl:right-14"
-      >
+      <div className="pointer-events-none absolute bottom-5 right-5 z-20 hidden lg:block xl:bottom-7 xl:right-10 2xl:right-14">
         <div className="pointer-events-auto max-w-[500px]">
           <PathwayCard />
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

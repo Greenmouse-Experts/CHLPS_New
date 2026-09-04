@@ -81,6 +81,18 @@ html {
   );
 }
 
+.cut-tl-bl {
+  --cut: 0.55rem;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% 100%,
+    var(--cut) 100%,
+    0 calc(100% - var(--cut)),
+    0 var(--cut)
+  );
+}
+
 .cut-tr-bl {
   --cut: 0.55rem;
   clip-path: polygon(

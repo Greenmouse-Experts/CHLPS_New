@@ -19,19 +19,19 @@ const GOLD = "#CDA54E";
 const NAVY = "#0B0A3A";
 
 const exploreLinks = [
-  { label: "Membership", href: "#membership" },
-  { label: "Certifications", href: "#certification" },
-  { label: "About Us", href: "#about" },
-  { label: "Events", href: "#events" },
-  { label: "News & Blogs", href: "#news" },
-  { label: "CareerCentre", href: "#careers" },
+  { label: "Membership", href: "/#membership" },
+  { label: "Certifications", href: "/#certification" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Events", href: "/#events" },
+  { label: "News & Blogs", href: "/#news" },
+  { label: "CareerCentre", href: "/#careers" },
 ];
 
 const supportLinks = [
-  { label: "FAQs", href: "#faq" },
-  { label: "Privacy Policy", href: "#privacy" },
-  { label: "Terms", href: "#terms" },
-  { label: "Code of Ethics", href: "#ethics" },
+  { label: "FAQs", href: "/#faq" },
+  { label: "Privacy Policy", href: "/#privacy" },
+  { label: "Terms", href: "/#terms" },
+  { label: "Code of Ethics", href: "/#ethics" },
   { label: "My ChLPS", href: "/dashboard/sign-in" },
 ];
 

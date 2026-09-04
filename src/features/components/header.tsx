@@ -44,63 +44,63 @@ const navLinks: NavItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Membership",
-    href: "#membership",
+    href: "/#membership",
     menu: {
       type: "mega",
       heading: "Membership",
       description:
         "Choose the membership level that reflects your current stage, experience and professional responsibility.",
-      cta: { label: "Explore Membership", href: "#membership" },
+      cta: { label: "Explore Membership", href: "/#membership" },
       columns: [
         [
-          { label: "Student Membership", href: "#membership-student" },
-          { label: "Affiliate Membership", href: "#membership-affiliate" },
-          { label: "Licentiate Membership", href: "#membership-licentiate" },
+          { label: "Student Membership", href: "/#membership-student" },
+          { label: "Affiliate Membership", href: "/#membership-affiliate" },
+          { label: "Licentiate Membership", href: "/#membership-licentiate" },
         ],
         [
-          { label: "Associate Membership", href: "#membership-associate" },
-          { label: "Certified Membership", href: "#membership-certified" },
-          { label: "Corporate Membership", href: "#membership-corporate" },
+          { label: "Associate Membership", href: "/#membership-associate" },
+          { label: "Certified Membership", href: "/#membership-certified" },
+          { label: "Corporate Membership", href: "/#membership-corporate" },
         ],
       ],
     },
   },
   {
     label: "Certifications",
-    href: "#certification",
+    href: "/#certification",
     menu: {
       type: "mega",
       heading: "Certification",
       description:
         "Progress from foundational loss prevention learning to advanced professional and chartered recognition.",
-      cta: { label: "Explore Certifications", href: "#certification" },
+      cta: { label: "Explore Certifications", href: "/#certification" },
       columns: [
         [
           {
             label: "Basic Professional Certificate in Loss Prevention",
-            href: "#certification-bclp",
+            href: "/#certification-bclp",
           },
           {
             label: "Certified Loss Prevention Associate™ (CLPA™)",
-            href: "#certification-clpa",
+            href: "/#certification-clpa",
           },
           {
             label: "Certified Loss Prevention Officer™ (CLPO™)",
-            href: "#certification-clpo",
+            href: "/#certification-clpo",
           },
         ],
         [
           {
             label: "Certified Loss Prevention Manager™ (CLPM™)",
-            href: "#certification-clpm",
+            href: "/#certification-clpm",
           },
           {
             label: "Advanced Professional Certificate in Loss Prevention Management",
-            href: "#certification-aclpm",
+            href: "/#certification-aclpm",
           },
           {
             label: "Chartered Loss Prevention Specialist™ (ChLPS™)",
-            href: "#certification-chlps",
+            href: "/#certification-chlps",
           },
         ],
       ],
@@ -108,19 +108,19 @@ const navLinks: NavItem[] = [
   },
   {
     label: "About Us",
-    href: "#about",
+    href: "/about-us",
     menu: {
       type: "compact",
       items: [
-        { label: "Our History", href: "#about" },
-        { label: "Our Governance", href: "#values" },
+        { label: "Our History", href: "/about-us" },
+        { label: "Our Governance", href: "/#values" },
       ],
     },
   },
-  { label: "Events", href: "#events" },
-  { label: "News & Blogs", href: "#news" },
-  { label: "Careers Centre", href: "#careers" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Events", href: "/#events" },
+  { label: "News & Blogs", href: "/#news" },
+  { label: "Careers Centre", href: "/#careers" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 function GoldTriangle() {
