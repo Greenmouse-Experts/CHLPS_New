@@ -203,6 +203,26 @@ html {
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1325px) {
+  .header-nav {
+    gap: 0.875rem;
+  }
+
+  .header-nav a:not(.nav-option-chip) {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1180px) and (max-width: 1325px) {
+  .header-nav {
+    gap: 1.125rem;
+  }
+
+  .header-nav a:not(.nav-option-chip) {
+    font-size: 16px;
+  }
+}
+
 @media (min-width: 1326px) {
   .header-nav-full {
     display: block;
