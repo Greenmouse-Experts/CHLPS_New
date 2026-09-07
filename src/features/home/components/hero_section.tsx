@@ -22,6 +22,7 @@ const FADE_MS = 1400;
 
 type HeroSlide = {
   image: string;
+  blurDataURL: string;
   alt: string;
   title: string;
   accent: string;
@@ -33,6 +34,8 @@ type HeroSlide = {
 const heroSlides: HeroSlide[] = [
   {
     image: Assets.images.heroBg1,
+    blurDataURL:
+      "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAMEBv/EABkQAAMBAQEAAAAAAAAAAAAAAAABAgNBIf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8AyJPhosvegDvBiy3VTVrgAJ4ev//Z",
     alt: "CHLPS professionals standing together",
     title: "Advancing excellence in",
     accent: "loss prevention.",
@@ -46,6 +49,8 @@ const heroSlides: HeroSlide[] = [
   },
   {
     image: Assets.images.heroBg2,
+    blurDataURL:
+      "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQG/8QAHBAAAgICAwAAAAAAAAAAAAAAAAECBAMxBREi/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/8QAFREBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhEDEQA/AMj0V17Tr4/K3sAdFTPlZtRcdgAxV//Z",
     alt: "CHLPS professionals standing together",
     title: "Join modern",
     accent: "loss prevention.",
@@ -59,6 +64,8 @@ const heroSlides: HeroSlide[] = [
   },
   {
     image: Assets.images.heroBg3,
+    blurDataURL:
+      "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIFBv/EAB0QAAICAQUAAAAAAAAAAAAAAAABAgMRBBMiMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAEx/9oADAMBAAIRAxEAPwDIYLHRxW3xWZMAdwZqd9tkO01jwAAhV//Z",
     alt: "CHLPS professionals collaborating",
     title: "Build professional",
     accent: "credibility.",
@@ -100,10 +107,10 @@ function PathwayCard({ className = "" }: { className?: string }) {
         ))}
       </div>
       <div className="min-w-0 text-[#111E2A]">
-        <p className="text-[15px] font-medium text-white leading-snug sm:text-[17px] lg:text-[20px]">
+        <p className="text-[14px] font-medium text-white leading-snug sm:text-[18px] lg:text-[18px]">
           Membership. Certification. Professional development.
         </p>
-        <p className="mt-0.5 text-[13px] text-white leading-snug sm:text-[14px] lg:text-[15px]">
+        <p className="mt-0.5 text-[14px] text-white leading-snug sm:text-[18px] lg:text-[18px]">
           One progressive career pathway.
         </p>
       </div>
@@ -113,6 +120,12 @@ function PathwayCard({ className = "" }: { className?: string }) {
 
 export default function HeroSection() {
   const [active, setActive] = useState(0);
+  const [loadRest, setLoadRest] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setLoadRest(true), 250);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -137,14 +150,20 @@ export default function HeroSection() {
             }`}
             style={{ transitionDuration: `${FADE_MS}ms` }}
           >
-            <Image
-              src={slide.image}
-              alt={index === active ? slide.alt : ""}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-[right_top]"
-            />
+            {(index === 0 || loadRest) && (
+              <Image
+                src={slide.image}
+                alt={index === active ? slide.alt : ""}
+                fill
+                priority={index === 0}
+                fetchPriority={index === 0 ? "high" : "low"}
+                quality={90}
+                sizes="100vw"
+                placeholder="blur"
+                blurDataURL={slide.blurDataURL}
+                className="object-cover object-[right_top]"
+              />
+            )}
           </div>
         ))}
         <div
@@ -172,7 +191,7 @@ export default function HeroSection() {
                       style={{ transitionDuration: `${FADE_MS}ms` }}
                       aria-hidden={!isActive}
                     >
-                      <h1 className="text-[2rem] font-normal leading-[1.12] tracking-tight text-white sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] xl:leading-[1.08]">
+                      <h1 className="text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[50px] lg:text-[70px] xl:text-[80px] xl:leading-[1.08]">
                         {slide.title}
                         <br />
                         <span className="text-secondary">{slide.accent}</span>

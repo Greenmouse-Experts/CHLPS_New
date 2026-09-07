@@ -4,9 +4,9 @@ export const Assets = {
   },
   images: {
     heroBg: "/assets/images/hero_bg_img.png",
-    heroBg1: "/assets/images/hero_bg_img_1.png",
-    heroBg2: "/assets/images/hero_bg_img_2.png",
-    heroBg3: "/assets/images/hero_bg_img_3.png",
+    heroBg1: "/assets/images/hero-bg-1.webp",
+    heroBg2: "/assets/images/hero-bg-2.webp",
+    heroBg3: "/assets/images/hero-bg-3.webp",
     aboutHeroBg: "/assets/images/about_us_hero_bg.png",
     ourStoryBg: "/assets/images/our_story_bg_img.png",
     ourStory: "/assets/images/our_story_left_img.png",
