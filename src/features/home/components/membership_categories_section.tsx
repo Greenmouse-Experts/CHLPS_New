@@ -94,13 +94,13 @@ function MembershipBadge({
 
 export default function MembershipCategoriesSection() {
   return (
-    <section id="membership" className="bg-[#F5F5F5] py-16 md:py-24">
+    <section id="membership" className="bg-[#F5F5F5] py-16 md:py-24 ">
       <PageContainer>
         <div className="flex items-center justify-center ">
           <div className="max-w-xl flex items-center justify-center flex-col">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 MEMBERSHIP CATEGORIES
@@ -115,12 +115,12 @@ export default function MembershipCategoriesSection() {
           
         </div>
 
-        <RevealGroup className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        <RevealGroup className="mx-auto mt-10 grid max-w-[1527px] grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {categories.map((category, index) => (
             <article
               id={`membership-${category.key}`}
               key={category.key}
-              className="reveal relative flex h-full flex-col overflow-hidden rounded-2xl bg-[#141549] p-6 sm:p-8"
+              className="reveal relative flex h-full flex-col overflow-hidden rounded-[24px] bg-[#141549] p-6 sm:p-8"
               style={revealStyle(index)}
             >
               <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -138,15 +138,15 @@ export default function MembershipCategoriesSection() {
                 alt={`${category.title} badge`}
                 cropLogo={"cropLogo" in category && category.cropLogo}
               />
-              <h3 className="mt-6 text-lg font-bold leading-snug text-white sm:text-xl lg:text-2xl">
+              <h3 className="mt-6 text-lg font-bold leading-snug text-white sm:text-xl lg:text-[30px]">
                 {category.title}
               </h3>
-              <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-sm">
+              <p className="mt-3 text-[13px] font-medium leading-relaxed text-[#FFFFFFCC] sm:text-[20px]">
                 {category.body}
               </p>
               <Link
                 href={category.href}
-                className="mt-auto inline-flex min-w-0 items-center gap-1.5 pt-8 text-[13px] font-bold text-secondary transition-opacity hover:opacity-80 sm:text-sm"
+                className="mt-auto inline-flex min-w-0 items-center gap-1.5 pt-8 text-[13px] font-bold text-[#CDA54E] transition-opacity hover:opacity-80 sm:text-[20px]"
               >
                 <span className="min-w-0">{category.cta}</span>
                 <HugeiconsIcon

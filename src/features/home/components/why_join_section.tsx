@@ -42,54 +42,54 @@ const features: {
 
 export default function WhyJoinSection() {
   return (
-    <section id="why-join" className="bg-cream py-16 md:py-24">
+    <section id="why-join" className="bg-cream py-12 sm:py-16 md:py-20 lg:py-24">
       <PageContainer>
-        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+        <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-10 xl:grid-cols-[minmax(0,620px)_minmax(0,1fr)] xl:gap-14 2xl:gap-16">
           <div className="flex min-w-0 flex-col">
             <Reveal>
               <span
-                className="cut-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-bl inline-block bg-[#6B65C4] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white sm:px-3 sm:py-1.5 sm:text-[18px] sm:tracking-[0.14em] md:text-[20px]"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 WHY JOIN CHLPS CANADA
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
+              <h2 className="mt-4 text-[1.625rem] font-medium leading-[1.15] tracking-tight text-[#151515] sm:mt-5 sm:text-[1.75rem] md:text-[2rem] lg:mt-6 lg:text-[2.25rem] xl:text-[40px] xl:leading-tight">
                 For professionals ready to grow.
               </h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[612px] text-[15px] leading-relaxed text-[#383740] sm:text-base lg:text-lg lg:mt-5">
+              <p className="mt-3.5 text-[15px] leading-relaxed text-[#383740] sm:mt-4 sm:text-base md:text-[17px] lg:mt-5 lg:text-[20px] xl:text-[24px] xl:leading-[1.55]">
                 ChLPS Canada connects professional recognition with the
                 knowledge, standards, community and development opportunities
                 needed to grow from entry-level practice into leadership.
               </p>
             </Reveal>
-            <Reveal delay={240} className="mt-8 lg:mt-10">
-              <div className="mt-auto w-full pb-3.5 pr-3.5">
-                <div className="shadow-[12px_12px_0_0_#111111] sm:shadow-[14px_14px_0_0_#111111]">
+            <Reveal delay={240} className="mt-6 sm:mt-8 lg:mt-10">
+              <div className="mt-auto w-full pb-2.5 pr-2.5 sm:pb-3 sm:pr-3 xl:pb-3.5 xl:pr-3.5">
+                <div className="shadow-[8px_8px_0_0_#111111] sm:shadow-[12px_12px_0_0_#111111] xl:shadow-[14px_14px_0_0_#111111]">
                   <Image
                     src={Assets.images.whyJoin}
                     alt="Two loss prevention professionals reviewing analytics on a tablet"
-                    width={1408}
-                    height={768}
+                    width={611}
+                    height={330}
                     className="h-auto w-full object-cover"
-                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    sizes="(max-width: 1023px) 100vw, (max-width: 1279px) 50vw, 620px"
                   />
                 </div>
               </div>
             </Reveal>
           </div>
 
-          <RevealGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+          <RevealGroup className="grid min-w-0 grid-cols-1 gap-3.5 sm:gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 xl:gap-5">
             {features.map((feature, index) => (
               <article
                 key={feature.title}
-                className="reveal flex flex-col rounded-[1.25rem] bg-white p-6 shadow-[0_8px_24px_rgba(48,45,57,0.05)] sm:p-7 border border-[#CDA54E]"
+                className="reveal flex h-full min-w-0 flex-col rounded-2xl border border-[#CDA54E] bg-white p-5 shadow-[0_8px_24px_rgba(48,45,57,0.05)] sm:rounded-[1.25rem] sm:p-6 xl:p-7"
                 style={revealStyle(index)}
               >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sand border border-[#BDB6BDCE]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#BDB6BDCE] bg-sand sm:h-11 sm:w-11 xl:h-12 xl:w-12">
                   <HugeiconsIcon
                     icon={feature.icon}
                     size={22}
@@ -97,10 +97,10 @@ export default function WhyJoinSection() {
                     strokeWidth={1.8}
                   />
                 </div>
-                <h3 className="mt-5 text-lg font-bold text-[#151515] leading-tight tracking-tight sm:text-xl">
+                <h3 className="mt-4 text-lg font-bold leading-tight tracking-tight text-[#151515] sm:mt-5 sm:text-xl md:text-[22px] lg:text-2xl xl:text-[30px]">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#676672] sm:text-sm">
+                <p className="mt-1.5 text-[13px] leading-relaxed text-[#676672] sm:mt-2 sm:text-sm md:text-[15px] lg:text-[17px] xl:text-[20px]">
                   {feature.body}
                 </p>
               </article>

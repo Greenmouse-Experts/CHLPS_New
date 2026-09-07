@@ -1,27 +1,26 @@
 import Image from "next/image";
-import { HugeiconsIcon } from "@hugeicons/react";
-import type { IconSvgElement } from "@hugeicons/react";
+import type { LucideIcon } from "lucide-react";
 import {
-  ChartHistogramIcon,
-  ClipboardListIcon,
-  ComputerChartUpIcon,
-  DeliveryTruck01Icon,
-  GraduationCapIcon,
-  HandshakeIcon,
-  JusticeScale01Icon,
-  Search01Icon,
-  ShieldCheckIcon,
-  ShoppingCart01Icon,
-  TriangleAlertIcon,
-  UserGroupIcon,
-} from "@hugeicons/core-free-icons";
+  ChartColumn,
+  ChartLine,
+  ClipboardList,
+  GraduationCap,
+  Handshake,
+  Scale,
+  Search,
+  ShieldCheck,
+  ShoppingCart,
+  TriangleAlert,
+  Truck,
+  Users,
+} from "lucide-react";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
 
 type Career = {
-  icon: IconSvgElement;
+  icon: LucideIcon;
   title: string;
   body: string;
   color: string;
@@ -29,98 +28,95 @@ type Career = {
 
 const careers: Career[] = [
   {
-    icon: ShieldCheckIcon,
+    icon: ShieldCheck,
     title: "Loss Prevention Manager",
     body: "Lead loss prevention programs, investigate incidents, analyze data, and implement strategies to reduce shrinkage and protect assets.",
-    color: "#6B5AED",
+    color: "#56369B",
   },
   {
-    icon: Search01Icon,
+    icon: Search,
     title: "Loss Prevention Investigator",
     body: "Conduct internal investigations on theft, fraud and policy violations, gather evidence and support corrective actions.",
-    color: "#22A45A",
+    color: "#157B48",
   },
   {
-    icon: ShoppingCart01Icon,
+    icon: ShoppingCart,
     title: "Retail Loss Prevention Specialist",
     body: "Monitor store operations, identify risks, and develop solutions to prevent theft, fraud and operational losses in retail environments.",
-    color: "#3B82F6",
+    color: "#1257A3",
   },
   {
-    icon: ChartHistogramIcon,
+    icon: ChartLine,
     title: "Loss Prevention Analyst",
     body: "Analyze loss data and trends, prepare reports, and provide insights that drive decisions and improve loss prevention performance.",
-    color: "#E24B4B",
+    color: "#A51F2F",
   },
   {
-    icon: UserGroupIcon,
+    icon: Users,
     title: "District Loss Prevention Manager",
     body: "Oversee loss prevention initiatives across multiple locations, coach store teams, and ensure compliance with company policies and procedures.",
-    color: "#E8892A",
+    color: "#B36A12",
   },
   {
-    icon: JusticeScale01Icon,
+    icon: Scale,
     title: "Compliance & Ethics Officer (LP)",
     body: "Ensure adherence to laws, regulations and ethical standards, promote integrity and reduce compliance-related losses.",
-    color: "#1F9A9A",
+    color: "#166080",
   },
   {
-    icon: DeliveryTruck01Icon,
+    icon: Truck,
     title: "Supply Chain Loss Prevention Specialist",
     body: "Identify and mitigate risks in the supply chain to prevent cargo theft, fraud, diversion and inventory shortages.",
-    color: "#7C4DFF",
+    color: "#56369B",
   },
   {
-    icon: ClipboardListIcon,
+    icon: ClipboardList,
     title: "Internal Audit - Loss Prevention",
     body: "Evaluate internal controls, assess risk exposure and recommend improvements to strengthen loss prevention and governance.",
-    color: "#C43C3C",
+    color: "#A51F2F",
   },
   {
-    icon: GraduationCapIcon,
+    icon: GraduationCap,
     title: "Loss Prevention Trainer / Educator",
     body: "Develop and deliver training programs that build awareness, skills and a proactive loss prevention culture within organizations.",
-    color: "#4BA3E3",
+    color: "#1257A3",
   },
   {
-    icon: HandshakeIcon,
+    icon: Handshake,
     title: "Loss Prevention Consultant",
     body: "Advise organizations on risk assessments, program design, investigations and strategies to reduce losses and improve profitability.",
-    color: "#CDA54E",
+    color: "#B36A12",
   },
   {
-    icon: ComputerChartUpIcon,
+    icon: ChartColumn,
     title: "Loss Prevention Technology Specialist",
     body: "Implement and manage technologies such as CCTV, EAS, analytics and AI-driven solutions to detect and deter risks.",
-    color: "#22A45A",
+    color: "#157B48",
   },
   {
-    icon: TriangleAlertIcon,
+    icon: TriangleAlert,
     title: "Loss Prevention Risk Manager",
     body: "Identify, assess and manage enterprise risks that can lead to loss, and develop mitigation strategies to protect people, assets and business continuity.",
-    color: "#2A7A8A",
+    color: "#166080",
   },
 ];
 
 function CareerCard({ career }: { career: Career }) {
+  const Icon = career.icon;
+
   return (
-    <article className="flex h-full w-full items-start gap-3.5 rounded-lg border border-secondary bg-white/5 px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem]">
+    <article className="flex h-full w-full items-start gap-3.5 rounded-lg border border-secondary bg-white/5 px-[20px] py-[18px] sm:gap-4">
       <span
         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md"
         style={{ backgroundColor: career.color }}
       >
-        <HugeiconsIcon
-          icon={career.icon}
-          size={20}
-          color="#ffffff"
-          strokeWidth={1.8}
-        />
+        <Icon size={20} color="#ffffff" strokeWidth={1.8} aria-hidden />
       </span>
       <div className="min-w-0 pt-0.5">
-        <h3 className="text-[15px] font-bold leading-snug text-white sm:text-base">
+        <h3 className="text-[15px] font-bold leading-snug text-white sm:text-[20px]">
           {career.title}
         </h3>
-        <p className="mt-1 text-[13px] leading-relaxed text-white/80 sm:text-[13.5px]">
+        <p className="mt-1 text-[13px] leading-relaxed text-white/80 sm:text-[14px]">
           {career.body}
         </p>
       </div>
@@ -132,7 +128,7 @@ export default function CareerPathwaysSection() {
   return (
     <section
       id="careers"
-      className="relative overflow-hidden bg-[#161058] py-16 md:py-24"
+      className="relative overflow-hidden py-16 md:py-24"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <Image
@@ -147,7 +143,7 @@ export default function CareerPathwaysSection() {
       <PageContainer className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <span className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-primary">
+            <span className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5 text-[11px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-primary">
               CAREER PATHWAYS
             </span>
           </Reveal>
@@ -175,7 +171,7 @@ export default function CareerPathwaysSection() {
           </Reveal>
         </div>
 
-        <RevealGroup className="mx-auto mt-10 grid max-w-xl auto-rows-fr grid-cols-1 gap-3 sm:mt-12 sm:max-w-none sm:grid-cols-2 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:gap-x-5 lg:gap-y-4 xl:max-w-6xl">
+        <RevealGroup className="mx-auto mt-10 grid max-w-xl auto-rows-fr grid-cols-1 gap-3 sm:mt-12 sm:max-w-none sm:grid-cols-2 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:gap-x-5 lg:gap-y-4 xl:max-w-5xl">
           {careers.map((career, index) => (
             <div key={career.title} className="reveal h-full" style={revealStyle(index)}>
               <CareerCard career={career} />

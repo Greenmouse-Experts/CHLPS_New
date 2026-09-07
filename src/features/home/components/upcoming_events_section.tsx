@@ -21,19 +21,19 @@ const events: {
   icon: IconSvgElement;
 }[] = [
   {
-    title: "Professional Conference",
+    title: "Professional Conferences",
     body: "Industry discussion, knowledge exchange and continuing professional development.",
     href: "#events-conference",
     icon: OfficeIcon,
   },
   {
-    title: "Specialist Workshop",
+    title: "Speacialist Workshops",
     body: "Practical sessions on investigation, risk analysis and operational loss prevention.",
     href: "#events-workshop",
     icon: City03Icon,
   },
   {
-    title: "Member Networking Session",
+    title: "Member Networking Sessions",
     body: "Meet peers, share practice insights and grow professional relationships.",
     href: "#events-networking",
     icon: UserGroup03Icon,
@@ -61,7 +61,7 @@ export default function UpcomingEventsSection() {
           <div className="max-w-xl flex flex-col items-center justify-center">
             <Reveal>
               <span
-                className="cut-tl inline-block bg-accent px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tl inline-block bg-accent px-3 py-1.5 text-[15px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 UPCOMING EVENTS
@@ -89,15 +89,15 @@ export default function UpcomingEventsSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                 <span
-                  className="cut-tl-br inline-block bg-secondary px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#1C1662] sm:text-xs"
+                  className="cut-tl-br inline-block bg-secondary px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#1C1662] sm:text-[20px]"
                   style={{ "--cut": "0.55rem" } as CSSProperties}
                 >
                   PROFESSIONAL DEVELOPMENT
                 </span>
-                <h3 className="mt-3 text-2xl font-bold text-white sm:text-[1.75rem]">
+                <h3 className="mt-3 text-2xl font-bold text-white leading-tight tracking-tight text-white sm:text-[45px]">
                   Professional Conference
                 </h3>
-                <p className="mt-1.5 max-w-md text-[13px] leading-relaxed text-white/90 sm:text-sm">
+                <p className="mt-1.5 max-w-md text-[13px] leading-relaxed text-white/90 sm:text-[18px]">
                   Industry discussion, knowledge exchange and continuing
                   professional development.
                 </p>
@@ -114,10 +114,10 @@ export default function UpcomingEventsSection() {
               >
                 <EventIconBadge icon={event.icon} />
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-[15px] font-bold leading-snug text-primary sm:text-base">
+                  <h3 className="text-[20px] font-medium leading-snug text-primary sm:text-[30px]">
                     {event.title}
                   </h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-text/60 sm:text-sm">
+                  <p className="mt-1 text-[13px] leading-relaxed text-[#686673] sm:text-[18px]">
                     {event.body}
                   </p>
                 </div>

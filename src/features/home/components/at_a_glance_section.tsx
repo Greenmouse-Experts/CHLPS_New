@@ -22,14 +22,14 @@ const cards: GlanceCard[] = [
     tone: "lilac",
   },
   {
-    value: "4",
+    value: "6",
     title: "Certification pathways",
     body: "Progressive credentials recognizing growing knowledge, experience and professional responsibility.",
     badge: "4 credentials",
     tone: "gold",
   },
   {
-    value: "5",
+    value: "6",
     title: "Core values",
     body: "Protect assets, preserve profits, prevent losses, secure the business bottom line and support continuity.",
     badge: "5 pillars",
@@ -48,33 +48,33 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
 
   return (
     <article
-      className={`cut-br flex items-stretch gap-4 overflow-hidden px-5 py-5 sm:gap-5 sm:px-6 sm:py-6 ${toneClass[card.tone]}`}
+      className={`cut-br flex items-center  gap-4 overflow-hidden px-5 py-5 sm:gap-5 sm:px-6 sm:py-6 ${toneClass[card.tone]}`}
       style={{ "--cut": "1.65rem" } as CSSProperties}
     >
       <span className="outline-stat shrink-0 self-center text-[4.25rem] font-bold leading-none sm:text-[5rem] lg:text-[5.5rem]">
         {card.value}
       </span>
       <div className="flex min-w-0 flex-1 flex-col">
-        <h3 className="text-[15px] font-bold uppercase tracking-[0.12em] sm:text-[17px]">
+        <h3 className="text-[15px] font-bold uppercase tracking-[0.12em] sm:text-[20px]">
           {card.title}
         </h3>
         <p
-          className={`mt-1.5 text-[13px] leading-relaxed font-medium sm:text-sm ${
+          className={`mt-1.5 text-[13px] leading-relaxed font-semibold sm:text-[16px] ${
             isPrimary ? "text-white/90" : "opacity-90"
           }`}
         >
           {card.body}
         </p>
-        <span
-          className={`mt-3 self-end cut-tr-br-bl-tl inline-block px-3.5 py-1.5 text-[11px] font-semibold sm:mt-4 ${
-            isPrimary
-              ? "border border-white/90 bg-transparent text-white"
-              : "bg-white"
-          }`}
-          style={{ "--cut": "0.4rem" } as CSSProperties}
-        >
-          {card.badge}
-        </span>
+      </div>
+      <div
+        className={`mt-3 flex  items-center cut-tr-br-bl-tl inline-block px-3.5 py-1.5 text-[12px] font-extrabold sm:mt-4 ${
+          isPrimary
+            ? "border border-white/90 bg-transparent text-white"
+            : "bg-white"
+        }`}
+        style={{ "--cut": "0.4rem" } as CSSProperties}
+      >
+        {card.badge}
       </div>
     </article>
   );
@@ -97,11 +97,11 @@ export default function AtAGlanceSection() {
       </div>
 
       <PageContainer className="relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
+        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
           <div className="max-w-xl">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 CHLPS CANADA AT A GLANCE
@@ -113,7 +113,7 @@ export default function AtAGlanceSection() {
               </h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[500px] text-[15px] leading-relaxed text-[#383740] sm:text-base lg:text-lg lg:mt-5">
+              <p className="mt-4 max-w-[500px] text-[15px] leading-relaxed text-[#383740] sm:text-[20px] lg:mt-5">
                 From membership and certification to professional standards and
                 business resilience, these figures highlight the framework
                 behind the Association and show how professionals can progress
@@ -124,7 +124,11 @@ export default function AtAGlanceSection() {
 
           <RevealGroup className="flex flex-col gap-3 sm:gap-4">
             {cards.map((card, index) => (
-              <div key={card.title} className="reveal" style={revealStyle(index)}>
+              <div
+                key={card.title}
+                className="reveal"
+                style={revealStyle(index)}
+              >
                 <GlanceStatCard card={card} />
               </div>
             ))}
