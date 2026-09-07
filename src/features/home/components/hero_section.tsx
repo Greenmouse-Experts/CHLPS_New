@@ -140,7 +140,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative z-10 w-full overflow-hidden bg-[#111E2A] lg:h-[502px]">
+    <section className="relative z-10 w-full overflow-hidden bg-[#111E2A]">
       <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-0 lg:h-full">
         {heroSlides.map((slide, index) => (
           <div
@@ -174,7 +174,7 @@ export default function HeroSection() {
 
       <PageContainer className="relative h-full">
         <div className="flex h-full items-center py-10 sm:py-12 lg:py-8">
-          <div className="w-full max-w-[640px] xl:max-w-[720px]">
+          <div className="w-full ">
             <Reveal delay={80}>
               <div className="grid">
                 {heroSlides.map((slide, index) => {
@@ -197,7 +197,7 @@ export default function HeroSection() {
                         <span className="text-secondary">{slide.accent}</span>
                       </h1>
 
-                      <p className="mt-4 max-w-[36rem] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:max-w-[28rem] lg:text-base xl:max-w-[32rem] xl:text-lg">
+                      <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5  lg:text-base  xl:text-[30px]">
                         {slide.body}
                       </p>
 
