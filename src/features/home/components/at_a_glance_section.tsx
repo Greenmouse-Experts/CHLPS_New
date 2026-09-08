@@ -5,15 +5,16 @@ import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
 
-type GlanceCard = {
+export type GlanceCard = {
   value: string;
   title: string;
   body: string;
   badge: string;
   tone: "lilac" | "gold" | "primary";
+  badgeVariant?: "filled" | "outline";
 };
 
-const cards: GlanceCard[] = [
+const defaultCards: GlanceCard[] = [
   {
     value: "6",
     title: "Membership levels",
@@ -45,13 +46,20 @@ const toneClass: Record<GlanceCard["tone"], string> = {
 
 function GlanceStatCard({ card }: { card: GlanceCard }) {
   const isPrimary = card.tone === "primary";
+  const outlineBadge =
+    card.badgeVariant === "outline" ||
+    (card.badgeVariant !== "filled" && isPrimary);
 
   return (
     <article
-      className={`cut-br flex items-center  gap-4 overflow-hidden px-5 py-5 sm:gap-5 sm:px-6 sm:py-6 ${toneClass[card.tone]}`}
+      className={`cut-br flex items-center gap-4 overflow-hidden px-5 py-5 sm:gap-5 sm:px-6 sm:py-6 ${toneClass[card.tone]}`}
       style={{ "--cut": "1.65rem" } as CSSProperties}
     >
-      <span className="outline-stat shrink-0 self-center text-[4.25rem] font-bold leading-none sm:text-[5rem] lg:text-[5.5rem]">
+      <span className={`outline-stat shrink-0 self-center font-bold leading-none ${
+        card.value.length > 1
+          ? "text-[3.5rem] sm:text-[4.5rem] lg:text-[5rem]"
+          : "text-[4.25rem] sm:text-[5rem] lg:text-[5.5rem]"
+      }`}>
         {card.value}
       </span>
       <div className="flex min-w-0 flex-1 flex-col">
@@ -67,9 +75,11 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
         </p>
       </div>
       <div
-        className={`mt-3 flex  items-center cut-tr-br-bl-tl inline-block px-3.5 py-1.5 text-[12px] font-extrabold sm:mt-4 ${
-          isPrimary
-            ? "border border-white/90 bg-transparent text-white"
+        className={`cut-tr-br-bl-tl inline-flex shrink-0 items-center whitespace-nowrap px-3.5 py-1.5 text-[12px] font-extrabold ${
+          outlineBadge
+            ? isPrimary
+              ? "border border-white/90 bg-transparent text-white"
+              : "border border-white/90 bg-transparent"
             : "bg-white"
         }`}
         style={{ "--cut": "0.4rem" } as CSSProperties}
@@ -80,10 +90,22 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
   );
 }
 
-export default function AtAGlanceSection() {
+type AtAGlanceSectionProps = {
+  id?: string;
+  heading?: string;
+  body?: string;
+  cards?: GlanceCard[];
+};
+
+export default function AtAGlanceSection({
+  id = "about",
+  heading = "A structured professional body built for long-term development.",
+  body = "From membership and certification to professional standards and business resilience, these figures highlight the framework behind the Association and show how professionals can progress within it.",
+  cards = defaultCards,
+}: AtAGlanceSectionProps) {
   return (
     <section
-      id="about"
+      id={id}
       className="relative z-0 -mt-10 overflow-hidden bg-white pb-16 pt-20 md:pb-24 md:pt-28"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
@@ -109,15 +131,12 @@ export default function AtAGlanceSection() {
             </Reveal>
             <Reveal delay={80}>
               <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-text sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
-                A structured professional body built for long-term development.
+                {heading}
               </h2>
             </Reveal>
             <Reveal delay={160}>
               <p className="mt-4 max-w-[500px] text-[15px] leading-relaxed text-[#383740] sm:text-[20px] lg:mt-5">
-                From membership and certification to professional standards and
-                business resilience, these figures highlight the framework
-                behind the Association and show how professionals can progress
-                within it.
+                {body}
               </p>
             </Reveal>
           </div>

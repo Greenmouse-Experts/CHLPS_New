@@ -95,7 +95,7 @@ export default function WhyChooseSection() {
 
             <Reveal delay={240}>
               <Link
-                href="/#membership"
+                href="/membership"
                 className="mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-[13px] font-semibold text-white transition-opacity duration-200 hover:opacity-90 sm:text-sm lg:mt-7"
               >
                 Explore membership

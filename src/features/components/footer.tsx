@@ -19,7 +19,7 @@ const GOLD = "#CDA54E";
 const NAVY = "#0B0A3A";
 
 const exploreLinks = [
-  { label: "Membership", href: "/#membership" },
+  { label: "Membership", href: "/membership" },
   { label: "Certifications", href: "/#certification" },
   { label: "About Us", href: "/about-us" },
   { label: "Events", href: "/#events" },

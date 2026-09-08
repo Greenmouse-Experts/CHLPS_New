@@ -17,6 +17,8 @@ export const Assets = {
       adegbengaKoko: "/assets/images/adegbenga_koko.png",
     },
     whyJoin: "/assets/images/ttt.jpg",
+    whoShouldJoin:
+      "/assets/images/Professional working with colleagues in a modern office.png",
     upcomingEvent: "/assets/images/upcoming_event_img.jpg",
     border: "/assets/images/Border.png",
     partners: "/assets/images/parttners.png",

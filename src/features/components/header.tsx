@@ -44,23 +44,23 @@ const navLinks: NavItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Membership",
-    href: "/#membership",
+    href: "/membership",
     menu: {
       type: "mega",
       heading: "Membership",
       description:
         "Choose the membership level that reflects your current stage, experience and professional responsibility.",
-      cta: { label: "Explore Membership", href: "/#membership" },
+      cta: { label: "Explore Membership", href: "/membership" },
       columns: [
         [
-          { label: "Student Membership", href: "/#membership-student" },
-          { label: "Affiliate Membership", href: "/#membership-affiliate" },
-          { label: "Licentiate Membership", href: "/#membership-licentiate" },
+          { label: "Student Membership", href: "/membership#membership-student" },
+          { label: "Affiliate Membership", href: "/membership#membership-affiliate" },
+          { label: "Licentiate Membership", href: "/membership#membership-licentiate" },
         ],
         [
-          { label: "Associate Membership", href: "/#membership-associate" },
-          { label: "Certified Membership", href: "/#membership-certified" },
-          { label: "Corporate Membership", href: "/#membership-corporate" },
+          { label: "Associate Membership", href: "/membership#membership-associate" },
+          { label: "Certified Membership", href: "/membership#membership-certified" },
+          { label: "Corporate Membership", href: "/membership#membership-corporate" },
         ],
       ],
     },
