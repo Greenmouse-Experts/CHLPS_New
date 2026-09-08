@@ -11,7 +11,7 @@ export function getEventDetailView(event: ChlpsEvent) {
     isPast,
     isFree,
     isVirtual,
-    accentBg: isLive ? "#FFF0F0" : "#F6F3FB",
+    accentBg: isLive ? "#F6F3FB" : "#F6F3FB",
     formatLabel: isVirtual ? "Virtual Event" : "In-person Event",
     statusBadge: isLive ? "Live" : isPast ? "Past" : "Upcoming",
     statusLabel: isLive
