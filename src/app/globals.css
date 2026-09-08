@@ -93,7 +93,8 @@ html {
   );
 }
 
-.cut-tr-bl {
+.cut-tr-bl,
+.cut-bl-tr {
   --cut: 0.55rem;
   clip-path: polygon(
     0 0,

@@ -53,14 +53,14 @@ const navLinks: NavItem[] = [
       cta: { label: "Explore Membership", href: "/membership" },
       columns: [
         [
-          { label: "Student Membership", href: "/membership#membership-student" },
-          { label: "Affiliate Membership", href: "/membership#membership-affiliate" },
-          { label: "Licentiate Membership", href: "/membership#membership-licentiate" },
+          { label: "Student Membership", href: "/membership/student" },
+          { label: "Affiliate Membership", href: "/membership/affiliate" },
+          { label: "Licentiate Membership", href: "/membership/licentiate" },
         ],
         [
-          { label: "Associate Membership", href: "/membership#membership-associate" },
-          { label: "Certified Membership", href: "/membership#membership-certified" },
-          { label: "Corporate Membership", href: "/membership#membership-corporate" },
+          { label: "Associate Membership", href: "/membership/associate" },
+          { label: "Certified Membership", href: "/membership/certified" },
+          { label: "Corporate Membership", href: "/membership/corporate" },
         ],
       ],
     },

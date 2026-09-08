@@ -15,7 +15,7 @@ const categories = [
     body: "For individuals currently studying loss prevention, security, criminology, risk management or related disciplines.",
     cta: "Explore student membership",
     badge: Assets.images.membership.student,
-    href: "#membership-student",
+    href: "/membership/student",
   },
   {
     key: "affiliate",
@@ -23,7 +23,7 @@ const categories = [
     body: "An accessible entry point for individuals exploring the profession or transitioning from related operational fields.",
     cta: "Explore affiliate membership",
     badge: Assets.images.membership.affiliate,
-    href: "#membership-affiliate",
+    href: "/membership/affiliate",
   },
   {
     key: "licentiate",
@@ -31,7 +31,7 @@ const categories = [
     body: "For practitioners with foundational knowledge and practical exposure who are formalizing their professional standing.",
     cta: "Explore licentiate membership",
     badge: Assets.images.membership.licentiate,
-    href: "#membership-licentiate",
+    href: "/membership/licentiate",
   },
   {
     key: "associate",
@@ -39,7 +39,7 @@ const categories = [
     body: "For experienced professionals able to operate independently and contribute meaningfully to organizational loss reduction.",
     cta: "Explore associate membership",
     badge: Assets.images.membership.associate,
-    href: "#membership-associate",
+    href: "/membership/associate",
   },
   {
     key: "certified",
@@ -47,7 +47,7 @@ const categories = [
     body: "For professionals who have attained recognized certification and demonstrated strong operational and leadership capability.",
     cta: "Explore certified membership",
     badge: Assets.images.membership.certified,
-    href: "#membership-certified",
+    href: "/membership/certified",
   },
   {
     key: "corporate",
@@ -55,7 +55,7 @@ const categories = [
     body: "For organizations advancing loss prevention, security and risk through professional standards.",
     cta: "Explore corporate membership",
     badge: Assets.icons.logo,
-    href: "#membership-corporate",
+    href: "/membership/corporate",
     cropLogo: true,
   },
 ] as const;

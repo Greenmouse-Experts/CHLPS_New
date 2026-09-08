@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -10,13 +10,14 @@ import { Assets } from "@/lib/assets";
 type AboutHeroSectionProps = {
   badge: string;
   title: string;
-  accent: string;
+  accent?: string;
   body: string;
   bodyWidth?: string;
   image?: string;
   imageAlt?: string;
   imageClassName?: string;
   cta?: { label: string; href: string };
+  children?: ReactNode;
 };
 
 export default function AboutHeroSection({
@@ -28,7 +29,10 @@ export default function AboutHeroSection({
   imageAlt = "CHLPS Canada professionals standing together in an office",
   imageClassName = "object-cover object-[right_15%]",
   cta,
+  children,
 }: AboutHeroSectionProps) {
+  const hasExtra = Boolean(cta || children);
+
   return (
     <section className="relative z-10 w-full overflow-hidden bg-[#030E20]">
       <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-0 lg:h-full">
@@ -45,13 +49,17 @@ export default function AboutHeroSection({
       <PageContainer className="relative h-full">
         <div
           className={`flex h-full items-center py-10 sm:py-12 ${
-            cta ? "lg:min-h-[32rem] lg:py-16 xl:min-h-[36rem] xl:py-20" : "lg:py-8"
+            children
+              ? "lg:min-h-[42rem] lg:py-16 xl:min-h-[48rem] xl:py-20"
+              : hasExtra
+                ? "lg:min-h-[32rem] lg:py-16 xl:min-h-[36rem] xl:py-20"
+                : "lg:py-8"
           }`}
         >
           <div className="w-full max-w-[640px] xl:max-w-[720px]">
             <Reveal>
               <span
-                className="cut-bl inline-block bg-secondary px-4 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-[#211A73] sm:text-[20px]"
+                className="cut-bl-tr inline-block bg-secondary px-4 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-[#211A73] sm:text-[12px]"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 {badge}
@@ -61,21 +69,35 @@ export default function AboutHeroSection({
             <Reveal delay={80}>
               <h1 className="mt-5 text-[40px] font-normal leading-[1.1] tracking-tight text-white sm:text-[50px] lg:mt-6 lg:text-[70px] xl:text-[80px] xl:leading-[1.08]">
                 {title}
-                <br />
-                <span className="text-secondary">{accent}</span>
+                {accent ? (
+                  <>
+                    <br />
+                    <span className="text-secondary">{accent}</span>
+                  </>
+                ) : null}
               </h1>
             </Reveal>
 
             <Reveal delay={160}>
               <p
-                className={`mt-4 text-[15px] font-semibold leading-tight text-white/95 sm:text-[20px] lg:mt-5 lg:text-[30px] max-w-[720px]`}
+                className={`mt-4 font-semibold leading-tight text-white/95 ${
+                  children
+                    ? "max-w-[38rem] text-[15px] sm:text-[18px] lg:mt-5 lg:text-[20px] xl:text-[22px]"
+                    : "max-w-[720px] text-[15px] sm:text-[20px] lg:mt-5 lg:text-[30px]"
+                }`}
               >
                 {body}
               </p>
             </Reveal>
 
+            {children ? (
+              <Reveal delay={220}>
+                <div className="mt-6 lg:mt-7">{children}</div>
+              </Reveal>
+            ) : null}
+
             {cta ? (
-              <Reveal delay={240}>
+              <Reveal delay={children ? 300 : 240}>
                 <Link
                   href={cta.href}
                   className="mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-sm lg:mt-7"
