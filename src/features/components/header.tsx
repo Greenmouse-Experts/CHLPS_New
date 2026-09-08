@@ -119,7 +119,7 @@ const navLinks: NavItem[] = [
   },
   { label: "Events", href: "/#events" },
   { label: "News & Blogs", href: "/#news" },
-  { label: "Careers Centre", href: "/#careers" },
+  { label: "CareerCentre", href: "/#careers" },
   { label: "Contact Us", href: "/#contact" },
 ];
 
