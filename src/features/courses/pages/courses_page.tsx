@@ -23,7 +23,7 @@ const CoursesPage = () => {
             title="No purchased courses yet"
             description="Browse the catalogue and enroll to start your training."
             action={
-              <Link href="/#certification">
+              <Link href="/certification">
                 <Button>Explore programs</Button>
               </Link>
             }

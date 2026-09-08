@@ -28,6 +28,11 @@ export const Assets = {
     atAGlanceBg: "/assets/images/at_a_glance_bg_img.png",
     membershipCardBg: "/assets/images/membership_catigory_card.png",
     certificateCardBg: "/assets/images/Link 1.png",
+    certificationHero: "/assets/images/certification_hero.png",
+    certificationMatters:
+      "/assets/images/Professional working in a modern office environment.png",
+    checkGold: "/assets/images/check_gold.png",
+    supportSectionBg: "/assets/images/bg_parttern.png",
     footerPattern: "/assets/images/footer_bg_parttern.png",
     footerBg: "/assets/images/footer_bg_img.png",
     footerLogo: "/assets/images/chips_logo_faded_logo.png.png",

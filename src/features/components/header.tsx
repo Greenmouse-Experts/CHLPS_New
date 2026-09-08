@@ -67,40 +67,40 @@ const navLinks: NavItem[] = [
   },
   {
     label: "Certifications",
-    href: "/#certification",
+    href: "/certification",
     menu: {
       type: "mega",
       heading: "Certification",
       description:
         "Progress from foundational loss prevention learning to advanced professional and chartered recognition.",
-      cta: { label: "Explore Certifications", href: "/#certification" },
+      cta: { label: "Explore Certifications", href: "/certification" },
       columns: [
         [
           {
             label: "Basic Professional Certificate in Loss Prevention",
-            href: "/#certification-bclp",
+            href: "/certification#certification-bclp",
           },
           {
             label: "Certified Loss Prevention Associate™ (CLPA™)",
-            href: "/#certification-clpa",
+            href: "/certification#certification-clpa",
           },
           {
             label: "Certified Loss Prevention Officer™ (CLPO™)",
-            href: "/#certification-clpo",
+            href: "/certification#certification-clpo",
           },
         ],
         [
           {
             label: "Certified Loss Prevention Manager™ (CLPM™)",
-            href: "/#certification-clpm",
+            href: "/certification#certification-clpm",
           },
           {
             label: "Advanced Professional Certificate in Loss Prevention Management",
-            href: "/#certification-aclpm",
+            href: "/certification#certification-aclpm",
           },
           {
             label: "Chartered Loss Prevention Specialist™ (ChLPS™)",
-            href: "/#certification-chlps",
+            href: "/certification#certification-chlps",
           },
         ],
       ],

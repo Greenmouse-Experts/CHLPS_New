@@ -43,7 +43,7 @@ const heroSlides: HeroSlide[] = [
     primary: { label: "Explore Membership", href: "#membership" },
     secondary: {
       label: "View Certifications",
-      href: "#certification",
+      href: "/certification",
       icon: Bookmark02Icon,
     },
   },

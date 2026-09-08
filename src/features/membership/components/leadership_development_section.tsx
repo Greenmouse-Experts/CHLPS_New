@@ -52,7 +52,7 @@ export default function LeadershipDevelopmentSection() {
                 </p>
 
                 <Link
-                  href="/#certification"
+                  href="/certification"
                   className="mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:mt-7 sm:h-12 sm:px-6 sm:text-sm"
                 >
                   Explore Certification
