@@ -129,13 +129,13 @@ function Sidebar({
       >
         <Link href="/" className={cn(collapsed ? "shrink-0" : "min-w-0 flex-1")}>
           <Image
-            src={Assets.icons.logo}
-            alt="CHLPS"
-            width={collapsed ? 36 : 180}
-            height={collapsed ? 36 : 48}
+            src={Assets.images.fullLogo}
+            alt="Association of Chartered Loss Prevention Specialists of Canada"
+            width={collapsed ? 36 : 1993}
+            height={collapsed ? 36 : 789}
             className={cn(
               "object-contain",
-              collapsed ? "h-9 w-auto" : "h-12 w-auto brightness-0 invert",
+              collapsed ? "h-9 w-9 object-cover object-left" : "h-12 w-auto",
             )}
             priority
           />
