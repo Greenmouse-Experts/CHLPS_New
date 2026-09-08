@@ -23,19 +23,19 @@ const events: {
   {
     title: "Professional Conferences",
     body: "Industry discussion, knowledge exchange and continuing professional development.",
-    href: "#events-conference",
+    href: "/events",
     icon: OfficeIcon,
   },
   {
     title: "Speacialist Workshops",
     body: "Practical sessions on investigation, risk analysis and operational loss prevention.",
-    href: "#events-workshop",
+    href: "/events",
     icon: City03Icon,
   },
   {
     title: "Member Networking Sessions",
     body: "Meet peers, share practice insights and grow professional relationships.",
-    href: "#events-networking",
+    href: "/events",
     icon: UserGroup03Icon,
   },
 ];

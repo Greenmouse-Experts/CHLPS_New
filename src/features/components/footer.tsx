@@ -22,7 +22,7 @@ const exploreLinks = [
   { label: "Membership", href: "/membership" },
   { label: "Certifications", href: "/certification" },
   { label: "About Us", href: "/about-us" },
-  { label: "Events", href: "/#events" },
+  { label: "Events", href: "/events" },
   { label: "News & Blogs", href: "/#news" },
   { label: "CareerCentre", href: "/#careers" },
 ];

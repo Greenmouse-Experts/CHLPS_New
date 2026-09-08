@@ -29,6 +29,19 @@ export const Assets = {
     membershipCardBg: "/assets/images/membership_catigory_card.png",
     certificateCardBg: "/assets/images/Link 1.png",
     certificationHero: "/assets/images/certification_hero.png",
+    eventHero: "/assets/images/event_hero_bg.png",
+    eventDetailsHero: "/assets/images/event_details_page_hero_bg.png",
+    events: {
+      liveForum: "/assets/images/ttt.jpg",
+      webinar:
+        "/assets/images/Professional working in a modern office environment.png",
+      seminar:
+        "/assets/images/Professional working with colleagues in a modern office.png",
+      conference: "/assets/images/upcoming_event_img.jpg",
+      career: "/assets/images/our_story_left_img.png",
+      compliance: "/assets/images/why_join_chips.jpg",
+      operations: "/assets/images/how_we_are_governed.jpg",
+    },
     certificationMatters:
       "/assets/images/Professional working in a modern office environment.png",
     checkGold: "/assets/images/check_gold.png",

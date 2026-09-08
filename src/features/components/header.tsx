@@ -117,7 +117,7 @@ const navLinks: NavItem[] = [
       ],
     },
   },
-  { label: "Events", href: "/#events" },
+  { label: "Events", href: "/events" },
   { label: "News & Blogs", href: "/#news" },
   { label: "CareerCentre", href: "/#careers" },
   { label: "Contact Us", href: "/#contact" },
