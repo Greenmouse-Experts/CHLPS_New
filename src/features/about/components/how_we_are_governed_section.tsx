@@ -30,7 +30,7 @@ export default function HowWeAreGovernedSection() {
           <div className="flex min-w-0 flex-col">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:text-xs"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 How We Are Governed
@@ -68,16 +68,16 @@ export default function HowWeAreGovernedSection() {
                 className="h-auto w-full object-cover"
               />
 
-              <div className="absolute bottom-0 right-2 w-[85%] max-w-[340px] sm:right-3 lg:-right-3">
+              <div className="absolute bottom-0 right-2 w-[85%] max-w-[390px] sm:right-3 lg:-right-3">
                 <span
                   aria-hidden
                   className="absolute inset-0 translate-x-2 -translate-y-2 rounded-[1.25rem] bg-secondary"
                 />
                 <div className="relative rounded-[1.25rem] bg-primary p-5 sm:p-6">
-                  <h3 className="text-[13px] font-bold uppercase tracking-[0.06em] text-secondary sm:text-[15px] lg:text-base">
+                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-secondary sm:text-[20px] lg:text-[24px]">
                     Governance Approach
                   </h3>
-                  <p className="mt-2 text-[12px] leading-relaxed text-white/85 sm:text-[13px]">
+                  <p className="mt-2 text-[14px] leading-relaxed text-white/85 sm:text-[18px]">
                     Strategic leadership from the Board is supported by
                     structured operational management across the Association.
                   </p>

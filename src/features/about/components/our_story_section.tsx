@@ -61,7 +61,7 @@ export default function OurStorySection() {
           <div className="flex min-w-0 flex-col">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:text-xs"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 Our Story
@@ -127,11 +127,11 @@ export default function OurStorySection() {
                 />
               </div>
 
-              <div className="absolute bottom-[4%] left-[7%] flex aspect-square w-[104px] flex-col items-center justify-center rounded-full bg-secondary text-center text-primary sm:w-[140px] lg:w-[150px] xl:w-[180px]">
-                <span className="text-[1.5rem] font-medium leading-none sm:text-[2rem] xl:text-[2.5rem]">
+              <div className="absolute bottom-[4%] left-[7%] flex aspect-square w-[104px] flex-col items-center justify-center rounded-full bg-secondary text-center text-primary sm:w-[140px] lg:w-[214px] xl:w-[214px]">
+                <span className="text-[1.5rem] font-bold leading-none sm:text-[2rem] xl:text-[60px]">
                   2021
                 </span>
-                <span className="mt-1.5 text-[9px] font-bold uppercase leading-tight tracking-[0.08em] sm:text-[10px] xl:text-xs">
+                <span className="mt-1.5 text-[9px] font-bold uppercase leading-tight tracking-[0.08em] sm:text-[18px] xl:text-[22px]">
                   Founded in
                   <br />
                   Canada

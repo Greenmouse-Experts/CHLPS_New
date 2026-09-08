@@ -5,6 +5,8 @@ import { BankIcon, Briefcase01Icon, Tick02Icon } from "@hugeicons/core-free-icon
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
+import Image from "next/image";
+import { Assets } from "@/lib/assets";
 
 type StructureCard = {
   icon: IconSvgElement;
@@ -58,7 +60,7 @@ export default function GovernanceStructureSection() {
           <div className="min-w-0">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:text-xs"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 Governance Structure
@@ -85,46 +87,70 @@ export default function GovernanceStructureSection() {
           {cards.map((card, index) => (
             <article
               key={card.title}
-              className={`reveal flex h-full flex-col rounded-3xl p-6 pb-8 sm:p-8 sm:pb-12 ${card.card}`}
+              className={`reveal relative flex h-full flex-col border border-[#CDA54E] overflow-hidden rounded-3xl p-6 pb-8 sm:p-8 sm:pb-12 ${card.card}`}
               style={revealStyle(index)}
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EBCD78] sm:h-14 sm:w-14">
-                <HugeiconsIcon
-                  icon={card.icon}
-                  size={24}
-                  color="#211A73"
-                  strokeWidth={1.8}
+              <div
+                aria-hidden
+                className={`pointer-events-none absolute ${
+                  index === 0 ? "inset-0" : "-inset-1"
+                }`}
+              >
+                <Image
+                  src={
+                    index === 0
+                      ? Assets.images.certificateCardBg
+                      : Assets.images.membershipCardBg
+                  }
+                  alt=""
+                  fill
+                  className={
+                    index === 0
+                      ? "object-cover object-bottom"
+                      : "object-cover object-center scale-[1.08]"
+                  }
+                  sizes="(max-width: 640px) 100vw, 50vw"
                 />
-              </span>
+              </div>
+              <div className="relative z-10 flex h-full flex-col">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EBCD78] sm:h-14 sm:w-14">
+                  <HugeiconsIcon
+                    icon={card.icon}
+                    size={24}
+                    color="#211A73"
+                    strokeWidth={1.8}
+                  />
+                </span>
 
-              <h3
-                className={`mt-8 text-xl font-bold leading-tight tracking-tight sm:text-2xl lg:mt-10 lg:text-[1.875rem] xl:text-[2.25rem] ${card.titleColor}`}
-              >
-                {card.title}
-              </h3>
+                <h3
+                  className={`mt-8 text-xl font-bold leading-tight tracking-tight sm:text-2xl lg:mt-10 lg:text-[1.875rem] xl:text-[2.25rem] ${card.titleColor}`}
+                >
+                  {card.title}
+                </h3>
 
-              <p
-                className={`mt-4 text-[15px] leading-relaxed sm:text-base ${card.bodyColor}`}
-              >
-                {card.body}
-              </p>
+                <p
+                  className={`mt-4 text-[15px] leading-relaxed sm:text-base ${card.bodyColor}`}
+                >
+                  {card.body}
+                </p>
 
-              <ul className="mt-6 grid grid-cols-1 gap-2.5 sm:w-fit sm:grid-cols-[max-content_max-content] sm:gap-x-6">
-                {card.points.map((point) => (
-                  <li
-                    key={point}
-                    className={`flex items-center gap-2 text-[13px] font-semibold sm:text-sm ${card.pointColor}`}
-                  >
-                    <HugeiconsIcon
-                      icon={Tick02Icon}
-                      size={16}
-                      color="#D6BD80"
-                      strokeWidth={2.2}
-                    />
-                    {point}
-                  </li>
-                ))}
-              </ul>
+                <ul className="mt-6 grid grid-cols-1 gap-2.5 sm:w-fit sm:grid-cols-[max-content_max-content] sm:gap-x-6">
+                  {card.points.map((point) => (
+                    <li
+                      key={point}
+                      className={`flex items-center gap-2 text-[13px] font-semibold sm:text-sm ${card.pointColor}`}
+                    >
+                      <HugeiconsIcon
+                        icon={Tick02Icon}
+                        size={16}
+                        color="#D6BD80"
+                        strokeWidth={2.2}
+                      />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </article>
           ))}
         </RevealGroup>

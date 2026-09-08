@@ -72,7 +72,7 @@ export default function WhyChooseSection() {
           <div className="flex min-w-0 flex-col">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:text-xs"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 Why Choose Us
@@ -113,7 +113,7 @@ export default function WhyChooseSection() {
             {benefits.map((benefit, index) => (
               <article
                 key={benefit.title}
-                className={`reveal flex h-full flex-col rounded-2xl border border-[#CBB995] p-5 sm:p-6 ${toneClass[benefit.tone]}`}
+                className={`reveal flex h-full flex-col rounded-2xl border border-[#CDA54E] p-5 sm:p-6 ${toneClass[benefit.tone]}`}
                 style={revealStyle(index)}
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white sm:h-14 sm:w-14">

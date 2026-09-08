@@ -13,7 +13,6 @@ type StatementCard = {
   body: string;
   card: string;
   border: string;
-  /** Sized in em so the two-line balance of the statement holds at every breakpoint. */
   titleWidth: string;
   labelColor: string;
   iconBg: string;
@@ -55,7 +54,7 @@ export default function MissionVisionSection() {
           <div className="min-w-0">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:text-xs"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 Mission and Vision
@@ -63,7 +62,7 @@ export default function MissionVisionSection() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">
+              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
                 A clear direction for a stronger profession.
               </h2>
             </Reveal>

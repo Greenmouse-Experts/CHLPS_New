@@ -19,7 +19,7 @@ export default function LeadershipSection() {
         <div className="flex flex-col items-center text-center">
           <Reveal>
             <span
-              className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:text-xs"
+              className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
               style={{ "--cut": "0.55rem" } as CSSProperties}
             >
               Leadership
