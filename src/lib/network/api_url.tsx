@@ -49,6 +49,10 @@ export class ApiUrls {
   static publicPrograms = "/programs/public";
   static fetchPrograms = "/programs/fetch-programs";
   static publicCourses = "/courses/public";
+  static publicMemberships = "/memberships/public";
+  static publicMembership(slug: string) {
+    return `/memberships/public/${slug}`;
+  }
   static faqsPublished = "/faqs/published";
   static contactMe = "/contact-me";
 }

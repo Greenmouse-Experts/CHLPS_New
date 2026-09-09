@@ -24,7 +24,9 @@ export interface ApiResponseV2<T = any> {
   path: string;
 }
 
-export const new_url = process.env.NEXT_PUBLIC_BASE_URL ?? "";
+export const new_url =
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  "https://chlps-backend.onrender.com/api/v1";
 
 const simpleApiClient = axios.create({
   baseURL: new_url,
