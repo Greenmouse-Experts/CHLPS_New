@@ -154,13 +154,13 @@ export default function CareerPathwaysSection() {
               <span className="text-secondary">Loss Prevention</span>
             </h2>
           </Reveal>
-          <Reveal delay={160}>
+          {/* <Reveal delay={160}>
             <p className="mt-5 text-[15px] leading-relaxed text-white/90 sm:text-base">
               Build a rewarding and fulfilling career protecting people, assets,
               information, profits and organizational values across every
               industry.
             </p>
-          </Reveal>
+          </Reveal> */}
           <Reveal delay={220}>
             <p className="mt-4 text-[15px] leading-relaxed text-white/90 sm:text-base">
               Loss Prevention has advanced well beyond traditional retail theft
@@ -171,7 +171,7 @@ export default function CareerPathwaysSection() {
           </Reveal>
         </div>
 
-        <RevealGroup className="mx-auto mt-10 grid max-w-xl auto-rows-fr grid-cols-1 gap-3 sm:mt-12 sm:max-w-none sm:grid-cols-2 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:gap-x-5 lg:gap-y-4 xl:max-w-5xl">
+        <RevealGroup className="mx-auto mt-10 grid max-w-xl auto-rows-fr grid-cols-1 gap-3 sm:mt-12 sm:max-w-none sm:grid-cols-2 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:gap-x-5 lg:gap-y-4 xl:max-w-[1180px]">
           {careers.map((career, index) => (
             <div key={career.title} className="reveal h-full" style={revealStyle(index)}>
               <CareerCard career={career} />

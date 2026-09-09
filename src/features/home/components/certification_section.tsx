@@ -57,7 +57,7 @@ export default function CertificationSection() {
   return (
     <section
       id="certification"
-      className="relative overflow-hidden bg-cream py-16 md:py-24"
+      className="relative overflow-hidden bg-cream py-16 md:py-20"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
@@ -71,17 +71,17 @@ export default function CertificationSection() {
 
       <PageContainer className="relative z-10">
         <div className="flex flex-col justify-center items-center">
-          <div className="max-w-xl flex flex-col items-center">
+          <div className=" flex flex-col items-center">
             <Reveal>
               <span
                 className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[15px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
-                FEATURED PROGRAMMES
+                {"loss prevention certifcation pathways".toUpperCase()}
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px] text-center">
+              <h2 className="mt-5 max-w-xl text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px] text-center">
                 A certification pathway that grows with your career.
               </h2>
             </Reveal>
@@ -93,7 +93,7 @@ export default function CertificationSection() {
             <article
               id={`certification-${programme.abbr.toLowerCase()}`}
               key={programme.abbr}
-              className="reveal relative flex h-full flex-col items-center overflow-hidden rounded-2xl bg-white px-6 py-8 text-center shadow-[0_10px_30px_rgba(48,45,57,0.06)] sm:px-8 sm:py-10"
+              className="reveal relative sm:p-[20px] p-[16px] flex h-full flex-col items-center overflow-hidden border border-[#CDA54E] rounded-[24px] bg-white text-center shadow-[0_10px_30px_rgba(48,45,57,0.06)]"
               style={revealStyle(index)}
             >
               <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -115,7 +115,7 @@ export default function CertificationSection() {
                     className="h-full w-auto object-contain"
                   />
                 </div>
-                <h3 className="mt-6 text-[1.05rem] font-bold leading-snug text-[#151515] sm:text-[24px]">
+                <h3 className="mt-6 text-[1.05rem] font-bold leading-snug text-[#151515] sm:text-[24px] max-w-[390px]">
                   {programme.title}
                 </h3>
                 <p className="mt-3 text-[13px] leading-relaxed font-semibold text-[#676672] sm:text-[18px]">

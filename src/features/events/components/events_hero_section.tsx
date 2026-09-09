@@ -36,27 +36,15 @@ export default function EventsHeroSection({
               : "lg:min-h-[28rem] lg:py-16 xl:min-h-[32rem] xl:py-20"
           }`}
         >
-          <div className="w-full max-w-[38rem] xl:max-w-[46rem]">
+          <div className="w-full">
             <Reveal>
-              <h1
-                className={`font-normal leading-[1.08] tracking-tight text-white ${
-                  compact
-                    ? "text-[2rem] sm:text-[2.5rem] lg:text-[3.25rem] xl:text-[3.5rem] xl:leading-[1.08]"
-                    : "text-[2.5rem] sm:text-[3.25rem] lg:text-[4.25rem] xl:text-[5rem] xl:leading-[1.04]"
-                }`}
-              >
+              <h1 className="text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
                 {title}
               </h1>
             </Reveal>
 
             <Reveal delay={80}>
-              <p
-                className={`mt-3 font-medium leading-snug text-white sm:mt-4 ${
-                  compact
-                    ? "max-w-[36rem] text-[15px] sm:text-base lg:text-[18px]"
-                    : "max-w-[34rem] text-[15px] sm:text-lg lg:text-[22px] xl:text-[24px]"
-                }`}
-              >
+              <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
                 {body}
               </p>
             </Reveal>

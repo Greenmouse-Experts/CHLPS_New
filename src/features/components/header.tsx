@@ -118,9 +118,9 @@ const navLinks: NavItem[] = [
     },
   },
   { label: "Events", href: "/events" },
-  { label: "News & Blogs", href: "/#news" },
-  { label: "CareerCentre", href: "/#careers" },
-  { label: "Contact Us", href: "/#contact" },
+  { label: "News & Blogs", href: "/news-and-blog" },
+  { label: "CareerCentre", href: "/career-centre" },
+  { label: "Contact Us", href: "/contact-us" },
 ];
 
 function GoldTriangle() {

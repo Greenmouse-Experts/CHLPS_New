@@ -23,8 +23,8 @@ const exploreLinks = [
   { label: "Certifications", href: "/certification" },
   { label: "About Us", href: "/about-us" },
   { label: "Events", href: "/events" },
-  { label: "News & Blogs", href: "/#news" },
-  { label: "CareerCentre", href: "/#careers" },
+  { label: "News & Blogs", href: "/news-and-blog" },
+  { label: "CareerCentre", href: "/career-centre" },
 ];
 
 const supportLinks = [

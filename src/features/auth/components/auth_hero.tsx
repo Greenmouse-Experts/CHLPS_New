@@ -29,10 +29,10 @@ export default function AuthHero({
         >
           {badge}
         </span>
-        <h1 className="mt-5 max-w-3xl text-4xl leading-tight font-normal text-white md:text-6xl">
+        <h1 className="mt-5 text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
           {title}
         </h1>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
+        <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
           {description}
         </p>
       </div>

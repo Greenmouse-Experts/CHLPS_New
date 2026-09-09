@@ -56,7 +56,7 @@ export default function AboutHeroSection({
                 : "lg:min-h-[547px] lg:py-8"
           }`}
         >
-          <div className="w-full max-w-[640px] xl:max-w-[720px]">
+          <div className="w-full">
             <Reveal>
               <span
                 className="cut-bl-tr inline-block bg-secondary px-4 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-[#211A73] sm:text-[12px]"
@@ -67,7 +67,7 @@ export default function AboutHeroSection({
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-5 text-[40px] font-normal leading-[1.1] tracking-tight text-white sm:text-[50px] lg:mt-6 lg:text-[70px] xl:text-[80px] xl:leading-[1.08]">
+              <h1 className="mt-5 text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
                 {title}
                 {accent ? (
                   <>
@@ -79,13 +79,7 @@ export default function AboutHeroSection({
             </Reveal>
 
             <Reveal delay={160}>
-              <p
-                className={`mt-4 font-semibold leading-tight text-white/95 ${
-                  children
-                    ? "max-w-[38rem] text-[15px] sm:text-[18px] lg:mt-5 lg:text-[20px] xl:text-[22px]"
-                    : "max-w-[720px] text-[15px] sm:text-[20px] lg:mt-5 lg:text-[30px]"
-                }`}
-              >
+              <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
                 {body}
               </p>
             </Reveal>

@@ -31,6 +31,9 @@ export const Assets = {
     certificationHero: "/assets/images/certification_hero.png",
     eventHero: "/assets/images/event_hero_bg.png",
     eventDetailsHero: "/assets/images/event_details_page_hero_bg.png",
+    newsHero: "/assets/images/new_and_blog_hero_bg.png",
+    cardPatternLeft: "/assets/images/left_bg_parttern.png",
+    cardPatternRight: "/assets/images/right_bg_parttern.png",
     events: {
       liveForum: "/assets/images/ttt.jpg",
       webinar:

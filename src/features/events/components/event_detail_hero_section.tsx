@@ -48,7 +48,7 @@ export default function EventDetailHeroSection({
 
       <PageContainer className="relative h-full">
         <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[22rem] lg:py-16 xl:min-h-[26rem] xl:py-20">
-          <div className="w-full max-w-[38rem] xl:max-w-[44rem]">
+          <div className="w-full">
             <Reveal>
               <div className="flex flex-wrap items-center gap-2">
                 <HeroBadge live={view.isLive}>{view.statusBadge}</HeroBadge>
@@ -57,13 +57,13 @@ export default function EventDetailHeroSection({
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-4 text-[1.85rem] font-semibold leading-[1.12] tracking-tight text-white sm:mt-5 sm:text-[2.35rem] lg:text-[2.75rem] xl:text-[3.15rem] xl:leading-[1.1]">
+              <h1 className="mt-5 text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
                 {event.title}
               </h1>
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-3 max-w-[34rem] text-[14px] font-medium leading-relaxed text-white/92 sm:mt-4 sm:text-[16px] lg:text-[17px]">
+              <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
                 {event.description}
               </p>
             </Reveal>

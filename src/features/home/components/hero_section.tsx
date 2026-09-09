@@ -191,7 +191,7 @@ export default function HeroSection() {
                       style={{ transitionDuration: `${FADE_MS}ms` }}
                       aria-hidden={!isActive}
                     >
-                      <h1 className="text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[50px] lg:text-[70px] xl:text-[80px] xl:leading-[1.08]">
+                      <h1 className="text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px]  xl:leading-[1.08]">
                         {slide.title}
                         <br />
                         <span className="text-secondary">{slide.accent}</span>
@@ -205,7 +205,7 @@ export default function HeroSection() {
                         <Link
                           href={slide.primary.href}
                           tabIndex={isActive ? undefined : -1}
-                          className="rounded-full inline-flex h-11 items-center gap-2 bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-sm"
+                          className="rounded-full inline-flex h-11 items-center gap-2 bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-[20px]"
                           style={{ "--cut": "0.85rem" } as CSSProperties}
                         >
                           {slide.primary.label}
@@ -214,12 +214,13 @@ export default function HeroSection() {
                             size={16}
                             color="currentColor"
                             strokeWidth={2}
+                            className="sm:w-[24px] sm:h-[24px]"
                           />
                         </Link>
                         <Link
                           href={slide.secondary.href}
                           tabIndex={isActive ? undefined : -1}
-                          className="inline-flex h-11 items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 text-[13px] font-semibold text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/20 sm:h-12 sm:px-6 sm:text-sm"
+                          className="inline-flex h-11 items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 text-[13px] font-semibold text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/20 sm:h-12 sm:px-6 sm:text-[20px]"
                         >
                           {slide.secondary.label}
                           <Image
@@ -227,7 +228,7 @@ export default function HeroSection() {
                             width={16}
                             height={16}
                             alt={slide.secondary.label}
-                            className="w-4 h-4"
+                            className="w-4 h-4 sm:w-[24px] sm:h-[24px]"
                           />
                         </Link>
                       </div>
@@ -237,18 +238,18 @@ export default function HeroSection() {
               </div>
             </Reveal>
 
-            <div className="mt-8 lg:hidden">
+            {/* <div className="mt-8 lg:hidden">
               <PathwayCard />
-            </div>
+            </div> */}
           </div>
         </div>
       </PageContainer>
 
-      <div className="pointer-events-none absolute bottom-5 right-5 z-20 hidden lg:block xl:bottom-7 xl:right-10 2xl:right-14">
+      {/* <div className="pointer-events-none absolute bottom-5 right-5 z-20 hidden lg:block xl:bottom-7 xl:right-10 2xl:right-14">
         <div className="pointer-events-auto max-w-[500px]">
           <PathwayCard />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
