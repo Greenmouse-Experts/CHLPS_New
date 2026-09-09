@@ -28,53 +28,53 @@ type HeroSlide = {
   accent: string;
   body: string;
   primary: { label: string; href: string };
-  secondary: { label: string; href: string; icon: IconSvgElement };
+  secondary: { label: string; href: string; icon: string };
 };
 
 const heroSlides: HeroSlide[] = [
   {
-    image: Assets.images.heroBg1,
+    image: "/assets/images/h1.png",
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAMEBv/EABkQAAMBAQEAAAAAAAAAAAAAAAABAgNBIf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8AyJPhosvegDvBiy3VTVrgAJ4ev//Z",
     alt: "CHLPS professionals standing together",
-    title: "Advancing excellence in",
-    accent: "loss prevention.",
-    body: "Supporting professionals through recognized membership, credible certification and continuous development built for today's evolving loss prevention landscape.",
+    title: "Advancing excellence",
+    accent: "in loss prevention.",
+    body: "The Association of Chartered Loss Prevention Specialists is Canada’s professional body for loss prevention and asset protection professionals. We advance professional excellence through education, membership, and certification pathways, while championing industry standards, strengthening professional recognition, and promoting the strategic value of loss prevention across organizations.",
     primary: { label: "Explore Membership", href: "#membership" },
     secondary: {
       label: "View Certifications",
       href: "/certification",
-      icon: Bookmark02Icon,
+      icon: "/assets/icons/first-btn-icon.svg",
     },
   },
   {
-    image: Assets.images.heroBg2,
+    image: "/assets/images/h2.png",
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQG/8QAHBAAAgICAwAAAAAAAAAAAAAAAAECBAMxBREi/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/8QAFREBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhEDEQA/AMj0V17Tr4/K3sAdFTPlZtRcdgAxV//Z",
     alt: "CHLPS professionals standing together",
-    title: "Join modern",
-    accent: "loss prevention.",
-    body: "Become part of a professional community committed to advancing knowledge, strengthening practice and supporting meaningful career growth.",
+    title: "Join modern loss",
+    accent: "prevention.",
+    body: "ChLPS-Canada™ is a leading professional voice for loss prevention and asset protection, advancing excellence through certification, education, and industry standards. We empower professionals to achieve recognition, protect organizational assets, and strengthen business resilience across Canada, and beyond. We are ChLPS-Canada™",
     primary: { label: "Become a Member", href: "#membership" },
     secondary: {
       label: "Explore Memberships",
       href: "#membership",
-      icon: UserGroupIcon,
+      icon: "/assets/icons/second-btn-icon.svg",
     },
   },
   {
-    image: Assets.images.heroBg3,
+    image: "/assets/images/h3.png",
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIFBv/EAB0QAAICAQUAAAAAAAAAAAAAAAABAgMRBBMiMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAEx/9oADAMBAAIRAxEAPwDIYLHRxW3xWZMAdwZqd9tkO01jwAAhV//Z",
     alt: "CHLPS professionals collaborating",
     title: "Build professional",
     accent: "credibility.",
-    body: "Gain recognized credentials that demonstrate your competence, strengthen your professional standing and support your career progression.",
+    body: "Advance your LP expertise, strengthen your credibility, and join a professional community committed to excellence. Through recognized certifications, continuous professional development, and connections with leading practitioners, gain the knowledge, recognition, and professional network to protect organizations and accelerate your career. We are ChLPS-Canada™",
     primary: { label: "Explore Membership", href: "#membership" },
     secondary: {
       label: "See the Learning Pathway",
       href: "#careers",
-      icon: Share07Icon,
+      icon: "/assets/icons/third-btn-icon.svg",
     },
   },
 ];
@@ -197,7 +197,7 @@ export default function HeroSection() {
                         <span className="text-secondary">{slide.accent}</span>
                       </h1>
 
-                      <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5  lg:text-base  xl:text-[30px]">
+                      <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5  lg:text-base  xl:text-[20px]">
                         {slide.body}
                       </p>
 
@@ -222,11 +222,12 @@ export default function HeroSection() {
                           className="inline-flex h-11 items-center gap-2 rounded-full border border-white/85 px-5 text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-white/10 sm:h-12 sm:px-6 sm:text-sm"
                         >
                           {slide.secondary.label}
-                          <HugeiconsIcon
-                            icon={slide.secondary.icon}
-                            size={16}
-                            color="currentColor"
-                            strokeWidth={2}
+                          <Image
+                            src={slide.secondary.icon}
+                            width={16}
+                            height={16}
+                            alt={slide.secondary.label}
+                            className="w-4 h-4"
                           />
                         </Link>
                       </div>
