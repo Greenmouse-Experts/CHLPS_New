@@ -2,10 +2,13 @@
 
 import { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { getUserFromDB } from "@/lib/storage/user_db";
 import { updateUser } from "@/features/auth/reducers/user_slice";
 import ApiService from "@/lib/network/api";
 import { RootState, store } from "@/lib/store/store";
+import { getQueryClient } from "./query_client";
 
 function AuthHydrator({ children }: { children: React.ReactNode }) {
   const dispatch = useDispatch();
@@ -29,9 +32,14 @@ function AuthHydrator({ children }: { children: React.ReactNode }) {
 }
 
 export default function Providers({ children }: { children: React.ReactNode }) {
+  const queryClient = getQueryClient();
+
   return (
     <Provider store={store}>
-      <AuthHydrator>{children}</AuthHydrator>
+      <QueryClientProvider client={queryClient}>
+        <AuthHydrator>{children}</AuthHydrator>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </Provider>
   );
 }

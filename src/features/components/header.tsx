@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import {
+  fetchProgramsMenuFromApi,
+} from "@/features/certification/services/certification_menu_service";
 import { useSelector } from "react-redux";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -40,88 +44,6 @@ type NavItem = {
   menu?: MegaMenu | CompactMenu;
 };
 
-const navLinks: NavItem[] = [
-  { label: "Home", href: "/" },
-  {
-    label: "Membership",
-    href: "/membership",
-    menu: {
-      type: "mega",
-      heading: "Membership",
-      description:
-        "Choose the membership level that reflects your current stage, experience and professional responsibility.",
-      cta: { label: "Explore Membership", href: "/membership" },
-      columns: [
-        [
-          { label: "Student Membership", href: "/membership/student" },
-          { label: "Affiliate Membership", href: "/membership/affiliate" },
-          { label: "Licentiate Membership", href: "/membership/licentiate" },
-        ],
-        [
-          { label: "Associate Membership", href: "/membership/associate" },
-          { label: "Certified Membership", href: "/membership/certified" },
-          { label: "Corporate Membership", href: "/membership/corporate" },
-        ],
-      ],
-    },
-  },
-  {
-    label: "Certifications",
-    href: "/certification",
-    menu: {
-      type: "mega",
-      heading: "Certification",
-      description:
-        "Progress from foundational loss prevention learning to advanced professional and chartered recognition.",
-      cta: { label: "Explore Certifications", href: "/certification" },
-      columns: [
-        [
-          {
-            label: "Basic Professional Certificate in Loss Prevention",
-            href: "/certification#certification-bclp",
-          },
-          {
-            label: "Certified Loss Prevention Associate™ (CLPA™)",
-            href: "/certification#certification-clpa",
-          },
-          {
-            label: "Certified Loss Prevention Officer™ (CLPO™)",
-            href: "/certification#certification-clpo",
-          },
-        ],
-        [
-          {
-            label: "Certified Loss Prevention Manager™ (CLPM™)",
-            href: "/certification#certification-clpm",
-          },
-          {
-            label: "Advanced Professional Certificate in Loss Prevention Management",
-            href: "/certification#certification-aclpm",
-          },
-          {
-            label: "Chartered Loss Prevention Specialist™ (ChLPS™)",
-            href: "/certification#certification-chlps",
-          },
-        ],
-      ],
-    },
-  },
-  {
-    label: "About Us",
-    href: "/about-us",
-    menu: {
-      type: "compact",
-      items: [
-        { label: "Our History", href: "/about-us" },
-        { label: "Our Governance", href: "/about-us/governance" },
-      ],
-    },
-  },
-  { label: "Events", href: "/events" },
-  { label: "News & Blogs", href: "/news-and-blog" },
-  { label: "CareerCentre", href: "/career-centre" },
-  { label: "Contact Us", href: "/contact-us" },
-];
 
 function GoldTriangle() {
   return (
@@ -195,17 +117,23 @@ function MegaPanel({
           <div className="my-2 w-px shrink-0 self-stretch bg-[#E4E2EC]" />
 
           <div className="grid min-w-0 flex-1 grid-cols-2 gap-x-10 pl-8 lg:gap-x-16 lg:pl-12">
-            {menu.columns.map((column, index) => (
-              <div key={index} className="flex flex-col">
-                {column.map((item) => (
-                  <MegaLink
-                    key={item.label}
-                    item={item}
-                    onNavigate={onNavigate}
-                  />
-                ))}
+            {menu.columns.some((col) => col.length > 0) ? (
+              menu.columns.map((column, index) => (
+                <div key={index} className="flex flex-col">
+                  {column.map((item) => (
+                    <MegaLink
+                      key={item.label}
+                      item={item}
+                      onNavigate={onNavigate}
+                    />
+                  ))}
+                </div>
+              ))
+            ) : (
+              <div className="col-span-2 flex items-center py-8 text-sm text-text/60 italic">
+                No programs currently available.
               </div>
-            ))}
+            )}
           </div>
         </div>
       </PageContainer>
@@ -324,6 +252,73 @@ export default function Header() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const token = useSelector((state: RootState) => state.user.token);
   const isLoggedIn = Boolean(token);
+
+  const { data: apiProgramColumns } = useQuery({
+    queryKey: ["header-programs"],
+    queryFn: fetchProgramsMenuFromApi,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const programColumns: NavLinkItem[][] = useMemo(() => {
+    return apiProgramColumns ?? [[], []];
+  }, [apiProgramColumns]);
+
+  const navLinks: NavItem[] = useMemo(
+    () => [
+      { label: "Home", href: "/" },
+      {
+        label: "Membership",
+        href: "/membership",
+        menu: {
+          type: "mega",
+          heading: "Membership",
+          description:
+            "Choose the membership level that reflects your current stage, experience and professional responsibility.",
+          cta: { label: "Explore Membership", href: "/membership" },
+          columns: [
+            [
+              { label: "Student Membership", href: "/membership/student" },
+              { label: "Affiliate Membership", href: "/membership/affiliate" },
+              { label: "Licentiate Membership", href: "/membership/licentiate" },
+            ],
+            [
+              { label: "Associate Membership", href: "/membership/associate" },
+              { label: "Certified Membership", href: "/membership/certified" },
+              { label: "Corporate Membership", href: "/membership/corporate" },
+            ],
+          ],
+        },
+      },
+      {
+        label: "Certifications",
+        href: "/certification",
+        menu: {
+          type: "mega",
+          heading: "Certification Programs",
+          description:
+            "Explore accredited educational and professional programs designed to build skills, earn credentials, and advance your career in loss prevention.",
+          cta: { label: "Explore All Programs", href: "/certification" },
+          columns: programColumns,
+        },
+      },
+      {
+        label: "About Us",
+        href: "/about-us",
+        menu: {
+          type: "compact",
+          items: [
+            { label: "Our History", href: "/about-us" },
+            { label: "Our Governance", href: "/about-us/governance" },
+          ],
+        },
+      },
+      { label: "Events", href: "/events" },
+      { label: "News & Blogs", href: "/news-and-blog" },
+      { label: "CareerCentre", href: "/career-centre" },
+      { label: "Contact Us", href: "/contact-us" },
+    ],
+    [programColumns],
+  );
 
   const openMega = navLinks.find(
     (item) => item.label === openMenu && item.menu?.type === "mega",
@@ -523,13 +518,19 @@ export default function Header() {
                   {item.menu && openMenu === item.label ? (
                     item.menu.type === "mega" ? (
                       <div className="flex flex-col pl-1">
-                        {item.menu.columns.flat().map((child) => (
-                          <MegaLink
-                            key={child.label}
-                            item={child}
-                            onNavigate={closeAll}
-                          />
-                        ))}
+                        {item.menu.columns.flat().length > 0 ? (
+                          item.menu.columns.flat().map((child) => (
+                            <MegaLink
+                              key={child.label}
+                              item={child}
+                              onNavigate={closeAll}
+                            />
+                          ))
+                        ) : (
+                          <span className="py-2 text-xs italic text-text/50">
+                            No programs currently available.
+                          </span>
+                        )}
                       </div>
                     ) : (
                       <CompactPanel menu={item.menu} onNavigate={closeAll} />

@@ -46,6 +46,9 @@ export class ApiUrls {
     return `/notifications/mark-as-read/${id}`;
   }
 
+  static publicPrograms = "/programs/public";
+  static fetchPrograms = "/programs/fetch-programs";
+  static publicCourses = "/courses/public";
   static faqsPublished = "/faqs/published";
   static contactMe = "/contact-me";
 }

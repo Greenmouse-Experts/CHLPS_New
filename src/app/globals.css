@@ -1,4 +1,38 @@
 @import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "flipex";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+
+  --color-primary: #211a73;
+  --color-primary-content: #ffffff;
+  --color-secondary: #cda54e;
+  --color-secondary-content: #211a73;
+  --color-accent: #6b65c4;
+  --color-accent-content: #ffffff;
+  --color-neutral: #302d39;
+  --color-neutral-content: #f9f5ec;
+
+  --color-base-100: #ffffff;
+  --color-base-200: #f1f1f1;
+  --color-base-300: #e7e9eb;
+  --color-base-content: #302d39;
+
+  --color-success: #38cb89;
+  --color-success-content: #ffffff;
+  --color-warning: #eed202;
+  --color-warning-content: #302d39;
+  --color-error: #e84d52;
+  --color-error-content: #ffffff;
+
+  --radius-box: 1rem;
+  --radius-field: 0.5rem;
+  --radius-selector: 2rem;
+}
+
 
 html {
   scroll-behavior: smooth;
