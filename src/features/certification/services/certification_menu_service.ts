@@ -7,13 +7,17 @@ export interface NavLinkItem {
 }
 
 export interface ApiProgramItem {
-  id?: string;
+  id: string;
   _id?: string;
-  title?: string;
+  title: string;
   name?: string;
   slug?: string;
+  description?: string;
+  coverImage?: string;
+  image?: string;
   abbr?: string;
   href?: string;
+  coursesCount?: number;
   isPublished?: boolean;
 }
 
@@ -21,7 +25,7 @@ export interface ApiProgramItem {
  * Fetches live programs from the backend API.
  * Contains ZERO dummy fallback data: returns live database items only.
  */
-export async function fetchProgramsMenuFromApi(): Promise<NavLinkItem[][]> {
+export async function fetchLivePrograms(): Promise<ApiProgramItem[]> {
   const api = new ApiService();
 
   try {
@@ -48,7 +52,8 @@ export async function fetchProgramsMenuFromApi(): Promise<NavLinkItem[][]> {
           typeof obj.data === "object" &&
           Array.isArray((obj.data as Record<string, unknown>).results)
         ) {
-          list = (obj.data as Record<string, unknown>).results as ApiProgramItem[];
+          list = (obj.data as Record<string, unknown>)
+            .results as ApiProgramItem[];
         } else if (Array.isArray(obj.results)) {
           list = obj.results as ApiProgramItem[];
         }
@@ -60,7 +65,21 @@ export async function fetchProgramsMenuFromApi(): Promise<NavLinkItem[][]> {
       const courseRes = await api.getData<unknown>(ApiUrls.publicCourses);
       if (courseRes.success && courseRes.data) {
         const cRaw = courseRes.data;
-        let courses: Array<{ program?: { id?: string; _id?: string; title?: string; name?: string; slug?: string } | string }> = [];
+        let courses: Array<{
+          shortDesc?: string;
+          fullDesc?: string;
+          coverImage?: string;
+          program?:
+            | {
+                id?: string;
+                _id?: string;
+                title?: string;
+                name?: string;
+                slug?: string;
+                description?: string;
+              }
+            | string;
+        }> = [];
 
         if (Array.isArray(cRaw)) {
           courses = cRaw;
@@ -81,40 +100,58 @@ export async function fetchProgramsMenuFromApi(): Promise<NavLinkItem[][]> {
             const pTitle = p.title || p.name;
             if (pId && pTitle && !seen.has(pId)) {
               seen.add(pId);
-              list.push({ id: pId, title: pTitle, slug: p.slug });
+              list.push({
+                id: pId,
+                title: pTitle,
+                slug: p.slug,
+                description: p.description || c.shortDesc || "",
+                coverImage: c.coverImage,
+              });
             }
           } else if (p && typeof p === "string" && !seen.has(p)) {
             seen.add(p);
-            list.push({ id: p, title: p });
+            list.push({
+              id: p,
+              title: p,
+              description: c.shortDesc || "",
+              coverImage: c.coverImage,
+            });
           }
         }
       }
     }
 
     // Filter published only if flag is explicitly provided
-    const published = list.filter(
+    return list.filter(
       (item) => item.isPublished === undefined || item.isPublished === true,
     );
-
-    if (published.length > 0) {
-      const mapped: NavLinkItem[] = published.map((item) => {
-        const id = item.id || item._id || item.slug || "";
-        const slug = item.slug || item.id || item._id || "";
-        const label = item.title || item.name || "Program";
-
-        const rawId = (slug || id).toLowerCase().replace(/[^a-z0-9-]/g, "");
-        const href = item.href || `/certification#certification-${rawId}`;
-
-        return { label, href };
-      });
-
-      const half = Math.ceil(mapped.length / 2);
-      return [mapped.slice(0, half), mapped.slice(half)];
-    }
   } catch (error) {
-    console.error("Error fetching live programs for header:", error);
+    console.error("Error fetching live programs from API:", error);
+    return [];
+  }
+}
+
+/**
+ * Maps live programs into balanced columns for the mega-menu dropdown.
+ */
+export async function fetchProgramsMenuFromApi(): Promise<NavLinkItem[][]> {
+  const programs = await fetchLivePrograms();
+
+  if (programs.length > 0) {
+    const mapped: NavLinkItem[] = programs.map((item) => {
+      const id = item.id || item._id || item.slug || "";
+      const slug = item.slug || item.id || item._id || "";
+      const label = item.title || item.name || "Program";
+
+      const rawId = (slug || id).toLowerCase().replace(/[^a-z0-9-]/g, "");
+      const href = item.href || `/certification#certification-${rawId}`;
+
+      return { label, href };
+    });
+
+    const half = Math.ceil(mapped.length / 2);
+    return [mapped.slice(0, half), mapped.slice(half)];
   }
 
-  // Pure live data: if nothing exists in live database, return empty columns (no dummy data fallback)
   return [[], []];
 }
