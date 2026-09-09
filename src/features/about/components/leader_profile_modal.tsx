@@ -100,7 +100,7 @@ export default function LeaderProfileModal({
             alt={`${leader.name}, ${leader.role}`}
             fill
             sizes="(max-width: 1024px) 100vw, 480px"
-            className={`object-cover object-[center_18%] transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+            className={`origin-top object-cover object-top transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
               isOpen ? "scale-100" : "scale-[1.06]"
             }`}
             priority

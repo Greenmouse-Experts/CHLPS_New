@@ -56,7 +56,7 @@ export default function LeadershipSection() {
                   alt={`${leader.name}, ${leader.role}`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
-                  className="object-cover object-[center_10%] transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="origin-top object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </div>
 
