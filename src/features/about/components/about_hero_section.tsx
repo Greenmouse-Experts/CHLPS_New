@@ -53,7 +53,7 @@ export default function AboutHeroSection({
               ? "lg:min-h-[42rem] lg:py-16 xl:min-h-[48rem] xl:py-20"
               : hasExtra
                 ? "lg:min-h-[32rem] lg:py-16 xl:min-h-[36rem] xl:py-20"
-                : "lg:py-8"
+                : "lg:min-h-[547px] lg:py-8"
           }`}
         >
           <div className="w-full max-w-[640px] xl:max-w-[720px]">
