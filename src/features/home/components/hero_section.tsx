@@ -219,7 +219,7 @@ export default function HeroSection() {
                         <Link
                           href={slide.secondary.href}
                           tabIndex={isActive ? undefined : -1}
-                          className="inline-flex h-11 items-center gap-2 rounded-full border border-white/85 px-5 text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-white/10 sm:h-12 sm:px-6 sm:text-sm"
+                          className="inline-flex h-11 items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 text-[13px] font-semibold text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/20 sm:h-12 sm:px-6 sm:text-sm"
                         >
                           {slide.secondary.label}
                           <Image
