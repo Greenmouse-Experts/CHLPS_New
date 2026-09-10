@@ -23,16 +23,8 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "chlps-backend.onrender.com",
+        hostname: "*.r2.dev",
         pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "**",
-      },
-      {
-        protocol: "http",
-        hostname: "**",
       },
     ],
   },

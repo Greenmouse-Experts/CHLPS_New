@@ -4,18 +4,15 @@ import { useEffect, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
-import type { IconSvgElement } from "@hugeicons/react";
 import {
   ArrowUpRight01Icon,
-  Bookmark02Icon,
   GraduationCapIcon,
-  Share07Icon,
   ShieldCheckIcon,
   UserGroupIcon,
 } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
-import { Assets } from "@/lib/assets";
+
 
 const SLIDE_MS = 6000;
 const FADE_MS = 1400;
@@ -33,7 +30,7 @@ type HeroSlide = {
 
 const heroSlides: HeroSlide[] = [
   {
-    image: "/assets/images/h1.png",
+    image: "/assets/images/1.png",
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAMEBv/EABkQAAMBAQEAAAAAAAAAAAAAAAABAgNBIf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8AyJPhosvegDvBiy3VTVrgAJ4ev//Z",
     alt: "CHLPS professionals standing together",
@@ -48,7 +45,7 @@ const heroSlides: HeroSlide[] = [
     },
   },
   {
-    image: "/assets/images/h2.png",
+    image: "/assets/images/2.png",
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQG/8QAHBAAAgICAwAAAAAAAAAAAAAAAAECBAMxBREi/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/8QAFREBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhEDEQA/AMj0V17Tr4/K3sAdFTPlZtRcdgAxV//Z",
     alt: "CHLPS professionals standing together",
@@ -63,7 +60,7 @@ const heroSlides: HeroSlide[] = [
     },
   },
   {
-    image: "/assets/images/h3.png",
+    image: "/assets/images/3.png",
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIFBv/EAB0QAAICAQUAAAAAAAAAAAAAAAABAgMRBBMiMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAEx/9oADAMBAAIRAxEAPwDIYLHRxW3xWZMAdwZqd9tkO01jwAAhV//Z",
     alt: "CHLPS professionals collaborating",
