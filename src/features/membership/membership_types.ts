@@ -63,6 +63,7 @@ export type MembershipType = {
     tags: string[];
     cards: MembershipJoinNowCard[];
   };
+  careerPathways: string[];
 };
 
 export function isMembershipTypeId(id: string): id is MembershipTypeId {
@@ -179,6 +180,7 @@ function membershipFromLevel(config: {
   cropLogo?: boolean;
   indicatorColor: string;
   help: MembershipType["help"];
+  careerPathways: string[];
 }): MembershipType {
   return {
     id: config.id,
@@ -194,6 +196,7 @@ function membershipFromLevel(config: {
     requirements: sharedRequirements,
     jobs: sharedJobs,
     joinNow: sharedJoinNow,
+    careerPathways: config.careerPathways,
   };
 }
 
@@ -235,6 +238,15 @@ export const membershipTypes: Record<MembershipTypeId, MembershipType> = {
         },
       ],
     },
+    careerPathways: [
+      "Progression to Basic Professional Certificate in Loss Prevention",
+      "Advancement to Certified Loss Prevention Associate (CLPA™)",
+      "Entry into operational security roles in retail or logistics",
+      "Development into loss prevention support roles",
+      "Transition into fraud prevention or compliance entry roles",
+      "Movement into security-focused academic specialization",
+      "Long-term progression toward supervisory roles",
+    ],
   }),
   affiliate: membershipFromLevel({
     id: "affiliate",
@@ -273,6 +285,15 @@ export const membershipTypes: Record<MembershipTypeId, MembershipType> = {
         },
       ],
     },
+    careerPathways: [
+      "Progression toward Licentiate Membership",
+      "Introductory certification in loss prevention and asset protection",
+      "Entry into operational security and asset protection roles",
+      "Development into loss prevention practitioner roles",
+      "Transition into compliance, investigations or retail loss prevention",
+      "Continued professional development and industry exposure",
+      "Long-term progression toward Associate Membership",
+    ],
   }),
   licentiate: membershipFromLevel({
     id: "licentiate",
@@ -311,6 +332,15 @@ export const membershipTypes: Record<MembershipTypeId, MembershipType> = {
         },
       ],
     },
+    careerPathways: [
+      "Progression toward Associate Membership",
+      "Intermediate professional certification in loss prevention",
+      "Operational and supervisory loss prevention roles",
+      "Applied investigations, fraud and asset protection practice",
+      "Mentored development toward independent professional practice",
+      "Broader corporate security and risk responsibilities",
+      "Long-term progression toward Certified Membership",
+    ],
   }),
   associate: membershipFromLevel({
     id: "associate",
@@ -349,6 +379,15 @@ export const membershipTypes: Record<MembershipTypeId, MembershipType> = {
         },
       ],
     },
+    careerPathways: [
+      "Progression toward Certified Membership",
+      "Advanced professional certification and specialist credentials",
+      "Independent practitioner and specialist loss prevention roles",
+      "Supervisory and team leadership responsibilities",
+      "Specialist practice in investigations, fraud, risk or compliance",
+      "Stronger employer-recognised professional standing",
+      "Long-term progression toward Chartered status",
+    ],
   }),
   certified: membershipFromLevel({
     id: "certified",
@@ -387,6 +426,15 @@ export const membershipTypes: Record<MembershipTypeId, MembershipType> = {
         },
       ],
     },
+    careerPathways: [
+      "Progression toward Chartered Loss Prevention Specialist (ChLPS™)",
+      "Senior and strategic loss prevention leadership",
+      "Advisory, governance and enterprise security roles",
+      "Management of complex operational and security environments",
+      "Thought leadership and contribution to professional standards",
+      "Mentorship of developing practitioners and teams",
+      "Executive and board-level security responsibility",
+    ],
   }),
   corporate: membershipFromLevel({
     id: "corporate",
@@ -426,5 +474,14 @@ export const membershipTypes: Record<MembershipTypeId, MembershipType> = {
         },
       ],
     },
+    careerPathways: [
+      "Structured workforce certification and membership pathways",
+      "Alignment of teams to recognised loss prevention standards",
+      "Development of internal loss prevention and security capability",
+      "Support for staff progression across professional membership grades",
+      "Stronger organisational risk, compliance and asset protection",
+      "Recognised professional standing for the organisation",
+      "Long-term capability building and succession planning",
+    ],
   }),
 };

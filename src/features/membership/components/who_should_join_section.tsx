@@ -106,7 +106,7 @@ export default function WhoShouldJoinSection() {
                 return (
                   <article
                     key={stage.number}
-                    className={`reveal flex items-start gap-3.5 rounded-2xl px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem] ${toneClass[stage.tone]}`}
+                    className={`reveal flex items-start gap-3.5 rounded-tr-[10px] rounded-bl-[10px] px-4 py-4 sm:gap-4 sm:px-5 sm:py-[1.15rem] ${toneClass[stage.tone]}`}
                     style={revealStyle(index)}
                   >
                     <span className="shrink-0 text-[1.25rem] font-bold leading-none sm:text-[1.5rem]">

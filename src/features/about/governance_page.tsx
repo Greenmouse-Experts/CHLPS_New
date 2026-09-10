@@ -14,7 +14,7 @@ const GovernancePage = () => {
         title="Leadership built on"
         accent="standards & service."
         body="ChLPS Canada is led by its Board and Management Team, providing strategic oversight and effective operations."
-        bodyWidth="max-w-[30rem]"
+        bodyWidth="30rem"
       />
       <HowWeAreGovernedSection />
       <GovernanceStructureSection />

@@ -58,7 +58,7 @@ export default function LiveEventsSection() {
                 </div>
 
                 <div className="relative flex flex-col overflow-hidden px-5 py-5 sm:px-7 sm:py-6 lg:px-8 lg:py-7">
-                  <EventCardBackdrop sizes="(max-width: 1024px) 100vw, 58vw" />
+                  {/* <EventCardBackdrop sizes="(max-width: 1024px) 100vw, 58vw" /> */}
 
                   <div className="relative z-10 flex h-full flex-col">
                     <AccessBadge access={event.access} className="w-fit" />

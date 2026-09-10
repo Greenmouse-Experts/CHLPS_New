@@ -3,10 +3,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import Header from "@/features/components/header";
 import Footer from "@/features/components/footer";
-import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
-import EventDetailHeroSection from "@/features/events/components/event_detail_hero_section";
 import EventDetailContent from "@/features/events/components/event_detail_content";
+import { getEventDetailView } from "@/features/events/event_detail_view";
 import type { ChlpsEvent } from "@/features/events/events_data";
 
 type EventDetailPageProps = {
@@ -14,17 +13,17 @@ type EventDetailPageProps = {
 };
 
 export default function EventDetailPage({ event }: EventDetailPageProps) {
-  return (
-    <div className="min-h-screen bg-[#F5F6F8]">
-      <Header />
-      <EventDetailHeroSection event={event} />
+  const view = getEventDetailView(event);
 
-      <section className="py-8 sm:py-10 lg:py-12">
+  return (
+    <div className="min-h-screen bg-cream">
+      <Header />
+      <section className="pb-16 pt-6 sm:pb-20 sm:pt-8 lg:pb-24 lg:pt-10">
         <PageContainer>
-          <Reveal>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Link
               href="/events"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-[#071649] px-5 text-[13px] font-semibold text-white transition-opacity duration-200 hover:opacity-90 sm:text-sm"
+              className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#071649] transition-opacity hover:opacity-70 sm:text-[14px]"
             >
               <HugeiconsIcon
                 icon={ArrowLeft01Icon}
@@ -34,7 +33,10 @@ export default function EventDetailPage({ event }: EventDetailPageProps) {
               />
               Back to Events
             </Link>
-          </Reveal>
+            <p className="text-[12px] text-[#81889C] sm:text-[20px]">
+              {view.breadcrumb}
+            </p>
+          </div>
 
           <EventDetailContent event={event} />
         </PageContainer>

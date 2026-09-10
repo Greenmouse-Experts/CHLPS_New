@@ -5,6 +5,7 @@ import MembershipHelpSection from "@/features/membership/components/membership_h
 import MembershipRequirementsSection from "@/features/membership/components/membership_requirements_section";
 import MembershipJobsSection from "@/features/membership/components/membership_jobs_section";
 import MembershipJoinNowSection from "@/features/membership/components/membership_join_now_section";
+import MembershipCareerPathwaysSection from "@/features/membership/components/membership_career_pathways_section";
 import Footer from "@/features/components/footer";
 import type { MembershipType } from "@/features/membership/membership_types";
 
@@ -15,16 +16,24 @@ type MembershipTypePageProps = {
 export default function MembershipTypePage({
   membership,
 }: MembershipTypePageProps) {
+  const titleBreak = membership.title.lastIndexOf(" ");
+  const titleLead =
+    titleBreak === -1 ? membership.title : membership.title.slice(0, titleBreak);
+  const titleAccent =
+    titleBreak === -1 ? undefined : membership.title.slice(titleBreak + 1);
+
   return (
     <div className="min-h-screen bg-cream">
       <Header />
       <AboutHeroSection
-        badge="Membership"
-        title={membership.title}
+        title={titleLead}
+        accent={titleAccent}
         body={membership.heroBody}
         image={"/assets/images/dd.png"}
         imageAlt="CHLPS Canada professionals standing together"
         imageClassName="object-cover object-[right_center]"
+        titleWidth="730px"
+        bodyWidth="450px"
         cta={{ label: "Become a Member", href: "/dashboard/register" }}
       >
         <MembershipGradeCard
@@ -40,6 +49,10 @@ export default function MembershipTypePage({
       <MembershipRequirementsSection columns={membership.requirements} />
       <MembershipJobsSection {...membership.jobs} />
       <MembershipJoinNowSection {...membership.joinNow} />
+      <MembershipCareerPathwaysSection
+        gradeTitle={membership.gradeTitle}
+        items={membership.careerPathways}
+      />
       <Footer />
     </div>
   );
