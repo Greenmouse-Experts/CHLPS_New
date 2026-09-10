@@ -45,6 +45,11 @@ export type MembershipType = {
   cropLogo?: boolean;
   indicatorColor: string;
   metaDescription: string;
+  price?: number;
+  currency?: string;
+  duration?: string;
+  renewalPrice?: number;
+  renewalPeriod?: string;
   help: {
     badge: string;
     title: string;
@@ -185,6 +190,11 @@ export function transformMembershipApiToType(
     cropLogo: baseType?.cropLogo,
     indicatorColor,
     metaDescription: apiMembership.description,
+    price: apiMembership.price,
+    currency: apiMembership.currency,
+    duration: apiMembership.duration,
+    renewalPrice: apiMembership.renewalPrice,
+    renewalPeriod: apiMembership.renewalPeriod,
     help: {
       badge: baseType?.help.badge || "Why it matters",
       title: baseType?.help.title || `How ${title} Supports Your Career`,

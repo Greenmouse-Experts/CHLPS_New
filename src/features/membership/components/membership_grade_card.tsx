@@ -11,6 +11,11 @@ type MembershipGradeCardProps = {
   body: string;
   cropLogo?: boolean;
   indicatorColor?: string;
+  price?: number;
+  currency?: string;
+  duration?: string;
+  renewalPrice?: number;
+  renewalPeriod?: string;
 };
 
 export default function MembershipGradeCard({
@@ -20,6 +25,11 @@ export default function MembershipGradeCard({
   body,
   cropLogo = false,
   indicatorColor = "#E84028",
+  price,
+  currency = "CAD",
+  duration,
+  renewalPrice,
+  renewalPeriod,
 }: MembershipGradeCardProps) {
   const [imgSrc, setImgSrc] = useState(badge);
 
@@ -59,6 +69,7 @@ export default function MembershipGradeCard({
             />
           )}
         </span>
+
         <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#221A7A] sm:text-[12px]">
           Membership Grade
         </p>
@@ -68,6 +79,29 @@ export default function MembershipGradeCard({
         <p className="mt-2.5 text-[13px] leading-relaxed text-[#5F5878] sm:text-[15px]">
           {body}
         </p>
+
+        {price !== undefined && price !== null ? (
+          <div className="mt-4 flex flex-col items-center rounded-2xl border border-[#DCD6EC] bg-white/90 px-4 py-2.5 shadow-sm">
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6D6885]">
+                {currency}
+              </span>
+              <span className="text-xl font-extrabold text-[#221A7A]">
+                ${price.toLocaleString()}
+              </span>
+              {duration ? (
+                <span className="text-xs font-medium text-[#6D6885]">
+                  / {duration}
+                </span>
+              ) : null}
+            </div>
+            {renewalPrice !== undefined && renewalPeriod ? (
+              <span className="mt-0.5 text-[11px] text-[#7B7793]">
+                Renews at ${renewalPrice.toLocaleString()} {renewalPeriod}
+              </span>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </article>
   );

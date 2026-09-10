@@ -68,7 +68,7 @@ export default async function MembershipIdPage({
 
   if (apiMembership) {
     const membership = transformMembershipApiToType(apiMembership);
-    return <MembershipTypePage membership={membership} />;
+    return <MembershipTypePage membership={membership} slug={id} />;
   }
 
   // Fallback to static matching if slug doesn't exist on remote yet
@@ -77,5 +77,5 @@ export default async function MembershipIdPage({
     notFound();
   }
 
-  return <MembershipTypePage membership={staticMembership} />;
+  return <MembershipTypePage membership={staticMembership} slug={id} />;
 }
