@@ -4,12 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import {
-  fetchProgramsMenuFromApi,
-} from "@/features/certification/services/certification_menu_service";
-import {
-  fetchMembershipMenuFromApi,
-} from "@/features/membership/services/membership_service";
+import { fetchProgramsMenuFromApi } from "@/features/certification/services/certification_menu_service";
+import { fetchMembershipMenuFromApi } from "@/features/membership/services/membership_service";
 import { useSelector } from "react-redux";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -46,7 +42,6 @@ type NavItem = {
   href: string;
   menu?: MegaMenu | CompactMenu;
 };
-
 
 function GoldTriangle() {
   return (
@@ -121,7 +116,7 @@ function MegaPanel({
 
           <div className="grid min-w-0 flex-1 grid-cols-2 gap-x-10 pl-8 lg:gap-x-16 lg:pl-12">
             {menu.columns.some((col) => col.length > 0) ? (
-              menu.columns.map((column, index) => (
+              menu.columns.reverse().map((column, index) => (
                 <div key={index} className="flex flex-col">
                   {column.map((item) => (
                     <MegaLink
@@ -198,11 +193,7 @@ function NavLink({
   }
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={onOpen}
-      onFocus={onOpen}
-    >
+    <div className="relative" onMouseEnter={onOpen} onFocus={onOpen}>
       <Link
         href={item.href}
         onClick={onNavigate}
@@ -417,7 +408,11 @@ export default function Header() {
                   aria-label="Search"
                   className="flex h-full w-9 shrink-0 items-center justify-center rounded-r-full bg-primary text-white transition-colors duration-200 hover:bg-accent"
                 >
-                  <HugeiconsIcon icon={Search01Icon} size={16} color="currentColor" />
+                  <HugeiconsIcon
+                    icon={Search01Icon}
+                    size={16}
+                    color="currentColor"
+                  />
                 </button>
               </form>
 
@@ -521,13 +516,15 @@ export default function Header() {
                     item.menu.type === "mega" ? (
                       <div className="flex flex-col pl-1">
                         {item.menu.columns.flat().length > 0 ? (
-                          item.menu.columns.flat().map((child) => (
-                            <MegaLink
-                              key={child.label}
-                              item={child}
-                              onNavigate={closeAll}
-                            />
-                          ))
+                          item.menu.columns
+                            .flat()
+                            .map((child) => (
+                              <MegaLink
+                                key={child.label}
+                                item={child}
+                                onNavigate={closeAll}
+                              />
+                            ))
                         ) : (
                           <span className="py-2 text-xs italic text-text/50">
                             No {item.label.toLowerCase()} currently available.
@@ -558,7 +555,11 @@ export default function Header() {
                   aria-label="Search"
                   className="flex h-full w-10 shrink-0 items-center justify-center rounded-r-full bg-primary text-white"
                 >
-                  <HugeiconsIcon icon={Search01Icon} size={16} color="currentColor" />
+                  <HugeiconsIcon
+                    icon={Search01Icon}
+                    size={16}
+                    color="currentColor"
+                  />
                 </button>
               </form>
 
