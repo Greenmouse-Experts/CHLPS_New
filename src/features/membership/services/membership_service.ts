@@ -7,6 +7,11 @@ export interface PublicMembershipsResponse {
   count?: number;
 }
 
+export interface NavLinkItem {
+  label: string;
+  href: string;
+}
+
 /**
  * Fetches live membership categories from the backend API.
  * Live data only - no dummy fallbacks.
@@ -33,4 +38,26 @@ export async function fetchPublicMemberships(): Promise<Membership[]> {
   }
 
   return [];
+}
+
+/**
+ * Fetches live membership categories and splits them into 2 columns for the header mega-menu.
+ */
+export async function fetchMembershipMenuFromApi(): Promise<NavLinkItem[][]> {
+  const list = await fetchPublicMemberships();
+
+  if (list && list.length > 0) {
+    const mapped: NavLinkItem[] = list.map((item) => {
+      const slugOrId = item.slug || item.id || "";
+      const rawSlug = slugOrId.toLowerCase().replace(/-membership$/, "");
+      const href = `/membership/${rawSlug || slugOrId}`;
+      const label = item.name || "Membership";
+      return { label, href };
+    });
+
+    const half = Math.ceil(mapped.length / 2);
+    return [mapped.slice(0, half), mapped.slice(half)];
+  }
+
+  return [[], []];
 }

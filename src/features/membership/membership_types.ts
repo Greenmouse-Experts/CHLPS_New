@@ -71,8 +71,10 @@ export function isMembershipTypeId(id: string): id is MembershipTypeId {
 }
 
 export function getMembershipType(id: string): MembershipType | undefined {
-  if (!isMembershipTypeId(id)) return undefined;
-  return membershipTypes[id];
+  if (isMembershipTypeId(id)) return membershipTypes[id];
+  const normalized = id.toLowerCase().replace(/-membership$/, "");
+  if (isMembershipTypeId(normalized)) return membershipTypes[normalized];
+  return undefined;
 }
 
 const sharedRequirements: [MembershipRequirementColumn, MembershipRequirementColumn] =

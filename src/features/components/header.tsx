@@ -7,6 +7,9 @@ import { useQuery } from "@tanstack/react-query";
 import {
   fetchProgramsMenuFromApi,
 } from "@/features/certification/services/certification_menu_service";
+import {
+  fetchMembershipMenuFromApi,
+} from "@/features/membership/services/membership_service";
 import { useSelector } from "react-redux";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -131,7 +134,7 @@ function MegaPanel({
               ))
             ) : (
               <div className="col-span-2 flex items-center py-8 text-sm text-text/60 italic">
-                No programs currently available.
+                No {menu.heading.toLowerCase()} currently available.
               </div>
             )}
           </div>
@@ -263,6 +266,16 @@ export default function Header() {
     return apiProgramColumns ?? [[], []];
   }, [apiProgramColumns]);
 
+  const { data: apiMembershipColumns } = useQuery({
+    queryKey: ["header-memberships"],
+    queryFn: fetchMembershipMenuFromApi,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const membershipColumns: NavLinkItem[][] = useMemo(() => {
+    return apiMembershipColumns ?? [[], []];
+  }, [apiMembershipColumns]);
+
   const navLinks: NavItem[] = useMemo(
     () => [
       { label: "Home", href: "/" },
@@ -275,18 +288,7 @@ export default function Header() {
           description:
             "Choose the membership level that reflects your current stage, experience and professional responsibility.",
           cta: { label: "Explore Membership", href: "/membership" },
-          columns: [
-            [
-              { label: "Student Membership", href: "/membership/student" },
-              { label: "Affiliate Membership", href: "/membership/affiliate" },
-              { label: "Licentiate Membership", href: "/membership/licentiate" },
-            ],
-            [
-              { label: "Associate Membership", href: "/membership/associate" },
-              { label: "Certified Membership", href: "/membership/certified" },
-              { label: "Corporate Membership", href: "/membership/corporate" },
-            ],
-          ],
+          columns: membershipColumns,
         },
       },
       {
@@ -317,7 +319,7 @@ export default function Header() {
       { label: "CareerCentre", href: "/career-centre" },
       { label: "Contact Us", href: "/contact-us" },
     ],
-    [programColumns],
+    [membershipColumns, programColumns],
   );
 
   const openMega = navLinks.find(
@@ -528,7 +530,7 @@ export default function Header() {
                           ))
                         ) : (
                           <span className="py-2 text-xs italic text-text/50">
-                            No programs currently available.
+                            No {item.label.toLowerCase()} currently available.
                           </span>
                         )}
                       </div>
