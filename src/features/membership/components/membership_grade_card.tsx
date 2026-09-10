@@ -1,4 +1,8 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { Assets } from "@/lib/assets";
 
 type MembershipGradeCardProps = {
   badge: string;
@@ -17,6 +21,15 @@ export default function MembershipGradeCard({
   cropLogo = false,
   indicatorColor = "#E84028",
 }: MembershipGradeCardProps) {
+  const [imgSrc, setImgSrc] = useState(badge);
+
+  useEffect(() => {
+    setImgSrc(badge);
+  }, [badge]);
+
+  const isRemote =
+    imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
+
   return (
     <article
       className="relative w-full overflow-hidden rounded-tl-[35px] rounded-br-[35px] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
@@ -26,18 +39,22 @@ export default function MembershipGradeCard({
         <span className="relative flex h-[5.25rem] w-[5.25rem] items-center justify-center overflow-hidden rounded-full border-2 border-secondary bg-white">
           {cropLogo ? (
             <Image
-              src={badge}
+              src={imgSrc}
               alt={badgeAlt}
               fill
               sizes="84px"
+              unoptimized={isRemote}
+              onError={() => setImgSrc(Assets.icons.logo)}
               className="object-cover object-left"
             />
           ) : (
             <Image
-              src={badge}
+              src={imgSrc}
               alt={badgeAlt}
               width={120}
               height={124}
+              unoptimized={isRemote}
+              onError={() => setImgSrc(Assets.icons.logo)}
               className="h-[3.6rem] w-auto object-contain"
             />
           )}

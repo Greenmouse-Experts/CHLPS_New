@@ -1,3 +1,4 @@
+import type { Membership } from "@/types";
 import {
   BookOpen01Icon,
   BoxesIcon,
@@ -75,6 +76,133 @@ export function getMembershipType(id: string): MembershipType | undefined {
   const normalized = id.toLowerCase().replace(/-membership$/, "");
   if (isMembershipTypeId(normalized)) return membershipTypes[normalized];
   return undefined;
+}
+
+const badgeMap: Record<string, string> = {
+  student: Assets.images.membership.student,
+  affiliate: Assets.images.membership.affiliate,
+  licentiate: Assets.images.membership.licentiate,
+  associate: Assets.images.membership.associate,
+  certified: Assets.images.membership.certified,
+  corporate: Assets.icons.logo,
+};
+
+export function transformMembershipApiToType(
+  apiMembership: Membership,
+): MembershipType {
+  const slugOrId = apiMembership.slug || apiMembership.id || "";
+  const normalizedKey = slugOrId.toLowerCase().replace(/-membership$/, "");
+
+  const baseType = isMembershipTypeId(normalizedKey)
+    ? membershipTypes[normalizedKey]
+    : undefined;
+
+  const title = apiMembership.name;
+  const gradeTitle = apiMembership.name;
+  const heroBody = apiMembership.description;
+  const gradeBody = apiMembership.description;
+
+  const badge =
+    (apiMembership.image &&
+      (apiMembership.image.startsWith("http") || apiMembership.image.startsWith("/"))
+        ? apiMembership.image
+        : null) ||
+    baseType?.badge ||
+    badgeMap[normalizedKey] ||
+    Assets.icons.logo;
+
+  const indicatorColor = baseType?.indicatorColor || "#C89D3C";
+
+  const helpCards: MembershipHelpCard[] =
+    apiMembership.howMembershipHelps && apiMembership.howMembershipHelps.length > 0
+      ? apiMembership.howMembershipHelps.map((h, i) => ({
+          title: h.title,
+          body: h.description,
+          icon:
+            baseType?.help.cards[i]?.icon ||
+            (i % 2 === 0 ? BookOpen01Icon : Compass01Icon),
+        }))
+      : baseType?.help.cards || [];
+
+  const entryItems =
+    apiMembership.eligibilityCriteria && apiMembership.eligibilityCriteria.length > 0
+      ? apiMembership.eligibilityCriteria
+      : baseType?.requirements[0]?.items || [];
+
+  const gainItems =
+    apiMembership.benefits && apiMembership.benefits.length > 0
+      ? apiMembership.benefits
+      : baseType?.requirements[1]?.items || [];
+
+  const requirements: [MembershipRequirementColumn, MembershipRequirementColumn] = [
+    {
+      title: "Entry Requirements",
+      icon: ClipboardCheckIcon,
+      tone: "navy",
+      items: entryItems,
+    },
+    {
+      title: "What you gain",
+      icon: CheckmarkBadge01Icon,
+      tone: "gold",
+      items: gainItems,
+    },
+  ];
+
+  const jobCards: MembershipJobCard[] =
+    apiMembership.jobOpportunities && apiMembership.jobOpportunities.length > 0
+      ? apiMembership.jobOpportunities.map((j, i) => ({
+          title: j.title,
+          body: j.description,
+          icon:
+            baseType?.jobs.cards[i]?.icon ||
+            (i % 2 === 0 ? ShieldCheckIcon : Briefcase01Icon),
+        }))
+      : baseType?.jobs.cards || [];
+
+  const joinNow: MembershipType["joinNow"] = baseType?.joinNow || {
+    title: `Why Join ${title}?`,
+    paragraphs: [
+      `Joining as a member provides structured professional identity, industry credentials and practical exposure.`,
+    ],
+    tags: ["Professional Standing", "Career Growth", "Global Recognition"],
+    cards: [],
+  };
+
+  const careerPathways = baseType?.careerPathways || [
+    "Loss Prevention & Asset Protection Specialist",
+    "Security Operations Analyst",
+    "Corporate Risk & Compliance Officer",
+  ];
+
+  return {
+    id: (baseType?.id || normalizedKey || "student") as MembershipTypeId,
+    title,
+    gradeTitle,
+    heroBody,
+    gradeBody,
+    badge,
+    cropLogo: baseType?.cropLogo,
+    indicatorColor,
+    metaDescription: apiMembership.description,
+    help: {
+      badge: baseType?.help.badge || "Why it matters",
+      title: baseType?.help.title || `How ${title} Supports Your Career`,
+      body: baseType?.help.body || apiMembership.description,
+      cards: helpCards,
+    },
+    requirements,
+    jobs: {
+      badge: baseType?.jobs.badge || "Career Opportunities",
+      title: baseType?.jobs.title || "Job Opportunities",
+      body:
+        baseType?.jobs.body ||
+        `${title} supports professional exposure across security, loss prevention, risk management and compliance.`,
+      cards: jobCards,
+    },
+    joinNow,
+    careerPathways,
+  };
 }
 
 const sharedRequirements: [MembershipRequirementColumn, MembershipRequirementColumn] =
