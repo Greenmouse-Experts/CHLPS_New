@@ -55,4 +55,10 @@ export class ApiUrls {
   }
   static faqsPublished = "/faqs/published";
   static contactMe = "/contact-me";
+
+  static viewPosts = "/blog/view-posts";
+  static viewPost(id: string) {
+    return `/blog/view-post/${id}`;
+  }
+  static viewTags = "/blog/view-tags";
 }
