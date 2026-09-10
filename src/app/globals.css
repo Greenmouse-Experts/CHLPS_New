@@ -1,7 +1,7 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "../../node_modules/daisyui";
 
-@plugin "daisyui/theme" {
+@plugin "../../node_modules/daisyui/theme" {
   name: "flipex";
   default: true;
   prefersdark: false;
