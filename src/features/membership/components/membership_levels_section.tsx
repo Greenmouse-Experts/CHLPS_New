@@ -1,58 +1,45 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useState, useEffect, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
+import QueryCompLayout from "@/components/QueryCompLayout";
+import { fetchPublicMemberships } from "@/features/membership/services/membership_service";
+import type { Membership } from "@/types";
 import { Assets } from "@/lib/assets";
 
-const levels = [
-  {
-    key: "student",
-    title: "Student Membership",
-    body: "For individuals currently studying loss prevention, security, criminology, risk management or related disciplines.",
-    badge: Assets.images.membership.student,
-    href: "/membership/student",
-  },
-  {
-    key: "affiliate",
-    title: "Affiliate Membership",
-    body: "An accessible entry point for individuals exploring the profession or transitioning from related operational fields.",
-    badge: Assets.images.membership.affiliate,
-    href: "/membership/affiliate",
-  },
-  {
-    key: "licentiate",
-    title: "Licentiate Membership",
-    body: "For practitioners with foundational knowledge and practical exposure who are formalising their professional standing.",
-    badge: Assets.images.membership.licentiate,
-    href: "/membership/licentiate",
-  },
-  {
-    key: "associate",
-    title: "Associate Membership",
-    body: "For professionals with practical experience seeking continued development, recognition and stronger career progression.",
-    badge: Assets.images.membership.associate,
-    href: "/membership/associate",
-  },
-  {
-    key: "certified",
-    title: "Certified Membership",
-    body: "For qualified professionals with proven expertise who want their competence and professional standing formally recognised.",
-    badge: Assets.images.membership.certified,
-    href: "/membership/certified",
-  },
-  {
-    key: "corporate",
-    title: "Corporate Membership",
-    body: "For organisations looking to develop their teams and strengthen professional loss prevention practice across the workplace.",
-    badge: Assets.icons.logo,
-    href: "/membership/corporate",
-    cropLogo: true,
-  },
-] as const;
+const badgeMap: Record<string, string> = {
+  student: Assets.images.membership.student,
+  affiliate: Assets.images.membership.affiliate,
+  licentiate: Assets.images.membership.licentiate,
+  associate: Assets.images.membership.associate,
+  certified: Assets.images.membership.certified,
+  corporate: Assets.icons.logo,
+};
+
+function getBadgeSrc(category: Membership): string {
+  if (
+    category.image &&
+    (category.image.startsWith("http") || category.image.startsWith("/"))
+  ) {
+    return category.image;
+  }
+
+  const needle = `${category.slug || ""} ${category.name || ""}`.toLowerCase();
+  for (const [key, asset] of Object.entries(badgeMap)) {
+    if (needle.includes(key)) {
+      return asset;
+    }
+  }
+
+  return Assets.icons.logo;
+}
 
 function MembershipBadge({
   src,
@@ -63,22 +50,35 @@ function MembershipBadge({
   alt: string;
   cropLogo?: boolean;
 }) {
+  const [imgSrc, setImgSrc] = useState(src);
+
+  useEffect(() => {
+    setImgSrc(src);
+  }, [src]);
+
+  const isRemote =
+    imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
+
   return (
     <span className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-secondary bg-white">
       {cropLogo ? (
         <Image
-          src={src}
+          src={imgSrc}
           alt={alt}
           fill
           sizes="64px"
+          unoptimized={isRemote}
+          onError={() => setImgSrc(Assets.icons.logo)}
           className="object-cover object-left"
         />
       ) : (
         <Image
-          src={src}
+          src={imgSrc}
           alt={alt}
           width={100}
           height={104}
+          unoptimized={isRemote}
+          onError={() => setImgSrc(Assets.icons.logo)}
           className="h-[2.7rem] w-auto object-contain"
         />
       )}
@@ -87,6 +87,12 @@ function MembershipBadge({
 }
 
 export default function MembershipLevelsSection() {
+  const query = useQuery({
+    queryKey: ["public-memberships-levels"],
+    queryFn: fetchPublicMemberships,
+    staleTime: 5 * 60 * 1000,
+  });
+
   return (
     <section
       id="membership-levels"
@@ -126,77 +132,116 @@ export default function MembershipLevelsSection() {
 
           <Reveal delay={160} className="min-w-0 lg:max-w-[22rem] lg:shrink-0">
             <p className="text-[15px] leading-relaxed text-[#676672] sm:text-base">
-              Six membership routes for professionals and organisations at every
-              stage.
+              Membership routes for professionals and organisations across every
+              stage of loss prevention.
             </p>
           </Reveal>
         </div>
 
-        <RevealGroup className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-          {levels.map((level, index) => (
-            <article
-              id={`membership-${level.key}`}
-              key={level.key}
-              className="group reveal relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-[24px] border border-[#CDA54E] bg-white p-6 sm:p-8"
-              style={revealStyle(index)}
-            >
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0"
-              >
-                <Image
-                  src={Assets.images.certificateCardBg}
-                  alt=""
-                  fill
-                  className="object-cover object-bottom"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+        <div className="mt-10 sm:mt-12">
+          <QueryCompLayout
+            query={query}
+            loadingText="Loading membership levels..."
+            emptyState={
+              <div className="py-12 text-center text-text/60">
+                No membership levels currently available.
               </div>
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[#141549] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
-              >
-                <Image
-                  src={Assets.images.membershipCardBg}
-                  alt=""
-                  fill
-                  className="object-cover object-bottom"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
+            }
+          >
+            {(categories) => {
+              if (!categories || categories.length === 0) {
+                return (
+                  <div className="py-12 text-center text-text/60">
+                    No membership levels currently available.
+                  </div>
+                );
+              }
 
-              <div className="relative z-10 flex h-full flex-col">
-                <MembershipBadge
-                  src={level.badge}
-                  alt={`${level.title} badge`}
-                  cropLogo={"cropLogo" in level && level.cropLogo}
-                />
-                <h3 className="mt-6 text-lg font-bold leading-snug text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-xl lg:text-[30px]">
-                  {level.title}
-                </h3>
-                <p className="mt-3 text-[13px] font-medium leading-relaxed text-[#676672] transition-colors duration-300 group-hover:text-white/90 group-focus-within:text-white/90 sm:text-[20px]">
-                  {level.body}
-                </p>
-                <Link
-                  href={level.href}
-                  className="mt-auto flex min-w-0 items-center justify-between gap-3 pt-8"
-                >
-                  <span className="min-w-0 text-[13px] font-bold text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-[18px]">
-                    Explore {level.title}
-                  </span>
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-[#111E2A] sm:h-11 sm:w-11">
-                    <HugeiconsIcon
-                      icon={ArrowRight01Icon}
-                      size={18}
-                      color="currentColor"
-                      strokeWidth={2.2}
-                    />
-                  </span>
-                </Link>
-              </div>
-            </article>
-          ))}
-        </RevealGroup>
+              return (
+                <RevealGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+                  {categories.map((category, index) => {
+                    const slug = category.slug || category.id;
+                    const href = `/membership/${slug}`;
+                    const badge = getBadgeSrc(category);
+                    const isCorporate =
+                      (category.name || "")
+                        .toLowerCase()
+                        .includes("corporate") ||
+                      (category.slug || "").toLowerCase().includes("corporate");
+
+                    return (
+                      <article
+                        id={`membership-${slug}`}
+                        key={category.id || slug}
+                        className="group reveal relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-[24px] border border-[#CDA54E] bg-white p-6 transition-all duration-300 hover:shadow-lg sm:p-8"
+                        style={revealStyle(index)}
+                      >
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0"
+                        >
+                          <Image
+                            src={Assets.images.certificateCardBg}
+                            alt=""
+                            fill
+                            className="object-cover object-bottom"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                        </div>
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 bg-[#141549] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
+                        >
+                          <Image
+                            src={Assets.images.membershipCardBg}
+                            alt=""
+                            fill
+                            className="object-cover object-bottom"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                        </div>
+
+                        <div className="relative z-10 flex h-full flex-col">
+                          <MembershipBadge
+                            src={badge}
+                            alt={`${category.name} badge`}
+                            cropLogo={isCorporate}
+                          />
+                          <h3 className="mt-6 text-lg font-bold leading-snug text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-xl lg:text-[30px]">
+                            {category.name}
+                          </h3>
+                          <p className="mt-3 text-[13px] font-medium leading-relaxed text-[#676672] transition-colors duration-300 group-hover:text-white/90 group-focus-within:text-white/90 sm:text-[20px]">
+                            {category.description}
+                          </p>
+                          <div className="mt-auto flex min-w-0 items-center justify-between gap-3 pt-8">
+                            <span className="min-w-0 text-[13px] font-bold text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-[18px]">
+                              Explore {category.name}
+                            </span>
+                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-[#111E2A] sm:h-11 sm:w-11">
+                              <HugeiconsIcon
+                                icon={ArrowRight01Icon}
+                                size={18}
+                                color="currentColor"
+                                strokeWidth={2.2}
+                              />
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Full card click navigating by slug */}
+                        <Link
+                          href={href}
+                          className="absolute inset-0 z-20 rounded-[24px]"
+                          aria-label={`Explore ${category.name}`}
+                        />
+                      </article>
+                    );
+                  })}
+                </RevealGroup>
+              );
+            }}
+          </QueryCompLayout>
+        </div>
       </PageContainer>
     </section>
   );

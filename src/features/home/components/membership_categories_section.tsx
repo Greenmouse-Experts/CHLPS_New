@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
@@ -50,22 +50,35 @@ function MembershipBadge({
   alt: string;
   cropLogo?: boolean;
 }) {
+  const [imgSrc, setImgSrc] = useState(src);
+
+  useEffect(() => {
+    setImgSrc(src);
+  }, [src]);
+
+  const isRemote =
+    imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
+
   return (
     <span className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-secondary bg-white">
       {cropLogo ? (
         <Image
-          src={src}
+          src={imgSrc}
           alt={alt}
           fill
           sizes="64px"
+          unoptimized={isRemote}
+          onError={() => setImgSrc(Assets.icons.logo)}
           className="object-cover object-left"
         />
       ) : (
         <Image
-          src={src}
+          src={imgSrc}
           alt={alt}
           width={100}
           height={104}
+          unoptimized={isRemote}
+          onError={() => setImgSrc(Assets.icons.logo)}
           className="h-[2.7rem] w-auto object-contain"
         />
       )}
