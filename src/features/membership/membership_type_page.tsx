@@ -8,6 +8,7 @@ import MembershipHelpSection from "@/features/membership/components/membership_h
 import MembershipRequirementsSection from "@/features/membership/components/membership_requirements_section";
 import MembershipJobsSection from "@/features/membership/components/membership_jobs_section";
 import MembershipJoinNowSection from "@/features/membership/components/membership_join_now_section";
+import MembershipQuestionsSection from "@/features/membership/components/membership_questions_section";
 import MembershipCareerPathwaysSection from "@/features/membership/components/membership_career_pathways_section";
 import Footer from "@/features/components/footer";
 import QueryCompLayout from "@/components/QueryCompLayout";
@@ -121,6 +122,14 @@ export default function MembershipTypePage({
 
               {current.joinNow ? (
                 <MembershipJoinNowSection {...current.joinNow} />
+              ) : null}
+
+              {current.applicationQuestions &&
+              current.applicationQuestions.length > 0 ? (
+                <MembershipQuestionsSection
+                  questions={current.applicationQuestions}
+                  gradeTitle={current.gradeTitle}
+                />
               ) : null}
 
               {current.careerPathways && current.careerPathways.length > 0 ? (

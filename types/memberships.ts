@@ -23,7 +23,12 @@ export type RenewalPeriod =
   | "Annually"
   | "1 Year";
 
-export type MembershipStatus = "draft" | "published" | "closed" | "active" | "inactive";
+export type MembershipStatus =
+  | "draft"
+  | "published"
+  | "closed"
+  | "active"
+  | "inactive";
 
 export interface MembershipType extends BaseEntity {
   name: string;
@@ -55,11 +60,21 @@ export interface WhyJoinNowCard {
   description: string;
 }
 
+export interface WhyJoinHighlightItem {
+  id?: string;
+  value: string;
+}
+
 export interface WhyJoinNowSection {
   heading?: string;
   description?: string;
-  highlights?: string[];
+  highlights?: (string | WhyJoinHighlightItem)[];
   infoCards?: WhyJoinNowCard[];
+}
+
+export interface ApplicationQuestionItem {
+  id?: string;
+  question: string;
 }
 
 export interface Membership extends BaseEntity {
@@ -80,7 +95,9 @@ export interface Membership extends BaseEntity {
   requiredDocuments?: string[];
   jobOpportunities?: JobOpportunityItem[];
   howMembershipHelps?: HelpItem[];
-  whyJoinNow?: WhyJoinNowSection;
+  whyJoinNow?: WhyJoinNowSection | null;
+  applicationQuestions?: ApplicationQuestionItem[];
+  careerPathways?: string[] | null;
   subscribersCount?: number;
   activeSubscribersCount?: number;
 }
@@ -103,6 +120,8 @@ export interface CreateMembershipDto {
   jobOpportunities?: JobOpportunityItem[];
   howMembershipHelps?: HelpItem[];
   whyJoinNow?: WhyJoinNowSection;
+  applicationQuestions?: ApplicationQuestionItem[];
+  careerPathways?: string[] | null;
 }
 
 export type UpdateMembershipDto = Partial<CreateMembershipDto>;

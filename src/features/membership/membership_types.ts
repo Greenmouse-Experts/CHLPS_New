@@ -1,4 +1,4 @@
-import type { Membership } from "@/types";
+import type { Membership, ApplicationQuestionItem } from "@/types";
 import {
   BookOpen01Icon,
   BoxesIcon,
@@ -70,6 +70,7 @@ export type MembershipType = {
     cards: MembershipJoinNowCard[];
   };
   careerPathways: string[];
+  applicationQuestions?: (ApplicationQuestionItem | string)[];
 };
 
 export function isMembershipTypeId(id: string): id is MembershipTypeId {
@@ -165,20 +166,57 @@ export function transformMembershipApiToType(
         }))
       : baseType?.jobs.cards || [];
 
-  const joinNow: MembershipType["joinNow"] = baseType?.joinNow || {
-    title: `Why Join ${title}?`,
-    paragraphs: [
-      `Joining as a member provides structured professional identity, industry credentials and practical exposure.`,
-    ],
-    tags: ["Professional Standing", "Career Growth", "Global Recognition"],
-    cards: [],
+  const apiWhyJoin = apiMembership.whyJoinNow;
+  const whyJoinTitle =
+    apiWhyJoin?.heading || baseType?.joinNow?.title || `Why Join ${title}?`;
+
+  const whyJoinParagraphs: string[] =
+    apiWhyJoin?.description
+      ? apiWhyJoin.description.split("\n\n").map((p) => p.trim()).filter(Boolean)
+      : baseType?.joinNow?.paragraphs || [
+          `Joining as a member provides structured professional identity, industry credentials and practical exposure.`,
+        ];
+
+  const whyJoinTags: string[] =
+    apiWhyJoin?.highlights && apiWhyJoin.highlights.length > 0
+      ? apiWhyJoin.highlights.map((h) =>
+          typeof h === "string" ? h : h.value,
+        )
+      : baseType?.joinNow?.tags || [
+          "Professional Standing",
+          "Career Growth",
+          "Global Recognition",
+        ];
+
+  const whyJoinCards: MembershipJoinNowCard[] =
+    apiWhyJoin?.infoCards && apiWhyJoin.infoCards.length > 0
+      ? apiWhyJoin.infoCards.map((c) => ({
+          title: c.title,
+          body: c.description,
+        }))
+      : baseType?.joinNow?.cards || [];
+
+  const joinNow: MembershipType["joinNow"] = {
+    title: whyJoinTitle,
+    paragraphs: whyJoinParagraphs,
+    tags: whyJoinTags,
+    cards: whyJoinCards,
   };
 
-  const careerPathways = baseType?.careerPathways || [
-    "Loss Prevention & Asset Protection Specialist",
-    "Security Operations Analyst",
-    "Corporate Risk & Compliance Officer",
-  ];
+  const careerPathways =
+    apiMembership.careerPathways && apiMembership.careerPathways.length > 0
+      ? apiMembership.careerPathways
+      : baseType?.careerPathways || [
+          "Loss Prevention & Asset Protection Specialist",
+          "Security Operations Analyst",
+          "Corporate Risk & Compliance Officer",
+        ];
+
+  const applicationQuestions =
+    apiMembership.applicationQuestions &&
+    apiMembership.applicationQuestions.length > 0
+      ? apiMembership.applicationQuestions
+      : undefined;
 
   return {
     id: (baseType?.id || normalizedKey || "student") as MembershipTypeId,
@@ -212,6 +250,7 @@ export function transformMembershipApiToType(
     },
     joinNow,
     careerPathways,
+    applicationQuestions,
   };
 }
 
