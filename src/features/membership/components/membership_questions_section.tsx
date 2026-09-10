@@ -2,7 +2,10 @@
 
 import type { CSSProperties } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { HelpCircleIcon, CheckmarkCircle02Icon } from "@hugeicons/core-free-icons";
+import {
+  HelpCircleIcon,
+  CheckmarkCircle02Icon,
+} from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
@@ -22,7 +25,7 @@ export default function MembershipQuestionsSection({
   }
 
   const items = questions.map((q) => (typeof q === "string" ? q : q.question));
-
+  return <></>;
   return (
     <section className="bg-[#F8F7FC] py-16 md:py-20 border-t border-[#E7E4F0]">
       <PageContainer>
@@ -44,7 +47,8 @@ export default function MembershipQuestionsSection({
 
           <Reveal delay={140}>
             <p className="mt-3 text-[15px] leading-relaxed text-[#676672] sm:text-base">
-              Key verification criteria and eligibility questions you will be asked when enrolling for {gradeTitle}.
+              Key verification criteria and eligibility questions you will be
+              asked when enrolling for {gradeTitle}.
             </p>
           </Reveal>
         </div>
