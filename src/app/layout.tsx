@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${como.variable} h-full antialiased`} data-scroll-behavior="smooth">
+    <html lang="en" data-theme="flipex" className={`${como.variable} h-full antialiased`} data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col font-sans bg-cream text-text">
         <Providers>
           {children}
