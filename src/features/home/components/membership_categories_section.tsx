@@ -135,7 +135,7 @@ export default function MembershipCategoriesSection() {
 
               return (
                 <RevealGroup className="mx-auto grid max-w-[1527px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-                  {categories.map((category, index) => {
+                  {categories.reverse().map((category, index) => {
                     const { badge, cropLogo } = getBadgeDetails(category);
                     const href = `/membership/${category.slug || category.id}`;
                     const cta = `Explore ${category.name}`;
