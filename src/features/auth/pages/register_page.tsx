@@ -78,7 +78,10 @@ const RegisterPage = () => {
       <section className="px-6 py-16 md:px-16">
         <div className="mx-auto max-w-2xl rounded-2xl border border-sand bg-white p-8 md:p-14">
           <div className="mb-12 flex flex-col items-center">
-            <div className="flex items-center justify-center rounded-xl bg-primary px-8 py-5">
+            <Link
+              href="/"
+              className="flex items-center justify-center rounded-xl bg-primary px-8 py-5"
+            >
               <Image
                 src={Assets.images.fullLogo}
                 alt="Association of Chartered Loss Prevention Specialists of Canada"
@@ -86,7 +89,7 @@ const RegisterPage = () => {
                 height={789}
                 className="h-12 w-auto object-contain"
               />
-            </div>
+            </Link>
             <h2 className="mt-8 text-center text-2xl font-medium text-primary md:text-3xl">
               Begin your learning <span className="text-secondary">journey</span>
             </h2>

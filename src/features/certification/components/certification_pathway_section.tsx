@@ -29,7 +29,7 @@ export default function CertificationPathwaySection() {
             <article
               id={`certification-${programme.id}`}
               key={programme.id}
-              className="reveal flex h-full scroll-mt-28 flex-col overflow-hidden rounded-[20px] rounded-tl-[35px] bg-secondary"
+              className="reveal flex h-full scroll-mt-28 flex-col overflow-hidden rounded-[20px] rounded-tl-[35px] bg-secondary border border-[#CDA54EB8]"
               style={revealStyle(index)}
             >
               <div className="mt-[5px] flex flex-1 flex-col overflow-hidden rounded-tl-[25px] rounded-tr-[10px] rounded-b-[20px] bg-white">

@@ -1,98 +1,49 @@
-import type { ReactNode } from "react";
-import Image from "next/image";
-import { Reveal } from "@/features/components/reveal";
+import { HugeiconsIcon } from "@hugeicons/react";
+import type { IconSvgElement } from "@hugeicons/react";
+import {
+  ArrowRight01Icon,
+  Calendar03Icon,
+  Clock01Icon,
+  ComputerIcon,
+  Location01Icon,
+} from "@hugeicons/core-free-icons";
+import Link from "next/link";
+import EventDetailGallery from "@/features/events/components/event_detail_gallery";
 import type { ChlpsEvent } from "@/features/events/events_data";
 import { getEventDetailView } from "@/features/events/event_detail_view";
 
-type DetailRow = {
-  label: string;
-  value: string;
-  valueClassName?: string;
-};
-
-function DetailCard({
-  title,
-  children,
-  footer,
-  accentBg,
-  delay = 0,
-}: {
-  title: string;
-  children: ReactNode;
-  footer?: string;
-  accentBg?: string;
-  delay?: number;
-}) {
-  return (
-    <Reveal delay={delay}>
-      <article className="overflow-hidden rounded-[14px] bg-white shadow-[0_8px_28px_rgba(15,23,42,0.06)]">
-        <div className="px-5 py-5 sm:px-6 sm:py-6">
-          <h2 className="text-[1.15rem] font-semibold tracking-tight text-[#071649] sm:text-[1.25rem]">
-            {title}
-          </h2>
-          <div className="mt-4">{children}</div>
-        </div>
-        {footer ? (
-          <p
-            className="px-5 py-3 text-[13px] leading-relaxed text-[#6F6E7A] sm:px-6"
-            style={{ backgroundColor: accentBg ?? "#F3F4F9" }}
-          >
-            {footer}
-          </p>
-        ) : null}
-      </article>
-    </Reveal>
-  );
-}
-
-function DetailList({ rows }: { rows: DetailRow[] }) {
-  return (
-    <dl>
-      {rows.map((row, index) => (
-        <div
-          key={row.label}
-          className={`flex items-start justify-between gap-4 py-3 ${
-            index === 0 ? "pt-0" : ""
-          } ${
-            index === rows.length - 1
-              ? "pb-0"
-              : "border-b border-[#EEEFF3]"
-          }`}
-        >
-          <dt className="shrink-0 text-[14px] text-[#8A8A96]">{row.label}</dt>
-          <dd
-            className={`max-w-[65%] text-right text-[14px] font-semibold leading-snug text-[#071649] sm:text-[15px] ${
-              row.valueClassName ?? ""
-            }`}
-          >
-            {row.value}
-          </dd>
-        </div>
-      ))}
-    </dl>
-  );
-}
-
-function StatBox({
+function DetailMetaRow({
+  icon,
   label,
   value,
-  accentBg,
+  last = false,
 }: {
+  icon: IconSvgElement;
   label: string;
   value: string;
-  accentBg: string;
+  last?: boolean;
 }) {
   return (
     <div
-      className="rounded-[12px] px-4 py-3.5 border border-[#E4DDEE]"
-      style={{ backgroundColor: accentBg }}
+      className={`flex items-start gap-3.5 ${
+        last ? "" : "border-b border-[#EEEAF4] pb-4"
+      }`}
     >
-      <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#6B6980]">
-        {label}
-      </p>
-      <p className="mt-1.5 text-[1.35rem] font-semibold leading-none text-[#071649] sm:text-[28px]">
-        {value}
-      </p>
+      <HugeiconsIcon
+        icon={icon}
+        size={18}
+        color="#161058"
+        strokeWidth={1.8}
+        className="mt-0.5 shrink-0"
+      />
+      <div className="min-w-0">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#938C94]">
+          {label}
+        </p>
+        <p className="mt-1 whitespace-pre-line text-[14px] font-bold leading-snug text-[#071649] sm:text-[17px]">
+          {value}
+        </p>
+      </div>
     </div>
   );
 }
@@ -101,124 +52,74 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
   const view = getEventDetailView(event);
 
   return (
-    <div className="mt-6 grid items-start gap-5 lg:mt-8 lg:grid-cols-[minmax(0,1.22fr)_minmax(0,0.78fr)] lg:gap-6">
-      <div className="flex flex-col gap-5 lg:gap-6">
-        <DetailCard title="Event Description" delay={80}>
-          <p className="text-[14px] leading-relaxed text-[#5B5A66] sm:text-[15px]">
+    <div className="mt-6 grid items-start gap-5 lg:mt-7 lg:grid-cols-[minmax(0,1fr)_22.5rem] lg:gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
+      <article className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_40px_rgba(22,16,88,0.06)] lg:rounded-[2rem]">
+        <EventDetailGallery images={event.gallery} alt={event.imageAlt} />
+
+        <div className="px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-9">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-secondary sm:text-[20px]">
+            {view.typeLabel}
+          </p>
+          <h1 className="mt-2.5 text-[1.85rem] font-medium leading-[1.12] tracking-tight text-[#161058] sm:text-[50px] xl:text-[70px]">
+            {event.title}
+          </h1>
+          <p className="mt-3 text-[20px] leading-relaxed text-[#333041] sm:mt-4 sm:text-[24px]">
             {event.description}
           </p>
-        </DetailCard>
+        </div>
+      </article>
 
-        <DetailCard title="Date and Location" delay={120}>
-          <DetailList
-            rows={[
-              { label: "Event date", value: event.date },
-              { label: "Location", value: event.location },
-              { label: "Duration", value: event.duration },
-              { label: "Event type", value: view.formatLabel },
-            ]}
-          />
-        </DetailCard>
+      <aside className="rounded-[1.5rem] bg-[#EFECFB] p-4 sm:p-5 lg:rounded-[30px] lg:p-6 border border-[#E0DAF1]">
+        <h2 className="text-[1.25rem] font-bold tracking-tight text-[#071649] sm:text-[26px]">
+          Event details
+        </h2>
 
-        <DetailCard
-          title="Manage Registrations"
-          footer={view.registrationNote}
-          accentBg={view.accentBg}
-          delay={160}
-        >
-          <div className="grid grid-cols-2 gap-3">
-            <StatBox
-              label="Registration status"
-              value={view.registrationStatus}
-              accentBg={view.accentBg}
+        <div className="mt-4 rounded-[28px] bg-white px-5 py-5 sm:px-6 sm:py-6 border border-[#E8E2F0]">
+          <div className="flex flex-col gap-4">
+            <DetailMetaRow
+              icon={Calendar03Icon}
+              label="Date"
+              value={event.date}
             />
-            <StatBox
-              label="Capacity"
-              value={view.capacity}
-              accentBg={view.accentBg}
-            />
-            <StatBox
-              label="Registered"
-              value={view.registered}
-              accentBg={view.accentBg}
-            />
-            <StatBox
-              label="Check-ins"
-              value={view.checkIns}
-              accentBg={view.accentBg}
+            <DetailMetaRow icon={Clock01Icon} label="Time" value={event.time} />
+            <DetailMetaRow
+              icon={view.isVirtual ? ComputerIcon : Location01Icon}
+              label={view.placeLabel}
+              value={view.placeValue}
+              last
             />
           </div>
-        </DetailCard>
+        </div>
 
-        <DetailCard title="Manage Ticket Information" delay={200}>
-          <DetailList
-            rows={[
-              { label: "Ticket type", value: view.ticketType },
-              { label: "Confirmation", value: view.confirmation },
-              { label: "Access", value: view.accessDetail },
-              { label: "Support", value: view.support },
-            ]}
-          />
-        </DetailCard>
-      </div>
-
-      <div className="flex flex-col gap-5 lg:gap-6">
-        <DetailCard title="Event Image" delay={100}>
-          <div className="relative aspect-[16/10] overflow-hidden rounded-[12px]">
-            <Image
-              src={event.image}
-              alt={event.imageAlt}
-              fill
-              className={event.imageClassName ?? "object-cover"}
-              sizes="(max-width: 1024px) 100vw, 40vw"
-            />
+        <div className="mt-3 rounded-[1.15rem] bg-white px-5 py-5 sm:mt-4 sm:px-6 sm:py-6 border border-[#E0DAF1]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9A97A8]">
+            Ticket
+          </p>
+          <div className="mt-2 flex items-center justify-between gap-3">
+            <p className="text-[1.65rem] font-semibold leading-none text-[#161058] sm:text-[1.85rem]">
+              {view.ticketPrice}
+            </p>
+            {view.isLive ? (
+              <span className="text-[14px] font-medium text-[#2FA360]">
+                Live
+              </span>
+            ) : null}
           </div>
-        </DetailCard>
-
-        <DetailCard title="Free or Paid Status" delay={140}>
-          <DetailList
-            rows={[
-              { label: "Status", value: view.statusLabel },
-              { label: "Attendance type", value: view.attendanceType },
-              { label: "Availability", value: view.availability },
-            ]}
-          />
-        </DetailCard>
-
-        <DetailCard title="Ticket Price" delay={180}>
-          <div className="grid grid-cols-2 gap-3">
-            <StatBox
-              label="Ticket price"
-              value={view.ticketPrice}
-              accentBg={view.accentBg}
+          <p className="mt-2 text-[13px] text-[#8A8898]">{view.ticketNote}</p>
+          <Link
+            href={view.ctaHref}
+            className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#071649] text-[14px] font-semibold text-white transition-opacity duration-200 hover:opacity-90"
+          >
+            {view.ctaLabel}
+            <HugeiconsIcon
+              icon={ArrowRight01Icon}
+              size={16}
+              color="currentColor"
+              strokeWidth={2}
             />
-            <StatBox
-              label="Sales mode"
-              value={view.salesMode}
-              accentBg={view.accentBg}
-            />
-          </div>
-        </DetailCard>
-
-        <DetailCard
-          title="View Payments"
-          footer={view.paymentNote}
-          accentBg={view.accentBg}
-          delay={220}
-        >
-          <DetailList
-            rows={[
-              { label: "Payment mode", value: view.paymentMode },
-              {
-                label: "Collected",
-                value: view.collected,
-                valueClassName: view.isFree ? "text-[#2FA360]" : undefined,
-              },
-              { label: "Refunds", value: view.refunds },
-            ]}
-          />
-        </DetailCard>
-      </div>
+          </Link>
+        </div>
+      </aside>
     </div>
   );
 }

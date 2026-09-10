@@ -1,6 +1,5 @@
 import Header from "@/features/components/header";
 import AboutHeroSection from "@/features/about/components/about_hero_section";
-import MembershipGlanceSection from "@/features/membership/components/membership_glance_section";
 import MembershipLevelsSection from "@/features/membership/components/membership_levels_section";
 import MembershipBenefitsSection from "@/features/membership/components/membership_benefits_section";
 import WhoShouldJoinSection from "@/features/membership/components/who_should_join_section";
@@ -20,9 +19,10 @@ const MembershipPage = () => {
         image={Assets.images.heroBg1}
         imageAlt="CHLPS Canada professionals standing together"
         imageClassName="object-cover object-[right_center]"
+        titleWidth="730px"
+        bodyWidth="450px"
         cta={{ label: "Become a Member", href: "/dashboard/register" }}
       />
-      <MembershipGlanceSection />
       <MembershipLevelsSection />
       <MembershipBenefitsSection />
       <WhoShouldJoinSection />

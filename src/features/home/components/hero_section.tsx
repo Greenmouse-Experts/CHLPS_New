@@ -173,7 +173,7 @@ export default function HeroSection() {
       </div>
 
       <PageContainer className="relative h-full">
-        <div className="flex h-full items-center py-10 sm:py-12 lg:py-8">
+        <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[29rem] lg:py-10 xl:min-h-[31rem] xl:py-12">
           <div className="w-full ">
             <Reveal delay={80}>
               <div className="grid">

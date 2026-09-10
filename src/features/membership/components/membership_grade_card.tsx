@@ -19,7 +19,7 @@ export default function MembershipGradeCard({
 }: MembershipGradeCardProps) {
   return (
     <article
-      className="relative max-w-[26.5rem] overflow-hidden rounded-tl-[35px] rounded-br-[35px] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+      className="relative w-full overflow-hidden rounded-tl-[35px] rounded-br-[35px] shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
       style={{ backgroundColor: indicatorColor }}
     >
       <div className="mt-[10px] flex w-full flex-col items-center rounded-tl-[25px] rounded-br-[35px] bg-[#EEEAF8] px-6 py-6 text-center sm:px-7 sm:py-7">

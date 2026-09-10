@@ -86,7 +86,7 @@ export default function MembershipBenefitsSection() {
   return (
     <section
       id="membership-benefits"
-      className="relative overflow-hidden bg-[#F5F4F1] py-16 md:py-24"
+      className="relative overflow-hidden border-t border-[#211A734D] bg-[#F5F4F1] py-16 md:py-24"
     >
       <div
         aria-hidden
