@@ -24,6 +24,10 @@ export default function MembershipHelpSection({
   body,
   cards,
 }: MembershipHelpSectionProps) {
+  if (!cards || cards.length === 0) {
+    return null;
+  }
+
   return (
     <section className="bg-white py-16 md:py-24">
       <PageContainer>

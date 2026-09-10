@@ -24,6 +24,10 @@ export default function MembershipJobsSection({
   body,
   cards,
 }: MembershipJobsSectionProps) {
+  if (!cards || cards.length === 0) {
+    return null;
+  }
+
   return (
     <section className="bg-white py-16 md:py-24">
       <PageContainer>
@@ -59,7 +63,7 @@ export default function MembershipJobsSection({
               className="reveal flex h-full items-start gap-3.5 rounded-[1.25rem] border border-[#CDA54E] bg-white p-5 shadow-[0_10px_28px_rgba(33,26,115,0.06)] sm:gap-4 sm:p-6"
               style={revealStyle(index)}
             >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.85rem] bg-[#EEEAF8] sm:h-12 sm:w-12">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.85rem] bg-[#EDEAF88C] sm:h-12 sm:w-12">
                 <HugeiconsIcon
                   icon={card.icon}
                   size={22}
@@ -67,11 +71,11 @@ export default function MembershipJobsSection({
                   strokeWidth={1.8}
                 />
               </span>
-              <div className="min-w-0 pt-0.5">
-                <h3 className="text-[16px] font-bold leading-snug tracking-tight text-[#161058] sm:text-[17px] lg:text-[1.125rem]">
+              <div className="min-w-0">
+                <h3 className="text-[15px] font-bold leading-snug text-[#221A7A] sm:text-[17px]">
                   {card.title}
                 </h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-[#747277] sm:text-[14px]">
+                <p className="mt-1.5 text-[13px] leading-relaxed text-[#676672] sm:text-[14px]">
                   {card.body}
                 </p>
               </div>

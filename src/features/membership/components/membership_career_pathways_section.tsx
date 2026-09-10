@@ -13,6 +13,10 @@ export default function MembershipCareerPathwaysSection({
   gradeTitle,
   items,
 }: MembershipCareerPathwaysSectionProps) {
+  if (!items || items.length === 0) {
+    return null;
+  }
+
   return (
     <section className="bg-[#F4F3F9] py-16 md:py-24">
       <PageContainer>

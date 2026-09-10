@@ -13,7 +13,7 @@ export type MembershipRequirementColumn = {
 };
 
 type MembershipRequirementsSectionProps = {
-  columns: [MembershipRequirementColumn, MembershipRequirementColumn];
+  columns: MembershipRequirementColumn[];
 };
 
 const toneClass = {
@@ -26,7 +26,7 @@ const toneClass = {
     row: "bg-[#EDEAF88C]",
     checkWrap: "bg-white",
     check: "#221A7A",
-    iconBorder: "border border-[#CFA84E66]",
+    iconBorder: "border border-[#CFA84E66] ",
   },
   gold: {
     border: "border border-[#ECD89F]",
@@ -44,11 +44,24 @@ const toneClass = {
 export default function MembershipRequirementsSection({
   columns,
 }: MembershipRequirementsSectionProps) {
+  const activeColumns = (columns || []).filter(
+    (col) => col.items && col.items.length > 0,
+  );
+
+  if (activeColumns.length === 0) {
+    return null;
+  }
+
+  const gridClass =
+    activeColumns.length === 1
+      ? "grid grid-cols-1 max-w-2xl mx-auto gap-4 sm:gap-5"
+      : "grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2";
+
   return (
     <section className="bg-[#F7F6FB] py-16 md:py-24">
       <PageContainer>
-        <RevealGroup className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2">
-          {columns.map((column, index) => {
+        <RevealGroup className={gridClass}>
+          {activeColumns.map((column, index) => {
             const tone = toneClass[column.tone];
 
             return (
@@ -76,23 +89,23 @@ export default function MembershipRequirementsSection({
                     </h2>
                   </header>
 
-                  <ul className="mt-6 flex flex-col gap-2.5 sm:mt-7">
-                    {column.items.map((item) => (
+                  <ul className="mt-6 flex flex-col gap-2.5 sm:mt-7 sm:gap-3">
+                    {column.items.map((item, itemIndex) => (
                       <li
-                        key={item}
-                        className={`flex items-center gap-3 rounded-[1.15rem] px-3.5 py-3.5 sm:gap-3.5 sm:px-4 sm:py-4 ${tone.row}`}
+                        key={itemIndex}
+                        className={`flex items-start gap-3 rounded-[0.9rem] p-3 sm:gap-3.5 sm:p-3.5 ${tone.row}`}
                       >
                         <span
-                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full sm:h-8 sm:w-8 ${tone.checkWrap} ${tone.iconBorder}`}
+                          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full sm:h-6 sm:w-6 ${tone.checkWrap} ${tone.iconBorder}`}
                         >
                           <HugeiconsIcon
                             icon={Tick02Icon}
-                            size={14}
+                            size={13}
                             color={tone.check}
                             strokeWidth={2.4}
                           />
                         </span>
-                        <span className="text-[13px] leading-snug text-[#4A4954] sm:text-[15px] sm:leading-relaxed">
+                        <span className="text-[13px] leading-relaxed text-[#2B2367] sm:text-[15px]">
                           {item}
                         </span>
                       </li>

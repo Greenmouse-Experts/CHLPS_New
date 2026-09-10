@@ -15,7 +15,6 @@ import QueryCompLayout from "@/components/QueryCompLayout";
 import { fetchPublicMembershipBySlug } from "@/features/membership/services/membership_service";
 import {
   transformMembershipApiToType,
-  getMembershipType,
   type MembershipType,
 } from "@/features/membership/membership_types";
 import Link from "next/link";
@@ -36,7 +35,7 @@ export default function MembershipTypePage({
       if (liveData) {
         return transformMembershipApiToType(liveData);
       }
-      return getMembershipType(slug) || null;
+      return null;
     },
     initialData: membership,
     staleTime: 5 * 60 * 1000,
@@ -108,7 +107,9 @@ export default function MembershipTypePage({
                 />
               </AboutHeroSection>
 
-              {current.help && current.help.cards?.length > 0 ? (
+              {current.help &&
+              current.help.cards &&
+              current.help.cards.length > 0 ? (
                 <MembershipHelpSection {...current.help} />
               ) : null}
 
@@ -116,7 +117,9 @@ export default function MembershipTypePage({
                 <MembershipRequirementsSection columns={current.requirements} />
               ) : null}
 
-              {current.jobs && current.jobs.cards?.length > 0 ? (
+              {current.jobs &&
+              current.jobs.cards &&
+              current.jobs.cards.length > 0 ? (
                 <MembershipJobsSection {...current.jobs} />
               ) : null}
 

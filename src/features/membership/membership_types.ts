@@ -50,26 +50,26 @@ export type MembershipType = {
   duration?: string;
   renewalPrice?: number;
   renewalPeriod?: string;
-  help: {
+  help?: {
     badge: string;
     title: string;
     body: string;
     cards: MembershipHelpCard[];
   };
-  requirements: [MembershipRequirementColumn, MembershipRequirementColumn];
-  jobs: {
+  requirements?: MembershipRequirementColumn[];
+  jobs?: {
     badge: string;
     title: string;
     body: string;
     cards: MembershipJobCard[];
   };
-  joinNow: {
+  joinNow?: {
     title: string;
     paragraphs: string[];
     tags: string[];
     cards: MembershipJoinNowCard[];
   };
-  careerPathways: string[];
+  careerPathways?: string[];
   applicationQuestions?: (ApplicationQuestionItem | string)[];
 };
 
@@ -99,10 +99,6 @@ export function transformMembershipApiToType(
   const slugOrId = apiMembership.slug || apiMembership.id || "";
   const normalizedKey = slugOrId.toLowerCase().replace(/-membership$/, "");
 
-  const baseType = isMembershipTypeId(normalizedKey)
-    ? membershipTypes[normalizedKey]
-    : undefined;
-
   const title = apiMembership.name;
   const gradeTitle = apiMembership.name;
   const heroBody = apiMembership.description;
@@ -110,108 +106,129 @@ export function transformMembershipApiToType(
 
   const badge =
     (apiMembership.image &&
-      (apiMembership.image.startsWith("http") || apiMembership.image.startsWith("/"))
+      (apiMembership.image.startsWith("http") || apiMembership.image.startsWith("/")))
         ? apiMembership.image
-        : null) ||
-    baseType?.badge ||
-    badgeMap[normalizedKey] ||
-    Assets.icons.logo;
+        : badgeMap[normalizedKey] || Assets.icons.logo;
 
-  const indicatorColor = baseType?.indicatorColor || "#C89D3C";
+  const indicatorColor = "#C89D3C";
 
+  // Help section: LIVE DATA ONLY - NO DUMMY FALLBACK
   const helpCards: MembershipHelpCard[] =
     apiMembership.howMembershipHelps && apiMembership.howMembershipHelps.length > 0
-      ? apiMembership.howMembershipHelps.map((h, i) => ({
-          title: h.title,
-          body: h.description,
-          icon:
-            baseType?.help.cards[i]?.icon ||
-            (i % 2 === 0 ? BookOpen01Icon : Compass01Icon),
-        }))
-      : baseType?.help.cards || [];
+      ? apiMembership.howMembershipHelps.map((h, i) => {
+          const icons = [BookOpen01Icon, Compass01Icon, UserGroupIcon, Medal01Icon];
+          return {
+            title: h.title,
+            body: h.description,
+            icon: icons[i % icons.length],
+          };
+        })
+      : [];
 
+  const help =
+    helpCards.length > 0
+      ? {
+          badge: "Why it matters",
+          title: `How ${title} Supports Your Career`,
+          body: apiMembership.description,
+          cards: helpCards,
+        }
+      : undefined;
+
+  // Requirements: LIVE DATA ONLY - NO DUMMY FALLBACK
   const entryItems =
     apiMembership.eligibilityCriteria && apiMembership.eligibilityCriteria.length > 0
       ? apiMembership.eligibilityCriteria
-      : baseType?.requirements[0]?.items || [];
+      : [];
 
   const gainItems =
     apiMembership.benefits && apiMembership.benefits.length > 0
       ? apiMembership.benefits
-      : baseType?.requirements[1]?.items || [];
+      : [];
 
-  const requirements: [MembershipRequirementColumn, MembershipRequirementColumn] = [
-    {
+  const requirements: MembershipRequirementColumn[] = [];
+  if (entryItems.length > 0) {
+    requirements.push({
       title: "Entry Requirements",
       icon: ClipboardCheckIcon,
       tone: "navy",
       items: entryItems,
-    },
-    {
+    });
+  }
+  if (gainItems.length > 0) {
+    requirements.push({
       title: "What you gain",
       icon: CheckmarkBadge01Icon,
       tone: "gold",
       items: gainItems,
-    },
-  ];
+    });
+  }
 
+  // Jobs section: LIVE DATA ONLY - NO DUMMY FALLBACK
   const jobCards: MembershipJobCard[] =
     apiMembership.jobOpportunities && apiMembership.jobOpportunities.length > 0
-      ? apiMembership.jobOpportunities.map((j, i) => ({
-          title: j.title,
-          body: j.description,
-          icon:
-            baseType?.jobs.cards[i]?.icon ||
-            (i % 2 === 0 ? ShieldCheckIcon : Briefcase01Icon),
-        }))
-      : baseType?.jobs.cards || [];
+      ? apiMembership.jobOpportunities.map((j, i) => {
+          const icons = [ShieldCheckIcon, Briefcase01Icon, Building03Icon, ScanEyeIcon];
+          return {
+            title: j.title,
+            body: j.description,
+            icon: icons[i % icons.length],
+          };
+        })
+      : [];
 
+  const jobs =
+    jobCards.length > 0
+      ? {
+          badge: "Career Opportunities",
+          title: "Job Opportunities",
+          body: `${title} supports professional exposure across security, loss prevention, risk management and compliance.`,
+          cards: jobCards,
+        }
+      : undefined;
+
+  // Why join now: LIVE DATA ONLY - NO DUMMY FALLBACK
   const apiWhyJoin = apiMembership.whyJoinNow;
-  const whyJoinTitle =
-    apiWhyJoin?.heading || baseType?.joinNow?.title || `Why Join ${title}?`;
-
-  const whyJoinParagraphs: string[] =
-    apiWhyJoin?.description
+  let joinNow: MembershipType["joinNow"] | undefined = undefined;
+  if (apiWhyJoin) {
+    const whyJoinTitle = apiWhyJoin.heading || `Why Join ${title}?`;
+    const whyJoinParagraphs: string[] = apiWhyJoin.description
       ? apiWhyJoin.description.split("\n\n").map((p) => p.trim()).filter(Boolean)
-      : baseType?.joinNow?.paragraphs || [
-          `Joining as a member provides structured professional identity, industry credentials and practical exposure.`,
-        ];
+      : [];
+    const whyJoinTags: string[] =
+      apiWhyJoin.highlights && apiWhyJoin.highlights.length > 0
+        ? apiWhyJoin.highlights.map((h) => (typeof h === "string" ? h : h.value))
+        : [];
+    const whyJoinCards: MembershipJoinNowCard[] =
+      apiWhyJoin.infoCards && apiWhyJoin.infoCards.length > 0
+        ? apiWhyJoin.infoCards.map((c) => ({
+            title: c.title,
+            body: c.description,
+          }))
+        : [];
 
-  const whyJoinTags: string[] =
-    apiWhyJoin?.highlights && apiWhyJoin.highlights.length > 0
-      ? apiWhyJoin.highlights.map((h) =>
-          typeof h === "string" ? h : h.value,
-        )
-      : baseType?.joinNow?.tags || [
-          "Professional Standing",
-          "Career Growth",
-          "Global Recognition",
-        ];
+    if (
+      whyJoinParagraphs.length > 0 ||
+      whyJoinTags.length > 0 ||
+      whyJoinCards.length > 0 ||
+      apiWhyJoin.heading
+    ) {
+      joinNow = {
+        title: whyJoinTitle,
+        paragraphs: whyJoinParagraphs,
+        tags: whyJoinTags,
+        cards: whyJoinCards,
+      };
+    }
+  }
 
-  const whyJoinCards: MembershipJoinNowCard[] =
-    apiWhyJoin?.infoCards && apiWhyJoin.infoCards.length > 0
-      ? apiWhyJoin.infoCards.map((c) => ({
-          title: c.title,
-          body: c.description,
-        }))
-      : baseType?.joinNow?.cards || [];
-
-  const joinNow: MembershipType["joinNow"] = {
-    title: whyJoinTitle,
-    paragraphs: whyJoinParagraphs,
-    tags: whyJoinTags,
-    cards: whyJoinCards,
-  };
-
+  // Career Pathways: LIVE DATA ONLY - NO DUMMY FALLBACK
   const careerPathways =
     apiMembership.careerPathways && apiMembership.careerPathways.length > 0
       ? apiMembership.careerPathways
-      : baseType?.careerPathways || [
-          "Loss Prevention & Asset Protection Specialist",
-          "Security Operations Analyst",
-          "Corporate Risk & Compliance Officer",
-        ];
+      : undefined;
 
+  // Application Questions: LIVE DATA ONLY - NO DUMMY FALLBACK
   const applicationQuestions =
     apiMembership.applicationQuestions &&
     apiMembership.applicationQuestions.length > 0
@@ -219,13 +236,12 @@ export function transformMembershipApiToType(
       : undefined;
 
   return {
-    id: (baseType?.id || normalizedKey || "student") as MembershipTypeId,
+    id: (normalizedKey || "student") as MembershipTypeId,
     title,
     gradeTitle,
     heroBody,
     gradeBody,
     badge,
-    cropLogo: baseType?.cropLogo,
     indicatorColor,
     metaDescription: apiMembership.description,
     price: apiMembership.price,
@@ -233,21 +249,9 @@ export function transformMembershipApiToType(
     duration: apiMembership.duration,
     renewalPrice: apiMembership.renewalPrice,
     renewalPeriod: apiMembership.renewalPeriod,
-    help: {
-      badge: baseType?.help.badge || "Why it matters",
-      title: baseType?.help.title || `How ${title} Supports Your Career`,
-      body: baseType?.help.body || apiMembership.description,
-      cards: helpCards,
-    },
-    requirements,
-    jobs: {
-      badge: baseType?.jobs.badge || "Career Opportunities",
-      title: baseType?.jobs.title || "Job Opportunities",
-      body:
-        baseType?.jobs.body ||
-        `${title} supports professional exposure across security, loss prevention, risk management and compliance.`,
-      cards: jobCards,
-    },
+    help,
+    requirements: requirements.length > 0 ? requirements : undefined,
+    jobs,
     joinNow,
     careerPathways,
     applicationQuestions,
