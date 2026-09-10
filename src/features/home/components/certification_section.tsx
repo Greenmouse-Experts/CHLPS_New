@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
@@ -45,6 +45,31 @@ function getProgramImage(program: ApiProgramItem): string {
   }
 
   return Assets.icons.logo;
+}
+
+function ProgramBadge({ src, alt }: { src: string; alt: string }) {
+  const [imgSrc, setImgSrc] = useState(src);
+
+  useEffect(() => {
+    setImgSrc(src);
+  }, [src]);
+
+  const isRemote =
+    imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
+
+  return (
+    <div className="flex h-[7.25rem] w-[7.25rem] items-center justify-center border-[2px] rounded-[20px] border-[#CDA54E] p-2.5 overflow-hidden bg-white">
+      <Image
+        src={imgSrc}
+        alt={alt}
+        width={320}
+        height={368}
+        unoptimized={isRemote}
+        onError={() => setImgSrc(Assets.icons.logo)}
+        className="h-full w-auto object-contain"
+      />
+    </div>
+  );
 }
 
 export default function CertificationSection() {
@@ -137,15 +162,7 @@ export default function CertificationSection() {
                           />
                         </div>
                         <div className="relative z-10 flex h-full flex-col items-center">
-                          <div className="flex h-[7.25rem] w-[7.25rem] items-center justify-center border-[2px] rounded-[20px] border-[#CDA54E] p-2.5 overflow-hidden bg-white">
-                            <Image
-                              src={image}
-                              alt={programme.title}
-                              width={320}
-                              height={368}
-                              className="h-full w-auto object-contain"
-                            />
-                          </div>
+                          <ProgramBadge src={image} alt={programme.title} />
                           <h3 className="mt-6 text-[1.05rem] font-bold leading-snug text-[#151515] sm:text-[24px]">
                             {programme.title}
                           </h3>
