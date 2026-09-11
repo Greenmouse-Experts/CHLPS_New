@@ -101,7 +101,7 @@ export default function AboutHeroSection({
               </h1>
             </Reveal>
 
-            {body ? (
+            {/*{body ? (
               <Reveal delay={160}>
                 <p
                   className="mt-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]"
@@ -110,7 +110,7 @@ export default function AboutHeroSection({
                   {body}
                 </p>
               </Reveal>
-            ) : null}
+            ) : null}*/}
 
             {children || cta ? (
               <div className={children ? "w-full max-w-[26.5rem]" : undefined}>
