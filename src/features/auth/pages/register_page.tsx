@@ -193,11 +193,11 @@ const RegisterPage = () => {
               label={
                 <span>
                   I have read and agreed to the CHLPS{" "}
-                  <Link href="/#privacy" className="font-medium text-primary underline">
+                  <Link href="/policies?tab=privacy" className="font-medium text-primary underline">
                     Privacy Policy
                   </Link>{" "}
                   and{" "}
-                  <Link href="/#terms" className="font-medium text-primary underline">
+                  <Link href="/policies?tab=terms" className="font-medium text-primary underline">
                     Terms of Use
                   </Link>
                 </span>
