@@ -72,7 +72,7 @@ export default function AboutHeroSection({
           }`}
         >
           <div className="w-full">
-            {badge ? (
+            {/*{badge ? (
               <Reveal>
                 <span
                   className="cut-bl-tr inline-block bg-secondary px-4 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-[#211A73] sm:text-[12px]"
@@ -81,7 +81,7 @@ export default function AboutHeroSection({
                   {badge}
                 </span>
               </Reveal>
-            ) : null}
+            ) : null}*/}
 
             <Reveal delay={80}>
               <h1

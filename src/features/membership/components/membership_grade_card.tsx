@@ -76,7 +76,7 @@ export default function MembershipGradeCard({
         <h2 className="mt-1.5 text-[1.35rem] font-bold leading-tight text-[#221A7A] sm:text-[32px]">
           {title}
         </h2>
-        <p className="mt-2.5 text-[13px] leading-relaxed text-[#5F5878] sm:text-[15px]">
+        <p className="mt-2.5 text-[13px] leading-relaxed text-[#5F5878] sm:text-[15px] line-clamp-2">
           {body}
         </p>
 
