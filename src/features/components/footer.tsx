@@ -28,10 +28,10 @@ const exploreLinks = [
 ];
 
 const supportLinks = [
-  { label: "FAQs", href: "/#faq" },
-  { label: "Privacy Policy", href: "/#privacy" },
-  { label: "Terms", href: "/#terms" },
-  { label: "Code of Ethics", href: "/#ethics" },
+  { label: "FAQs", href: "/faq" },
+  { label: "Privacy Policy", href: "/policies?tab=privacy" },
+  { label: "Terms", href: "/policies?tab=terms" },
+  { label: "Code of Ethics", href: "/policies?tab=ethics" },
   { label: "My ChLPS", href: "/dashboard/sign-in" },
 ];
 
@@ -59,14 +59,14 @@ function FooterColumn({
           <li key={link.label}>
             <Link
               href={link.href}
-              className="group inline-flex items-center gap-2 text-[14px] text-white transition-colors duration-200 hover:text-secondary"
+              className="group inline-flex font-semibold items-center gap-2 text-[14px] text-white transition-colors duration-200 hover:text-secondary sm:text-[20px]"
             >
               <HugeiconsIcon
                 icon={ArrowRight01Icon}
                 size={12}
                 color={GOLD}
                 strokeWidth={2.2}
-                className="shrink-0"
+                className="shrink-0 sm:w-[24px] sm:h-[24px]"
               />
               <span>{link.label}</span>
             </Link>
@@ -102,7 +102,7 @@ export default function Footer() {
                 className="h-auto w-60 sm:w-72"
               />
             </Link>
-            <p className="mt-6 text-[14px] leading-[1.7] text-white">
+            <p className="mt-6 text-[14px] leading-[1.7] text-white sm:text-[20px]">
               ChLPS Canada is a professional membership and certification body
               advancing excellence in loss prevention, corporate security, and
               asset protection through training, certification, and professional
@@ -117,14 +117,14 @@ export default function Footer() {
             <p className="mb-5 sm:text-[23px] font-bold uppercase tracking-[0.14em] text-secondary">
               Contact
             </p>
-            <ul className="flex flex-col gap-4 text-[14px] leading-[1.5] text-white">
+            <ul className="flex flex-col gap-4 text-[14px] font-semibold leading-[1.5] text-white sm:text-[20px]">
               <li className="flex items-start gap-3">
                 <HugeiconsIcon
                   icon={Location01Icon}
                   size={18}
                   color={GOLD}
                   strokeWidth={1.8}
-                  className="mt-0.5 shrink-0"
+                  className="mt-0.5 shrink-0 sm:w-[24px] sm:h-[24px]"
                 />
                 <span>
                   Victoria Avenue Suite 3 Windsor Ontario
@@ -135,14 +135,14 @@ export default function Footer() {
               <li>
                 <a
                   href="tel:+19054522470"
-                  className="flex items-start gap-3 transition-colors hover:text-secondary"
+                  className="flex items-start gap-3 transition-colors font-semibold hover:text-secondary"
                 >
                   <HugeiconsIcon
                     icon={CallIcon}
                     size={18}
                     color={GOLD}
                     strokeWidth={1.8}
-                    className="mt-0.5 shrink-0"
+                    className="mt-0.5 shrink-0 sm:w-[24px] sm:h-[24px]"
                   />
                   +1 905-452-2470
                 </a>
@@ -150,14 +150,14 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:info@chlpscanada.ca"
-                  className="flex items-start gap-3 transition-colors hover:text-secondary"
+                  className="flex items-start gap-3 transition-colors font-semibold hover:text-secondary"
                 >
                   <HugeiconsIcon
                     icon={Mail01Icon}
                     size={18}
                     color={GOLD}
                     strokeWidth={1.8}
-                    className="mt-0.5 shrink-0"
+                    className="mt-0.5 shrink-0 sm:w-[24px] sm:h-[24px]"
                   />
                   info@chlpscanada.ca
                 </a>
@@ -176,6 +176,7 @@ export default function Footer() {
                     size={16}
                     color={NAVY}
                     strokeWidth={1.8}
+                    className="sm:w-[24px] sm:h-[24px]"
                   />
                 </Link>
               ))}
@@ -184,11 +185,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 border-t border-[#CDA54E80] pb-8 pt-6 text-center md:mt-20 md:pb-10 md:pt-8 lg:mt-24">
-          <p className="text-[12px] leading-relaxed text-white sm:text-[13px]">
+          <p className="text-[12px] leading-relaxed text-white sm:text-[18px]">
             © 2026 Association of Chartered Loss Prevention Specialists of
             Canada.
           </p>
-          <p className="mt-1 text-[12px] text-white sm:text-[13px]">
+          <p className="mt-1 text-[12px] text-white sm:text-[18px]">
             All rights reserved.
           </p>
         </div>
