@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
         destination: "/policies?tab=ethics",
         permanent: false,
       },
+      {
+        source: "/faqs",
+        destination: "/faq",
+        permanent: false,
+      },
     ];
   },
   images: {
