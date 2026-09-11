@@ -86,14 +86,14 @@ export default function AboutHeroSection({
               </h1>
             </Reveal>
 
-            <Reveal delay={160}>
+            {/*<Reveal delay={160}>
               <p
                 className="mt-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]"
                 style={{ maxWidth: bodyWidth ?? "740px" }}
               >
                 {body}
               </p>
-            </Reveal>
+            </Reveal>*/}
 
             {children || cta ? (
               <div className={children ? "w-full max-w-[26.5rem]" : undefined}>
