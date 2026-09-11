@@ -33,6 +33,7 @@ export const Assets = {
     eventDetailsHero: "/assets/images/event_details_page_hero_bg.png",
     newsHero: "/assets/images/new_and_blog_hero_bg.png",
     privacyHero: "/assets/images/privacy_bg_img.png",
+    faqHero: "/assets/images/faq_hero_bg.png",
     cardPatternLeft: "/assets/images/left_bg_parttern.png",
     cardPatternRight: "/assets/images/right_bg_parttern.png",
     events: {
