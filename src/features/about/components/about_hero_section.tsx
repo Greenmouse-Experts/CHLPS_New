@@ -43,22 +43,19 @@ export default function AboutHeroSection({
     setImageSrc(image);
   }, [image]);
 
-  const isRemote =
-    Boolean(imageSrc) &&
-    (imageSrc.startsWith("http://") || imageSrc.startsWith("https://"));
-
   const hasExtra = Boolean(cta || children);
 
   return (
     <section className="relative z-10 w-full overflow-hidden bg-[#030E20]">
       <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-0 lg:h-full">
         <Image
+          key={imageSrc}
           src={imageSrc}
           alt={imageAlt}
           fill
           priority
           sizes="100vw"
-          unoptimized={isRemote}
+          unoptimized
           onError={() => setImageSrc(Assets.images.heroBg2)}
           className={imageClassName}
         />

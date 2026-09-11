@@ -38,7 +38,8 @@ export default function MembershipTypePage({
       return null;
     },
     initialData: membership,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 0,
+    refetchOnMount: "always",
   });
 
   return (
