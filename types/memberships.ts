@@ -92,6 +92,8 @@ export interface Membership extends BaseEntity {
   benefits: string[];
   status: MembershipStatus;
   image?: string;
+  banner?: string | null;
+  bannerText?: string | null;
   requiredDocuments?: string[];
   jobOpportunities?: JobOpportunityItem[];
   howMembershipHelps?: HelpItem[];
@@ -116,6 +118,8 @@ export interface CreateMembershipDto {
   benefits: string[];
   status?: MembershipStatus;
   image?: string;
+  banner?: string | null;
+  bannerText?: string | null;
   requiredDocuments?: string[];
   jobOpportunities?: JobOpportunityItem[];
   howMembershipHelps?: HelpItem[];

@@ -82,11 +82,12 @@ export default function MembershipTypePage({
           return (
             <>
               <AboutHeroSection
+                badge="Membership"
                 title={titleLead}
                 accent={titleAccent}
-                body={current.heroBody}
-                image={"/assets/images/dd.png"}
-                imageAlt="CHLPS Canada professionals standing together"
+                body={current.bannerText || ""}
+                image={current.banner || "/assets/images/dd.png"}
+                imageAlt={`${current.title} banner`}
                 imageClassName="object-cover object-[right_center]"
                 titleWidth="730px"
                 bodyWidth="450px"

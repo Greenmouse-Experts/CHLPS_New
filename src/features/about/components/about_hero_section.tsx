@@ -1,4 +1,7 @@
+"use client";
+
 import type { CSSProperties, ReactNode } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -11,7 +14,7 @@ type AboutHeroSectionProps = {
   badge?: string;
   title: string;
   accent?: string;
-  body: string;
+  body?: string;
   titleWidth?: string;
   bodyWidth?: string;
   image?: string;
@@ -34,17 +37,29 @@ export default function AboutHeroSection({
   cta,
   children,
 }: AboutHeroSectionProps) {
+  const [imageSrc, setImageSrc] = useState(image);
+
+  useEffect(() => {
+    setImageSrc(image);
+  }, [image]);
+
+  const isRemote =
+    Boolean(imageSrc) &&
+    (imageSrc.startsWith("http://") || imageSrc.startsWith("https://"));
+
   const hasExtra = Boolean(cta || children);
 
   return (
     <section className="relative z-10 w-full overflow-hidden bg-[#030E20]">
       <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-0 lg:h-full">
         <Image
-          src={image}
+          src={imageSrc}
           alt={imageAlt}
           fill
           priority
           sizes="100vw"
+          unoptimized={isRemote}
+          onError={() => setImageSrc(Assets.images.heroBg2)}
           className={imageClassName}
         />
       </div>
@@ -86,14 +101,16 @@ export default function AboutHeroSection({
               </h1>
             </Reveal>
 
-            {/*<Reveal delay={160}>
-              <p
-                className="mt-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]"
-                style={{ maxWidth: bodyWidth ?? "740px" }}
-              >
-                {body}
-              </p>
-            </Reveal>*/}
+            {body ? (
+              <Reveal delay={160}>
+                <p
+                  className="mt-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]"
+                  style={{ maxWidth: bodyWidth ?? "740px" }}
+                >
+                  {body}
+                </p>
+              </Reveal>
+            ) : null}
 
             {children || cta ? (
               <div className={children ? "w-full max-w-[26.5rem]" : undefined}>

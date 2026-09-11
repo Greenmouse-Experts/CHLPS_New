@@ -31,7 +31,12 @@ export async function generateMetadata({
   if (apiMembership) {
     return {
       title: `${apiMembership.name} | CHLPS Canada`,
-      description: apiMembership.description,
+      description: apiMembership.bannerText || apiMembership.description,
+      openGraph: apiMembership.banner
+        ? {
+            images: [{ url: apiMembership.banner }],
+          }
+        : undefined,
     };
   }
 

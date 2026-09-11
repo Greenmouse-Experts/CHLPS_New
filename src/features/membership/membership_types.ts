@@ -42,6 +42,8 @@ export type MembershipType = {
   heroBody: string;
   gradeBody: string;
   badge: string;
+  banner?: string | null;
+  bannerText?: string | null;
   cropLogo?: boolean;
   indicatorColor: string;
   metaDescription: string;
@@ -242,6 +244,8 @@ export function transformMembershipApiToType(
     heroBody,
     gradeBody,
     badge,
+    banner: apiMembership.banner || null,
+    bannerText: apiMembership.bannerText || null,
     indicatorColor,
     metaDescription: apiMembership.description,
     price: apiMembership.price,
