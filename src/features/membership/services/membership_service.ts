@@ -15,6 +15,8 @@ export interface NavLinkItem {
 /**
  * Fetches live membership categories from the backend API.
  * Live data only - no dummy fallbacks.
+ * Reverses the API list immutably so that the last created membership (Student)
+ * always comes first consistently.
  */
 export async function fetchPublicMemberships(): Promise<Membership[]> {
   try {
@@ -25,22 +27,23 @@ export async function fetchPublicMemberships(): Promise<Membership[]> {
     >(ApiUrls.publicMemberships);
 
     const payload = response.data;
+    let items: Membership[] = [];
 
     if (Array.isArray(payload)) {
-      return payload;
-    }
-
-    if (payload && typeof payload === "object") {
+      items = payload;
+    } else if (payload && typeof payload === "object") {
       if (Array.isArray((payload as PublicMembershipsResponse).data)) {
-        return (payload as PublicMembershipsResponse).data;
-      }
-      const nested = (payload as { data?: { data?: Membership[] } }).data;
-      if (nested && Array.isArray(nested.data)) {
-        return nested.data;
+        items = (payload as PublicMembershipsResponse).data;
+      } else {
+        const nested = (payload as { data?: { data?: Membership[] } }).data;
+        if (nested && Array.isArray(nested.data)) {
+          items = nested.data;
+        }
       }
     }
 
-    return [];
+    // Always reverse immutably so that the last created item (Student) comes first
+    return [...items].reverse();
   } catch (error) {
     console.error("Error fetching public memberships:", error);
     return [];
@@ -71,7 +74,8 @@ async function tryFetchMembership(slug: string): Promise<Membership | null> {
 }
 
 /**
- * Fetches a single public membership by slug from GET /memberships/public/{slug}
+ * Fetches a single public membership by slug or ID with alias fallback:
+ * e.g. "student-membership" vs "student"
  */
 export async function fetchPublicMembershipBySlug(
   slug: string,
@@ -101,6 +105,7 @@ export async function fetchPublicMembershipBySlug(
 
 /**
  * Fetches live membership categories and splits them into 2 columns for the header mega-menu.
+ * Preserves the ordering (last created item comes first).
  */
 export async function fetchMembershipMenuFromApi(): Promise<NavLinkItem[][]> {
   const list = await fetchPublicMemberships();

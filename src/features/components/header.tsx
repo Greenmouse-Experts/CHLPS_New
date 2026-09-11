@@ -116,7 +116,7 @@ function MegaPanel({
 
           <div className="grid min-w-0 flex-1 grid-cols-2 gap-x-10 pl-8 lg:gap-x-16 lg:pl-12">
             {menu.columns.some((col) => col.length > 0) ? (
-              menu.columns.reverse().map((column, index) => (
+              menu.columns.map((column, index) => (
                 <div key={index} className="flex flex-col">
                   {column.map((item) => (
                     <MegaLink
@@ -517,6 +517,7 @@ export default function Header() {
                       <div className="flex flex-col pl-1">
                         {item.menu.columns.flat().length > 0 ? (
                           item.menu.columns
+
                             .flat()
                             .map((child) => (
                               <MegaLink
