@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
@@ -9,6 +12,7 @@ import {
   eventHref,
 } from "@/features/events/components/event_ui";
 import type { ChlpsEvent } from "@/features/events/events_data";
+import { Assets } from "@/lib/assets";
 
 export default function EventCard({
   event,
@@ -17,6 +21,12 @@ export default function EventCard({
   event: ChlpsEvent;
   index?: number;
 }) {
+  const [imgSrc, setImgSrc] = useState(event.image);
+
+  useEffect(() => {
+    setImgSrc(event.image);
+  }, [event.image]);
+
   return (
     <article
       className="reveal flex h-full flex-col overflow-hidden rounded-[16px] bg-white shadow-[0_12px_36px_rgba(22,16,88,0.1)] ring-1 ring-black/[0.04]"
@@ -24,9 +34,11 @@ export default function EventCard({
     >
       <div className="relative aspect-[16/10] w-full shrink-0">
         <Image
-          src={event.image}
+          src={imgSrc}
           alt={event.imageAlt}
           fill
+          unoptimized
+          onError={() => setImgSrc(Assets.images.upcomingEvent)}
           className={event.imageClassName ?? "object-cover"}
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         />

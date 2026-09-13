@@ -3,9 +3,16 @@ import PageContainer from "@/features/components/page_container";
 import EventSectionHeader from "@/features/events/components/event_section_header";
 import { EventCardGrid } from "@/features/events/components/event_card";
 import { getEventsByStatus } from "@/features/events/events_data";
+import type { ChlpsEvent } from "@/features/events/events_data";
 
-export default function UpcomingEventsSection() {
-  const upcomingEvents = getEventsByStatus("upcoming");
+export default function UpcomingEventsSection({
+  events,
+}: {
+  events?: ChlpsEvent[];
+}) {
+  const upcomingEvents = events
+    ? events.filter((e) => e.status === "upcoming")
+    : getEventsByStatus("upcoming");
 
   if (upcomingEvents.length === 0) {
     return null;

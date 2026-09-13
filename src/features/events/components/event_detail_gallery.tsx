@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  ArrowLeft01Icon,
-  ArrowRight01Icon,
-} from "@hugeicons/core-free-icons";
+import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import { Assets } from "@/lib/assets";
 
 type EventDetailGalleryProps = {
   images: string[];
@@ -19,7 +17,13 @@ export default function EventDetailGallery({
 }: EventDetailGalleryProps) {
   const [active, setActive] = useState(0);
   const total = images.length;
-  const current = images[active] ?? images[0];
+  const current = images[active] ?? images[0] ?? Assets.images.upcomingEvent;
+
+  const [imgSrc, setImgSrc] = useState(current);
+
+  useEffect(() => {
+    setImgSrc(current);
+  }, [current]);
 
   const goTo = (next: number) => {
     setActive((next + total) % total);
@@ -28,11 +32,12 @@ export default function EventDetailGallery({
   return (
     <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#D9DEE8] sm:aspect-[2/1] lg:h-[22.5rem] lg:aspect-auto">
       <Image
-        src={current}
+        src={imgSrc}
         alt={alt}
         fill
         priority
-        quality={90}
+        unoptimized
+        onError={() => setImgSrc(Assets.images.upcomingEvent)}
         sizes="(max-width: 1024px) 100vw, 70vw"
         className="object-cover"
       />

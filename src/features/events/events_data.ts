@@ -1,3 +1,5 @@
+import type { EventItem } from "@/types";
+
 export type EventStatus = "live" | "upcoming" | "past";
 export type EventAccess = "free" | "paid";
 export type EventCategory =
@@ -6,7 +8,8 @@ export type EventCategory =
   | "Conference"
   | "Workshop"
   | "Masterclass"
-  | "Professional Forum";
+  | "Professional Forum"
+  | (string & {});
 
 export type ChlpsEvent = {
   id: string;
@@ -25,6 +28,7 @@ export type ChlpsEvent = {
   imageAlt: string;
   imageClassName?: string;
   gallery: string[];
+  raw?: EventItem;
 };
 
 const testImage = (id: string) =>
