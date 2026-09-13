@@ -53,6 +53,8 @@ export class ApiUrls {
   static publicMembership(slug: string) {
     return `/memberships/public/${slug}`;
   }
+  static publicEvents = "/events/public";
+  static publicEventCategories = "/event-categories/public";
   static faqsPublished = "/faqs/published";
   static contactMe = "/contact-me";
 

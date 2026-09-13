@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Wifi01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
@@ -5,23 +8,50 @@ import PageContainer from "@/features/components/page_container";
 import EventSectionHeader from "@/features/events/components/event_section_header";
 import {
   AccessBadge,
-  EventCardBackdrop,
   EventMeta,
   ImageOverlayBadge,
   ViewDetailsButton,
   eventHref,
 } from "@/features/events/components/event_ui";
 import { getEventsByStatus } from "@/features/events/events_data";
+import type { ChlpsEvent } from "@/features/events/events_data";
+import { Assets } from "@/lib/assets";
 
-export default function LiveEventsSection() {
-  const liveEvents = getEventsByStatus("live");
+function LiveEventImage({ event }: { event: ChlpsEvent }) {
+  const [imgSrc, setImgSrc] = useState(event.image);
+
+  useEffect(() => {
+    setImgSrc(event.image);
+  }, [event.image]);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={event.imageAlt}
+      fill
+      unoptimized
+      onError={() => setImgSrc(Assets.images.upcomingEvent)}
+      className={event.imageClassName ?? "object-cover"}
+      sizes="(max-width: 1024px) 100vw, 42vw"
+    />
+  );
+}
+
+export default function LiveEventsSection({
+  events,
+}: {
+  events?: ChlpsEvent[];
+}) {
+  const liveEvents = events
+    ? events.filter((e) => e.status === "live")
+    : getEventsByStatus("live");
 
   if (liveEvents.length === 0) {
     return null;
   }
 
   return (
-    <section id="live-events" className="bg-white py-14 md:py-16 lg:py-20 ">
+    <section id="live-events" className="bg-white py-14 md:py-16 lg:py-20">
       <PageContainer>
         <EventSectionHeader
           icon={Wifi01Icon}
@@ -30,7 +60,7 @@ export default function LiveEventsSection() {
           title="Live Events"
           subtitle="Happening now."
           action={
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF0F0] px-3.5 py-1.5 text-[13px] font-medium text-[#E23B3B]  ring-1 ring-black/5 sm:px-4 sm:py-2 sm:text-sm">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF0F0] px-3.5 py-1.5 text-[13px] font-medium text-[#E23B3B] ring-1 ring-black/5 sm:px-4 sm:py-2 sm:text-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E23B3B] opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#E23B3B]" />
@@ -45,21 +75,13 @@ export default function LiveEventsSection() {
             <Reveal key={event.id}>
               <article className="grid overflow-hidden rounded-[16px] bg-[#F6FBF8] border border-[#CDA54E40] shadow-[0_12px_36px_rgba(22,16,88,0.1)] ring-1 ring-black/[0.04] lg:grid-cols-[minmax(17rem,0.42fr)_minmax(0,1fr)]">
                 <div className="relative min-h-[14rem] sm:min-h-[16rem] lg:min-h-[17.5rem]">
-                  <Image
-                    src={event.image}
-                    alt={event.imageAlt}
-                    fill
-                    className={event.imageClassName ?? "object-cover"}
-                    sizes="(max-width: 1024px) 100vw, 42vw"
-                  />
+                  <LiveEventImage event={event} />
                   <div className="absolute left-3 top-3 sm:left-4 sm:top-4">
                     <ImageOverlayBadge event={event} />
                   </div>
                 </div>
 
                 <div className="relative flex flex-col overflow-hidden px-5 py-5 sm:px-7 sm:py-6 lg:px-8 lg:py-7">
-                  {/* <EventCardBackdrop sizes="(max-width: 1024px) 100vw, 58vw" /> */}
-
                   <div className="relative z-10 flex h-full flex-col">
                     <AccessBadge access={event.access} className="w-fit" />
 

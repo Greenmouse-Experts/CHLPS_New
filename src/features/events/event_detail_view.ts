@@ -3,7 +3,9 @@ import type { ChlpsEvent } from "@/features/events/events_data";
 export function getEventDetailView(event: ChlpsEvent) {
   const isLive = event.status === "live";
   const isFree = event.access === "free";
-  const isVirtual = event.location.trim().toLowerCase() === "online";
+  const isVirtual = Boolean(
+    event.location && event.location.trim().toLowerCase() === "online",
+  );
   const typeLabel = isVirtual ? "Virtual Event" : event.category;
 
   return {
@@ -21,6 +23,6 @@ export function getEventDetailView(event: ChlpsEvent) {
     placeLabel: isVirtual ? "Format" : "Location",
     placeValue: isVirtual
       ? "Online"
-      : (event.address ?? event.location),
+      : (event.address ?? event.location ?? "In-Person"),
   };
 }
