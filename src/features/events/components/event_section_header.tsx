@@ -25,8 +25,8 @@ export default function EventSectionHeader({
   viewAllHref,
 }: EventSectionHeaderProps) {
   return (
-    <div className="flex items-start justify-between gap-4 ">
-      <Reveal className="min-w-0">
+    <div className="flex items-start justify-between gap-4  mt-8">
+      <Reveal className="min-w-0 ">
         <div className="flex items-start gap-2.5 sm:gap-3">
           <div
             className="flex h-[46px] w-[46px] items-center justify-center rounded-[14px]"

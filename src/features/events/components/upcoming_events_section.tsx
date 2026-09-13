@@ -19,7 +19,7 @@ export default function UpcomingEventsSection({
   }
 
   return (
-    <section id="upcoming-events" className="bg-white pb-14 md:pb-16 lg:pb-20">
+    <section id="upcoming-events" className="bg-white  pb-14 md:pb-16 lg:pb-20">
       <PageContainer>
         <EventSectionHeader
           icon={Calendar03Icon}
