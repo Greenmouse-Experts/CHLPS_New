@@ -23,6 +23,7 @@ export const Assets = {
     border: "/assets/images/Border.png",
     partners: "/assets/images/parttners.png",
     partnersBg: "/assets/images/parttern_bg_img.png",
+    guidingValues: "/assets/images/parrtern_img.png",
     chipsBg: "/assets/images/chips_bg_img.png",
     careerPathwaysBg: "/assets/images/Section 1.png",
     atAGlanceBg: "/assets/images/at_a_glance_bg_img.png",
