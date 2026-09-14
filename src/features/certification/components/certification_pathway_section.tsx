@@ -71,7 +71,7 @@ export default function CertificationPathwaySection() {
                     Membership expires after 1 Year.
                   </p>
                   <Link
-                    href="/dashboard/register"
+                    href={`/certification/${programme.id}`}
                     className="mt-4 inline-flex h-11 w-full items-center justify-center rounded-full bg-white text-[15px] font-semibold text-[#211A7A] transition-opacity duration-200 hover:opacity-90"
                   >
                     Get started

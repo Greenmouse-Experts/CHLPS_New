@@ -1,3 +1,4 @@
+import { resolveCertificationHref } from "@/features/certification/certification_details";
 import ApiService from "@/lib/network/api";
 import { ApiUrls } from "@/lib/network/api_url";
 
@@ -143,8 +144,12 @@ export async function fetchProgramsMenuFromApi(): Promise<NavLinkItem[][]> {
       const slug = item.slug || item.id || item._id || "";
       const label = item.title || item.name || "Program";
 
-      const rawId = (slug || id).toLowerCase().replace(/[^a-z0-9-]/g, "");
-      const href = item.href || `/certification#certification-${rawId}`;
+      const href =
+        item.href ||
+        resolveCertificationHref({
+          id,
+          slug,
+        });
 
       return { label, href };
     });

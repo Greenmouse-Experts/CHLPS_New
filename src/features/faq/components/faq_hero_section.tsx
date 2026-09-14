@@ -32,13 +32,13 @@ export default function FaqHeroSection() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-5 text-[2rem] font-light italic leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
+              <h1 className="mt-5 text-[2rem] font-medium leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[74px]">
                 Questions, answered.
               </h1>
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[440px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
+              <p className="mt-1 max-w-[440px] text-[15px] leading-relaxed text-white sm:text-[20px]">
                 Find quick answers about ChLPS membership, certification,
                 learning, events and your account.
               </p>
