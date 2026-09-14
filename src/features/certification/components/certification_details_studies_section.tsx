@@ -50,7 +50,7 @@ export default function CertificationDetailsStudiesSection({
           </Reveal>
 
           <Reveal delay={80}>
-            <h2 className="mt-5 text-[1.85rem] font-light leading-tight tracking-tight text-[#221A7A] sm:mt-6 sm:text-[2.35rem] lg:text-[2.75rem]">
+            <h2 className="mt-5 text-[1.85rem] font-medium leading-tight tracking-tight text-[#221A7A] sm:mt-6 sm:text-[2.35rem] lg:text-[2.75rem]">
               {detail.studiesTitle}
             </h2>
           </Reveal>
@@ -60,7 +60,7 @@ export default function CertificationDetailsStudiesSection({
           {detail.modules.map((module, index) => (
             <article
               key={module}
-              className="reveal flex items-center gap-3 rounded-[1.15rem] border border-[#E2C97A] bg-white px-3.5 py-3.5 sm:gap-3.5 sm:rounded-[1.25rem] sm:px-4 sm:py-4"
+              className="reveal flex items-center gap-3 rounded-[1.15rem] border border-[#CDA54EA6] bg-white px-3.5 py-3.5 sm:gap-3.5 sm:rounded-[16px] sm:px-4 sm:py-4"
               style={revealStyle(index)}
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#221A7A] sm:h-10 sm:w-10">

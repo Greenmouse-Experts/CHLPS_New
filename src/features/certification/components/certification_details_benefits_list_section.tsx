@@ -34,9 +34,9 @@ export default function CertificationDetailsBenefitsSection({
               {detail.benefits.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 rounded-full bg-[#F3F0FB] px-3.5 py-3.5 sm:gap-4 sm:px-5 sm:py-4"
+                  className="flex items-center gap-3 rounded-[18px] bg-[#F1EEFB] px-3.5 py-3.5 sm:gap-4 sm:px-5 sm:py-4"
                 >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white sm:h-8 sm:w-8">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#CFA84E66] bg-white sm:h-8 sm:w-8">
                     <HugeiconsIcon
                       icon={Tick02Icon}
                       size={15}
