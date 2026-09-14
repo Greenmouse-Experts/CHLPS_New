@@ -38,9 +38,9 @@ export default function CertificationDetailsRequirementsSection({
               {detail.requirements.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 rounded-full border border-[#E2C97A] bg-[#F6F4FC] px-3.5 py-3 sm:gap-3.5 sm:px-4 sm:py-3.5"
+                  className="flex items-center gap-3 rounded-[18px] border border-[#E2C97A] bg-[#F6F4FC] px-3.5 py-3 sm:gap-3.5 sm:px-4 sm:py-3.5"
                 >
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white sm:h-7 sm:w-7">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white sm:h-7 border border-[#CDA54E80] sm:w-7">
                     <HugeiconsIcon
                       icon={Tick02Icon}
                       size={14}
@@ -48,7 +48,7 @@ export default function CertificationDetailsRequirementsSection({
                       strokeWidth={2.4}
                     />
                   </span>
-                  <span className="min-w-0 text-left text-[13px] leading-relaxed text-[#2B2367] sm:text-[14px] lg:text-[15px]">
+                  <span className="min-w-0 text-left text-[13px] leading-relaxed text-[#6D6885] sm:text-[14px] lg:text-[15px]">
                     {item}
                   </span>
                 </li>

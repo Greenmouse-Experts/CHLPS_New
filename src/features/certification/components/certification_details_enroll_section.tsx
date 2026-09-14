@@ -10,7 +10,7 @@ export default function CertificationDetailsEnrollSection({
   detail: CertificationDetail;
 }) {
   return (
-    <section className="bg-[#EDECF2] py-12 sm:py-14 lg:py-16">
+    <section className="bg-[#EFEDF4] py-12 sm:py-14 lg:py-16">
       <PageContainer>
         <Reveal>
           <article className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_50px_rgba(33,26,115,0.08)] lg:rounded-[2rem]">
@@ -32,25 +32,25 @@ export default function CertificationDetailsEnrollSection({
                 </div>
               </div>
 
-              <div className="flex min-h-[13.75rem] flex-col justify-between bg-[#2F2683] px-6 py-8 sm:min-h-[15rem] sm:px-8 sm:py-9 lg:px-10 lg:py-9">
-                <div>
-                  <p className="text-[2.55rem] font-medium leading-none tracking-tight text-white sm:text-[2.85rem] lg:text-[3.15rem]">
+              <div className="flex items-center bg-[#2F2683] p-4 sm:p-5 lg:p-6">
+                <div className="flex w-full flex-col rounded-[1.35rem] border border-white/20 bg-white/[0.08] px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-xl sm:rounded-[1.5rem] sm:px-6 sm:py-7">
+                  <p className="text-[2.55rem] font-light leading-none tracking-tight text-white sm:text-[2.85rem] lg:text-[3.15rem]">
                     {detail.fee}
                   </p>
-                  <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-[14px]">
+                  <p className="mt-4 text-[13px] leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
                     {detail.feeNow}
                   </p>
-                  <p className="mt-0.5 text-[13px] leading-relaxed text-white/90 sm:text-[14px]">
+                  <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
                     {detail.feeExpiry}
                   </p>
-                </div>
 
-                <Link
-                  href={detail.enrollHref}
-                  className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-full bg-white text-[14px] font-medium text-[#2F2683] transition-opacity duration-200 hover:opacity-90 sm:h-12"
-                >
-                  Enroll Now
-                </Link>
+                  <Link
+                    href={detail.enrollHref}
+                    className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-full bg-white text-[14px] font-medium text-[#2F2683] transition-opacity duration-200 hover:opacity-90 sm:mt-7 sm:h-12"
+                  >
+                    Enroll Now
+                  </Link>
+                </div>
               </div>
             </div>
           </article>
