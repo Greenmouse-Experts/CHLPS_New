@@ -13,6 +13,10 @@ export default function CertificationDetailsRequirementsSection({
 }: {
   detail: CertificationDetail;
 }) {
+  if (!detail.requirements || detail.requirements.length === 0) {
+    return null;
+  }
+
   return (
     <section className="bg-white py-14 sm:py-16 lg:py-20">
       <PageContainer>

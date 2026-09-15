@@ -11,6 +11,10 @@ export default function CertificationDetailsBenefitsSection({
 }: {
   detail: CertificationDetail;
 }) {
+  if (!detail.benefits || detail.benefits.length === 0) {
+    return null;
+  }
+
   return (
     <section className="relative overflow-hidden bg-[#FAF7EC] py-16 sm:py-20 lg:py-24">
       <div className="absolute inset-0">
@@ -18,6 +22,7 @@ export default function CertificationDetailsBenefitsSection({
           src={Assets.images.certificateDetailsBenefitsBg}
           alt=""
           fill
+          unoptimized
           sizes="100vw"
           className="object-cover object-center opacity-40"
         />

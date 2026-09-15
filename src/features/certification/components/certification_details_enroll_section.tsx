@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
+import { Assets } from "@/lib/assets";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 
 export default function CertificationDetailsEnrollSection({
@@ -9,6 +13,8 @@ export default function CertificationDetailsEnrollSection({
 }: {
   detail: CertificationDetail;
 }) {
+  const [badgeSrc, setBadgeSrc] = useState(detail.badge);
+
   return (
     <section className="bg-[#EFEDF4] py-12 sm:py-14 lg:py-16">
       <PageContainer>
@@ -19,10 +25,14 @@ export default function CertificationDetailsEnrollSection({
                 <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
                   <span className="flex h-[5rem] w-[5rem] shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] bg-[#F3F0FC] sm:h-[5.5rem] sm:w-[5.5rem] sm:rounded-[1.4rem]">
                     <Image
-                      src={detail.badge}
+                      src={badgeSrc}
                       alt={`${detail.abbr} badge`}
                       width={320}
                       height={368}
+                      unoptimized
+                      onError={() =>
+                        setBadgeSrc(Assets.images.certificates.clpa)
+                      }
                       className="h-[3.5rem] w-auto object-contain sm:h-[3.9rem]"
                     />
                   </span>
@@ -34,15 +44,21 @@ export default function CertificationDetailsEnrollSection({
 
               <div className="flex items-center bg-[#2F2683] p-4 sm:p-5 lg:p-6">
                 <div className="flex w-full flex-col rounded-[1.35rem] border border-white/20 bg-white/[0.08] px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-xl sm:rounded-[1.5rem] sm:px-6 sm:py-7">
-                  <p className="text-[2.55rem] font-light leading-none tracking-tight text-white sm:text-[2.85rem] lg:text-[3.15rem]">
-                    {detail.fee}
-                  </p>
-                  <p className="mt-4 text-[13px] leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
-                    {detail.feeNow}
-                  </p>
-                  <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
-                    {detail.feeExpiry}
-                  </p>
+                  {detail.fee && (
+                    <p className="text-[2.55rem] font-light leading-none tracking-tight text-white sm:text-[2.85rem] lg:text-[3.15rem]">
+                      {detail.fee}
+                    </p>
+                  )}
+                  {detail.feeNow && (
+                    <p className="mt-4 text-[13px] leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
+                      {detail.feeNow}
+                    </p>
+                  )}
+                  {detail.feeExpiry && (
+                    <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
+                      {detail.feeExpiry}
+                    </p>
+                  )}
 
                   <Link
                     href={detail.enrollHref}

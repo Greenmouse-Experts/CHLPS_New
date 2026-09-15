@@ -36,6 +36,10 @@ export default function CertificationDetailsStudiesSection({
 }: {
   detail: CertificationDetail;
 }) {
+  if (!detail.modules || detail.modules.length === 0) {
+    return null;
+  }
+
   return (
     <section className="bg-[#F4F3F8] py-14 sm:py-16 lg:py-20">
       <PageContainer>
@@ -65,15 +69,15 @@ export default function CertificationDetailsStudiesSection({
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#221A7A] sm:h-10 sm:w-10">
                 <HugeiconsIcon
-                  icon={moduleIcons[index] ?? Shield01Icon}
+                  icon={moduleIcons[index % moduleIcons.length] ?? Shield01Icon}
                   size={16}
                   color="#FFFFFF"
-                  strokeWidth={1.8}
+                  strokeWidth={2.2}
                 />
               </span>
-              <p className="min-w-0 text-left text-[13px] font-medium leading-snug text-[#221A7A] sm:text-[14px] lg:text-[15px]">
+              <h3 className="min-w-0 text-[13px] font-medium leading-snug text-[#221A7A] sm:text-[14px]">
                 {module}
-              </p>
+              </h3>
             </article>
           ))}
         </RevealGroup>
