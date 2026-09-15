@@ -57,16 +57,20 @@ export default function CertificationDetailsHeroSection({
             </Reveal>
           </div>
 
-          <Reveal delay={80} className="flex w-full min-w-0 justify-center lg:justify-end">
+          <Reveal
+            delay={80}
+            className="flex w-full min-w-0 justify-center lg:justify-end"
+          >
             <div className="relative w-full min-w-0 max-w-[34rem] lg:max-w-[44rem] xl:max-w-[48rem] xl:-mr-6">
-              <Image
-                src={Assets.images.certificateDetailsMonitor}
+              <img
+                src={
+                  detail.outcomeImage ?? Assets.images.certificateDetailsMonitor
+                }
                 alt={`${detail.abbr} certification displayed on a desktop computer`}
-                width={2868}
-                height={2372}
-                priority
-                sizes="(max-width: 1024px) 90vw, 50vw"
-                className="h-auto w-full max-w-full object-contain object-right"
+                className="mx-auto"
+                // width={2868}
+                // height={2372}
+                // priority
               />
             </div>
           </Reveal>
