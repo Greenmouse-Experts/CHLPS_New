@@ -12,6 +12,7 @@ import {
   fetchLivePrograms,
   type ApiProgramItem,
 } from "@/features/certification/services/certification_menu_service";
+import { resolveCertificationHref } from "@/features/certification/certification_details";
 import { Assets } from "@/lib/assets";
 
 const certBadgeMap: Record<string, string> = {
@@ -137,6 +138,10 @@ export default function CertificationPathwaySection() {
                     const rawId = (programme.slug || programme.id || "")
                       .toLowerCase()
                       .replace(/[^a-z0-9-]/g, "");
+                    const enrollHref = resolveCertificationHref({
+                      id: programme.id,
+                      slug: programme.slug,
+                    });
 
                     return (
                       <article
@@ -166,9 +171,9 @@ export default function CertificationPathwaySection() {
                             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/90">
                               Certification Fee
                             </p>
-                            {/*<p className="mt-1 text-[1.75rem] font-bold leading-none text-white sm:text-[2rem]">
+                            <p className="mt-1 text-[1.75rem] font-bold leading-none text-white sm:text-[2rem]">
                               $100
-                            </p>*/}
+                            </p>
                             <span
                               aria-hidden
                               className="mt-2 block h-[2px] w-10 bg-secondary"
@@ -179,7 +184,7 @@ export default function CertificationPathwaySection() {
                               Membership expires after 1 Year.
                             </p>
                             <Link
-                              href="/dashboard/register"
+                              href={enrollHref}
                               className="mt-4 inline-flex h-11 w-full items-center justify-center rounded-full bg-white text-[15px] font-semibold text-[#211A7A] transition-opacity duration-200 hover:opacity-90"
                             >
                               Get started

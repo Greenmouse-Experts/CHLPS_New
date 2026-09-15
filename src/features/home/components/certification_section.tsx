@@ -14,6 +14,7 @@ import {
   fetchLivePrograms,
   type ApiProgramItem,
 } from "@/features/certification/services/certification_menu_service";
+import { resolveCertificationHref } from "@/features/certification/certification_details";
 import { Assets } from "@/lib/assets";
 
 const certBadgeMap: Record<string, string> = {
@@ -139,7 +140,10 @@ export default function CertificationSection() {
                     const rawId = (programme.slug || programme.id)
                       .toLowerCase()
                       .replace(/[^a-z0-9-]/g, "");
-                    const href = `/certification#certification-${rawId}`;
+                    const href = resolveCertificationHref({
+                      id: programme.id,
+                      slug: programme.slug,
+                    });
                     const buttonText = `Enroll for ${programme.title}`;
 
                     return (

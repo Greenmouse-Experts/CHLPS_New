@@ -9,72 +9,60 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: 1,
     question: "What is ChLPS Canada?",
     answer:
-      "ChLPS Canada is a professional membership and certification body supporting people working across loss prevention, corporate security, asset protection, risk, compliance and related fields.",
+      "The Association of Chartered Loss Prevention Specialists of Canada, ChLPS Canada, is a national professional body dedicated to advancing Loss Prevention through professional standards, education, certification, ethical practice, continuing professional development, and industry collaboration.",
   },
   {
     id: 2,
-    question: "Who can become a ChLPS member?",
+    question: "Who can become a member of ChLPS Canada?",
     answer:
-      "Anyone working in, or preparing for a career in, loss prevention, corporate security, asset protection, risk, compliance and related fields can apply. Grades are available for students, practitioners, experienced professionals and organisations.",
+      "Membership is open to students, emerging practitioners, experienced professionals, managers, executives, consultants, educators, and organizations working in Loss Prevention, asset protection, corporate security, investigations, retail security, supply chain security, risk management, and related fields.",
   },
   {
     id: 3,
-    question: "Which membership grade should I choose?",
+    question: "What membership grades are available?",
     answer:
-      "Choose the grade that matches your current experience, qualifications and career stage. Student and Affiliate grades support those starting out, while Licentiate, Associate, Certified and Corporate grades recognise more established professional standing.",
+      "ChLPS Canada offers progressive membership grades designed to support individuals throughout their professional journey. These include Student Membership, Affiliate Membership, Licentiate Membership, Associate Membership, Certified Membership, and Corporate Membership for eligible organizations.",
   },
   {
     id: 4,
-    question: "How long does membership last?",
+    question: "What are the benefits of becoming a member?",
     answer:
-      "Membership runs on an annual cycle from 1 April to 31 March. If you join during the year, your subscription continues until the following 31 March.",
+      "Members benefit from professional recognition, continuing professional development, industry resources, networking opportunities, career support, certification pathways, preferential rates on eligible programs, professional events, and opportunities to contribute to the advancement of the Loss Prevention profession.",
   },
   {
     id: 5,
-    question: "Can I move to a higher membership grade?",
+    question: "What professional certifications does ChLPS Canada offer?",
     answer:
-      "Yes. Members can apply to progress to a higher grade once they meet the experience, learning and professional requirements for that level.",
+      "ChLPS Canada provides a progressive professional certification pathway comprising CLPA™ Certified Loss Prevention Associate, CLPO™ Certified Loss Prevention Officer, CLPM™ Certified Loss Prevention Manager, and ChLPS™ Chartered Loss Prevention Specialist, supporting development from foundational competence through advanced and chartered professional recognition.",
   },
   {
     id: 6,
-    question: "What do I gain from membership?",
+    question: "What is the difference between membership and professional certification?",
     answer:
-      "Membership provides professional recognition, access to certification pathways, learning and CPD, events, and a network of practitioners across loss prevention and corporate security.",
+      "Membership provides affiliation with the Association and access to applicable member benefits. Professional certification is a formal recognition of demonstrated knowledge, competence, experience, and other prescribed requirements associated with a specific ChLPS Canada professional designation.",
   },
   {
     id: 7,
-    question: "What certifications does ChLPS offer?",
+    question: "Do I need Loss Prevention experience to join ChLPS Canada?",
     answer:
-      "ChLPS Canada offers progressive certifications including Certified Loss Prevention Associate (CLPA), Certified Loss Prevention Officer (CLPO), Certified Loss Prevention Manager (CLPM) and Chartered Loss Prevention Specialist (ChLPS).",
+      "Not necessarily. ChLPS Canada provides membership opportunities for different career stages. Students and individuals entering the profession can begin at an appropriate membership grade, while experienced practitioners can pursue membership and certification pathways aligned with their qualifications and professional experience.",
   },
   {
     id: 8,
-    question: "How do I enrol in a certification programme?",
+    question: "Does ChLPS Canada provide continuing professional development opportunities?",
     answer:
-      "Create an account, choose the programme that matches your experience, and complete the application with your qualifications and supporting documents. Enrolment is completed through My ChLPS.",
+      "Yes. ChLPS Canada supports lifelong professional development through education, training, webinars, professional resources, knowledge sharing, industry engagement, and other learning opportunities designed to keep practitioners informed about evolving risks, technologies, standards, and professional practices.",
   },
   {
     id: 9,
-    question: "Are ChLPS courses available online?",
+    question: "Can organizations become members of ChLPS Canada?",
     answer:
-      "Yes. ChLPS programmes are delivered online so you can study around work and professional commitments, with assessments completed through the learning platform.",
+      "Yes. Corporate Membership enables eligible organizations to engage with ChLPS Canada, strengthen workforce capability, support employee certification and professional development, access applicable member benefits, participate in industry initiatives, and demonstrate commitment to professional Loss Prevention standards.",
   },
   {
     id: 10,
-    question: "When will I receive my certificate?",
+    question: "How do I join ChLPS Canada or apply for certification?",
     answer:
-      "Certificates are issued after you successfully complete the programme requirements and any required assessment. You can then access and share your credential through your account.",
-  },
-  {
-    id: 11,
-    question: "How do event registrations work?",
-    answer:
-      "Browse upcoming events, select the session you want to attend, and complete registration through the website. Confirmation and joining details are sent to the email on your account.",
-  },
-  {
-    id: 12,
-    question: "What if I cannot access my account?",
-    answer:
-      "Use the sign-in page to reset your password, or contact the ChLPS Canada team if you still cannot get in. We can help restore access to your membership, learning and certification records.",
+      "Applicants should select the membership grade or professional certification that best reflects their education, experience, competence, and career stage. They must then complete the applicable application, assessment, examination, professional development, and ethical requirements prescribed by ChLPS Canada for that membership grade or designation.",
   },
 ];
