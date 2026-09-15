@@ -1,6 +1,7 @@
 import { resolveCertificationHref } from "@/features/certification/certification_details";
 import ApiService from "@/lib/network/api";
 import { ApiUrls } from "@/lib/network/api_url";
+import { Course } from "@/types";
 
 export interface NavLinkItem {
   label: string;
@@ -20,6 +21,7 @@ export interface ApiProgramItem {
   href?: string;
   coursesCount?: number;
   isPublished?: boolean;
+  courses?: Course[];
 }
 
 /**
@@ -107,6 +109,7 @@ export async function fetchLivePrograms(): Promise<ApiProgramItem[]> {
                 slug: p.slug,
                 description: p.description || c.shortDesc || "",
                 coverImage: c.coverImage,
+                courses: [],
               });
             }
           } else if (p && typeof p === "string" && !seen.has(p)) {
@@ -116,6 +119,7 @@ export async function fetchLivePrograms(): Promise<ApiProgramItem[]> {
               title: p,
               description: c.shortDesc || "",
               coverImage: c.coverImage,
+              courses: [],
             });
           }
         }
