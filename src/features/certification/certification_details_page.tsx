@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import Header from "@/features/components/header";
@@ -13,6 +15,8 @@ import CertificationDetailsBenefitsListSection from "@/features/certification/co
 import type { CertificationDetail } from "@/features/certification/certification_details";
 import { fetchProgramById } from "@/features/certification/services/certification_service";
 import QueryCompLayout from "@/components/QueryCompLayout";
+import { useAppSelector } from "@/lib/store/store";
+import { StripePaymentModal } from "@/features/orders";
 
 type CertificationDetailsPageProps = {
   detail?: CertificationDetail | null;
@@ -23,6 +27,10 @@ export default function CertificationDetailsPage({
   detail: initialDetail,
   id,
 }: CertificationDetailsPageProps) {
+  const router = useRouter();
+  const token = useAppSelector((state) => state.user.token);
+  const [isStripeModalOpen, setIsStripeModalOpen] = useState(false);
+
   const query = useQuery({
     queryKey: ["public-program", id],
     queryFn: async () => {
@@ -37,6 +45,27 @@ export default function CertificationDetailsPage({
   });
 
   const detail = query.data ?? initialDetail;
+
+  const handleEnrollClick = () => {
+    if (!detail) return;
+
+    if (!token) {
+      const currentPath =
+        typeof window !== "undefined"
+          ? window.location.pathname
+          : `/certification/${id || ""}`;
+      router.push(
+        `/dashboard/sign-in?redirect=${encodeURIComponent(currentPath)}`,
+      );
+      return;
+    }
+
+    if (detail.courseId) {
+      setIsStripeModalOpen(true);
+    } else {
+      router.push(detail.enrollHref);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#EDECF2]">
@@ -64,12 +93,38 @@ export default function CertificationDetailsPage({
       >
         {detail && (
           <>
-            <CertificationDetailsHeroSection detail={detail} />
-            <CertificationDetailsEnrollSection detail={detail} />
+            <CertificationDetailsHeroSection
+              detail={detail}
+              onEnroll={handleEnrollClick}
+            />
+            <CertificationDetailsEnrollSection
+              detail={detail}
+              onEnroll={handleEnrollClick}
+            />
             <CertificationDetailsRequirementsSection detail={detail} />
             <CertificationDetailsStudiesSection detail={detail} />
             <CertificationDetailsOutcomeSection detail={detail} />
             <CertificationDetailsBenefitsListSection detail={detail} />
+
+            {/* Direct Stripe Enrollment Modal */}
+            {isStripeModalOpen && detail.courseId && (
+              <StripePaymentModal
+                isOpen={isStripeModalOpen}
+                onClose={() => setIsStripeModalOpen(false)}
+                title={`Enroll in ${detail.heroTitle.replace(/\n/g, " ")}`}
+                courses={[
+                  {
+                    id: detail.courseId,
+                    price: detail.price ?? 0,
+                  },
+                ]}
+                estimatedAmount={detail.price ?? 0}
+                onSuccess={() => {
+                  setIsStripeModalOpen(false);
+                  router.push("/dashboard/courses");
+                }}
+              />
+            )}
           </>
         )}
       </QueryCompLayout>

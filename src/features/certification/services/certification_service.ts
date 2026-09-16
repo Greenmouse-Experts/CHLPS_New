@@ -71,12 +71,37 @@ export function extractProgramAbbreviation(title: string): string {
   }
 
   const lower = title.toLowerCase();
-  if (lower.includes("basic professional certificate") || lower.includes("bclp")) return "BCLP";
-  if (lower.includes("advanced professional certificate") || lower.includes("aclpm") || lower.includes("acipm")) return "ACLPM";
-  if (lower.includes("chartered loss prevention specialist") || lower.includes("chlps")) return "ChLPS";
-  if (lower.includes("certified loss prevention manager") || lower.includes("clpm")) return "CLPM";
-  if (lower.includes("certified loss prevention officer") || lower.includes("clpo")) return "CLPO";
-  if (lower.includes("certified loss prevention associate") || lower.includes("clpa")) return "CLPA";
+  if (
+    lower.includes("basic professional certificate") ||
+    lower.includes("bclp")
+  )
+    return "BCLP";
+  if (
+    lower.includes("advanced professional certificate") ||
+    lower.includes("aclpm") ||
+    lower.includes("acipm")
+  )
+    return "ACLPM";
+  if (
+    lower.includes("chartered loss prevention specialist") ||
+    lower.includes("chlps")
+  )
+    return "ChLPS";
+  if (
+    lower.includes("certified loss prevention manager") ||
+    lower.includes("clpm")
+  )
+    return "CLPM";
+  if (
+    lower.includes("certified loss prevention officer") ||
+    lower.includes("clpo")
+  )
+    return "CLPO";
+  if (
+    lower.includes("certified loss prevention associate") ||
+    lower.includes("clpa")
+  )
+    return "CLPA";
 
   // Fallback to capital letters if available
   const capitals = title.replace(/[^A-Z]/g, "");
@@ -140,7 +165,10 @@ export async function fetchPublicCourses(): Promise<ApiCourseItem[]> {
 }
 
 function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  return html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 /**
@@ -155,7 +183,7 @@ export function transformProgramToCertificationDetail(
     .trim();
 
   const abbr = extractProgramAbbreviation(
-    `${cleanTitle} ${course?.title || ""}`
+    `${cleanTitle} ${course?.title || ""}`,
   );
 
   const lowerAbbr = abbr.toLowerCase();
@@ -185,32 +213,39 @@ export function transformProgramToCertificationDetail(
   // Card title
   const cardTitle = `${abbr} – ${cleanTitle.replace(/\s*\([^)]*\)/g, "").trim()}`;
 
-  // Fee
-  const price = course?.price ?? program.courses?.[0]?.price;
-  const fee = typeof price === "number" && price > 0 ? `$${price.toLocaleString()}` : "";
+  // Fee & Course ID
+  const effectiveCourse = course || program.courses?.[0];
+  const price = effectiveCourse?.price;
+  const courseId = effectiveCourse?.id;
+  const programId = program.id || (program as any)._id;
+
+  const fee =
+    typeof price === "number" && price > 0
+      ? `CAD $${price.toLocaleString()}`
+      : "";
   const feeNow =
     typeof price === "number" && price > 0
-      ? `$${price.toLocaleString()}.00 now and then $${price.toLocaleString()}.00 after 1 Year.`
+      ? `One-time enrollment fee of CAD $${price.toLocaleString()}`
       : "";
-  const feeExpiry = "Certification expires after 1 Year.";
+  const feeExpiry = "Accredited CHLPS Canada Professional Certification.";
 
-  const enrollHref = `/dashboard/register?program=${program.id}`;
+  const enrollHref = `/dashboard/register?program=${programId}`;
 
   // Entry requirements
   const rawReqs =
     course?.entryRequirements && course.entryRequirements.length > 0
       ? course.entryRequirements
       : program.courses?.[0]?.entryRequirements &&
-        program.courses[0].entryRequirements.length > 0
-      ? program.courses[0].entryRequirements
-      : [];
+          program.courses[0].entryRequirements.length > 0
+        ? program.courses[0].entryRequirements
+        : [];
 
   const requirements = rawReqs.filter(Boolean);
 
   // Program of studies / modules
   const outcomes = course?.courseOutcomes ?? [];
   const sortedOutcomes = [...outcomes].sort(
-    (a, b) => (a.order ?? 0) - (b.order ?? 0)
+    (a, b) => (a.order ?? 0) - (b.order ?? 0),
   );
 
   const modules =
@@ -242,13 +277,17 @@ export function transformProgramToCertificationDetail(
     course?.certificationBenefits && course.certificationBenefits.length > 0
       ? course.certificationBenefits
       : program.courses?.[0]?.certificationBenefits &&
-        program.courses[0].certificationBenefits.length > 0
-      ? program.courses[0].certificationBenefits
-      : [];
+          program.courses[0].certificationBenefits.length > 0
+        ? program.courses[0].certificationBenefits
+        : [];
 
   const benefits = rawBenefits.filter(Boolean);
 
   return {
+    id: programId,
+    programId,
+    courseId,
+    price: typeof price === "number" ? price : undefined,
     abbr,
     badge,
     heroTitle,
@@ -276,7 +315,7 @@ export function transformProgramToCertificationDetail(
  * Fetches program by ID, slug, or acronym, matching against live programs and courses.
  */
 export async function fetchProgramById(
-  idOrSlug: string
+  idOrSlug: string,
 ): Promise<CertificationDetail | null> {
   if (!idOrSlug) return null;
 
@@ -296,7 +335,12 @@ export async function fetchProgramById(
   const courseByProgramId = new Map<string, ApiCourseItem>();
   for (const c of courses) {
     const p = c.program;
-    const pId = typeof p === "object" && p ? p.id || p.slug : typeof p === "string" ? p : undefined;
+    const pId =
+      typeof p === "object" && p
+        ? p.id || p.slug
+        : typeof p === "string"
+          ? p
+          : undefined;
     if (pId && !courseByProgramId.has(pId)) {
       courseByProgramId.set(pId, c);
     }
@@ -331,49 +375,45 @@ export async function fetchProgramById(
   if (!matchedProgram) {
     for (const c of courses) {
       const p = c.program;
-      const pId = typeof p === "object" && p ? p.id || p.slug : typeof p === "string" ? p : undefined;
+      const pId =
+        typeof p === "object" && p
+          ? p.id || p.slug
+          : typeof p === "string"
+            ? p
+            : undefined;
 
-      if (c.id.toLowerCase() === target || (c.slug && c.slug.toLowerCase() === target)) {
+      if (
+        c.id.toLowerCase() === target ||
+        (c.slug && c.slug.toLowerCase() === target)
+      ) {
         matchedCourse = c;
         if (pId) {
           matchedProgram = programs.find((prog) => prog.id === pId);
         }
         break;
       }
-
-      if (c.title) {
-        const cAbbr = extractProgramAbbreviation(c.title).toLowerCase();
-        if (cAbbr === target) {
-          matchedCourse = c;
-          if (pId) {
-            matchedProgram = programs.find((prog) => prog.id === pId);
-          }
-          break;
-        }
-      }
     }
+  } else {
+    matchedCourse =
+      courseByProgramId.get(matchedProgram.id) || matchedProgram.courses?.[0];
   }
 
-  // If program found, retrieve its primary course
   if (matchedProgram) {
-    if (!matchedCourse) {
-      matchedCourse =
-        courseByProgramId.get(matchedProgram.id) ||
-        matchedProgram.courses?.[0];
-    }
     return transformProgramToCertificationDetail(matchedProgram, matchedCourse);
   }
 
-  // If only course found without corresponding program entity, synthesize program
   if (matchedCourse) {
     const syntheticProgram: ApiProgramItem = {
       id: matchedCourse.id,
       title: matchedCourse.title || "Certification Program",
-      slug: matchedCourse.slug,
+      description: matchedCourse.shortDesc || matchedCourse.fullDesc,
       coverImage: matchedCourse.coverImage,
       courses: [matchedCourse],
     };
-    return transformProgramToCertificationDetail(syntheticProgram, matchedCourse);
+    return transformProgramToCertificationDetail(
+      syntheticProgram,
+      matchedCourse,
+    );
   }
 
   return null;

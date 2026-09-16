@@ -1,6 +1,10 @@
 import { Assets } from "@/lib/assets";
 
 export type CertificationDetail = {
+  id?: string;
+  programId?: string;
+  courseId?: string;
+  price?: number;
   abbr: string;
   badge: string;
   heroTitle: string;
@@ -61,24 +65,53 @@ export const CERTIFICATION_DETAIL: CertificationDetail = {
   outcomeBadge: "CLPA Professional Certification",
   outcomeTitle: "CLPA Professional\nCertification",
   outcomeBody: [
-    "Congratulations on earning the Certified Loss Prevention Associate (CLPA) professional certification. This achievement reflects your dedication to professional growth and readiness to contribute confidently to modern loss prevention work. The certification enhances your credibility, strengthens your operational skills, and positions you for roles in retail security.",
-    "CLPA certification holders gain improved employability, access to industry networks, and a solid foundation for advanced certifications. It is a meaningful step toward a rewarding career in loss prevention and corporate security.",
+    "Upon successful completion of the CLPA Program of Studies and passing the comprehensive examination, candidates are awarded the Certified Loss Prevention Associate (CLPA™) designation.",
+    "This certification validates fundamental competencies in asset protection, conflict management, and security reporting, positioning holders as qualified candidates for roles across retail, corporate, and logistics loss prevention environments.",
   ],
   outcomeImage: Assets.images.clpaCertificate,
   benefitsTitle: "Benefits of the CLPA Certification",
   benefits: [
-    "Establishes professional credibility in the loss prevention field",
-    "Strengthens operational competence in retail and logistics environments",
-    "Enhances understanding of fraud prevention and risk management",
-    "Prepares candidates for supervisory and operational roles",
-    "Provides a clear pathway to CLPO™ certification",
+    "Nationally and internationally recognized professional credential",
+    "Enhanced employability across retail, logistics, corporate, and public sectors",
+    "Comprehensive curriculum covering core loss prevention and asset protection principles",
+    "Direct pathway toward advanced certifications including CLPO™ and ChLPS™",
+    "Access to exclusive CHLPS professional resources, workshops, and network",
+    "Digital badge and verifiable credentials for LinkedIn and professional profiles",
   ],
 };
 
-export function resolveCertificationHref(input: {
+export const CERTIFICATION_SLUG_MAP: Record<string, string> = {
+  bclp: "basic-professional-certificate-in-loss-prevention",
+  clpa: "certified-loss-prevention-associate",
+  clpo: "certified-loss-prevention-officer",
+  clpm: "certified-loss-prevention-manager",
+  aclpm: "advanced-professional-certificate-in-loss-prevention-management",
+  acipm: "advanced-professional-certificate-in-loss-prevention-management",
+  chlps: "chartered-loss-prevention-specialist",
+};
+
+export function resolveCertificationHref(item: {
   id?: string;
   slug?: string;
+  title?: string;
+  abbr?: string;
 }): string {
-  const id = input.id || input.slug || "";
-  return id ? `/certification/${id}` : "/certification";
+  if (item.slug) {
+    return `/certification/${item.slug}`;
+  }
+
+  if (item.abbr) {
+    const mapped = CERTIFICATION_SLUG_MAP[item.abbr.toLowerCase()];
+    if (mapped) return `/certification/${mapped}`;
+  }
+
+  if (item.title) {
+    const match = item.title.match(/\(([A-Za-z™]+)\)/);
+    const abbr = match ? match[1].replace(/™/g, "").toLowerCase() : "";
+    if (abbr && CERTIFICATION_SLUG_MAP[abbr]) {
+      return `/certification/${CERTIFICATION_SLUG_MAP[abbr]}`;
+    }
+  }
+
+  return `/certification/${item.id || ""}`;
 }

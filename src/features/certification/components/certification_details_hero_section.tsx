@@ -9,8 +9,10 @@ import type { CertificationDetail } from "@/features/certification/certification
 
 export default function CertificationDetailsHeroSection({
   detail,
+  onEnroll,
 }: {
   detail: CertificationDetail;
+  onEnroll?: () => void;
 }) {
   return (
     <section className="relative z-10 w-full overflow-hidden bg-[#0A1140]">
@@ -24,6 +26,7 @@ export default function CertificationDetailsHeroSection({
           sizes="100vw"
           className="object-cover object-center"
         />
+        <div className="absolute inset-0 bg-[#0A1140]/75" />
       </div>
 
       <PageContainer className="relative min-w-0">
@@ -42,18 +45,34 @@ export default function CertificationDetailsHeroSection({
             </Reveal>
 
             <Reveal delay={160}>
-              <Link
-                href={detail.enrollHref}
-                className="mt-7 inline-flex h-11 items-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#0A1542] transition-all duration-200 hover:brightness-95 sm:mt-8 sm:h-12 sm:px-6 sm:text-[14px]"
-              >
-                Enroll Now
-                <HugeiconsIcon
-                  icon={ArrowUpRight01Icon}
-                  size={16}
-                  color="currentColor"
-                  strokeWidth={2}
-                />
-              </Link>
+              {onEnroll ? (
+                <button
+                  type="button"
+                  onClick={onEnroll}
+                  className="mt-7 inline-flex h-11 items-center gap-2 rounded-full bg-secondary px-6 text-[13px] font-bold text-[#0A1542] shadow-sm transition-all duration-200 hover:brightness-105 active:scale-[0.99] sm:mt-8 sm:h-12 sm:px-7 sm:text-[14px]"
+                >
+                  <span>Enroll Now</span>
+                  <HugeiconsIcon
+                    icon={ArrowUpRight01Icon}
+                    size={16}
+                    color="currentColor"
+                    strokeWidth={2.2}
+                  />
+                </button>
+              ) : (
+                <Link
+                  href={detail.enrollHref}
+                  className="mt-7 inline-flex h-11 items-center gap-2 rounded-full bg-secondary px-6 text-[13px] font-bold text-[#0A1542] transition-all duration-200 hover:brightness-95 sm:mt-8 sm:h-12 sm:px-7 sm:text-[14px]"
+                >
+                  <span>Enroll Now</span>
+                  <HugeiconsIcon
+                    icon={ArrowUpRight01Icon}
+                    size={16}
+                    color="currentColor"
+                    strokeWidth={2.2}
+                  />
+                </Link>
+              )}
             </Reveal>
           </div>
 
@@ -68,9 +87,6 @@ export default function CertificationDetailsHeroSection({
                 }
                 alt={`${detail.abbr} certification displayed on a desktop computer`}
                 className="mx-auto"
-                // width={2868}
-                // height={2372}
-                // priority
               />
             </div>
           </Reveal>

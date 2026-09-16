@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
@@ -10,8 +12,10 @@ import type { CertificationDetail } from "@/features/certification/certification
 
 export default function CertificationDetailsEnrollSection({
   detail,
+  onEnroll,
 }: {
   detail: CertificationDetail;
+  onEnroll?: () => void;
 }) {
   const [badgeSrc, setBadgeSrc] = useState(detail.badge);
 
@@ -45,7 +49,7 @@ export default function CertificationDetailsEnrollSection({
               <div className="flex items-center bg-[#2F2683] p-4 sm:p-5 lg:p-6">
                 <div className="flex w-full flex-col rounded-[1.35rem] border border-white/20 bg-white/[0.08] px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-xl sm:rounded-[1.5rem] sm:px-6 sm:py-7">
                   {detail.fee && (
-                    <p className="text-[2.55rem] font-light leading-none tracking-tight text-white sm:text-[2.85rem] lg:text-[3.15rem]">
+                    <p className="text-[2.55rem] font-bold leading-none tracking-tight text-white sm:text-[2.85rem] lg:text-[3.15rem]">
                       {detail.fee}
                     </p>
                   )}
@@ -60,12 +64,32 @@ export default function CertificationDetailsEnrollSection({
                     </p>
                   )}
 
-                  <Link
-                    href={detail.enrollHref}
-                    className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-full bg-white text-[14px] font-medium text-[#2F2683] transition-opacity duration-200 hover:opacity-90 sm:mt-7 sm:h-12"
-                  >
-                    Enroll Now
-                  </Link>
+                  {onEnroll ? (
+                    <button
+                      type="button"
+                      onClick={onEnroll}
+                      className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-white text-[14px] font-bold text-[#2F2683] shadow-sm transition-all duration-200 hover:brightness-95 active:scale-[0.99] sm:mt-7 sm:h-12"
+                    >
+                      <span>Enroll Now</span>
+                      <HugeiconsIcon
+                        icon={ArrowUpRight01Icon}
+                        size={16}
+                        strokeWidth={2.2}
+                      />
+                    </button>
+                  ) : (
+                    <Link
+                      href={detail.enrollHref}
+                      className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-white text-[14px] font-bold text-[#2F2683] transition-opacity duration-200 hover:opacity-90 sm:mt-7 sm:h-12"
+                    >
+                      <span>Enroll Now</span>
+                      <HugeiconsIcon
+                        icon={ArrowUpRight01Icon}
+                        size={16}
+                        strokeWidth={2.2}
+                      />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
