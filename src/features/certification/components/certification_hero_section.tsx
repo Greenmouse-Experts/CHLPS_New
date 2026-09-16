@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
@@ -17,10 +19,11 @@ export default function CertificationHeroSection() {
           sizes="100vw"
           className="object-cover object-[right_center]"
         />
+        <div className="absolute inset-0 bg-[#000E21]/75" />
       </div>
 
       <PageContainer className="relative h-full">
-        <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[28rem] lg:py-16 xl:min-h-[32rem] xl:py-20">
+        <div className="flex h-full items-center py-12 sm:py-14 lg:min-h-[28rem] lg:py-16 xl:min-h-[32rem] xl:py-20">
           <div className="w-full">
             <Reveal>
               <span
@@ -52,6 +55,24 @@ export default function CertificationHeroSection() {
                   (CLPO™), Certified Loss Prevention Associate (CLPA™), and
                   Chartered Loss Prevention Specialist (ChLPS™).
                 </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={220}>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <a
+                  href="#pathways"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-secondary px-7 text-sm font-bold text-[#111E2A] shadow-sm transition-all hover:brightness-95 active:scale-[0.99]"
+                >
+                  <span>Enroll Now</span>
+                  <HugeiconsIcon icon={ArrowDown01Icon} size={16} />
+                </a>
+                <a
+                  href="#program-benefits"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 text-sm font-medium text-white backdrop-blur-xs transition-colors hover:bg-white/20"
+                >
+                  Program Benefits
+                </a>
               </div>
             </Reveal>
           </div>

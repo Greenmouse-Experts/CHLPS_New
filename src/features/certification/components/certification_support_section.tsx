@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
@@ -8,7 +10,7 @@ export default function CertificationSupportSection() {
   return (
     <section
       id="how-we-support-you"
-      className="relative overflow-hidden bg-[#130F47] py-10"
+      className="relative overflow-hidden bg-[#130F47] py-12 lg:py-16"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
@@ -60,6 +62,18 @@ export default function CertificationSupportSection() {
                   certification, and progress with confidence—no matter where
                   you are in your career.
                 </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={220}>
+              <div className="mt-7">
+                <a
+                  href="#pathways"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-secondary px-7 text-sm font-bold text-[#111E2A] shadow-sm transition-all hover:brightness-95 active:scale-[0.99]"
+                >
+                  <span>Enroll Today</span>
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} />
+                </a>
               </div>
             </Reveal>
           </div>

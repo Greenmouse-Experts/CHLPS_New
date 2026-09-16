@@ -1,20 +1,26 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
 import {
-  fetchProgramsMenuFromApi,
   fetchLivePrograms,
   type ApiProgramItem,
 } from "@/features/certification/services/certification_menu_service";
 import { resolveCertificationHref } from "@/features/certification/certification_details";
+import { useAppSelector } from "@/lib/store/store";
+import { StripePaymentModal } from "@/features/orders";
+import type { Course } from "@/types";
 
-// Static level badges fallback order or mapped by title/level
+// Static level badges mapped by title/level
 const LEVEL_BADGES: Record<string, string> = {
   BCLP: "FOUNDATIONAL",
   CLPA: "ASSOCIATE",
@@ -53,6 +59,14 @@ function ProgrammeSeal({ src, alt }: { src: string; alt: string }) {
 }
 
 export default function CertificationPathwaySection() {
+  const router = useRouter();
+  const token = useAppSelector((state) => state.user.token);
+
+  const [selectedCheckout, setSelectedCheckout] = useState<{
+    title: string;
+    course: Course;
+  } | null>(null);
+
   const { data: livePrograms, isLoading } = useQuery({
     queryKey: ["live-certification-programs"],
     queryFn: fetchLivePrograms,
@@ -60,6 +74,32 @@ export default function CertificationPathwaySection() {
   });
 
   const programs = livePrograms || [];
+
+  const handleEnrollClick = (programme: ApiProgramItem, course?: Course) => {
+    const detailHref = resolveCertificationHref({
+      id: programme.id,
+      slug: programme.slug,
+    });
+
+    if (!course) {
+      router.push(detailHref);
+      return;
+    }
+
+    if (!token) {
+      // Guest: redirect to register/sign-in page with return redirect
+      router.push(
+        `/dashboard/sign-in?redirect=${encodeURIComponent(detailHref)}`,
+      );
+      return;
+    }
+
+    // Authenticated student: trigger Stripe Payment Modal with preview-before-create
+    setSelectedCheckout({
+      title: programme.title,
+      course,
+    });
+  };
 
   return (
     <section id="pathways" className="bg-[#FAF9FD] py-16 sm:py-20 lg:py-24">
@@ -115,7 +155,8 @@ export default function CertificationPathwaySection() {
                   slug: programme.slug,
                 });
 
-                const price = programme.courses?.[0]?.price;
+                const firstCourse = programme.courses?.[0];
+                const price = firstCourse?.price;
 
                 return (
                   <article
@@ -145,23 +186,46 @@ export default function CertificationPathwaySection() {
                           Certification Fee
                         </p>
                         <p className="mt-1 text-[1.75rem] font-bold leading-none text-white sm:text-[2rem]">
-                          {price ? `$${price}` : null}
+                          {price !== undefined && price !== null
+                            ? `CAD $${Number(price).toLocaleString()}`
+                            : "Contact for pricing"}
                         </p>
                         <span
                           aria-hidden
                           className="mt-2 block h-[2px] w-10 bg-secondary"
                         />
-                        <p className="mt-2.5 text-[13px] leading-relaxed text-white/90 sm:text-[14px]">
-                          $100.00 now and then $100.00 after 1 Year.
-                          <br />
-                          Membership expires after 1 Year.
+                        <p className="mt-2.5 min-h-[2.8rem] text-[13px] leading-relaxed text-white/90 sm:text-[14px]">
+                          {firstCourse?.title ? (
+                            <span className="line-clamp-2">
+                              {firstCourse.title}
+                            </span>
+                          ) : (
+                            "Comprehensive accredited qualification curriculum."
+                          )}
                         </p>
-                        <Link
-                          href={enrollHref}
-                          className="mt-4 inline-flex h-11 w-full items-center justify-center rounded-full bg-white text-[15px] font-semibold text-[#211A7A] transition-opacity duration-200 hover:opacity-90"
-                        >
-                          Get started
-                        </Link>
+
+                        <div className="mt-5 flex flex-col gap-2.5">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              handleEnrollClick(programme, firstCourse)
+                            }
+                            className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-secondary text-[14px] font-bold text-[#161058] shadow-sm transition-all duration-200 hover:brightness-105 active:scale-[0.99]"
+                          >
+                            <span>Enroll Now</span>
+                            <HugeiconsIcon
+                              icon={ArrowUpRight01Icon}
+                              size={16}
+                              strokeWidth={2.2}
+                            />
+                          </button>
+                          <Link
+                            href={enrollHref}
+                            className="inline-flex h-10 w-full items-center justify-center rounded-full border border-white/30 bg-white/10 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-white/20"
+                          >
+                            View Curriculum Details
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -169,6 +233,26 @@ export default function CertificationPathwaySection() {
               })}
             </RevealGroup>
           </div>
+        )}
+
+        {/* Stripe Payment Modal for Direct Enrollment */}
+        {selectedCheckout && (
+          <StripePaymentModal
+            isOpen={Boolean(selectedCheckout)}
+            onClose={() => setSelectedCheckout(null)}
+            title={`Enroll in ${selectedCheckout.title}`}
+            courses={[
+              {
+                id: selectedCheckout.course.id,
+                price: Number(selectedCheckout.course.price) || 0,
+              },
+            ]}
+            estimatedAmount={Number(selectedCheckout.course.price) || 0}
+            onSuccess={() => {
+              setSelectedCheckout(null);
+              router.push("/dashboard/courses");
+            }}
+          />
         )}
       </PageContainer>
     </section>

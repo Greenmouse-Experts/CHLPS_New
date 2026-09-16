@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
@@ -37,6 +39,18 @@ export default function CertificationMattersSection() {
                 with the knowledge, skills, and expertise needed to navigate the
                 complex challenges of the industry.
               </p>
+            </Reveal>
+
+            <Reveal delay={220}>
+              <div className="mt-6 sm:mt-8">
+                <a
+                  href="#pathways"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90"
+                >
+                  <span>Enroll in a Certification</span>
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} />
+                </a>
+              </div>
             </Reveal>
           </div>
 
