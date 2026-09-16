@@ -130,11 +130,13 @@ export interface OrderPreviewPayload {
 }
 
 export interface OrderPreviewCalculations {
-  amount: number;
-  subAmount?: number;
-  tax?: number;
-  discount?: number;
+  subAmount: number;
+  taxAmount?: number;
+  taxRate?: number;
+  total: number;
+  amount?: number;
   totalAmount?: number;
+  discount?: number;
   currency?: string;
   courses?: Array<{
     id: string;
@@ -157,12 +159,14 @@ export interface OrderCreatePayload {
 }
 
 export interface OrderCreateResponseData {
-  orderNumber: string;
+  orderNumber?: string;
   orderId?: string;
   id?: string;
   amount?: number;
+  subAmount?: number;
+  taxAmount?: number;
   status?: string;
-  reference?: string;
+  reference: string;
   thirdPartyRef?: string;
   authorization_url?: string;
   authorizationUrl?: string;
@@ -183,17 +187,19 @@ export interface OrderTransactionDetail {
   reference?: string;
   status: string;
   amount: number;
+  subAmount?: number;
   createdDate?: string;
 }
 
 export interface PurchasedOrderItem {
   id: string;
   price?: number;
-  course?: Course;
+  course?: Course | null;
   membership?: {
     id: string;
     name: string;
-  };
+    slug?: string;
+  } | null;
 }
 
 export interface LiveOrderRecord {

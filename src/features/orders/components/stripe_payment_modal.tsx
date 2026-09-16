@@ -78,7 +78,9 @@ function CheckoutForm({
     });
 
     if (result.error) {
-      setErrorMessage(result.error.message || "Payment could not be completed.");
+      setErrorMessage(
+        result.error.message || "Payment could not be completed.",
+      );
       toast.error(result.error.message || "Payment failed");
       setIsProcessing(false);
       return;
@@ -86,7 +88,6 @@ function CheckoutForm({
 
     if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
       try {
-        // Confirm order on backend
         await orderService.confirmOrder(result.paymentIntent.id);
         toast.success("Payment confirmed successfully!");
         onSuccess?.();
@@ -162,6 +163,13 @@ export default function StripePaymentModal({
     useState<OrderCreateResponseData | null>(null);
   const [stripePromise] = useState(() => getStripe());
 
+  const rawAmount =
+    estimatedAmount ||
+    [...courses, ...memberships].reduce(
+      (sum, item) => sum + (Number(item.price) || 0),
+      0,
+    );
+
   // Trigger preview calculation whenever modal opens
   useEffect(() => {
     if (!isOpen) {
@@ -173,12 +181,6 @@ export default function StripePaymentModal({
 
     const runPreview = async () => {
       setIsLoadingPreview(true);
-      const rawAmount =
-        estimatedAmount ||
-        [...courses, ...memberships].reduce(
-          (sum, item) => sum + (Number(item.price) || 0),
-          0,
-        );
 
       const res = await orderService.previewOrder({
         amount: rawAmount,
@@ -189,12 +191,10 @@ export default function StripePaymentModal({
       if (res.status && res.data) {
         setPreviewData(res.data);
       } else {
-        // Fallback preview
         setPreviewData({
-          amount: rawAmount,
           subAmount: rawAmount,
-          tax: 0,
-          totalAmount: rawAmount,
+          total: rawAmount,
+          taxAmount: 0,
           currency: "CAD",
         });
       }
@@ -202,14 +202,15 @@ export default function StripePaymentModal({
     };
 
     runPreview();
-  }, [isOpen, courses, memberships, estimatedAmount]);
+  }, [isOpen, courses, memberships, rawAmount]);
 
   if (!isOpen) return null;
 
   const totalCalculated =
+    previewData?.total ??
     previewData?.totalAmount ??
     previewData?.amount ??
-    estimatedAmount;
+    rawAmount;
 
   const handleProceedToPayment = async () => {
     setIsCreatingOrder(true);
@@ -218,13 +219,13 @@ export default function StripePaymentModal({
       const { preview, order } = await orderService.checkoutWithPreview({
         courses,
         memberships,
-        estimatedAmount: totalCalculated,
+        estimatedAmount: rawAmount,
       });
 
       setPreviewData(preview);
       setCreatedOrder(order);
 
-      // If backend returns a direct Stripe redirect URL, redirect user
+      // If backend returns a direct Stripe Checkout URL, redirect user
       const redirectUrl = order.authorization_url || order.authorizationUrl;
       if (redirectUrl && !order.clientSecret) {
         window.location.href = redirectUrl;
@@ -271,8 +272,8 @@ export default function StripePaymentModal({
         {step === "preview" ? (
           <div className="mt-5 space-y-4">
             <p className="text-sm text-gray-600">
-              Review your order details before proceeding with secure Stripe
-              checkout.
+              Review your order breakdown before proceeding to secure Stripe
+              payment.
             </p>
 
             {isLoadingPreview ? (
@@ -291,14 +292,18 @@ export default function StripePaymentModal({
                 <div className="flex justify-between py-1 text-gray-600">
                   <span>Subtotal:</span>
                   <span className="font-semibold text-gray-900">
-                    ${(previewData?.subAmount ?? totalCalculated).toLocaleString()}
+                    ${(previewData?.subAmount ?? rawAmount).toLocaleString()}
                   </span>
                 </div>
-                {previewData?.tax !== undefined && (
+                {(previewData?.taxAmount !== undefined ||
+                  previewData?.taxRate !== undefined) && (
                   <div className="flex justify-between py-1 text-gray-600">
-                    <span>Estimated Tax / VAT:</span>
+                    <span>
+                      Tax / VAT{" "}
+                      {previewData?.taxRate ? `(${previewData.taxRate}%)` : ""}:
+                    </span>
                     <span className="font-semibold text-gray-900">
-                      ${previewData.tax.toLocaleString()}
+                      ${(previewData?.taxAmount ?? 0).toLocaleString()}
                     </span>
                   </div>
                 )}
@@ -311,7 +316,7 @@ export default function StripePaymentModal({
                   </div>
                 )}
                 <div className="mt-3 flex justify-between border-t border-gray-200 pt-3 text-base font-bold text-[#1D1658]">
-                  <span>Total Amount:</span>
+                  <span>Total Due:</span>
                   <span className="text-primary">
                     ${totalCalculated.toLocaleString()}{" "}
                     <span className="text-xs font-normal text-gray-500">
@@ -328,7 +333,9 @@ export default function StripePaymentModal({
                 size={16}
                 className="text-green-600"
               />
-              <span>Preview verified via server before order placement</span>
+              <span>
+                Preview calculated via live backend taxes before order creation
+              </span>
             </div>
 
             <div className="mt-6 flex gap-3">
@@ -352,7 +359,7 @@ export default function StripePaymentModal({
                       size={18}
                       className="animate-spin text-white"
                     />
-                    <span>Preparing Checkout...</span>
+                    <span>Connecting to Stripe...</span>
                   </>
                 ) : (
                   <span>Proceed to Payment</span>
@@ -376,7 +383,7 @@ export default function StripePaymentModal({
             >
               <CheckoutForm
                 clientSecret={createdOrder.clientSecret}
-                orderNumber={createdOrder.orderNumber}
+                orderNumber={createdOrder.reference}
                 totalAmount={totalCalculated}
                 currency={previewData?.currency || "CAD"}
                 onSuccess={() => onSuccess?.(createdOrder)}

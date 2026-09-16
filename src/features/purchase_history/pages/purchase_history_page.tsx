@@ -27,7 +27,7 @@ const PurchaseHistoryPage = () => {
               <thead className="bg-cream text-xs font-semibold tracking-wide text-text/55 uppercase">
                 <tr>
                   <th className="px-5 py-3">Order</th>
-                  <th className="px-5 py-3">Course(s)</th>
+                  <th className="px-5 py-3">Item(s)</th>
                   <th className="px-5 py-3">Amount</th>
                   <th className="px-5 py-3">Status</th>
                   <th className="px-5 py-3">Date</th>
@@ -36,23 +36,42 @@ const PurchaseHistoryPage = () => {
               <tbody className="divide-y divide-sand">
                 {orders.map((order) => (
                   <tr key={order.id}>
-                    <td className="px-5 py-4 font-mono text-text/70">{order.number}</td>
-                    <td className="max-w-xs px-5 py-4">
-                      {order.orderItems?.map((item) => item.course.title).join(", ") || "—"}
+                    <td className="px-5 py-4 font-mono text-text/70">
+                      {order.number}
+                    </td>
+                    <td className="max-w-xs px-5 py-4 font-medium text-text">
+                      {order.orderItems
+                        ?.map(
+                          (item) =>
+                            item.course?.title ||
+                            item.membership?.name ||
+                            "Item",
+                        )
+                        .filter(Boolean)
+                        .join(", ") || "—"}
                     </td>
                     <td className="px-5 py-4 font-medium text-primary">
                       ${Number(order.trx?.amount ?? 0).toLocaleString()}
+                      {order.trx?.subAmount &&
+                        order.trx?.amount > order.trx?.subAmount && (
+                          <span className="ml-1.5 text-xs text-text/50 font-normal">
+                            (inc. tax)
+                          </span>
+                        )}
                     </td>
                     <td className="px-5 py-4">
                       <StatusBadge status={order.status} />
                     </td>
                     <td className="px-5 py-4 text-text/70">
                       {order.createdDate
-                        ? new Date(order.createdDate).toLocaleDateString(undefined, {
-                            day: "2-digit",
-                            month: "short",
-                            year: "numeric",
-                          })
+                        ? new Date(order.createdDate).toLocaleDateString(
+                            undefined,
+                            {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                            },
+                          )
                         : "—"}
                     </td>
                   </tr>
@@ -72,8 +91,12 @@ function StatusBadge({ status }: { status: string }) {
       className={cn(
         "rounded-full px-3 py-1 text-xs font-medium capitalize",
         status === "confirmed" && "bg-[#E8F8F1] text-[#166534]",
+        status === "successful" && "bg-[#E8F8F1] text-[#166534]",
         status === "pending" && "bg-[#FEFAE0] text-[#854D0E]",
-        status !== "confirmed" && status !== "pending" && "bg-cream text-text/60",
+        status !== "confirmed" &&
+          status !== "successful" &&
+          status !== "pending" &&
+          "bg-cream text-text/60",
       )}
     >
       {status}

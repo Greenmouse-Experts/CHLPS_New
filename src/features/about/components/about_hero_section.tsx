@@ -20,7 +20,7 @@ type AboutHeroSectionProps = {
   image?: string;
   imageAlt?: string;
   imageClassName?: string;
-  cta?: { label: string; href: string };
+  cta?: { label: string; href?: string; onClick?: () => void };
   children?: ReactNode;
 };
 
@@ -59,34 +59,31 @@ export default function AboutHeroSection({
           onError={() => setImageSrc(Assets.images.heroBg2)}
           className={imageClassName}
         />
+        <div className="absolute inset-0 bg-[#030E20]/75" />
       </div>
 
-      <PageContainer className="relative h-full">
+      <PageContainer className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-28">
         <div
-          className={`flex h-full items-center py-10 sm:py-12 ${
-            children
-              ? "lg:min-h-[42rem] lg:py-16 xl:min-h-[48rem] xl:py-20"
-              : hasExtra
-                ? "lg:min-h-[32rem] lg:py-16 xl:min-h-[36rem] xl:py-20"
-                : "lg:min-h-[547px] lg:py-8"
+          className={`grid items-center gap-10 lg:gap-14 ${
+            hasExtra ? "lg:grid-cols-[1fr_auto]" : ""
           }`}
         >
-          <div className="w-full">
-            {/*{badge ? (
+          <div>
+            {badge ? (
               <Reveal>
-                <span
-                  className="cut-bl-tr inline-block bg-secondary px-4 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-[#211A73] sm:text-[12px]"
-                  style={{ "--cut": "0.55rem" } as CSSProperties}
-                >
-                  {badge}
-                </span>
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 backdrop-blur-xs">
+                  <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+                  <span className="text-[11px] font-semibold tracking-wider text-white uppercase sm:text-xs">
+                    {badge}
+                  </span>
+                </div>
               </Reveal>
-            ) : null}*/}
+            ) : null}
 
             <Reveal delay={80}>
               <h1
-                className={`${badge ? "mt-5 lg:mt-6" : ""} text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]`}
-                style={titleWidth ? { maxWidth: titleWidth } : undefined}
+                className="text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-[40px] xl:text-[48px]"
+                style={{ maxWidth: titleWidth ?? "800px" }}
               >
                 {title}
                 {accent ? (
@@ -98,17 +95,6 @@ export default function AboutHeroSection({
               </h1>
             </Reveal>
 
-            {/*{body ? (
-              <Reveal delay={160}>
-                <p
-                  className="mt-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]"
-                  style={{ maxWidth: bodyWidth ?? "740px" }}
-                >
-                  {body}
-                </p>
-              </Reveal>
-            ) : null}*/}
-
             {children || cta ? (
               <div className={children ? "w-full max-w-[26.5rem]" : undefined}>
                 {children ? (
@@ -119,22 +105,42 @@ export default function AboutHeroSection({
 
                 {cta ? (
                   <Reveal delay={children ? 300 : 240}>
-                    <Link
-                      href={cta.href}
-                      className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-sm lg:mt-7 ${
-                        children
-                          ? "flex h-11 w-full justify-center"
-                          : "inline-flex h-11"
-                      }`}
-                    >
-                      {cta.label}
-                      <HugeiconsIcon
-                        icon={ArrowUpRight01Icon}
-                        size={16}
-                        color="currentColor"
-                        strokeWidth={2}
-                      />
-                    </Link>
+                    {cta.onClick ? (
+                      <button
+                        type="button"
+                        onClick={cta.onClick}
+                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-sm lg:mt-7 ${
+                          children
+                            ? "flex h-11 w-full justify-center"
+                            : "inline-flex h-11"
+                        }`}
+                      >
+                        {cta.label}
+                        <HugeiconsIcon
+                          icon={ArrowUpRight01Icon}
+                          size={16}
+                          color="currentColor"
+                          strokeWidth={2}
+                        />
+                      </button>
+                    ) : (
+                      <Link
+                        href={cta.href || "#"}
+                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-sm lg:mt-7 ${
+                          children
+                            ? "flex h-11 w-full justify-center"
+                            : "inline-flex h-11"
+                        }`}
+                      >
+                        {cta.label}
+                        <HugeiconsIcon
+                          icon={ArrowUpRight01Icon}
+                          size={16}
+                          color="currentColor"
+                          strokeWidth={2}
+                        />
+                      </Link>
+                    )}
                   </Reveal>
                 ) : null}
               </div>

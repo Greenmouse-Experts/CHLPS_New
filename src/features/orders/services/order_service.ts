@@ -117,8 +117,9 @@ export class OrderService {
       );
     }
 
-    const verifiedAmount =
-      previewRes.data.totalAmount ?? previewRes.data.amount ?? rawAmount;
+    // The backend expects amount to match the subtotal (sum of item prices),
+    // and calculates tax internally before presenting to Stripe
+    const verifiedSubAmount = previewRes.data.subAmount ?? rawAmount;
 
     // Step 2: Call orders/create with the verified preview calculation
     const defaultCallback =
@@ -127,7 +128,7 @@ export class OrderService {
         : "https://portal.chlps.org/dashboard/purchase-history?status=verify";
 
     const createPayload: OrderCreatePayload = {
-      amount: verifiedAmount,
+      amount: verifiedSubAmount,
       callback_url: params.callback_url || defaultCallback,
       courses: params.courses,
       memberships: params.memberships,

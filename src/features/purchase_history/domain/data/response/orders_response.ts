@@ -4,15 +4,25 @@ import { Course } from "@/features/courses/domain/data/response/courses_response
 export interface OrderTransaction {
   id: string;
   reference?: string;
+  thirdPartyRef?: string;
   status: string;
   amount: number;
+  subAmount?: number;
+  gateway?: string;
+  sessionId?: string;
   createdDate?: string;
 }
 
 export interface OrderItem {
   id: string;
   price?: number;
-  course: Course;
+  course?: Course | null;
+  membership?: {
+    id: string;
+    name: string;
+    slug?: string;
+    price?: number;
+  } | null;
 }
 
 export interface Order {
