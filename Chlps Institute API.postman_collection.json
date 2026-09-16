@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "24ad6ad6-1cb6-4cdb-94c1-2df77df18c98",
+    "_postman_id": "6f810678-93cd-4143-8d60-688c6d1ea034",
     "name": "Chlps Institute API",
     "description": "API documentation for Chlps Institute backend",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -1585,7 +1585,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"amount\": 5000,\n  \"courses\": [\n    {\n      \"id\": {},\n      \"price\": 5000\n    },\n    {\n      \"id\": {},\n      \"price\": 5000\n    }\n  ],\n  \"memberships\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"documentId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"documentId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ]\n}",
+                          "raw": "{\n  \"amount\": 5000,\n  \"courses\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ],\n  \"memberships\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ]\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -1625,7 +1625,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"amount\": 5000,\n  \"courses\": [\n    {\n      \"id\": {},\n      \"price\": 5000\n    },\n    {\n      \"id\": {},\n      \"price\": 5000\n    }\n  ],\n  \"memberships\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"documentId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"documentId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ]\n}",
+                              "raw": "{\n  \"amount\": 5000,\n  \"courses\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ],\n  \"memberships\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ]\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -1682,7 +1682,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"amount\": 5000,\n  \"callback_url\": \"https://example.com/callback\",\n  \"courses\": [\n    {\n      \"id\": {},\n      \"price\": 5000\n    },\n    {\n      \"id\": {},\n      \"price\": 5000\n    }\n  ],\n  \"memberships\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"documentId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"documentId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ]\n}",
+                          "raw": "{\n  \"amount\": 5000,\n  \"callback_url\": \"https://example.com/callback\",\n  \"courses\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ],\n  \"memberships\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ]\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -1722,7 +1722,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"amount\": 5000,\n  \"callback_url\": \"https://example.com/callback\",\n  \"courses\": [\n    {\n      \"id\": {},\n      \"price\": 5000\n    },\n    {\n      \"id\": {},\n      \"price\": 5000\n    }\n  ],\n  \"memberships\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"documentId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"documentId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ]\n}",
+                              "raw": "{\n  \"amount\": 5000,\n  \"callback_url\": \"https://example.com/callback\",\n  \"courses\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ],\n  \"memberships\": [\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    },\n    {\n      \"id\": {},\n      \"price\": 5000,\n      \"applicationId\": \"660e8400-e29b-41d4-a716-446655440001\"\n    }\n  ]\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -3765,7 +3765,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"program\": {},\n  \"discount\": 10,\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ]\n}",
+                          "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"program\": {},\n  \"discount\": 10,\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Start Your CLPA Certification Today\",\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ],\n  \"certificationBenefits\": [\n    \"Establishes professional credibility in the loss prevention field\",\n    \"Enhances understanding of fraud prevention and risk management\"\n  ],\n  \"entryRequirements\": [\n    \"Minimum of a high school diploma or equivalent\",\n    \"Basic understanding of security principles\"\n  ],\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you have a valid security license?\"\n    },\n    {\n      \"question\": \"Do you have a valid security license?\"\n    }\n  ]\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -3805,7 +3805,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"program\": {},\n  \"discount\": 10,\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ]\n}",
+                              "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"program\": {},\n  \"discount\": 10,\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Start Your CLPA Certification Today\",\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ],\n  \"certificationBenefits\": [\n    \"Establishes professional credibility in the loss prevention field\",\n    \"Enhances understanding of fraud prevention and risk management\"\n  ],\n  \"entryRequirements\": [\n    \"Minimum of a high school diploma or equivalent\",\n    \"Basic understanding of security principles\"\n  ],\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you have a valid security license?\"\n    },\n    {\n      \"question\": \"Do you have a valid security license?\"\n    }\n  ]\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -3856,7 +3856,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/courses/fetch-courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                          "raw": "{{baseUrl}}/api/v1/courses/fetch-courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -3904,7 +3904,7 @@
                             },
                             {
                               "key": "price",
-                              "value": "8388.219041529488",
+                              "value": "5945.289344224058",
                               "description": "Filter by exact price"
                             }
                           ]
@@ -3924,7 +3924,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/courses/fetch-courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                              "raw": "{{baseUrl}}/api/v1/courses/fetch-courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -3973,7 +3973,7 @@
                                 {
                                   "description": "Filter by exact price",
                                   "key": "price",
-                                  "value": "8388.219041529488"
+                                  "value": "5945.289344224058"
                                 }
                               ]
                             }
@@ -4011,7 +4011,7 @@
                             "method": "GET",
                             "header": [],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/courses/public/featured?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                              "raw": "{{baseUrl}}/api/v1/courses/public/featured?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -4060,7 +4060,7 @@
                                 },
                                 {
                                   "key": "price",
-                                  "value": "8388.219041529488",
+                                  "value": "5945.289344224058",
                                   "description": "Filter by exact price"
                                 }
                               ]
@@ -4080,7 +4080,7 @@
                                   }
                                 ],
                                 "url": {
-                                  "raw": "{{baseUrl}}/api/v1/courses/public/featured?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                                  "raw": "{{baseUrl}}/api/v1/courses/public/featured?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                                   "host": [
                                     "{{baseUrl}}"
                                   ],
@@ -4130,7 +4130,7 @@
                                     {
                                       "description": "Filter by exact price",
                                       "key": "price",
-                                      "value": "8388.219041529488"
+                                      "value": "5945.289344224058"
                                     }
                                   ]
                                 }
@@ -4337,7 +4337,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/courses/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                          "raw": "{{baseUrl}}/api/v1/courses/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -4385,7 +4385,7 @@
                             },
                             {
                               "key": "price",
-                              "value": "8388.219041529488",
+                              "value": "5945.289344224058",
                               "description": "Filter by exact price"
                             }
                           ]
@@ -4405,7 +4405,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/courses/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                              "raw": "{{baseUrl}}/api/v1/courses/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -4454,7 +4454,7 @@
                                 {
                                   "description": "Filter by exact price",
                                   "key": "price",
-                                  "value": "8388.219041529488"
+                                  "value": "5945.289344224058"
                                 }
                               ]
                             }
@@ -4577,7 +4577,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"discount\": 10,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"program\": {},\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ]\n}",
+                              "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"discount\": 10,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Start Your CLPA Certification Today\",\n  \"program\": {},\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ],\n  \"certificationBenefits\": [\n    \"Establishes professional credibility in the loss prevention field\",\n    \"Enhances understanding of fraud prevention and risk management\"\n  ],\n  \"entryRequirements\": [\n    \"Minimum of a high school diploma or equivalent\",\n    \"Basic understanding of security principles\"\n  ],\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you have a valid security license?\"\n    },\n    {\n      \"question\": \"Do you have a valid security license?\"\n    }\n  ]\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -4625,7 +4625,7 @@
                                 ],
                                 "body": {
                                   "mode": "raw",
-                                  "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"discount\": 10,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"program\": {},\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ]\n}",
+                                  "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"discount\": 10,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Start Your CLPA Certification Today\",\n  \"program\": {},\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ],\n  \"certificationBenefits\": [\n    \"Establishes professional credibility in the loss prevention field\",\n    \"Enhances understanding of fraud prevention and risk management\"\n  ],\n  \"entryRequirements\": [\n    \"Minimum of a high school diploma or equivalent\",\n    \"Basic understanding of security principles\"\n  ],\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you have a valid security license?\"\n    },\n    {\n      \"question\": \"Do you have a valid security license?\"\n    }\n  ]\n}",
                                   "options": {
                                     "raw": {
                                       "headerFamily": "json",
@@ -4681,7 +4681,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/courses/instructor?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                          "raw": "{{baseUrl}}/api/v1/courses/instructor?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -4729,7 +4729,7 @@
                             },
                             {
                               "key": "price",
-                              "value": "8388.219041529488",
+                              "value": "5945.289344224058",
                               "description": "Filter by exact price"
                             }
                           ]
@@ -4749,7 +4749,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/courses/instructor?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                              "raw": "{{baseUrl}}/api/v1/courses/instructor?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -4798,7 +4798,7 @@
                                 {
                                   "description": "Filter by exact price",
                                   "key": "price",
-                                  "value": "8388.219041529488"
+                                  "value": "5945.289344224058"
                                 }
                               ]
                             }
@@ -4916,7 +4916,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"discount\": 10,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"program\": {},\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ]\n}",
+                          "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"discount\": 10,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Start Your CLPA Certification Today\",\n  \"program\": {},\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ],\n  \"certificationBenefits\": [\n    \"Establishes professional credibility in the loss prevention field\",\n    \"Enhances understanding of fraud prevention and risk management\"\n  ],\n  \"entryRequirements\": [\n    \"Minimum of a high school diploma or equivalent\",\n    \"Basic understanding of security principles\"\n  ],\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you have a valid security license?\"\n    },\n    {\n      \"question\": \"Do you have a valid security license?\"\n    }\n  ]\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -4963,7 +4963,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"discount\": 10,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"program\": {},\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ]\n}",
+                              "raw": "{\n  \"title\": \"Introduction to Programming\",\n  \"shortDesc\": \"Learn the basics of programming\",\n  \"fullDesc\": \"A comprehensive course covering programming fundamentals...\",\n  \"price\": 5000,\n  \"discount\": 10,\n  \"coverImage\": \"https://example.com/image.jpg\",\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Start Your CLPA Certification Today\",\n  \"program\": {},\n  \"isPublished\": false,\n  \"outcomes\": [\n    {\n      \"description\": \"Build REST APIs with Node.js\",\n      \"order\": 1\n    }\n  ],\n  \"certificationBenefits\": [\n    \"Establishes professional credibility in the loss prevention field\",\n    \"Enhances understanding of fraud prevention and risk management\"\n  ],\n  \"entryRequirements\": [\n    \"Minimum of a high school diploma or equivalent\",\n    \"Basic understanding of security principles\"\n  ],\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you have a valid security license?\"\n    },\n    {\n      \"question\": \"Do you have a valid security license?\"\n    }\n  ]\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -5213,7 +5213,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                      "raw": "{{baseUrl}}/api/v1/courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -5260,7 +5260,7 @@
                         },
                         {
                           "key": "price",
-                          "value": "8388.219041529488",
+                          "value": "5945.289344224058",
                           "description": "Filter by exact price"
                         }
                       ]
@@ -5280,7 +5280,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                          "raw": "{{baseUrl}}/api/v1/courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -5328,7 +5328,7 @@
                             {
                               "description": "Filter by exact price",
                               "key": "price",
-                              "value": "8388.219041529488"
+                              "value": "5945.289344224058"
                             }
                           ]
                         }
@@ -5466,7 +5466,7 @@
                             "method": "GET",
                             "header": [],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/course-content/by-course/:id?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                              "raw": "{{baseUrl}}/api/v1/course-content/by-course/:id?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -5515,7 +5515,7 @@
                                 },
                                 {
                                   "key": "price",
-                                  "value": "8388.219041529488",
+                                  "value": "5945.289344224058",
                                   "description": "Filter by exact price"
                                 }
                               ],
@@ -5542,7 +5542,7 @@
                                   }
                                 ],
                                 "url": {
-                                  "raw": "{{baseUrl}}/api/v1/course-content/by-course/:id?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8388.219041529488",
+                                  "raw": "{{baseUrl}}/api/v1/course-content/by-course/:id?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
                                   "host": [
                                     "{{baseUrl}}"
                                   ],
@@ -5592,7 +5592,7 @@
                                     {
                                       "description": "Filter by exact price",
                                       "key": "price",
-                                      "value": "8388.219041529488"
+                                      "value": "5945.289344224058"
                                     }
                                   ],
                                   "variable": [
@@ -6092,7 +6092,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"mediaType\": \"video\",\n  \"previewUrl\": \"string\"\n}",
+                          "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"mediaType\": \"image\",\n  \"previewUrl\": \"string\"\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -6132,7 +6132,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"mediaType\": \"video\",\n  \"previewUrl\": \"string\"\n}",
+                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"mediaType\": \"image\",\n  \"previewUrl\": \"string\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -6355,7 +6355,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"document\"\n}",
+                          "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"assessment\"\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -6402,7 +6402,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"document\"\n}",
+                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"assessment\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -6546,7 +6546,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"document\"\n}",
+                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"assessment\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -6594,7 +6594,7 @@
                                 ],
                                 "body": {
                                   "mode": "raw",
-                                  "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"document\"\n}",
+                                  "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"assessment\"\n}",
                                   "options": {
                                     "raw": {
                                       "headerFamily": "json",
@@ -7213,6 +7213,447 @@
               ]
             },
             {
+              "name": "course-applications",
+              "item": [
+                {
+                  "name": "submit",
+                  "item": [
+                    {
+                      "name": "Submit course questionnaire",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"courseId\": {},\n  \"answers\": [\n    {\n      \"questionId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"answer\": true\n    },\n    {\n      \"questionId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"answer\": true\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/course-applications/submit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "course-applications",
+                            "submit"
+                          ]
+                        },
+                        "description": "Answer every yes/no application question for a course"
+                      },
+                      "response": [
+                        {
+                          "name": "201",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"courseId\": {},\n  \"answers\": [\n    {\n      \"questionId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"answer\": true\n    },\n    {\n      \"questionId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"answer\": true\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/course-applications/submit",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "course-applications",
+                                "submit"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "mine",
+                  "item": [
+                    {
+                      "name": "{courseId}",
+                      "item": [
+                        {
+                          "name": "Fetch my application for a course",
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/course-applications/mine/:courseId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "course-applications",
+                                "mine",
+                                ":courseId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "courseId",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Course UUID"
+                                }
+                              ]
+                            },
+                            "description": "Get the authenticated student's application for a specific course (returns null if not yet submitted)"
+                          },
+                          "response": [
+                            {
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/course-applications/mine/:courseId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "course-applications",
+                                    "mine",
+                                    ":courseId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "courseId",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "Course UUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Fetch my course applications",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/course-applications/mine",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "course-applications",
+                            "mine"
+                          ]
+                        },
+                        "description": "Get the authenticated student's course applications"
+                      },
+                      "response": [
+                        {
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/course-applications/mine",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "course-applications",
+                                "mine"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Fetch a course application",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/course-applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "course-applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "550e8400-e29b-41d4-a716-446655440000",
+                              "description": "Application UUID"
+                            }
+                          ]
+                        },
+                        "description": "Get a single course application by ID (admin only)"
+                      },
+                      "response": [
+                        {
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/course-applications/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "course-applications",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Application UUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Fetch all course applications",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/course-applications?page=1&pageSize=10&orderBy=string&sortOrder=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "course-applications"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "description": "Page number for pagination"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "10",
+                          "description": "Number of items per page"
+                        },
+                        {
+                          "key": "orderBy",
+                          "value": "string",
+                          "description": "Field to order by"
+                        },
+                        {
+                          "key": "sortOrder",
+                          "value": "DESC",
+                          "description": "Sort order direction"
+                        }
+                      ]
+                    },
+                    "description": "Paginated list of course applications with filters (admin only)"
+                  },
+                  "response": [
+                    {
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/course-applications?page=1&pageSize=10&orderBy=string&sortOrder=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "course-applications"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of items per page",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Field to order by",
+                              "key": "orderBy",
+                              "value": "string"
+                            },
+                            {
+                              "description": "Sort order direction",
+                              "key": "sortOrder",
+                              "value": "DESC"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "name": "programs",
               "item": [
                 {
@@ -7240,7 +7681,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"title\": \"Computer Science\",\n  \"coverImage\": \"https://example.com/program-cover.jpg\",\n  \"isPublished\": true\n}",
+                          "raw": "{\n  \"title\": \"Computer Science\",\n  \"coverImage\": \"https://example.com/program-cover.jpg\",\n  \"description\": \"A comprehensive program covering loss prevention fundamentals\",\n  \"isPublished\": true\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -7280,7 +7721,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Computer Science\",\n  \"coverImage\": \"https://example.com/program-cover.jpg\",\n  \"isPublished\": true\n}",
+                              "raw": "{\n  \"title\": \"Computer Science\",\n  \"coverImage\": \"https://example.com/program-cover.jpg\",\n  \"description\": \"A comprehensive program covering loss prevention fundamentals\",\n  \"isPublished\": true\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -7550,7 +7991,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"title\": \"Computer Science\",\n  \"coverImage\": \"https://example.com/program-cover.jpg\",\n  \"isPublished\": true\n}",
+                          "raw": "{\n  \"title\": \"Computer Science\",\n  \"coverImage\": \"https://example.com/program-cover.jpg\",\n  \"description\": \"A comprehensive program covering loss prevention fundamentals\",\n  \"isPublished\": true\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -7597,7 +8038,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Computer Science\",\n  \"coverImage\": \"https://example.com/program-cover.jpg\",\n  \"isPublished\": true\n}",
+                              "raw": "{\n  \"title\": \"Computer Science\",\n  \"coverImage\": \"https://example.com/program-cover.jpg\",\n  \"description\": \"A comprehensive program covering loss prevention fundamentals\",\n  \"isPublished\": true\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -10343,7 +10784,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/student-memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&studentId=string&membershipId=string&status=active",
+                      "raw": "{{baseUrl}}/api/v1/student-memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&studentId=string&membershipId=string&status=pending_approval",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -10385,7 +10826,7 @@
                         },
                         {
                           "key": "status",
-                          "value": "active",
+                          "value": "pending_approval",
                           "description": "Filter by status"
                         }
                       ]
@@ -10405,7 +10846,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/student-memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&studentId=string&membershipId=string&status=active",
+                          "raw": "{{baseUrl}}/api/v1/student-memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&studentId=string&membershipId=string&status=pending_approval",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -10448,253 +10889,8 @@
                             {
                               "description": "Filter by status",
                               "key": "status",
-                              "value": "active"
+                              "value": "pending_approval"
                             }
-                          ]
-                        }
-                      },
-                      "status": "OK",
-                      "code": 200,
-                      "_postman_previewlanguage": "text",
-                      "header": [],
-                      "cookie": [],
-                      "body": ""
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "student-documents",
-              "item": [
-                {
-                  "name": "submit",
-                  "item": [
-                    {
-                      "name": "Submit a document",
-                      "request": {
-                        "auth": {
-                          "type": "bearer",
-                          "bearer": [
-                            {
-                              "key": "token",
-                              "value": "{{bearerToken}}",
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "method": "POST",
-                        "header": [
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n  \"documentType\": \"Passport\",\n  \"fileUrl\": \"https://res.cloudinary.com/chlps/documents/passport.pdf\"\n}",
-                          "options": {
-                            "raw": {
-                              "headerFamily": "json",
-                              "language": "json"
-                            }
-                          }
-                        },
-                        "url": {
-                          "raw": "{{baseUrl}}/api/v1/student-documents/submit",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "v1",
-                            "student-documents",
-                            "submit"
-                          ]
-                        },
-                        "description": "Upload/record a required document. Reusable across membership purchases."
-                      },
-                      "response": [
-                        {
-                          "name": "201",
-                          "originalRequest": {
-                            "method": "POST",
-                            "header": [
-                              {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                              },
-                              {
-                                "description": "Added as a part of security scheme: bearer",
-                                "key": "Authorization",
-                                "value": "Bearer <token>"
-                              }
-                            ],
-                            "body": {
-                              "mode": "raw",
-                              "raw": "{\n  \"documentType\": \"Passport\",\n  \"fileUrl\": \"https://res.cloudinary.com/chlps/documents/passport.pdf\"\n}",
-                              "options": {
-                                "raw": {
-                                  "headerFamily": "json",
-                                  "language": "json"
-                                }
-                              }
-                            },
-                            "url": {
-                              "raw": "{{baseUrl}}/api/v1/student-documents/submit",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "v1",
-                                "student-documents",
-                                "submit"
-                              ]
-                            }
-                          },
-                          "status": "Created",
-                          "code": 201,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "{id}",
-                  "item": [
-                    {
-                      "name": "Delete a submitted document",
-                      "request": {
-                        "auth": {
-                          "type": "bearer",
-                          "bearer": [
-                            {
-                              "key": "token",
-                              "value": "{{bearerToken}}",
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "method": "DELETE",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/v1/student-documents/:id",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "v1",
-                            "student-documents",
-                            ":id"
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "550e8400-e29b-41d4-a716-446655440000",
-                              "description": "Student document UUID"
-                            }
-                          ]
-                        },
-                        "description": "Remove one of the student's submitted documents"
-                      },
-                      "response": [
-                        {
-                          "name": "200",
-                          "originalRequest": {
-                            "method": "DELETE",
-                            "header": [
-                              {
-                                "description": "Added as a part of security scheme: bearer",
-                                "key": "Authorization",
-                                "value": "Bearer <token>"
-                              }
-                            ],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/v1/student-documents/:id",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "v1",
-                                "student-documents",
-                                ":id"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "550e8400-e29b-41d4-a716-446655440000",
-                                  "description": "Student document UUID"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "OK",
-                          "code": 200,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "Fetch my documents",
-                  "request": {
-                    "auth": {
-                      "type": "bearer",
-                      "bearer": [
-                        {
-                          "key": "token",
-                          "value": "{{bearerToken}}",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{baseUrl}}/api/v1/student-documents",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "v1",
-                        "student-documents"
-                      ]
-                    },
-                    "description": "Get the authenticated student's submitted documents"
-                  },
-                  "response": [
-                    {
-                      "name": "200",
-                      "originalRequest": {
-                        "method": "GET",
-                        "header": [
-                          {
-                            "description": "Added as a part of security scheme: bearer",
-                            "key": "Authorization",
-                            "value": "Bearer <token>"
-                          }
-                        ],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/v1/student-documents",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "v1",
-                            "student-documents"
                           ]
                         }
                       },
@@ -11321,7 +11517,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/events/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Hybrid&status=Published&eligibility=Invitation Only",
+                          "raw": "{{baseUrl}}/api/v1/events/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Completed&eligibility=Specific Membership Type",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -11363,15 +11559,15 @@
                             },
                             {
                               "key": "format",
-                              "value": "Hybrid"
+                              "value": "Virtual"
                             },
                             {
                               "key": "status",
-                              "value": "Published"
+                              "value": "Completed"
                             },
                             {
                               "key": "eligibility",
-                              "value": "Invitation Only"
+                              "value": "Specific Membership Type"
                             }
                           ]
                         }
@@ -11383,7 +11579,7 @@
                             "method": "GET",
                             "header": [],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/events/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Hybrid&status=Published&eligibility=Invitation Only",
+                              "raw": "{{baseUrl}}/api/v1/events/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Completed&eligibility=Specific Membership Type",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -11425,15 +11621,15 @@
                                 },
                                 {
                                   "key": "format",
-                                  "value": "Hybrid"
+                                  "value": "Virtual"
                                 },
                                 {
                                   "key": "status",
-                                  "value": "Published"
+                                  "value": "Completed"
                                 },
                                 {
                                   "key": "eligibility",
-                                  "value": "Invitation Only"
+                                  "value": "Specific Membership Type"
                                 }
                               ]
                             }
@@ -12457,7 +12653,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"name\": \"Annual Members Webinar\",\n  \"description\": \"Details about the event\",\n  \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"startDate\": \"2026-09-15\",\n  \"startTime\": \"10:00\",\n  \"endDate\": \"2026-09-16\",\n  \"endTime\": \"17:00\",\n  \"format\": \"Physical\",\n  \"registrationRequired\": true,\n  \"eligibility\": \"Specific Membership Type\",\n  \"price\": 0,\n  \"currency\": \"CAD\",\n  \"organizerName\": \"CHLPS Institute\",\n  \"contactEmail\": \"contact@chlps.ca\",\n  \"status\": \"Draft\",\n  \"image\": \"string\",\n  \"meetingLink\": \"https://meet.example.com/abc\",\n  \"location\": \"123 Main St, Windsor\",\n  \"registrationOpens\": \"2026-08-01T00:00:00.000Z\",\n  \"registrationCloses\": \"2026-09-10T00:00:00.000Z\",\n  \"maximumAttendees\": 100,\n  \"requiredMembershipIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contactPhone\": \"+1234567890\"\n}",
+                      "raw": "{\n  \"name\": \"Annual Members Webinar\",\n  \"description\": \"Details about the event\",\n  \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"startDate\": \"2026-09-15\",\n  \"startTime\": \"10:00\",\n  \"endDate\": \"2026-09-16\",\n  \"endTime\": \"17:00\",\n  \"format\": \"Physical\",\n  \"registrationRequired\": true,\n  \"eligibility\": \"Everyone\",\n  \"price\": 0,\n  \"currency\": \"CAD\",\n  \"organizerName\": \"CHLPS Institute\",\n  \"contactEmail\": \"contact@chlps.ca\",\n  \"status\": \"Draft\",\n  \"coverImage\": \"string\",\n  \"images\": [\n    \"string\",\n    \"string\"\n  ],\n  \"meetingLink\": \"https://meet.example.com/abc\",\n  \"location\": \"123 Main St, Windsor\",\n  \"registrationOpens\": \"2026-08-01T00:00:00.000Z\",\n  \"registrationCloses\": \"2026-09-10T00:00:00.000Z\",\n  \"maximumAttendees\": 100,\n  \"requiredMembershipIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contactPhone\": \"+1234567890\"\n}",
                       "options": {
                         "raw": {
                           "headerFamily": "json",
@@ -12495,7 +12691,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"name\": \"Annual Members Webinar\",\n  \"description\": \"Details about the event\",\n  \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"startDate\": \"2026-09-15\",\n  \"startTime\": \"10:00\",\n  \"endDate\": \"2026-09-16\",\n  \"endTime\": \"17:00\",\n  \"format\": \"Physical\",\n  \"registrationRequired\": true,\n  \"eligibility\": \"Specific Membership Type\",\n  \"price\": 0,\n  \"currency\": \"CAD\",\n  \"organizerName\": \"CHLPS Institute\",\n  \"contactEmail\": \"contact@chlps.ca\",\n  \"status\": \"Draft\",\n  \"image\": \"string\",\n  \"meetingLink\": \"https://meet.example.com/abc\",\n  \"location\": \"123 Main St, Windsor\",\n  \"registrationOpens\": \"2026-08-01T00:00:00.000Z\",\n  \"registrationCloses\": \"2026-09-10T00:00:00.000Z\",\n  \"maximumAttendees\": 100,\n  \"requiredMembershipIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contactPhone\": \"+1234567890\"\n}",
+                          "raw": "{\n  \"name\": \"Annual Members Webinar\",\n  \"description\": \"Details about the event\",\n  \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"startDate\": \"2026-09-15\",\n  \"startTime\": \"10:00\",\n  \"endDate\": \"2026-09-16\",\n  \"endTime\": \"17:00\",\n  \"format\": \"Physical\",\n  \"registrationRequired\": true,\n  \"eligibility\": \"Everyone\",\n  \"price\": 0,\n  \"currency\": \"CAD\",\n  \"organizerName\": \"CHLPS Institute\",\n  \"contactEmail\": \"contact@chlps.ca\",\n  \"status\": \"Draft\",\n  \"coverImage\": \"string\",\n  \"images\": [\n    \"string\",\n    \"string\"\n  ],\n  \"meetingLink\": \"https://meet.example.com/abc\",\n  \"location\": \"123 Main St, Windsor\",\n  \"registrationOpens\": \"2026-08-01T00:00:00.000Z\",\n  \"registrationCloses\": \"2026-09-10T00:00:00.000Z\",\n  \"maximumAttendees\": 100,\n  \"requiredMembershipIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contactPhone\": \"+1234567890\"\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -12540,7 +12736,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/events?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Hybrid&status=Published&eligibility=Invitation Only",
+                      "raw": "{{baseUrl}}/api/v1/events?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Completed&eligibility=Specific Membership Type",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -12581,15 +12777,15 @@
                         },
                         {
                           "key": "format",
-                          "value": "Hybrid"
+                          "value": "Virtual"
                         },
                         {
                           "key": "status",
-                          "value": "Published"
+                          "value": "Completed"
                         },
                         {
                           "key": "eligibility",
-                          "value": "Invitation Only"
+                          "value": "Specific Membership Type"
                         }
                       ]
                     }
@@ -12607,7 +12803,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/events?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Hybrid&status=Published&eligibility=Invitation Only",
+                          "raw": "{{baseUrl}}/api/v1/events?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Completed&eligibility=Specific Membership Type",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -12648,15 +12844,15 @@
                             },
                             {
                               "key": "format",
-                              "value": "Hybrid"
+                              "value": "Virtual"
                             },
                             {
                               "key": "status",
-                              "value": "Published"
+                              "value": "Completed"
                             },
                             {
                               "key": "eligibility",
-                              "value": "Invitation Only"
+                              "value": "Specific Membership Type"
                             }
                           ]
                         }
@@ -15127,10 +15323,10 @@
                   ]
                 },
                 {
-                  "name": "{id}",
+                  "name": "curated",
                   "item": [
                     {
-                      "name": "Fetch a testimonial",
+                      "name": "Fetch curated testimonials",
                       "request": {
                         "auth": {
                           "type": "bearer",
@@ -15145,7 +15341,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/testimonials/:id",
+                          "raw": "{{baseUrl}}/api/v1/testimonials/curated",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -15153,17 +15349,10 @@
                             "api",
                             "v1",
                             "testimonials",
-                            ":id"
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "550e8400-e29b-41d4-a716-446655440000",
-                              "description": "Testimonial UUID"
-                            }
+                            "curated"
                           ]
                         },
-                        "description": "Get a specific testimonial by ID"
+                        "description": "Get published admin-created testimonials for the \"What Our Members Say\" section (public)"
                       },
                       "response": [
                         {
@@ -15178,7 +15367,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/testimonials/:id",
+                              "raw": "{{baseUrl}}/api/v1/testimonials/curated",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -15186,14 +15375,7 @@
                                 "api",
                                 "v1",
                                 "testimonials",
-                                ":id"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "550e8400-e29b-41d4-a716-446655440000",
-                                  "description": "Testimonial UUID"
-                                }
+                                "curated"
                               ]
                             }
                           },
@@ -15203,201 +15385,6 @@
                           "header": [],
                           "cookie": [],
                           "body": ""
-                        }
-                      ]
-                    },
-                    {
-                      "name": "Delete testimonial",
-                      "request": {
-                        "auth": {
-                          "type": "bearer",
-                          "bearer": [
-                            {
-                              "key": "token",
-                              "value": "{{bearerToken}}",
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "method": "DELETE",
-                        "header": [],
-                        "url": {
-                          "raw": "{{baseUrl}}/api/v1/testimonials/:id",
-                          "host": [
-                            "{{baseUrl}}"
-                          ],
-                          "path": [
-                            "api",
-                            "v1",
-                            "testimonials",
-                            ":id"
-                          ],
-                          "variable": [
-                            {
-                              "key": "id",
-                              "value": "550e8400-e29b-41d4-a716-446655440000",
-                              "description": "Testimonial UUID"
-                            }
-                          ]
-                        },
-                        "description": "Delete a testimonial"
-                      },
-                      "response": [
-                        {
-                          "name": "200",
-                          "originalRequest": {
-                            "method": "DELETE",
-                            "header": [
-                              {
-                                "description": "Added as a part of security scheme: bearer",
-                                "key": "Authorization",
-                                "value": "Bearer <token>"
-                              }
-                            ],
-                            "url": {
-                              "raw": "{{baseUrl}}/api/v1/testimonials/:id",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "v1",
-                                "testimonials",
-                                ":id"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "550e8400-e29b-41d4-a716-446655440000",
-                                  "description": "Testimonial UUID"
-                                }
-                              ]
-                            }
-                          },
-                          "status": "OK",
-                          "code": 200,
-                          "_postman_previewlanguage": "text",
-                          "header": [],
-                          "cookie": [],
-                          "body": ""
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "change-availability",
-                  "item": [
-                    {
-                      "name": "{id}",
-                      "item": [
-                        {
-                          "name": "Update testimonial availability",
-                          "request": {
-                            "auth": {
-                              "type": "bearer",
-                              "bearer": [
-                                {
-                                  "key": "token",
-                                  "value": "{{bearerToken}}",
-                                  "type": "string"
-                                }
-                              ]
-                            },
-                            "method": "PATCH",
-                            "header": [
-                              {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                              }
-                            ],
-                            "body": {
-                              "mode": "raw",
-                              "raw": "{\n  \"isPublished\": true\n}",
-                              "options": {
-                                "raw": {
-                                  "headerFamily": "json",
-                                  "language": "json"
-                                }
-                              }
-                            },
-                            "url": {
-                              "raw": "{{baseUrl}}/api/v1/testimonials/change-availability/:id",
-                              "host": [
-                                "{{baseUrl}}"
-                              ],
-                              "path": [
-                                "api",
-                                "v1",
-                                "testimonials",
-                                "change-availability",
-                                ":id"
-                              ],
-                              "variable": [
-                                {
-                                  "key": "id",
-                                  "value": "550e8400-e29b-41d4-a716-446655440000",
-                                  "description": "Testimonial UUID"
-                                }
-                              ]
-                            },
-                            "description": "Publish or mute a testimonial"
-                          },
-                          "response": [
-                            {
-                              "name": "200",
-                              "originalRequest": {
-                                "method": "PATCH",
-                                "header": [
-                                  {
-                                    "key": "Content-Type",
-                                    "value": "application/json"
-                                  },
-                                  {
-                                    "description": "Added as a part of security scheme: bearer",
-                                    "key": "Authorization",
-                                    "value": "Bearer <token>"
-                                  }
-                                ],
-                                "body": {
-                                  "mode": "raw",
-                                  "raw": "{\n  \"isPublished\": true\n}",
-                                  "options": {
-                                    "raw": {
-                                      "headerFamily": "json",
-                                      "language": "json"
-                                    }
-                                  }
-                                },
-                                "url": {
-                                  "raw": "{{baseUrl}}/api/v1/testimonials/change-availability/:id",
-                                  "host": [
-                                    "{{baseUrl}}"
-                                  ],
-                                  "path": [
-                                    "api",
-                                    "v1",
-                                    "testimonials",
-                                    "change-availability",
-                                    ":id"
-                                  ],
-                                  "variable": [
-                                    {
-                                      "key": "id",
-                                      "value": "550e8400-e29b-41d4-a716-446655440000",
-                                      "description": "Testimonial UUID"
-                                    }
-                                  ]
-                                }
-                              },
-                              "status": "OK",
-                              "code": 200,
-                              "_postman_previewlanguage": "text",
-                              "header": [],
-                              "cookie": [],
-                              "body": ""
-                            }
-                          ]
                         }
                       ]
                     }
@@ -15551,6 +15538,483 @@
                       "header": [],
                       "cookie": [],
                       "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "admins",
+              "item": [
+                {
+                  "name": "testimonials",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Update testimonial",
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"testimony\": \"This course changed my life!\",\n  \"rating\": 5,\n  \"displayName\": \"Jane Doe\",\n  \"photoUrl\": \"https://example.com/jane.jpg\",\n  \"jobTitle\": \"Software Engineer\",\n  \"organization\": \"GreenMouse Tech\",\n  \"location\": \"Lagos, Nigeria\",\n  \"isPublished\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/admins/testimonials/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "admins",
+                                "testimonials",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Testimonial UUID"
+                                }
+                              ]
+                            },
+                            "description": "Update an admin-created testimonial (admin/subadmin)"
+                          },
+                          "response": [
+                            {
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"testimony\": \"This course changed my life!\",\n  \"rating\": 5,\n  \"displayName\": \"Jane Doe\",\n  \"photoUrl\": \"https://example.com/jane.jpg\",\n  \"jobTitle\": \"Software Engineer\",\n  \"organization\": \"GreenMouse Tech\",\n  \"location\": \"Lagos, Nigeria\",\n  \"isPublished\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/admins/testimonials/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "admins",
+                                    "testimonials",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "Testimonial UUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Delete testimonial",
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/admins/testimonials/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "admins",
+                                "testimonials",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Testimonial UUID"
+                                }
+                              ]
+                            },
+                            "description": "Delete a testimonial"
+                          },
+                          "response": [
+                            {
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/admins/testimonials/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "admins",
+                                    "testimonials",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "Testimonial UUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "change-availability",
+                      "item": [
+                        {
+                          "name": "{id}",
+                          "item": [
+                            {
+                              "name": "Publish or mute testimonial",
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"isPublished\": true\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/admins/testimonials/change-availability/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "admins",
+                                    "testimonials",
+                                    "change-availability",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "Testimonial UUID"
+                                    }
+                                  ]
+                                },
+                                "description": "Change the availability of a testimonial"
+                              },
+                              "response": [
+                                {
+                                  "name": "200",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"isPublished\": true\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/admins/testimonials/change-availability/:id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "admins",
+                                        "testimonials",
+                                        "change-availability",
+                                        ":id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "id",
+                                          "value": "550e8400-e29b-41d4-a716-446655440000",
+                                          "description": "Testimonial UUID"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "body": ""
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Create curated testimonial",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"testimony\": \"This course changed my life!\",\n  \"rating\": 5,\n  \"displayName\": \"Jane Doe\",\n  \"photoUrl\": \"https://example.com/jane.jpg\",\n  \"jobTitle\": \"Software Engineer\",\n  \"organization\": \"GreenMouse Tech\",\n  \"location\": \"Lagos, Nigeria\",\n  \"isPublished\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/admins/testimonials",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "admins",
+                            "testimonials"
+                          ]
+                        },
+                        "description": "Create a testimonial card with explicit display fields (admin/subadmin)"
+                      },
+                      "response": [
+                        {
+                          "name": "201",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"testimony\": \"This course changed my life!\",\n  \"rating\": 5,\n  \"displayName\": \"Jane Doe\",\n  \"photoUrl\": \"https://example.com/jane.jpg\",\n  \"jobTitle\": \"Software Engineer\",\n  \"organization\": \"GreenMouse Tech\",\n  \"location\": \"Lagos, Nigeria\",\n  \"isPublished\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/admins/testimonials",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "admins",
+                                "testimonials"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Fetch all admin-created testimonials",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/admins/testimonials",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "admins",
+                            "testimonials"
+                          ]
+                        },
+                        "description": "Get all admin-created testimonials, published + unpublished (admin/subadmin). Use ?published=1 or ?published=0 to filter."
+                      },
+                      "response": [
+                        {
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/admins/testimonials",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "admins",
+                                "testimonials"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
                     }
                   ]
                 }
@@ -16656,7 +17120,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/faqs?page=1&pageSize=10&orderBy=string&sortOrder=DESC&question=string&answer=string&published=8388.219041529488",
+                      "raw": "{{baseUrl}}/api/v1/faqs?page=1&pageSize=10&orderBy=string&sortOrder=DESC&question=string&answer=string&published=5945.289344224058",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -16698,7 +17162,7 @@
                         },
                         {
                           "key": "published",
-                          "value": "8388.219041529488",
+                          "value": "5945.289344224058",
                           "description": "Filter by published status (0 or 1)"
                         }
                       ]
@@ -16718,7 +17182,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/faqs?page=1&pageSize=10&orderBy=string&sortOrder=DESC&question=string&answer=string&published=8388.219041529488",
+                          "raw": "{{baseUrl}}/api/v1/faqs?page=1&pageSize=10&orderBy=string&sortOrder=DESC&question=string&answer=string&published=5945.289344224058",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -16761,7 +17225,7 @@
                             {
                               "description": "Filter by published status (0 or 1)",
                               "key": "published",
-                              "value": "8388.219041529488"
+                              "value": "5945.289344224058"
                             }
                           ]
                         }
@@ -16805,7 +17269,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"name\": \"Professional Membership\",\n  \"description\": \"Membership for certified professionals\",\n  \"type\": {},\n  \"eligibilityCriteria\": [\n    \"Must hold a professional certificate\",\n    \"At least 3 years experience\"\n  ],\n  \"price\": 50000,\n  \"currency\": \"CAD\",\n  \"duration\": \"1 Year\",\n  \"autoRenewal\": true,\n  \"benefits\": [\n    \"Access to resources\",\n    \"Event discounts\"\n  ],\n  \"status\": \"draft\",\n  \"renewalPrice\": 45000,\n  \"renewalPeriod\": \"Annually\",\n  \"requiredDocuments\": [\n    \"National ID\",\n    \"Passport\"\n  ],\n  \"image\": \"https://example.com/membership.jpg\",\n  \"jobOpportunities\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"howMembershipHelps\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"whyJoinNow\": {\n    \"heading\": \"Why should I join now?\",\n    \"description\": \"Starting early provides a strong foundation...\\n\\nIt also helps you understand...\",\n    \"highlights\": [\n      \"Start early\",\n      \"Build knowledge\",\n      \"Prepare for your future\"\n    ],\n    \"infoCards\": [\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      },\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      }\n    ]\n  }\n}",
+                          "raw": "{\n  \"name\": \"Professional Membership\",\n  \"description\": \"Membership for certified professionals\",\n  \"type\": {},\n  \"eligibilityCriteria\": [\n    \"Must hold a professional certificate\",\n    \"At least 3 years experience\"\n  ],\n  \"price\": 50000,\n  \"currency\": \"CAD\",\n  \"duration\": \"1 Year\",\n  \"autoRenewal\": true,\n  \"benefits\": [\n    \"Access to resources\",\n    \"Event discounts\"\n  ],\n  \"status\": \"draft\",\n  \"renewalPrice\": 45000,\n  \"renewalPeriod\": \"Annually\",\n  \"image\": \"https://example.com/membership.jpg\",\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Join the CLPA Program Today\",\n  \"jobOpportunities\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"howMembershipHelps\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"whyJoinNow\": {\n    \"heading\": \"Why should I join now?\",\n    \"description\": \"Starting early provides a strong foundation...\\n\\nIt also helps you understand...\",\n    \"highlights\": [\n      \"Start early\",\n      \"Build knowledge\",\n      \"Prepare for your future\"\n    ],\n    \"infoCards\": [\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      },\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      }\n    ]\n  },\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you hold a National ID?\"\n    },\n    {\n      \"question\": \"Do you hold a National ID?\"\n    }\n  ],\n  \"careerPathways\": [\n    \"Progression to Basic Professional Certificate in Loss Prevention\",\n    \"Advancement to Certified Loss Prevention Associate (CLPA™)\"\n  ]\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -16845,7 +17309,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"name\": \"Professional Membership\",\n  \"description\": \"Membership for certified professionals\",\n  \"type\": {},\n  \"eligibilityCriteria\": [\n    \"Must hold a professional certificate\",\n    \"At least 3 years experience\"\n  ],\n  \"price\": 50000,\n  \"currency\": \"CAD\",\n  \"duration\": \"1 Year\",\n  \"autoRenewal\": true,\n  \"benefits\": [\n    \"Access to resources\",\n    \"Event discounts\"\n  ],\n  \"status\": \"draft\",\n  \"renewalPrice\": 45000,\n  \"renewalPeriod\": \"Annually\",\n  \"requiredDocuments\": [\n    \"National ID\",\n    \"Passport\"\n  ],\n  \"image\": \"https://example.com/membership.jpg\",\n  \"jobOpportunities\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"howMembershipHelps\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"whyJoinNow\": {\n    \"heading\": \"Why should I join now?\",\n    \"description\": \"Starting early provides a strong foundation...\\n\\nIt also helps you understand...\",\n    \"highlights\": [\n      \"Start early\",\n      \"Build knowledge\",\n      \"Prepare for your future\"\n    ],\n    \"infoCards\": [\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      },\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      }\n    ]\n  }\n}",
+                              "raw": "{\n  \"name\": \"Professional Membership\",\n  \"description\": \"Membership for certified professionals\",\n  \"type\": {},\n  \"eligibilityCriteria\": [\n    \"Must hold a professional certificate\",\n    \"At least 3 years experience\"\n  ],\n  \"price\": 50000,\n  \"currency\": \"CAD\",\n  \"duration\": \"1 Year\",\n  \"autoRenewal\": true,\n  \"benefits\": [\n    \"Access to resources\",\n    \"Event discounts\"\n  ],\n  \"status\": \"draft\",\n  \"renewalPrice\": 45000,\n  \"renewalPeriod\": \"Annually\",\n  \"image\": \"https://example.com/membership.jpg\",\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Join the CLPA Program Today\",\n  \"jobOpportunities\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"howMembershipHelps\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"whyJoinNow\": {\n    \"heading\": \"Why should I join now?\",\n    \"description\": \"Starting early provides a strong foundation...\\n\\nIt also helps you understand...\",\n    \"highlights\": [\n      \"Start early\",\n      \"Build knowledge\",\n      \"Prepare for your future\"\n    ],\n    \"infoCards\": [\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      },\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      }\n    ]\n  },\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you hold a National ID?\"\n    },\n    {\n      \"question\": \"Do you hold a National ID?\"\n    }\n  ],\n  \"careerPathways\": [\n    \"Progression to Basic Professional Certificate in Loss Prevention\",\n    \"Advancement to Certified Loss Prevention Associate (CLPA™)\"\n  ]\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -16907,7 +17371,7 @@
                             "enums"
                           ]
                         },
-                        "description": "Public endpoint returning all membership enum options (currencies, durations, renewal periods, statuses, required documents)"
+                        "description": "Public endpoint returning all membership enum options (currencies, durations, renewal periods, statuses)"
                       },
                       "response": [
                         {
@@ -17048,7 +17512,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/memberships/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=draft&currency=USD&requiredDocument=Passport",
+                          "raw": "{{baseUrl}}/api/v1/memberships/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=NGN",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -17091,18 +17555,13 @@
                             },
                             {
                               "key": "status",
-                              "value": "draft",
+                              "value": "closed",
                               "description": "Filter by membership status"
                             },
                             {
                               "key": "currency",
-                              "value": "USD",
+                              "value": "NGN",
                               "description": "Filter by currency"
-                            },
-                            {
-                              "key": "requiredDocument",
-                              "value": "Passport",
-                              "description": "Filter memberships that require this document"
                             }
                           ]
                         },
@@ -17121,7 +17580,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/memberships/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=draft&currency=USD&requiredDocument=Passport",
+                              "raw": "{{baseUrl}}/api/v1/memberships/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=NGN",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -17165,17 +17624,12 @@
                                 {
                                   "description": "Filter by membership status",
                                   "key": "status",
-                                  "value": "draft"
+                                  "value": "closed"
                                 },
                                 {
                                   "description": "Filter by currency",
                                   "key": "currency",
-                                  "value": "USD"
-                                },
-                                {
-                                  "description": "Filter memberships that require this document",
-                                  "key": "requiredDocument",
-                                  "value": "Passport"
+                                  "value": "NGN"
                                 }
                               ]
                             }
@@ -18648,6 +19102,331 @@
                       ]
                     },
                     {
+                      "name": "application-questions",
+                      "item": [
+                        {
+                          "name": "{itemId}",
+                          "item": [
+                            {
+                              "name": "Update an application question",
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"question\": \"Do you hold a National ID?\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/memberships/:id/application-questions/:itemId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "memberships",
+                                    ":id",
+                                    "application-questions",
+                                    ":itemId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "UUID identifier"
+                                    },
+                                    {
+                                      "key": "itemId",
+                                      "value": "string"
+                                    }
+                                  ]
+                                },
+                                "description": "Update a single application question by item id (partial update, admin only)"
+                              },
+                              "response": [
+                                {
+                                  "name": "200",
+                                  "originalRequest": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"question\": \"Do you hold a National ID?\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/memberships/:id/application-questions/:itemId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "memberships",
+                                        ":id",
+                                        "application-questions",
+                                        ":itemId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "id",
+                                          "value": "550e8400-e29b-41d4-a716-446655440000",
+                                          "description": "UUID identifier"
+                                        },
+                                        {
+                                          "key": "itemId",
+                                          "value": "string"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "body": ""
+                                }
+                              ]
+                            },
+                            {
+                              "name": "Remove an application question",
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/memberships/:id/application-questions/:itemId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "memberships",
+                                    ":id",
+                                    "application-questions",
+                                    ":itemId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "UUID identifier"
+                                    },
+                                    {
+                                      "key": "itemId",
+                                      "value": "string"
+                                    }
+                                  ]
+                                },
+                                "description": "Remove a single application question by item id (admin only)"
+                              },
+                              "response": [
+                                {
+                                  "name": "200",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/memberships/:id/application-questions/:itemId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "memberships",
+                                        ":id",
+                                        "application-questions",
+                                        ":itemId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "id",
+                                          "value": "550e8400-e29b-41d4-a716-446655440000",
+                                          "description": "UUID identifier"
+                                        },
+                                        {
+                                          "key": "itemId",
+                                          "value": "string"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "body": ""
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Add an application question",
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"question\": \"Do you hold a National ID?\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/memberships/:id/application-questions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "memberships",
+                                ":id",
+                                "application-questions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "UUID identifier"
+                                }
+                              ]
+                            },
+                            "description": "Add a single yes/no application question. Returns the new item id (admin only)"
+                          },
+                          "response": [
+                            {
+                              "name": "201",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"question\": \"Do you hold a National ID?\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/memberships/:id/application-questions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "memberships",
+                                    ":id",
+                                    "application-questions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "UUID identifier"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
                       "name": "Fetch a membership",
                       "request": {
                         "auth": {
@@ -18746,7 +19525,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"name\": \"Professional Membership\",\n  \"description\": \"Membership for certified professionals\",\n  \"type\": {},\n  \"eligibilityCriteria\": [\n    \"Must hold a professional certificate\",\n    \"At least 3 years experience\"\n  ],\n  \"price\": 50000,\n  \"currency\": \"CAD\",\n  \"duration\": \"1 Year\",\n  \"autoRenewal\": true,\n  \"renewalPrice\": 45000,\n  \"renewalPeriod\": \"Annually\",\n  \"benefits\": [\n    \"Access to resources\",\n    \"Event discounts\"\n  ],\n  \"requiredDocuments\": [\n    \"National ID\",\n    \"Passport\"\n  ],\n  \"status\": \"draft\",\n  \"image\": \"https://example.com/membership.jpg\",\n  \"jobOpportunities\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"howMembershipHelps\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"whyJoinNow\": {\n    \"heading\": \"Why should I join now?\",\n    \"description\": \"Starting early provides a strong foundation...\\n\\nIt also helps you understand...\",\n    \"highlights\": [\n      \"Start early\",\n      \"Build knowledge\",\n      \"Prepare for your future\"\n    ],\n    \"infoCards\": [\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      },\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      }\n    ]\n  }\n}",
+                          "raw": "{\n  \"name\": \"Professional Membership\",\n  \"description\": \"Membership for certified professionals\",\n  \"type\": {},\n  \"eligibilityCriteria\": [\n    \"Must hold a professional certificate\",\n    \"At least 3 years experience\"\n  ],\n  \"price\": 50000,\n  \"currency\": \"CAD\",\n  \"duration\": \"1 Year\",\n  \"autoRenewal\": true,\n  \"renewalPrice\": 45000,\n  \"renewalPeriod\": \"Annually\",\n  \"benefits\": [\n    \"Access to resources\",\n    \"Event discounts\"\n  ],\n  \"status\": \"draft\",\n  \"image\": \"https://example.com/membership.jpg\",\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Join the CLPA Program Today\",\n  \"jobOpportunities\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"howMembershipHelps\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"whyJoinNow\": {\n    \"heading\": \"Why should I join now?\",\n    \"description\": \"Starting early provides a strong foundation...\\n\\nIt also helps you understand...\",\n    \"highlights\": [\n      \"Start early\",\n      \"Build knowledge\",\n      \"Prepare for your future\"\n    ],\n    \"infoCards\": [\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      },\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      }\n    ]\n  },\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you hold a National ID?\"\n    },\n    {\n      \"question\": \"Do you hold a National ID?\"\n    }\n  ],\n  \"careerPathways\": [\n    \"Progression to Basic Professional Certificate in Loss Prevention\",\n    \"Advancement to Certified Loss Prevention Associate (CLPA™)\"\n  ]\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -18793,7 +19572,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"name\": \"Professional Membership\",\n  \"description\": \"Membership for certified professionals\",\n  \"type\": {},\n  \"eligibilityCriteria\": [\n    \"Must hold a professional certificate\",\n    \"At least 3 years experience\"\n  ],\n  \"price\": 50000,\n  \"currency\": \"CAD\",\n  \"duration\": \"1 Year\",\n  \"autoRenewal\": true,\n  \"renewalPrice\": 45000,\n  \"renewalPeriod\": \"Annually\",\n  \"benefits\": [\n    \"Access to resources\",\n    \"Event discounts\"\n  ],\n  \"requiredDocuments\": [\n    \"National ID\",\n    \"Passport\"\n  ],\n  \"status\": \"draft\",\n  \"image\": \"https://example.com/membership.jpg\",\n  \"jobOpportunities\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"howMembershipHelps\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"whyJoinNow\": {\n    \"heading\": \"Why should I join now?\",\n    \"description\": \"Starting early provides a strong foundation...\\n\\nIt also helps you understand...\",\n    \"highlights\": [\n      \"Start early\",\n      \"Build knowledge\",\n      \"Prepare for your future\"\n    ],\n    \"infoCards\": [\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      },\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      }\n    ]\n  }\n}",
+                              "raw": "{\n  \"name\": \"Professional Membership\",\n  \"description\": \"Membership for certified professionals\",\n  \"type\": {},\n  \"eligibilityCriteria\": [\n    \"Must hold a professional certificate\",\n    \"At least 3 years experience\"\n  ],\n  \"price\": 50000,\n  \"currency\": \"CAD\",\n  \"duration\": \"1 Year\",\n  \"autoRenewal\": true,\n  \"renewalPrice\": 45000,\n  \"renewalPeriod\": \"Annually\",\n  \"benefits\": [\n    \"Access to resources\",\n    \"Event discounts\"\n  ],\n  \"status\": \"draft\",\n  \"image\": \"https://example.com/membership.jpg\",\n  \"banner\": \"https://example.com/banner.jpg\",\n  \"bannerText\": \"Join the CLPA Program Today\",\n  \"jobOpportunities\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"howMembershipHelps\": [\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    },\n    {\n      \"title\": \"Legal Associate Roles\",\n      \"description\": \"Access to entry-level legal associate opportunities.\",\n      \"iconUrl\": \"https://cdn.example.com/icons/job.svg\"\n    }\n  ],\n  \"whyJoinNow\": {\n    \"heading\": \"Why should I join now?\",\n    \"description\": \"Starting early provides a strong foundation...\\n\\nIt also helps you understand...\",\n    \"highlights\": [\n      \"Start early\",\n      \"Build knowledge\",\n      \"Prepare for your future\"\n    ],\n    \"infoCards\": [\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      },\n      {\n        \"title\": \"Application fee\",\n        \"description\": \"One off application fee: £148\"\n      }\n    ]\n  },\n  \"applicationQuestions\": [\n    {\n      \"question\": \"Do you hold a National ID?\"\n    },\n    {\n      \"question\": \"Do you hold a National ID?\"\n    }\n  ],\n  \"careerPathways\": [\n    \"Progression to Basic Professional Certificate in Loss Prevention\",\n    \"Advancement to Certified Loss Prevention Associate (CLPA™)\"\n  ]\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -19140,7 +19919,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=draft&currency=USD&requiredDocument=Passport",
+                      "raw": "{{baseUrl}}/api/v1/memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=NGN",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -19182,18 +19961,13 @@
                         },
                         {
                           "key": "status",
-                          "value": "draft",
+                          "value": "closed",
                           "description": "Filter by membership status"
                         },
                         {
                           "key": "currency",
-                          "value": "USD",
+                          "value": "NGN",
                           "description": "Filter by currency"
-                        },
-                        {
-                          "key": "requiredDocument",
-                          "value": "Passport",
-                          "description": "Filter memberships that require this document"
                         }
                       ]
                     },
@@ -19212,7 +19986,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=draft&currency=USD&requiredDocument=Passport",
+                          "raw": "{{baseUrl}}/api/v1/memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=NGN",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -19255,17 +20029,12 @@
                             {
                               "description": "Filter by membership status",
                               "key": "status",
-                              "value": "draft"
+                              "value": "closed"
                             },
                             {
                               "description": "Filter by currency",
                               "key": "currency",
-                              "value": "USD"
-                            },
-                            {
-                              "description": "Filter memberships that require this document",
-                              "key": "requiredDocument",
-                              "value": "Passport"
+                              "value": "NGN"
                             }
                           ]
                         }
@@ -19758,6 +20527,674 @@
                               "description": "Filter by published state (e.g. published=true or 1)",
                               "key": "published",
                               "value": "true"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "membership-applications",
+              "item": [
+                {
+                  "name": "submit",
+                  "item": [
+                    {
+                      "name": "Submit membership questionnaire",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"membershipId\": {},\n  \"answers\": [\n    {\n      \"questionId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"answer\": true\n    },\n    {\n      \"questionId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"answer\": true\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/membership-applications/submit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "membership-applications",
+                            "submit"
+                          ]
+                        },
+                        "description": "Answer every yes/no application question for a membership (both yes and no accepted; admin reviews after payment)"
+                      },
+                      "response": [
+                        {
+                          "name": "201",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"membershipId\": {},\n  \"answers\": [\n    {\n      \"questionId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"answer\": true\n    },\n    {\n      \"questionId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"answer\": true\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/membership-applications/submit",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "membership-applications",
+                                "submit"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "mine",
+                  "item": [
+                    {
+                      "name": "{membershipId}",
+                      "item": [
+                        {
+                          "name": "Fetch my application for a membership",
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/membership-applications/mine/:membershipId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "membership-applications",
+                                "mine",
+                                ":membershipId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "membershipId",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Membership UUID"
+                                }
+                              ]
+                            },
+                            "description": "Get the authenticated student's application for a specific membership (returns null if not yet submitted)"
+                          },
+                          "response": [
+                            {
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/membership-applications/mine/:membershipId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "membership-applications",
+                                    "mine",
+                                    ":membershipId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "membershipId",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "Membership UUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Fetch my applications",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/membership-applications/mine",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "membership-applications",
+                            "mine"
+                          ]
+                        },
+                        "description": "Get the authenticated student's membership applications and their review statuses"
+                      },
+                      "response": [
+                        {
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/membership-applications/mine",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "membership-applications",
+                                "mine"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "approve",
+                      "item": [
+                        {
+                          "name": "Approve a membership application",
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/membership-applications/:id/approve",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "membership-applications",
+                                ":id",
+                                "approve"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Application UUID"
+                                }
+                              ]
+                            },
+                            "description": "Approve a pending application: activates the membership grant and issues the certificate (admin only)"
+                          },
+                          "response": [
+                            {
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/membership-applications/:id/approve",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "membership-applications",
+                                    ":id",
+                                    "approve"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "Application UUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "reject",
+                      "item": [
+                        {
+                          "name": "Reject a membership application",
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"reason\": \"Could not confirm the declared document. Please re-apply.\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/membership-applications/:id/reject",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "membership-applications",
+                                ":id",
+                                "reject"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Application UUID"
+                                }
+                              ]
+                            },
+                            "description": "Reject a pending application with a reason: cancels the pending grant and blocks the certificate (admin only)"
+                          },
+                          "response": [
+                            {
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"reason\": \"Could not confirm the declared document. Please re-apply.\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/membership-applications/:id/reject",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "membership-applications",
+                                    ":id",
+                                    "reject"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "Application UUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Fetch a membership application",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/membership-applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "membership-applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "550e8400-e29b-41d4-a716-446655440000",
+                              "description": "Application UUID"
+                            }
+                          ]
+                        },
+                        "description": "Get a single membership application by ID (admin only)"
+                      },
+                      "response": [
+                        {
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/membership-applications/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "membership-applications",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Application UUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Fetch all membership applications",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/membership-applications?page=1&pageSize=10&orderBy=string&sortOrder=DESC&status=rejected&studentId=string&membershipId=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "membership-applications"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "description": "Page number for pagination"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "10",
+                          "description": "Number of items per page"
+                        },
+                        {
+                          "key": "orderBy",
+                          "value": "string",
+                          "description": "Field to order by"
+                        },
+                        {
+                          "key": "sortOrder",
+                          "value": "DESC",
+                          "description": "Sort order direction"
+                        },
+                        {
+                          "key": "status",
+                          "value": "rejected",
+                          "description": "Filter by application status"
+                        },
+                        {
+                          "key": "studentId",
+                          "value": "string",
+                          "description": "Filter by student UUID"
+                        },
+                        {
+                          "key": "membershipId",
+                          "value": "string",
+                          "description": "Filter by membership UUID"
+                        }
+                      ]
+                    },
+                    "description": "Paginated list of membership applications with filters (admin only)"
+                  },
+                  "response": [
+                    {
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/membership-applications?page=1&pageSize=10&orderBy=string&sortOrder=DESC&status=rejected&studentId=string&membershipId=string",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "membership-applications"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of items per page",
+                              "key": "pageSize",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Field to order by",
+                              "key": "orderBy",
+                              "value": "string"
+                            },
+                            {
+                              "description": "Sort order direction",
+                              "key": "sortOrder",
+                              "value": "DESC"
+                            },
+                            {
+                              "description": "Filter by application status",
+                              "key": "status",
+                              "value": "rejected"
+                            },
+                            {
+                              "description": "Filter by student UUID",
+                              "key": "studentId",
+                              "value": "string"
+                            },
+                            {
+                              "description": "Filter by membership UUID",
+                              "key": "membershipId",
+                              "value": "string"
                             }
                           ]
                         }

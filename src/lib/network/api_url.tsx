@@ -14,6 +14,17 @@ export class ApiUrls {
   static activityTimeline = "/orders/activity-timeline";
   static purchasedCourses = "/orders/purchased-courses";
   static studentTransactions = "/orders/fetch-student-trx";
+  static ordersPreview = "/orders/preview";
+  static ordersCreate = "/orders/create";
+  static ordersConfirm(thirdPartyRef: string) {
+    return `/orders/confirm/${thirdPartyRef}`;
+  }
+  static ordersCancel(orderNumber: string) {
+    return `/orders/cancel-order/${orderNumber}`;
+  }
+  static ordersTransaction(id: string) {
+    return `/orders/fetch-trx/${id}`;
+  }
   static fetchCourse(id: string) {
     return `/orders/fetch-course/${id}`;
   }

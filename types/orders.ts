@@ -1,12 +1,18 @@
 /**
- * CHLPS Admin Portal - Orders, Transactions & Financial Analytics Types
+ * CHLPS Admin Portal & Student Checkout - Orders, Transactions & Financial Analytics Types
  * Endpoints: /api/v1/orders/*, /api/v1/transactions/*
  */
 
 import { BaseEntity, PaginationQueryDto } from "./common";
+import { Course } from "./courses";
 
 export type OrderItemType = "course" | "membership";
-export type PaymentStatus = "pending" | "successful" | "failed" | "cancelled" | "refunded";
+export type PaymentStatus =
+  | "pending"
+  | "successful"
+  | "failed"
+  | "cancelled"
+  | "refunded";
 export type PaymentGateway = "paystack" | "stripe" | "bank_transfer" | "manual";
 
 export interface OrderItem {
@@ -104,4 +110,97 @@ export interface OrdersQueryDto extends PaginationQueryDto {
   studentId?: string;
   startDate?: string;
   endDate?: string;
+}
+
+// ==========================================
+// STUDENT CHECKOUT & PREVIEW TYPES
+// ==========================================
+
+export interface OrderItemInput {
+  id: string;
+  price: number;
+  applicationId?: string;
+  documentId?: string;
+}
+
+export interface OrderPreviewPayload {
+  amount: number;
+  courses?: OrderItemInput[];
+  memberships?: OrderItemInput[];
+}
+
+export interface OrderPreviewCalculations {
+  amount: number;
+  subAmount?: number;
+  tax?: number;
+  discount?: number;
+  totalAmount?: number;
+  currency?: string;
+  courses?: Array<{
+    id: string;
+    title?: string;
+    price: number;
+  }>;
+  memberships?: Array<{
+    id: string;
+    name?: string;
+    price: number;
+  }>;
+}
+
+export interface OrderCreatePayload {
+  amount: number;
+  callback_url: string;
+  courses?: OrderItemInput[];
+  memberships?: OrderItemInput[];
+  currency?: string;
+}
+
+export interface OrderCreateResponseData {
+  orderNumber: string;
+  orderId?: string;
+  id?: string;
+  amount?: number;
+  status?: string;
+  reference?: string;
+  thirdPartyRef?: string;
+  authorization_url?: string;
+  authorizationUrl?: string;
+  clientSecret?: string;
+  paymentIntentId?: string;
+  gateway?: "stripe" | "paystack";
+}
+
+export interface OrderConfirmResponseData {
+  orderNumber?: string;
+  reference?: string;
+  status: string;
+  message?: string;
+}
+
+export interface OrderTransactionDetail {
+  id: string;
+  reference?: string;
+  status: string;
+  amount: number;
+  createdDate?: string;
+}
+
+export interface PurchasedOrderItem {
+  id: string;
+  price?: number;
+  course?: Course;
+  membership?: {
+    id: string;
+    name: string;
+  };
+}
+
+export interface LiveOrderRecord {
+  id: string;
+  number: string;
+  status: string;
+  createdDate: string;
+  trx?: OrderTransactionDetail;
+  orderItems?: PurchasedOrderItem[];
 }

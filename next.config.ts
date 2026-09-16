@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  env: {
+    NEXT_PUBLIC_STRIPE_PUBLISH_KEY:
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY ||
+      process.env.NEXT_STRIPE_PUBLISH_KEY ||
+      "",
+  },
   async redirects() {
     return [
       {
