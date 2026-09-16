@@ -18,6 +18,7 @@ import {
 import { resolveCertificationHref } from "@/features/certification/certification_details";
 import { useAppSelector } from "@/lib/store/store";
 import { StripePaymentModal } from "@/features/orders";
+import { orderService } from "@/features/orders/services/order_service";
 import type { Course } from "@/types";
 
 // Static level badges mapped by title/level
@@ -43,39 +44,45 @@ const SEALS_BY_ABBR: Record<string, string> = {
   CHLPS: Assets.images.certificates.chlps,
 };
 
-function ProgrammeSeal({ src, alt }: { src: string; alt: string }) {
-  return (
-    <span className="flex h-[3.85rem] w-[3.85rem] shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] bg-[#F2EEFA] p-2 sm:h-[4.4rem] sm:w-[4.4rem] sm:rounded-[1.25rem]">
-      <Image
-        src={src}
-        alt={alt}
-        width={320}
-        height={368}
-        unoptimized
-        className="h-full w-auto max-w-full object-contain"
-      />
-    </span>
-  );
+function extractAbbr(title: string): string {
+  const match = title.match(/\(([A-Za-z™]+)\)/);
+  if (match && match[1]) {
+    return match[1].replace(/™/g, "").trim();
+  }
+  const clean = title.toUpperCase();
+  if (clean.includes("BCLP")) return "BCLP";
+  if (clean.includes("CLPA")) return "CLPA";
+  if (clean.includes("CLPO")) return "CLPO";
+  if (clean.includes("CLPM")) return "CLPM";
+  if (clean.includes("ACLPM") || clean.includes("ACIPM")) return "ACLPM";
+  if (clean.includes("CHLPS")) return "ChLPS";
+  return "CHLPS";
 }
 
 export default function CertificationPathwaySection() {
   const router = useRouter();
   const token = useAppSelector((state) => state.user.token);
-
+  const [checkingEnrollCourseId, setCheckingEnrollCourseId] = useState<
+    string | null
+  >(null);
   const [selectedCheckout, setSelectedCheckout] = useState<{
     title: string;
     course: Course;
+    applicationId?: string;
   } | null>(null);
 
   const { data: livePrograms, isLoading } = useQuery({
-    queryKey: ["live-certification-programs"],
+    queryKey: ["public-programs-pathway"],
     queryFn: fetchLivePrograms,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 60 * 1000,
   });
 
   const programs = livePrograms || [];
 
-  const handleEnrollClick = (programme: ApiProgramItem, course?: Course) => {
+  const handleEnrollClick = async (
+    programme: ApiProgramItem,
+    course?: Course,
+  ) => {
     const detailHref = resolveCertificationHref({
       id: programme.id,
       slug: programme.slug,
@@ -94,11 +101,40 @@ export default function CertificationPathwaySection() {
       return;
     }
 
-    // Authenticated student: trigger Stripe Payment Modal with preview-before-create
-    setSelectedCheckout({
-      title: programme.title,
-      course,
-    });
+    const appQuestions = (course as any).applicationQuestions ?? [];
+    // If course has no questionnaire/assessment questions, open payment modal directly
+    if (!appQuestions || appQuestions.length === 0) {
+      setSelectedCheckout({
+        title: programme.title,
+        course,
+      });
+      return;
+    }
+
+    // Course has assessment questions -> check attempts
+    setCheckingEnrollCourseId(course.id);
+    try {
+      const appRes = await orderService.fetchMyCourseApplication(course.id);
+      if (appRes.success && appRes.data?.id) {
+        // Completed attempt exists -> load payment modal with applicationId
+        setSelectedCheckout({
+          title: programme.title,
+          course,
+          applicationId: appRes.data.id,
+        });
+      } else {
+        // No attempts or not completed -> go to assessment page
+        router.push(
+          `/certification/${programme.slug || programme.id}/assessment`,
+        );
+      }
+    } catch {
+      router.push(
+        `/certification/${programme.slug || programme.id}/assessment`,
+      );
+    } finally {
+      setCheckingEnrollCourseId(null);
+    }
   };
 
   const coursesForModal = useMemo(
@@ -108,6 +144,7 @@ export default function CertificationPathwaySection() {
             {
               id: selectedCheckout.course.id,
               price: Number(selectedCheckout.course.price) || 0,
+              applicationId: selectedCheckout.applicationId,
             },
           ]
         : [],
@@ -151,66 +188,82 @@ export default function CertificationPathwaySection() {
           </div>
         )}
 
-        {programs.length > 0 && (
-          <div className="mt-12 sm:mt-14 lg:mt-16">
-            <RevealGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {!isLoading && programs.length > 0 && (
+          <div className="mt-12 sm:mt-16">
+            <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {programs.map((programme, index) => {
-                const title = programme.title || "";
-                const match = title.match(/\(([A-Za-z™]+)\)/);
-                const abbr = match ? match[1].replace(/™/g, "") : "CHLPS";
-                const level = LEVEL_BADGES[abbr] || "PROFESSIONAL";
-                const image =
-                  programme.coverImage ||
-                  SEALS_BY_ABBR[abbr] ||
-                  Assets.images.certificates.clpa;
+                const abbr = extractAbbr(programme.title);
+                const levelBadge = LEVEL_BADGES[abbr] || "PROFESSIONAL";
+                const sealSrc =
+                  programme.coverImage &&
+                  programme.coverImage.startsWith("http")
+                    ? programme.coverImage
+                    : SEALS_BY_ABBR[abbr] || Assets.images.certificates.clpa;
                 const enrollHref = resolveCertificationHref({
                   id: programme.id,
                   slug: programme.slug,
                 });
-
                 const firstCourse = programme.courses?.[0];
-                const price = firstCourse?.price;
+                const priceFormatted = firstCourse?.price
+                  ? `CAD $${Number(firstCourse.price).toLocaleString()}`
+                  : null;
+
+                const isCheckingThisCourse =
+                  checkingEnrollCourseId === firstCourse?.id;
 
                 return (
                   <article
-                    key={programme.id}
-                    className="reveal flex h-full scroll-mt-28 flex-col overflow-hidden rounded-[20px] rounded-tl-[35px] bg-secondary border border-[#CDA54EB8]"
-                    style={revealStyle(index)}
+                    key={programme.id || index}
+                    style={revealStyle(index * 90)}
+                    className="group relative flex flex-col justify-between overflow-hidden rounded-[24px] bg-[#161058] p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-7"
                   >
-                    <div className="mt-[5px] flex flex-1 flex-col overflow-hidden rounded-tl-[25px] rounded-tr-[10px] rounded-b-[20px] bg-white">
-                      <div className="flex shrink-0 flex-col px-6 pb-4 pt-5 sm:px-7 sm:pb-5 sm:pt-6">
-                        <div className="flex items-start justify-between gap-3">
-                          <ProgrammeSeal
-                            src={image}
-                            alt={`${programme.title} seal`}
-                          />
-                          <span className="inline-flex shrink-0 rounded-full bg-[#EEEAF8] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-primary sm:text-[11px]">
-                            {level}
+                    {/* Top Row: Seal + Level Badge */}
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/10 p-2 shadow-inner">
+                        <Image
+                          src={sealSrc}
+                          alt={programme.title}
+                          fill
+                          className="object-contain"
+                          sizes="56px"
+                        />
+                      </div>
+                      <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-xs">
+                        {levelBadge}
+                      </span>
+                    </div>
+
+                    {/* Middle: Title, Code, Body */}
+                    <div className="mt-6 flex flex-1 flex-col">
+                      <span className="text-[12px] font-bold tracking-wider text-secondary">
+                        {abbr}
+                      </span>
+                      <h3 className="mt-1 text-[17px] font-semibold leading-snug text-white sm:text-[19px]">
+                        {programme.title.replace(/\s*\([^)]*\)/g, "").trim()}
+                      </h3>
+
+                      <p className="mt-3 line-clamp-3 text-[13px] leading-relaxed text-white/70">
+                        {programme.description ||
+                          "Accredited professional certification curriculum designed to enhance leadership, security principles, and industry competency."}
+                      </p>
+                    </div>
+
+                    {/* Bottom: Price, Fee Detail & Actions */}
+                    <div className="mt-8 border-t border-white/15 pt-5">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-baseline justify-between">
+                          <span className="text-[12px] font-medium text-white/60">
+                            Enrollment Fee
+                          </span>
+                          <span className="text-[18px] font-bold text-white">
+                            {priceFormatted || "Contact for Pricing"}
                           </span>
                         </div>
-
-                        <h3 className="mt-4 min-h-[4.2rem] text-[1.15rem] font-medium leading-snug text-[#161058] sm:min-h-[5rem] sm:text-[1.35rem] lg:min-h-[6.75rem] lg:text-[27px]">
-                          {programme.title}
-                        </h3>
-                      </div>
-
-                      <div className="flex flex-1 flex-col bg-[#211A7A] px-6 pb-5 pt-5 sm:px-7 sm:pb-6 sm:pt-6">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/90">
-                          Certification Fee
-                        </p>
-                        <p className="mt-1 text-[1.75rem] font-bold leading-none text-white sm:text-[2rem]">
-                          {price !== undefined && price !== null
-                            ? `CAD $${Number(price).toLocaleString()}`
-                            : "Contact for pricing"}
-                        </p>
-                        <span
-                          aria-hidden
-                          className="mt-2 block h-[2px] w-10 bg-secondary"
-                        />
-                        <p className="mt-2.5 min-h-[2.8rem] text-[13px] leading-relaxed text-white/90 sm:text-[14px]">
-                          {firstCourse?.title ? (
-                            <span className="line-clamp-2">
-                              {firstCourse.title}
+                        <p className="text-[11px] text-white/45">
+                          {priceFormatted ? (
+                            <span>
+                              One-time enrollment fee &bull; Direct curriculum
+                              access
                             </span>
                           ) : (
                             "Comprehensive accredited qualification curriculum."
@@ -220,17 +273,27 @@ export default function CertificationPathwaySection() {
                         <div className="mt-5 flex flex-col gap-2.5">
                           <button
                             type="button"
+                            disabled={isCheckingThisCourse}
                             onClick={() =>
                               handleEnrollClick(programme, firstCourse)
                             }
-                            className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-secondary text-[14px] font-bold text-[#161058] shadow-sm transition-all duration-200 hover:brightness-105 active:scale-[0.99]"
+                            className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-secondary text-[14px] font-bold text-[#161058] shadow-sm transition-all duration-200 hover:brightness-105 active:scale-[0.99] disabled:opacity-75"
                           >
-                            <span>Enroll Now</span>
-                            <HugeiconsIcon
-                              icon={ArrowUpRight01Icon}
-                              size={16}
-                              strokeWidth={2.2}
-                            />
+                            {isCheckingThisCourse ? (
+                              <>
+                                <span className="loading loading-spinner loading-xs" />
+                                <span>Checking...</span>
+                              </>
+                            ) : (
+                              <>
+                                <span>Enroll Now</span>
+                                <HugeiconsIcon
+                                  icon={ArrowUpRight01Icon}
+                                  size={16}
+                                  strokeWidth={2.2}
+                                />
+                              </>
+                            )}
                           </button>
                           <Link
                             href={enrollHref}
@@ -255,10 +318,10 @@ export default function CertificationPathwaySection() {
             onClose={() => setSelectedCheckout(null)}
             title={`Enroll in ${selectedCheckout.title}`}
             courses={coursesForModal}
-            estimatedAmount={Number(selectedCheckout.course.price) || 0}
+            estimatedAmount={Number(selectedCheckout.course.price) || undefined}
             onSuccess={() => {
               setSelectedCheckout(null);
-              router.push("/dashboard/courses");
+              router.push("/dashboard/courses?payment=success");
             }}
           />
         )}

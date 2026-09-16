@@ -25,6 +25,7 @@ export type CertificationDetail = {
   outcomeImage: string;
   benefitsTitle: string;
   benefits: string[];
+  applicationQuestions?: Array<{ id?: string; question: string }>;
 };
 
 export const CERTIFICATION_DETAIL: CertificationDetail = {
@@ -51,32 +52,28 @@ export const CERTIFICATION_DETAIL: CertificationDetail = {
   studiesBadge: "CLPA Program of Studies:",
   studiesTitle: "What You’ll Study",
   modules: [
-    "Module 1: Introduction to Loss Prevention Processes",
-    "Module 2: Understanding Retail Operations",
-    "Module 3: Basics of Security Technologies",
-    "Module 4: Principles of Surveillance and Monitoring",
-    "Module 5: Customer Service and Conflict Resolution",
-    "Module 6: Report Writing and Documentation Procedures",
-    "Module 7: Legal and Ethical Considerations in Loss Prevention",
-    "Module 8: Emergency Response Procedures",
-    "Module 9: Introduction to Fraud Prevention",
-    "Module 10: Risk Assessment and Management",
+    "Module 1: Introduction to Loss Prevention and Asset Protection",
+    "Module 2: Retail Operations, Shrinkage Concepts, and Causes of Loss",
+    "Module 3: Physical Security Controls and Surveillance Systems",
+    "Module 4: Shoplifting and Internal Theft Identification Techniques",
+    "Module 5: Workplace Safety, Emergency Response, and Incident Awareness",
+    "Module 6: Professional Ethics, Legal Boundaries, and Report Writing",
   ],
-  outcomeBadge: "CLPA Professional Certification",
+  outcomeBadge: "Career and Credential Outcomes",
   outcomeTitle: "CLPA Professional\nCertification",
   outcomeBody: [
-    "Upon successful completion of the CLPA Program of Studies and passing the comprehensive examination, candidates are awarded the Certified Loss Prevention Associate (CLPA™) designation.",
-    "This certification validates fundamental competencies in asset protection, conflict management, and security reporting, positioning holders as qualified candidates for roles across retail, corporate, and logistics loss prevention environments.",
+    "The Certified Loss Prevention Associate (CLPA) credential demonstrates that you have mastered the fundamental principles, operational practices, and legal considerations essential to entry-level and support roles in loss prevention and corporate security.",
+    "Holders of the CLPA designation are recognized by employers across retail, warehousing, logistics, and private security as qualified practitioners capable of contributing immediately to asset protection and risk mitigation programs.",
   ],
   outcomeImage: Assets.images.clpaCertificate,
   benefitsTitle: "Benefits of the CLPA Certification",
   benefits: [
-    "Nationally and internationally recognized professional credential",
-    "Enhanced employability across retail, logistics, corporate, and public sectors",
-    "Comprehensive curriculum covering core loss prevention and asset protection principles",
-    "Direct pathway toward advanced certifications including CLPO™ and ChLPS™",
-    "Access to exclusive CHLPS professional resources, workshops, and network",
-    "Digital badge and verifiable credentials for LinkedIn and professional profiles",
+    "Builds a recognized professional credential for individuals entering the loss prevention and security field",
+    "Validates foundational competency in shrinkage control, surveillance, and basic investigative processes",
+    "Enhances employment prospects in retail loss prevention, distribution security, and corporate asset protection",
+    "Establishes a structured pathway toward the Certified Loss Prevention Officer (CLPO) and Specialist (ChLPS) credentials",
+    "Includes access to CHLPS Canada professional resources, community forums, and continuing education opportunities",
+    "Demonstrates commitment to professional standards, ethical conduct, and ongoing career development",
   ],
 };
 

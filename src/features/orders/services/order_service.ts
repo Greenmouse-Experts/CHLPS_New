@@ -8,6 +8,8 @@ import type {
   OrderCreateResponseData,
   OrderConfirmResponseData,
   LiveOrderRecord,
+  CourseApplication,
+  SubmitCourseApplicationPayload,
 } from "@/types/orders";
 
 export class OrderService {
@@ -55,7 +57,7 @@ export class OrderService {
 
   /**
    * 2. CREATE ORDER
-   * Initializes a pending order and returns payment gateway authorization / secret.
+   * Generates order record and provides Stripe / Paystack checkout reference.
    * Endpoint: POST /orders/create
    */
   async createOrder(
@@ -72,67 +74,59 @@ export class OrderService {
         const actualData: OrderCreateResponseData = raw.data ?? raw;
         return ok(
           actualData,
-          raw.message || response.message || "Order created",
+          raw.message || response.message || "Order created successfully",
         );
       }
       return fail(
-        response.message || "Failed to initiate order",
+        response.message || "Failed to create order",
         response.status || 400,
       );
     } catch (error: any) {
       return fail(
         error?.response?.data?.message ||
           error?.message ||
-          "Failed to initiate order.",
+          "Failed to create order.",
         error?.response?.status || 500,
       );
     }
   }
 
   /**
-   * 3. COMBINED WORKFLOW: PREVIEW BEFORE CREATE
-   * Guarantees that /orders/preview is always executed prior to /orders/create
-   * to validate cart amounts, compute taxes, and prevent client-side price tampering.
+   * 3. MANDATORY PREVIEW + CREATE PIPELINE
+   * Enforces business rule: Always call POST /orders/preview before POST /orders/create.
    */
   async checkoutWithPreview(params: {
-    courses?: Array<{ id: string; price: number; applicationId?: string }>;
-    memberships?: Array<{ id: string; price: number; applicationId?: string }>;
+    courses?: OrderCreatePayload["courses"];
+    memberships?: OrderCreatePayload["memberships"];
+    estimatedAmount: number;
     callback_url?: string;
-    estimatedAmount?: number;
   }): Promise<{
     preview: OrderPreviewCalculations;
     order: OrderCreateResponseData;
   }> {
-    const rawAmount =
-      params.estimatedAmount ??
-      [...(params.courses ?? []), ...(params.memberships ?? [])].reduce(
-        (sum, item) => sum + (Number(item.price) || 0),
-        0,
-      );
-
-    // Step 1: Call orders/preview FIRST
-    const previewPayload: OrderPreviewPayload = {
-      amount: rawAmount,
+    // Step A: Preview
+    const previewRes = await this.previewOrder({
+      amount: params.estimatedAmount,
       courses: params.courses,
       memberships: params.memberships,
-    };
+    });
 
-    const previewRes = await this.previewOrder(previewPayload);
     if (!previewRes.success || !previewRes.data) {
       throw new Error(
-        previewRes.message || "Failed to preview order totals from server.",
+        previewRes.message || "Failed to generate checkout preview.",
       );
     }
 
-    // The backend expects amount to match the subtotal (sum of item prices),
-    // and calculates tax internally before presenting to Stripe
-    const verifiedSubAmount = previewRes.data.subAmount ?? rawAmount;
+    const verifiedSubAmount =
+      previewRes.data.subAmount ??
+      previewRes.data.amount ??
+      params.estimatedAmount;
 
-    // Step 2: Call orders/create with the verified preview calculation
+    // Step B: Create Order
     const defaultCallback =
       typeof window !== "undefined"
-        ? `${window.location.origin}/dashboard/purchase-history?status=verify`
-        : "https://portal.chlps.org/dashboard/purchase-history?status=verify";
+        ? `${window.location.origin}/dashboard/courses?payment=success`
+        : "";
 
     const createPayload: OrderCreatePayload = {
       amount: verifiedSubAmount,
@@ -243,6 +237,119 @@ export class OrderService {
         error?.response?.data?.message ||
           error?.message ||
           "Failed to fetch transaction history.",
+        error?.response?.status || 500,
+      );
+    }
+  }
+
+  /**
+   * 7. FETCH MY COURSE APPLICATION
+   * Checks if the student has already completed screening / assessment for this course.
+   * Endpoint: GET /course-applications/mine/:courseId
+   */
+  async fetchMyCourseApplication(
+    courseId: string,
+  ): Promise<ApiResponse<CourseApplication | null>> {
+    try {
+      const response = await this.api.getData<any>(
+        ApiUrls.myCourseApplication(courseId),
+      );
+
+      if (response.success) {
+        const raw = response.data as any;
+        if (!raw || typeof raw !== "object" || !raw.id) {
+          return ok(null);
+        }
+        return ok(raw as CourseApplication);
+      }
+
+      if (response.status === 404) {
+        return ok(null);
+      }
+
+      return fail(
+        response.message || "Failed to fetch course application",
+        response.status || 400,
+      );
+    } catch (error: any) {
+      if (error?.response?.status === 404) {
+        return ok(null);
+      }
+      return fail(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to fetch course application.",
+        error?.response?.status || 500,
+      );
+    }
+  }
+
+  /**
+   * 8. FETCH ALL MY COURSE APPLICATIONS
+   * Endpoint: GET /course-applications/mine
+   */
+  async fetchMyCourseApplications(): Promise<ApiResponse<CourseApplication[]>> {
+    try {
+      const response = await this.api.getData<any>(
+        ApiUrls.myCourseApplications,
+      );
+
+      if (response.success && response.data) {
+        const raw = response.data as any;
+        const actualData: CourseApplication[] = Array.isArray(raw)
+          ? raw
+          : (raw.data ?? raw.results ?? []);
+        return ok(actualData);
+      }
+
+      return fail(
+        response.message || "Failed to fetch applications",
+        response.status || 400,
+      );
+    } catch (error: any) {
+      return fail(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to fetch course applications.",
+        error?.response?.status || 500,
+      );
+    }
+  }
+
+  /**
+   * 9. SUBMIT COURSE APPLICATION / ASSESSMENT
+   * Answers screening/assessment questions before purchasing course.
+   * Endpoint: POST /course-applications/submit
+   */
+  async submitCourseApplication(
+    payload: SubmitCourseApplicationPayload,
+  ): Promise<ApiResponse<CourseApplication>> {
+    try {
+      const response = await this.api.postData<
+        SubmitCourseApplicationPayload,
+        any
+      >(ApiUrls.courseApplicationSubmit, payload);
+
+      if (response.success && response.data) {
+        const raw = response.data as any;
+        const actualData: CourseApplication = raw.data ?? raw;
+        return ok(
+          actualData,
+          raw.message ||
+            response.message ||
+            "Application submitted successfully",
+        );
+      }
+
+      return fail(
+        response.message || "Failed to submit course questionnaire",
+        response.status || 400,
+      );
+    } catch (error: any) {
+      return fail(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to submit course questionnaire.",
         error?.response?.status || 500,
       );
     }

@@ -17,6 +17,7 @@ import { fetchProgramById } from "@/features/certification/services/certificatio
 import QueryCompLayout from "@/components/QueryCompLayout";
 import { useAppSelector } from "@/lib/store/store";
 import { StripePaymentModal } from "@/features/orders";
+import { orderService } from "@/features/orders/services/order_service";
 
 type CertificationDetailsPageProps = {
   detail?: CertificationDetail | null;
@@ -30,6 +31,10 @@ export default function CertificationDetailsPage({
   const router = useRouter();
   const token = useAppSelector((state) => state.user.token);
   const [isStripeModalOpen, setIsStripeModalOpen] = useState(false);
+  const [isCheckingEnrollment, setIsCheckingEnrollment] = useState(false);
+  const [applicationId, setApplicationId] = useState<string | undefined>(
+    undefined,
+  );
 
   const query = useQuery({
     queryKey: ["public-program", id],
@@ -46,7 +51,7 @@ export default function CertificationDetailsPage({
 
   const detail = query.data ?? initialDetail;
 
-  const handleEnrollClick = () => {
+  const handleEnrollClick = async () => {
     if (!detail) return;
 
     if (!token) {
@@ -60,10 +65,36 @@ export default function CertificationDetailsPage({
       return;
     }
 
-    if (detail.courseId) {
-      setIsStripeModalOpen(true);
-    } else {
+    if (!detail.courseId) {
       router.push(detail.enrollHref);
+      return;
+    }
+
+    const appQuestions = detail.applicationQuestions ?? [];
+    // If course has no questionnaire/assessment questions, open payment modal directly
+    if (appQuestions.length === 0) {
+      setIsStripeModalOpen(true);
+      return;
+    }
+
+    // Course has assessment questions -> check attempts
+    setIsCheckingEnrollment(true);
+    try {
+      const appRes = await orderService.fetchMyCourseApplication(
+        detail.courseId,
+      );
+      if (appRes.success && appRes.data?.id) {
+        // Completed attempt exists -> load payment modal with applicationId
+        setApplicationId(appRes.data.id);
+        setIsStripeModalOpen(true);
+      } else {
+        // No attempts or not completed -> go to assessment page
+        router.push(`/certification/${id || detail.id}/assessment`);
+      }
+    } catch {
+      router.push(`/certification/${id || detail.id}/assessment`);
+    } finally {
+      setIsCheckingEnrollment(false);
     }
   };
 
@@ -74,10 +105,11 @@ export default function CertificationDetailsPage({
             {
               id: detail.courseId,
               price: detail.price ?? 0,
+              applicationId,
             },
           ]
         : [],
-    [detail?.courseId, detail?.price],
+    [detail?.courseId, detail?.price, applicationId],
   );
 
   return (
@@ -129,7 +161,7 @@ export default function CertificationDetailsPage({
                 estimatedAmount={detail.price ?? 0}
                 onSuccess={() => {
                   setIsStripeModalOpen(false);
-                  router.push("/dashboard/courses");
+                  router.push("/dashboard/courses?payment=success");
                 }}
               />
             )}

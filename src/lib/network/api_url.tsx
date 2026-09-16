@@ -40,6 +40,14 @@ export class ApiUrls {
     return `/orders/fetch-attempts/${id}`;
   }
 
+  // Course and Membership Applications / Screening
+  static courseApplicationSubmit = "/course-applications/submit";
+  static myCourseApplication(courseId: string) {
+    return `/course-applications/mine/${courseId}`;
+  }
+  static myCourseApplications = "/course-applications/mine";
+  static membershipApplicationSubmit = "/membership-applications/submit";
+
   static courseReviews(id: string) {
     return `/reviews/fetch-course-reviews/${id}`;
   }

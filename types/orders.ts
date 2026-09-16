@@ -210,3 +210,30 @@ export interface LiveOrderRecord {
   trx?: OrderTransactionDetail;
   orderItems?: PurchasedOrderItem[];
 }
+
+// ==========================================
+// COURSE & MEMBERSHIP APPLICATION TYPES
+// ==========================================
+
+export interface CourseApplicationAnswer {
+  questionId: string;
+  answer: boolean;
+}
+
+export interface SubmitCourseApplicationPayload {
+  courseId: string;
+  answers: CourseApplicationAnswer[];
+}
+
+export interface CourseApplication {
+  id: string;
+  course?: {
+    id: string;
+    title?: string;
+    slug?: string;
+    applicationQuestions?: Array<{ id?: string; question: string }>;
+  };
+  answers?: CourseApplicationAnswer[];
+  createdDate?: string;
+  updatedDate?: string;
+}

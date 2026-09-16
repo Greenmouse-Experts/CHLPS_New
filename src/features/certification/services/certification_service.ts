@@ -308,6 +308,7 @@ export function transformProgramToCertificationDetail(
     outcomeImage,
     benefitsTitle: `Benefits of the ${abbr} Certification`,
     benefits,
+    applicationQuestions: effectiveCourse?.applicationQuestions ?? [],
   };
 }
 
@@ -362,50 +363,69 @@ export async function fetchProgramById(
       matchedProgram = p;
       break;
     }
-    const abbr = extractProgramAbbreviation(p.title).toLowerCase();
-    if (abbr === target) {
+    const abbr = extractProgramAbbreviation(p.title);
+    if (abbr.toLowerCase() === target) {
       matchedProgram = p;
       break;
     }
   }
 
-  // 2. If not matched in programs list, check courses
+  // 2. If not found in programs, check courses
   let matchedCourse: ApiCourseItem | undefined;
-
   if (!matchedProgram) {
     for (const c of courses) {
-      const p = c.program;
+      if (c.id.toLowerCase() === target) {
+        matchedCourse = c;
+        break;
+      }
+      if (c.slug && c.slug.toLowerCase() === target) {
+        matchedCourse = c;
+        break;
+      }
+      if (c.title && slugify(c.title) === target) {
+        matchedCourse = c;
+        break;
+      }
+    }
+
+    // Find parent program of matched course
+    if (matchedCourse) {
+      const p = matchedCourse.program;
       const pId =
         typeof p === "object" && p
           ? p.id || p.slug
           : typeof p === "string"
             ? p
             : undefined;
-
-      if (
-        c.id.toLowerCase() === target ||
-        (c.slug && c.slug.toLowerCase() === target)
-      ) {
-        matchedCourse = c;
-        if (pId) {
-          matchedProgram = programs.find((prog) => prog.id === pId);
-        }
-        break;
+      if (pId) {
+        matchedProgram = programs.find(
+          (prog) =>
+            prog.id === pId ||
+            (prog.slug && prog.slug === pId) ||
+            prog.title === pId,
+        );
       }
     }
   } else {
+    // Program matched, find corresponding course
     matchedCourse =
-      courseByProgramId.get(matchedProgram.id) || matchedProgram.courses?.[0];
+      courseByProgramId.get(matchedProgram.id) ||
+      (matchedProgram.slug
+        ? courseByProgramId.get(matchedProgram.slug)
+        : undefined) ||
+      matchedProgram.courses?.[0];
   }
 
+  // If we have a program, convert to detail
   if (matchedProgram) {
     return transformProgramToCertificationDetail(matchedProgram, matchedCourse);
   }
 
+  // Fallback: If only course matched
   if (matchedCourse) {
     const syntheticProgram: ApiProgramItem = {
       id: matchedCourse.id,
-      title: matchedCourse.title || "Certification Program",
+      title: matchedCourse.title || "Certification Course",
       description: matchedCourse.shortDesc || matchedCourse.fullDesc,
       coverImage: matchedCourse.coverImage,
       courses: [matchedCourse],
