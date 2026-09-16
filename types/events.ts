@@ -44,6 +44,12 @@ export interface EventItem extends BaseEntity {
   contactPhone?: string | null;
   status: EventStatus;
   image?: string | null;
+  coverImage?: string | null;
+  images?:
+    | string[]
+    | Array<{ url?: string; image?: string; src?: string }>
+    | string
+    | null;
   meetingLink?: string | null;
   location?: string | null;
   registrationOpens?: string | null;
@@ -72,6 +78,8 @@ export interface CreateEventDto {
   contactPhone?: string | null;
   status?: EventStatus;
   image?: string | null;
+  coverImage?: string | null;
+  images?: string[];
   meetingLink?: string | null;
   location?: string | null;
   registrationOpens?: string | null;
@@ -93,6 +101,14 @@ export interface EventFilterQueryDto extends PaginationQueryDto {
   eligibility?: EventEligibility;
 }
 
+export interface EventsQueryDto extends PaginationQueryDto {
+  name?: string;
+  categoryId?: string;
+  status?: EventStatus;
+  format?: EventFormat;
+  eligibility?: EventEligibility;
+}
+
 export interface EventStats {
   totalEvents: number;
   totalThisMonth: number;
@@ -108,26 +124,24 @@ export interface EventRegistration extends BaseEntity {
   userId: string;
   user?: {
     id: string;
-    firstName: string;
-    lastName: string;
+    fullName?: string;
+    firstName?: string;
+    lastName?: string;
     email: string;
+    phone?: string;
   };
-  status: "pending" | "confirmed" | "cancelled" | "checked_in";
-  ticketCode?: string;
-  checkedInAt?: string | null;
-  paymentReference?: string | null;
-  amountPaid?: number;
+  registrationDate: string;
+  ticketNumber: string;
+  status: "Confirmed" | "Cancelled" | "Waitlisted" | "Attended";
+  notes?: string | null;
 }
 
 export interface EventInvitation extends BaseEntity {
   eventId: string;
   event?: EventItem;
-  email: string;
-  status: "pending" | "accepted" | "declined" | "expired";
-  token: string;
-  invitedBy?: string;
-}
-
-export interface SendEventInvitationDto {
-  email: string;
+  recipientEmail: string;
+  recipientName?: string;
+  status: "Pending" | "Accepted" | "Declined";
+  sentAt: string;
+  respondedAt?: string | null;
 }

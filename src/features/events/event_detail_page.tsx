@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import Header from "@/features/components/header";
@@ -6,6 +9,7 @@ import Footer from "@/features/components/footer";
 import PageContainer from "@/features/components/page_container";
 import EventDetailContent from "@/features/events/components/event_detail_content";
 import { getEventDetailView } from "@/features/events/event_detail_view";
+import { fetchPublicEventBySlug } from "@/features/events/services/event_service";
 import type { ChlpsEvent } from "@/features/events/events_data";
 
 type EventDetailPageProps = {
@@ -13,7 +17,16 @@ type EventDetailPageProps = {
 };
 
 export default function EventDetailPage({ event }: EventDetailPageProps) {
-  const view = getEventDetailView(event);
+  const { data: liveEvent } = useQuery({
+    queryKey: ["public-event", event.id],
+    queryFn: () => fetchPublicEventBySlug(event.id),
+    initialData: event,
+    staleTime: 0,
+    refetchOnMount: "always",
+  });
+
+  const activeEvent = liveEvent || event;
+  const view = getEventDetailView(activeEvent);
 
   return (
     <div className="min-h-screen bg-cream">
@@ -38,7 +51,7 @@ export default function EventDetailPage({ event }: EventDetailPageProps) {
             </p>
           </div>
 
-          <EventDetailContent event={event} />
+          <EventDetailContent event={activeEvent} />
         </PageContainer>
       </section>
       <Footer />

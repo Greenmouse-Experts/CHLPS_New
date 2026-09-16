@@ -1,7 +1,11 @@
 import simpleApiClient from "@/lib/network/simpleApi";
 import { ApiUrls } from "@/lib/network/api_url";
 import type { EventItem } from "@/types";
-import type { ChlpsEvent, EventAccess, EventStatus } from "@/features/events/events_data";
+import type {
+  ChlpsEvent,
+  EventAccess,
+  EventStatus,
+} from "@/features/events/events_data";
 import { Assets } from "@/lib/assets";
 
 export interface PublicEventsResponse {
@@ -31,7 +35,9 @@ export function isValidImageUrl(url?: string | null): boolean {
 export function formatEventDate(startDate?: string, endDate?: string): string {
   if (!startDate) return "";
   try {
-    const d1 = new Date(startDate.includes("T") ? startDate : `${startDate}T00:00:00`);
+    const d1 = new Date(
+      startDate.includes("T") ? startDate : `${startDate}T00:00:00`,
+    );
     if (isNaN(d1.getTime())) return startDate;
 
     const formatter = new Intl.DateTimeFormat("en-GB", {
@@ -42,7 +48,9 @@ export function formatEventDate(startDate?: string, endDate?: string): string {
     const d1Formatted = formatter.format(d1);
 
     if (endDate && endDate !== startDate) {
-      const d2 = new Date(endDate.includes("T") ? endDate : `${endDate}T00:00:00`);
+      const d2 = new Date(
+        endDate.includes("T") ? endDate : `${endDate}T00:00:00`,
+      );
       if (!isNaN(d2.getTime())) {
         const d2Formatted = formatter.format(d2);
         return `${d1Formatted} - ${d2Formatted}`;
@@ -90,7 +98,7 @@ export function calculateEventDuration(
   startDate?: string,
   startTime?: string,
   endDate?: string,
-  endTime?: string
+  endTime?: string,
 ): string {
   if (startDate && endDate && startDate !== endDate) {
     try {
@@ -171,6 +179,70 @@ export function determineEventStatus(apiEvent: EventItem): EventStatus {
 }
 
 /**
+ * Extract an array of valid image URLs from EventItem.
+ * Handles coverImage, images array/string, and image fields.
+ */
+export function extractEventGallery(apiEvent: EventItem): string[] {
+  const urls: string[] = [];
+
+  const addIfValid = (url?: unknown) => {
+    if (typeof url === "string" && isValidImageUrl(url)) {
+      const trimmed = url.trim();
+      if (!urls.includes(trimmed)) {
+        urls.push(trimmed);
+      }
+    }
+  };
+
+  // 1. Check coverImage first (as primary hero)
+  addIfValid(apiEvent.coverImage);
+
+  // 2. Check images array or stringified array/urls
+  if (Array.isArray(apiEvent.images)) {
+    for (const item of apiEvent.images) {
+      if (typeof item === "string") {
+        addIfValid(item);
+      } else if (item && typeof item === "object") {
+        const obj = item as Record<string, unknown>;
+        addIfValid(obj.url || obj.image || obj.src || obj.path);
+      }
+    }
+  } else if (typeof apiEvent.images === "string" && apiEvent.images.trim()) {
+    try {
+      const parsed = JSON.parse(apiEvent.images);
+      if (Array.isArray(parsed)) {
+        for (const item of parsed) {
+          if (typeof item === "string") {
+            addIfValid(item);
+          } else if (item && typeof item === "object") {
+            const obj = item as Record<string, unknown>;
+            addIfValid(obj.url || obj.image || obj.src || obj.path);
+          }
+        }
+      } else if (typeof parsed === "string") {
+        addIfValid(parsed);
+      }
+    } catch {
+      if (apiEvent.images.includes(",")) {
+        apiEvent.images.split(",").forEach(addIfValid);
+      } else {
+        addIfValid(apiEvent.images);
+      }
+    }
+  }
+
+  // 3. Check legacy image field
+  addIfValid(apiEvent.image);
+
+  // 4. Default fallback if nothing was valid
+  if (urls.length === 0) {
+    urls.push(Assets.images.upcomingEvent);
+  }
+
+  return urls;
+}
+
+/**
  * Transforms an API EventItem to the frontend ChlpsEvent format.
  */
 export function transformEventApiToChlpsEvent(apiEvent: EventItem): ChlpsEvent {
@@ -181,7 +253,10 @@ export function transformEventApiToChlpsEvent(apiEvent: EventItem): ChlpsEvent {
   let category = "Webinar";
   if (typeof apiEvent.category === "object" && apiEvent.category?.name) {
     category = apiEvent.category.name;
-  } else if (typeof apiEvent.category === "string" && apiEvent.category.trim()) {
+  } else if (
+    typeof apiEvent.category === "string" &&
+    apiEvent.category.trim()
+  ) {
     category = apiEvent.category;
   }
 
@@ -189,16 +264,17 @@ export function transformEventApiToChlpsEvent(apiEvent: EventItem): ChlpsEvent {
   const isFree = !apiEvent.price || apiEvent.price <= 0;
   const access: EventAccess = isFree ? "free" : "paid";
   const currency = apiEvent.currency || "CAD";
-  const ticketPrice = isFree ? "Free" : `${currency} $${apiEvent.price.toLocaleString()}`;
+  const ticketPrice = isFree
+    ? "Free"
+    : `${currency} $${apiEvent.price.toLocaleString()}`;
 
   const isVirtual =
     apiEvent.format?.toLowerCase() === "virtual" || !apiEvent.location;
   const location = isVirtual ? "Online" : apiEvent.location || "Online";
   const address = isVirtual ? undefined : apiEvent.location || undefined;
 
-  const validImage = isValidImageUrl(apiEvent.image)
-    ? apiEvent.image!
-    : Assets.images.upcomingEvent;
+  const gallery = extractEventGallery(apiEvent);
+  const validImage = gallery[0] || Assets.images.upcomingEvent;
 
   return {
     id,
@@ -213,14 +289,14 @@ export function transformEventApiToChlpsEvent(apiEvent: EventItem): ChlpsEvent {
       apiEvent.startDate,
       apiEvent.startTime,
       apiEvent.endDate,
-      apiEvent.endTime
+      apiEvent.endTime,
     ),
     location,
     address,
     ticketPrice,
     image: validImage,
     imageAlt: `${title} banner`,
-    gallery: [validImage],
+    gallery,
     raw: apiEvent,
   };
 }
@@ -268,14 +344,12 @@ export async function fetchPublicEvents(): Promise<ChlpsEvent[]> {
  * Fetches a single public event by slug or ID.
  */
 export async function fetchPublicEventBySlug(
-  slugOrId: string
+  slugOrId: string,
 ): Promise<ChlpsEvent | null> {
   const all = await fetchPublicEvents();
   const found = all.find(
     (e) =>
-      e.id === slugOrId ||
-      e.raw?.id === slugOrId ||
-      e.raw?.slug === slugOrId
+      e.id === slugOrId || e.raw?.id === slugOrId || e.raw?.slug === slugOrId,
   );
   return found || null;
 }
