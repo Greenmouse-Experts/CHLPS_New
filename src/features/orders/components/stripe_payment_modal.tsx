@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   Elements,
   PaymentElement,
@@ -143,7 +144,7 @@ function CheckoutForm({
 
 /**
  * Main Stripe Payment Modal
- * Enforces orders/preview BEFORE calling orders/create
+ * Enforces orders/preview via useQuery BEFORE calling orders/create
  */
 export default function StripePaymentModal({
   isOpen,
@@ -155,15 +156,10 @@ export default function StripePaymentModal({
   onSuccess,
 }: StripePaymentModalProps) {
   const [step, setStep] = useState<"preview" | "payment">("preview");
-  const [isLoadingPreview, setIsLoadingPreview] = useState(false);
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
-  const [previewData, setPreviewData] =
-    useState<OrderPreviewCalculations | null>(null);
   const [createdOrder, setCreatedOrder] =
     useState<OrderCreateResponseData | null>(null);
   const [stripePromise] = useState(() => getStripe());
-
-  const lastFetchedKey = useRef<string | null>(null);
 
   const rawAmount =
     estimatedAmount ||
@@ -172,7 +168,7 @@ export default function StripePaymentModal({
       0,
     );
 
-  // Stable string signature of items and amount to avoid infinite loop
+  // Stable string signature of items and amount for query key caching
   const itemsKey = useMemo(
     () =>
       JSON.stringify({
@@ -183,66 +179,43 @@ export default function StripePaymentModal({
     [courses, memberships, rawAmount],
   );
 
-  // Trigger preview calculation only once per open or if items genuinely change
+  // TanStack useQuery for order preview calculations
+  const previewQuery = useQuery({
+    queryKey: ["order-preview", itemsKey],
+    queryFn: async () => {
+      const res = await orderService.previewOrder({
+        amount: rawAmount,
+        courses,
+        memberships,
+      });
+
+      if (res.success && res.data) {
+        return res.data;
+      }
+
+      return {
+        subAmount: rawAmount,
+        total: rawAmount,
+        taxAmount: 0,
+        currency: "CAD",
+      } as OrderPreviewCalculations;
+    },
+    enabled: isOpen && rawAmount > 0,
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
+
+  const previewData = previewQuery.data ?? null;
+  const isLoadingPreview = previewQuery.isLoading;
+
+  // Reset modal step when closed
   useEffect(() => {
     if (!isOpen) {
-      lastFetchedKey.current = null;
       setStep("preview");
-      setPreviewData(null);
       setCreatedOrder(null);
-      setIsLoadingPreview(false);
-      return;
     }
-
-    if (lastFetchedKey.current === itemsKey) {
-      return;
-    }
-    lastFetchedKey.current = itemsKey;
-
-    let isMounted = true;
-    const runPreview = async () => {
-      setIsLoadingPreview(true);
-
-      try {
-        const res = await orderService.previewOrder({
-          amount: rawAmount,
-          courses,
-          memberships,
-        });
-
-        if (!isMounted) return;
-
-        if (res.success && res.data) {
-          setPreviewData(res.data);
-        } else {
-          setPreviewData({
-            subAmount: rawAmount,
-            total: rawAmount,
-            taxAmount: 0,
-            currency: "CAD",
-          });
-        }
-      } catch {
-        if (!isMounted) return;
-        setPreviewData({
-          subAmount: rawAmount,
-          total: rawAmount,
-          taxAmount: 0,
-          currency: "CAD",
-        });
-      } finally {
-        if (isMounted) {
-          setIsLoadingPreview(false);
-        }
-      }
-    };
-
-    runPreview();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [isOpen, itemsKey, rawAmount, courses, memberships]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -256,13 +229,12 @@ export default function StripePaymentModal({
     setIsCreatingOrder(true);
     try {
       // Execute preview first, then create order
-      const { preview, order } = await orderService.checkoutWithPreview({
+      const { order } = await orderService.checkoutWithPreview({
         courses,
         memberships,
         estimatedAmount: rawAmount,
       });
 
-      setPreviewData(preview);
       setCreatedOrder(order);
 
       // If backend returns a direct Stripe Checkout URL, redirect user
