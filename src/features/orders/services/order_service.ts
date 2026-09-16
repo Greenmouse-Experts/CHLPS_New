@@ -26,15 +26,17 @@ export class OrderService {
     payload: OrderPreviewPayload,
   ): Promise<ApiResponse<OrderPreviewCalculations>> {
     try {
-      const response = await this.api.postData<
-        OrderPreviewPayload,
-        OrderPreviewCalculations
-      >(ApiUrls.ordersPreview, payload);
+      const response = await this.api.postData<OrderPreviewPayload, any>(
+        ApiUrls.ordersPreview,
+        payload,
+      );
 
       if (response.success && response.data) {
+        const raw = response.data as any;
+        const actualData: OrderPreviewCalculations = raw.data ?? raw;
         return ok(
-          response.data,
-          response.message || "Order preview calculated",
+          actualData,
+          raw.message || response.message || "Order preview calculated",
         );
       }
       return fail(
@@ -60,13 +62,18 @@ export class OrderService {
     payload: OrderCreatePayload,
   ): Promise<ApiResponse<OrderCreateResponseData>> {
     try {
-      const response = await this.api.postData<
-        OrderCreatePayload,
-        OrderCreateResponseData
-      >(ApiUrls.ordersCreate, payload);
+      const response = await this.api.postData<OrderCreatePayload, any>(
+        ApiUrls.ordersCreate,
+        payload,
+      );
 
       if (response.success && response.data) {
-        return ok(response.data, response.message || "Order created");
+        const raw = response.data as any;
+        const actualData: OrderCreateResponseData = raw.data ?? raw;
+        return ok(
+          actualData,
+          raw.message || response.message || "Order created",
+        );
       }
       return fail(
         response.message || "Failed to initiate order",
@@ -156,12 +163,17 @@ export class OrderService {
     thirdPartyRef: string,
   ): Promise<ApiResponse<OrderConfirmResponseData>> {
     try {
-      const response = await this.api.postData<{}, OrderConfirmResponseData>(
+      const response = await this.api.postData<{}, any>(
         ApiUrls.ordersConfirm(thirdPartyRef),
         {},
       );
       if (response.success && response.data) {
-        return ok(response.data, response.message || "Order confirmed");
+        const raw = response.data as any;
+        const actualData: OrderConfirmResponseData = raw.data ?? raw;
+        return ok(
+          actualData,
+          raw.message || response.message || "Order confirmed",
+        );
       }
       return fail(
         response.message || "Payment confirmation failed",
@@ -186,12 +198,13 @@ export class OrderService {
     orderNumber: string,
   ): Promise<ApiResponse<{ message: string }>> {
     try {
-      const response = await this.api.postData<{}, { message: string }>(
+      const response = await this.api.postData<{}, any>(
         ApiUrls.ordersCancel(orderNumber),
         {},
       );
       if (response.success && response.data) {
-        return ok(response.data, response.message || "Order cancelled");
+        const raw = response.data as any;
+        return ok(raw, raw.message || response.message || "Order cancelled");
       }
       return fail(
         response.message || "Failed to cancel order",
@@ -213,11 +226,13 @@ export class OrderService {
    */
   async fetchStudentTransactions(): Promise<ApiResponse<LiveOrderRecord[]>> {
     try {
-      const response = await this.api.getData<LiveOrderRecord[]>(
-        ApiUrls.studentTransactions,
-      );
+      const response = await this.api.getData<any>(ApiUrls.studentTransactions);
       if (response.success && response.data) {
-        return ok(response.data);
+        const raw = response.data as any;
+        const actualData: LiveOrderRecord[] = Array.isArray(raw)
+          ? raw
+          : (raw.data ?? raw.results ?? []);
+        return ok(actualData);
       }
       return fail(
         response.message || "Failed to fetch transaction history",

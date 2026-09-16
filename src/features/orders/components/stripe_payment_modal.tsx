@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   Elements,
   PaymentElement,
@@ -163,6 +163,8 @@ export default function StripePaymentModal({
     useState<OrderCreateResponseData | null>(null);
   const [stripePromise] = useState(() => getStripe());
 
+  const lastFetchedKey = useRef<string | null>(null);
+
   const rawAmount =
     estimatedAmount ||
     [...courses, ...memberships].reduce(
@@ -170,39 +172,77 @@ export default function StripePaymentModal({
       0,
     );
 
-  // Trigger preview calculation whenever modal opens
+  // Stable string signature of items and amount to avoid infinite loop
+  const itemsKey = useMemo(
+    () =>
+      JSON.stringify({
+        c: courses.map((c) => `${c.id}:${c.price}`),
+        m: memberships.map((m) => `${m.id}:${m.price}`),
+        a: rawAmount,
+      }),
+    [courses, memberships, rawAmount],
+  );
+
+  // Trigger preview calculation only once per open or if items genuinely change
   useEffect(() => {
     if (!isOpen) {
+      lastFetchedKey.current = null;
       setStep("preview");
       setPreviewData(null);
       setCreatedOrder(null);
+      setIsLoadingPreview(false);
       return;
     }
 
+    if (lastFetchedKey.current === itemsKey) {
+      return;
+    }
+    lastFetchedKey.current = itemsKey;
+
+    let isMounted = true;
     const runPreview = async () => {
       setIsLoadingPreview(true);
 
-      const res = await orderService.previewOrder({
-        amount: rawAmount,
-        courses,
-        memberships,
-      });
+      try {
+        const res = await orderService.previewOrder({
+          amount: rawAmount,
+          courses,
+          memberships,
+        });
 
-      if (res.status && res.data) {
-        setPreviewData(res.data);
-      } else {
+        if (!isMounted) return;
+
+        if (res.success && res.data) {
+          setPreviewData(res.data);
+        } else {
+          setPreviewData({
+            subAmount: rawAmount,
+            total: rawAmount,
+            taxAmount: 0,
+            currency: "CAD",
+          });
+        }
+      } catch {
+        if (!isMounted) return;
         setPreviewData({
           subAmount: rawAmount,
           total: rawAmount,
           taxAmount: 0,
           currency: "CAD",
         });
+      } finally {
+        if (isMounted) {
+          setIsLoadingPreview(false);
+        }
       }
-      setIsLoadingPreview(false);
     };
 
     runPreview();
-  }, [isOpen, courses, memberships, rawAmount]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isOpen, itemsKey, rawAmount, courses, memberships]);
 
   if (!isOpen) return null;
 

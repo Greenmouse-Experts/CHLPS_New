@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -67,6 +67,19 @@ export default function CertificationDetailsPage({
     }
   };
 
+  const coursesForModal = useMemo(
+    () =>
+      detail?.courseId
+        ? [
+            {
+              id: detail.courseId,
+              price: detail.price ?? 0,
+            },
+          ]
+        : [],
+    [detail?.courseId, detail?.price],
+  );
+
   return (
     <div className="min-h-screen bg-[#EDECF2]">
       <Header />
@@ -112,12 +125,7 @@ export default function CertificationDetailsPage({
                 isOpen={isStripeModalOpen}
                 onClose={() => setIsStripeModalOpen(false)}
                 title={`Enroll in ${detail.heroTitle.replace(/\n/g, " ")}`}
-                courses={[
-                  {
-                    id: detail.courseId,
-                    price: detail.price ?? 0,
-                  },
-                ]}
+                courses={coursesForModal}
                 estimatedAmount={detail.price ?? 0}
                 onSuccess={() => {
                   setIsStripeModalOpen(false);

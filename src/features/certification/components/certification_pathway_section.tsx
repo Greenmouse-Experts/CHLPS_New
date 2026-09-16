@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
@@ -100,6 +100,19 @@ export default function CertificationPathwaySection() {
       course,
     });
   };
+
+  const coursesForModal = useMemo(
+    () =>
+      selectedCheckout
+        ? [
+            {
+              id: selectedCheckout.course.id,
+              price: Number(selectedCheckout.course.price) || 0,
+            },
+          ]
+        : [],
+    [selectedCheckout],
+  );
 
   return (
     <section id="pathways" className="bg-[#FAF9FD] py-16 sm:py-20 lg:py-24">
@@ -241,12 +254,7 @@ export default function CertificationPathwaySection() {
             isOpen={Boolean(selectedCheckout)}
             onClose={() => setSelectedCheckout(null)}
             title={`Enroll in ${selectedCheckout.title}`}
-            courses={[
-              {
-                id: selectedCheckout.course.id,
-                price: Number(selectedCheckout.course.price) || 0,
-              },
-            ]}
+            courses={coursesForModal}
             estimatedAmount={Number(selectedCheckout.course.price) || 0}
             onSuccess={() => {
               setSelectedCheckout(null);
