@@ -28,6 +28,56 @@ interface CertificationAssessmentPageProps {
   id: string;
 }
 
+/** Deterministic 32-bit FNV-1a hash, used to derive stable question ids. */
+function fnv1aHash(input: string, seed: number): number {
+  let hash = seed >>> 0;
+  for (let i = 0; i < input.length; i += 1) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return hash >>> 0;
+}
+
+/**
+ * Builds a UUID for an application question the API returned without an id.
+ *
+ * `POST /course-applications/submit` requires every `answers[].questionId` to
+ * be a UUID, but several courses expose their `applicationQuestions` as plain
+ * `{ question }` objects. The id is derived from the course, the question's
+ * position and its text so the same question always maps to the same value: a
+ * random id would be regenerated on every render and silently drop the answer
+ * the user had already selected.
+ */
+function deriveQuestionId(
+  courseId: string | undefined,
+  index: number,
+  question: string,
+): string {
+  const seed = `${courseId ?? ""}::${index}::${question}`;
+  const chars = [
+    fnv1aHash(seed, 0x811c9dc5),
+    fnv1aHash(seed, 0x9e3779b9),
+    fnv1aHash(seed, 0x85ebca6b),
+    fnv1aHash(seed, 0xc2b2ae35),
+  ]
+    .map((word) => word.toString(16).padStart(8, "0"))
+    .join("")
+    .split("");
+
+  // Force the version 4 / variant bits the API's UUID validator expects.
+  chars[12] = "4";
+  chars[16] = "89ab"[parseInt(chars[16], 16) & 0x3];
+
+  const uuid = chars.join("");
+  return [
+    uuid.slice(0, 8),
+    uuid.slice(8, 12),
+    uuid.slice(12, 16),
+    uuid.slice(16, 20),
+    uuid.slice(20),
+  ].join("-");
+}
+
 export default function CertificationAssessmentPage({
   id,
 }: CertificationAssessmentPageProps) {
@@ -51,14 +101,21 @@ export default function CertificationAssessmentPage({
   const detail = programQuery.data;
   const courseId = detail?.courseId;
 
-  // 2. Redirect unauthenticated users
-  useEffect(() => {
-    if (!token && typeof window !== "undefined") {
+  const check_auth = () => {
+    if (typeof window !== "undefined") {
+      return;
+    }
+    if (!token) {
+      //@ts-ignore
       const currentPath = window.location.pathname;
       router.push(
         `/dashboard/sign-in?redirect=${encodeURIComponent(currentPath)}`,
       );
     }
+  };
+  // 2. Redirect unauthenticated users
+  useEffect(() => {
+    check_auth();
   }, [token, router]);
 
   // 3. Fetch existing application attempts for this course
@@ -68,6 +125,7 @@ export default function CertificationAssessmentPage({
       if (!courseId) return null;
       const res = await orderService.fetchMyCourseApplication(courseId);
       if (res.success && res.data) {
+        console.log(res.data);
         return res.data;
       }
       return null;
@@ -92,14 +150,16 @@ export default function CertificationAssessmentPage({
     [detail?.applicationQuestions],
   );
 
-  // Normalize questions so each has a stable id
-  const questions = useMemo(() => {
-    return rawQuestions.map((q, idx) => ({
-      id: q.id || `q-${idx}-${q.question.slice(0, 10).toLowerCase().replace(/\s+/g, "-")}`,
-      rawId: q.id,
-      question: q.question,
-    }));
-  }, [rawQuestions]);
+  // Normalize questions so every entry exposes an `id` the submit endpoint
+  // accepts, preferring the id the course already persists when present.
+  const questions = useMemo(
+    () =>
+      rawQuestions.map((q, index) => ({
+        id: q.id || deriveQuestionId(courseId, index, q.question),
+        question: q.question,
+      })),
+    [rawQuestions, courseId],
+  );
 
   const allAnswered =
     questions.length > 0 &&
@@ -128,7 +188,7 @@ export default function CertificationAssessmentPage({
     setIsSubmitting(true);
     try {
       const payloadAnswers = questions.map((q) => ({
-        questionId: q.rawId || q.id,
+        questionId: q.id,
         answer: answers[q.id] ?? false,
       }));
 
@@ -262,10 +322,7 @@ export default function CertificationAssessmentPage({
                   <div className="overflow-hidden rounded-3xl border border-[#C5E8D3] bg-[#F3FAF5] p-6 shadow-xs sm:p-8">
                     <div className="flex flex-col items-center text-center">
                       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#189D52] text-white shadow-sm">
-                        <HugeiconsIcon
-                          icon={CheckmarkCircle02Icon}
-                          size={36}
-                        />
+                        <HugeiconsIcon icon={CheckmarkCircle02Icon} size={36} />
                       </div>
                       <h2 className="mt-4 text-xl font-bold text-[#0E582E] sm:text-2xl">
                         Assessment Completed
@@ -321,7 +378,8 @@ export default function CertificationAssessmentPage({
                         Eligibility Questions ({questions.length})
                       </h2>
                       <span className="text-xs font-semibold text-primary">
-                        {Object.keys(answers).length} of {questions.length} answered
+                        {Object.keys(answers).length} of {questions.length}{" "}
+                        answered
                       </span>
                     </div>
 
@@ -353,9 +411,7 @@ export default function CertificationAssessmentPage({
                               <div className="flex shrink-0 items-center gap-2.5 sm:self-center">
                                 <button
                                   type="button"
-                                  onClick={() =>
-                                    handleSelectAnswer(q.id, true)
-                                  }
+                                  onClick={() => handleSelectAnswer(q.id, true)}
                                   className={`flex h-10 min-w-[84px] items-center justify-center gap-1.5 rounded-full px-4 text-xs font-bold transition-all ${
                                     currentAnswer === true
                                       ? "bg-[#189D52] text-white shadow-xs"
@@ -418,7 +474,11 @@ export default function CertificationAssessmentPage({
                         ) : (
                           <div className="flex items-center gap-2">
                             <span>Submit & Proceed to Payment</span>
-                            <HugeiconsIcon icon={ArrowLeft01Icon} className="rotate-180" size={16} />
+                            <HugeiconsIcon
+                              icon={ArrowLeft01Icon}
+                              className="rotate-180"
+                              size={16}
+                            />
                           </div>
                         )}
                       </Button>
