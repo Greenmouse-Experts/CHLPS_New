@@ -98,15 +98,17 @@ export class OrderService {
   async checkoutWithPreview(params: {
     courses?: OrderCreatePayload["courses"];
     memberships?: OrderCreatePayload["memberships"];
-    estimatedAmount: number;
+    estimatedAmount?: number;
     callback_url?: string;
   }): Promise<{
     preview: OrderPreviewCalculations;
     order: OrderCreateResponseData;
   }> {
+    const rawEstimated = params.estimatedAmount ?? 0;
+
     // Step A: Preview
     const previewRes = await this.previewOrder({
-      amount: params.estimatedAmount,
+      amount: rawEstimated,
       courses: params.courses,
       memberships: params.memberships,
     });
@@ -118,9 +120,7 @@ export class OrderService {
     }
 
     const verifiedSubAmount =
-      previewRes.data.subAmount ??
-      previewRes.data.amount ??
-      params.estimatedAmount;
+      previewRes.data.subAmount ?? previewRes.data.amount ?? rawEstimated;
 
     // Step B: Create Order
     const defaultCallback =
