@@ -12,6 +12,7 @@ import { Assets } from "@/lib/assets";
 export interface WhyJoinCardItem {
   title: string;
   description: string;
+  img?: string;
 }
 
 export const WHY_JOIN_CHLPS_CARDS: WhyJoinCardItem[] = [
@@ -19,31 +20,37 @@ export const WHY_JOIN_CHLPS_CARDS: WhyJoinCardItem[] = [
     title: "Professional Recognition",
     description:
       "Strengthen your professional standing through membership and certification pathways that recognize competence, experience, ethical practice, and commitment to excellence in Loss Prevention.",
+    img: "/professional_recognition.png",
   },
   {
     title: "Career Advancement",
     description:
       "Build a stronger professional profile and progress through structured pathways that support career development from emerging practitioner to management, leadership, and chartered professional status.",
+    img: "/career_advancement.png",
   },
   {
     title: "Continuous Professional Development",
     description:
       "Keep your knowledge current through professional education, training, webinars, industry resources, and development opportunities addressing evolving risks, technologies, regulations, and Loss Prevention practices.",
+    img: "/continous_professional_development.png",
   },
   {
     title: "Professional Network",
     description:
       "Connect with Loss Prevention practitioners, corporate security leaders, investigators, risk professionals, consultants, educators, and industry partners to exchange knowledge, build relationships, and expand professional opportunities.",
+    img: "/professional_network.png",
   },
   {
     title: "Industry Knowledge and Resources",
     description:
       "Gain access to professional insights, practice guidance, emerging trends, research, and specialist resources that strengthen decision making and improve Loss Prevention effectiveness within your organization.",
+    img: "/industry_knowledge.png",
   },
   {
     title: "Professional Voice & Industry Influence",
     description:
       "Become part of a professional community advancing Loss Prevention standards, ethical practice, professional recognition, and industry development while helping shape the future of the profession in Canada and beyond.",
+    img: "/professional_voice.png",
   },
 ];
 
@@ -89,6 +96,11 @@ export default function WhyJoinChlpsSection() {
                   {card.title}
                 </h3>
               </div>
+              <img
+                className="size-32 mx-auto"
+                src={`/assets/images/why_join_section/${card.img}`}
+                alt={card.title}
+              />
 
               {/* Icon slot left empty for now as requested */}
               <div className="relative z-10 my-auto py-2" />
