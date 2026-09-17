@@ -107,7 +107,7 @@ export default function MembershipGradeCard({
           </div>
         ) : null}
 
-        {onApply ? (
+        {/*{onApply ? (
           <button
             type="button"
             onClick={onApply}
@@ -116,7 +116,7 @@ export default function MembershipGradeCard({
           >
             {isApplying ? "Checking Eligibility..." : "Apply for Grade"}
           </button>
-        ) : null}
+        ) : null}*/}
       </div>
     </article>
   );
