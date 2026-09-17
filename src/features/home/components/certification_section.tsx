@@ -16,6 +16,7 @@ import {
 } from "@/features/certification/services/certification_menu_service";
 import { resolveCertificationHref } from "@/features/certification/certification_details";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 const certBadgeMap: Record<string, string> = {
   clpa: Assets.images.certificates.clpa,
@@ -97,15 +98,11 @@ export default function CertificationSection() {
 
       <PageContainer className="relative z-10">
         <div className="flex flex-col justify-center items-center">
-          <div className="max-w-xl flex flex-col items-center">
-            <Reveal>
-              <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[15px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                FEATURED PROGRAMMES
-              </span>
-            </Reveal>
+          <div className="max-w-5xl flex flex-col items-center">
+            <HeaderText
+              left={`program of studies &`}
+              right="certification pathways"
+            ></HeaderText>
             <Reveal delay={80}>
               <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px] text-center">
                 A certification pathway that grows with your career.

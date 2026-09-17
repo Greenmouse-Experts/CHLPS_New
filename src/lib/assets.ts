@@ -41,6 +41,8 @@ export const Assets = {
     faqHero: "/assets/images/faq_hero_bg.png",
     cardPatternLeft: "/assets/images/left_bg_parttern.png",
     cardPatternRight: "/assets/images/right_bg_parttern.png",
+    whyJoinCardBg: "/assets/images/why_join_section/card_bg.png",
+    whyJoinCardBgWhite: "/assets/images/why_join_section/card_bg_white.png",
     events: {
       liveForum: "/assets/images/ttt.jpg",
       webinar:

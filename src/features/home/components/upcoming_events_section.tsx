@@ -13,6 +13,8 @@ import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
+import HeaderSubText from "@/components/HeaderSubText";
 
 const events: {
   title: string;
@@ -43,12 +45,7 @@ const events: {
 function EventIconBadge({ icon }: { icon: IconSvgElement }) {
   return (
     <span className="flex h-[4.75rem] w-[4.75rem] shrink-0 items-center justify-center rounded-xl bg-lilac sm:h-[5.25rem] sm:w-[5.25rem]">
-      <HugeiconsIcon
-        icon={icon}
-        size={36}
-        color="#211A73"
-        strokeWidth={1.8}
-      />
+      <HugeiconsIcon icon={icon} size={36} color="#211A73" strokeWidth={1.8} />
     </span>
   );
 }
@@ -58,22 +55,17 @@ export default function UpcomingEventsSection() {
     <section id="events" className="bg-cream py-16 md:py-24">
       <PageContainer>
         <div className="flex items-center justify-center">
-          <div className="max-w-xl flex flex-col items-center justify-center">
-            <Reveal>
-              <span
-                className="cut-tl inline-block bg-accent px-3 py-1.5 text-[15px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                UPCOMING EVENTS
-              </span>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight text-center tracking-tight text-text sm:text-3xl lg:text-[2.35rem] xl:text-[40px]">
-                Learn, connect and stay current with the profession.
-              </h2>
-            </Reveal>
+          <div className="max-w-5xl flex flex-col items-center justify-center">
+            <HeaderText left="Upcoming" right="Events"></HeaderText>
+            <HeaderSubText>
+              Stay connected, informed, and professionally engaged through
+              ChLPS-Canada events. Explore upcoming conferences, webinars,
+              workshops, networking sessions, and professional development
+              activities designed to expand your knowledge, strengthen industry
+              connections, share emerging practices, and support your continued
+              growth within the Loss Prevention and Asset Protection profession.
+            </HeaderSubText>
           </div>
-          
         </div>
 
         <div className="mt-10 grid items-stretch gap-5 lg:mt-12 lg:grid-cols-2 lg:gap-6 xl:gap-8">

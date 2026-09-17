@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
+import HeaderSubText from "@/components/HeaderSubText";
 
 const partners = [
   {
@@ -64,22 +66,17 @@ export default function PartnersSection() {
       </div>
 
       <PageContainer className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <span
-              className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-1.5 text-[15px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
-              style={{ "--cut": "0.55rem" } as CSSProperties}
-            >
-              AFFILIATIONS AND PARTNERSHIPS
-            </span>
-          </Reveal>
-
-          <Reveal delay={140}>
-            <p className="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed text-[#383740] sm:text-[20px]">
-              Professional affiliations and education partnerships that support
-              the wider ChLPS Canada ecosystem.
-            </p>
-          </Reveal>
+        <div className="mx-auto max-w-5xl text-center">
+          <HeaderText left={"Affiliations &"} right="Partnership"></HeaderText>
+          <HeaderSubText>
+            ChLPS-Canada builds strategic affiliations and partnerships with
+            professional bodies, educational institutions, industry
+            organizations, and solution providers that share our commitment to
+            advancing Loss Prevention and Asset Protection. These relationships
+            strengthen professional development, encourage knowledge exchange,
+            expand industry collaboration, and create greater opportunities for
+            our members and the wider profession.
+          </HeaderSubText>
         </div>
       </PageContainer>
 

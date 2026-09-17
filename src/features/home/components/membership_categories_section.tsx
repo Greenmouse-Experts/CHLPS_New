@@ -13,6 +13,8 @@ import QueryCompLayout from "@/components/QueryCompLayout";
 import { fetchPublicMemberships } from "@/features/membership/services/membership_service";
 import { Assets } from "@/lib/assets";
 import type { Membership } from "@/types";
+import HeaderText from "@/components/HeaderText";
+import HeaderSubText from "@/components/HeaderSubText";
 
 const badgeMap: Record<string, string> = {
   student: Assets.images.membership.student,
@@ -97,20 +99,17 @@ export default function MembershipCategoriesSection() {
     <section id="membership" className="bg-[#F5F5F5] py-16 md:py-24">
       <PageContainer>
         <div className="flex items-center justify-center">
-          <div className="max-w-xl flex items-center justify-center flex-col">
-            <Reveal>
-              <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                MEMBERSHIP CATEGORIES
-              </span>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 className="mt-5 max-w-[400px] text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px] text-center">
-                Find the level that fits your career stage.
-              </h2>
-            </Reveal>
+          <div className="max-w-5xl flex items-center justify-center flex-col">
+            <HeaderText left="Membership" right="categories"></HeaderText>
+            <HeaderSubText>
+              Membership with ChLPS-Canada connects you to a respected
+              professional community committed to advancing Loss Prevention and
+              Asset Protection. Whether beginning your career or leading at a
+              senior level, membership provides professional recognition,
+              development opportunities, industry connections, valuable
+              resources, and a platform to strengthen your expertise, influence,
+              and career progression.
+            </HeaderSubText>
           </div>
         </div>
 

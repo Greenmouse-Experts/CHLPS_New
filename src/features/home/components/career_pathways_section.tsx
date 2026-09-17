@@ -18,6 +18,8 @@ import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
+import HeaderSubText from "@/components/HeaderSubText";
 
 type Career = {
   icon: LucideIcon;
@@ -126,10 +128,7 @@ function CareerCard({ career }: { career: Career }) {
 
 export default function CareerPathwaysSection() {
   return (
-    <section
-      id="careers"
-      className="relative overflow-hidden py-16 md:py-24"
-    >
+    <section id="careers" className="relative overflow-hidden py-16 md:py-24">
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <Image
           src={Assets.images.careerPathwaysBg}
@@ -141,19 +140,14 @@ export default function CareerPathwaysSection() {
       </div>
 
       <PageContainer className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <span className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5 text-[11px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-primary">
-              CAREER PATHWAYS
-            </span>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="mt-5 text-[1.75rem] font-normal leading-[1.15] tracking-tight text-white sm:text-3xl lg:mt-6 lg:text-[2.5rem] xl:text-[3rem]">
-              Career Opportunities in
-              <br />
-              <span className="text-secondary">Loss Prevention</span>
-            </h2>
-          </Reveal>
+        <div className="mx-auto max-w-5xl text-center">
+          <HeaderText
+            textWhite
+            left={`Loss Prevention`}
+            right={`
+            Career pathways
+            `}
+          ></HeaderText>
           {/* <Reveal delay={160}>
             <p className="mt-5 text-[15px] leading-relaxed text-white/90 sm:text-base">
               Build a rewarding and fulfilling career protecting people, assets,
@@ -161,19 +155,24 @@ export default function CareerPathwaysSection() {
               industry.
             </p>
           </Reveal> */}
-          <Reveal delay={220}>
-            <p className="mt-4 text-[15px] leading-relaxed text-white/90 sm:text-base">
-              Loss Prevention has advanced well beyond traditional retail theft
-              control. Today, it spans asset protection, investigations, fraud
-              prevention, risk management, cybersecurity, data protection and
-              business resilience.
-            </p>
-          </Reveal>
+          <HeaderSubText textWhite>
+            Loss Prevention has advanced well beyond traditional retail theft
+            control. Today, it encompasses asset protection, investigations,
+            fraud prevention, risk management, cybersecurity, data protection,
+            supply chain security, workplace safety, and business resilience.
+            Modern Loss Prevention professionals protect organizational value,
+            reduce preventable losses, strengthen operations, and support
+            sustainable business performance across diverse industries.
+          </HeaderSubText>
         </div>
 
         <RevealGroup className="mx-auto mt-10 grid max-w-xl auto-rows-fr grid-cols-1 gap-3 sm:mt-12 sm:max-w-none sm:grid-cols-2 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:gap-x-5 lg:gap-y-4 xl:max-w-[1180px]">
           {careers.map((career, index) => (
-            <div key={career.title} className="reveal h-full" style={revealStyle(index)}>
+            <div
+              key={career.title}
+              className="reveal h-full"
+              style={revealStyle(index)}
+            >
               <CareerCard career={career} />
             </div>
           ))}
