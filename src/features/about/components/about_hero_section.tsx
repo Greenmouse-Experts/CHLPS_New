@@ -59,7 +59,6 @@ export default function AboutHeroSection({
           onError={() => setImageSrc(Assets.images.heroBg2)}
           className={imageClassName}
         />
-        <div className="absolute inset-0 bg-[#030E20]/75" />
       </div>
 
       <PageContainer className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-28">
