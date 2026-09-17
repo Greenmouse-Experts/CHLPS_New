@@ -18,7 +18,8 @@ export type CertificationDetail = {
   requirements: string[];
   studiesBadge: string;
   studiesTitle: string;
-  modules: string[];
+  modules?: string[];
+  courseOutcomes?: string[];
   outcomeBadge: string;
   outcomeTitle: string;
   outcomeBody: string[];
@@ -26,6 +27,8 @@ export type CertificationDetail = {
   benefitsTitle: string;
   benefits: string[];
   applicationQuestions?: Array<{ id?: string; question: string }>;
+  coverImage?: string;
+  bannerImage?: string;
 };
 
 export const CERTIFICATION_DETAIL: CertificationDetail = {
@@ -49,8 +52,16 @@ export const CERTIFICATION_DETAIL: CertificationDetail = {
     "Ability to read, interpret, and apply instructional materials and case scenarios",
     "Commitment to professional development within the loss prevention or corporate security field",
   ],
-  studiesBadge: "CLPA Program of Studies:",
-  studiesTitle: "What You’ll Study",
+  studiesBadge: "CLPA Course Outcomes:",
+  studiesTitle: "Course Outcomes",
+  courseOutcomes: [
+    "Introduction to Loss Prevention and Asset Protection",
+    "Retail Operations, Shrinkage Concepts, and Causes of Loss",
+    "Physical Security Controls and Surveillance Systems",
+    "Shoplifting and Internal Theft Identification Techniques",
+    "Workplace Safety, Emergency Response, and Incident Awareness",
+    "Professional Ethics, Legal Boundaries, and Report Writing",
+  ],
   modules: [
     "Module 1: Introduction to Loss Prevention and Asset Protection",
     "Module 2: Retail Operations, Shrinkage Concepts, and Causes of Loss",

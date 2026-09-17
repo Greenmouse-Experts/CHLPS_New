@@ -70,6 +70,9 @@ export class ApiUrls {
   }
 
   static publicPrograms = "/programs/public";
+  static publicProgram(id: string) {
+    return `/programs/public/${id}`;
+  }
   static fetchPrograms = "/programs/fetch-programs";
   static publicCourses = "/courses/public";
   static publicMemberships = "/memberships/public";

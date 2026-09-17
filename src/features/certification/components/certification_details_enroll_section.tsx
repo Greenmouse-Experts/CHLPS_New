@@ -18,7 +18,6 @@ export default function CertificationDetailsEnrollSection({
   onEnroll?: () => void;
 }) {
   const [badgeSrc, setBadgeSrc] = useState(detail.badge);
-
   return (
     <section className="bg-[#EFEDF4] py-12 sm:py-14 lg:py-16">
       <PageContainer>

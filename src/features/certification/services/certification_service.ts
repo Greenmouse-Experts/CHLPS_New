@@ -242,21 +242,28 @@ export function transformProgramToCertificationDetail(
 
   const requirements = rawReqs.filter(Boolean);
 
-  // Program of studies / modules
-  const outcomes = course?.courseOutcomes ?? [];
-  const sortedOutcomes = [...outcomes].sort(
+  // Course outcomes
+  const rawOutcomes =
+    course?.courseOutcomes ??
+    (course as any)?.outcomes ??
+    program.courses?.[0]?.courseOutcomes ??
+    (program.courses?.[0] as any)?.outcomes ??
+    [];
+
+  const sortedOutcomes = [...rawOutcomes].sort(
     (a, b) => (a.order ?? 0) - (b.order ?? 0),
   );
 
-  const modules =
+  const courseOutcomes =
     sortedOutcomes.length > 0
-      ? sortedOutcomes.map((o, idx) => {
-          const desc = o.description.trim();
-          return desc.toLowerCase().startsWith("module")
-            ? desc
-            : `Module ${o.order ?? idx + 1}: ${desc}`;
-        })
+      ? sortedOutcomes
+          .map((o) => (typeof o === "string" ? o : o.description?.trim()))
+          .filter(Boolean)
       : [];
+
+  const modules = courseOutcomes;
+  const studiesBadge = `${abbr} Course Outcomes:`;
+  const studiesTitle = "Course Outcomes";
 
   // Outcome
   const outcomeBadge = `${abbr} Professional Certification`;
@@ -290,6 +297,16 @@ export function transformProgramToCertificationDetail(
     price: typeof price === "number" ? price : undefined,
     abbr,
     badge,
+    coverImage:
+      program.coverImage && program.coverImage.startsWith("http")
+        ? program.coverImage
+        : effectiveCourse?.coverImage && effectiveCourse.coverImage.startsWith("http")
+          ? effectiveCourse.coverImage
+          : undefined,
+    bannerImage:
+      effectiveCourse?.banner && effectiveCourse.banner.startsWith("http")
+        ? effectiveCourse.banner
+        : undefined,
     heroTitle,
     heroBody,
     cardTitle,
@@ -299,9 +316,10 @@ export function transformProgramToCertificationDetail(
     enrollHref,
     requirementsTitle: `Entry Requirements for the ${abbr} Certification`,
     requirements,
-    studiesBadge: `${abbr} Program of Studies:`,
-    studiesTitle: "What You’ll Study",
+    studiesBadge,
+    studiesTitle,
     modules,
+    courseOutcomes,
     outcomeBadge,
     outcomeTitle,
     outcomeBody,
@@ -313,127 +331,107 @@ export function transformProgramToCertificationDetail(
 }
 
 /**
- * Fetches program by ID, slug, or acronym, matching against live programs and courses.
+ * Fetches a single public program by ID from GET /programs/public/:id.
+ */
+export async function fetchPublicProgramById(
+  id: string,
+): Promise<ApiProgramItem | null> {
+  if (!id) return null;
+  const api = new ApiService();
+  try {
+    const res = await api.getData<unknown>(ApiUrls.publicProgram(id));
+    if (res.success && res.data) {
+      const raw = res.data;
+      if (raw && typeof raw === "object") {
+        const obj = raw as Record<string, unknown>;
+        if (obj.data && typeof obj.data === "object" && !Array.isArray(obj.data)) {
+          return obj.data as unknown as ApiProgramItem;
+        }
+        return obj as unknown as ApiProgramItem;
+      }
+    }
+  } catch (error) {
+    console.error(`Error fetching public program by id ${id}:`, error);
+  }
+  return null;
+}
+
+/**
+ * Fetches program by ID, slug, or acronym using the GET /programs/public/:id endpoint.
  */
 export async function fetchProgramById(
   idOrSlug: string,
 ): Promise<CertificationDetail | null> {
   if (!idOrSlug) return null;
 
-  const target = idOrSlug.trim().toLowerCase();
+  const trimmed = idOrSlug.trim();
 
-  // Fetch live programs and courses concurrently
-  const [programs, courses] = await Promise.all([
-    fetchPublicPrograms(),
-    fetchPublicCourses(),
-  ]);
-
-  if (programs.length === 0 && courses.length === 0) {
-    return null;
-  }
-
-  // Create course lookup by program ID
-  const courseByProgramId = new Map<string, ApiCourseItem>();
-  for (const c of courses) {
-    const p = c.program;
-    const pId =
-      typeof p === "object" && p
-        ? p.id || p.slug
-        : typeof p === "string"
-          ? p
-          : undefined;
-    if (pId && !courseByProgramId.has(pId)) {
-      courseByProgramId.set(pId, c);
-    }
-  }
-
-  // 1. Check direct match in programs
-  let matchedProgram: ApiProgramItem | undefined;
-
-  for (const p of programs) {
-    if (p.id.toLowerCase() === target) {
-      matchedProgram = p;
-      break;
-    }
-    if (p.slug && p.slug.toLowerCase() === target) {
-      matchedProgram = p;
-      break;
-    }
-    if (slugify(p.title) === target) {
-      matchedProgram = p;
-      break;
-    }
-    const abbr = extractProgramAbbreviation(p.title);
-    if (abbr.toLowerCase() === target) {
-      matchedProgram = p;
-      break;
-    }
-  }
-
-  // 2. If not found in programs, check courses
-  let matchedCourse: ApiCourseItem | undefined;
-  if (!matchedProgram) {
-    for (const c of courses) {
-      if (c.id.toLowerCase() === target) {
-        matchedCourse = c;
-        break;
-      }
-      if (c.slug && c.slug.toLowerCase() === target) {
-        matchedCourse = c;
-        break;
-      }
-      if (c.title && slugify(c.title) === target) {
-        matchedCourse = c;
-        break;
+  // 1. Direct fetch using GET /programs/public/:id
+  const directProgram = await fetchPublicProgramById(trimmed);
+  if (directProgram && (directProgram.id || directProgram.title)) {
+    let effectiveCourse = directProgram.courses?.[0];
+    const outcomes =
+      effectiveCourse?.courseOutcomes ?? (effectiveCourse as any)?.outcomes;
+    if (!outcomes || outcomes.length === 0) {
+      try {
+        const courses = await fetchPublicCourses();
+        const matchedCourse = courses.find((c) => {
+          if (effectiveCourse?.id && c.id === effectiveCourse.id) return true;
+          const p = c.program;
+          const pId =
+            typeof p === "object" && p
+              ? p.id || p.slug
+              : typeof p === "string"
+                ? p
+                : undefined;
+          return (
+            pId === directProgram.id ||
+            (directProgram.slug && pId === directProgram.slug)
+          );
+        });
+        if (matchedCourse) {
+          effectiveCourse = {
+            ...effectiveCourse,
+            ...matchedCourse,
+            courseOutcomes:
+              matchedCourse.courseOutcomes ?? (matchedCourse as any).outcomes,
+          };
+        }
+      } catch (e) {
+        console.error("Error enriching course outcomes:", e);
       }
     }
-
-    // Find parent program of matched course
-    if (matchedCourse) {
-      const p = matchedCourse.program;
-      const pId =
-        typeof p === "object" && p
-          ? p.id || p.slug
-          : typeof p === "string"
-            ? p
-            : undefined;
-      if (pId) {
-        matchedProgram = programs.find(
-          (prog) =>
-            prog.id === pId ||
-            (prog.slug && prog.slug === pId) ||
-            prog.title === pId,
-        );
-      }
-    }
-  } else {
-    // Program matched, find corresponding course
-    matchedCourse =
-      courseByProgramId.get(matchedProgram.id) ||
-      (matchedProgram.slug
-        ? courseByProgramId.get(matchedProgram.slug)
-        : undefined) ||
-      matchedProgram.courses?.[0];
-  }
-
-  // If we have a program, convert to detail
-  if (matchedProgram) {
-    return transformProgramToCertificationDetail(matchedProgram, matchedCourse);
-  }
-
-  // Fallback: If only course matched
-  if (matchedCourse) {
-    const syntheticProgram: ApiProgramItem = {
-      id: matchedCourse.id,
-      title: matchedCourse.title || "Certification Course",
-      description: matchedCourse.shortDesc || matchedCourse.fullDesc,
-      coverImage: matchedCourse.coverImage,
-      courses: [matchedCourse],
-    };
     return transformProgramToCertificationDetail(
-      syntheticProgram,
-      matchedCourse,
+      directProgram,
+      effectiveCourse,
     );
+  }
+
+  // 2. If direct fetch didn't return a match (e.g. identifier is a slug or abbreviation),
+  // search public programs list to resolve the ID, then fetch the program by ID.
+  const target = trimmed.toLowerCase();
+  const programs = await fetchPublicPrograms();
+
+  const matched = programs.find((p) => {
+    if (p.id?.toLowerCase() === target) return true;
+    if (p.slug && p.slug.toLowerCase() === target) return true;
+    if (slugify(p.title) === target) return true;
+    const abbr = extractProgramAbbreviation(p.title);
+    return abbr.toLowerCase() === target;
+  });
+
+  if (matched) {
+    if (matched.courses && matched.courses.length > 0) {
+      return transformProgramToCertificationDetail(matched, matched.courses[0]);
+    }
+    const fullProgram = await fetchPublicProgramById(matched.id);
+    if (fullProgram) {
+      return transformProgramToCertificationDetail(
+        fullProgram,
+        fullProgram.courses?.[0],
+      );
+    }
+    return transformProgramToCertificationDetail(matched);
   }
 
   return null;

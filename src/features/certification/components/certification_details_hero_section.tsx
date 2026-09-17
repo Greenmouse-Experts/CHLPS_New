@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -14,17 +17,25 @@ export default function CertificationDetailsHeroSection({
   detail: CertificationDetail;
   onEnroll?: () => void;
 }) {
+  const [bgSrc, setBgSrc] = useState(
+    detail.coverImage ||
+      detail.bannerImage ||
+      Assets.images.certificateDetailsHero,
+  );
+
   return (
-    <section className="relative z-10 w-full overflow-hidden bg-[#0A1140]">
+    <section className="relative isolate z-10 w-full overflow-hidden bg-[#0A1140]">
       <div className="absolute inset-0">
         <Image
-          src={Assets.images.certificateDetailsHero}
+          src={bgSrc}
           alt=""
           fill
           priority
+          unoptimized
+          onError={() => setBgSrc(Assets.images.certificateDetailsHero)}
           quality={90}
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-center"
         />
         <div className="absolute inset-0 bg-[#0A1140]/75" />
       </div>
