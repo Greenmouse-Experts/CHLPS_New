@@ -16,6 +16,8 @@ type MembershipGradeCardProps = {
   duration?: string;
   renewalPrice?: number;
   renewalPeriod?: string;
+  onApply?: () => void;
+  isApplying?: boolean;
 };
 
 export default function MembershipGradeCard({
@@ -30,6 +32,8 @@ export default function MembershipGradeCard({
   duration,
   renewalPrice,
   renewalPeriod,
+  onApply,
+  isApplying = false,
 }: MembershipGradeCardProps) {
   const [imgSrc, setImgSrc] = useState(badge);
 
@@ -101,6 +105,17 @@ export default function MembershipGradeCard({
               </span>
             ) : null}
           </div>
+        ) : null}
+
+        {onApply ? (
+          <button
+            type="button"
+            onClick={onApply}
+            disabled={isApplying}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-secondary py-2.5 px-4 text-xs font-bold text-[#111E2A] transition hover:brightness-95 disabled:opacity-50"
+          >
+            {isApplying ? "Checking Eligibility..." : "Apply for Grade"}
+          </button>
         ) : null}
       </div>
     </article>

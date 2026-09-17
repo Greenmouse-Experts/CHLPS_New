@@ -182,6 +182,7 @@ html {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+  position: relative;
 }
 
 .header-right {
@@ -310,6 +311,24 @@ html {
 .nav-option-chip:hover,
 .nav-option-chip:focus-visible {
   background-color: #F9F5EC;
+}
+
+/* Header link loading feedback. Each link renders a .header-link-pending wrapper
+   around a daisyUI spinner; the wrapper flags itself with .is-pending while the
+   next route loads, which dims the link and marks it busy. */
+a:has(.header-link-pending.is-pending) {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+/* daisyUI's <progress> is an inline block, so park it on the header's bottom
+   edge and flatten it into a thin line. */
+.header-progress {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 0;
 }
 
 @media (min-width: 640px) {

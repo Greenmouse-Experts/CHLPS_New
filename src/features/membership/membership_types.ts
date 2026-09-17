@@ -37,6 +37,8 @@ export type MembershipTypeId = (typeof membershipTypeIds)[number];
 
 export type MembershipType = {
   id: MembershipTypeId;
+  membershipId?: string;
+  slug?: string;
   title: string;
   gradeTitle: string;
   heroBody: string;
@@ -239,6 +241,8 @@ export function transformMembershipApiToType(
 
   return {
     id: (normalizedKey || "student") as MembershipTypeId,
+    membershipId: apiMembership.id,
+    slug: apiMembership.slug || slugOrId,
     title,
     gradeTitle,
     heroBody,

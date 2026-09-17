@@ -1,8 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import Link, { useLinkStatus } from "next/link";
+import {
+  FormEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProgramsMenuFromApi } from "@/features/certification/services/certification_menu_service";
 import { fetchMembershipMenuFromApi } from "@/features/membership/services/membership_service";
@@ -18,6 +25,7 @@ import {
 import { Assets } from "@/lib/assets";
 import PageContainer from "@/features/components/page_container";
 import { RootState } from "@/lib/store/store";
+import { cn } from "@/lib/tokens";
 
 type NavLinkItem = {
   label: string;
@@ -42,6 +50,65 @@ type NavItem = {
   href: string;
   menu?: MegaMenu | CompactMenu;
 };
+
+/**
+ * Pending link state for the header. `useLinkStatus` only reports inside the
+ * <Link> that started the navigation, so every indicator registers itself here
+ * and the header renders one progress bar while any link is loading. That also
+ * covers the mega menu and the mobile drawer, which close on click and would
+ * otherwise hide their own spinner.
+ */
+const pendingLinkIds = new Set<number>();
+const pendingLinkListeners = new Set<() => void>();
+let nextPendingLinkId = 0;
+
+function notifyPendingLinks() {
+  pendingLinkListeners.forEach((listener) => listener());
+}
+
+function setLinkPending(id: number, pending: boolean) {
+  const size = pendingLinkIds.size;
+  if (pending) pendingLinkIds.add(id);
+  else pendingLinkIds.delete(id);
+  if (pendingLinkIds.size !== size) notifyPendingLinks();
+}
+
+function subscribePendingLinks(listener: () => void) {
+  pendingLinkListeners.add(listener);
+  return () => {
+    pendingLinkListeners.delete(listener);
+  };
+}
+
+function getPendingLinkCount() {
+  return pendingLinkIds.size;
+}
+
+/** daisyUI spinner shown inside a <Link> while its route is loading. */
+function LinkPendingIndicator() {
+  const { pending } = useLinkStatus();
+  const [id] = useState(() => (nextPendingLinkId += 1));
+
+  useEffect(() => {
+    setLinkPending(id, pending);
+  }, [id, pending]);
+
+  useEffect(() => () => setLinkPending(id, false), [id]);
+
+  // The wrapper animates the space it takes up, so an idle link keeps its exact
+  // width and the nav row never shifts.
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "header-link-pending inline-flex items-center overflow-hidden align-middle transition-all duration-200 ease-out",
+        pending ? "is-pending ml-1.5 w-4 opacity-100" : "ml-0 w-0 opacity-0",
+      )}
+    >
+      <span className="loading loading-spinner loading-xs" />
+    </span>
+  );
+}
 
 function GoldTriangle() {
   return (
@@ -73,7 +140,10 @@ function MegaLink({
     >
       <span className="nav-option-chip -mx-2 flex items-center gap-3 rounded-full px-3 py-[0.85rem] text-[15px] font-semibold leading-snug text-primary transition-colors duration-150">
         <GoldTriangle />
-        <span>{item.label}</span>
+        <span>
+          {item.label}
+          <LinkPendingIndicator />
+        </span>
       </span>
     </Link>
   );
@@ -102,7 +172,10 @@ function MegaPanel({
               onClick={onNavigate}
               className="mt-6 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-primary px-5 text-[13px] font-semibold text-white transition-opacity duration-200 hover:opacity-90"
             >
-              {menu.cta.label}
+              <span>
+                {menu.cta.label}
+                <LinkPendingIndicator />
+              </span>
               <HugeiconsIcon
                 icon={ArrowUpRight01Icon}
                 size={14}
@@ -157,7 +230,10 @@ function CompactPanel({
             className="nav-option-chip flex items-center gap-2.5 rounded-full px-3.5 py-2.5 text-[15px] font-semibold text-primary"
           >
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
-            {item.label}
+            <span>
+              {item.label}
+              <LinkPendingIndicator />
+            </span>
           </Link>
         ))}
       </div>
@@ -188,6 +264,7 @@ function NavLink({
         className="text-[18px] font-semibold whitespace-nowrap text-[#302D39] transition-colors duration-200 hover:text-primary"
       >
         {item.label}
+        <LinkPendingIndicator />
       </Link>
     );
   }
@@ -204,7 +281,10 @@ function NavLink({
         }`}
       >
         <span className="relative">
-          {item.label}
+          <span>
+            {item.label}
+            <LinkPendingIndicator />
+          </span>
           <span
             className={`absolute inset-x-0 -bottom-1 h-[2px] bg-secondary transition-opacity duration-150 ${
               open ? "opacity-100" : "opacity-0"
@@ -246,6 +326,11 @@ export default function Header() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const token = useSelector((state: RootState) => state.user.token);
   const isLoggedIn = Boolean(token);
+  const pendingLinkCount = useSyncExternalStore(
+    subscribePendingLinks,
+    getPendingLinkCount,
+    () => 0,
+  );
 
   const { data: apiProgramColumns } = useQuery({
     queryKey: ["header-programs"],
@@ -422,6 +507,7 @@ export default function Header() {
                   className="inline-flex h-9 items-center whitespace-nowrap rounded-full bg-secondary px-4 text-[13px] font-semibold text-primary transition-all duration-200 hover:brightness-95"
                 >
                   Dashboard
+                  <LinkPendingIndicator />
                 </Link>
               ) : (
                 <>
@@ -430,12 +516,14 @@ export default function Header() {
                     className="inline-flex h-9 items-center whitespace-nowrap rounded-full border border-primary px-4 text-[13px] font-semibold text-primary transition-colors duration-200 hover:bg-primary hover:text-white"
                   >
                     My ChLPS
+                    <LinkPendingIndicator />
                   </Link>
                   <Link
                     href="/dashboard/register"
                     className="inline-flex h-9 items-center whitespace-nowrap rounded-full bg-secondary px-4 text-[13px] font-semibold text-primary transition-all duration-200 hover:brightness-95"
                   >
                     Register
+                    <LinkPendingIndicator />
                   </Link>
                 </>
               )}
@@ -468,6 +556,15 @@ export default function Header() {
               />
             </button>
           </div>
+
+          {/* Anchored to the nav row so the open mobile drawer cannot push it
+              down. daisyUI's progress is indeterminate while it has no value. */}
+          {pendingLinkCount > 0 ? (
+            <progress
+              className="progress progress-secondary header-progress"
+              aria-hidden
+            />
+          ) : null}
         </div>
       </PageContainer>
 
@@ -511,6 +608,7 @@ export default function Header() {
                     className="text-sm font-medium text-text hover:text-primary"
                   >
                     {item.label}
+                    <LinkPendingIndicator />
                   </Link>
                   {item.menu && openMenu === item.label ? (
                     item.menu.type === "mega" ? (
@@ -572,6 +670,7 @@ export default function Header() {
                     className="flex h-10 items-center justify-center rounded-full bg-secondary px-4 text-sm font-semibold text-primary"
                   >
                     Dashboard
+                    <LinkPendingIndicator />
                   </Link>
                 ) : (
                   <>
@@ -581,6 +680,7 @@ export default function Header() {
                       className="flex h-10 items-center justify-center rounded-full border border-primary px-4 text-sm font-semibold text-primary"
                     >
                       My ChLPS
+                      <LinkPendingIndicator />
                     </Link>
                     <Link
                       href="/dashboard/register"
@@ -588,6 +688,7 @@ export default function Header() {
                       className="flex h-10 items-center justify-center rounded-full bg-secondary px-4 text-sm font-semibold text-primary"
                     >
                       Register
+                      <LinkPendingIndicator />
                     </Link>
                   </>
                 )}

@@ -1,10 +1,12 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   HelpCircleIcon,
   CheckmarkCircle02Icon,
+  ArrowRight01Icon,
 } from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
@@ -14,11 +16,15 @@ import type { ApplicationQuestionItem } from "@/types";
 type MembershipQuestionsSectionProps = {
   questions: (ApplicationQuestionItem | string)[];
   gradeTitle: string;
+  slug?: string;
+  onApply?: () => void;
 };
 
 export default function MembershipQuestionsSection({
   questions,
   gradeTitle,
+  slug,
+  onApply,
 }: MembershipQuestionsSectionProps) {
   if (!questions || questions.length === 0) {
     return null;
@@ -87,6 +93,29 @@ export default function MembershipQuestionsSection({
             </article>
           ))}
         </RevealGroup>
+
+        <Reveal delay={200}>
+          <div className="mt-10 flex justify-center">
+            {onApply ? (
+              <button
+                type="button"
+                onClick={onApply}
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:opacity-90"
+              >
+                <span>Answer Screening Questions & Apply</span>
+                <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
+              </button>
+            ) : slug ? (
+              <Link
+                href={`/membership/${slug}/questions`}
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:opacity-90"
+              >
+                <span>Answer Screening Questions & Apply</span>
+                <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
+              </Link>
+            ) : null}
+          </div>
+        </Reveal>
       </PageContainer>
     </section>
   );

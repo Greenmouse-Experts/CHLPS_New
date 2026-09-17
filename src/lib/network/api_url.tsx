@@ -47,6 +47,10 @@ export class ApiUrls {
   }
   static myCourseApplications = "/course-applications/mine";
   static membershipApplicationSubmit = "/membership-applications/submit";
+  static myMembershipApplication(membershipId: string) {
+    return `/membership-applications/mine/${membershipId}`;
+  }
+  static myMembershipApplications = "/membership-applications/mine";
 
   static courseReviews(id: string) {
     return `/reviews/fetch-course-reviews/${id}`;

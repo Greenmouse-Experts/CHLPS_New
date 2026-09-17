@@ -237,3 +237,28 @@ export interface CourseApplication {
   createdDate?: string;
   updatedDate?: string;
 }
+
+export interface MembershipApplicationAnswer {
+  questionId: string;
+  answer: boolean;
+}
+
+export interface SubmitMembershipApplicationPayload {
+  membershipId: string;
+  answers: MembershipApplicationAnswer[];
+}
+
+export interface MembershipApplication {
+  id: string;
+  membershipId?: string;
+  membership?: {
+    id: string;
+    name?: string;
+    slug?: string;
+    applicationQuestions?: Array<{ id?: string; question: string }>;
+  };
+  answers?: MembershipApplicationAnswer[];
+  status?: string;
+  createdDate?: string;
+  updatedDate?: string;
+}

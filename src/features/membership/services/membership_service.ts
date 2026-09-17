@@ -104,6 +104,28 @@ export async function fetchPublicMembershipBySlug(
 }
 
 /**
+ * Fetches a single public membership by slug or ID with alias fallback and list search fallback.
+ */
+export async function fetchPublicMembershipBySlugOrId(
+  identifier: string,
+): Promise<Membership | null> {
+  if (!identifier) return null;
+  const match = await fetchPublicMembershipBySlug(identifier);
+  if (match) return match;
+
+  const all = await fetchPublicMemberships().catch(() => []);
+  return (
+    all.find(
+      (m) =>
+        m.id === identifier ||
+        m.slug === identifier ||
+        m.slug === identifier.toLowerCase().replace(/-membership$/, "") ||
+        (m.slug && `${m.slug}-membership` === identifier),
+    ) || null
+  );
+}
+
+/**
  * Fetches live membership categories and splits them into 2 columns for the header mega-menu.
  * Preserves the ordering (last created item comes first).
  */
