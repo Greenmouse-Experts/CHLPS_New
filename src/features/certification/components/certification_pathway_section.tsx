@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
@@ -21,16 +19,16 @@ import { StripePaymentModal } from "@/features/orders";
 import { orderService } from "@/features/orders/services/order_service";
 import type { Course } from "@/types";
 
-// Static level badges mapped by title/level
+// Level badges mapped by certification abbreviation
 const LEVEL_BADGES: Record<string, string> = {
-  BCLP: "FOUNDATIONAL",
-  CLPA: "ASSOCIATE",
-  CLPO: "SUPERVISORY",
-  CLPM: "MANAGERIAL",
-  ACLPM: "ADVANCED",
-  ACIPM: "ADVANCED",
-  ChLPS: "EXECUTIVE",
-  CHLPS: "CHARTERED",
+  BCLP: "FOUNDATIONAL LEVEL",
+  CLPA: "ASSOCIATE LEVEL",
+  CLPO: "INTERMEDIATE LEVEL",
+  CLPM: "MANAGERIAL LEVEL",
+  ACLPM: "ADVANCED LEVEL",
+  ACIPM: "ADVANCED LEVEL",
+  ChLPS: "EXECUTIVE LEVEL",
+  CHLPS: "CHARTERED LEVEL",
 };
 
 const SEALS_BY_ABBR: Record<string, string> = {
@@ -94,7 +92,6 @@ export default function CertificationPathwaySection() {
     }
 
     if (!token) {
-      // Guest: redirect to register/sign-in page with return redirect
       router.push(
         `/dashboard/sign-in?redirect=${encodeURIComponent(detailHref)}`,
       );
@@ -102,7 +99,6 @@ export default function CertificationPathwaySection() {
     }
 
     const appQuestions = (course as any).applicationQuestions ?? [];
-    // If course has no questionnaire/assessment questions, open payment modal directly
     if (!appQuestions || appQuestions.length === 0) {
       setSelectedCheckout({
         title: programme.title,
@@ -111,19 +107,16 @@ export default function CertificationPathwaySection() {
       return;
     }
 
-    // Course has assessment questions -> check attempts
     setCheckingEnrollCourseId(course.id);
     try {
       const appRes = await orderService.fetchMyCourseApplication(course.id);
       if (appRes.success && appRes.data?.id) {
-        // Completed attempt exists -> load payment modal with applicationId
         setSelectedCheckout({
           title: programme.title,
           course,
           applicationId: appRes.data.id,
         });
       } else {
-        // No attempts or not completed -> go to assessment page
         router.push(
           `/certification/${programme.slug || programme.id}/assessment`,
         );
@@ -193,7 +186,7 @@ export default function CertificationPathwaySection() {
             <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {programs.map((programme, index) => {
                 const abbr = extractAbbr(programme.title);
-                const levelBadge = LEVEL_BADGES[abbr] || "PROFESSIONAL";
+                const levelBadge = LEVEL_BADGES[abbr] || "PROFESSIONAL LEVEL";
                 const sealSrc =
                   programme.coverImage &&
                   programme.coverImage.startsWith("http")
@@ -204,104 +197,105 @@ export default function CertificationPathwaySection() {
                   slug: programme.slug,
                 });
                 const firstCourse = programme.courses?.[0];
-                const priceFormatted = firstCourse?.price
-                  ? `CAD $${Number(firstCourse.price).toLocaleString()}`
-                  : null;
 
-                const isCheckingThisCourse =
-                  checkingEnrollCourseId === firstCourse?.id;
+                const rawClean = programme.title
+                  .replace(/\s*\([^)]*\)/g, "")
+                  .replace(/™/g, "")
+                  .trim();
+                const hasAbbrPrefix = rawClean.toUpperCase().startsWith(abbr);
+                const displayTitle = hasAbbrPrefix
+                  ? rawClean
+                  : `${abbr} – ${rawClean}`;
+
+                const rawPrice =
+                  firstCourse?.price != null ? Number(firstCourse.price) : null;
+                const hasPrice =
+                  rawPrice != null && !isNaN(rawPrice) && rawPrice > 0;
+                const mainPriceDisplay = hasPrice
+                  ? `$${rawPrice.toLocaleString()}`
+                  : "Contact CHLPS";
+                const priceWithCents = hasPrice
+                  ? `$${rawPrice.toFixed(2)}`
+                  : "$0.00";
+                const durationText = (firstCourse as any)?.duration || "1 Year";
 
                 return (
                   <article
                     key={programme.id || index}
                     style={revealStyle(index * 90)}
-                    className="group relative flex flex-col justify-between overflow-hidden rounded-[24px] bg-[#161058] p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-7"
+                    className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#DEB853] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                   >
-                    {/* Top Row: Seal + Level Badge */}
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/10 p-2 shadow-inner">
-                        <Image
-                          src={sealSrc}
-                          alt={programme.title}
-                          fill
-                          className="object-contain"
-                          sizes="56px"
-                        />
+                    {/* Top White Section: Seal, Level Badge & Title */}
+                    <div className="flex flex-1 flex-col justify-between bg-white p-6 sm:p-7">
+                      {/* Top Row: Circular Gold Ring Seal + Level Badge */}
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-2 border-[#DEB853] bg-white p-2 shadow-xs">
+                          <Image
+                            src={sealSrc}
+                            alt={programme.title}
+                            fill
+                            className="object-contain p-1.5"
+                            sizes="80px"
+                          />
+                        </div>
+                        <span className="inline-flex items-center rounded-full bg-[#ECE8F6] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#5A4E9E]">
+                          {levelBadge}
+                        </span>
                       </div>
-                      <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-bold tracking-widest text-white backdrop-blur-xs">
-                        {levelBadge}
-                      </span>
+
+                      {/* Certification Title */}
+                      <div className="mt-6 min-h-[56px]">
+                        <h3 className="text-[19px] font-semibold leading-snug text-[#161058] sm:text-[21px]">
+                          {displayTitle}
+                        </h3>
+                      </div>
                     </div>
 
-                    {/* Middle: Title, Code, Body */}
-                    <div className="mt-6 flex flex-1 flex-col">
-                      <span className="text-[12px] font-bold tracking-wider text-secondary">
-                        {abbr}
+                    {/* Bottom Navy Section: Fee, Price, Copy & Action */}
+                    <div className="bg-[#161058] p-6 sm:p-7">
+                      <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">
+                        CERTIFICATION FEE
                       </span>
-                      <h3 className="mt-1 text-[17px] font-semibold leading-snug text-white sm:text-[19px]">
-                        {programme.title.replace(/\s*\([^)]*\)/g, "").trim()}
-                      </h3>
 
-                      <p className="mt-3 line-clamp-3 text-[13px] leading-relaxed text-white/70">
-                        {programme.description ||
-                          "Accredited professional certification curriculum designed to enhance leadership, security principles, and industry competency."}
-                      </p>
-                    </div>
+                      <div className="mt-1.5 text-[38px] font-bold leading-none text-white sm:text-[42px]">
+                        {mainPriceDisplay}
+                      </div>
 
-                    {/* Bottom: Price, Fee Detail & Actions */}
-                    <div className="mt-8 border-t border-white/15 pt-5">
-                      <div className="flex flex-col gap-1">
-                        <div className="flex items-baseline justify-between">
-                          <span className="text-[12px] font-medium text-white/60">
-                            Enrollment Fee
-                          </span>
-                          <span className="text-[18px] font-bold text-white">
-                            {priceFormatted || "Contact for Pricing"}
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-white/45">
-                          {priceFormatted ? (
-                            <span>
-                              One-time enrollment fee &bull; Direct curriculum
-                              access
-                            </span>
-                          ) : (
-                            "Comprehensive accredited qualification curriculum."
-                          )}
-                        </p>
+                      {/* Gold Accent Divider */}
+                      <div className="my-3.5 h-[2.5px] w-9 rounded-full bg-[#DEB853]" />
 
-                        <div className="mt-5 flex flex-col gap-2.5">
-                          <button
-                            type="button"
-                            disabled={isCheckingThisCourse}
-                            onClick={() =>
-                              handleEnrollClick(programme, firstCourse)
-                            }
-                            className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-secondary text-[14px] font-bold text-[#161058] shadow-sm transition-all duration-200 hover:brightness-105 active:scale-[0.99] disabled:opacity-75"
-                          >
-                            {isCheckingThisCourse ? (
-                              <>
-                                <span className="loading loading-spinner loading-xs" />
-                                <span>Checking...</span>
-                              </>
-                            ) : (
-                              <>
-                                <span>Enroll Now</span>
-                                <HugeiconsIcon
-                                  icon={ArrowUpRight01Icon}
-                                  size={16}
-                                  strokeWidth={2.2}
-                                />
-                              </>
-                            )}
-                          </button>
-                          <Link
-                            href={enrollHref}
-                            className="inline-flex h-10 w-full items-center justify-center rounded-full border border-white/30 bg-white/10 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-white/20"
-                          >
-                            View Curriculum Details
-                          </Link>
-                        </div>
+                      {/* Pricing / Expiry Terms */}
+                      <div className="space-y-1 text-[12.5px] leading-relaxed text-white/80">
+                        {hasPrice ? (
+                          <>
+                            <p>
+                              {priceWithCents} now and then {priceWithCents}{" "}
+                              after {durationText}.
+                            </p>
+                            <p className="text-white/60">
+                              Membership expires after {durationText}.
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p>
+                              Contact CHLPS for enrollment fee and schedule.
+                            </p>
+                            <p className="text-white/60">
+                              Accredited qualification curriculum.
+                            </p>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Action Button */}
+                      <div className="mt-6">
+                        <Link
+                          href={enrollHref}
+                          className="flex h-12 w-full items-center justify-center rounded-full bg-white text-sm font-bold text-[#161058] shadow-sm transition duration-200 hover:bg-[#F3F2F8] active:scale-[0.99]"
+                        >
+                          Get started
+                        </Link>
                       </div>
                     </div>
                   </article>
