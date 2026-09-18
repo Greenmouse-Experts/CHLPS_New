@@ -12,6 +12,7 @@ import CertificationDetailsRequirementsSection from "@/features/certification/co
 import CertificationDetailsStudiesSection from "@/features/certification/components/certification_details_studies_section";
 import CertificationDetailsOutcomeSection from "@/features/certification/components/certification_details_outcome_section";
 import CertificationDetailsBenefitsListSection from "@/features/certification/components/certification_details_benefits_list_section";
+import Curriculum from "@/components/Curriculum";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 import { fetchProgramById } from "@/features/certification/services/certification_service";
 import QueryCompLayout from "@/components/QueryCompLayout";
@@ -147,6 +148,7 @@ export default function CertificationDetailsPage({
               onEnroll={handleEnrollClick}
             />
             <CertificationDetailsRequirementsSection detail={detail} />
+            <Curriculum id={detail.courseId || id || detail.id} />
             <CertificationDetailsStudiesSection detail={detail} />
             <CertificationDetailsOutcomeSection detail={detail} />
             <CertificationDetailsBenefitsListSection detail={detail} />

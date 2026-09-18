@@ -1,25 +1,28 @@
+"use client";
+
 import { useRef, useState } from "react";
 import {
   BookOpen,
   ChevronDown,
-  ChevronRight,
   Clock,
   Eye,
   FileText,
-  Image,
+  Image as ImageIcon,
   Play,
   ClipboardList,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import apiClient from "#/client/api.ts";
-import QueryCompLayout from "#/components/layout/QueryCompLayout.tsx";
-import Modal, { type ModalHandle } from "#/components/modals/DialogModal.tsx";
+import simpleApiClient from "@/lib/network/simpleApi";
+import QueryCompLayout from "@/components/QueryCompLayout";
+import Modal, { type ModalHandle } from "@/components/DialogModal";
 import type {
   CourseContentSection,
   CourseContentSub,
   CourseProgramSingle,
-} from "#/types/courses.ts";
+} from "@/types/courses";
 import PreviewMedia from "./PreviewMedia";
+import HeaderText from "@/components/HeaderText";
+import PageContainer from "@/features/components/page_container";
 
 interface CurriculumProps {
   id?: string;
@@ -27,14 +30,14 @@ interface CurriculumProps {
 }
 
 export default function Curriculum({ id, sections = [] }: CurriculumProps) {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [preview, setPreview] = useState<CourseContentSub | null>(null);
   const modalRef = useRef<ModalHandle>(null);
 
   const query = useQuery<CourseProgramSingle>({
     queryKey: ["course-content", id],
     queryFn: async () => {
-      const resp = await apiClient.get(`/course-content/public/${id}`);
+      const resp = await simpleApiClient.get(`/course-content/public/${id}`);
       return resp.data;
     },
     enabled: Boolean(id),
@@ -44,42 +47,49 @@ export default function Curriculum({ id, sections = [] }: CurriculumProps) {
     setPreview(sub);
     modalRef.current?.open();
   }
+
   return (
     <>
       <section
         id="curriculum"
-        className="scroll-mt-24  px-6 md:px-16 pb-8 bg-base-200 py-12 border-t-primary border-t "
+        className="scroll-mt-24 bg-[#FAF9F5] py-16 md:py-24"
       >
-        <h2 className="container mx-auto">
-          <div className="text-lg  text-accent uppercase  w-fit  bg-white py-2 ring-current/40 px-7 rounded-full  ring self-start shadow font-bold">
-            Program <span className="text-primary">Curriculum</span>
+        <PageContainer className=" mx-auto px-4 sm:px-6">
+          {/* Section Header */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <HeaderText left="CERTIFICATION" right="CURRICULUM" />
           </div>
-        </h2>
-        <div className="container mx-auto mt-12">
-          {id ? (
-            <QueryCompLayout query={query} loadingText="Loading curriculum...">
-              {(data) => (
-                <AccordionList
-                  sections={data.contents?.data ?? []}
-                  openIndex={openIndex}
-                  onToggle={(index) =>
-                    setOpenIndex((cur) => (cur === index ? -1 : index))
-                  }
-                  onPreview={openPreview}
-                />
-              )}
-            </QueryCompLayout>
-          ) : (
-            <AccordionList
-              sections={sections}
-              openIndex={openIndex}
-              onToggle={(index) =>
-                setOpenIndex((cur) => (cur === index ? -1 : index))
-              }
-              onPreview={openPreview}
-            />
-          )}
-        </div>
+
+          {/* Curriculum Accordion List */}
+          <div className="mt-10 md:mt-12">
+            {id ? (
+              <QueryCompLayout
+                query={query}
+                loadingText="Loading curriculum..."
+              >
+                {(data: CourseProgramSingle) => (
+                  <AccordionList
+                    sections={data.contents?.data ?? []}
+                    openIndex={openIndex}
+                    onToggle={(index) =>
+                      setOpenIndex((cur) => (cur === index ? null : index))
+                    }
+                    onPreview={openPreview}
+                  />
+                )}
+              </QueryCompLayout>
+            ) : (
+              <AccordionList
+                sections={sections}
+                openIndex={openIndex}
+                onToggle={(index) =>
+                  setOpenIndex((cur) => (cur === index ? null : index))
+                }
+                onPreview={openPreview}
+              />
+            )}
+          </div>
+        </PageContainer>
       </section>
 
       <Modal ref={modalRef} title={preview?.title}>
@@ -91,7 +101,7 @@ export default function Curriculum({ id, sections = [] }: CurriculumProps) {
 
 interface AccordionListProps {
   sections: CourseContentSection[];
-  openIndex: number;
+  openIndex: number | null;
   onToggle: (index: number) => void;
   onPreview: (sub: CourseContentSub) => void;
 }
@@ -104,42 +114,40 @@ function AccordionList({
 }: AccordionListProps) {
   if (sections.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 border-b border-base-300 py-20 text-center">
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-base-200">
-          <BookOpen className="h-6 w-6 text-base-content/40" />
+      <div className="flex flex-col items-center justify-center gap-3 rounded-[20px] border border-[#CDA54E]/25 bg-white p-12 text-center shadow-sm">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1E1758]/5 text-[#1E1758]">
+          <BookOpen className="h-6 w-6 text-[#1E1758]" />
         </span>
-        <h3 className="text-xl font-medium text-accent">
+        <h3 className="text-lg font-bold text-[#1E1758]">
           No curriculum available yet
         </h3>
-        <p className="max-w-md leading-relaxed text-base-content/55">
+        <p className="max-w-md text-sm text-[#7A778B]">
           The curriculum for this program is being finalized. Check back soon or
-          contact admissions for the full breakdown.
+          contact us for the detailed outline.
         </p>
       </div>
     );
   }
 
   return (
-    <>
+    <div className="space-y-4">
       {sections.map((section, index) => (
         <SectionAccordion
-          key={section.title}
+          key={section.title || index}
           number={String(index + 1).padStart(2, "0")}
           section={section}
-          sectionIndex={index}
           isOpen={openIndex === index}
           onToggle={() => onToggle(index)}
           onPreview={onPreview}
         />
       ))}
-    </>
+    </div>
   );
 }
 
 interface SectionAccordionProps {
   number: string;
   section: CourseContentSection;
-  sectionIndex: number;
   isOpen: boolean;
   onToggle: () => void;
   onPreview: (sub: CourseContentSub) => void;
@@ -148,98 +156,107 @@ interface SectionAccordionProps {
 function SectionAccordion({
   number,
   section,
-  sectionIndex,
   isOpen,
   onToggle,
   onPreview,
 }: SectionAccordionProps) {
-  return (
-    <div className="border-b border-base-300 py-6 md:py-8">
-      <div className="flex items-start gap-3 md:gap-6">
-        <span className="mt-1 font-medium tracking-widest text-base-content md:mt-2 md:text-lg">
-          {number}
-        </span>
+  const subs = section.courseContentSubs || [];
 
-        <button type="button" onClick={onToggle} className="flex-1 text-left">
-          <h3 className="text-xl leading-tight font-medium text-accent sm:text-2xl md:text-4xl">
+  return (
+    <article className="overflow-hidden rounded-[18px] border border-[#CDA54E]/35 bg-white transition-shadow duration-200 hover:shadow-[0_4px_16px_rgba(30,23,88,0.04)] sm:rounded-[22px]">
+      {/* Header Row */}
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4.5 text-left transition-colors sm:px-6 sm:py-5"
+      >
+        <div className="flex min-w-0 flex-1 items-center gap-3.5 sm:gap-4">
+          {/* Number Pill Badge */}
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1E1758] text-[12px] font-bold text-white shadow-sm sm:h-8.5 sm:w-8.5">
+            {number}
+          </span>
+
+          {/* Module Title */}
+          <h3 className="truncate text-[14.5px] font-semibold text-[#1E1758] sm:text-[15.5px]">
             {section.title}
           </h3>
-          <p className="mt-1 text-base md:text-lg">
-            {section.courseContentSubs.length} lesson
-            {section.courseContentSubs.length !== 1 ? "s" : ""}
-          </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={onToggle}
-          aria-label={isOpen ? "Collapse section" : "Expand section"}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-base-300 text-base-content hover:border-base-content/30 md:h-11 md:w-11"
-        >
-          {isOpen ? (
-            <ChevronDown className="h-5 w-5" />
-          ) : (
-            <ChevronRight className="h-5 w-5" />
-          )}
-        </button>
-      </div>
+        {/* Chevron Icon */}
+        <span className="flex shrink-0 items-center justify-center text-[#1E1758]">
+          <ChevronDown
+            className={`h-4 w-4 text-[#1E1758] transition-transform duration-200 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </span>
+      </button>
 
-      {isOpen && section.courseContentSubs.length > 0 && (
-        <ul className="mt-6 ml-6 divide-y divide-base-300 border-t border-base-300 md:ml-12">
-          {section.courseContentSubs.map((sub, lessonIndex) => (
+      {/* Expanded Lessons */}
+      {isOpen && subs.length > 0 && (
+        <ul className="divide-y divide-[#F2EFE8] border-t border-[#F2EFE8]">
+          {subs.map((sub: CourseContentSub, subIndex: number) => (
             <SubItem
-              key={sub.title}
+              key={sub.id || sub.title || subIndex}
               sub={sub}
-              showPreview={sectionIndex === 0 && lessonIndex < 2}
               onPreview={onPreview}
             />
           ))}
         </ul>
       )}
-    </div>
+    </article>
   );
 }
 
 function SubItem({
   sub,
-  showPreview,
   onPreview,
 }: {
   sub: CourseContentSub;
-  showPreview: boolean;
   onPreview: (sub: CourseContentSub) => void;
 }) {
+  const durationText =
+    typeof sub.duration === "number" && sub.duration > 0
+      ? `${sub.duration}m`
+      : "2m";
+
   return (
-    <li className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:gap-4">
-      <div className="flex flex-1 items-start gap-3 sm:gap-4">
-        <span className="mt-1 sm:mt-1.5">
+    <li className="flex items-center justify-between gap-4 px-5 py-4 sm:px-7 sm:py-4.5">
+      {/* Left: Icon + Lesson Title */}
+      <div className="flex min-w-0 flex-1 items-center gap-3.5 sm:gap-4">
+        <span className="shrink-0 text-[#8E8B9E]">
           <MediaIcon type={sub.mediaType} />
         </span>
-        <div className="min-w-0 flex-1">
-          <span className="text-base md:text-lg">{sub.title}</span>
-          {sub.description && (
-            <p className="mt-0.5 text-sm text-base-content/55 md:text-base">
-              {sub.description}
-            </p>
-          )}
-        </div>
+        <span className="truncate text-[13.5px] font-normal text-[#5A576D] sm:text-[14.5px]">
+          {sub.title}
+        </span>
       </div>
 
-      <div className="flex items-center justify-between gap-4 pl-7 sm:justify-end sm:pl-0">
-        {sub.duration > 0 && (
-          <span className="flex items-center gap-1 text-sm">
-            <Clock className="h-3 w-3" />
-            {sub.duration}m
-          </span>
-        )}
-        {showPreview && sub.previewUrl && (
+      {/* Right: Duration + Preview Button */}
+      <div className="flex shrink-0 items-center gap-4 sm:gap-6">
+        <span className="flex items-center gap-1.5 text-[12.5px] font-medium text-[#7C798D] sm:text-[13px]">
+          <Clock className="h-3.5 w-3.5 text-[#8E8B9E]" />
+          {durationText}
+        </span>
+
+        {sub.previewUrl ? (
           <button
             type="button"
             onClick={() => onPreview(sub)}
-            className="btn btn-outline btn-accent items-center gap-2 sm:btn-lg sm:gap-4"
+            className="flex items-center gap-1.5 rounded-[8px] border border-[#1E1758] px-3.5 py-1.5 text-[12px] font-semibold text-[#1E1758] transition-all duration-150 hover:bg-[#1E1758] hover:text-white"
           >
-            <Eye className="size-4 sm:size-5" />
-            Preview
+            <Eye className="h-3.5 w-3.5" />
+            <span>Preview</span>
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => onPreview(sub)}
+            className="flex items-center gap-1.5 rounded-[8px] border border-[#1E1758] px-3.5 py-1.5 text-[12px] font-semibold text-[#1E1758] transition-all duration-150 hover:bg-[#1E1758] hover:text-white"
+          >
+            <Eye className="h-3.5 w-3.5" />
+            <span>Preview</span>
           </button>
         )}
       </div>
@@ -248,9 +265,9 @@ function SubItem({
 }
 
 function MediaIcon({ type }: { type: CourseContentSub["mediaType"] }) {
-  const cls = "h-4 w-4 shrink-0 text-base-content/40";
+  const cls = "h-4 w-4 shrink-0 text-[#8E8B9E]";
   if (type === "video") return <Play className={cls} />;
-  if (type === "image") return <Image className={cls} />;
+  if (type === "image") return <ImageIcon className={cls} />;
   if (type === "assessment") return <ClipboardList className={cls} />;
   return <FileText className={cls} />;
 }

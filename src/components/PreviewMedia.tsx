@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Maximize, Minimize } from "lucide-react";
-import PptxViewer from "#/components/PptxViewer.tsx";
-import type { CourseContentSub } from "#/types/courses.ts";
+import PptxViewer from "@/components/PptxViewer";
+import type { CourseContentSub } from "@/types/courses";
 
 function officeEmbedUrl(src: string) {
   return `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(src)}`;
@@ -124,9 +124,10 @@ export default function PreviewMedia({ sub }: { sub: CourseContentSub }) {
     );
   }
 
+  // Fallback for unsupported or unknown types
   return (
-    <FullscreenWrapper className="h-[70vh] w-full rounded border border-base-300 overflow-hidden">
-      <iframe src={src} title={sub.title} className="h-full w-full" />
-    </FullscreenWrapper>
+    <div className="flex h-64 items-center justify-center rounded border border-base-300 bg-base-200 p-6 text-center text-base-content/60">
+      <p>Preview not supported for this file type.</p>
+    </div>
   );
 }

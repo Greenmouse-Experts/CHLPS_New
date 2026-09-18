@@ -89,6 +89,36 @@ export interface UpdateCourseContentDto {
 /* Course Lesson (Course Content Sub) */
 
 export type LessonMediaType = "video" | "doc" | "audio";
+export type CourseContentMediaType =
+  | "video"
+  | "image"
+  | "document"
+  | "assessment"
+  | string;
+
+export interface CourseContentSub {
+  id?: string;
+  title: string;
+  description?: string;
+  duration: number;
+  media?: string;
+  mediaType: CourseContentMediaType;
+  previewUrl?: string | null;
+}
+
+export interface CourseContentSection {
+  title: string;
+  courseContentSubs: CourseContentSub[];
+}
+
+export interface CourseProgramSingle {
+  course?: Course;
+  contents?: {
+    data: CourseContentSection[];
+    total?: number;
+    totalDuration?: number;
+  };
+}
 
 export interface CourseSubContent extends BaseEntity {
   title: string;
