@@ -18,9 +18,7 @@ export default function CertificationDetailsHeroSection({
   onEnroll?: () => void;
 }) {
   const [bgSrc, setBgSrc] = useState(
-    detail.coverImage ||
-      detail.bannerImage ||
-      Assets.images.certificateDetailsHero,
+    detail.bannerImage || Assets.images.certificateDetailsHero,
   );
 
   return (
@@ -35,7 +33,7 @@ export default function CertificationDetailsHeroSection({
           onError={() => setBgSrc(Assets.images.certificateDetailsHero)}
           quality={90}
           sizes="100vw"
-          className="object-center"
+          className="object-center object-cover"
         />
         <div className="absolute inset-0 bg-[#0A1140]/75" />
       </div>
