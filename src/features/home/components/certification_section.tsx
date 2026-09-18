@@ -174,7 +174,7 @@ export default function CertificationSection() {
                             {programme.title}
                           </h3>
                           {programme.description ? (
-                            <p className="mt-3 text-[13px] leading-relaxed font-semibold text-[#676672] sm:text-[18px]">
+                            <p className="mt-3 text-[13px] leading-relaxed font-semibold text-[#676672] sm:text-[18px] line-clamp-2">
                               {programme.description}
                             </p>
                           ) : null}
