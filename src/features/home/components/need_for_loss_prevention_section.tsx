@@ -85,7 +85,7 @@ export default function NeedForLossPreventionSection() {
         </div>
 
         {/* 6 Cards Grid (2 columns) */}
-        <RevealGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
+        <RevealGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8 max-w-7xl mx-auto">
           {NEED_FOR_LOSS_PREVENTION_CARDS.map((card, index) => (
             <article
               key={card.title}
