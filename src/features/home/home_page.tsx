@@ -26,9 +26,10 @@ const HomePage = () => {
       {/*<WhyJoinSection />*/}
       <CareerPathwaysSection />
       <MembershipCategoriesSection />
-      <CertificationSection />
-      <OurCoreValuesSection />
       <WhatOurMembersSaySection />
+
+      <OurCoreValuesSection />
+      <CertificationSection />
 
       <HomeFaqSection />
       <UpcomingEventsSection />
