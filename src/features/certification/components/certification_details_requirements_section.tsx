@@ -4,6 +4,7 @@ import { Tick02Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import type { CertificationDetail } from "@/features/certification/certification_details";
+import HeaderText from "@/components/HeaderText";
 
 const CARD_SHADOW =
   "0 18px 40px 0 rgba(34, 26, 122, 0.08), inset 0 4px 25px 0 rgba(34, 26, 122, 0.25)";
@@ -26,12 +27,7 @@ export default function CertificationDetailsRequirementsSection({
             style={{ boxShadow: CARD_SHADOW } as CSSProperties}
           >
             <div className="flex flex-col items-center text-center">
-              <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:px-3.5 sm:text-[12px]"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                Entry Requirements
-              </span>
+              <HeaderText left="entry" right="requirements" switch />
 
               <h2 className="mt-5 text-[1.35rem] font-medium leading-snug tracking-tight text-[#221A7A] sm:mt-6 sm:text-[1.75rem] lg:whitespace-nowrap lg:text-[1.85rem]">
                 {detail.requirementsTitle}
