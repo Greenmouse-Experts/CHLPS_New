@@ -167,11 +167,9 @@ function TestimonialAvatar({
 export default function WhatOurMembersSaySection() {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#FAF9F5] py-16 md:py-24"
+      className="relative isolate overflow-hidden bg-[#FAF9F5] bg-cover bg-center py-16 md:py-24"
       style={{ backgroundImage: "url('/assets/images/reviews_bg.png')" }}
     >
-      {/* Decorative concentric rings on left side */}
-
       <PageContainer>
         {/* Section Header */}
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
@@ -190,7 +188,7 @@ export default function WhatOurMembersSaySection() {
           {MEMBER_TESTIMONIALS.map((testimonial, index) => (
             <article
               key={testimonial.name}
-              className="reveal flex flex-col justify-between rounded-[28px] border-2 border-[#1E1758] bg-white p-7 shadow-none transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(30,23,88,0.08)] sm:p-8"
+              className="reveal flex flex-col justify-between rounded-[28px] border-2 border-[#1E1758] bg-white p-7 shadow-[inset_0_4px_0_0_#1E1758,0_12px_28px_rgba(30,23,88,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[inset_0_4px_0_0_#1E1758,0_18px_36px_rgba(30,23,88,0.13)] sm:p-8"
               style={revealStyle(index)}
             >
               {/* Top: 5 Stars + Quote Icon + Body Text */}

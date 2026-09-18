@@ -101,6 +101,7 @@ export default function CertificationSection() {
         <div className="flex flex-col justify-center items-center">
           <div className="max-w-5xl flex flex-col items-center">
             <HeaderText
+              switch
               left={`program of studies &`}
               right="certification pathways"
             ></HeaderText>

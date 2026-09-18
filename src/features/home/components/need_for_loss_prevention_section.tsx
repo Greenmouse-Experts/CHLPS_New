@@ -118,7 +118,7 @@ export default function NeedForLossPreventionSection() {
               </h3>
 
               {/* Description */}
-              <p className="relative z-10 mx-auto mt-2 max-w-[440px] text-[13.5px] leading-relaxed text-[#555268] sm:text-[14px]">
+              <p className="relative z-10 mx-auto mt-2 max-w-[440px] text-base leading-relaxed">
                 {card.description}
               </p>
             </article>

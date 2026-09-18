@@ -67,7 +67,11 @@ export default function PartnersSection() {
 
       <PageContainer className="relative z-10">
         <div className="mx-auto max-w-5xl text-center">
-          <HeaderText left={"Affiliations &"} right="Partnership"></HeaderText>
+          <HeaderText
+            switch
+            left={"Affiliations &"}
+            right="Partnership"
+          ></HeaderText>
           <HeaderSubText>
             ChLPS-Canada builds strategic affiliations and partnerships with
             professional bodies, educational institutions, industry

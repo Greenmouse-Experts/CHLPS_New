@@ -13,6 +13,7 @@ import PartnersSection from "@/features/home/components/partners_section";
 import UpcomingEventsSection from "@/features/home/components/upcoming_events_section";
 import Footer from "@/features/components/footer";
 import OurCoreValuesSection from "./components/our_core_values_section";
+import HomeFaqSection from "./components/home_faq_section";
 
 const HomePage = () => {
   return (
@@ -29,6 +30,7 @@ const HomePage = () => {
       <CertificationSection />
       <OurCoreValuesSection />
       <UpcomingEventsSection />
+      <HomeFaqSection />
       <PartnersSection />
       <Footer />
     </div>

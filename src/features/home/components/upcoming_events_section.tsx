@@ -56,7 +56,7 @@ export default function UpcomingEventsSection() {
       <PageContainer>
         <div className="flex items-center justify-center">
           <div className="max-w-5xl flex flex-col items-center justify-center">
-            <HeaderText left="Upcoming" right="Events"></HeaderText>
+            <HeaderText switch left="Upcoming" right="Events"></HeaderText>
             <HeaderSubText>
               Stay connected, informed, and professionally engaged through
               ChLPS-Canada events. Explore upcoming conferences, webinars,
