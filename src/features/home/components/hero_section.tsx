@@ -33,9 +33,9 @@ const heroSlides: HeroSlide[] = [
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAMEBv/EABkQAAMBAQEAAAAAAAAAAAAAAAABAgNBIf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8AyJPhosvegDvBiy3VTVrgAJ4ev//Z",
     alt: "CHLPS professionals standing together",
-    title: "We Are",
-    accent: "ChLPS-Canada",
-    body: "The Association of Chartered Loss Prevention Specialists (ChLPS-Canada) is Canada’s professional body dedicated to advancing loss prevention and asset protection through professional education, recognized certification pathways, industry standards, and global best practices across retail, corporate, supply chain, financial services, and diverse business environments.",
+    title: "About",
+    accent: "Our Association",
+    body: "The Association of Chartered Loss Prevention Specialists (ChLPS-Canada™) is Canada’s professional body dedicated to advancing loss prevention and asset protection practice through professional education, recognized certification pathways, industry standards, and global best practices, across retail, corporate, supply chain, financial services, and diverse business environments. We Are ChLPS-Canada™",
     primary: { label: "Explore Membership", href: "#membership" },
     secondary: {
       label: "View Certifications",
@@ -48,9 +48,9 @@ const heroSlides: HeroSlide[] = [
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQG/8QAHBAAAgICAwAAAAAAAAAAAAAAAAECBAMxBREi/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/8QAFREBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhEDEQA/AMj0V17Tr4/K3sAdFTPlZtRcdgAxV//Z",
     alt: "CHLPS professionals standing together",
-    title: "Leading the Way in",
+    title: "We Lead the Way in",
     accent: "Loss Prevention Practice",
-    body: "ChLPS-Canada is a trusted voice for the loss prevention profession, advancing professional standards and global best practices. Through recognized certifications, continuing professional development, and industry collaboration, we strengthen practitioner competence, professional recognition, and organizational resilience across Canada, and globally.",
+    body: `ChLPS-Canada™ is a trusted voice for the loss prevention profession. We advance professionalism, international standards and global best practices. Through recognized certifications, continuing professional development, and industry collaboration, we strengthen the LP practitioner competence, professional recognition, and career development. <span class="font-bold">We Are ChLPS-Canada</span>`,
     primary: { label: "Become a Member", href: "#membership" },
     secondary: {
       label: "Explore Memberships",
@@ -63,9 +63,10 @@ const heroSlides: HeroSlide[] = [
     blurDataURL:
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIFBv/EAB0QAAICAQUAAAAAAAAAAAAAAAABAgMRBBMiMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAEx/9oADAMBAAIRAxEAPwDIYLHRxW3xWZMAdwZqd9tkO01jwAAhV//Z",
     alt: "CHLPS professionals collaborating",
-    title: "Build professional",
-    accent: "credibility.",
-    body: "ChLPS Canada is a federally incorporated, not for profit, member driven professional association dedicated to advancing Loss Prevention. As a leading professional authority, we champion excellence, integrity, education, certification, and professional standards while serving as a trusted career development hub for Loss Prevention and Asset Protection professionals across Canada.",
+    title: "LP Professionals",
+    accent: "Who We Are, What We Do",
+    body: "Loss Prevention professionals are strategic business partners who protect people, assets, profitability, and organizational value by reducing risk, preventing losses, strengthening performance, supporting informed decisions, and building sustainable business resilience.
+    We Are ChLPS-Canada™",
     primary: { label: "Explore Membership", href: "#membership" },
     secondary: {
       label: "See the Learning Pathway",
