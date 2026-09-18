@@ -26,11 +26,12 @@ const HomePage = () => {
       {/*<WhyJoinSection />*/}
       <CareerPathwaysSection />
       <MembershipCategoriesSection />
-      <WhatOurMembersSaySection />
       <CertificationSection />
       <OurCoreValuesSection />
-      <UpcomingEventsSection />
+      <WhatOurMembersSaySection />
+
       <HomeFaqSection />
+      <UpcomingEventsSection />
       <PartnersSection />
       <Footer />
     </div>
