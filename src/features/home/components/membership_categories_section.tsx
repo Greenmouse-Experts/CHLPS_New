@@ -62,13 +62,13 @@ function MembershipBadge({
     imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
 
   return (
-    <span className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-secondary bg-white">
+    <span className="relative flex h-20 w-20 sm:h-24 sm:w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border-[3px] border-[#CDA54E] bg-white shadow-md">
       {cropLogo ? (
         <Image
           src={imgSrc}
           alt={alt}
           fill
-          sizes="64px"
+          sizes="96px"
           unoptimized={isRemote}
           onError={() => setImgSrc(Assets.icons.logo)}
           className="object-cover object-left"
@@ -77,11 +77,11 @@ function MembershipBadge({
         <Image
           src={imgSrc}
           alt={alt}
-          width={100}
-          height={104}
+          width={120}
+          height={124}
           unoptimized={isRemote}
           onError={() => setImgSrc(Assets.icons.logo)}
-          className="h-[2.7rem] w-auto object-contain"
+          className="h-[3.6rem] sm:h-[4.2rem] w-auto object-contain"
         />
       )}
     </span>
@@ -133,17 +133,17 @@ export default function MembershipCategoriesSection() {
               }
 
               return (
-                <RevealGroup className="mx-auto grid max-w-[1527px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+                <RevealGroup className="mx-auto grid max-w-[1527px] grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
                   {categories.map((category, index) => {
                     const { badge, cropLogo } = getBadgeDetails(category);
                     const href = `/membership/${category.slug || category.id}`;
-                    const cta = `Explore ${category.name}`;
+                    const cta = `Become a ${category.name}`;
 
                     return (
                       <article
                         id={`membership-${category.slug || category.id}`}
                         key={category.id || category.slug || index}
-                        className="reveal relative flex h-full flex-col overflow-hidden rounded-[24px] bg-[#141549] p-6 sm:p-8"
+                        className="reveal relative flex h-full flex-col items-center overflow-hidden rounded-[26px] bg-[#141549] px-6 py-8 text-center sm:px-8 sm:py-10 shadow-[0_12px_36px_rgba(20,21,73,0.18)]"
                         style={revealStyle(index)}
                       >
                         <div
@@ -158,31 +158,34 @@ export default function MembershipCategoriesSection() {
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         </div>
-                        <div className="relative z-10 flex h-full flex-col">
+                        <div className="relative z-10 flex h-full w-full flex-col items-center">
                           <MembershipBadge
                             src={badge}
                             alt={`${category.name} badge`}
                             cropLogo={cropLogo}
                           />
-                          <h3 className="mt-6 text-lg font-bold leading-snug text-white sm:text-xl lg:text-[30px]">
+                          <h3 className="mt-6 text-xl font-bold leading-snug text-white sm:text-2xl lg:text-[28px]">
                             {category.name}
                           </h3>
-                          <p className="mt-3 text-[13px] font-medium leading-relaxed text-[#FFFFFFCC] sm:text-[20px] line-clamp-3">
+                          <p className="mt-3.5 max-w-sm text-[14px] font-normal leading-relaxed text-[#FFFFFFCC] sm:text-[16px] line-clamp-3">
                             {category.description}
                           </p>
-                          <Link
-                            href={href}
-                            className="mt-auto inline-flex min-w-0 items-center gap-1.5 pt-8 text-[13px] font-bold text-[#CDA54E] transition-opacity hover:opacity-80 sm:text-[20px]"
-                          >
-                            <span className="min-w-0">{cta}</span>
-                            <HugeiconsIcon
-                              icon={ArrowRight02Icon}
-                              size={20}
-                              color="currentColor"
-                              strokeWidth={2}
-                              className="shrink-0"
-                            />
-                          </Link>
+                          <div className="mt-auto pt-8 w-full flex justify-center">
+                            <Link
+                              href={href}
+                              className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#CDA54E] px-6 py-3 text-[14px] font-semibold text-[#141549] shadow-md transition-all duration-200 hover:brightness-105 hover:scale-[1.02] sm:px-7 sm:py-3.5 sm:text-[15px]"
+                            >
+                              <span>{cta}</span>
+                              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-[#141549] transition-transform duration-200 group-hover:translate-x-0.5">
+                                <HugeiconsIcon
+                                  icon={ArrowRight02Icon}
+                                  size={14}
+                                  color="currentColor"
+                                  strokeWidth={2.4}
+                                />
+                              </span>
+                            </Link>
+                          </div>
                         </div>
                       </article>
                     );
