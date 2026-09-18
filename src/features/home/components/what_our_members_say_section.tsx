@@ -166,35 +166,11 @@ function TestimonialAvatar({
 
 export default function WhatOurMembersSaySection() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#FAF9F5] py-16 md:py-24">
+    <section
+      className="relative isolate overflow-hidden bg-[#FAF9F5] py-16 md:py-24"
+      style={{ backgroundImage: "url('/assets/images/reviews_bg.png')" }}
+    >
       {/* Decorative concentric rings on left side */}
-      <div
-        className="pointer-events-none absolute -left-48 top-1/2 -z-10 h-[640px] w-[640px] -translate-y-1/2 opacity-35"
-        aria-hidden="true"
-      >
-        <svg
-          viewBox="0 0 600 600"
-          fill="none"
-          className="h-full w-full stroke-[#CDA54E]"
-        >
-          <circle
-            cx="200"
-            cy="300"
-            r="180"
-            strokeWidth="1"
-            strokeDasharray="4 6"
-          />
-          <circle cx="200" cy="300" r="240" strokeWidth="1.2" />
-          <circle cx="200" cy="300" r="300" strokeWidth="1.5" />
-          <circle
-            cx="200"
-            cy="300"
-            r="360"
-            strokeWidth="1"
-            strokeDasharray="3 5"
-          />
-        </svg>
-      </div>
 
       <PageContainer>
         {/* Section Header */}
