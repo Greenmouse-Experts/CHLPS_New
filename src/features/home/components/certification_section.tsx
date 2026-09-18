@@ -17,6 +17,7 @@ import {
 import { resolveCertificationHref } from "@/features/certification/certification_details";
 import { Assets } from "@/lib/assets";
 import HeaderText from "@/components/HeaderText";
+import HeaderSubText from "@/components/HeaderSubText";
 
 const certBadgeMap: Record<string, string> = {
   clpa: Assets.images.certificates.clpa,
@@ -103,11 +104,15 @@ export default function CertificationSection() {
               left={`program of studies &`}
               right="certification pathways"
             ></HeaderText>
-            <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px] text-center">
-                A certification pathway that grows with your career.
-              </h2>
-            </Reveal>
+            <HeaderSubText>
+              ChLPS-Canada provides progressive certification pathways designed
+              to recognize professional competence at every stage of a Loss
+              Prevention career. From foundational knowledge to advanced
+              professional practice, our certifications validate expertise,
+              strengthen professional credibility, encourage continuous
+              development, and provide a structured pathway toward achieving the
+              prestigious Chartered Loss Prevention Specialist designation.
+            </HeaderSubText>
           </div>
         </div>
 
