@@ -35,7 +35,7 @@ const heroSlides: HeroSlide[] = [
     alt: "CHLPS professionals standing together",
     title: "About",
     accent: "Our Association",
-    body: "The Association of Chartered Loss Prevention Specialists (ChLPS-Canada™) is Canada’s professional body dedicated to advancing loss prevention and asset protection practice through professional education, recognized certification pathways, industry standards, and global best practices, across retail, corporate, supply chain, financial services, and diverse business environments. We Are ChLPS-Canada™",
+    body: `The Association of Chartered Loss Prevention Specialists (ChLPS-Canada™) is Canada’s professional body dedicated to advancing loss prevention and asset protection practice through professional education, recognized certification pathways, industry standards, and global best practices, across retail, corporate, supply chain, financial services, and diverse business environments. <span class="font-bold">We Are ChLPS-Canada</span>`,
     primary: { label: "Explore Membership", href: "#membership" },
     secondary: {
       label: "View Certifications",
@@ -65,8 +65,26 @@ const heroSlides: HeroSlide[] = [
     alt: "CHLPS professionals collaborating",
     title: "LP Professionals",
     accent: "Who We Are, What We Do",
-    body: "Loss Prevention professionals are strategic business partners who protect people, assets, profitability, and organizational value by reducing risk, preventing losses, strengthening performance, supporting informed decisions, and building sustainable business resilience.
-    We Are ChLPS-Canada™",
+    body: `Loss Prevention professionals are strategic business partners who protect people, assets, profitability, and organizational value by reducing risk, preventing losses, strengthening performance, supporting informed decisions, and building sustainable business resilience.
+    We Are ChLPS-Canada™`,
+    primary: { label: "Explore Membership", href: "#membership" },
+    secondary: {
+      label: "See the Learning Pathway",
+      href: "#careers",
+      icon: "/assets/icons/third-btn-icon.svg",
+    },
+  },
+  {
+    image: "/assets/images/hero/hero_4.png",
+    blurDataURL:
+      "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIFBv/EAB0QAAICAQUAAAAAAAAAAAAAAAABAgMRBBMiMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAEx/9oADAMBAAIRAxEAPwDIYLHRxW3xWZMAdwZqd9tkO01jwAAhV//Z",
+    alt: "CHLPS professionals collaborating",
+    title: "Join Us",
+    accent: "Advance Your LP Career",
+    body: `Join Us.
+    Advance Your LP Career
+    Advance your Loss Prevention expertise and professional credibility through recognized certifications, continuous development, industry resources, and valuable professional connections. Join a community committed to excellence, protecting organizational value, expanding opportunities, and advancing careers in Loss Prevention.
+    <span class="font-bold">We Are ChLPS-Canada</span>™`,
     primary: { label: "Explore Membership", href: "#membership" },
     secondary: {
       label: "See the Learning Pathway",
