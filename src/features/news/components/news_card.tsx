@@ -5,8 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon, BookOpen01Icon } from "@hugeicons/core-free-icons";
-import { RevealGroup } from "@/features/components/reveal";
-import { revealStyle } from "@/features/components/reveal_style";
+import { cn } from "@/lib/tokens";
 import {
   articleHref,
   type ArticleTone,
@@ -20,43 +19,81 @@ const tones: Record<ArticleTone, { surface: string; label: string }> = {
   cream: { surface: "bg-[#F4ECD7]", label: "text-[#0A1542]" },
 };
 
+function isValidImageUrl(src?: string | null): boolean {
+  if (!src || typeof src !== "string") return false;
+  const trimmed = src.trim();
+  if (
+    !trimmed ||
+    trimmed === "string" ||
+    trimmed === "null" ||
+    trimmed === "undefined"
+  ) {
+    return false;
+  }
+  return (
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("/") ||
+    trimmed.startsWith("data:")
+  );
+}
+
 export default function NewsCard({
   article,
   index = 0,
+  className,
 }: {
   article: NewsArticle;
   index?: number;
+  className?: string;
 }) {
-  const tone = tones[article.tone] || tones.navy;
   const [imgError, setImgError] = useState(false);
 
-  const hasImage = Boolean(article.coverImage) && !imgError;
+  if (!article) return null;
+
+  const tone =
+    article.tone && tones[article.tone] ? tones[article.tone] : tones.navy;
+
+  const rawCover = article.coverImage?.trim();
+  const hasValidImage = isValidImageUrl(rawCover) && !imgError;
   const isRemote = Boolean(
-    article.coverImage &&
-    (article.coverImage.startsWith("http://") ||
-      article.coverImage.startsWith("https://")),
+    rawCover &&
+    (rawCover.startsWith("http://") || rawCover.startsWith("https://")),
   );
+
+  const iconToRender =
+    article.icon &&
+    (typeof article.icon === "object" || typeof article.icon === "function")
+      ? article.icon
+      : BookOpen01Icon;
+
+  const title = article.title || "Untitled Article";
+  const excerpt = article.excerpt || "";
+  const category = article.category || "News";
+  const date = article.date || "";
 
   return (
     <article
-      className="reveal group relative flex h-full flex-col overflow-hidden rounded-[18px] border border-[#E5D3AE] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(22,16,88,0.12)]"
-      style={revealStyle(index)}
+      className={cn(
+        "group relative flex h-full flex-col overflow-hidden rounded-[18px] border border-[#E5D3AE] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(22,16,88,0.12)]",
+        className,
+      )}
     >
       <div
         className={`relative aspect-[16/9] w-full shrink-0 overflow-hidden ${tone.surface}`}
       >
-        {hasImage ? (
+        {hasValidImage ? (
           <>
             <Image
-              src={article.coverImage!}
-              alt={article.title}
+              src={rawCover!}
+              alt={title}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
               unoptimized={isRemote}
               onError={() => setImgError(true)}
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           </>
         ) : (
           <>
@@ -89,7 +126,7 @@ export default function NewsCard({
 
         <span className="absolute bottom-4 left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-secondary bg-white shadow-md sm:bottom-5 sm:left-5 sm:h-14 sm:w-14">
           <HugeiconsIcon
-            icon={article.icon || BookOpen01Icon}
+            icon={iconToRender}
             size={22}
             color="#0A1542"
             strokeWidth={1.8}
@@ -98,30 +135,36 @@ export default function NewsCard({
 
         <span
           className={`absolute bottom-4 right-4 z-10 rounded-md px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.16em] sm:bottom-5 sm:right-5 ${
-            hasImage ? "bg-black/60 text-white backdrop-blur-sm" : tone.label
+            hasValidImage
+              ? "bg-black/60 text-white backdrop-blur-sm"
+              : tone.label
           }`}
         >
-          {article.category}
+          {category}
         </span>
       </div>
 
       <div className="flex flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
         <div className="flex items-center justify-between gap-3">
           <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8A8A96]">
-            {article.category}
+            {category}
           </span>
-          <span className="text-[11px] font-medium uppercase tracking-[0.1em] text-[#8A8A96]">
-            {article.date}
-          </span>
+          {date ? (
+            <span className="text-[11px] font-medium uppercase tracking-[0.1em] text-[#8A8A96]">
+              {date}
+            </span>
+          ) : null}
         </div>
 
         <h3 className="mt-3.5 text-[1.05rem] font-semibold uppercase leading-[1.35] tracking-tight text-[#0A1542] sm:text-[1.125rem]">
-          {article.title}
+          {title}
         </h3>
 
-        <p className="mt-2.5 line-clamp-3 text-[14px] leading-relaxed text-[#6F6E7A]">
-          {article.excerpt}
-        </p>
+        {excerpt ? (
+          <p className="mt-2.5 line-clamp-3 text-[14px] leading-relaxed text-[#6F6E7A]">
+            {excerpt}
+          </p>
+        ) : null}
 
         <div className="mt-6 flex items-center justify-between gap-3 border-t border-[#E7E7EC] pt-4 lg:mt-auto lg:pt-5">
           <span className="text-[14px] font-bold text-[#0A1542]">
@@ -140,15 +183,28 @@ export default function NewsCard({
       <Link
         href={articleHref(article)}
         className="absolute inset-0 z-20 rounded-[18px]"
-        aria-label={`Read more: ${article.title}`}
+        aria-label={`Read more: ${title}`}
       />
     </article>
   );
 }
 
-export function NewsCardGrid({ articles }: { articles: NewsArticle[] }) {
+export function NewsCardGrid({
+  articles,
+  className,
+}: {
+  articles: NewsArticle[];
+  className?: string;
+}) {
+  if (!articles || articles.length === 0) return null;
+
   return (
-    <RevealGroup className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-3">
+    <div
+      className={cn(
+        "grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-3",
+        className,
+      )}
+    >
       {articles.map((article, index) => (
         <NewsCard
           key={article.slug || article.id || index}
@@ -156,6 +212,6 @@ export function NewsCardGrid({ articles }: { articles: NewsArticle[] }) {
           index={index}
         />
       ))}
-    </RevealGroup>
+    </div>
   );
 }

@@ -276,7 +276,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                 </Link>
               </div>
 
-              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-8  grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {relatedArticles.map((rel, idx) => (
                   <NewsCard
                     key={rel.slug || rel.id || idx}

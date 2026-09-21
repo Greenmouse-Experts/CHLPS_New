@@ -111,7 +111,11 @@ export function transformBlogPostToArticle(
 }
 
 export function articleHref(
-  article: NewsArticle | { slug?: string; id?: string },
+  article?: NewsArticle | { slug?: string; id?: string } | null,
 ) {
-  return `/news-and-blog/${article.slug || article.id}`;
+  if (!article) return "/news-and-blog";
+  const target = article.slug || article.id;
+  return target
+    ? `/news-and-blog/${encodeURIComponent(target)}`
+    : "/news-and-blog";
 }
