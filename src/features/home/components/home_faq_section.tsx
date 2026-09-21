@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Add01Icon,
@@ -14,14 +15,29 @@ import {
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
-import { FAQ_ITEMS } from "@/features/faq/faq_data";
+import { FALLBACK_FAQS, type PublicFaq } from "@/features/faq/faq_data";
+import { fetchPublishedFaqs } from "@/features/faq/services/faq_service";
 
-export default function HomeFaqSection() {
+export default function HomeFaqSection({
+  initialFaqs,
+}: {
+  initialFaqs?: PublicFaq[];
+}) {
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const query = useQuery({
+    queryKey: ["published-faqs"],
+    queryFn: fetchPublishedFaqs,
+    initialData: initialFaqs,
+    staleTime: 5 * 60 * 1000,
+    refetchOnMount: "always",
+  });
+
   // Top 4 FAQs for the homepage
-  const homeFaqs = FAQ_ITEMS.slice(0, 4);
-  const [openId, setOpenId] = useState<number | null>(null);
+  const faqs = query.data?.length ? query.data : FALLBACK_FAQS;
+  const homeFaqs = faqs.slice(0, 4);
 
-  const toggleFaq = (id: number) => {
+  const toggleFaq = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
@@ -40,8 +56,7 @@ export default function HomeFaqSection() {
             </div>
 
             <h2 className="relative z-10 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Frequently Asked{" "}
-              <span className="text-[#CDA54E]">Questions</span>
+              Frequently Asked <span className="text-[#CDA54E]">Questions</span>
             </h2>
 
             <p className="relative z-10 mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#D0CDE0] sm:text-base md:mt-5">

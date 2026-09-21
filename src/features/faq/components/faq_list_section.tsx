@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowRight02Icon,
@@ -10,19 +11,20 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
-import { FAQ_ITEMS, type FaqItem } from "@/features/faq/faq_data";
+import { FALLBACK_FAQS, type PublicFaq } from "@/features/faq/faq_data";
+import { fetchPublishedFaqs } from "@/features/faq/services/faq_service";
 
 function FaqCard({
   item,
+  number,
   open,
   onToggle,
 }: {
-  item: FaqItem;
+  item: PublicFaq;
+  number: string;
   open: boolean;
   onToggle: () => void;
 }) {
-  const number = String(item.id).padStart(2, "0");
-
   return (
     <div
       className={`rounded-[1.25rem] transition-colors duration-200 ${
@@ -66,25 +68,41 @@ function FaqCard({
   );
 }
 
-export default function FaqListSection() {
+export default function FaqListSection({
+  initialFaqs,
+}: {
+  initialFaqs?: PublicFaq[];
+}) {
   const [search, setSearch] = useState("");
-  const [openId, setOpenId] = useState<number | null>(FAQ_ITEMS[0].id);
+  // `undefined` means the user has not toggled yet, so the first item opens.
+  const [openId, setOpenId] = useState<string | null | undefined>(undefined);
+
+  const query = useQuery({
+    queryKey: ["published-faqs"],
+    queryFn: fetchPublishedFaqs,
+    initialData: initialFaqs,
+    staleTime: 5 * 60 * 1000,
+    refetchOnMount: "always",
+  });
+
+  const faqs = query.data?.length ? query.data : FALLBACK_FAQS;
 
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
-    if (!term) return FAQ_ITEMS;
-    return FAQ_ITEMS.filter(
+    if (!term) return faqs;
+    return faqs.filter(
       (item) =>
         item.question.toLowerCase().includes(term) ||
         item.answer.toLowerCase().includes(term),
     );
-  }, [search]);
+  }, [faqs, search]);
 
+  const activeId = openId === undefined ? (faqs[0]?.id ?? null) : openId;
   const midpoint = Math.ceil(filtered.length / 2);
   const left = filtered.slice(0, midpoint);
   const right = filtered.slice(midpoint);
 
-  function toggle(id: number) {
+  function toggle(id: string) {
     setOpenId((current) => (current === id ? null : id));
   }
 
@@ -133,7 +151,8 @@ export default function FaqListSection() {
                 <Reveal key={item.id} delay={Math.min(index * 40, 200)}>
                   <FaqCard
                     item={item}
-                    open={openId === item.id}
+                    number={String(index + 1).padStart(2, "0")}
+                    open={activeId === item.id}
                     onToggle={() => toggle(item.id)}
                   />
                 </Reveal>
@@ -144,7 +163,8 @@ export default function FaqListSection() {
                 <Reveal key={item.id} delay={Math.min(index * 40, 200)}>
                   <FaqCard
                     item={item}
-                    open={openId === item.id}
+                    number={String(midpoint + index + 1).padStart(2, "0")}
+                    open={activeId === item.id}
                     onToggle={() => toggle(item.id)}
                   />
                 </Reveal>

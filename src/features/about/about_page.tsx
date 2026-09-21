@@ -18,7 +18,7 @@ const AboutPage = () => {
       />
       <OurStorySection />
       <MissionVisionSection />
-      <GuidingValuesSection />
+      {/*<GuidingValuesSection />*/}
       <WhyChooseSection />
       <Footer />
     </div>

@@ -14,8 +14,9 @@ import UpcomingEventsSection from "@/features/home/components/upcoming_events_se
 import Footer from "@/features/components/footer";
 import OurCoreValuesSection from "./components/our_core_values_section";
 import HomeFaqSection from "./components/home_faq_section";
+import type { PublicFaq } from "@/features/faq/faq_data";
 
-const HomePage = () => {
+const HomePage = ({ faqs }: { faqs?: PublicFaq[] }) => {
   return (
     <div className="min-h-screen bg-cream">
       <Header />
@@ -31,7 +32,7 @@ const HomePage = () => {
       <OurCoreValuesSection />
       <CertificationSection />
 
-      <HomeFaqSection />
+      <HomeFaqSection initialFaqs={faqs} />
       <UpcomingEventsSection />
       <PartnersSection />
       <Footer />
