@@ -16,6 +16,7 @@ import {
   SidebarLeft01Icon,
   ShoppingBag01Icon,
   CustomerSupportIcon,
+  ShieldCheckIcon,
 } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/tokens";
 import { ConfirmModal } from "@/components/ui";
@@ -36,32 +37,59 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Dashboard",
     href: "/dashboard",
-    icon: <HugeiconsIcon icon={DashboardSquare01Icon} size={16} color="currentColor" />,
+    icon: (
+      <HugeiconsIcon
+        icon={DashboardSquare01Icon}
+        size={16}
+        color="currentColor"
+      />
+    ),
+  },
+  {
+    label: "My Membership",
+    href: "/dashboard/membership",
+    icon: (
+      <HugeiconsIcon icon={ShieldCheckIcon} size={16} color="currentColor" />
+    ),
   },
   {
     label: "My Courses",
     href: "/dashboard/courses",
-    icon: <HugeiconsIcon icon={BookOpen01Icon} size={16} color="currentColor" />,
+    icon: (
+      <HugeiconsIcon icon={BookOpen01Icon} size={16} color="currentColor" />
+    ),
   },
   {
     label: "Progress",
     href: "/dashboard/progress",
-    icon: <HugeiconsIcon icon={ChartHistogramIcon} size={16} color="currentColor" />,
+    icon: (
+      <HugeiconsIcon icon={ChartHistogramIcon} size={16} color="currentColor" />
+    ),
   },
   {
     label: "Notifications",
     href: "/dashboard/notifications",
-    icon: <HugeiconsIcon icon={Notification01Icon} size={16} color="currentColor" />,
+    icon: (
+      <HugeiconsIcon icon={Notification01Icon} size={16} color="currentColor" />
+    ),
   },
   {
     label: "Purchase History",
     href: "/dashboard/purchase-history",
-    icon: <HugeiconsIcon icon={ShoppingBag01Icon} size={16} color="currentColor" />,
+    icon: (
+      <HugeiconsIcon icon={ShoppingBag01Icon} size={16} color="currentColor" />
+    ),
   },
   {
     label: "Support",
     href: "/dashboard/support",
-    icon: <HugeiconsIcon icon={CustomerSupportIcon} size={16} color="currentColor" />,
+    icon: (
+      <HugeiconsIcon
+        icon={CustomerSupportIcon}
+        size={16}
+        color="currentColor"
+      />
+    ),
   },
   {
     label: "Settings",
@@ -70,7 +98,13 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-function NavItemRow({ item, collapsed }: { item: NavItem; collapsed: boolean }) {
+function NavItemRow({
+  item,
+  collapsed,
+}: {
+  item: NavItem;
+  collapsed: boolean;
+}) {
   const pathname = usePathname();
   const isActive =
     item.href === "/dashboard"
@@ -82,9 +116,7 @@ function NavItemRow({ item, collapsed }: { item: NavItem; collapsed: boolean }) 
       href={item.href}
       className={cn(
         "flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium transition-colors duration-150",
-        isActive
-          ? "bg-secondary text-primary"
-          : "text-white hover:bg-white/10",
+        isActive ? "bg-secondary text-primary" : "text-white hover:bg-white/10",
       )}
       title={collapsed ? item.label : undefined}
     >
@@ -127,7 +159,10 @@ function Sidebar({
             : "flex items-center gap-2 px-3 py-4",
         )}
       >
-        <Link href="/" className={cn(collapsed ? "shrink-0" : "min-w-0 flex-1")}>
+        <Link
+          href="/"
+          className={cn(collapsed ? "shrink-0" : "min-w-0 flex-1")}
+        >
           <Image
             src={Assets.images.fullLogo}
             alt="Association of Chartered Loss Prevention Specialists of Canada"
@@ -145,7 +180,11 @@ function Sidebar({
           className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10"
           aria-label="Toggle sidebar"
         >
-          <HugeiconsIcon icon={SidebarLeft01Icon} size={16} color="currentColor" />
+          <HugeiconsIcon
+            icon={SidebarLeft01Icon}
+            size={16}
+            color="currentColor"
+          />
         </button>
       </div>
 
@@ -208,11 +247,18 @@ function DashboardHeader({
         )}
       </div>
 
-      <Link href="/dashboard/settings" className="flex shrink-0 cursor-pointer items-center gap-2">
+      <Link
+        href="/dashboard/settings"
+        className="flex shrink-0 cursor-pointer items-center gap-2"
+      >
         <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/15 text-xs font-semibold text-white">
           {user.avatar ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={user.avatar} alt="" className="h-full w-full object-cover" />
+            <img
+              src={user.avatar}
+              alt=""
+              className="h-full w-full object-cover"
+            />
           ) : (
             (user.fullName || "M").trim().toUpperCase()[0]
           )}

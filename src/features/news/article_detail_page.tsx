@@ -17,6 +17,7 @@ import Footer from "@/features/components/footer";
 import PageContainer from "@/features/components/page_container";
 import QueryCompLayout from "@/components/QueryCompLayout";
 import NewsCard from "@/features/news/components/news_card";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import {
   fetchPublishedPost,
   fetchPublishedPosts,
@@ -65,8 +66,8 @@ export default function ArticleDetailPage({ id }: { id: string }) {
   const hasCoverImage = Boolean(article?.coverImage) && !imgError;
   const isRemoteImage = Boolean(
     article?.coverImage &&
-      (article.coverImage.startsWith("http://") ||
-        article.coverImage.startsWith("https://")),
+    (article.coverImage.startsWith("http://") ||
+      article.coverImage.startsWith("https://")),
   );
 
   return (
@@ -114,7 +115,8 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                     Article not found
                   </h2>
                   <p className="mt-2 text-sm text-[#6F6E7A]">
-                    The requested article could not be found or has been removed.
+                    The requested article could not be found or has been
+                    removed.
                   </p>
                   <Link
                     href="/news-and-blog"
@@ -219,12 +221,11 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                       </div>
                     ) : null}
 
-                    {/* Main HTML article content */}
+                    {/* Main Article Content (Markdown & HTML Renderer) */}
                     {article.content ? (
-                      <div
-                        className="article-content mt-10 text-[16px] leading-relaxed text-[#2C2B36] sm:text-[17px] [&>h1]:mt-8 [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-[#0A1542] [&>h2]:mt-8 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-[#0A1542] [&>h3]:mt-6 [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-[#0A1542] [&>p]:mt-4 [&>p]:leading-relaxed [&>ul]:mt-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ol]:mt-4 [&>ol]:list-decimal [&>ol]:pl-6 [&>li]:mt-1.5 [&>blockquote]:my-6 [&>blockquote]:border-l-4 [&>blockquote]:border-primary [&>blockquote]:pl-4 [&>blockquote]:italic [&>img]:my-6 [&>img]:rounded-xl [&>img]:max-w-full [&>a]:font-medium [&>a]:text-primary [&>a]:underline"
-                        dangerouslySetInnerHTML={{ __html: article.content }}
-                      />
+                      <div className="mt-10">
+                        <MarkdownRenderer content={article.content} />
+                      </div>
                     ) : null}
 
                     {/* Article tags footer */}
@@ -277,7 +278,11 @@ export default function ArticleDetailPage({ id }: { id: string }) {
 
               <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {relatedArticles.map((rel, idx) => (
-                  <NewsCard key={rel.slug || rel.id || idx} article={rel} index={idx} />
+                  <NewsCard
+                    key={rel.slug || rel.id || idx}
+                    article={rel}
+                    index={idx}
+                  />
                 ))}
               </div>
             </div>

@@ -52,6 +52,12 @@ export class ApiUrls {
   }
   static myMembershipApplications = "/membership-applications/mine";
 
+  // Student Memberships
+  static studentMembershipsByStudent(studentId: string) {
+    return `/student-memberships/student/${studentId}`;
+  }
+  static myStudentMemberships = "/student-memberships/mine";
+
   static courseReviews(id: string) {
     return `/reviews/fetch-course-reviews/${id}`;
   }
@@ -82,6 +88,8 @@ export class ApiUrls {
   static publicEvents = "/events/public";
   static publicEventCategories = "/event-categories/public";
   static faqsPublished = "/faqs/published";
+  static publicTestimonialsCurated = "/testimonials/curated";
+  static publicTestimonialsPublished = "/testimonials/published";
   static contactMe = "/contact-me";
 
   static viewPosts = "/blog/view-posts";

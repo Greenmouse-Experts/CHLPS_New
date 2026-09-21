@@ -15,8 +15,15 @@ import Footer from "@/features/components/footer";
 import OurCoreValuesSection from "./components/our_core_values_section";
 import HomeFaqSection from "./components/home_faq_section";
 import type { PublicFaq } from "@/features/faq/faq_data";
+import type { MemberTestimonial } from "@/features/testimonials/testimonials_data";
 
-const HomePage = ({ faqs }: { faqs?: PublicFaq[] }) => {
+const HomePage = ({
+  faqs,
+  testimonials,
+}: {
+  faqs?: PublicFaq[];
+  testimonials?: MemberTestimonial[];
+}) => {
   return (
     <div className="min-h-screen bg-cream">
       <Header />
@@ -27,7 +34,7 @@ const HomePage = ({ faqs }: { faqs?: PublicFaq[] }) => {
       {/*<WhyJoinSection />*/}
       <CareerPathwaysSection />
       <MembershipCategoriesSection />
-      <WhatOurMembersSaySection />
+      <WhatOurMembersSaySection initialTestimonials={testimonials} />
 
       <OurCoreValuesSection />
       <CertificationSection />

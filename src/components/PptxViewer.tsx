@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { init } from "pptx-preview";
 import { Loader2 } from "lucide-react";

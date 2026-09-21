@@ -2,97 +2,17 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Reveal, RevealGroup } from "@/features/components/reveal";
+import { useQuery } from "@tanstack/react-query";
+import { RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import HeaderText from "@/components/HeaderText";
 import HeaderSubText from "@/components/HeaderSubText";
-
-export interface MemberTestimonial {
-  quote: string;
-  name: string;
-  role: string;
-  organization: string;
-  location: string;
-  rating: number;
-  avatar: string;
-  initials: string;
-}
-
-export const MEMBER_TESTIMONIALS: MemberTestimonial[] = [
-  {
-    quote:
-      "“Earning my CLPM designation through ChLPS Canada significantly enhanced my knowledge, credibility, and career prospects. The program is practical, relevant, and aligned with real-world Loss Prevention challenges. I highly recommend it to any professional serious about advancing in this field.”",
-    name: "David O. Adeyemi",
-    role: "Regional Loss Prevention Director",
-    organization: "Retail & Consumer Services",
-    location: "Ontario, Canada",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=260&h=260&q=80",
-    initials: "DA",
-  },
-  {
-    quote:
-      "“ChLPS Canada provides more than certification — it offers a supportive professional community, access to industry insights, and continuous learning opportunities. The knowledge and connections I gained have been invaluable in my career development.”",
-    name: "Linda K. Tran",
-    role: "Loss Prevention Manager",
-    organization: "National Retailer",
-    location: "British Columbia, Canada",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=260&h=260&q=80",
-    initials: "LT",
-  },
-  {
-    quote:
-      "“Joining ChLPS Canada was one of the best decisions I have made. The certification strengthened my leadership skills, validated my expertise, and opened new career opportunities. ChLPS Canada truly sets the standard for Loss Prevention professionals in Canada.”",
-    name: "Mark R. Sullivan",
-    role: "Director, Asset Protection",
-    organization: "Financial Services",
-    location: "Toronto, Canada",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=260&h=260&q=80",
-    initials: "MS",
-  },
-  {
-    quote:
-      "“ChLPS Canada has given me the professional recognition and confidence to take my career to the next level. The resources, events, and networking opportunities are outstanding and keep me connected with industry best practices across Canada.”",
-    name: "Tanya M. Brooks",
-    role: "Loss Prevention Specialist",
-    organization: "Retail Operations",
-    location: "Alberta, Canada",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=260&h=260&q=80",
-    initials: "TB",
-  },
-  {
-    quote:
-      "“The CLPO program with ChLPS Canada provided me with the knowledge, tools, and practical skills I needed to excel in my role. The learning experience was exceptional, and the community of professionals is supportive and inspiring.”",
-    name: "Jonathan P. Clarke",
-    role: "Security & Loss Prevention Manager",
-    organization: "Hospitality & Gaming",
-    location: "Quebec, Canada",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=260&h=260&q=80",
-    initials: "JC",
-  },
-  {
-    quote:
-      "“ChLPS Canada is a trusted and credible professional association. The certification programs are rigorous, relevant, and aligned with today’s industry needs. Being part of ChLPS Canada has expanded my network and created valuable career opportunities.”",
-    name: "Priya S. Mehta",
-    role: "Senior Loss Prevention Analyst",
-    organization: "E-commerce & Logistics",
-    location: "Manitoba, Canada",
-    rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=260&h=260&q=80",
-    initials: "PM",
-  },
-];
+import {
+  FALLBACK_TESTIMONIALS,
+  type MemberTestimonial,
+} from "@/features/testimonials/testimonials_data";
+import { fetchMemberTestimonials } from "@/features/testimonials/services/testimonial_service";
 
 function StarRating({ count = 5 }: { count?: number }) {
   return (
@@ -142,7 +62,7 @@ function TestimonialAvatar({
 }) {
   const [hasError, setHasError] = useState(false);
 
-  if (hasError) {
+  if (!avatar || hasError) {
     return (
       <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-[#1E1758] text-lg font-bold text-white shadow-sm ring-4 ring-[#EAF0F9] sm:h-[84px] sm:w-[84px]">
         {initials}
@@ -156,6 +76,7 @@ function TestimonialAvatar({
         src={avatar}
         alt={name}
         fill
+        unoptimized
         sizes="84px"
         className="object-cover object-center"
         onError={() => setHasError(true)}
@@ -164,7 +85,21 @@ function TestimonialAvatar({
   );
 }
 
-export default function WhatOurMembersSaySection() {
+export default function WhatOurMembersSaySection({
+  initialTestimonials,
+}: {
+  initialTestimonials?: MemberTestimonial[];
+}) {
+  const query = useQuery({
+    queryKey: ["published-testimonials"],
+    queryFn: fetchMemberTestimonials,
+    initialData: initialTestimonials,
+    staleTime: 5 * 60 * 1000,
+    refetchOnMount: "always",
+  });
+
+  const testimonials = query.data?.length ? query.data : FALLBACK_TESTIMONIALS;
+
   return (
     <section
       className="relative isolate overflow-hidden bg-[#FAF9F5] bg-cover bg-center py-16 md:py-24"
@@ -183,15 +118,15 @@ export default function WhatOurMembersSaySection() {
           </div>
         </div>
 
-        {/* 6 Testimonial Cards Grid (3 columns) */}
+        {/* Testimonial Cards Grid */}
         <RevealGroup className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
-          {MEMBER_TESTIMONIALS.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <article
-              key={testimonial.name}
+              key={testimonial.id}
               className="reveal flex flex-col justify-between rounded-[28px] border-2 border-[#1E1758] bg-white p-7 shadow-[inset_0_4px_0_0_#1E1758,0_12px_28px_rgba(30,23,88,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[inset_0_4px_0_0_#1E1758,0_18px_36px_rgba(30,23,88,0.13)] sm:p-8"
               style={revealStyle(index)}
             >
-              {/* Top: 5 Stars + Quote Icon + Body Text */}
+              {/* Top: Stars + Quote Icon + Body Text */}
               <div>
                 {/* Stars and Quote Mark */}
                 <div className="flex items-center justify-between">
@@ -227,12 +162,16 @@ export default function WhatOurMembersSaySection() {
                     {/* Gold accent line */}
                     <div className="my-2 h-[2.5px] w-9 rounded-full bg-[#CDA54E]" />
 
-                    <p className="truncate text-[13.5px] font-normal text-[#4A4660] sm:text-[14px]">
-                      {testimonial.organization}
-                    </p>
-                    <p className="truncate text-[13.5px] font-normal text-[#4A4660] sm:text-[14px]">
-                      {testimonial.location}
-                    </p>
+                    {testimonial.organization && (
+                      <p className="truncate text-[13.5px] font-normal text-[#4A4660] sm:text-[14px]">
+                        {testimonial.organization}
+                      </p>
+                    )}
+                    {testimonial.location && (
+                      <p className="truncate text-[13.5px] font-normal text-[#4A4660] sm:text-[14px]">
+                        {testimonial.location}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

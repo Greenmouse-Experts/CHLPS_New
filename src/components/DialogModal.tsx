@@ -1,3 +1,5 @@
+"use client";
+
 import {
   forwardRef,
   useEffect,
@@ -12,6 +14,7 @@ interface ModalProps extends PropsWithChildren {
   actions?: any;
   actionName?: string;
   title?: string;
+  maxWidth?: string;
 }
 
 export interface ModalHandle {
@@ -20,7 +23,16 @@ export interface ModalHandle {
 }
 
 const Modal = forwardRef<ModalHandle, ModalProps>(
-  ({ children, actions, actionName: _actionName, title }, ref) => {
+  (
+    {
+      children,
+      actions,
+      actionName: _actionName,
+      title,
+      maxWidth = "max-w-2xl",
+    },
+    ref,
+  ) => {
     const modalRef = useRef<HTMLDialogElement>(null);
     // Track open state so children unmount on close and remount fresh on every
     // open — prevents stale local state / cached data lingering across reopens.
@@ -32,6 +44,7 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
         modalRef.current?.showModal();
       },
       close: () => {
+        setIsOpen(false);
         modalRef.current?.close();
       },
     }));
@@ -46,8 +59,15 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
     }, []);
 
     return (
-      <dialog ref={modalRef} className="modal modal-middle sm:modal-middle">
-        <div className="modal-box bg-base-100 text-base-content border border-base-300 max-w-2xl flex flex-col max-h-[90vh] rounded-2xl shadow-xl relative p-0 overflow-hidden">
+      <dialog
+        ref={modalRef}
+        className={`modal modal-middle sm:modal-middle ${
+          isOpen ? "modal-open" : ""
+        }`}
+      >
+        <div
+          className={`modal-box bg-base-100 text-base-content border border-base-300 ${maxWidth} w-11/12 flex flex-col max-h-[90vh] rounded-2xl shadow-xl relative p-0 overflow-hidden`}
+        >
           <div className="flex border-b border-base-200 py-4 items-center px-6 bg-base-100">
             {title && (
               <h3 className="font-bold text-lg text-base-content">{title}</h3>
@@ -56,7 +76,10 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
               <button
                 type="button"
                 className="btn btn-sm btn-circle btn-ghost text-base-content/60 hover:text-base-content"
-                onClick={() => modalRef.current?.close()}
+                onClick={() => {
+                  setIsOpen(false);
+                  modalRef.current?.close();
+                }}
               >
                 <X size={18} />
               </button>
@@ -72,7 +95,15 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
           )}
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button>close</button>
+          <button
+            type="button"
+            onClick={() => {
+              setIsOpen(false);
+              modalRef.current?.close();
+            }}
+          >
+            close
+          </button>
         </form>
       </dialog>
     );

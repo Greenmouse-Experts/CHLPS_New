@@ -54,7 +54,7 @@ export default function Curriculum({ id, sections = [] }: CurriculumProps) {
         id="curriculum"
         className="scroll-mt-24 bg-[#FAF9F5] py-16 md:py-24"
       >
-        <PageContainer className=" mx-auto px-4 sm:px-6">
+        <PageContainer className="mx-auto px-4 sm:px-6">
           {/* Section Header */}
           <div className="flex flex-col items-center justify-center text-center">
             <HeaderText left="CERTIFICATION" right="CURRICULUM" />
@@ -92,8 +92,12 @@ export default function Curriculum({ id, sections = [] }: CurriculumProps) {
         </PageContainer>
       </section>
 
-      <Modal ref={modalRef} title={preview?.title}>
-        {preview?.previewUrl && <PreviewMedia sub={preview} />}
+      <Modal
+        ref={modalRef}
+        title={preview?.title ?? "Lesson Preview"}
+        maxWidth="max-w-4xl"
+      >
+        {preview && <PreviewMedia sub={preview} />}
       </Modal>
     </>
   );
@@ -240,25 +244,14 @@ function SubItem({
           {durationText}
         </span>
 
-        {sub.previewUrl ? (
-          <button
-            type="button"
-            onClick={() => onPreview(sub)}
-            className="flex items-center gap-1.5 rounded-[8px] border border-[#1E1758] px-3.5 py-1.5 text-[12px] font-semibold text-[#1E1758] transition-all duration-150 hover:bg-[#1E1758] hover:text-white"
-          >
-            <Eye className="h-3.5 w-3.5" />
-            <span>Preview</span>
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => onPreview(sub)}
-            className="flex items-center gap-1.5 rounded-[8px] border border-[#1E1758] px-3.5 py-1.5 text-[12px] font-semibold text-[#1E1758] transition-all duration-150 hover:bg-[#1E1758] hover:text-white"
-          >
-            <Eye className="h-3.5 w-3.5" />
-            <span>Preview</span>
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={() => onPreview(sub)}
+          className="flex items-center gap-1.5 rounded-[8px] border border-[#1E1758] px-3.5 py-1.5 text-[12px] font-semibold text-[#1E1758] transition-all duration-150 hover:bg-[#1E1758] hover:text-white cursor-pointer"
+        >
+          <Eye className="h-3.5 w-3.5" />
+          <span>Preview</span>
+        </button>
       </div>
     </li>
   );
