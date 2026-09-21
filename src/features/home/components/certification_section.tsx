@@ -173,9 +173,9 @@ export default function CertificationSection() {
                           <h3 className="mt-6 text-[1.05rem] font-bold leading-snug text-[#151515] sm:text-[24px]">
                             {programme.title}
                           </h3>
-                          {programme.description ? (
+                          {programme.courses ? (
                             <p className="mt-3 text-[13px] leading-relaxed font-semibold text-[#676672] sm:text-[18px] line-clamp-2">
-                              {programme.description}
+                              {programme.courses[0].shortDesc}
                             </p>
                           ) : null}
                           <Link

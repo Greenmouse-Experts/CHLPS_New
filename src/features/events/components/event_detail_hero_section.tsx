@@ -52,7 +52,7 @@ export default function EventDetailHeroSection({
             <Reveal>
               <div className="flex flex-wrap items-center gap-2">
                 <HeroBadge live={view.isLive}>
-                  {view.isLive ? "Live" : event.status}
+                  {view.isLive ? "Live" : view.isPast ? "Past" : event.status}
                 </HeroBadge>
                 <HeroBadge>{view.typeLabel}</HeroBadge>
               </div>

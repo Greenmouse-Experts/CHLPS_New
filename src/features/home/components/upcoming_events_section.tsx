@@ -24,7 +24,7 @@ import { fetchPublicEvents } from "@/features/events/services/event_service";
 import { eventHref } from "@/features/events/components/event_ui";
 import type { ChlpsEvent } from "@/features/events/events_data";
 
-const MAX_EVENTS = 4;
+const MAX_EVENTS = 5;
 
 const CATEGORY_ICONS: { match: RegExp; icon: IconSvgElement }[] = [
   { match: /conference|summit|forum|symposium|congress/i, icon: OfficeIcon },

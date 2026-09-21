@@ -103,21 +103,37 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
               <span className="text-[14px] font-medium text-[#2FA360]">
                 Live
               </span>
+            ) : view.isPast ? (
+              <span className="rounded-full bg-[#EAE7F5] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#696382]">
+                Concluded
+              </span>
             ) : null}
           </div>
           <p className="mt-2 text-[13px] text-[#8A8898]">{view.ticketNote}</p>
-          <Link
-            href={view.ctaHref}
-            className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#071649] text-[14px] font-semibold text-white transition-opacity duration-200 hover:opacity-90"
-          >
-            {view.ctaLabel}
-            <HugeiconsIcon
-              icon={ArrowRight01Icon}
-              size={16}
-              color="currentColor"
-              strokeWidth={2}
-            />
-          </Link>
+
+          {view.canBuyTicket ? (
+            <Link
+              href={view.ctaHref}
+              className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#071649] text-[14px] font-semibold text-white transition-opacity duration-200 hover:opacity-90"
+            >
+              {view.ctaLabel}
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={16}
+                color="currentColor"
+                strokeWidth={2}
+              />
+            </Link>
+          ) : (
+            <button
+              type="button"
+              disabled
+              aria-disabled="true"
+              className="mt-5 flex h-12 w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-[#E5E1F0] text-[14px] font-semibold text-[#827D96] opacity-80 select-none"
+            >
+              {view.ctaLabel}
+            </button>
+          )}
         </div>
       </aside>
     </div>
