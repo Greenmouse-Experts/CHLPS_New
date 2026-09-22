@@ -79,7 +79,7 @@ export default function WhyJoinChlpsSection() {
           {WHY_JOIN_CHLPS_CARDS.map((card, index) => (
             <article
               key={card.title}
-              className="reveal relative isolate flex flex-col justify-between overflow-hidden rounded-[20px] bg-[#34276F] p-7 text-center text-white shadow-[0_10px_25px_rgba(22,16,88,0.14)] min-h-[280px] sm:min-h-[300px]"
+              className="reveal relative isolate flex flex-col  overflow-hidden rounded-[20px] bg-[#34276F] p-7 text-center text-white shadow-[0_10px_25px_rgba(22,16,88,0.14)] min-h-[280px] sm:min-h-[300px]"
               style={revealStyle(index)}
             >
               {/* Card background artwork */}
@@ -103,9 +103,9 @@ export default function WhyJoinChlpsSection() {
               />
 
               {/* Icon slot left empty for now as requested */}
-              <div className="relative z-10 my-auto py-2" />
+              {/*<div className="relative z-10 my-auto py-2" />*/}
 
-              <div className="relative z-10">
+              <div className="relative z-10 ">
                 <p className=" font-normal leading-[1.68] text-white/90 ]">
                   {card.description}
                 </p>

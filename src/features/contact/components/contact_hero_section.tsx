@@ -3,13 +3,15 @@ import Image from "next/image";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import Header from "@/features/components/header";
+import HeaderText from "@/components/HeaderText";
 
 export default function ContactHeroSection() {
   return (
     <section className="relative z-10 w-full overflow-hidden bg-[#000E21]">
       <div className="relative h-56 w-full sm:h-72 lg:absolute lg:inset-0 lg:h-full">
         <Image
-          src={Assets.images.newsHero}
+          src={"/assets/images/contact_us.png"}
           alt="CHLPS Canada team members ready to answer your enquiries"
           fill
           priority
@@ -22,20 +24,12 @@ export default function ContactHeroSection() {
       <PageContainer className="relative h-full">
         <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[24rem] lg:py-14 xl:min-h-[26rem] xl:py-16">
           <div className="w-full">
-            <Reveal>
-              <span
-                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                Contact Us
-              </span>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h1 className="mt-5 text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
-                We&apos;re Here to Help
-              </h1>
-            </Reveal>
+            <HeaderText
+              left="We're Here "
+              textWhite
+              notCenter
+              right="to Help"
+            />
 
             <Reveal delay={160}>
               <p className="mt-4 max-w-[460px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">

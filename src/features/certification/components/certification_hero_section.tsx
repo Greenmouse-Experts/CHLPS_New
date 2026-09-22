@@ -5,6 +5,7 @@ import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 export default function CertificationHeroSection() {
   return (
@@ -25,21 +26,12 @@ export default function CertificationHeroSection() {
       <PageContainer className="relative h-full">
         <div className="flex h-full items-center py-12 sm:py-14 lg:min-h-[28rem] lg:py-16 xl:min-h-[32rem] xl:py-20">
           <div className="w-full">
-            <Reveal>
-              <span
-                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                Our Professional Certification Program
-              </span>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h1 className="mt-5 text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
-                Certification Program
-              </h1>
-            </Reveal>
-
+            <HeaderText
+              left="certification"
+              right="pathways"
+              notCenter
+              textWhite
+            />
             <Reveal delay={160}>
               <div className="mt-4 max-w-[740px] space-y-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
                 <p>

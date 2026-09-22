@@ -1,146 +1,89 @@
-import type { ReactNode } from "react";
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
-import type { IconSvgElement } from "@hugeicons/react";
 import {
   CallIcon,
-  Facebook01Icon,
-  InstagramIcon,
-  Linkedin01Icon,
   Location01Icon,
   Mail01Icon,
 } from "@hugeicons/core-free-icons";
-import { Reveal } from "@/features/components/reveal";
+import { Reveal, RevealGroup } from "@/features/components/reveal";
+import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
-import ContactForm from "@/features/contact/components/contact_form";
-import { Assets } from "@/lib/assets";
 
-const GOLD = "#CDA54E";
-
-const socialLinks: { label: string; href: string; icon: IconSvgElement }[] = [
-  { label: "LinkedIn", href: "#", icon: Linkedin01Icon },
-  { label: "Facebook", href: "#", icon: Facebook01Icon },
-  { label: "Instagram", href: "#", icon: InstagramIcon },
+const contactCards = [
+  {
+    icon: Location01Icon,
+    title: "Address",
+    lines: ["Victoria Avenue, Windsor", "Ontario N9A 4N1, Canada"],
+    href: "https://www.google.com/maps/search/?api=1&query=Victoria+Avenue+Windsor+Ontario+N9A+4N1+Canada",
+    isExternal: true,
+  },
+  {
+    icon: CallIcon,
+    title: "Phone",
+    lines: ["+1 905 452 2470"],
+    href: "tel:+19054522470",
+    isExternal: false,
+  },
+  {
+    icon: Mail01Icon,
+    title: "Email",
+    lines: ["info@chlpscanada.ca"],
+    href: "mailto:info@chlpscanada.ca",
+    isExternal: false,
+  },
 ];
-
-function DetailRow({
-  icon,
-  label,
-  children,
-}: {
-  icon: IconSvgElement;
-  label: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="flex items-start gap-3.5 py-4 first:pt-0 last:pb-0">
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-secondary bg-white">
-        <HugeiconsIcon icon={icon} size={16} color={GOLD} strokeWidth={1.8} />
-      </span>
-      <div className="min-w-0">
-        <p className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-secondary">
-          {label}
-        </p>
-        <div className="mt-1  leading-[1.55] text-[#0A1542]">{children}</div>
-      </div>
-    </div>
-  );
-}
 
 export default function ContactDetailsSection() {
   return (
-    <section className="relative overflow-hidden bg-white py-14 sm:py-16 lg:py-20">
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <Image
-          src={Assets.images.atAGlanceBg}
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      </div>
+    <section className="relative bg-white pt-14 pb-8 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-14">
+      <PageContainer>
+        <RevealGroup className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+          {contactCards.map((card, index) => {
+            const cardContent = (
+              <div
+                style={revealStyle(index * 90)}
+                className="card relative flex-1 rounded-2xl border border-base-200/80 bg-gradient-to-b from-[#F7F9FD] to-white p-6 pt-9 text-center shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+              >
+                {/* Floating Circular Dark Navy Icon */}
+                <div className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border-2 border-white bg-[#0D154B] text-white shadow-md">
+                  <HugeiconsIcon
+                    icon={card.icon}
+                    size={22}
+                    color="currentColor"
+                    strokeWidth={1.8}
+                  />
+                </div>
 
-      <PageContainer className="relative z-10">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.1fr)] lg:gap-14">
-          <div className="min-w-0">
-            <Reveal>
-              <p className=" font-bold uppercase tracking-[0.16em] text-secondary sm:">
-                Office Details
-              </p>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h2 className="mt-3 text-[1.625rem] font-medium leading-[1.2] tracking-tight text-[#0A1542] sm:text-[2rem]">
-                Get in touch with
-                <br />
-                ChLPS Canada
-              </h2>
-            </Reveal>
-
-            <Reveal delay={160}>
-              <p className="mt-3 max-w-[360px]  leading-relaxed  sm:text-[14px]">
-                Reach our team directly or send us a message using the form.
-                We&apos;ll make sure your enquiry gets to the right place.
-              </p>
-            </Reveal>
-
-            <Reveal delay={220}>
-              <div className="mt-6 max-w-[400px] divide-y divide-[#EADFC4] rounded-[14px] border border-[#E8D9B8] bg-[#FCF7EA] px-5 py-4">
-                <DetailRow icon={Location01Icon} label="Office">
-                  Victoria Avenue, Windsor
-                  <br />
-                  Ontario N9A 4N1, Canada
-                </DetailRow>
-
-                <DetailRow icon={CallIcon} label="Phone">
-                  <a
-                    href="tel:+19054522470"
-                    className="transition-colors duration-200 hover:text-primary"
-                  >
-                    +1 905 452 2470
-                  </a>
-                </DetailRow>
-
-                <DetailRow icon={Mail01Icon} label="Email">
-                  <a
-                    href="mailto:info@chlpscanada.ca"
-                    className="transition-colors duration-200 hover:text-primary"
-                  >
-                    info@chlpscanada.ca
-                  </a>
-                </DetailRow>
+                <h3 className="mt-2 text-lg font-bold text-[#0D154B] sm:text-xl">
+                  {card.title}
+                </h3>
+                <div className="mt-1 text-sm leading-relaxed text-base-content/80">
+                  {card.lines.map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
               </div>
-            </Reveal>
+            );
 
-            <Reveal delay={280}>
-              <p className="mt-8  font-bold uppercase tracking-[0.16em] text-secondary sm:">
-                Social Media
-              </p>
-              <div className="mt-4 flex items-center gap-3">
-                {socialLinks.map((social) => (
-                  <Link
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-white transition-colors duration-200 hover:bg-cream"
-                  >
-                    <HugeiconsIcon
-                      icon={social.icon}
-                      size={17}
-                      color={GOLD}
-                      strokeWidth={1.8}
-                    />
-                  </Link>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={120} className="min-w-0">
-            <ContactForm />
-          </Reveal>
-        </div>
+            return card.isExternal ? (
+              <a
+                key={card.title}
+                href={card.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <a key={card.title} href={card.href} className="group block">
+                {cardContent}
+              </a>
+            );
+          })}
+        </RevealGroup>
       </PageContainer>
     </section>
   );

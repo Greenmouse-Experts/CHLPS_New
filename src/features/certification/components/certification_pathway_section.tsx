@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { Reveal, RevealGroup } from "@/features/components/reveal";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import { RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
@@ -18,18 +20,7 @@ import { useAppSelector } from "@/lib/store/store";
 import { StripePaymentModal } from "@/features/orders";
 import { orderService } from "@/features/orders/services/order_service";
 import type { Course } from "@/types";
-
-// Level badges mapped by certification abbreviation
-const LEVEL_BADGES: Record<string, string> = {
-  BCLP: "FOUNDATIONAL LEVEL",
-  CLPA: "ASSOCIATE LEVEL",
-  CLPO: "INTERMEDIATE LEVEL",
-  CLPM: "MANAGERIAL LEVEL",
-  ACLPM: "ADVANCED LEVEL",
-  ACIPM: "ADVANCED LEVEL",
-  ChLPS: "EXECUTIVE LEVEL",
-  CHLPS: "CHARTERED LEVEL",
-};
+import HeaderText from "@/components/HeaderText";
 
 const SEALS_BY_ABBR: Record<string, string> = {
   BCLP: Assets.images.certificates.bclp,
@@ -40,6 +31,29 @@ const SEALS_BY_ABBR: Record<string, string> = {
   ACIPM: Assets.images.certificates.acipm,
   ChLPS: Assets.images.certificates.chlps,
   CHLPS: Assets.images.certificates.chlps,
+};
+
+const DEFAULT_DESCRIPTIONS: Record<string, string> = {
+  CLPA: "The globally recognized IFPO certification — the gold standard for protection professionals.",
+  BCLP: "Foundational qualification establishing core competencies in retail loss prevention and asset protection.",
+  CLPO: "Intermediate operational qualification for protection officers and retail loss prevention specialists.",
+  CLPM: "Managerial-level qualification for loss prevention supervisors, department heads, and security leaders.",
+  ACLPM:
+    "Advanced professional certificate in executive loss prevention leadership and organizational resilience.",
+  ACIPM:
+    "Advanced professional certificate in executive loss prevention leadership and organizational resilience.",
+  ChLPS:
+    "The flagship chartered loss prevention specialist designation for distinguished industry authorities.",
+};
+
+const DEFAULT_PRICES: Record<string, string> = {
+  BCLP: "CA$495",
+  CLPA: "CA$595",
+  CLPO: "CA$695",
+  CLPM: "CA$795",
+  ACLPM: "CA$895",
+  ACIPM: "CA$895",
+  ChLPS: "CA$995",
 };
 
 function extractAbbr(title: string): string {
@@ -148,45 +162,31 @@ export default function CertificationPathwaySection() {
     <section id="pathways" className="bg-[#FAF9FD] py-16 sm:py-20 lg:py-24">
       <PageContainer>
         <div className="flex flex-col items-center text-center">
-          <Reveal>
-            <span className="inline-block rounded-full bg-[#EEEAF8] px-4 py-1.5  font-bold uppercase tracking-[0.14em] text-primary sm:">
-              Certification Pathways
-            </span>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <h2 className="mt-4 max-w-[42rem] text-[1.85rem]  leading-tight tracking-tight text-[#161058] sm:mt-5 sm:text-[2.35rem] lg:text-[2.75rem]">
-              From entry-level foundations to chartered executive distinction
-            </h2>
-          </Reveal>
-
-          <Reveal delay={140}>
-            <p className="mt-4 max-w-[36rem]  leading-relaxed text-[#554F7A] sm:text-[15px]">
-              Each CHLPS certification aligns with a distinct career phase,
-              equipping candidates with targeted competencies and verifiable
-              professional standing.
-            </p>
-          </Reveal>
+          <HeaderText left="certification" right="levels" />
         </div>
 
         {isLoading && (
           <div className="mt-12 text-center text-[#554F7A]">
-            <p>Loading certification pathways...</p>
+            <span className="loading loading-dots loading-lg text-primary" />
+            <p className="mt-3 text-sm text-[#554F7A]">
+              Loading certification pathways...
+            </p>
           </div>
         )}
 
         {!isLoading && programs.length === 0 && (
-          <div className="mx-auto mt-12 max-w-lg rounded-2xl border border-dashed border-[#D2CEDF] bg-white p-8 text-center text-[#554F7A]">
-            <p>No certification programs currently available.</p>
+          <div className="card mx-auto mt-12 max-w-lg border border-dashed border-[#D2CEDF] bg-white p-8 text-center text-[#554F7A]">
+            <p className="text-base font-medium">
+              No certification programs currently available.
+            </p>
           </div>
         )}
 
         {!isLoading && programs.length > 0 && (
           <div className="mt-12 sm:mt-16">
-            <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <RevealGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {programs.map((programme, index) => {
                 const abbr = extractAbbr(programme.title);
-                const levelBadge = LEVEL_BADGES[abbr] || "PROFESSIONAL LEVEL";
                 const sealSrc =
                   programme.coverImage &&
                   programme.coverImage.startsWith("http")
@@ -211,91 +211,94 @@ export default function CertificationPathwaySection() {
                   firstCourse?.price != null ? Number(firstCourse.price) : null;
                 const hasPrice =
                   rawPrice != null && !isNaN(rawPrice) && rawPrice > 0;
-                const mainPriceDisplay = hasPrice
-                  ? `$${rawPrice.toLocaleString()}`
-                  : "Contact CHLPS";
-                const priceWithCents = hasPrice
-                  ? `$${rawPrice.toFixed(2)}`
-                  : "$0.00";
-                const durationText = (firstCourse as any)?.duration || "1 Year";
+                const priceDisplay = hasPrice
+                  ? `CA$${rawPrice.toLocaleString()}`
+                  : DEFAULT_PRICES[abbr] || "CA$595";
+
+                const description =
+                  DEFAULT_DESCRIPTIONS[abbr] ||
+                  firstCourse?.shortDesc ||
+                  programme.description ||
+                  "The globally recognized IFPO certification — the gold standard for protection professionals.";
+
+                const isEnrolling = checkingEnrollCourseId === firstCourse?.id;
 
                 return (
                   <article
                     key={programme.id || index}
                     style={revealStyle(index * 90)}
-                    className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#DEB853] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    className="card group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#C99E4A] bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
                   >
-                    {/* Top White Section: Seal, Level Badge & Title */}
-                    <div className="flex flex-1 flex-col justify-between bg-white p-6 sm:p-7">
-                      {/* Top Row: Circular Gold Ring Seal + Level Badge */}
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-2 border-[#DEB853] bg-white p-2 shadow-xs">
+                    {/* Top White Section: Circular Gold Ring Seal & Title */}
+                    <div className="flex flex-1 flex-col items-center justify-between bg-white px-6 pt-9 pb-8 text-center sm:px-8 sm:pt-10 sm:pb-9">
+                      <Link
+                        href={enrollHref}
+                        className="group/link flex flex-col items-center"
+                        aria-label={`View details for ${displayTitle}`}
+                      >
+                        {/* Circular Gold Ring Seal */}
+                        <div className="relative mx-auto flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-2 border-[#C99E4A] bg-white p-3 shadow-xs transition-transform duration-300 group-hover/link:scale-105 sm:h-32 sm:w-32">
                           <Image
                             src={sealSrc}
                             alt={programme.title}
                             fill
-                            className="object-contain p-1.5"
-                            sizes="80px"
+                            className="object-contain p-2"
+                            sizes="(max-width: 640px) 112px, 128px"
                           />
                         </div>
-                        <span className="inline-flex items-center rounded-full bg-[#ECE8F6] px-3.5 py-1.5  font-bold uppercase tracking-wider text-[#5A4E9E]">
-                          {levelBadge}
-                        </span>
-                      </div>
 
-                      {/* Certification Title */}
-                      <div className="mt-6 min-h-[56px]">
-                        <h3 className="text-[19px] font-semibold leading-snug text-[#161058] sm:text-[21px]">
+                        {/* Certification Title */}
+                        <h3 className="mt-6 text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] sm:mt-7 sm:text-2xl">
                           {displayTitle}
                         </h3>
-                      </div>
+                      </Link>
                     </div>
 
-                    {/* Bottom Navy Section: Fee, Price, Copy & Action */}
-                    <div className="bg-[#161058] p-6 sm:p-7">
-                      <span className="block  font-bold uppercase tracking-[0.14em] text-white/70">
-                        CERTIFICATION FEE
-                      </span>
+                    {/* Bottom Dark Navy Section: Description, Price & Gold Enroll Button */}
+                    <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] px-6 py-8 text-center sm:px-8 sm:py-9">
+                      {/* Subtle ambient gradient wave */}
+                      <div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(35,46,120,0.35),transparent_65%)]"
+                      />
 
-                      <div className="mt-1.5 text-[38px] font-bold leading-none text-white sm:text-[42px]">
-                        {mainPriceDisplay}
-                      </div>
+                      <div className="relative z-10 flex w-full flex-col items-center">
+                        {/* Description */}
+                        <p className="min-h-[44px] max-w-[300px] text-center text-sm leading-relaxed text-white/90 sm:text-base line-clamp-3">
+                          {description}
+                        </p>
 
-                      {/* Gold Accent Divider */}
-                      <div className="my-3.5 h-[2.5px] w-9 rounded-full bg-[#DEB853]" />
+                        {/* Price */}
+                        <div className="my-6 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                          {priceDisplay}
+                        </div>
 
-                      {/* Pricing / Expiry Terms */}
-                      <div className="space-y-1  leading-relaxed text-white/80">
-                        {hasPrice ? (
-                          <>
-                            <p>
-                              {priceWithCents} now and then {priceWithCents}{" "}
-                              after {durationText}.
-                            </p>
-                            <p className="text-white/60">
-                              Membership expires after {durationText}.
-                            </p>
-                          </>
-                        ) : (
-                          <>
-                            <p>
-                              Contact CHLPS for enrollment fee and schedule.
-                            </p>
-                            <p className="text-white/60">
-                              Accredited qualification curriculum.
-                            </p>
-                          </>
-                        )}
-                      </div>
-
-                      {/* Action Button */}
-                      <div className="mt-6">
-                        <Link
-                          href={enrollHref}
-                          className="flex h-12 w-full items-center justify-center rounded-full bg-white  font-bold text-[#161058] shadow-sm transition duration-200 hover:bg-[#F3F2F8] active:scale-[0.99]"
+                        {/* Gold Action Button (DaisyUI btn) */}
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleEnrollClick(programme, firstCourse)
+                          }
+                          disabled={isEnrolling}
+                          className="btn w-full border-none bg-[#C99E4A] text-base font-bold text-[#0B0E33] shadow-sm transition-all duration-200 hover:bg-[#d5aa50] active:scale-[0.99] disabled:opacity-75 rounded-xl h-12 min-h-12"
                         >
-                          Get started
-                        </Link>
+                          {isEnrolling ? (
+                            <div className="flex items-center gap-2">
+                              <span className="loading loading-spinner loading-sm" />
+                              <span>Checking...</span>
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-1.5">
+                              <span>Enroll</span>
+                              <HugeiconsIcon
+                                icon={ArrowUpRight01Icon}
+                                size={18}
+                                color="#0B0E33"
+                                strokeWidth={2.5}
+                              />
+                            </div>
+                          )}
+                        </button>
                       </div>
                     </div>
                   </article>

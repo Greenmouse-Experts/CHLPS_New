@@ -35,7 +35,7 @@ export default function CertificationDetailsHeroSection({
           sizes="100vw"
           className="object-center object-cover"
         />
-        <div className="absolute inset-0 bg-[#0A1140]/75" />
+        {/*<div className="absolute inset-0 bg-[#0A1140]/75" />*/}
       </div>
 
       <PageContainer className="relative min-w-0">

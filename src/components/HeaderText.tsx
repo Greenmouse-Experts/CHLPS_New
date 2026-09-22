@@ -5,13 +5,14 @@ export default function HeaderText(props: {
   right?: string;
   textWhite?: boolean;
   switch?: boolean;
+  notCenter?: boolean;
 }) {
-  const { textWhite = false } = props;
+  const { textWhite = false, notCenter = false } = props;
   return (
     <>
       <Reveal delay={80}>
         <h2
-          className={`${textWhite ? "text-white" : !props.switch ? "text-primary" : "text-secondary"} uppercase text-4xl xl:font-5xl font-bold `}
+          className={`${textWhite ? "text-white" : !props.switch ? "text-primary" : "text-secondary"} uppercase text-3xl xl:font-5xl font-bold ${!notCenter ? "text-center" : ""} `}
         >
           {props.left}{" "}
           {props.right && (

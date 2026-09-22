@@ -8,20 +8,17 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 const CONTACT_EMAIL = "info@chlpscanada.ca";
 
 const initialValues = {
-  fullName: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
-  subject: "",
+  interest: "Student Membership",
   message: "",
 };
 
-const fieldClass =
-  "h-10 w-full rounded-[8px] border border-[#E1DCF2] bg-white px-3  text-text outline-none transition-colors duration-150 placeholder:text-[#A3A1B0] focus:border-primary/40";
-
-const labelClass = "mb-1.5 block  font-medium text-[#4A4958]";
-
 export default function ContactForm() {
   const [values, setValues] = useState(initialValues);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function update(field: keyof typeof initialValues, value: string) {
     setValues((previous) => ({ ...previous, [field]: value }));
@@ -29,13 +26,19 @@ export default function ContactForm() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    setIsSubmitting(true);
 
-    const subject = values.subject.trim() || "Website enquiry";
+    const fullName =
+      `${values.firstName.trim()} ${values.lastName.trim()}`.trim();
+    const subject = `Inquiry: ${values.interest} (${fullName || "Prospective Student"})`;
     const body = [
-      `Name: ${values.fullName.trim()}`,
+      `First Name: ${values.firstName.trim()}`,
+      `Last Name: ${values.lastName.trim()}`,
       `Email: ${values.email.trim()}`,
       values.phone.trim() ? `Phone: ${values.phone.trim()}` : null,
+      `Interested In: ${values.interest}`,
       "",
+      "Message:",
       values.message.trim(),
     ]
       .filter((line) => line !== null)
@@ -45,106 +48,119 @@ export default function ContactForm() {
       subject,
     )}&body=${encodeURIComponent(body)}`;
 
-    toast.success("Opening your email app to send this enquiry.");
+    toast.success("Opening your email client to send this message.");
+    setIsSubmitting(false);
   }
 
   return (
-    <div className="rounded-[14px] bg-lilac p-5 sm:p-7">
-      <h2 className="text-[1.125rem] font-semibold tracking-tight text-[#0A1542] sm:text-[1.25rem]">
-        Send us a message
-      </h2>
-      <p className="mt-2  leading-relaxed  sm:">
-        Complete the form and a member of the ChLPS Canada team will respond to
-        your enquiry.
-      </p>
-
-      <form onSubmit={handleSubmit} className="mt-5">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="contact-full-name" className={labelClass}>
-              Full name
-            </label>
-            <input
-              id="contact-full-name"
-              required
-              value={values.fullName}
-              onChange={(event) => update("fullName", event.target.value)}
-              placeholder="Your full name"
-              className={fieldClass}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contact-email" className={labelClass}>
-              Email address
-            </label>
-            <input
-              id="contact-email"
-              type="email"
-              required
-              value={values.email}
-              onChange={(event) => update("email", event.target.value)}
-              placeholder="name@example.com"
-              className={fieldClass}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contact-phone" className={labelClass}>
-              Phone number
-            </label>
-            <input
-              id="contact-phone"
-              type="tel"
-              value={values.phone}
-              onChange={(event) => update("phone", event.target.value)}
-              placeholder="Optional"
-              className={fieldClass}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contact-subject" className={labelClass}>
-              Subject
-            </label>
-            <input
-              id="contact-subject"
-              value={values.subject}
-              onChange={(event) => update("subject", event.target.value)}
-              placeholder="How can we help?"
-              className={fieldClass}
-            />
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <label htmlFor="contact-message" className={labelClass}>
-            Message
+    <form onSubmit={handleSubmit} className="flex flex-col">
+      {/* Row 1: First Name & Last Name */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
+            First Name
           </label>
-          <textarea
-            id="contact-message"
+          <input
+            type="text"
             required
-            rows={5}
-            value={values.message}
-            onChange={(event) => update("message", event.target.value)}
-            placeholder="Write your message here"
-            className="w-full resize-y rounded-[8px] border border-[#E1DCF2] bg-white px-3 py-2.5  leading-relaxed text-text outline-none transition-colors duration-150 placeholder:text-[#A3A1B0] focus:border-primary/40"
+            value={values.firstName}
+            onChange={(e) => update("firstName", e.target.value)}
+            className="input input-bordered h-12 w-full rounded-xl border-base-300 bg-white text-sm focus:border-[#0D154B] focus:outline-none"
           />
         </div>
 
-        <button
-          type="submit"
-          className="mt-5 flex h-11 w-full items-center justify-center gap-2 rounded-[8px] bg-[#141160] text-[14px] font-semibold text-white transition-opacity duration-200 hover:opacity-90"
-        >
-          Send Message
-          <HugeiconsIcon
-            icon={ArrowRight02Icon}
-            size={16}
-            color="currentColor"
-            strokeWidth={2.2}
+        <div>
+          <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
+            Last Name
+          </label>
+          <input
+            type="text"
+            required
+            value={values.lastName}
+            onChange={(e) => update("lastName", e.target.value)}
+            className="input input-bordered h-12 w-full rounded-xl border-base-300 bg-white text-sm focus:border-[#0D154B] focus:outline-none"
           />
-        </button>
-      </form>
-    </div>
+        </div>
+      </div>
+
+      {/* Row 2: Email & Phone */}
+      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
+            Email
+          </label>
+          <input
+            type="email"
+            required
+            value={values.email}
+            onChange={(e) => update("email", e.target.value)}
+            className="input input-bordered h-12 w-full rounded-xl border-base-300 bg-white text-sm focus:border-[#0D154B] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
+            Phone
+          </label>
+          <input
+            type="tel"
+            value={values.phone}
+            onChange={(e) => update("phone", e.target.value)}
+            className="input input-bordered h-12 w-full rounded-xl border-base-300 bg-white text-sm focus:border-[#0D154B] focus:outline-none"
+          />
+        </div>
+      </div>
+
+      {/* Row 3: Interested In */}
+      <div className="mt-4">
+        <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
+          Interested In
+        </label>
+        <select
+          value={values.interest}
+          onChange={(e) => update("interest", e.target.value)}
+          className="select select-bordered h-12 w-full rounded-xl border-base-300 bg-white text-sm font-normal focus:border-[#0D154B] focus:outline-none"
+        >
+          <option value="Student Membership">Student Membership</option>
+          <option value="Professional Certification (CLPA, BCLP, CLPO)">
+            Professional Certification (CLPA, BCLP, CLPO)
+          </option>
+          <option value="Executive / Chartered Designation (ChLPS)">
+            Executive / Chartered Designation (ChLPS)
+          </option>
+          <option value="Corporate Partnership">Corporate Partnership</option>
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+      </div>
+
+      {/* Row 4: Message */}
+      <div className="mt-4">
+        <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
+          Message
+        </label>
+        <textarea
+          rows={5}
+          required
+          value={values.message}
+          onChange={(e) => update("message", e.target.value)}
+          className="textarea textarea-bordered min-h-[140px] w-full rounded-xl border-base-300 bg-white text-sm focus:border-[#0D154B] focus:outline-none"
+        />
+      </div>
+
+      {/* Row 5: Submit Button */}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="btn mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-xl border-none bg-[#181858] text-base font-bold text-white shadow-md transition-all duration-200 hover:bg-[#0D154B] active:scale-[0.99] disabled:opacity-75 normal-case"
+      >
+        <span>Send Message</span>
+        <HugeiconsIcon
+          icon={ArrowRight02Icon}
+          size={18}
+          color="currentColor"
+          strokeWidth={2.2}
+        />
+      </button>
+    </form>
   );
 }

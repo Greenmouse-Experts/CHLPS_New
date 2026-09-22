@@ -30,7 +30,8 @@ const exploreLinks = [
 const supportLinks = [
   { label: "FAQs", href: "/faq" },
   { label: "Privacy Policy", href: "/policies?tab=privacy" },
-  { label: "Terms", href: "/policies?tab=terms" },
+  { label: "Terms Of Use", href: "/policies?tab=terms" },
+  // { label: "Terms Of Use", href: "/policies?tab=terms" },
   { label: "Code of Ethics", href: "/policies?tab=ethics" },
   { label: "My ChLPS", href: "/dashboard/sign-in" },
 ];

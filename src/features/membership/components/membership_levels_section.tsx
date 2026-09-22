@@ -210,7 +210,7 @@ export default function MembershipLevelsSection() {
                           <h3 className="mt-6 text-lg font-bold leading-snug text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-xl lg:text-[30px]">
                             {category.name}
                           </h3>
-                          <p className="mt-3  font-medium leading-relaxed text-[#676672] transition-colors duration-300 group-hover:text-white/90 group-focus-within:text-white/90 sm:text-[20px]">
+                          <p className="mt-3  font-medium leading-relaxed text-[#676672] transition-colors line-clamp-3 duration-300 group-hover:text-white/90 group-focus-within:text-white/90 sm:text-[20px]">
                             {category.description}
                           </p>
                           <div className="mt-auto flex min-w-0 items-center justify-between gap-3 pt-8">

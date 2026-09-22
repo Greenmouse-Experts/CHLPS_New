@@ -79,7 +79,7 @@ export default function AboutHeroSection({
               </Reveal>
             ) : null}
 
-            <Reveal delay={80}>
+            {/*<Reveal delay={80}>
               <h1
                 className="text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-[40px] xl:text-[48px]"
                 style={{ maxWidth: titleWidth ?? "800px" }}
@@ -92,7 +92,7 @@ export default function AboutHeroSection({
                   </>
                 ) : null}
               </h1>
-            </Reveal>
+            </Reveal>*/}
 
             {children || cta ? (
               <div className={children ? "w-full max-w-[26.5rem]" : undefined}>
