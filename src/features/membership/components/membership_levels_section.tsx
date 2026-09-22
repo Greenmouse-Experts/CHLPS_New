@@ -13,6 +13,8 @@ import QueryCompLayout from "@/components/QueryCompLayout";
 import { fetchPublicMemberships } from "@/features/membership/services/membership_service";
 import type { Membership } from "@/types";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
+import HeaderSubText from "@/components/HeaderSubText";
 
 const badgeMap: Record<string, string> = {
   student: Assets.images.membership.student,
@@ -113,29 +115,13 @@ export default function MembershipLevelsSection() {
 
       <PageContainer className="relative z-10">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-          <div className="min-w-0">
-            <Reveal>
-              <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                Membership Levels
-              </span>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
-                Find your membership level.
-              </h2>
-            </Reveal>
+          <div className="flex w-full flex-col">
+            <HeaderText left="find your membership" right="grade" />
+            <HeaderSubText>
+              Six membership routes for professionals and organizations at every
+              stage.
+            </HeaderSubText>
           </div>
-
-          <Reveal delay={160} className="min-w-0 lg:max-w-[22rem] lg:shrink-0">
-            <p className="text-[15px] leading-relaxed text-[#676672] sm:text-base">
-              Membership routes for professionals and organisations across every
-              stage of loss prevention.
-            </p>
-          </Reveal>
         </div>
 
         <div className="mt-10 sm:mt-12">

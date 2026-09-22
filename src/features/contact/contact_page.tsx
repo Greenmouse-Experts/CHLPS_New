@@ -9,7 +9,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-white">
       <Header />
       <ContactHeroSection />
-      {/*<ContactDetailsSection />*/}
+      <ContactDetailsSection />
       <ContactMapSection />
       <Footer />
     </div>
