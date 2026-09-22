@@ -42,7 +42,9 @@ export default function CourseContentList({
   const [openIndex, setOpenIndex] = useState(
     firstWithLessons === -1 ? 0 : firstWithLessons,
   );
-  const [activeAssessment, setActiveAssessment] = useState<LessonSub | null>(null);
+  const [activeAssessment, setActiveAssessment] = useState<LessonSub | null>(
+    null,
+  );
 
   return (
     <div className="overflow-hidden rounded-xl border border-sand bg-white">
@@ -54,7 +56,9 @@ export default function CourseContentList({
           <div key={`${section.title}-${index}`}>
             <button
               type="button"
-              onClick={() => setOpenIndex((current) => (current === index ? -1 : index))}
+              onClick={() =>
+                setOpenIndex((current) => (current === index ? -1 : index))
+              }
               className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left hover:bg-cream"
             >
               <span className="font-medium text-primary">{section.title}</span>
@@ -65,7 +69,7 @@ export default function CourseContentList({
               />
             </button>
             {openIndex === index && section.courseContentSubs.length === 0 && (
-              <p className="px-5 pb-4 text-sm text-text/40">
+              <p className="px-5 pb-4  text-text/40">
                 No lessons in this section yet.
               </p>
             )}
@@ -172,7 +176,12 @@ function LessonRow({
   }
 
   return (
-    <li className={cn("flex items-start gap-3 px-5 py-3", active && "bg-lilac/70")}>
+    <li
+      className={cn(
+        "flex items-start gap-3 px-5 py-3",
+        active && "bg-lilac/70",
+      )}
+    >
       <button
         type="button"
         onClick={markRead}
@@ -191,12 +200,19 @@ function LessonRow({
         className="flex flex-1 items-center gap-2 text-left"
       >
         <MediaIcon type={sub.mediaType} />
-        <span className={cn("flex-1", active ? "font-medium text-primary" : "text-text/80")}>
+        <span
+          className={cn(
+            "flex-1",
+            active ? "font-medium text-primary" : "text-text/80",
+          )}
+        >
           {sub.title}
         </span>
       </button>
       {sub.duration > 0 && (
-        <span className="mt-0.5 shrink-0 text-xs text-text/40">{sub.duration} Min(s)</span>
+        <span className="mt-0.5 shrink-0  text-text/40">
+          {sub.duration} Min(s)
+        </span>
       )}
     </li>
   );

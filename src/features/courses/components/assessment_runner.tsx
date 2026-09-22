@@ -56,7 +56,10 @@ export default function AssessmentRunner({
           The timer starts as soon as you begin. Your answers are submitted
           automatically when the time runs out.
         </p>
-        <Button className="mt-2 w-full max-w-xs" onClick={() => setPhase("quiz")}>
+        <Button
+          className="mt-2 w-full max-w-xs"
+          onClick={() => setPhase("quiz")}
+        >
           Start assessment
         </Button>
       </div>
@@ -91,7 +94,9 @@ function Quiz({
   const repo = new CoursesRepository();
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [answers, setAnswers] = useState<{ question: string; choice: number }[]>([]);
+  const [answers, setAnswers] = useState<
+    { question: string; choice: number }[]
+  >([]);
   const [index, setIndex] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const submittedRef = useRef(false);
@@ -120,7 +125,9 @@ function Quiz({
   }
 
   if (loading) {
-    return <p className="py-16 text-center text-text/50">Loading questions...</p>;
+    return (
+      <p className="py-16 text-center text-text/50">Loading questions...</p>
+    );
   }
 
   if (questions.length === 0) {
@@ -132,7 +139,9 @@ function Quiz({
   }
 
   const question = questions[index];
-  const selected = answers.find((item) => item.question === question.id)?.choice;
+  const selected = answers.find(
+    (item) => item.question === question.id,
+  )?.choice;
   const isLast = index === questions.length - 1;
 
   return (
@@ -145,7 +154,7 @@ function Quiz({
       </div>
 
       <div className="rounded-lg border border-sand p-5">
-        <p className="text-xs tracking-wide text-text/45 uppercase">
+        <p className=" tracking-wide text-text/45 uppercase">
           Question {index + 1} of {questions.length}
         </p>
         <p className="mt-2 font-medium text-primary">{question.question}</p>
@@ -203,7 +212,13 @@ function Quiz({
   );
 }
 
-function Timer({ minutes, onTimeout }: { minutes: number; onTimeout: () => void }) {
+function Timer({
+  minutes,
+  onTimeout,
+}: {
+  minutes: number;
+  onTimeout: () => void;
+}) {
   const [timeLeft, setTimeLeft] = useState(Math.max(0, minutes) * 60);
   const onTimeoutRef = useRef(onTimeout);
   onTimeoutRef.current = onTimeout;
@@ -228,8 +243,10 @@ function Timer({ minutes, onTimeout }: { minutes: number; onTimeout: () => void 
   return (
     <span
       className={cn(
-        "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold",
-        timeLeft <= 30 ? "bg-[#FDF0F0] text-[#991B1B]" : "bg-cream text-text/70",
+        "flex items-center gap-2 rounded-md px-3 py-1.5  font-semibold",
+        timeLeft <= 30
+          ? "bg-[#FDF0F0] text-[#991B1B]"
+          : "bg-cream text-text/70",
       )}
     >
       <HugeiconsIcon icon={Clock01Icon} size={16} color="currentColor" />
@@ -261,7 +278,9 @@ function Results({
   }, [courseId, sub.id]);
 
   if (loading) {
-    return <p className="py-16 text-center text-text/50">Loading your result...</p>;
+    return (
+      <p className="py-16 text-center text-text/50">Loading your result...</p>
+    );
   }
 
   if (!data?.result) {
@@ -280,10 +299,10 @@ function Results({
   return (
     <div className="space-y-5">
       <div className="rounded-lg bg-cream py-5 text-center">
-        <p className="text-xs tracking-wide text-text/50 uppercase">Your score</p>
+        <p className=" tracking-wide text-text/50 uppercase">Your score</p>
         <p className="mt-2 text-2xl font-semibold text-primary">
-          <span className="text-secondary">{data.result.score}</span>/{data.result.total}{" "}
-          — {data.result.percent}%
+          <span className="text-secondary">{data.result.score}</span>/
+          {data.result.total} — {data.result.percent}%
         </p>
       </div>
       <ol className="space-y-4">
@@ -302,14 +321,14 @@ function Results({
                   color={correct ? "#38CB89" : "#E84D52"}
                 />
               </div>
-              <p className="mt-3 text-sm">
+              <p className="mt-3 ">
                 Your answer:{" "}
                 <span className={correct ? "text-[#166534]" : "text-[#991B1B]"}>
                   {question.options[answer.choice]}
                 </span>
               </p>
               {!correct && (
-                <p className="mt-1 text-sm text-[#166534]">
+                <p className="mt-1  text-[#166534]">
                   Correct answer: {question.options[question.correctOption]}
                 </p>
               )}

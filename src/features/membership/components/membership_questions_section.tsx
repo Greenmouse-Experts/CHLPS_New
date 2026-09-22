@@ -75,7 +75,7 @@ export default function MembershipQuestionsSection({
                 />
               </span>
               <div className="min-w-0 flex-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#6B65C4]">
+                <span className=" font-bold uppercase tracking-wider text-[#6B65C4]">
                   Question {index + 1}
                 </span>
                 <p className="mt-1 text-base font-semibold leading-snug text-[#1D1658]">
@@ -100,7 +100,7 @@ export default function MembershipQuestionsSection({
               <button
                 type="button"
                 onClick={onApply}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5  font-bold text-white shadow-md transition hover:opacity-90"
               >
                 <span>Answer Screening Questions & Apply</span>
                 <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
@@ -108,7 +108,7 @@ export default function MembershipQuestionsSection({
             ) : slug ? (
               <Link
                 href={`/membership/${slug}/questions`}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-white shadow-md transition hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5  font-bold text-white shadow-md transition hover:opacity-90"
               >
                 <span>Answer Screening Questions & Apply</span>
                 <HugeiconsIcon icon={ArrowRight01Icon} size={16} />

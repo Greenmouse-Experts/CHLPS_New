@@ -120,13 +120,13 @@ export default function PreviewMedia({ sub }: { sub: CourseContentSub }) {
         <h4 className="mt-4 text-lg font-bold text-[#1E1758]">
           Preview Not Available
         </h4>
-        <p className="mt-2 max-w-md text-sm text-[#7A778B] leading-relaxed">
+        <p className="mt-2 max-w-md  text-[#7A778B] leading-relaxed">
           A preview has not been made publicly available for &ldquo;{sub.title}
           &rdquo;. Enroll in this certification program to access the full
           module lessons, video lectures, and study materials.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF9F5] border border-[#CDA54E]/40 px-3.5 py-1 text-xs font-medium text-[#1E1758]">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF9F5] border border-[#CDA54E]/40 px-3.5 py-1  font-medium text-[#1E1758]">
             {sub.mediaType === "video" && <Play className="h-3 w-3" />}
             {sub.mediaType === "image" && <ImageIcon className="h-3 w-3" />}
             {sub.mediaType === "assessment" && (
@@ -136,7 +136,7 @@ export default function PreviewMedia({ sub }: { sub: CourseContentSub }) {
             <span className="capitalize">{sub.mediaType} lesson</span>
           </span>
           {sub.duration > 0 && (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF9F5] border border-[#CDA54E]/40 px-3.5 py-1 text-xs font-medium text-[#7A778B]">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF9F5] border border-[#CDA54E]/40 px-3.5 py-1  font-medium text-[#7A778B]">
               <Clock className="h-3 w-3" />
               {sub.duration} mins
             </span>
@@ -156,7 +156,7 @@ export default function PreviewMedia({ sub }: { sub: CourseContentSub }) {
         <h4 className="mt-4 text-lg font-bold text-[#1E1758]">
           Module Knowledge Assessment
         </h4>
-        <p className="mt-2 max-w-md text-sm text-[#7A778B] leading-relaxed">
+        <p className="mt-2 max-w-md  text-[#7A778B] leading-relaxed">
           This assessment evaluates your understanding of the concepts covered
           in this module. Full access to interactive quizzes and tests is
           unlocked upon enrollment.
@@ -285,14 +285,14 @@ export default function PreviewMedia({ sub }: { sub: CourseContentSub }) {
   return (
     <div className="flex h-64 flex-col items-center justify-center gap-3 rounded-xl border border-base-300 bg-base-200 p-6 text-center">
       <FileText className="h-8 w-8 text-base-content/40" />
-      <p className="text-sm text-base-content/70">
+      <p className=" text-base-content/70">
         Direct preview is not supported for this file type.
       </p>
       <a
         href={src}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+        className="inline-flex items-center gap-1.5  font-semibold text-primary hover:underline"
       >
         <span>Open file in new tab</span>
         <ExternalLink className="h-3.5 w-3.5" />

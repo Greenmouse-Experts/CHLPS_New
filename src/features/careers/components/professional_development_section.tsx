@@ -34,7 +34,7 @@ export default function ProfessionalDevelopmentSection() {
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <span
-              className="cut-tr-bl inline-block bg-lilac px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#6B65C4] sm:text-[12px]"
+              className="cut-tr-bl inline-block bg-lilac px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#6B65C4] sm:"
               style={{ "--cut": "0.5rem" } as CSSProperties}
             >
               Professional Development

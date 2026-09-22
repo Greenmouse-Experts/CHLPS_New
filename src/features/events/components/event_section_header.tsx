@@ -60,7 +60,7 @@ export default function EventSectionHeader({
         <Reveal delay={80} className="shrink-0">
           <Link
             href={viewAllHref}
-            className="inline-flex h-10 items-center gap-1.5 rounded-full border border-primary bg-white px-4 text-[13px] font-semibold text-primary transition-colors duration-200 hover:bg-lilac sm:h-11 sm:px-5 sm:text-sm"
+            className="inline-flex h-10 items-center gap-1.5 rounded-full border border-primary bg-white px-4  font-semibold text-primary transition-colors duration-200 hover:bg-lilac sm:h-11 sm:px-5 sm:"
           >
             View All
             <HugeiconsIcon

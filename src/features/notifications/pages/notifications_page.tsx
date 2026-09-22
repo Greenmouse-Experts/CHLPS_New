@@ -29,9 +29,13 @@ const NotificationsPage = () => {
             type="button"
             onClick={markAll}
             disabled={marking}
-            className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline disabled:opacity-50"
+            className="flex items-center gap-1.5  font-medium text-primary hover:underline disabled:opacity-50"
           >
-            <HugeiconsIcon icon={TickDouble02Icon} size={16} color="currentColor" />
+            <HugeiconsIcon
+              icon={TickDouble02Icon}
+              size={16}
+              color="currentColor"
+            />
             Mark all as read
           </button>
         </div>
@@ -43,8 +47,10 @@ const NotificationsPage = () => {
               type="button"
               onClick={() => setTab(item)}
               className={cn(
-                "rounded-md py-2.5 text-sm font-medium capitalize",
-                tab === item ? "bg-primary text-white" : "text-text/60 hover:text-text",
+                "rounded-md py-2.5  font-medium capitalize",
+                tab === item
+                  ? "bg-primary text-white"
+                  : "text-text/60 hover:text-text",
               )}
             >
               {item}
@@ -80,13 +86,15 @@ const NotificationsPage = () => {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="font-medium text-primary">{item.title}</p>
-                        <p className="mt-1 leading-relaxed text-text/60">{item.body}</p>
+                        <p className="mt-1 leading-relaxed text-text/60">
+                          {item.body}
+                        </p>
                       </div>
                       {!item.read && (
                         <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-secondary" />
                       )}
                     </div>
-                    <p className="mt-3 text-xs text-text/40">
+                    <p className="mt-3  text-text/40">
                       {new Date(item.createdDate).toLocaleString(undefined, {
                         day: "2-digit",
                         month: "short",

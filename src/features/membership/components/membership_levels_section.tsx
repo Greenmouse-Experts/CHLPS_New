@@ -210,11 +210,11 @@ export default function MembershipLevelsSection() {
                           <h3 className="mt-6 text-lg font-bold leading-snug text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-xl lg:text-[30px]">
                             {category.name}
                           </h3>
-                          <p className="mt-3 text-[13px] font-medium leading-relaxed text-[#676672] transition-colors duration-300 group-hover:text-white/90 group-focus-within:text-white/90 sm:text-[20px]">
+                          <p className="mt-3  font-medium leading-relaxed text-[#676672] transition-colors duration-300 group-hover:text-white/90 group-focus-within:text-white/90 sm:text-[20px]">
                             {category.description}
                           </p>
                           <div className="mt-auto flex min-w-0 items-center justify-between gap-3 pt-8">
-                            <span className="min-w-0 text-[13px] font-bold text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-[18px]">
+                            <span className="min-w-0  font-bold text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-[18px]">
                               Explore {category.name}
                             </span>
                             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-[#111E2A] sm:h-11 sm:w-11">

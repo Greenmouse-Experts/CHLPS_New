@@ -65,7 +65,7 @@ function CourseCard({ item }: { item: PurchaseItem }) {
           {item.course.title}
         </h2>
         <div className="mb-6 space-y-1.5">
-          <div className="flex items-center justify-between text-sm text-white/60">
+          <div className="flex items-center justify-between  text-white/60">
             <span>Progress</span>
             <span>{pct}%</span>
           </div>
@@ -76,7 +76,7 @@ function CourseCard({ item }: { item: PurchaseItem }) {
             />
           </div>
           {total > 0 && (
-            <p className="text-sm text-white/40">
+            <p className=" text-white/40">
               {completed} of {total} lessons completed
             </p>
           )}

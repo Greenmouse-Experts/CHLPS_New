@@ -32,7 +32,7 @@ function FieldLabel({
   return (
     <label
       htmlFor={htmlFor}
-      className="mb-1.5 block text-sm font-medium uppercase tracking-[0.12em] text-text/55"
+      className="mb-1.5 block  font-medium uppercase tracking-[0.12em] text-text/55"
     >
       {children}
       {required && <span className="ml-0.5 text-[#E84D52]">*</span>}
@@ -41,13 +41,19 @@ function FieldLabel({
 }
 
 function FieldHint({ children }: { children: React.ReactNode }) {
-  return <p className="mt-1 text-xs text-text/55">{children}</p>;
+  return <p className="mt-1  text-text/55">{children}</p>;
 }
 
 function FieldError({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-1 flex items-center gap-1 text-xs text-[#E84D52]">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="shrink-0">
+    <p className="mt-1 flex items-center gap-1  text-[#E84D52]">
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="none"
+        className="shrink-0"
+      >
         <circle cx="6" cy="6" r="5.5" stroke="#E84D52" />
         <path
           d="M6 3.5v3M6 8h.01"
@@ -62,8 +68,8 @@ function FieldError({ children }: { children: React.ReactNode }) {
 }
 
 const sizeMap = {
-  sm: { input: "h-8 text-xs px-2.5", icon: "w-8" },
-  md: { input: "h-10 text-sm px-3", icon: "w-10" },
+  sm: { input: "h-8  px-2.5", icon: "w-8" },
+  md: { input: "h-10  px-3", icon: "w-10" },
   lg: { input: "h-11 text-base px-3.5", icon: "w-11" },
 };
 
@@ -174,7 +180,9 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             )}
             {!showClear && rightAction && rightAction}
             {!showClear && !rightAction && rightIcon && (
-              <span className="pointer-events-none text-text/50">{rightIcon}</span>
+              <span className="pointer-events-none text-text/50">
+                {rightIcon}
+              </span>
             )}
           </span>
         </div>
@@ -233,7 +241,13 @@ const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
               stroke="currentColor"
               strokeWidth="1.3"
             />
-            <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="1.3" />
+            <circle
+              cx="8"
+              cy="8"
+              r="2"
+              stroke="currentColor"
+              strokeWidth="1.3"
+            />
           </svg>
         )}
       </button>
@@ -252,11 +266,5 @@ const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
 
 PasswordField.displayName = "PasswordField";
 
-export {
-  TextField,
-  PasswordField,
-  FieldLabel,
-  FieldError,
-  FieldHint,
-};
+export { TextField, PasswordField, FieldLabel, FieldError, FieldHint };
 export type { TextFieldProps };

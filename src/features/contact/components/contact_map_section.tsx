@@ -11,7 +11,7 @@ export default function ContactMapSection() {
     <section id="find-us" className="bg-white py-14 sm:py-16 lg:py-20">
       <PageContainer>
         <Reveal>
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-secondary sm:text-[12px]">
+          <p className=" font-bold uppercase tracking-[0.16em] text-secondary sm:">
             Find Us
           </p>
         </Reveal>
@@ -24,7 +24,7 @@ export default function ContactMapSection() {
           </Reveal>
 
           <Reveal delay={140} className="shrink-0">
-            <p className="text-[13px] text-[#6F6E7A] sm:text-[14px]">
+            <p className=" text-[#6F6E7A] sm:text-[14px]">
               Our office is located on Victoria Avenue in Windsor, Ontario.
             </p>
           </Reveal>

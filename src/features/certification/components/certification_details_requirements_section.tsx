@@ -48,7 +48,7 @@ export default function CertificationDetailsRequirementsSection({
                       strokeWidth={2.4}
                     />
                   </span>
-                  <span className="min-w-0 text-left text-[13px] leading-relaxed text-[#6D6885] sm:text-[14px] lg:text-[15px]">
+                  <span className="min-w-0 text-left  leading-relaxed text-[#6D6885] sm:text-[14px] lg:text-[15px]">
                     {item}
                   </span>
                 </li>

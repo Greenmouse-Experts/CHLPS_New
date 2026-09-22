@@ -57,7 +57,7 @@ export default function MembershipJoinNowSection({
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex rounded-full bg-[#EEEAF8] px-4 py-2 text-[13px] font-semibold text-[#161058] sm:px-5 sm:text-[14px]"
+                    className="inline-flex rounded-full bg-[#EEEAF8] px-4 py-2  font-semibold text-[#161058] sm:px-5 sm:text-[14px]"
                   >
                     {tag}
                   </span>

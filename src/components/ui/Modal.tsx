@@ -79,12 +79,15 @@ export function Modal({
           <div className="flex items-start justify-between gap-4 border-b border-sand px-6 pt-5 pb-4">
             <div>
               {title && (
-                <h2 id="modal-title" className="text-base font-semibold text-text">
+                <h2
+                  id="modal-title"
+                  className="text-base font-semibold text-text"
+                >
                   {title}
                 </h2>
               )}
               {description && (
-                <p className="mt-1 text-sm text-text/60">{description}</p>
+                <p className="mt-1  text-text/60">{description}</p>
               )}
             </div>
             <button
@@ -148,7 +151,12 @@ export function ConfirmModal({
       description={description}
       footer={
         <>
-          <Button variant="ghost" size="md" onClick={onClose} disabled={loading}>
+          <Button
+            variant="ghost"
+            size="md"
+            onClick={onClose}
+            disabled={loading}
+          >
             {cancelLabel}
           </Button>
           <Button

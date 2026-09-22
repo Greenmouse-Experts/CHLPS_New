@@ -185,11 +185,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 border-t border-[#CDA54E80] pb-8 pt-6 text-center md:mt-20 md:pb-10 md:pt-8 lg:mt-24">
-          <p className="text-[12px] leading-relaxed text-white sm:text-[18px]">
+          <p className=" leading-relaxed text-white sm:text-[18px]">
             © 2026 Association of Chartered Loss Prevention Specialists of
             Canada.
           </p>
-          <p className="mt-1 text-[12px] text-white sm:text-[18px]">
+          <p className="mt-1  text-white sm:text-[18px]">
             All rights reserved.
           </p>
         </div>

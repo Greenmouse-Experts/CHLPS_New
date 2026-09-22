@@ -86,7 +86,7 @@ const SignInPage = () => {
               onChange={formik.handleChange}
             />
 
-            <p className="text-sm text-text/70">
+            <p className=" text-text/70">
               Forgot password?{" "}
               <Link
                 href="/dashboard/reset-password"

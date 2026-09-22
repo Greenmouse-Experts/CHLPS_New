@@ -51,7 +51,7 @@ export default function EventCard({
         <EventCardBackdrop />
 
         <div className="relative z-10 flex flex-1 flex-col">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8A8A96]">
+          <p className=" font-semibold uppercase tracking-[0.16em] text-[#8A8A96]">
             {event.category}
           </p>
 

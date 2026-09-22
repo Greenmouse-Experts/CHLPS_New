@@ -24,7 +24,7 @@ export default function FaqHeroSection() {
           <div className="w-full">
             <Reveal>
               <span
-                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:text-[12px]"
+                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 FAQs

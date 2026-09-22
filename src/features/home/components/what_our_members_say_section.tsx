@@ -135,7 +135,7 @@ export default function WhatOurMembersSaySection({
                 </div>
 
                 {/* Quote Text */}
-                <p className="mt-5 text-[15.5px] font-normal leading-[1.68] text-[#1E1758] sm:text-[16.5px]">
+                <p className="mt-5 text-sm font-normal leading-[1.68] text-[#1E1758] ">
                   {testimonial.quote}
                 </p>
               </div>
@@ -152,7 +152,7 @@ export default function WhatOurMembersSaySection({
                   />
 
                   <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-[19px] font-bold tracking-tight text-[#1E1758] sm:text-[21px]">
+                    <h3 className="truncate text-lg font-bold tracking-tight text-[#1E1758] ">
                       {testimonial.name}
                     </h3>
                     <p className="truncate text-[14.5px] font-normal text-[#1E1758] sm:text-[15px]">
@@ -163,12 +163,12 @@ export default function WhatOurMembersSaySection({
                     <div className="my-2 h-[2.5px] w-9 rounded-full bg-[#CDA54E]" />
 
                     {testimonial.organization && (
-                      <p className="truncate text-[13.5px] font-normal text-[#4A4660] sm:text-[14px]">
+                      <p className="truncate  font-normal text-[#4A4660] text-sm">
                         {testimonial.organization}
                       </p>
                     )}
                     {testimonial.location && (
-                      <p className="truncate text-[13.5px] font-normal text-[#4A4660] sm:text-[14px]">
+                      <p className="truncate  font-normal text-[#4A4660] text-sm">
                         {testimonial.location}
                       </p>
                     )}

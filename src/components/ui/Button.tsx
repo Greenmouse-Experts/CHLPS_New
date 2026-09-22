@@ -61,9 +61,9 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  xs: "h-7 px-2.5 text-xs gap-1.5 rounded-md",
-  sm: "h-8 px-3 text-sm gap-1.5 rounded-md",
-  md: "h-10 px-4 text-sm gap-2 rounded-lg",
+  xs: "h-7 px-2.5  gap-1.5 rounded-md",
+  sm: "h-8 px-3  gap-1.5 rounded-md",
+  md: "h-10 px-4  gap-2 rounded-lg",
   lg: "h-11 px-5 text-base gap-2 rounded-lg",
 };
 
@@ -134,7 +134,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <span className="flex items-center shrink-0">{leftIcon}</span>
         ) : null}
 
-        {children && <span className={cn(loading && "ml-1.5")}>{children}</span>}
+        {children && (
+          <span className={cn(loading && "ml-1.5")}>{children}</span>
+        )}
 
         {!loading && rightIcon && (
           <span className="flex items-center shrink-0">{rightIcon}</span>

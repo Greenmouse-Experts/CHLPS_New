@@ -45,7 +45,10 @@ const CourseLearnPage = ({ id }: { id: string }) => {
   );
 
   const firstLesson = useMemo<LessonSub | undefined>(
-    () => course?.contents.data.flatMap((section) => section.courseContentSubs).find(Boolean),
+    () =>
+      course?.contents.data
+        .flatMap((section) => section.courseContentSubs)
+        .find(Boolean),
     [course],
   );
 
@@ -102,16 +105,25 @@ const CourseLearnPage = ({ id }: { id: string }) => {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <Link href="/dashboard/courses" className="text-sm font-medium text-primary hover:underline">
+        <Link
+          href="/dashboard/courses"
+          className=" font-medium text-primary hover:underline"
+        >
           ← My Courses
         </Link>
         <Button
           size="sm"
           loading={generating}
           disabled={!isCompleted}
-          leftIcon={<HugeiconsIcon icon={Award01Icon} size={16} color="currentColor" />}
+          leftIcon={
+            <HugeiconsIcon icon={Award01Icon} size={16} color="currentColor" />
+          }
           onClick={generateCertificate}
-          title={!isCompleted ? "Complete the course to unlock your certificate" : undefined}
+          title={
+            !isCompleted
+              ? "Complete the course to unlock your certificate"
+              : undefined
+          }
         >
           Get certificate
         </Button>
@@ -160,7 +172,9 @@ const CourseLearnPage = ({ id }: { id: string }) => {
                       {course.course.title}
                     </h1>
                     {course.course.program?.title && (
-                      <p className="text-text/60">Program: {course.course.program.title}</p>
+                      <p className="text-text/60">
+                        Program: {course.course.program.title}
+                      </p>
                     )}
                     <p className="whitespace-pre-line leading-relaxed text-text/60">
                       {course.course.shortDesc}
@@ -175,13 +189,21 @@ const CourseLearnPage = ({ id }: { id: string }) => {
         </div>
 
         <div className="w-full space-y-4 lg:w-96 lg:shrink-0">
-          <div className="flex items-center gap-4 rounded-xl border border-sand bg-white px-5 py-4 text-sm text-text/60">
+          <div className="flex items-center gap-4 rounded-xl border border-sand bg-white px-5 py-4  text-text/60">
             <span className="flex items-center gap-1.5">
-              <HugeiconsIcon icon={LeftToRightListBulletIcon} size={16} color="currentColor" />
+              <HugeiconsIcon
+                icon={LeftToRightListBulletIcon}
+                size={16}
+                color="currentColor"
+              />
               {course.contents.total} modules
             </span>
             <span className="flex items-center gap-1.5">
-              <HugeiconsIcon icon={Clock01Icon} size={16} color="currentColor" />
+              <HugeiconsIcon
+                icon={Clock01Icon}
+                size={16}
+                color="currentColor"
+              />
               {course.contents.totalDuration} Min(s)
             </span>
           </div>

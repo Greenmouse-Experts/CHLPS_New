@@ -50,14 +50,14 @@ export default function CustomTable(props: CustomTableProps) {
       }
     >
       <div className="relative overflow-x-auto">
-        <table className="table w-full text-sm">
+        <table className="table w-full ">
           <thead>
             <tr className="border-b border-[#E7E9EB] bg-[#FAFAFA]">
               {props.columns &&
                 props.columns.map((column, idx) => (
                   <th
                     key={idx}
-                    className="px-4 py-3 text-left text-xs font-semibold text-[#717171] uppercase tracking-wider whitespace-nowrap"
+                    className="px-4 py-3 text-left  font-semibold text-[#717171] uppercase tracking-wider whitespace-nowrap"
                   >
                     {column.label}
                   </th>
@@ -65,7 +65,7 @@ export default function CustomTable(props: CustomTableProps) {
               {!props.columns?.find((item) => item.key === "action") &&
                 props.actions &&
                 props.actions.length > 0 && (
-                  <th className="px-4 py-3 text-right text-xs font-semibold text-[#717171] uppercase tracking-wider whitespace-nowrap">
+                  <th className="px-4 py-3 text-right  font-semibold text-[#717171] uppercase tracking-wider whitespace-nowrap">
                     Action
                   </th>
                 )}
@@ -83,10 +83,7 @@ export default function CustomTable(props: CustomTableProps) {
                     onClick={() => onRowClick?.(item)}
                   >
                     {props.columns?.map((col, colIdx) => (
-                      <td
-                        className="py-3 px-4 text-sm text-[#1F1F1F]"
-                        key={colIdx}
-                      >
+                      <td className="py-3 px-4  text-[#1F1F1F]" key={colIdx}>
                         {col.render
                           ? col.render(item[col.key], item)
                           : item[col.key]}
@@ -118,7 +115,7 @@ export default function CustomTable(props: CustomTableProps) {
               <tr>
                 <td
                   colSpan={colSpan || 1}
-                  className="py-12 text-center text-sm text-[#717171]"
+                  className="py-12 text-center  text-[#717171]"
                 >
                   No records found
                 </td>
@@ -130,14 +127,14 @@ export default function CustomTable(props: CustomTableProps) {
 
       {pagination && (
         <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-[#E7E9EB]">
-          <div className="text-xs text-[#717171]">
+          <div className=" text-[#717171]">
             Showing{" "}
             <span className="font-medium text-[#1F1F1F]">{startRange}</span> to{" "}
             <span className="font-medium text-[#1F1F1F]">{endRange}</span> of{" "}
             <span className="font-medium text-[#1F1F1F]">{totalCount}</span>{" "}
             results
             {totalCount > 0 && (
-              <span className="ml-1 text-xs text-[#ADADAD]">
+              <span className="ml-1  text-[#ADADAD]">
                 ({totalPages} {totalPages === 1 ? "page" : "pages"})
               </span>
             )}

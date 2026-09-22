@@ -36,7 +36,7 @@ export default function EventDetailPage({ event }: EventDetailPageProps) {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Link
               href="/events"
-              className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#071649] transition-opacity hover:opacity-70 sm:text-[14px]"
+              className="inline-flex items-center gap-1.5  font-bold text-[#071649] transition-opacity hover:opacity-70 sm:text-[14px]"
             >
               <HugeiconsIcon
                 icon={ArrowLeft01Icon}
@@ -46,9 +46,7 @@ export default function EventDetailPage({ event }: EventDetailPageProps) {
               />
               Back to Events
             </Link>
-            <p className="text-[12px] text-[#81889C] sm:text-[20px]">
-              {view.breadcrumb}
-            </p>
+            <p className=" text-[#81889C] sm:text-[20px]">{view.breadcrumb}</p>
           </div>
 
           <EventDetailContent event={activeEvent} />

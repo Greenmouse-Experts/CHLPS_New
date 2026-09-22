@@ -111,7 +111,7 @@ function CheckoutForm({
     <form onSubmit={handleSubmit} className="mt-4 space-y-4">
       <PaymentElement />
       {errorMessage && (
-        <div className="rounded-lg bg-red-50 p-3 text-xs text-red-700">
+        <div className="rounded-lg bg-red-50 p-3  text-red-700">
           {errorMessage}
         </div>
       )}
@@ -283,7 +283,7 @@ export default function StripePaymentModal({
         {/* Modal Body */}
         {step === "preview" ? (
           <div className="mt-5 space-y-4">
-            <p className="text-sm text-gray-600">
+            <p className=" text-gray-600">
               Review your order breakdown before proceeding to secure Stripe
               payment.
             </p>
@@ -295,12 +295,12 @@ export default function StripePaymentModal({
                   size={24}
                   className="mx-auto animate-spin text-[#221A7A]"
                 />
-                <p className="text-xs text-gray-500">
+                <p className=" text-gray-500">
                   Calculating order totals and taxes...
                 </p>
               </div>
             ) : (
-              <div className="rounded-xl border border-gray-100 bg-[#F9F8FD] p-4 text-sm">
+              <div className="rounded-xl border border-gray-100 bg-[#F9F8FD] p-4 ">
                 <div className="flex justify-between py-1 text-gray-600">
                   <span>Subtotal:</span>
                   <span className="font-semibold text-gray-900">
@@ -331,7 +331,7 @@ export default function StripePaymentModal({
                   <span>Total Due:</span>
                   <span className="text-primary">
                     ${totalCalculated.toLocaleString()}{" "}
-                    <span className="text-xs font-normal text-gray-500">
+                    <span className=" font-normal text-gray-500">
                       {previewData?.currency || "CAD"}
                     </span>
                   </span>
@@ -339,7 +339,7 @@ export default function StripePaymentModal({
               </div>
             )}
 
-            <div className="flex items-center gap-2 text-xs text-gray-500">
+            <div className="flex items-center gap-2  text-gray-500">
               <HugeiconsIcon
                 icon={CheckmarkCircle02Icon}
                 size={16}
@@ -354,7 +354,7 @@ export default function StripePaymentModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="h-11 flex-1 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="h-11 flex-1 rounded-xl border border-gray-200  font-medium text-gray-700 hover:bg-gray-50"
               >
                 Cancel
               </button>
@@ -362,7 +362,7 @@ export default function StripePaymentModal({
                 type="button"
                 disabled={isLoadingPreview || isCreatingOrder}
                 onClick={handleProceedToPayment}
-                className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-[#221A7A] text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-[#221A7A]  font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
               >
                 {isCreatingOrder ? (
                   <>

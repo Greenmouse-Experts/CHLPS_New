@@ -170,7 +170,7 @@ function MegaPanel({
             <Link
               href={menu.cta.href}
               onClick={onNavigate}
-              className="mt-6 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-primary px-5 text-[13px] font-semibold text-white transition-opacity duration-200 hover:opacity-90"
+              className="mt-6 inline-flex h-11 w-fit items-center gap-2 rounded-full bg-primary px-5  font-semibold text-white transition-opacity duration-200 hover:opacity-90"
             >
               <span>
                 {menu.cta.label}
@@ -201,7 +201,7 @@ function MegaPanel({
                 </div>
               ))
             ) : (
-              <div className="col-span-2 flex items-center py-8 text-sm text-text/60 italic">
+              <div className="col-span-2 flex items-center py-8  text-text/60 italic">
                 No {menu.heading.toLowerCase()} currently available.
               </div>
             )}
@@ -486,7 +486,7 @@ export default function Header() {
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search site"
                   aria-label="Search site"
-                  className="min-w-0 flex-1 bg-transparent px-4 text-sm text-text outline-none placeholder:text-text/45"
+                  className="min-w-0 flex-1 bg-transparent px-4  text-text outline-none placeholder:text-text/45"
                 />
                 <button
                   type="submit"
@@ -504,7 +504,7 @@ export default function Header() {
               {isLoggedIn ? (
                 <Link
                   href="/dashboard"
-                  className="inline-flex h-9 items-center whitespace-nowrap rounded-full bg-secondary px-4 text-[13px] font-semibold text-primary transition-all duration-200 hover:brightness-95"
+                  className="inline-flex h-9 items-center whitespace-nowrap rounded-full bg-secondary px-4  font-semibold text-primary transition-all duration-200 hover:brightness-95"
                 >
                   Dashboard
                   <LinkPendingIndicator />
@@ -513,14 +513,14 @@ export default function Header() {
                 <>
                   <Link
                     href="/dashboard/sign-in"
-                    className="inline-flex h-9 items-center whitespace-nowrap rounded-full border border-primary px-4 text-[13px] font-semibold text-primary transition-colors duration-200 hover:bg-primary hover:text-white"
+                    className="inline-flex h-9 items-center whitespace-nowrap rounded-full border border-primary px-4  font-semibold text-primary transition-colors duration-200 hover:bg-primary hover:text-white"
                   >
                     My ChLPS
                     <LinkPendingIndicator />
                   </Link>
                   <Link
                     href="/dashboard/register"
-                    className="inline-flex h-9 items-center whitespace-nowrap rounded-full bg-secondary px-4 text-[13px] font-semibold text-primary transition-all duration-200 hover:brightness-95"
+                    className="inline-flex h-9 items-center whitespace-nowrap rounded-full bg-secondary px-4  font-semibold text-primary transition-all duration-200 hover:brightness-95"
                   >
                     Register
                     <LinkPendingIndicator />
@@ -605,7 +605,7 @@ export default function Header() {
                       }
                       closeAll();
                     }}
-                    className="text-sm font-medium text-text hover:text-primary"
+                    className=" font-medium text-text hover:text-primary"
                   >
                     {item.label}
                     <LinkPendingIndicator />
@@ -625,7 +625,7 @@ export default function Header() {
                               />
                             ))
                         ) : (
-                          <span className="py-2 text-xs italic text-text/50">
+                          <span className="py-2  italic text-text/50">
                             No {item.label.toLowerCase()} currently available.
                           </span>
                         )}
@@ -647,7 +647,7 @@ export default function Header() {
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search site"
                   aria-label="Search site"
-                  className="min-w-0 flex-1 bg-transparent px-4 text-sm text-text outline-none placeholder:text-text/45"
+                  className="min-w-0 flex-1 bg-transparent px-4  text-text outline-none placeholder:text-text/45"
                 />
                 <button
                   type="submit"
@@ -667,7 +667,7 @@ export default function Header() {
                   <Link
                     href="/dashboard"
                     onClick={closeAll}
-                    className="flex h-10 items-center justify-center rounded-full bg-secondary px-4 text-sm font-semibold text-primary"
+                    className="flex h-10 items-center justify-center rounded-full bg-secondary px-4  font-semibold text-primary"
                   >
                     Dashboard
                     <LinkPendingIndicator />
@@ -677,7 +677,7 @@ export default function Header() {
                     <Link
                       href="/dashboard/sign-in"
                       onClick={closeAll}
-                      className="flex h-10 items-center justify-center rounded-full border border-primary px-4 text-sm font-semibold text-primary"
+                      className="flex h-10 items-center justify-center rounded-full border border-primary px-4  font-semibold text-primary"
                     >
                       My ChLPS
                       <LinkPendingIndicator />
@@ -685,7 +685,7 @@ export default function Header() {
                     <Link
                       href="/dashboard/register"
                       onClick={closeAll}
-                      className="flex h-10 items-center justify-center rounded-full bg-secondary px-4 text-sm font-semibold text-primary"
+                      className="flex h-10 items-center justify-center rounded-full bg-secondary px-4  font-semibold text-primary"
                     >
                       Register
                       <LinkPendingIndicator />

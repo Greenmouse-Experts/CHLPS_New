@@ -115,7 +115,7 @@ function NavItemRow({
     <Link
       href={item.href}
       className={cn(
-        "flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium transition-colors duration-150",
+        "flex items-center gap-2.5 rounded-md px-3 py-2.5  font-medium transition-colors duration-150",
         isActive ? "bg-secondary text-primary" : "text-white hover:bg-white/10",
       )}
       title={collapsed ? item.label : undefined}
@@ -199,7 +199,7 @@ function Sidebar({
           onClick={() => setLogoutOpen(true)}
           title={collapsed ? "Logout" : undefined}
           className={cn(
-            "flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium",
+            "flex w-full items-center gap-2.5 rounded-md px-3 py-2  font-medium",
             "text-[#FF8A8A] transition-colors duration-150 hover:bg-white/10",
           )}
         >
@@ -241,7 +241,7 @@ function DashboardHeader({
           <HugeiconsIcon icon={Menu01Icon} size={18} color="currentColor" />
         </button>
         {title && (
-          <span className="text-sm font-semibold tracking-wide text-white uppercase">
+          <span className=" font-semibold tracking-wide text-white uppercase">
             {title}
           </span>
         )}
@@ -251,7 +251,7 @@ function DashboardHeader({
         href="/dashboard/settings"
         className="flex shrink-0 cursor-pointer items-center gap-2"
       >
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/15 text-xs font-semibold text-white">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/15  font-semibold text-white">
           {user.avatar ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -263,7 +263,7 @@ function DashboardHeader({
             (user.fullName || "M").trim().toUpperCase()[0]
           )}
         </div>
-        <p className="hidden text-sm font-semibold tracking-wide text-white uppercase sm:block">
+        <p className="hidden  font-semibold tracking-wide text-white uppercase sm:block">
           {user.fullName || "Member"}
         </p>
       </Link>

@@ -58,7 +58,7 @@ export default function CertificationDetailsStudiesSection({
           <HeaderText left="learning" right="outcomes" switch />
           {/*<Reveal>
             <span
-              className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white sm:px-3.5 sm:text-[12px]"
+              className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5  font-bold uppercase tracking-[0.14em] text-white sm:px-3.5 sm:"
               style={{ "--cut": "0.55rem" } as CSSProperties}
             >
               {badge}
@@ -89,7 +89,7 @@ export default function CertificationDetailsStudiesSection({
                   strokeWidth={2.2}
                 />
               </span>
-              <h3 className="min-w-0 text-[13px] font-medium leading-snug text-[#221A7A] sm:text-[14px]">
+              <h3 className="min-w-0  font-medium leading-snug text-[#221A7A] sm:text-[14px]">
                 {outcome}
               </h3>
             </article>

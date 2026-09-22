@@ -44,7 +44,7 @@ export default function PoliciesContentSection() {
           </div>
 
           <Reveal delay={120} className="shrink-0">
-            <p className="inline-flex items-center gap-2 text-[13px] text-[#9A97A5] sm:text-[14px]">
+            <p className="inline-flex items-center gap-2  text-[#9A97A5] sm:text-[14px]">
               <HugeiconsIcon
                 icon={CheckmarkCircle02Icon}
                 size={16}
@@ -71,7 +71,7 @@ export default function PoliciesContentSection() {
                   role="tab"
                   aria-selected={active}
                   onClick={() => selectTab(item.id)}
-                  className={`inline-flex h-10 cursor-pointer items-center rounded-full px-5 text-[13px] font-medium transition-colors duration-200 ${
+                  className={`inline-flex h-10 cursor-pointer items-center rounded-full px-5  font-medium transition-colors duration-200 ${
                     active
                       ? "border border-transparent bg-[#0A1542] text-white"
                       : "border border-[#E4E2EC] bg-white text-[#0A1542] hover:border-[#C9C6D6]"
@@ -87,7 +87,7 @@ export default function PoliciesContentSection() {
         <Reveal delay={200}>
           <article className="mt-7 overflow-hidden rounded-[1.25rem] border border-[#EEEDF3] bg-white shadow-[0_10px_40px_rgba(33,26,115,0.05)] sm:mt-8 sm:rounded-[1.5rem]">
             <header className="bg-[#F2F0FA] px-6 py-7 sm:px-9 sm:py-8 lg:px-12 lg:py-9">
-              <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-secondary sm:text-[12px]">
+              <p className="flex items-center gap-2  font-bold uppercase tracking-[0.16em] text-secondary sm:">
                 <HugeiconsIcon
                   icon={Book02Icon}
                   size={15}

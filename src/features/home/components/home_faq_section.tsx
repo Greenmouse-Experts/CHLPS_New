@@ -59,7 +59,7 @@ export default function HomeFaqSection({
               Frequently Asked <span className="text-[#CDA54E]">Questions</span>
             </h2>
 
-            <p className="relative z-10 mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#D0CDE0] sm:text-base md:mt-5">
+            <p className="relative z-10 mx-auto mt-4 max-w-2xl  leading-relaxed text-[#D0CDE0] sm:text-base md:mt-5">
               Find answers to common questions about our programs,
               certifications, accreditations, and how we can help you advance
               your career.
@@ -91,7 +91,7 @@ export default function HomeFaqSection({
                 >
                   <div className="flex min-w-0 flex-1 items-center gap-3.5 sm:gap-4">
                     {/* Number Badge */}
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#CDA54E]/40 bg-[#FFF9ED] text-[12px] font-bold text-[#1B1454] sm:h-10 sm:w-10 sm:text-[13px]">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#CDA54E]/40 bg-[#FFF9ED]  font-bold text-[#1B1454] sm:h-10 sm:w-10 sm:">
                       {numberString}
                     </span>
 
@@ -115,7 +115,7 @@ export default function HomeFaqSection({
                 {/* Collapsible Answer */}
                 {isOpen && (
                   <div className="border-t border-[#F1EFF7] px-5 pb-5 pt-3 sm:px-6 sm:pb-6">
-                    <p className="text-[13.5px] leading-relaxed text-[#555268] sm:text-[14.5px]">
+                    <p className=" leading-relaxed text-[#555268] sm:text-[14.5px]">
                       {faq.answer}
                     </p>
                   </div>
@@ -134,7 +134,7 @@ export default function HomeFaqSection({
                 <h4 className="text-[17px] font-bold leading-snug text-[#CDA54E] sm:text-[18px]">
                   Still have questions?
                 </h4>
-                <p className="mt-1 text-[12.5px] leading-relaxed text-[#686676] sm:text-[13px]">
+                <p className="mt-1  leading-relaxed text-[#686676] sm:">
                   Our Team is here to help you choose the right membership or
                   certification level.
                 </p>
@@ -156,7 +156,7 @@ export default function HomeFaqSection({
                   </p>
                   <a
                     href="tel:+19054522470"
-                    className="truncate text-[13.5px] font-bold text-[#1B1454] transition-colors hover:text-[#CDA54E] sm:text-[14px]"
+                    className="truncate  font-bold text-[#1B1454] transition-colors hover:text-[#CDA54E] sm:text-[14px]"
                   >
                     +1 905-452-2470
                   </a>
@@ -179,7 +179,7 @@ export default function HomeFaqSection({
                   </p>
                   <a
                     href="mailto:info@chlpscanada.ca"
-                    className="truncate text-[13.5px] font-bold text-[#1B1454] transition-colors hover:text-[#CDA54E] sm:text-[14px]"
+                    className="truncate  font-bold text-[#1B1454] transition-colors hover:text-[#CDA54E] sm:text-[14px]"
                   >
                     info@chlpscanada.ca
                   </a>
@@ -204,7 +204,7 @@ export default function HomeFaqSection({
                     href="https://www.chlpscanada.ca"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="truncate text-[13.5px] font-bold text-[#1B1454] transition-colors hover:text-[#CDA54E] sm:text-[14px]"
+                    className="truncate  font-bold text-[#1B1454] transition-colors hover:text-[#CDA54E] sm:text-[14px]"
                   >
                     www.chlpscanada.ca
                   </a>

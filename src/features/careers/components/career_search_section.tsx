@@ -43,7 +43,7 @@ export default function CareerSearchSection() {
             />
 
             <div className="relative z-10 px-5 py-7 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
-              <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-secondary sm:text-[12px]">
+              <p className="flex items-center gap-2  font-bold uppercase tracking-[0.16em] text-secondary sm:">
                 <Search size={15} strokeWidth={2.2} aria-hidden />
                 Career Search
               </p>
@@ -52,7 +52,7 @@ export default function CareerSearchSection() {
                 Find Opportunities That Match Your Path
               </h2>
 
-              <p className="mt-3 max-w-[620px] text-[13px] leading-relaxed text-white/80 sm:text-[14px]">
+              <p className="mt-3 max-w-[620px]  leading-relaxed text-white/80 sm:text-[14px]">
                 Search live opportunities across Canada by role, keyword and
                 location, while using the ChLPS career pathways below to
                 understand the membership or certification route that supports
@@ -66,7 +66,7 @@ export default function CareerSearchSection() {
                 <div className="min-w-0 flex-1">
                   <label
                     htmlFor="career-search-what"
-                    className="block text-[13px] font-semibold text-white"
+                    className="block  font-semibold text-white"
                   >
                     What
                   </label>
@@ -90,7 +90,7 @@ export default function CareerSearchSection() {
                 <div className="min-w-0 flex-1">
                   <label
                     htmlFor="career-search-where"
-                    className="block text-[13px] font-semibold text-white"
+                    className="block  font-semibold text-white"
                   >
                     Where
                   </label>
@@ -120,7 +120,7 @@ export default function CareerSearchSection() {
                 </button>
               </form>
 
-              <p className="mt-5 text-[13px] text-white/80">
+              <p className="mt-5  text-white/80">
                 Live job search opens on{" "}
                 <a
                   href={CAREERJET_SEARCH}

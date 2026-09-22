@@ -60,13 +60,17 @@ export default function PaidMembershipCard({
         <div className="relative z-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#CDA54E] backdrop-blur-sm">
-                <HugeiconsIcon icon={ShieldCheckIcon} size={14} color="currentColor" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1  font-semibold uppercase tracking-wider text-[#CDA54E] backdrop-blur-sm">
+                <HugeiconsIcon
+                  icon={ShieldCheckIcon}
+                  size={14}
+                  color="currentColor"
+                />
                 Chartered Member
               </span>
 
               <span
-                className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5  font-medium ${
                   isActive
                     ? "bg-[#10B981]/20 text-[#6EE7B7]"
                     : "bg-[#F59E0B]/20 text-[#FCD34D]"
@@ -85,7 +89,7 @@ export default function PaidMembershipCard({
               {membership.name}
             </h3>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs text-white/70">
+            <div className="flex flex-wrap items-center gap-4  text-white/70">
               {membership.memberNumber && (
                 <span>
                   Member ID:{" "}
@@ -96,7 +100,11 @@ export default function PaidMembershipCard({
               )}
               <span>•</span>
               <span className="inline-flex items-center gap-1">
-                <HugeiconsIcon icon={Calendar03Icon} size={13} color="currentColor" />
+                <HugeiconsIcon
+                  icon={Calendar03Icon}
+                  size={13}
+                  color="currentColor"
+                />
                 Valid through: {expiryFormatted}
               </span>
             </div>
@@ -105,7 +113,7 @@ export default function PaidMembershipCard({
           <div className="flex shrink-0 items-center">
             <Link
               href="/dashboard/membership"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#CDA54E] to-[#E5C77A] px-5 py-2.5 text-sm font-bold text-[#101D63] shadow-sm transition hover:brightness-105"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#CDA54E] to-[#E5C77A] px-5 py-2.5  font-bold text-[#101D63] shadow-sm transition hover:brightness-105"
             >
               <span>View Membership</span>
               <HugeiconsIcon
@@ -134,11 +142,11 @@ export default function PaidMembershipCard({
               <h3 className="text-base font-bold text-[#101D63]">
                 Professional Membership
               </h3>
-              <span className="rounded-full bg-sand px-2 py-0.5 text-[11px] font-medium text-text/70">
+              <span className="rounded-full bg-sand px-2 py-0.5  font-medium text-text/70">
                 Not Enrolled
               </span>
             </div>
-            <p className="max-w-xl text-sm leading-relaxed text-text/70">
+            <p className="max-w-xl  leading-relaxed text-text/70">
               Unlock chartered designations, access our industry resource
               library, and connect with Canada&apos;s leading loss prevention
               network.
@@ -148,7 +156,7 @@ export default function PaidMembershipCard({
 
         <Link
           href="/membership"
-          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#1E1758] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#101D63]"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#1E1758] px-5 py-2.5  font-semibold text-white transition hover:bg-[#101D63]"
         >
           <span>Explore Grades</span>
           <HugeiconsIcon

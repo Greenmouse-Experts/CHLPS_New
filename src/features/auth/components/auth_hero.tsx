@@ -24,12 +24,12 @@ export default function AuthHero({
       <div className="absolute inset-0 bg-primary/70" />
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-20">
         <span
-          className="cut-tr inline-block bg-secondary px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#111E2A]"
+          className="cut-tr inline-block bg-secondary px-3 py-1.5  font-bold uppercase tracking-[0.14em] text-[#111E2A]"
           style={{ "--cut": "0.55rem" } as CSSProperties}
         >
           {badge}
         </span>
-        <h1 className="mt-5 text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
+        <h1 className="mt-5 text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
           {title}
         </h1>
         <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">

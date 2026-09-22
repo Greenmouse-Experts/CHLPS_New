@@ -57,7 +57,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
         <EventDetailGallery images={event.gallery} alt={event.imageAlt} />
 
         <div className="px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-9">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-secondary sm:text-[20px]">
+          <p className=" font-semibold uppercase tracking-[0.16em] text-secondary sm:text-[20px]">
             {view.typeLabel}
           </p>
           <h1 className="mt-2.5 text-[1.85rem] font-medium leading-[1.12] tracking-tight text-[#161058] sm:text-[50px] xl:text-[70px]">
@@ -104,12 +104,12 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
                 Live
               </span>
             ) : view.isPast ? (
-              <span className="rounded-full bg-[#EAE7F5] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#696382]">
+              <span className="rounded-full bg-[#EAE7F5] px-2.5 py-1  font-bold uppercase tracking-wider text-[#696382]">
                 Concluded
               </span>
             ) : null}
           </div>
-          <p className="mt-2 text-[13px] text-[#8A8898]">{view.ticketNote}</p>
+          <p className="mt-2  text-[#8A8898]">{view.ticketNote}</p>
 
           {view.canBuyTicket ? (
             <Link

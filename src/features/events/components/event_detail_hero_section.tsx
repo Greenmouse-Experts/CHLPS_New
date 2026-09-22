@@ -13,7 +13,7 @@ function HeroBadge({
   live?: boolean;
 }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0B1224]/55 px-3 py-1 text-[12px] font-medium text-white ring-1 ring-white/15 backdrop-blur-sm sm:px-3.5 sm:text-[13px]">
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0B1224]/55 px-3 py-1  font-medium text-white ring-1 ring-white/15 backdrop-blur-sm sm:px-3.5 sm:">
       {live ? (
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#3DDC84] opacity-70" />
@@ -59,7 +59,7 @@ export default function EventDetailHeroSection({
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-5 text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
+              <h1 className="mt-5 text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
                 {event.title}
               </h1>
             </Reveal>

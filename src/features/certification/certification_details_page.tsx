@@ -124,13 +124,13 @@ export default function CertificationDetailsPage({
             <h2 className="text-xl font-bold text-[#0A1542]">
               Program Not Found
             </h2>
-            <p className="mt-2 text-sm text-[#6F6E7A]">
+            <p className="mt-2  text-[#6F6E7A]">
               The requested certification program could not be found or is
               currently unavailable.
             </p>
             <Link
               href="/certification"
-              className="mt-6 inline-block rounded-full bg-[#0A1542] px-6 py-2.5 text-xs font-semibold text-white transition hover:bg-[#152366]"
+              className="mt-6 inline-block rounded-full bg-[#0A1542] px-6 py-2.5  font-semibold text-white transition hover:bg-[#152366]"
             >
               Back to All Programs
             </Link>

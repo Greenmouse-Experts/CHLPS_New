@@ -18,7 +18,7 @@ export default function Pagination({
 
   return (
     <div className="flex items-center justify-end gap-4">
-      <p className="text-sm text-text/60">
+      <p className=" text-text/60">
         Page {page} of {totalPages}
       </p>
       <div className="flex gap-2">

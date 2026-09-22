@@ -45,7 +45,7 @@ export default function CertificationMattersSection() {
               <div className="mt-6 sm:mt-8">
                 <a
                   href="#pathways"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-6  font-semibold text-white shadow-sm transition-all hover:bg-primary/90"
                 >
                   <span>Enroll in a Certification</span>
                   <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} />

@@ -1,7 +1,11 @@
 import type { CSSProperties } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { IconSvgElement } from "@hugeicons/react";
-import { BankIcon, Briefcase01Icon, Tick02Icon } from "@hugeicons/core-free-icons";
+import {
+  BankIcon,
+  Briefcase01Icon,
+  Tick02Icon,
+} from "@hugeicons/core-free-icons";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
@@ -138,7 +142,7 @@ export default function GovernanceStructureSection() {
                   {card.points.map((point) => (
                     <li
                       key={point}
-                      className={`flex items-center gap-2 text-[13px] font-semibold sm:text-sm ${card.pointColor}`}
+                      className={`flex items-center gap-2  font-semibold sm: ${card.pointColor}`}
                     >
                       <HugeiconsIcon
                         icon={Tick02Icon}

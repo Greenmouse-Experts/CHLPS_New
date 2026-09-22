@@ -80,7 +80,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Link
               href="/news-and-blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#0A1542] transition-colors hover:text-primary"
+              className="inline-flex items-center gap-2  font-semibold text-[#0A1542] transition-colors hover:text-primary"
             >
               <HugeiconsIcon
                 icon={ArrowLeft01Icon}
@@ -90,7 +90,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
               />
               Back to News &amp; Blog
             </Link>
-            <div className="flex items-center gap-1.5 text-xs text-[#7B788B]">
+            <div className="flex items-center gap-1.5  text-[#7B788B]">
               <Link href="/" className="hover:text-[#0A1542]">
                 Home
               </Link>
@@ -114,13 +114,13 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                   <h2 className="text-xl font-semibold text-[#0A1542]">
                     Article not found
                   </h2>
-                  <p className="mt-2 text-sm text-[#6F6E7A]">
+                  <p className="mt-2  text-[#6F6E7A]">
                     The requested article could not be found or has been
                     removed.
                   </p>
                   <Link
                     href="/news-and-blog"
-                    className="mt-6 inline-flex items-center rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                    className="mt-6 inline-flex items-center rounded-full bg-primary px-6 py-2.5  font-semibold text-white transition-opacity hover:opacity-90"
                   >
                     View All Articles
                   </Link>
@@ -134,10 +134,10 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                   <article className="mx-auto max-w-4xl">
                     {/* Header meta */}
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="rounded-full bg-secondary/90 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#211A73]">
+                      <span className="rounded-full bg-secondary/90 px-3.5 py-1  font-bold uppercase tracking-[0.14em] text-[#211A73]">
                         {article.category}
                       </span>
-                      <div className="flex items-center gap-1.5 text-xs text-[#7B788B]">
+                      <div className="flex items-center gap-1.5  text-[#7B788B]">
                         <HugeiconsIcon
                           icon={Calendar03Icon}
                           size={15}
@@ -147,7 +147,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                         <span>{article.date}</span>
                       </div>
                       <span className="text-[#C2BFD0]">•</span>
-                      <div className="flex items-center gap-1.5 text-xs text-[#7B788B]">
+                      <div className="flex items-center gap-1.5  text-[#7B788B]">
                         <HugeiconsIcon
                           icon={Clock01Icon}
                           size={15}
@@ -184,10 +184,10 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                         )}
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-sm font-semibold text-[#0A1542]">
+                        <span className=" font-semibold text-[#0A1542]">
                           {article.author?.name || "CHLPS Editorial"}
                         </span>
-                        <span className="text-xs text-[#7B788B]">
+                        <span className=" text-[#7B788B]">
                           Loss Prevention Practice &amp; Standards
                         </span>
                       </div>
@@ -212,7 +212,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                     {/* Executive brief callout */}
                     {article.excerpt ? (
                       <div className="mt-8 rounded-xl border-l-4 border-primary bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:p-6">
-                        <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-primary">
+                        <span className=" font-bold uppercase tracking-[0.14em] text-primary">
                           Executive Summary
                         </span>
                         <p className="mt-2 text-[15px] italic leading-relaxed text-[#4A4758] sm:text-base">
@@ -231,7 +231,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                     {/* Article tags footer */}
                     {article.tags && article.tags.length > 0 ? (
                       <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-[#EAE7F2] pt-6">
-                        <span className="flex items-center gap-1.5 text-xs font-semibold text-[#7B788B]">
+                        <span className="flex items-center gap-1.5  font-semibold text-[#7B788B]">
                           <HugeiconsIcon
                             icon={Tag01Icon}
                             size={14}
@@ -243,7 +243,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                         {article.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full bg-[#EEEAFB] px-3 py-1 text-xs font-medium text-[#101D63]"
+                            className="rounded-full bg-[#EEEAFB] px-3 py-1  font-medium text-[#101D63]"
                           >
                             {tag}
                           </span>
@@ -261,7 +261,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
             <div className="mt-20 border-t border-[#E2DFEC] pt-14">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-primary">
+                  <span className=" font-bold uppercase tracking-[0.14em] text-primary">
                     Keep Reading
                   </span>
                   <h2 className="mt-1 text-2xl font-bold text-[#0A1542] sm:text-3xl">
@@ -270,7 +270,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                 </div>
                 <Link
                   href="/news-and-blog"
-                  className="text-sm font-semibold text-primary hover:underline"
+                  className=" font-semibold text-primary hover:underline"
                 >
                   View All &rarr;
                 </Link>

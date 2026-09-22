@@ -55,11 +55,13 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
       className={`cut-br flex items-center gap-4 overflow-hidden px-5 py-5 sm:gap-5 sm:px-6 sm:py-6 ${toneClass[card.tone]}`}
       style={{ "--cut": "1.65rem" } as CSSProperties}
     >
-      <span className={`outline-stat shrink-0 self-center font-bold leading-none ${
-        card.value.length > 1
-          ? "text-[3.5rem] sm:text-[4.5rem] lg:text-[5rem]"
-          : "text-[4.25rem] sm:text-[5rem] lg:text-[5.5rem]"
-      }`}>
+      <span
+        className={`outline-stat shrink-0 self-center font-bold leading-none ${
+          card.value.length > 1
+            ? "text-[3.5rem] sm:text-[4.5rem] lg:text-[5rem]"
+            : "text-[4.25rem] sm:text-[5rem] lg:text-[5.5rem]"
+        }`}
+      >
         {card.value}
       </span>
       <div className="flex min-w-0 flex-1 flex-col">
@@ -67,7 +69,7 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
           {card.title}
         </h3>
         <p
-          className={`mt-1.5 text-[13px] leading-relaxed font-semibold sm:text-[16px] ${
+          className={`mt-1.5  leading-relaxed font-semibold sm:text-[16px] ${
             isPrimary ? "text-white/90" : "opacity-90"
           }`}
         >
@@ -75,7 +77,7 @@ function GlanceStatCard({ card }: { card: GlanceCard }) {
         </p>
       </div>
       <div
-        className={`cut-tr-br-bl-tl inline-flex shrink-0 items-center whitespace-nowrap px-3.5 py-1.5 text-[12px] font-extrabold ${
+        className={`cut-tr-br-bl-tl inline-flex shrink-0 items-center whitespace-nowrap px-3.5 py-1.5  font-extrabold ${
           outlineBadge
             ? isPrimary
               ? "border border-white/90 bg-transparent text-white"
@@ -123,7 +125,7 @@ export default function AtAGlanceSection({
           <div className="max-w-xl">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5 text-[11px] sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
+                className="cut-tr-bl inline-block bg-[#6B65C4] px-3 py-1.5  sm:text-[20px] font-bold uppercase tracking-[0.14em] text-white"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 CHLPS CANADA AT A GLANCE

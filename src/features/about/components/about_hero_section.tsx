@@ -72,7 +72,7 @@ export default function AboutHeroSection({
               <Reveal>
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 backdrop-blur-xs">
                   <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-                  <span className="text-[11px] font-semibold tracking-wider text-white uppercase sm:text-xs">
+                  <span className=" font-semibold tracking-wider text-white uppercase sm:">
                     {badge}
                   </span>
                 </div>
@@ -108,7 +108,7 @@ export default function AboutHeroSection({
                       <button
                         type="button"
                         onClick={cta.onClick}
-                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-sm lg:mt-7 ${
+                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5  font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm: lg:mt-7 ${
                           children
                             ? "flex h-11 w-full justify-center"
                             : "inline-flex h-11"
@@ -125,7 +125,7 @@ export default function AboutHeroSection({
                     ) : (
                       <Link
                         href={cta.href || "#"}
-                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm:text-sm lg:mt-7 ${
+                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5  font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm: lg:mt-7 ${
                           children
                             ? "flex h-11 w-full justify-center"
                             : "inline-flex h-11"

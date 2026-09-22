@@ -39,12 +39,12 @@ function FaqCard({
         onClick={onToggle}
         className="flex w-full cursor-pointer items-start gap-3 px-4 py-4 text-left sm:gap-3.5 sm:px-5 sm:py-[1.125rem]"
       >
-        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FFF8E8] text-[11px] font-semibold border border-[#CDA54E8C] text-[#0A1542] sm:h-9 sm:w-9 sm:text-[12px]">
+        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FFF8E8]  font-semibold border border-[#CDA54E8C] text-[#0A1542] sm:h-9 sm:w-9 sm:">
           {number}
         </span>
         <span className="min-w-0 flex-1">
           <span className="flex items-start justify-between gap-3">
-            <span className="text-[13.5px] font-semibold leading-snug text-[#0A1542] sm:text-[15px]">
+            <span className=" font-semibold leading-snug text-[#0A1542] sm:text-[15px]">
               {item.question}
             </span>
             <HugeiconsIcon
@@ -58,7 +58,7 @@ function FaqCard({
             />
           </span>
           {open ? (
-            <span className="mt-2.5 block text-[13px] leading-relaxed text-[#6B6778] sm:mt-3 sm:text-[14px] sm:leading-[1.7]">
+            <span className="mt-2.5 block  leading-relaxed text-[#6B6778] sm:mt-3 sm:text-[14px] sm:leading-[1.7]">
               {item.answer}
             </span>
           ) : null}
@@ -113,7 +113,7 @@ export default function FaqListSection({
     >
       <PageContainer>
         <Reveal>
-          <p className="text-center text-[13px] font-semibold uppercase tracking-[0.18em] text-[#CDA54E] sm:text-[30px]">
+          <p className="text-center  font-semibold uppercase tracking-[0.18em] text-[#CDA54E] sm:text-[30px]">
             Frequently Asked Questions
           </p>
         </Reveal>
@@ -176,17 +176,17 @@ export default function FaqListSection({
         <Reveal delay={160}>
           <div className="mt-10 flex flex-col gap-4 rounded-[1.75rem] bg-[#0A1542] px-6 py-6 sm:mt-12 sm:flex-row sm:items-center sm:justify-between sm:rounded-full sm:px-8 sm:py-5 lg:px-10">
             <div>
-              <p className="text-[1.35rem] font-light italic leading-tight text-white sm:text-[1.5rem]">
+              <p className="text-[1.35rem]  italic leading-tight text-white sm:text-[1.5rem]">
                 Still have a question?
               </p>
-              <p className="mt-1 text-[12.5px] leading-relaxed text-white/80 sm:text-[13px]">
+              <p className="mt-1  leading-relaxed text-white/80 sm:">
                 Our team can help with membership, certification, events and
                 account enquiries.
               </p>
             </div>
             <Link
               href="/contact-us"
-              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-secondary px-5 text-[13px] font-semibold text-[#0A1542] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6"
+              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-secondary px-5  font-semibold text-[#0A1542] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6"
             >
               Contact ChLPS
               <HugeiconsIcon

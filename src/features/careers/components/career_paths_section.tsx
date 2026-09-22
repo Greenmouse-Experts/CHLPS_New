@@ -24,10 +24,18 @@ function CareerPathCard({
   return (
     <article
       className="reveal group flex h-full flex-col rounded-[14px] border border-[#E8D9B8] px-5 pb-5 pt-6 transition-shadow duration-300 hover:shadow-[0_14px_34px_rgba(33,26,115,0.08)] sm:px-6 sm:pb-6"
-      style={{ ...revealStyle(index), backgroundColor: tinted ? "#F7F5FC" : "#FFFFFF" }}
+      style={{
+        ...revealStyle(index),
+        backgroundColor: tinted ? "#F7F5FC" : "#FFFFFF",
+      }}
     >
       <span className="flex h-12 w-12 items-center justify-center rounded-full border border-secondary bg-white sm:h-14 sm:w-14">
-        <Icon size={22} strokeWidth={1.8} className="text-primary" aria-hidden />
+        <Icon
+          size={22}
+          strokeWidth={1.8}
+          className="text-primary"
+          aria-hidden
+        />
       </span>
 
       <div className="mt-5 border-t border-[#EFE7D6]" />
@@ -36,15 +44,13 @@ function CareerPathCard({
         {career.title}
       </h3>
 
-      <p className="mt-2 text-[13px] leading-relaxed text-[#6F6E7A] sm:text-[13.5px]">
-        {career.body}
-      </p>
+      <p className="mt-2  leading-relaxed text-[#6F6E7A] sm:">{career.body}</p>
 
       <Link
         href={action.href}
         className="mt-6 flex items-center justify-between gap-3 pt-1 lg:mt-auto lg:pt-6"
       >
-        <span className="text-[13px] font-bold text-primary sm:text-[14px]">
+        <span className=" font-bold text-primary sm:text-[14px]">
           {action.label}
         </span>
         <ArrowRight
@@ -65,7 +71,7 @@ export default function CareerPathsSection() {
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <span
-              className="cut-tr-bl inline-block bg-lilac px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#6B65C4] sm:text-[12px]"
+              className="cut-tr-bl inline-block bg-lilac px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#6B65C4] sm:"
               style={{ "--cut": "0.5rem" } as CSSProperties}
             >
               Career Opportunities

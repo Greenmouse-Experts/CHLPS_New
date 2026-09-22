@@ -47,7 +47,11 @@ const SupportPage = () => {
       <div className="mx-auto max-w-5xl space-y-8">
         <div className="flex items-center gap-4">
           <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary text-white">
-            <HugeiconsIcon icon={CustomerSupportIcon} size={24} color="currentColor" />
+            <HugeiconsIcon
+              icon={CustomerSupportIcon}
+              size={24}
+              color="currentColor"
+            />
           </span>
           <p className="text-text/55">
             Need a hand? Reach out and our team will get back to you.
@@ -62,7 +66,7 @@ const SupportPage = () => {
             <span className="flex h-11 w-11 items-center justify-center rounded-md bg-lilac text-primary">
               <HugeiconsIcon icon={Mail01Icon} size={20} color="currentColor" />
             </span>
-            <p className="text-sm text-text/55">Email us</p>
+            <p className=" text-text/55">Email us</p>
             <p className="font-medium text-primary">info@chlpscanada.ca</p>
           </a>
           <a
@@ -72,7 +76,7 @@ const SupportPage = () => {
             <span className="flex h-11 w-11 items-center justify-center rounded-md bg-lilac text-primary">
               <HugeiconsIcon icon={CallIcon} size={20} color="currentColor" />
             </span>
-            <p className="text-sm text-text/55">Call us</p>
+            <p className=" text-text/55">Call us</p>
             <p className="font-medium text-primary">+1 437-545-1684</p>
           </a>
           <button
@@ -81,9 +85,13 @@ const SupportPage = () => {
             className="flex flex-col gap-3 rounded-xl border border-sand bg-white p-6 text-left hover:border-secondary"
           >
             <span className="flex h-11 w-11 items-center justify-center rounded-md bg-lilac text-primary">
-              <HugeiconsIcon icon={Message01Icon} size={20} color="currentColor" />
+              <HugeiconsIcon
+                icon={Message01Icon}
+                size={20}
+                color="currentColor"
+              />
             </span>
-            <p className="text-sm text-text/55">Send a message</p>
+            <p className=" text-text/55">Send a message</p>
             <p className="font-medium text-primary">We'll reply by email</p>
           </button>
         </div>
@@ -95,7 +103,9 @@ const SupportPage = () => {
           {isLoading ? (
             <p className="py-6 text-center text-text/50">Loading FAQs...</p>
           ) : faqs.length === 0 ? (
-            <p className="py-6 text-center text-text/50">No FAQs available yet.</p>
+            <p className="py-6 text-center text-text/50">
+              No FAQs available yet.
+            </p>
           ) : (
             <div className="divide-y divide-sand">
               {faqs.map((faq) => (
@@ -106,7 +116,9 @@ const SupportPage = () => {
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 leading-relaxed text-text/60">{faq.answer}</p>
+                  <p className="mt-3 leading-relaxed text-text/60">
+                    {faq.answer}
+                  </p>
                 </details>
               ))}
             </div>
@@ -136,7 +148,7 @@ const SupportPage = () => {
             onChange={formik.handleChange}
           />
           <div>
-            <label className="mb-1.5 block text-sm font-medium uppercase tracking-[0.12em] text-text/55">
+            <label className="mb-1.5 block  font-medium uppercase tracking-[0.12em] text-text/55">
               Message
             </label>
             <textarea
@@ -149,7 +161,7 @@ const SupportPage = () => {
               className="w-full rounded-lg border border-sand p-3 text-text placeholder:text-text/40 focus:border-primary/40 focus:outline-none"
             />
             {formik.touched.message && formik.errors.message && (
-              <p className="mt-1 text-xs text-[#E84D52]">{formik.errors.message}</p>
+              <p className="mt-1  text-[#E84D52]">{formik.errors.message}</p>
             )}
           </div>
           <Button type="submit" fullWidth loading={sending}>

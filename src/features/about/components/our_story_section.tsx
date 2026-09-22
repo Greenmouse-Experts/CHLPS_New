@@ -106,7 +106,7 @@ export default function OurStorySection() {
                   <h3 className="mt-4 text-base font-bold leading-tight text-primary sm:text-[18px]">
                     {highlight.title}
                   </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-[#6E6B78]">
+                  <p className="mt-2  leading-relaxed text-[#6E6B78]">
                     {highlight.body}
                   </p>
                 </article>

@@ -66,8 +66,10 @@ export default function CourseReviews({ courseId }: { courseId: string }) {
       ) : (
         <>
           <div className="flex items-center gap-4">
-            <span className="text-4xl font-semibold text-primary">{avg.toFixed(1)}</span>
-            <p className="text-sm text-text/55">
+            <span className="text-4xl font-semibold text-primary">
+              {avg.toFixed(1)}
+            </span>
+            <p className=" text-text/55">
               {count} review{count !== 1 ? "s" : ""}
             </p>
           </div>
@@ -83,13 +85,19 @@ export default function CourseReviews({ courseId }: { courseId: string }) {
                 return (
                   <li key={review.id} className="py-4">
                     <p className="font-medium text-primary">{name}</p>
-                    <p className="text-sm text-secondary">
+                    <p className=" text-secondary">
                       {Array.from({ length: 5 })
-                        .map((_, index) => (index < Math.round(Number(review.rating) || 0) ? "★" : "☆"))
+                        .map((_, index) =>
+                          index < Math.round(Number(review.rating) || 0)
+                            ? "★"
+                            : "☆",
+                        )
                         .join("")}
                     </p>
                     {review.comment && (
-                      <p className="mt-1.5 leading-relaxed text-text/65">{review.comment}</p>
+                      <p className="mt-1.5 leading-relaxed text-text/65">
+                        {review.comment}
+                      </p>
                     )}
                   </li>
                 );
@@ -102,7 +110,7 @@ export default function CourseReviews({ courseId }: { courseId: string }) {
       <Modal open={open} onClose={() => setOpen(false)} title="Add a review">
         <div className="space-y-5">
           <div>
-            <p className="mb-2 text-sm font-medium text-primary">Rating</p>
+            <p className="mb-2  font-medium text-primary">Rating</p>
             <div className="flex gap-1">
               {Array.from({ length: 5 }).map((_, index) => (
                 <button

@@ -2,431 +2,434 @@
 @plugin "../../node_modules/daisyui";
 
 @plugin "../../node_modules/daisyui/theme" {
-  name: "flipex";
-  default: true;
-  prefersdark: false;
-  color-scheme: "light";
+    name: "flipex";
+    default: true;
+    prefersdark: false;
+    color-scheme: "light";
 
-  --color-primary: #211a73;
-  --color-primary-content: #ffffff;
-  --color-secondary: #cda54e;
-  --color-secondary-content: #211a73;
-  --color-accent: #6b65c4;
-  --color-accent-content: #ffffff;
-  --color-neutral: #302d39;
-  --color-neutral-content: #f9f5ec;
+    --color-primary: #211a73;
+    --color-primary-content: #ffffff;
+    --color-secondary: #cda54e;
+    --color-secondary-content: #211a73;
+    --color-accent: #6b65c4;
+    --color-accent-content: #ffffff;
+    --color-neutral: #302d39;
+    --color-neutral-content: #f9f5ec;
 
-  --color-base-100: #ffffff;
-  --color-base-200: #f1f1f1;
-  --color-base-300: #e7e9eb;
-  --color-base-content: #302d39;
+    --color-base-100: #ffffff;
+    --color-base-200: #f1f1f1;
+    --color-base-300: #e7e9eb;
+    --color-base-content: #302d39;
 
-  --color-success: #38cb89;
-  --color-success-content: #ffffff;
-  --color-warning: #eed202;
-  --color-warning-content: #302d39;
-  --color-error: #e84d52;
-  --color-error-content: #ffffff;
+    --color-success: #38cb89;
+    --color-success-content: #ffffff;
+    --color-warning: #eed202;
+    --color-warning-content: #302d39;
+    --color-error: #e84d52;
+    --color-error-content: #ffffff;
 
-  --radius-box: 1rem;
-  --radius-field: 0.5rem;
-  --radius-selector: 2rem;
+    --radius-box: 1rem;
+    --radius-field: 0.5rem;
+    --radius-selector: 2rem;
 }
 
-
+@layer base {
+    html {
+        font-size: 19px; /* Increases the default 16px root to 18px */
+    }
+}
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
+    /* Base type scale. The browser default is 16px; 106.25% raises it to 17px.
+     Tailwind's rem-based text and spacing utilities scale with this, so the
+     whole page grows proportionally. Adjust this single value to tune it. */
+    /*font-size: 106.25%;*/
 }
 
 :root {
-  --background: #f9f5ec;
-  --foreground: #302d39;
-  --color-primary: #211a73;
-  --color-secondary: #cda54e;
-  --color-text: #302d39;
-  --color-accent: #6b65c4;
-  --color-lilac: #eeeaf8;
-  --color-cream: #f9f5ec;
-  --color-sand: #f0ede7;
+    --background: #f9f5ec;
+    --foreground: #302d39;
+    --color-primary: #211a73;
+    --color-secondary: #cda54e;
+    --color-text: #302d39;
+    --color-accent: #6b65c4;
+    --color-lilac: #eeeaf8;
+    --color-cream: #f9f5ec;
+    --color-sand: #f0ede7;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: #211a73;
-  --color-secondary: #cda54e;
-  --color-text: #302d39;
-  --color-accent: #6b65c4;
-  --color-lilac: #eeeaf8;
-  --color-cream: #f9f5ec;
-  --color-sand: #f0ede7;
-  --font-sans: var(--font-como);
-  --max-width-page: 1728px;
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: #211a73;
+    --color-secondary: #cda54e;
+    --color-text: #302d39;
+    --color-accent: #6b65c4;
+    --color-lilac: #eeeaf8;
+    --color-cream: #f9f5ec;
+    --color-sand: #f0ede7;
+    --font-sans: var(--font-como);
+    --max-width-page: 1728px;
+    --text-base: 19px;
 }
 
 .page-container {
-  width: 100%;
-  max-width: var(--max-width-page);
-  margin-inline: auto;
-  padding-inline: 1rem;
+    width: 100%;
+    max-width: var(--max-width-page);
+    margin-inline: auto;
+    padding-inline: 1rem;
 }
 
 .cut-tl {
-  --cut: 0.55rem;
-  clip-path: polygon(
-    var(--cut) 0,
-    100% 0,
-    100% 100%,
-    0 100%,
-    0 var(--cut)
-  );
+    --cut: 0.55rem;
+    clip-path: polygon(var(--cut) 0, 100% 0, 100% 100%, 0 100%, 0 var(--cut));
 }
 
 .cut-tr {
-  --cut: 0.7rem;
-  clip-path: polygon(
-    0 0,
-    calc(100% - var(--cut)) 0,
-    100% var(--cut),
-    100% 100%,
-    0 100%
-  );
+    --cut: 0.7rem;
+    clip-path: polygon(
+        0 0,
+        calc(100% - var(--cut)) 0,
+        100% var(--cut),
+        100% 100%,
+        0 100%
+    );
 }
 
 .cut-br {
-  --cut: 1.5rem;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--cut)),
-    calc(100% - var(--cut)) 100%,
-    0 100%
-  );
+    --cut: 1.5rem;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - var(--cut)),
+        calc(100% - var(--cut)) 100%,
+        0 100%
+    );
 }
 
 .cut-bl {
-  --cut: 0.55rem;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 100%,
-    var(--cut) 100%,
-    0 calc(100% - var(--cut))
-  );
+    --cut: 0.55rem;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        var(--cut) 100%,
+        0 calc(100% - var(--cut))
+    );
 }
 
 .cut-tl-bl {
-  --cut: 0.55rem;
-  clip-path: polygon(
-    var(--cut) 0,
-    100% 0,
-    100% 100%,
-    var(--cut) 100%,
-    0 calc(100% - var(--cut)),
-    0 var(--cut)
-  );
+    --cut: 0.55rem;
+    clip-path: polygon(
+        var(--cut) 0,
+        100% 0,
+        100% 100%,
+        var(--cut) 100%,
+        0 calc(100% - var(--cut)),
+        0 var(--cut)
+    );
 }
 
 .cut-tr-bl,
 .cut-bl-tr {
-  --cut: 0.55rem;
-  clip-path: polygon(
-    0 0,
-    calc(100% - var(--cut)) 0,
-    100% var(--cut),
-    100% 100%,
-    var(--cut) 100%,
-    0 calc(100% - var(--cut))
-  );
+    --cut: 0.55rem;
+    clip-path: polygon(
+        0 0,
+        calc(100% - var(--cut)) 0,
+        100% var(--cut),
+        100% 100%,
+        var(--cut) 100%,
+        0 calc(100% - var(--cut))
+    );
 }
 
 .cut-tl-br {
-  --cut: 0.55rem;
-  clip-path: polygon(
-    var(--cut) 0,
-    100% 0,
-    100% calc(100% - var(--cut)),
-    calc(100% - var(--cut)) 100%,
-    0 100%,
-    0 var(--cut)
-  );
+    --cut: 0.55rem;
+    clip-path: polygon(
+        var(--cut) 0,
+        100% 0,
+        100% calc(100% - var(--cut)),
+        calc(100% - var(--cut)) 100%,
+        0 100%,
+        0 var(--cut)
+    );
 }
 
 .cut-tr-br-bl-tl {
-  --cut: 0.4rem;
-  clip-path: polygon(
-    var(--cut) 0,
-    calc(100% - var(--cut)) 0,
-    100% var(--cut),
-    100% calc(100% - var(--cut)),
-    calc(100% - var(--cut)) 100%,
-    var(--cut) 100%,
-    0 calc(100% - var(--cut)),
-    0 var(--cut)
-  );
+    --cut: 0.4rem;
+    clip-path: polygon(
+        var(--cut) 0,
+        calc(100% - var(--cut)) 0,
+        100% var(--cut),
+        100% calc(100% - var(--cut)),
+        calc(100% - var(--cut)) 100%,
+        var(--cut) 100%,
+        0 calc(100% - var(--cut)),
+        0 var(--cut)
+    );
 }
 
 .core-value-arrow {
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
 .outline-stat {
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 2.5px currentColor;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2.5px currentColor;
 }
 
 .header-bar {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    position: relative;
 }
 
 .header-right {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 0;
-  margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    margin-left: auto;
 }
 
 .header-actions {
-  display: none;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 0.75rem;
+    display: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .header-nav {
-  display: none;
+    display: none;
 }
 
 .header-menu-btn {
-  display: flex;
+    display: flex;
 }
 
 .header-mega {
-  display: none;
+    display: none;
 }
 
 .header-mobile-drawer {
-  display: grid;
+    display: grid;
 }
 
 @media (min-width: 768px) {
-  .header-actions {
-    display: flex;
-  }
+    .header-actions {
+        display: flex;
+    }
 }
 
 @media (min-width: 1024px) {
-  .header-right {
-    flex-direction: column;
-    align-items: flex-end;
-  }
+    .header-right {
+        flex-direction: column;
+        align-items: flex-end;
+    }
 
-  .header-nav {
-    display: flex;
-  }
+    .header-nav {
+        display: flex;
+    }
 
-  .header-menu-btn {
-    display: none;
-  }
+    .header-menu-btn {
+        display: none;
+    }
 
-  .header-mega {
-    display: block;
-  }
+    .header-mega {
+        display: block;
+    }
 
-  .header-mobile-drawer {
-    display: none;
-  }
+    .header-mobile-drawer {
+        display: none;
+    }
 }
 
 /* Between tablet and 1326px every nav link stays visible, so scale the type
    down in steps to keep the row from running into the logo. */
 @media (min-width: 1024px) and (max-width: 1325px) {
-  .header-nav {
-    gap: 0.5rem;
-  }
+    .header-nav {
+        gap: 0.5rem;
+    }
 
-  .header-nav a:not(.nav-option-chip) {
-    font-size: 13px;
-  }
+    .header-nav a:not(.nav-option-chip) {
+        font-size: 13px;
+    }
 }
 
 @media (min-width: 1100px) and (max-width: 1325px) {
-  .header-nav a:not(.nav-option-chip) {
-    font-size: 14px;
-  }
+    .header-nav a:not(.nav-option-chip) {
+        font-size: 14px;
+    }
 }
 
 @media (min-width: 1180px) and (max-width: 1325px) {
-  .header-nav {
-    gap: 0.625rem;
-  }
+    .header-nav {
+        gap: 0.625rem;
+    }
 
-  .header-nav a:not(.nav-option-chip) {
-    font-size: 15px;
-  }
+    .header-nav a:not(.nav-option-chip) {
+        font-size: 15px;
+    }
 }
 
 @media (min-width: 1280px) and (max-width: 1325px) {
-  .header-nav {
-    gap: 0.75rem;
-  }
+    .header-nav {
+        gap: 0.75rem;
+    }
 
-  .header-nav a:not(.nav-option-chip) {
-    font-size: 16px;
-  }
+    .header-nav a:not(.nav-option-chip) {
+        font-size: 16px;
+    }
 }
 
 .header-search {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  height: 2.25rem;
-  width: 13.5rem;
-  flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    height: 2.25rem;
+    width: 13.5rem;
+    flex-shrink: 0;
 }
 
 .nav-mega {
-  background-color: #fcfcfd;
-  background-image: url("/assets/images/chips_bg_img.png");
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: cover;
-  box-shadow: 0 18px 40px rgba(33, 26, 115, 0.06);
+    background-color: #fcfcfd;
+    background-image: url("/assets/images/chips_bg_img.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;
+    box-shadow: 0 18px 40px rgba(33, 26, 115, 0.06);
 }
 
 .nav-option-chip {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .nav-option-chip:hover,
 .nav-option-chip:focus-visible {
-  background-color: #F9F5EC;
+    background-color: #f9f5ec;
 }
 
 /* Header link loading feedback. Each link renders a .header-link-pending wrapper
    around a daisyUI spinner; the wrapper flags itself with .is-pending while the
    next route loads, which dims the link and marks it busy. */
 a:has(.header-link-pending.is-pending) {
-  opacity: 0.65;
-  cursor: progress;
+    opacity: 0.65;
+    cursor: progress;
 }
 
 /* daisyUI's <progress> is an inline block, so park it on the header's bottom
    edge and flatten it into a thin line. */
 .header-progress {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  height: 3px;
-  border-radius: 0;
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 3px;
+    border-radius: 0;
 }
 
 @media (min-width: 640px) {
-  .page-container {
-    padding-inline: 1.25rem;
-  }
+    .page-container {
+        padding-inline: 1.25rem;
+    }
 }
 
 @media (min-width: 1024px) {
-  .page-container {
-    padding-inline: 2rem;
-  }
+    .page-container {
+        padding-inline: 2rem;
+    }
 }
 
 @media (min-width: 1280px) {
-  .page-container {
-    padding-inline: 2.5rem;
-  }
+    .page-container {
+        padding-inline: 2.5rem;
+    }
 }
 
 @media (min-width: 1536px) {
-  .page-container {
-    padding-inline: 3rem;
-  }
+    .page-container {
+        padding-inline: 3rem;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+    background: var(--background);
+    color: var(--foreground);
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #f0ede7 25%, #e7e3d8 50%, #f0ede7 75%);
-  background-size: 200% 100%;
-  animation: skeleton-shimmer 1.4s ease infinite;
+    background: linear-gradient(90deg, #f0ede7 25%, #e7e3d8 50%, #f0ede7 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s ease infinite;
 }
 
 @keyframes skeleton-shimmer {
-  from {
-    background-position: 200% 0;
-  }
-  to {
-    background-position: -200% 0;
-  }
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -200% 0;
+    }
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  will-change: opacity, transform;
-  transition-property: opacity, transform;
-  transition-duration: 0.55s;
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--reveal-delay, calc(var(--i, 0) * 70ms));
+    opacity: 0;
+    transform: translateY(20px);
+    will-change: opacity, transform;
+    transition-property: opacity, transform;
+    transition-duration: 0.55s;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, calc(var(--i, 0) * 70ms));
 }
 
 .reveal.is-visible,
 .reveal-group.is-visible .reveal {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .reveal.reveal-done {
-  will-change: auto;
+    will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+    html {
+        scroll-behavior: auto;
+    }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-    will-change: auto;
-  }
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        will-change: auto;
+    }
 
-  .partners-marquee-track {
-    animation: none;
-    transform: none;
-  }
+    .partners-marquee-track {
+        animation: none;
+        transform: none;
+    }
 }
 
 @keyframes partners-marquee-right {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 .partners-marquee-track {
-  animation: partners-marquee-right 45s linear infinite;
-  width: max-content;
+    animation: partners-marquee-right 45s linear infinite;
+    width: max-content;
 }
 
 .partners-marquee:hover .partners-marquee-track {
-  animation-play-state: paused;
+    animation-play-state: paused;
 }

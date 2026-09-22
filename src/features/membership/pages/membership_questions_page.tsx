@@ -202,7 +202,8 @@ export default function MembershipQuestionsPage({
       if (res.success) {
         toast.success("Application submitted successfully!");
         // Re-fetch application to ensure we have the verified ID
-        const appRes = await orderService.fetchMyMembershipApplication(membershipId);
+        const appRes =
+          await orderService.fetchMyMembershipApplication(membershipId);
         const resolvedAppId = appRes.data?.id || (res.data as any)?.id;
         if (resolvedAppId) {
           setApplicationId(resolvedAppId);
@@ -247,7 +248,7 @@ export default function MembershipQuestionsPage({
           <div className="mb-6">
             <Link
               href={`/membership/${resolvedSlug}`}
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#554F7A] transition hover:text-primary"
+              className="inline-flex items-center gap-2  font-semibold uppercase tracking-wider text-[#554F7A] transition hover:text-primary"
             >
               <HugeiconsIcon icon={ArrowLeft01Icon} size={16} />
               <span>Back to Membership Details</span>
@@ -262,12 +263,12 @@ export default function MembershipQuestionsPage({
                 <h2 className="text-xl font-bold text-[#161058]">
                   Membership Not Found
                 </h2>
-                <p className="mt-2 text-sm text-[#554F7A]">
+                <p className="mt-2  text-[#554F7A]">
                   The membership program you requested could not be loaded.
                 </p>
                 <Link
                   href="/membership"
-                  className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5 text-xs font-semibold text-white"
+                  className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5  font-semibold text-white"
                 >
                   View All Memberships
                 </Link>
@@ -292,27 +293,28 @@ export default function MembershipQuestionsPage({
                         </div>
                       )}
                       <div>
-                        <div className="inline-flex items-center gap-1.5 rounded-full bg-lilac/60 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary">
+                        <div className="inline-flex items-center gap-1.5 rounded-full bg-lilac/60 px-3 py-1  font-bold uppercase tracking-wider text-primary">
                           <HugeiconsIcon icon={SecurityCheckIcon} size={14} />
                           <span>Pre-Membership Screening</span>
                         </div>
                         <h1 className="mt-2 text-xl font-bold text-[#161058] sm:text-2xl">
                           {detail.gradeTitle || detail.title}
                         </h1>
-                        <p className="mt-1 text-xs text-[#554F7A] sm:text-sm">
-                          Please complete this screening questionnaire to confirm
-                          your eligibility prior to checkout.
+                        <p className="mt-1  text-[#554F7A] sm:">
+                          Please complete this screening questionnaire to
+                          confirm your eligibility prior to checkout.
                         </p>
                       </div>
                     </div>
 
                     {typeof detail.price === "number" && (
                       <div className="shrink-0 rounded-2xl bg-[#F8F7FC] p-4 text-left sm:text-right">
-                        <span className="block text-[11px] font-bold uppercase tracking-wider text-[#554F7A]">
+                        <span className="block  font-bold uppercase tracking-wider text-[#554F7A]">
                           Membership Fee
                         </span>
                         <span className="text-lg font-bold text-[#161058] sm:text-xl">
-                          {detail.currency || "CAD"} ${detail.price.toLocaleString()}
+                          {detail.currency || "CAD"} $
+                          {detail.price.toLocaleString()}
                           {detail.duration ? ` / ${detail.duration}` : ""}
                         </span>
                       </div>
@@ -330,23 +332,23 @@ export default function MembershipQuestionsPage({
                       <h2 className="mt-4 text-xl font-bold text-[#0E582E] sm:text-2xl">
                         Application Screening Completed
                       </h2>
-                      <p className="mt-2 max-w-lg text-sm text-[#276B45]">
-                        You have already submitted your screening responses for this
-                        membership grade. You are eligible to proceed directly to
-                        payment and activate your membership.
+                      <p className="mt-2 max-w-lg  text-[#276B45]">
+                        You have already submitted your screening responses for
+                        this membership grade. You are eligible to proceed
+                        directly to payment and activate your membership.
                       </p>
 
                       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                         <Button
                           onClick={() => setIsPaymentModalOpen(true)}
-                          className="h-12 rounded-full bg-[#189D52] px-8 text-sm font-bold text-white shadow-sm hover:bg-[#158745]"
+                          className="h-12 rounded-full bg-[#189D52] px-8  font-bold text-white shadow-sm hover:bg-[#158745]"
                         >
                           <HugeiconsIcon icon={LockKeyIcon} size={16} />
                           <span>Proceed to Payment</span>
                         </Button>
                         <Link
                           href={`/membership/${resolvedSlug}`}
-                          className="inline-flex h-12 items-center justify-center rounded-full border border-[#B0DFC2] bg-white px-6 text-sm font-semibold text-[#0E582E] transition hover:bg-[#EAF6EF]"
+                          className="inline-flex h-12 items-center justify-center rounded-full border border-[#B0DFC2] bg-white px-6  font-semibold text-[#0E582E] transition hover:bg-[#EAF6EF]"
                         >
                           Review Membership Details
                         </Link>
@@ -362,13 +364,13 @@ export default function MembershipQuestionsPage({
                     <h2 className="mt-3 text-lg font-bold text-[#161058]">
                       No Prerequisites Required
                     </h2>
-                    <p className="mx-auto mt-1.5 max-w-md text-xs text-[#554F7A] sm:text-sm">
-                      This membership grade does not require pre-screening questions.
-                      You may proceed directly to checkout.
+                    <p className="mx-auto mt-1.5 max-w-md  text-[#554F7A] sm:">
+                      This membership grade does not require pre-screening
+                      questions. You may proceed directly to checkout.
                     </p>
                     <Button
                       onClick={() => setIsPaymentModalOpen(true)}
-                      className="mt-6 h-12 rounded-full bg-secondary px-8 text-sm font-bold text-[#111E2A] hover:brightness-95"
+                      className="mt-6 h-12 rounded-full bg-secondary px-8  font-bold text-[#111E2A] hover:brightness-95"
                     >
                       <span>Proceed to Payment</span>
                     </Button>
@@ -377,11 +379,12 @@ export default function MembershipQuestionsPage({
                   /* State C: Interactive Assessment Questionnaire */
                   <div className="space-y-6">
                     <div className="flex items-center justify-between px-1">
-                      <h2 className="text-sm font-bold uppercase tracking-wider text-[#554F7A]">
+                      <h2 className=" font-bold uppercase tracking-wider text-[#554F7A]">
                         Eligibility Questions ({questions.length})
                       </h2>
-                      <span className="text-xs font-semibold text-primary">
-                        {Object.keys(answers).length} of {questions.length} answered
+                      <span className=" font-semibold text-primary">
+                        {Object.keys(answers).length} of {questions.length}{" "}
+                        answered
                       </span>
                     </div>
 
@@ -401,10 +404,10 @@ export default function MembershipQuestionsPage({
                           >
                             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                               <div className="flex items-start gap-3.5">
-                                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-lilac/70 text-xs font-bold text-primary">
+                                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-lilac/70  font-bold text-primary">
                                   {idx + 1}
                                 </span>
-                                <p className="text-sm font-semibold leading-relaxed text-[#161058] sm:text-base">
+                                <p className=" font-semibold leading-relaxed text-[#161058] sm:text-base">
                                   {q.question}
                                 </p>
                               </div>
@@ -414,7 +417,7 @@ export default function MembershipQuestionsPage({
                                 <button
                                   type="button"
                                   onClick={() => handleSelectAnswer(q.id, true)}
-                                  className={`flex h-10 min-w-[84px] items-center justify-center gap-1.5 rounded-full px-4 text-xs font-bold transition-all ${
+                                  className={`flex h-10 min-w-[84px] items-center justify-center gap-1.5 rounded-full px-4  font-bold transition-all ${
                                     currentAnswer === true
                                       ? "bg-[#189D52] text-white shadow-xs"
                                       : "border border-[#D9D5E5] bg-[#FAF9FD] text-[#554F7A] hover:border-[#189D52] hover:text-[#189D52]"
@@ -429,8 +432,10 @@ export default function MembershipQuestionsPage({
 
                                 <button
                                   type="button"
-                                  onClick={() => handleSelectAnswer(q.id, false)}
-                                  className={`flex h-10 min-w-[84px] items-center justify-center gap-1.5 rounded-full px-4 text-xs font-bold transition-all ${
+                                  onClick={() =>
+                                    handleSelectAnswer(q.id, false)
+                                  }
+                                  className={`flex h-10 min-w-[84px] items-center justify-center gap-1.5 rounded-full px-4  font-bold transition-all ${
                                     currentAnswer === false
                                       ? "bg-[#D9383A] text-white shadow-xs"
                                       : "border border-[#D9D5E5] bg-[#FAF9FD] text-[#554F7A] hover:border-[#D9383A] hover:text-[#D9383A]"
@@ -452,11 +457,12 @@ export default function MembershipQuestionsPage({
                     {/* Bottom Action Footer */}
                     <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-3xl border border-[#E3DEED] bg-white p-6 shadow-xs sm:flex-row sm:p-8">
                       <div>
-                        <p className="text-sm font-bold text-[#161058]">
+                        <p className=" font-bold text-[#161058]">
                           Ready to finalize your application?
                         </p>
-                        <p className="text-xs text-[#554F7A]">
-                          Submitting this questionnaire will immediately open the payment checkout modal.
+                        <p className=" text-[#554F7A]">
+                          Submitting this questionnaire will immediately open
+                          the payment checkout modal.
                         </p>
                       </div>
 
@@ -464,7 +470,7 @@ export default function MembershipQuestionsPage({
                         type="button"
                         onClick={handleSubmitAssessment}
                         disabled={!allAnswered || isSubmitting}
-                        className="h-12 w-full shrink-0 rounded-full bg-secondary px-8 text-sm font-bold text-[#111E2A] hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                        className="h-12 w-full shrink-0 rounded-full bg-secondary px-8  font-bold text-[#111E2A] hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                       >
                         {isSubmitting ? (
                           <div className="flex items-center gap-2">
@@ -474,7 +480,9 @@ export default function MembershipQuestionsPage({
                         ) : (
                           <div className="flex items-center gap-2">
                             <HugeiconsIcon icon={LockKeyIcon} size={16} />
-                            <span>Submit Application & Continue to Payment</span>
+                            <span>
+                              Submit Application & Continue to Payment
+                            </span>
                           </div>
                         )}
                       </Button>

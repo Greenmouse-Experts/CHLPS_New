@@ -42,7 +42,7 @@ export default function MembershipCareerPathwaysSection({
                         strokeWidth={2.4}
                       />
                     </span>
-                    <span className="text-[13px] leading-snug text-[#4A4954] sm:text-[15px] sm:leading-relaxed">
+                    <span className=" leading-snug text-[#4A4954] sm:text-[15px] sm:leading-relaxed">
                       {item}
                     </span>
                   </li>

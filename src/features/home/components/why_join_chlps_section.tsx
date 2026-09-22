@@ -92,7 +92,7 @@ export default function WhyJoinChlpsSection() {
               />
 
               <div className="relative z-10">
-                <h3 className="text-[18px] font-semibold leading-snug text-white sm:text-[19px]">
+                <h3 className=" font-semibold leading-snug text-white ">
                   {card.title}
                 </h3>
               </div>
@@ -106,7 +106,7 @@ export default function WhyJoinChlpsSection() {
               <div className="relative z-10 my-auto py-2" />
 
               <div className="relative z-10">
-                <p className="text-[13px] font-normal leading-[1.68] text-white/90 sm:text-[13.5px]">
+                <p className=" font-normal leading-[1.68] text-white/90 ]">
                   {card.description}
                 </p>
               </div>

@@ -60,7 +60,7 @@ export default function LiveEventsSection({
           title="Live Events"
           subtitle="Happening now."
           action={
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF0F0] px-3.5 py-1.5 text-[13px] font-medium text-[#E23B3B] ring-1 ring-black/5 sm:px-4 sm:py-2 sm:text-sm">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF0F0] px-3.5 py-1.5  font-medium text-[#E23B3B] ring-1 ring-black/5 sm:px-4 sm:py-2 sm:">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E23B3B] opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#E23B3B]" />

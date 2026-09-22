@@ -174,13 +174,13 @@ export default function CertificationSection() {
                             {programme.title}
                           </h3>
                           {programme.courses ? (
-                            <p className="mt-3 text-[13px] leading-relaxed font-semibold text-[#676672] sm:text-[18px] line-clamp-2">
+                            <p className="mt-3  leading-relaxed font-semibold text-[#676672] sm:text-[18px] line-clamp-2">
                               {programme.courses[0].shortDesc}
                             </p>
                           ) : null}
                           <Link
                             href={href}
-                            className="mt-auto inline-flex items-center gap-2.5 pt-8 text-[13px] font-semibold"
+                            className="mt-auto inline-flex items-center gap-2.5 pt-8  font-semibold"
                           >
                             <span className="inline-flex items-center gap-2.5 rounded-full bg-[#1C1662] py-2 pl-5 pr-2 text-white transition-opacity hover:opacity-90">
                               <span className="max-w-[200px] truncate">

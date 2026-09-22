@@ -56,7 +56,7 @@ export default function SimpleMultiSelect<T = any>(
       <div className="w-full space-y-2">
         {label && (
           <div className="fieldset-label font-semibold">
-            <span className="text-sm">{label}</span>
+            <span className="">{label}</span>
           </div>
         )}
         <div className="skeleton h-10 w-full rounded-lg" />
@@ -75,13 +75,11 @@ export default function SimpleMultiSelect<T = any>(
     <div className="w-full space-y-2">
       {label && (
         <div className="fieldset-label font-semibold">
-          <span className="text-sm">{label}</span>
+          <span className="">{label}</span>
         </div>
       )}
       {items.map((item, idx) => render(item, idx))}
-      {error && (
-        <p className="text-error text-sm mt-1">{error.message as string}</p>
-      )}
+      {error && <p className="text-error  mt-1">{error.message as string}</p>}
     </div>
   );
 }

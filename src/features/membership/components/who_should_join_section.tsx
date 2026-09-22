@@ -67,7 +67,7 @@ export default function WhoShouldJoinSection() {
                 <h3 className="text-[20px] font-bold text-[#211A73] leading-tight sm:text-[32px]">
                   Your path
                 </h3>
-                <p className="mt-1.5 text-[11px] font-bold text-[#211A73] leading-snug sm:text-[11px]">
+                <p className="mt-1.5  font-bold text-[#211A73] leading-snug sm:">
                   Membership designed to grow with your professional journey.
                 </p>
               </div>
@@ -117,7 +117,7 @@ export default function WhoShouldJoinSection() {
                         {stage.title}
                       </h3>
                       <p
-                        className={`mt-1 text-[13px] leading-relaxed sm:text-[14px] ${
+                        className={`mt-1  leading-relaxed sm:text-[14px] ${
                           isNavy ? "text-white/80" : "opacity-80"
                         }`}
                       >

@@ -16,9 +16,9 @@ const initialValues = {
 };
 
 const fieldClass =
-  "h-10 w-full rounded-[8px] border border-[#E1DCF2] bg-white px-3 text-[13px] text-text outline-none transition-colors duration-150 placeholder:text-[#A3A1B0] focus:border-primary/40";
+  "h-10 w-full rounded-[8px] border border-[#E1DCF2] bg-white px-3  text-text outline-none transition-colors duration-150 placeholder:text-[#A3A1B0] focus:border-primary/40";
 
-const labelClass = "mb-1.5 block text-[12.5px] font-medium text-[#4A4958]";
+const labelClass = "mb-1.5 block  font-medium text-[#4A4958]";
 
 export default function ContactForm() {
   const [values, setValues] = useState(initialValues);
@@ -53,7 +53,7 @@ export default function ContactForm() {
       <h2 className="text-[1.125rem] font-semibold tracking-tight text-[#0A1542] sm:text-[1.25rem]">
         Send us a message
       </h2>
-      <p className="mt-2 text-[12.5px] leading-relaxed text-[#6F6E7A] sm:text-[13px]">
+      <p className="mt-2  leading-relaxed text-[#6F6E7A] sm:">
         Complete the form and a member of the ChLPS Canada team will respond to
         your enquiry.
       </p>
@@ -128,7 +128,7 @@ export default function ContactForm() {
             value={values.message}
             onChange={(event) => update("message", event.target.value)}
             placeholder="Write your message here"
-            className="w-full resize-y rounded-[8px] border border-[#E1DCF2] bg-white px-3 py-2.5 text-[13px] leading-relaxed text-text outline-none transition-colors duration-150 placeholder:text-[#A3A1B0] focus:border-primary/40"
+            className="w-full resize-y rounded-[8px] border border-[#E1DCF2] bg-white px-3 py-2.5  leading-relaxed text-text outline-none transition-colors duration-150 placeholder:text-[#A3A1B0] focus:border-primary/40"
           />
         </div>
 

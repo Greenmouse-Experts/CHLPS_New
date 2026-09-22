@@ -47,8 +47,8 @@ export const COUNTRIES: Country[] = [
 ];
 
 const sizeMap = {
-  sm: { trigger: "h-8 text-xs", input: "h-8 text-xs" },
-  md: { trigger: "h-10 text-sm", input: "h-10 text-sm" },
+  sm: { trigger: "h-8 ", input: "h-8 " },
+  md: { trigger: "h-10 ", input: "h-10 " },
   lg: { trigger: "h-11 text-base", input: "h-11 text-base" },
 };
 
@@ -132,7 +132,7 @@ const PhoneField = React.forwardRef<HTMLInputElement, PhoneFieldProps>(
               )}
             >
               <span className="text-base">{selectedCountry.flag}</span>
-              <span className="text-sm">{selectedCountry.dial}</span>
+              <span className="">{selectedCountry.dial}</span>
               <svg
                 width="10"
                 height="6"
@@ -161,13 +161,13 @@ const PhoneField = React.forwardRef<HTMLInputElement, PhoneFieldProps>(
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
                     placeholder="Search country..."
-                    className="h-8 w-full rounded-md border border-sand bg-cream px-2.5 text-sm placeholder:text-text/45 focus:border-primary/40 focus:outline-none"
+                    className="h-8 w-full rounded-md border border-sand bg-cream px-2.5  placeholder:text-text/45 focus:border-primary/40 focus:outline-none"
                     autoFocus
                   />
                 </div>
                 <ul className="max-h-48 overflow-y-auto py-1">
                   {filtered.length === 0 ? (
-                    <li className="px-3 py-2 text-sm text-text/55">No results</li>
+                    <li className="px-3 py-2  text-text/55">No results</li>
                   ) : (
                     filtered.map((country) => (
                       <li key={country.code}>
@@ -179,13 +179,16 @@ const PhoneField = React.forwardRef<HTMLInputElement, PhoneFieldProps>(
                             setSearch("");
                           }}
                           className={cn(
-                            "flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm hover:bg-cream",
-                            country.code === selectedCountry.code && "bg-cream font-medium",
+                            "flex w-full items-center gap-2.5 px-3 py-2 text-left  hover:bg-cream",
+                            country.code === selectedCountry.code &&
+                              "bg-cream font-medium",
                           )}
                         >
                           <span className="text-base">{country.flag}</span>
-                          <span className="flex-1 truncate">{country.name}</span>
-                          <span className="text-xs text-text/55">{country.dial}</span>
+                          <span className="flex-1 truncate">
+                            {country.name}
+                          </span>
+                          <span className=" text-text/55">{country.dial}</span>
                         </button>
                       </li>
                     ))

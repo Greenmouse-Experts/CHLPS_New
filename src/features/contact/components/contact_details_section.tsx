@@ -42,9 +42,7 @@ function DetailRow({
         <p className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-secondary">
           {label}
         </p>
-        <div className="mt-1 text-[13px] leading-[1.55] text-[#0A1542]">
-          {children}
-        </div>
+        <div className="mt-1  leading-[1.55] text-[#0A1542]">{children}</div>
       </div>
     </div>
   );
@@ -67,7 +65,7 @@ export default function ContactDetailsSection() {
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.1fr)] lg:gap-14">
           <div className="min-w-0">
             <Reveal>
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-secondary sm:text-[12px]">
+              <p className=" font-bold uppercase tracking-[0.16em] text-secondary sm:">
                 Office Details
               </p>
             </Reveal>
@@ -81,7 +79,7 @@ export default function ContactDetailsSection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-3 max-w-[360px] text-[13px] leading-relaxed text-[#6F6E7A] sm:text-[14px]">
+              <p className="mt-3 max-w-[360px]  leading-relaxed text-[#6F6E7A] sm:text-[14px]">
                 Reach our team directly or send us a message using the form.
                 We&apos;ll make sure your enquiry gets to the right place.
               </p>
@@ -116,7 +114,7 @@ export default function ContactDetailsSection() {
             </Reveal>
 
             <Reveal delay={280}>
-              <p className="mt-8 text-[11px] font-bold uppercase tracking-[0.16em] text-secondary sm:text-[12px]">
+              <p className="mt-8  font-bold uppercase tracking-[0.16em] text-secondary sm:">
                 Social Media
               </p>
               <div className="mt-4 flex items-center gap-3">

@@ -72,16 +72,16 @@ export default function LeadershipSection() {
                   {leader.name}
                 </h3>
 
-                <p className="mt-3 text-[13px] font-medium leading-relaxed text-[#6B6785]">
+                <p className="mt-3  font-medium leading-relaxed text-[#6B6785]">
                   {leader.credentials.join(" · ")}
                 </p>
 
-                <p className="mt-3 text-[12px] leading-relaxed text-[#7E7A8A] sm:text-[13px]">
+                <p className="mt-3  leading-relaxed text-[#7E7A8A] sm:">
                   {leader.summary}
                 </p>
 
                 <div className="mt-auto flex items-center justify-between gap-3 border-t border-[#F1EFF5] pt-4">
-                  <span className="text-[12px] font-semibold text-primary sm:text-[13px]">
+                  <span className=" font-semibold text-primary sm:">
                     View profile
                   </span>
                   <HugeiconsIcon

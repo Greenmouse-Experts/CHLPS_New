@@ -45,7 +45,7 @@ export default function CertificationDetailsOutcomeSection({
               <div className="flex flex-col justify-center bg-[#0A1542] px-6 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">
                 {detail.outcomeBadge && (
                   <span
-                    className="cut-tr-bl inline-block self-start bg-secondary px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#0A1542] sm:px-3.5 sm:text-[11px]"
+                    className="cut-tr-bl inline-block self-start bg-secondary px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#0A1542] sm:px-3.5 sm:"
                     style={{ "--cut": "0.45rem" } as CSSProperties}
                   >
                     {detail.outcomeBadge}
@@ -53,7 +53,7 @@ export default function CertificationDetailsOutcomeSection({
                 )}
 
                 {detail.outcomeTitle && (
-                  <h2 className="mt-5 whitespace-pre-line text-[1.75rem] font-light leading-[1.12] tracking-tight text-white sm:mt-6 sm:text-[2.15rem] lg:text-[2.35rem] xl:text-[2.55rem]">
+                  <h2 className="mt-5 whitespace-pre-line text-[1.75rem]  leading-[1.12] tracking-tight text-white sm:mt-6 sm:text-[2.15rem] lg:text-[2.35rem] xl:text-[2.55rem]">
                     {detail.outcomeTitle}
                   </h2>
                 )}

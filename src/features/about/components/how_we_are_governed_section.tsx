@@ -74,7 +74,7 @@ export default function HowWeAreGovernedSection() {
                   className="absolute inset-0 translate-x-2 -translate-y-2 rounded-[1.25rem] bg-secondary"
                 />
                 <div className="relative rounded-[1.25rem] bg-primary p-5 sm:p-6">
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.06em] text-secondary sm:text-[20px] lg:text-[24px]">
+                  <h3 className=" font-semibold uppercase tracking-[0.06em] text-secondary sm:text-[20px] lg:text-[24px]">
                     Governance Approach
                   </h3>
                   <p className="mt-2 text-[14px] leading-relaxed text-white/85 sm:text-[18px]">

@@ -113,7 +113,7 @@ export default function SimpleSelect<T = any>(props: SimpleSelectProps<T>) {
             htmlFor={`select-${route}`}
             className="mb-2 fieldset-label font-semibold"
           >
-            <span className="text-sm">{label}</span>
+            <span className="">{label}</span>
           </label>
         )}
         <select
@@ -135,7 +135,7 @@ export default function SimpleSelect<T = any>(props: SimpleSelectProps<T>) {
             htmlFor={`select-${route}`}
             className="mb-2 fieldset-label font-semibold"
           >
-            <span className="text-sm">{label}</span>
+            <span className="">{label}</span>
           </label>
         )}
         <select
@@ -153,7 +153,7 @@ export default function SimpleSelect<T = any>(props: SimpleSelectProps<T>) {
     <div className="w-full space-y-2">
       {label && (
         <div className="fieldset-label font-semibold">
-          <span className="text-sm">{label}</span>
+          <span className="">{label}</span>
         </div>
       )}
       <select
@@ -166,9 +166,7 @@ export default function SimpleSelect<T = any>(props: SimpleSelectProps<T>) {
         <option value="">{placeholder}</option>
         {items.map((item, idx) => render(item, idx))}
       </select>
-      {error && (
-        <p className="text-error text-sm mt-1">{error.message as string}</p>
-      )}
+      {error && <p className="text-error  mt-1">{error.message as string}</p>}
     </div>
   );
 }

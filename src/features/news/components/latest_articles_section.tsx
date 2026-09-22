@@ -97,7 +97,7 @@ export default function LatestArticlesSection() {
         {/* Header & Search Bar */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <Reveal className="min-w-0">
-            <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-primary">
+            <span className=" font-bold uppercase tracking-[0.14em] text-primary">
               Insights &amp; Analysis
             </span>
             <h2 className="mt-2 text-[1.85rem] font-medium leading-[1.1] tracking-tight text-[#0A1542] sm:text-[2.25rem] lg:text-[40px]">
@@ -152,7 +152,7 @@ export default function LatestArticlesSection() {
             <button
               type="button"
               onClick={() => setSelectedTag("all")}
-              className={`rounded-full px-4 py-1.5 text-[13px] font-semibold transition-all ${
+              className={`rounded-full px-4 py-1.5  font-semibold transition-all ${
                 selectedTag === "all"
                   ? "bg-[#101D63] text-white shadow-sm"
                   : "bg-white text-[#4A4758] border border-[#E2DFEC] hover:bg-[#F2EFFB]"
@@ -165,7 +165,7 @@ export default function LatestArticlesSection() {
                 key={tag}
                 type="button"
                 onClick={() => setSelectedTag(tag)}
-                className={`rounded-full px-4 py-1.5 text-[13px] font-semibold transition-all capitalize ${
+                className={`rounded-full px-4 py-1.5  font-semibold transition-all capitalize ${
                   selectedTag === tag
                     ? "bg-[#101D63] text-white shadow-sm"
                     : "bg-white text-[#4A4758] border border-[#E2DFEC] hover:bg-[#F2EFFB]"
@@ -187,7 +187,7 @@ export default function LatestArticlesSection() {
                 <p className="text-base font-semibold text-[#0A1542]">
                   No articles published yet
                 </p>
-                <p className="mt-1 text-sm text-[#6F6E7A]">
+                <p className="mt-1  text-[#6F6E7A]">
                   Check back soon for new insights and industry perspectives.
                 </p>
               </div>
@@ -200,7 +200,7 @@ export default function LatestArticlesSection() {
                     <p className="text-base font-semibold text-[#0A1542]">
                       No matching articles found
                     </p>
-                    <p className="mt-1 text-sm text-[#6F6E7A]">
+                    <p className="mt-1  text-[#6F6E7A]">
                       Try adjusting your search terms or selecting a different
                       topic.
                     </p>
@@ -211,7 +211,7 @@ export default function LatestArticlesSection() {
                           setSearch("");
                           setSelectedTag("all");
                         }}
-                        className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90"
+                        className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2  font-semibold text-white shadow-sm hover:opacity-90"
                       >
                         Reset filters
                       </button>

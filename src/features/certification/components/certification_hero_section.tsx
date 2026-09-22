@@ -27,7 +27,7 @@ export default function CertificationHeroSection() {
           <div className="w-full">
             <Reveal>
               <span
-                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:text-[12px]"
+                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 Our Professional Certification Program
@@ -35,7 +35,7 @@ export default function CertificationHeroSection() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-5 text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
+              <h1 className="mt-5 text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
                 Certification Program
               </h1>
             </Reveal>
@@ -62,14 +62,14 @@ export default function CertificationHeroSection() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
                   href="#pathways"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-secondary px-7 text-sm font-bold text-[#111E2A] shadow-sm transition-all hover:brightness-95 active:scale-[0.99]"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-secondary px-7  font-bold text-[#111E2A] shadow-sm transition-all hover:brightness-95 active:scale-[0.99]"
                 >
                   <span>Enroll Now</span>
                   <HugeiconsIcon icon={ArrowDown01Icon} size={16} />
                 </a>
                 <a
                   href="#program-benefits"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 text-sm font-medium text-white backdrop-blur-xs transition-colors hover:bg-white/20"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-white/30 bg-white/10 px-6  font-medium text-white backdrop-blur-xs transition-colors hover:bg-white/20"
                 >
                   Program Benefits
                 </a>

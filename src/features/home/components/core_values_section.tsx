@@ -72,7 +72,9 @@ const HEADER_FALLBACK = 104;
 
 function headerHeight() {
   const header = document.querySelector("header");
-  return header ? Math.round(header.getBoundingClientRect().height) : HEADER_FALLBACK;
+  return header
+    ? Math.round(header.getBoundingClientRect().height)
+    : HEADER_FALLBACK;
 }
 
 function usePinnedValuesScroll(
@@ -206,7 +208,7 @@ export default function CoreValuesSection() {
                     <p className="text-[5rem] font-bold leading-none tracking-tight text-[#111E2A] sm:text-[5.75rem]">
                       6
                     </p>
-                    <p className="mt-1.5 text-[11px] font-bold uppercase leading-[1.25] tracking-[0.18em] text-[#111E2A] sm:text-xs">
+                    <p className="mt-1.5  font-bold uppercase leading-[1.25] tracking-[0.18em] text-[#111E2A] sm:">
                       GUIDING
                       <br />
                       VALUES
@@ -216,8 +218,8 @@ export default function CoreValuesSection() {
               </Reveal>
               <Reveal delay={80}>
                 <p className="mt-8 max-w-[22rem] text-[14px] leading-relaxed text-[#FFFFFFCC] sm:text-[20px]">
-                  Six values shape the way ChLPS Canada leads, serves members and
-                  upholds professional trust.
+                  Six values shape the way ChLPS Canada leads, serves members
+                  and upholds professional trust.
                 </p>
               </Reveal>
               <Reveal delay={140}>
@@ -226,10 +228,10 @@ export default function CoreValuesSection() {
                 </h2>
               </Reveal>
               <Reveal delay={200}>
-                <p className="mt-5 max-w-[24rem] text-[13px] leading-relaxed text-[#FFFFFFCC] sm:text-[20px]">
-                  ChLPS Canada is guided by six professional values that shape how
-                  members serve, lead, protect information, make decisions and
-                  uphold public trust.
+                <p className="mt-5 max-w-[24rem]  leading-relaxed text-[#FFFFFFCC] sm:text-[20px]">
+                  ChLPS Canada is guided by six professional values that shape
+                  how members serve, lead, protect information, make decisions
+                  and uphold public trust.
                 </p>
               </Reveal>
             </div>

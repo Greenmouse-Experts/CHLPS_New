@@ -74,33 +74,33 @@ export default function MembershipGradeCard({
           )}
         </span>
 
-        <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#221A7A] sm:text-[12px]">
+        <p className="mt-5  font-bold uppercase tracking-[0.16em] text-[#221A7A] sm:">
           Membership Grade
         </p>
         <h2 className="mt-1.5 text-[1.35rem] font-bold leading-tight text-[#221A7A] sm:text-[32px]">
           {title}
         </h2>
-        <p className="mt-2.5 text-[13px] leading-relaxed text-[#5F5878] sm:text-[15px] line-clamp-2">
+        <p className="mt-2.5  leading-relaxed text-[#5F5878] sm:text-[15px] line-clamp-2">
           {body}
         </p>
 
         {price !== undefined && price !== null ? (
           <div className="mt-4 flex flex-col items-center rounded-2xl border border-[#DCD6EC] bg-white/90 px-4 py-2.5 shadow-sm">
             <div className="flex items-baseline gap-1.5">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#6D6885]">
+              <span className=" font-bold uppercase tracking-wider text-[#6D6885]">
                 {currency}
               </span>
               <span className="text-xl font-extrabold text-[#221A7A]">
                 ${price.toLocaleString()}
               </span>
               {duration ? (
-                <span className="text-xs font-medium text-[#6D6885]">
+                <span className=" font-medium text-[#6D6885]">
                   / {duration}
                 </span>
               ) : null}
             </div>
             {renewalPrice !== undefined && renewalPeriod ? (
-              <span className="mt-0.5 text-[11px] text-[#7B7793]">
+              <span className="mt-0.5  text-[#7B7793]">
                 Renews at ${renewalPrice.toLocaleString()} {renewalPeriod}
               </span>
             ) : null}
@@ -112,7 +112,7 @@ export default function MembershipGradeCard({
             type="button"
             onClick={onApply}
             disabled={isApplying}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-secondary py-2.5 px-4 text-xs font-bold text-[#111E2A] transition hover:brightness-95 disabled:opacity-50"
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-secondary py-2.5 px-4  font-bold text-[#111E2A] transition hover:brightness-95 disabled:opacity-50"
           >
             {isApplying ? "Checking Eligibility..." : "Apply for Grade"}
           </button>

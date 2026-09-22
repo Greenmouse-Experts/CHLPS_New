@@ -105,7 +105,7 @@ export default function MembershipRequirementsSection({
                             strokeWidth={2.4}
                           />
                         </span>
-                        <span className="text-[13px] leading-relaxed text-[#2B2367] sm:text-[15px]">
+                        <span className=" leading-relaxed text-[#2B2367] sm:text-[15px]">
                           {item}
                         </span>
                       </li>

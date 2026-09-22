@@ -149,19 +149,19 @@ export default function CertificationPathwaySection() {
       <PageContainer>
         <div className="flex flex-col items-center text-center">
           <Reveal>
-            <span className="inline-block rounded-full bg-[#EEEAF8] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-primary sm:text-[12px]">
+            <span className="inline-block rounded-full bg-[#EEEAF8] px-4 py-1.5  font-bold uppercase tracking-[0.14em] text-primary sm:">
               Certification Pathways
             </span>
           </Reveal>
 
           <Reveal delay={80}>
-            <h2 className="mt-4 max-w-[42rem] text-[1.85rem] font-light leading-tight tracking-tight text-[#161058] sm:mt-5 sm:text-[2.35rem] lg:text-[2.75rem]">
+            <h2 className="mt-4 max-w-[42rem] text-[1.85rem]  leading-tight tracking-tight text-[#161058] sm:mt-5 sm:text-[2.35rem] lg:text-[2.75rem]">
               From entry-level foundations to chartered executive distinction
             </h2>
           </Reveal>
 
           <Reveal delay={140}>
-            <p className="mt-4 max-w-[36rem] text-[13px] leading-relaxed text-[#554F7A] sm:text-[15px]">
+            <p className="mt-4 max-w-[36rem]  leading-relaxed text-[#554F7A] sm:text-[15px]">
               Each CHLPS certification aligns with a distinct career phase,
               equipping candidates with targeted competencies and verifiable
               professional standing.
@@ -238,7 +238,7 @@ export default function CertificationPathwaySection() {
                             sizes="80px"
                           />
                         </div>
-                        <span className="inline-flex items-center rounded-full bg-[#ECE8F6] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#5A4E9E]">
+                        <span className="inline-flex items-center rounded-full bg-[#ECE8F6] px-3.5 py-1.5  font-bold uppercase tracking-wider text-[#5A4E9E]">
                           {levelBadge}
                         </span>
                       </div>
@@ -253,7 +253,7 @@ export default function CertificationPathwaySection() {
 
                     {/* Bottom Navy Section: Fee, Price, Copy & Action */}
                     <div className="bg-[#161058] p-6 sm:p-7">
-                      <span className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">
+                      <span className="block  font-bold uppercase tracking-[0.14em] text-white/70">
                         CERTIFICATION FEE
                       </span>
 
@@ -265,7 +265,7 @@ export default function CertificationPathwaySection() {
                       <div className="my-3.5 h-[2.5px] w-9 rounded-full bg-[#DEB853]" />
 
                       {/* Pricing / Expiry Terms */}
-                      <div className="space-y-1 text-[12.5px] leading-relaxed text-white/80">
+                      <div className="space-y-1  leading-relaxed text-white/80">
                         {hasPrice ? (
                           <>
                             <p>
@@ -292,7 +292,7 @@ export default function CertificationPathwaySection() {
                       <div className="mt-6">
                         <Link
                           href={enrollHref}
-                          className="flex h-12 w-full items-center justify-center rounded-full bg-white text-sm font-bold text-[#161058] shadow-sm transition duration-200 hover:bg-[#F3F2F8] active:scale-[0.99]"
+                          className="flex h-12 w-full items-center justify-center rounded-full bg-white  font-bold text-[#161058] shadow-sm transition duration-200 hover:bg-[#F3F2F8] active:scale-[0.99]"
                         >
                           Get started
                         </Link>

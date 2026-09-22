@@ -34,14 +34,19 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     }, [indeterminate]);
 
     const sizeStyles = {
-      sm: { box: "w-3.5 h-3.5 rounded", label: "text-xs", gap: "gap-1.5" },
-      md: { box: "w-4 h-4 rounded", label: "text-sm", gap: "gap-2" },
+      sm: { box: "w-3.5 h-3.5 rounded", label: "", gap: "gap-1.5" },
+      md: { box: "w-4 h-4 rounded", label: "", gap: "gap-2" },
       lg: { box: "w-5 h-5 rounded-md", label: "text-base", gap: "gap-2.5" },
     }[size];
 
     return (
       <div className="flex flex-col gap-1">
-        <label className={cn("group flex cursor-pointer items-start", sizeStyles.gap)}>
+        <label
+          className={cn(
+            "group flex cursor-pointer items-start",
+            sizeStyles.gap,
+          )}
+        >
           <div className="relative mt-0.5 shrink-0">
             <input
               ref={(element) => {
@@ -72,7 +77,11 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               )}
             >
               {(props.checked || props.defaultChecked) && !indeterminate && (
-                <svg viewBox="0 0 10 8" fill="none" className="w-[55%] text-white">
+                <svg
+                  viewBox="0 0 10 8"
+                  fill="none"
+                  className="w-[55%] text-white"
+                >
                   <path
                     d="M1 4l3 3 5-6"
                     stroke="currentColor"

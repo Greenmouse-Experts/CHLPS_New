@@ -157,7 +157,7 @@ export default function EventDetailGallery({
           </div>
 
           {/* Slide Counter Badge */}
-          <span className="absolute bottom-4 right-4 rounded-full bg-[#1B2A44]/85 px-3 py-1 text-[11px] font-medium text-white shadow-md backdrop-blur-sm sm:bottom-5 sm:right-5 sm:px-3.5 sm:text-[12px] z-10">
+          <span className="absolute bottom-4 right-4 rounded-full bg-[#1B2A44]/85 px-3 py-1  font-medium text-white shadow-md backdrop-blur-sm sm:bottom-5 sm:right-5 sm:px-3.5 sm: z-10">
             {selectedIndex + 1} / {total}
           </span>
         </>

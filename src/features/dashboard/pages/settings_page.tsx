@@ -54,7 +54,8 @@ const SettingsPage = () => {
     : "N/A";
 
   const initials =
-    `${user.firstName?.[0] ?? ""}${user.lastName?.[0] ?? ""}`.toUpperCase() || "M";
+    `${user.firstName?.[0] ?? ""}${user.lastName?.[0] ?? ""}`.toUpperCase() ||
+    "M";
 
   return (
     <DashboardLayout title="My Profile">
@@ -76,7 +77,11 @@ const SettingsPage = () => {
             <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border border-sand bg-lilac">
               {user.avatar ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={user.avatar} alt="" className="h-full w-full object-cover" />
+                <img
+                  src={user.avatar}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
               ) : (
                 <span className="flex h-full w-full items-center justify-center text-2xl font-semibold text-primary">
                   {initials}
@@ -87,7 +92,7 @@ const SettingsPage = () => {
               <h2 className="text-lg font-semibold tracking-wide text-primary uppercase">
                 {user.fullName || "Member"}
               </h2>
-              <span className="flex items-center gap-2 text-sm font-medium text-[#166534]">
+              <span className="flex items-center gap-2  font-medium text-[#166534]">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#38CB89]" />
                 Active
               </span>
@@ -102,7 +107,10 @@ const SettingsPage = () => {
           <dl className="divide-y divide-sand">
             <ReadonlyRow label="Registration date" value={registrationDate} />
             <ReadonlyRow label="Email" value={user.email || "N/A"} />
-            <ReadonlyRow label="Phone number" value={user.phoneNumber || "N/A"} />
+            <ReadonlyRow
+              label="Phone number"
+              value={user.phoneNumber || "N/A"}
+            />
           </dl>
         </div>
 
@@ -158,7 +166,7 @@ const SettingsPage = () => {
             onChange={formik.handleChange}
           />
           <div>
-            <label className="mb-1.5 block text-sm font-medium uppercase tracking-[0.12em] text-text/55">
+            <label className="mb-1.5 block  font-medium uppercase tracking-[0.12em] text-text/55">
               Bio
             </label>
             <textarea
@@ -181,7 +189,7 @@ const SettingsPage = () => {
 function ReadonlyRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="grid grid-cols-1 gap-1 py-4 sm:grid-cols-3 sm:items-center">
-      <dt className="text-sm font-medium text-text/50">{label}</dt>
+      <dt className=" font-medium text-text/50">{label}</dt>
       <dd className="text-text sm:col-span-2">{value}</dd>
     </div>
   );

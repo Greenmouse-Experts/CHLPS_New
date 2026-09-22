@@ -42,7 +42,10 @@ const features: {
 
 export default function WhyJoinSection() {
   return (
-    <section id="why-join" className="bg-cream py-12 sm:py-16 md:py-20 lg:py-24">
+    <section
+      id="why-join"
+      className="bg-cream py-12 sm:py-16 md:py-20 lg:py-24"
+    >
       <PageContainer>
         <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-10 xl:grid-cols-[minmax(0,620px)_minmax(0,1fr)] xl:gap-14 2xl:gap-16">
           <div className="flex min-w-0 flex-col">
@@ -100,7 +103,7 @@ export default function WhyJoinSection() {
                 <h3 className="mt-4 text-lg font-bold leading-tight tracking-tight text-[#151515] sm:mt-5 sm:text-xl md:text-[22px] lg:text-2xl xl:text-[30px]">
                   {feature.title}
                 </h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-[#676672] sm:mt-2 sm:text-sm md:text-[15px] lg:text-[17px] xl:text-[20px]">
+                <p className="mt-1.5  leading-relaxed text-[#676672] sm:mt-2 sm: md:text-[15px] lg:text-[17px] xl:text-[20px]">
                   {feature.body}
                 </p>
               </article>

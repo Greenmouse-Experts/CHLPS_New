@@ -1,6 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
@@ -113,10 +119,12 @@ export default function LeaderProfileModal({
 
           <div
             className={`absolute inset-x-0 bottom-0 p-6 transition-[opacity,transform] duration-500 delay-100 ease-out motion-reduce:transition-none sm:p-8 lg:p-10 ${
-              contentIn ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+              contentIn
+                ? "translate-y-0 opacity-100"
+                : "translate-y-3 opacity-0"
             }`}
           >
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-secondary sm:text-[11px]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-secondary sm:">
               ChLPS Canada Leadership
             </p>
             <p className="mt-2 text-lg font-bold leading-tight text-white sm:text-xl lg:text-[1.5rem]">
@@ -131,7 +139,7 @@ export default function LeaderProfileModal({
           }`}
         >
           <span
-            className="cut-tr-bl inline-block bg-secondary px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-primary sm:text-[11px]"
+            className="cut-tr-bl inline-block bg-secondary px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-primary sm:"
             style={{ "--cut": "0.5rem" } as CSSProperties}
           >
             {leader.role}
@@ -144,7 +152,7 @@ export default function LeaderProfileModal({
             {leader.name}
           </h3>
 
-          <p className="mt-3 text-[12px] font-semibold leading-relaxed text-[#6B6785] sm:text-[13px]">
+          <p className="mt-3  font-semibold leading-relaxed text-[#6B6785] sm:">
             {leader.credentials.join(" · ")}
           </p>
 
@@ -152,7 +160,7 @@ export default function LeaderProfileModal({
             {leader.biography.map((paragraph) => (
               <p
                 key={paragraph}
-                className="text-[13px] leading-relaxed text-[#807D91] sm:text-sm"
+                className=" leading-relaxed text-[#807D91] sm:"
               >
                 {paragraph}
               </p>
@@ -160,7 +168,7 @@ export default function LeaderProfileModal({
           </div>
 
           <div className="mt-7 border-t border-[#EDEBF2] pt-6">
-            <h4 className="text-[13px] font-bold uppercase tracking-[0.08em] text-primary sm:text-[15px]">
+            <h4 className=" font-bold uppercase tracking-[0.08em] text-primary sm:text-[15px]">
               Areas of Expertise
             </h4>
 
@@ -168,7 +176,7 @@ export default function LeaderProfileModal({
               {leader.expertise.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full border border-[#E5E3EC] bg-[#FBFBFD] px-4 py-1.5 text-[12px] text-[#413E58] sm:text-[13px]"
+                  className="rounded-full border border-[#E5E3EC] bg-[#FBFBFD] px-4 py-1.5  text-[#413E58] sm:"
                 >
                   {item}
                 </li>
@@ -177,7 +185,7 @@ export default function LeaderProfileModal({
           </div>
 
           <div className="mt-7 border-t border-[#EDEBF2] pt-6">
-            <h4 className="text-[13px] font-bold uppercase tracking-[0.08em] text-primary sm:text-[15px]">
+            <h4 className=" font-bold uppercase tracking-[0.08em] text-primary sm:text-[15px]">
               Professional Profile
             </h4>
 
@@ -187,10 +195,8 @@ export default function LeaderProfileModal({
                   key={item.title}
                   className="rounded-xl border border-[#EAE8F0] bg-[#FBFBFD] p-4"
                 >
-                  <h5 className="text-[13px] font-bold text-primary">
-                    {item.title}
-                  </h5>
-                  <p className="mt-2 text-[12px] leading-relaxed text-[#8A8797] sm:text-[13px]">
+                  <h5 className=" font-bold text-primary">{item.title}</h5>
+                  <p className="mt-2  leading-relaxed text-[#8A8797] sm:">
                     {item.body}
                   </p>
                 </article>

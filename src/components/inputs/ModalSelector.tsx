@@ -22,9 +22,9 @@ export default function ModalSelector(props: ModalSelectorProps) {
     enabled: !!props.route,
   });
 
-  if (query.isLoading) return <div className="text-sm p-4">Loading...</div>;
+  if (query.isLoading) return <div className=" p-4">Loading...</div>;
   if (query.isError)
-    return <div className="text-sm text-error p-4">Error loading data</div>;
+    return <div className=" text-error p-4">Error loading data</div>;
 
   const list = query.data?.data || [];
 
@@ -36,7 +36,7 @@ export default function ModalSelector(props: ModalSelectorProps) {
             <li key={idx}>{props.render(item)}</li>
           ))}
           {list.length === 0 && (
-            <li className="text-sm text-center py-4 text-base-content/60">
+            <li className=" text-center py-4 text-base-content/60">
               No items available
             </li>
           )}

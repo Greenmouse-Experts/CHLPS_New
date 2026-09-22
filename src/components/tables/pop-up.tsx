@@ -121,7 +121,7 @@ export default function PopUp<T>(props: {
                         props.setIndex(null);
                         action.action(props.item, router);
                       }}
-                      className={`text-xs py-2 px-3 hover:bg-base-200 rounded-lg cursor-pointer ${action.disable_event && action.disable_event(props.item) ? "cursor-not-allowed opacity-50" : ""}`}
+                      className={` py-2 px-3 hover:bg-base-200 rounded-lg cursor-pointer ${action.disable_event && action.disable_event(props.item) ? "cursor-not-allowed opacity-50" : ""}`}
                     >
                       {action.render ? action.render(props.item) : action.label}
                     </a>

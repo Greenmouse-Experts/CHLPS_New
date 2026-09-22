@@ -49,7 +49,7 @@ export default function CertificationDetailsBenefitsSection({
                       strokeWidth={2.4}
                     />
                   </span>
-                  <span className="min-w-0 text-[13px] leading-relaxed text-[#2B2367] sm:text-[15px]">
+                  <span className="min-w-0  leading-relaxed text-[#2B2367] sm:text-[15px]">
                     {item}
                   </span>
                 </li>

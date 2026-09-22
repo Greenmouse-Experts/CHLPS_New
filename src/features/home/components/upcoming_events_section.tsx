@@ -70,7 +70,7 @@ function EventMetaLine({
 
   return (
     <p
-      className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] font-medium text-[#686673] sm:text-[14px] ${className}`}
+      className={`flex flex-wrap items-center gap-x-3 gap-y-1  font-medium text-[#686673] sm:text-[14px] ${className}`}
     >
       {event.date && (
         <span className="inline-flex items-center gap-1.5">
@@ -133,11 +133,11 @@ function FeaturedEventCard({ event }: { event: ChlpsEvent }) {
           <h3 className="mt-3 line-clamp-2 text-2xl font-bold leading-tight tracking-tight text-white sm:text-[45px]">
             {event.title}
           </h3>
-          <p className="mt-1.5 max-w-md line-clamp-3 text-[13px] leading-relaxed text-white/90 sm:text-[18px]">
+          <p className="mt-1.5 max-w-md line-clamp-3  leading-relaxed text-white/90 sm:text-[18px]">
             {event.description}
           </p>
           {event.date && (
-            <p className="mt-2 inline-flex items-center gap-2 text-[12px] font-medium text-white/80 sm:text-[15px]">
+            <p className="mt-2 inline-flex items-center gap-2  font-medium text-white/80 sm:text-[15px]">
               <HugeiconsIcon
                 icon={Calendar03Icon}
                 size={16}
@@ -164,7 +164,7 @@ function EventListCard({ event, index }: { event: ChlpsEvent; index: number }) {
         <h3 className="line-clamp-2 text-[20px] font-medium leading-snug text-primary sm:text-[30px]">
           {event.title}
         </h3>
-        <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-[#686673] sm:text-[18px]">
+        <p className="mt-1 line-clamp-2  leading-relaxed text-[#686673] sm:text-[18px]">
           {event.description}
         </p>
         <EventMetaLine event={event} className="mt-2" />

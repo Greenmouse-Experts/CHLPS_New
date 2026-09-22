@@ -38,7 +38,7 @@ export default function EventsHeroSection({
         >
           <div className="w-full">
             <Reveal>
-              <h1 className="text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
+              <h1 className="text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
                 {title}
               </h1>
             </Reveal>

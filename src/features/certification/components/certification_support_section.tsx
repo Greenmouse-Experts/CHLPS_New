@@ -38,7 +38,7 @@ export default function CertificationSupportSection() {
           <div className="min-w-0">
             <Reveal>
               <span
-                className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-primary sm:px-4 sm:py-2 sm:text-[20px]"
+                className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-primary sm:px-4 sm:py-2 sm:text-[20px]"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 How We Support You
@@ -69,7 +69,7 @@ export default function CertificationSupportSection() {
               <div className="mt-7">
                 <a
                   href="#pathways"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-secondary px-7 text-sm font-bold text-[#111E2A] shadow-sm transition-all hover:brightness-95 active:scale-[0.99]"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-secondary px-7  font-bold text-[#111E2A] shadow-sm transition-all hover:brightness-95 active:scale-[0.99]"
                 >
                   <span>Enroll Today</span>
                   <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} />

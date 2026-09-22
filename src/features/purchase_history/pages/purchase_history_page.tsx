@@ -23,8 +23,8 @@ const PurchaseHistoryPage = () => {
           />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-left text-sm">
-              <thead className="bg-cream text-xs font-semibold tracking-wide text-text/55 uppercase">
+            <table className="w-full min-w-[640px] text-left ">
+              <thead className="bg-cream  font-semibold tracking-wide text-text/55 uppercase">
                 <tr>
                   <th className="px-5 py-3">Order</th>
                   <th className="px-5 py-3">Item(s)</th>
@@ -54,7 +54,7 @@ const PurchaseHistoryPage = () => {
                       ${Number(order.trx?.amount ?? 0).toLocaleString()}
                       {order.trx?.subAmount &&
                         order.trx?.amount > order.trx?.subAmount && (
-                          <span className="ml-1.5 text-xs text-text/50 font-normal">
+                          <span className="ml-1.5  text-text/50 font-normal">
                             (inc. tax)
                           </span>
                         )}
@@ -89,7 +89,7 @@ function StatusBadge({ status }: { status: string }) {
   return (
     <span
       className={cn(
-        "rounded-full px-3 py-1 text-xs font-medium capitalize",
+        "rounded-full px-3 py-1  font-medium capitalize",
         status === "confirmed" && "bg-[#E8F8F1] text-[#166534]",
         status === "successful" && "bg-[#E8F8F1] text-[#166534]",
         status === "pending" && "bg-[#FEFAE0] text-[#854D0E]",

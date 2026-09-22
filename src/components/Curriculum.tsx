@@ -125,7 +125,7 @@ function AccordionList({
         <h3 className="text-lg font-bold text-[#1E1758]">
           No curriculum available yet
         </h3>
-        <p className="max-w-md text-sm text-[#7A778B]">
+        <p className="max-w-md  text-[#7A778B]">
           The curriculum for this program is being finalized. Check back soon or
           contact us for the detailed outline.
         </p>
@@ -177,7 +177,7 @@ function SectionAccordion({
       >
         <div className="flex min-w-0 flex-1 items-center gap-3.5 sm:gap-4">
           {/* Number Pill Badge */}
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1E1758] text-[12px] font-bold text-white shadow-sm sm:h-8.5 sm:w-8.5">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1E1758]  font-bold text-white shadow-sm sm:h-8.5 sm:w-8.5">
             {number}
           </span>
 
@@ -232,14 +232,14 @@ function SubItem({
         <span className="shrink-0 text-[#8E8B9E]">
           <MediaIcon type={sub.mediaType} />
         </span>
-        <span className="truncate text-[13.5px] font-normal text-[#5A576D] sm:text-[14.5px]">
+        <span className="truncate  font-normal text-[#5A576D] sm:text-[14.5px]">
           {sub.title}
         </span>
       </div>
 
       {/* Right: Duration + Preview Button */}
       <div className="flex shrink-0 items-center gap-4 sm:gap-6">
-        <span className="flex items-center gap-1.5 text-[12.5px] font-medium text-[#7C798D] sm:text-[13px]">
+        <span className="flex items-center gap-1.5  font-medium text-[#7C798D] sm:">
           <Clock className="h-3.5 w-3.5 text-[#8E8B9E]" />
           {durationText}
         </span>
@@ -247,7 +247,7 @@ function SubItem({
         <button
           type="button"
           onClick={() => onPreview(sub)}
-          className="flex items-center gap-1.5 rounded-[8px] border border-[#1E1758] px-3.5 py-1.5 text-[12px] font-semibold text-[#1E1758] transition-all duration-150 hover:bg-[#1E1758] hover:text-white cursor-pointer"
+          className="flex items-center gap-1.5 rounded-[8px] border border-[#1E1758] px-3.5 py-1.5  font-semibold text-[#1E1758] transition-all duration-150 hover:bg-[#1E1758] hover:text-white cursor-pointer"
         >
           <Eye className="h-3.5 w-3.5" />
           <span>Preview</span>

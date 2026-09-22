@@ -51,9 +51,12 @@ const ResetPasswordPage = () => {
               Send reset link
             </Button>
           </form>
-          <p className="mt-6 text-center text-sm text-text/60">
+          <p className="mt-6 text-center  text-text/60">
             Remembered your password?{" "}
-            <Link href="/dashboard/sign-in" className="font-medium text-primary hover:underline">
+            <Link
+              href="/dashboard/sign-in"
+              className="font-medium text-primary hover:underline"
+            >
               Sign in
             </Link>
           </p>

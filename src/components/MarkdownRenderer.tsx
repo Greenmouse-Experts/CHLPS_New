@@ -62,7 +62,10 @@ export default function MarkdownRenderer({
             </p>
           ),
           ul: ({ children, ...props }) => (
-            <ul className="my-4 list-disc space-y-2 pl-6 text-[#2C2B36]" {...props}>
+            <ul
+              className="my-4 list-disc space-y-2 pl-6 text-[#2C2B36]"
+              {...props}
+            >
               {children}
             </ul>
           ),
@@ -108,19 +111,24 @@ export default function MarkdownRenderer({
               {...props}
             />
           ),
-          hr: (props) => <hr className="my-8 border-t border-[#EAE7F2]" {...props} />,
+          hr: (props) => (
+            <hr className="my-8 border-t border-[#EAE7F2]" {...props} />
+          ),
           code: ({ children, className, ...props }) => {
             const isBlock = className?.includes("language-");
             if (isBlock) {
               return (
-                <code className={`block font-mono text-sm ${className ?? ""}`} {...props}>
+                <code
+                  className={`block font-mono  ${className ?? ""}`}
+                  {...props}
+                >
                   {children}
                 </code>
               );
             }
             return (
               <code
-                className="rounded bg-[#EEEAFB] px-1.5 py-0.5 font-mono text-[13.5px] font-medium text-[#101D63]"
+                className="rounded bg-[#EEEAFB] px-1.5 py-0.5 font-mono  font-medium text-[#101D63]"
                 {...props}
               >
                 {children}
@@ -129,7 +137,7 @@ export default function MarkdownRenderer({
           },
           pre: ({ children, ...props }) => (
             <pre
-              className="my-6 overflow-x-auto rounded-xl bg-[#1E1758] p-4 font-mono text-sm text-white"
+              className="my-6 overflow-x-auto rounded-xl bg-[#1E1758] p-4 font-mono  text-white"
               {...props}
             >
               {children}
@@ -137,7 +145,10 @@ export default function MarkdownRenderer({
           ),
           table: ({ children, ...props }) => (
             <div className="my-6 overflow-x-auto">
-              <table className="w-full border-collapse border border-[#EAE7F2] text-sm" {...props}>
+              <table
+                className="w-full border-collapse border border-[#EAE7F2] "
+                {...props}
+              >
                 {children}
               </table>
             </div>
@@ -151,7 +162,10 @@ export default function MarkdownRenderer({
             </th>
           ),
           td: ({ children, ...props }) => (
-            <td className="border border-[#EAE7F2] px-4 py-2.5 text-[#2C2B36]" {...props}>
+            <td
+              className="border border-[#EAE7F2] px-4 py-2.5 text-[#2C2B36]"
+              {...props}
+            >
               {children}
             </td>
           ),

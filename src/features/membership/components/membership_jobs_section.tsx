@@ -75,7 +75,7 @@ export default function MembershipJobsSection({
                 <h3 className="text-[15px] font-bold leading-snug text-[#221A7A] sm:text-[17px]">
                   {card.title}
                 </h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-[#676672] sm:text-[14px]">
+                <p className="mt-1.5  leading-relaxed text-[#676672] sm:text-[14px]">
                   {card.body}
                 </p>
               </div>

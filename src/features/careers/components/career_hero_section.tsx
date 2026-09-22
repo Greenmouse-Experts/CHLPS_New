@@ -24,7 +24,7 @@ export default function CareerHeroSection() {
           <div className="w-full">
             <Reveal>
               <span
-                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:text-[12px]"
+                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 Career Center
@@ -32,7 +32,7 @@ export default function CareerHeroSection() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-5 text-[2rem] font-light leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
+              <h1 className="mt-5 text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
                 Build Your Career
                 <br />
                 in Loss Prevention

@@ -11,7 +11,7 @@ const LocalSelect = forwardRef<HTMLSelectElement, LocalSelectProps>(
       <div className="w-full flex-1 ">
         {label && (
           <div className="fieldset-label font-semibold  mb-2">
-            <span className="text-sm">{label}</span>
+            <span className="">{label}</span>
           </div>
         )}
         <select

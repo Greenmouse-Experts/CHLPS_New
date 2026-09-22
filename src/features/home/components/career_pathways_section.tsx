@@ -115,10 +115,8 @@ function CareerCard({ career }: { career: Career }) {
         <Icon size={20} color="#ffffff" strokeWidth={1.8} aria-hidden />
       </span>
       <div className="min-w-0 pt-0.5">
-        <h3 className="text-[15px] font-bold leading-snug text-white sm:text-[20px]">
-          {career.title}
-        </h3>
-        <p className="mt-1 text-[13px] leading-relaxed text-white/80 sm:text-[14px]">
+        <h3 className=" font-bold leading-snug text-white  ">{career.title}</h3>
+        <p className="mt-1  leading-relaxed text-white/80 text-sm">
           {career.body}
         </p>
       </div>

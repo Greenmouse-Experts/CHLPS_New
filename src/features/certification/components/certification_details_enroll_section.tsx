@@ -53,12 +53,12 @@ export default function CertificationDetailsEnrollSection({
                     </p>
                   )}
                   {detail.feeNow && (
-                    <p className="mt-4 text-[13px] leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
+                    <p className="mt-4  leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
                       {detail.feeNow}
                     </p>
                   )}
                   {detail.feeExpiry && (
-                    <p className="mt-3 text-[13px] leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
+                    <p className="mt-3  leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
                       {detail.feeExpiry}
                     </p>
                   )}

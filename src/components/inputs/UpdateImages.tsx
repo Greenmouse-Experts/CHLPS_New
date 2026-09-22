@@ -85,7 +85,7 @@ export default function UpdateImages({
             <span className="mt-2 text-lg font-semibold text-base-content opacity-80">
               Upload Images
             </span>
-            <span className="text-sm text-base-content opacity-60">
+            <span className=" text-base-content opacity-60">
               Drag and drop or click to upload
             </span>
           </label>

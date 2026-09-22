@@ -60,7 +60,7 @@ export default function QueryCompLayout<TData>(
         </div>
 
         {/* Text Content */}
-        <p className="text-sm font-medium tracking-tight text-text/70">
+        <p className=" font-medium tracking-tight text-text/70">
           {loadingText}
         </p>
       </div>
@@ -85,7 +85,7 @@ export default function QueryCompLayout<TData>(
             <ShieldOff className="h-6 w-6" />
           </div>
           <h4 className="text-base font-bold text-text">Access Denied</h4>
-          <p className="mt-1 text-xs text-text/60 max-w-xs">
+          <p className="mt-1  text-text/60 max-w-xs">
             You don't have permission to view this resource.
           </p>
         </div>
@@ -104,14 +104,14 @@ export default function QueryCompLayout<TData>(
         <h4 className="text-base font-bold text-text">
           Failed to load content
         </h4>
-        <p className="mt-1 text-xs text-text/60 max-w-xs">
+        <p className="mt-1  text-text/60 max-w-xs">
           {errorMsg || "An unexpected error occurred."}
         </p>
         {query.refetch && (
           <button
             type="button"
             onClick={() => query.refetch?.()}
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:opacity-90 active:scale-95 cursor-pointer"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2  font-semibold text-white shadow-sm transition-all hover:opacity-90 active:scale-95 cursor-pointer"
           >
             <RefreshCcw className="h-3.5 w-3.5" />
             Try Again

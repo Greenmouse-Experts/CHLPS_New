@@ -134,7 +134,7 @@ export default function NewsCard({
         </span>
 
         <span
-          className={`absolute bottom-4 right-4 z-10 rounded-md px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.16em] sm:bottom-5 sm:right-5 ${
+          className={`absolute bottom-4 right-4 z-10 rounded-md px-2.5 py-1  font-bold uppercase tracking-[0.16em] sm:bottom-5 sm:right-5 ${
             hasValidImage
               ? "bg-black/60 text-white backdrop-blur-sm"
               : tone.label
@@ -146,11 +146,11 @@ export default function NewsCard({
 
       <div className="flex flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
         <div className="flex items-center justify-between gap-3">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8A8A96]">
+          <span className=" font-semibold uppercase tracking-[0.14em] text-[#8A8A96]">
             {category}
           </span>
           {date ? (
-            <span className="text-[11px] font-medium uppercase tracking-[0.1em] text-[#8A8A96]">
+            <span className=" font-medium uppercase tracking-[0.1em] text-[#8A8A96]">
               {date}
             </span>
           ) : null}

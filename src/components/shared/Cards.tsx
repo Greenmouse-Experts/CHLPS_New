@@ -11,10 +11,12 @@ interface StatCardProps {
 
 function StatCard({ title, value, icon, className, loading }: StatCardProps) {
   return (
-    <div className={cn("rounded-xl border border-sand bg-white p-5", className)}>
+    <div
+      className={cn("rounded-xl border border-sand bg-white p-5", className)}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <p className="truncate text-xs font-medium uppercase tracking-wide text-text/55">
+          <p className="truncate  font-medium uppercase tracking-wide text-text/55">
             {title}
           </p>
           {loading ? (
@@ -42,7 +44,12 @@ interface EmptyStateProps {
   className?: string;
 }
 
-function EmptyState({ title, description, action, className }: EmptyStateProps) {
+function EmptyState({
+  title,
+  description,
+  action,
+  className,
+}: EmptyStateProps) {
   return (
     <div
       className={cn(
@@ -52,7 +59,7 @@ function EmptyState({ title, description, action, className }: EmptyStateProps) 
     >
       <h3 className="text-base font-semibold text-text">{title}</h3>
       {description && (
-        <p className="mt-1.5 max-w-sm text-sm text-text/60">{description}</p>
+        <p className="mt-1.5 max-w-sm  text-text/60">{description}</p>
       )}
       {action && <div className="mt-5">{action}</div>}
     </div>

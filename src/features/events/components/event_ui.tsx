@@ -67,11 +67,7 @@ export function LiveBadge({ className = "" }: { className?: string }) {
   );
 }
 
-export function ImageOverlayBadge({
-  event,
-}: {
-  event: ChlpsEvent;
-}) {
+export function ImageOverlayBadge({ event }: { event: ChlpsEvent }) {
   if (event.status === "live") {
     return <LiveBadge />;
   }
@@ -87,15 +83,9 @@ export function ImageOverlayBadge({
   return <AccessBadge access={event.access} />;
 }
 
-function MetaItem({
-  icon,
-  label,
-}: {
-  icon: IconSvgElement;
-  label: string;
-}) {
+function MetaItem({ icon, label }: { icon: IconSvgElement; label: string }) {
   return (
-    <li className="flex min-w-0 items-center gap-1.5 text-[12px] font-medium text-[#6F6E7A] sm:text-[13px]">
+    <li className="flex min-w-0 items-center gap-1.5  font-medium text-[#6F6E7A] sm:">
       <HugeiconsIcon
         icon={icon}
         size={16}
@@ -134,7 +124,7 @@ export function ViewDetailsButton({
   return (
     <Link
       href={href}
-      className={`inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-[13px] font-semibold text-white transition-opacity duration-200 hover:opacity-90 sm:text-sm ${
+      className={`inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5  font-semibold text-white transition-opacity duration-200 hover:opacity-90 sm: ${
         fullWidth ? "w-full" : ""
       }`}
     >
