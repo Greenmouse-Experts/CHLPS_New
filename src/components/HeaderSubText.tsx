@@ -7,7 +7,7 @@ export default function HeaderSubText(
   return (
     <>
       <div
-        className={`${textWhite ? "text-white" : "text-primary"} text-center mx-auto max-w-5xl text-xl font-medium`}
+        className={`${textWhite ? "text-white" : "text-primary"} text-center mx-auto max-w-5xl text-base font-medium`}
       >
         {props.children}
       </div>

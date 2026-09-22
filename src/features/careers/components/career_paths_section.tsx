@@ -44,7 +44,7 @@ function CareerPathCard({
         {career.title}
       </h3>
 
-      <p className="mt-2  leading-relaxed text-[#6F6E7A] sm:">{career.body}</p>
+      <p className="mt-2  leading-relaxed  sm:">{career.body}</p>
 
       <Link
         href={action.href}
@@ -85,7 +85,7 @@ export default function CareerPathsSection() {
           </Reveal>
 
           <Reveal delay={160}>
-            <p className="mx-auto mt-3 max-w-[640px] text-[14px] leading-relaxed text-[#6F6E7A] sm:text-[15px]">
+            <p className="mx-auto mt-3 max-w-[640px] text-[14px] leading-relaxed  sm:text-[15px]">
               Explore a broad range of professional roles that support loss
               prevention, asset protection, investigations, governance, risk and
               business resilience.

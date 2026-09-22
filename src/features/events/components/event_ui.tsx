@@ -85,7 +85,7 @@ export function ImageOverlayBadge({ event }: { event: ChlpsEvent }) {
 
 function MetaItem({ icon, label }: { icon: IconSvgElement; label: string }) {
   return (
-    <li className="flex min-w-0 items-center gap-1.5  font-medium text-[#6F6E7A] sm:">
+    <li className="flex min-w-0 items-center gap-1.5  font-medium  sm:">
       <HugeiconsIcon
         icon={icon}
         size={16}

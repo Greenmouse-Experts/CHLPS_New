@@ -79,7 +79,7 @@ export default function ContactDetailsSection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-3 max-w-[360px]  leading-relaxed text-[#6F6E7A] sm:text-[14px]">
+              <p className="mt-3 max-w-[360px]  leading-relaxed  sm:text-[14px]">
                 Reach our team directly or send us a message using the form.
                 We&apos;ll make sure your enquiry gets to the right place.
               </p>

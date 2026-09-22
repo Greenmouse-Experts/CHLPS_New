@@ -114,7 +114,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                   <h2 className="text-xl font-semibold text-[#0A1542]">
                     Article not found
                   </h2>
-                  <p className="mt-2  text-[#6F6E7A]">
+                  <p className="mt-2  ">
                     The requested article could not be found or has been
                     removed.
                   </p>

@@ -53,7 +53,7 @@ export default function ContactForm() {
       <h2 className="text-[1.125rem] font-semibold tracking-tight text-[#0A1542] sm:text-[1.25rem]">
         Send us a message
       </h2>
-      <p className="mt-2  leading-relaxed text-[#6F6E7A] sm:">
+      <p className="mt-2  leading-relaxed  sm:">
         Complete the form and a member of the ChLPS Canada team will respond to
         your enquiry.
       </p>

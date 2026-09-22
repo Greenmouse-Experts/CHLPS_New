@@ -161,9 +161,7 @@ export default function NewsCard({
         </h3>
 
         {excerpt ? (
-          <p className="mt-2.5 line-clamp-3 text-[14px] leading-relaxed text-[#6F6E7A]">
-            {excerpt}
-          </p>
+          <p className="mt-2.5 line-clamp-3  leading-relaxed ">{excerpt}</p>
         ) : null}
 
         <div className="mt-6 flex items-center justify-between gap-3 border-t border-[#E7E7EC] pt-4 lg:mt-auto lg:pt-5">

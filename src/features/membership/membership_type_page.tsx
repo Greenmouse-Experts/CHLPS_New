@@ -127,7 +127,7 @@ export default function MembershipTypePage({
             <h2 className="text-xl font-bold text-[#0A1542]">
               Membership Not Found
             </h2>
-            <p className="mt-2  text-[#6F6E7A]">
+            <p className="mt-2  ">
               The requested membership category is currently unavailable.
             </p>
             <Link

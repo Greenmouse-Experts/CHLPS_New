@@ -103,7 +103,7 @@ export default function LatestArticlesSection() {
             <h2 className="mt-2 text-[1.85rem] font-medium leading-[1.1] tracking-tight text-[#0A1542] sm:text-[2.25rem] lg:text-[40px]">
               Latest Articles
             </h2>
-            <p className="mt-2 text-[14px] text-[#6F6E7A] sm:text-[16px]">
+            <p className="mt-2 text-[14px]  sm:text-[16px]">
               Practical guidance, industry research, and expert loss prevention
               perspectives.
             </p>
@@ -187,7 +187,7 @@ export default function LatestArticlesSection() {
                 <p className="text-base font-semibold text-[#0A1542]">
                   No articles published yet
                 </p>
-                <p className="mt-1  text-[#6F6E7A]">
+                <p className="mt-1  ">
                   Check back soon for new insights and industry perspectives.
                 </p>
               </div>
@@ -200,7 +200,7 @@ export default function LatestArticlesSection() {
                     <p className="text-base font-semibold text-[#0A1542]">
                       No matching articles found
                     </p>
-                    <p className="mt-1  text-[#6F6E7A]">
+                    <p className="mt-1  ">
                       Try adjusting your search terms or selecting a different
                       topic.
                     </p>

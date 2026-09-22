@@ -45,6 +45,9 @@ export const leaders: Leader[] = [
       "Business Continuity",
       "Crisis Management",
       "Security Operations",
+      `Loss Prevention`,
+      `Regulatory Compliance`,
+      `Business Strategy`,
     ],
     profile: [
       {

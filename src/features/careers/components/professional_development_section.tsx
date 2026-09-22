@@ -77,7 +77,7 @@ export default function ProfessionalDevelopmentSection() {
                     />
                   </span>
 
-                  <p className="mt-6 max-w-[320px] text-[14px] leading-relaxed text-[#6F6E7A] sm:text-[15px]">
+                  <p className="mt-6 max-w-[320px] text-[14px] leading-relaxed  sm:text-[15px]">
                     {benefit.body}
                   </p>
                 </div>

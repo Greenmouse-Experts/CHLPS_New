@@ -24,7 +24,7 @@ export default function ContactMapSection() {
           </Reveal>
 
           <Reveal delay={140} className="shrink-0">
-            <p className=" text-[#6F6E7A] sm:text-[14px]">
+            <p className="  sm:text-[14px]">
               Our office is located on Victoria Avenue in Windsor, Ontario.
             </p>
           </Reveal>

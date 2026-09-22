@@ -34,7 +34,7 @@ export default function EventsPage({ initialEvents }: EventsPageProps) {
       <h3 className="mt-4 text-lg font-bold text-[#161058]">
         No Events Scheduled
       </h3>
-      <p className="mt-2  text-[#6F6E7A]">
+      <p className="mt-2  ">
         There are currently no events published. Please check back soon for
         upcoming sessions and conferences.
       </p>
