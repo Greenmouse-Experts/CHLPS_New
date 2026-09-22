@@ -80,12 +80,14 @@ export default function AboutHeroSection({
                 </div>
               </Reveal>
             ) : null}
-            <HeaderText
-              textWhite
-              notCenter
-              left="A professional home for every stage"
-              right="of loss prevention."
-            />
+            <div className="max-w-xl">
+              <HeaderText
+                textWhite
+                notCenter
+                left="A professional home for every stage"
+                right="of loss prevention."
+              />
+            </div>
 
             {/*<Reveal delay={80}>
               <h1
