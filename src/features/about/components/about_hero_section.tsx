@@ -24,6 +24,7 @@ type AboutHeroSectionProps = {
   imageClassName?: string;
   cta?: { label: string; href?: string; onClick?: () => void };
   children?: ReactNode;
+  showDefault?: boolean;
 };
 
 export default function AboutHeroSection({
@@ -38,6 +39,7 @@ export default function AboutHeroSection({
   imageClassName = "object-cover object-[right_15%]",
   cta,
   children,
+  showDefault = false,
 }: AboutHeroSectionProps) {
   const [imageSrc, setImageSrc] = useState(image);
 
@@ -80,15 +82,20 @@ export default function AboutHeroSection({
                 </div>
               </Reveal>
             ) : null}
-            <div className="max-w-xl">
-              <HeaderText
-                textWhite
-                notCenter
-                left="A professional home for every stage"
-                right="of loss prevention."
-              />
-            </div>
-
+            {showDefault && (
+              <div className="max-w-xl">
+                <HeaderText
+                  textWhite
+                  notCenter
+                  left="A professional home for every stage"
+                  right="of loss prevention."
+                />
+                <p className="text-white text-xl mt-4">
+                  Build professional standing through membership,
+                  <br /> certification and continous learning
+                </p>
+              </div>
+            )}
             {/*<Reveal delay={80}>
               <h1
                 className="text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-[40px] xl:text-[48px]"

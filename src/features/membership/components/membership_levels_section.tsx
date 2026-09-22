@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, type CSSProperties } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
-import { Reveal, RevealGroup } from "@/features/components/reveal";
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import { RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import QueryCompLayout from "@/components/QueryCompLayout";
@@ -23,6 +23,15 @@ const badgeMap: Record<string, string> = {
   associate: Assets.images.membership.associate,
   certified: Assets.images.membership.certified,
   corporate: Assets.icons.logo,
+};
+
+const DEFAULT_MEMBERSHIP_PRICES: Record<string, string> = {
+  student: "CA$195",
+  affiliate: "CA$595",
+  licentiate: "CA$695",
+  associate: "CA$795",
+  certified: "CA$895",
+  corporate: "CA$1,495",
 };
 
 function getBadgeSrc(category: Membership): string {
@@ -62,29 +71,29 @@ function MembershipBadge({
     imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
 
   return (
-    <span className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-secondary bg-white">
+    <div className="relative mx-auto flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-2 border-[#C99E4A] bg-white p-3 shadow-xs transition-transform duration-300 group-hover:scale-105 sm:h-32 sm:w-32">
       {cropLogo ? (
         <Image
           src={imgSrc}
           alt={alt}
           fill
-          sizes="64px"
+          sizes="(max-width: 640px) 112px, 128px"
           unoptimized={isRemote}
           onError={() => setImgSrc(Assets.icons.logo)}
-          className="object-cover object-left"
+          className="object-cover object-left p-2"
         />
       ) : (
         <Image
           src={imgSrc}
           alt={alt}
-          width={100}
-          height={104}
+          fill
+          sizes="(max-width: 640px) 112px, 128px"
           unoptimized={isRemote}
           onError={() => setImgSrc(Assets.icons.logo)}
-          className="h-[2.7rem] w-auto object-contain"
+          className="object-contain p-2"
         />
       )}
-    </span>
+    </div>
   );
 }
 
@@ -144,7 +153,7 @@ export default function MembershipLevelsSection() {
               }
 
               return (
-                <RevealGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+                <RevealGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {categories.map((category, index) => {
                     const slug = category.slug || category.id;
                     const href = `/membership/${slug}`;
@@ -155,71 +164,109 @@ export default function MembershipLevelsSection() {
                         .includes("corporate") ||
                       (category.slug || "").toLowerCase().includes("corporate");
 
+                    const cleanName = (category.name || "")
+                      .replace(/Member$/i, "")
+                      .trim();
+                    const displayName = cleanName
+                      .toLowerCase()
+                      .endsWith("membership")
+                      ? cleanName
+                      : `${cleanName} Membership`;
+
+                    const needle =
+                      `${slug} ${category.name || ""}`.toLowerCase();
+                    let fallbackPrice = "CA$595";
+                    for (const [key, val] of Object.entries(
+                      DEFAULT_MEMBERSHIP_PRICES,
+                    )) {
+                      if (needle.includes(key)) {
+                        fallbackPrice = val;
+                        break;
+                      }
+                    }
+
+                    const hasPrice =
+                      category.price != null &&
+                      !isNaN(Number(category.price)) &&
+                      Number(category.price) > 0;
+                    const currencyPrefix =
+                      category.currency === "USD"
+                        ? "$"
+                        : category.currency === "NGN"
+                          ? "₦"
+                          : "CA$";
+                    const priceDisplay = hasPrice
+                      ? `${currencyPrefix}${Number(category.price).toLocaleString()}`
+                      : fallbackPrice;
+
+                    const description =
+                      category.description ||
+                      "The globally recognized IFPO certification — the gold standard for protection professionals.";
+
                     return (
                       <article
                         id={`membership-${slug}`}
                         key={category.id || slug}
-                        className="group reveal relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-[24px] border border-[#CDA54E] bg-white p-6 transition-all duration-300 hover:shadow-lg sm:p-8"
-                        style={revealStyle(index)}
+                        style={revealStyle(index * 90)}
+                        className="card group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#C99E4A] bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
                       >
-                        <div
-                          aria-hidden
-                          className="pointer-events-none absolute inset-0 transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0"
-                        >
-                          <Image
-                            src={Assets.images.certificateCardBg}
-                            alt=""
-                            fill
-                            className="object-cover object-bottom"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          />
-                        </div>
-                        <div
-                          aria-hidden
-                          className="pointer-events-none absolute inset-0 bg-[#141549] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
-                        >
-                          <Image
-                            src={Assets.images.membershipCardBg}
-                            alt=""
-                            fill
-                            className="object-cover object-bottom"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          />
+                        {/* Top White Section: Circular Gold Ring Badge & Title */}
+                        <div className="flex flex-1 flex-col items-center justify-between bg-white px-6 pt-9 pb-8 text-center sm:px-8 sm:pt-10 sm:pb-9">
+                          <Link
+                            href={href}
+                            className="group/link flex flex-col items-center"
+                            aria-label={`View details for ${displayName}`}
+                          >
+                            <MembershipBadge
+                              src={badge}
+                              alt={`${category.name} badge`}
+                              cropLogo={isCorporate}
+                            />
+                            <h3 className="mt-6 text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] sm:mt-7 sm:text-2xl">
+                              {displayName}
+                            </h3>
+                          </Link>
                         </div>
 
-                        <div className="relative z-10 flex h-full flex-col">
-                          <MembershipBadge
-                            src={badge}
-                            alt={`${category.name} badge`}
-                            cropLogo={isCorporate}
-                          />
-                          <h3 className="mt-6 text-lg font-bold leading-snug text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-xl lg:text-[30px]">
-                            {category.name}
-                          </h3>
-                          <p className="mt-3  font-medium leading-relaxed text-[#676672] transition-colors line-clamp-3 duration-300 group-hover:text-white/90 group-focus-within:text-white/90 sm:text-[20px]">
-                            {category.description}
-                          </p>
-                          <div className="mt-auto flex min-w-0 items-center justify-between gap-3 pt-8">
-                            <span className="min-w-0  font-bold text-[#151515] transition-colors duration-300 group-hover:text-white group-focus-within:text-white sm:text-[18px]">
-                              Explore {category.name}
-                            </span>
-                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-[#111E2A] sm:h-11 sm:w-11">
+                        {/* Bottom Dark Navy Section: Description, Price & Gold Action Button */}
+                        <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] px-6 py-8 text-center sm:px-8 sm:py-9">
+                          {/* Background Image: membership_catigory_card.png */}
+                          <div
+                            aria-hidden
+                            className="pointer-events-none absolute inset-0 z-0"
+                          >
+                            <Image
+                              src={Assets.images.membershipCardBg}
+                              alt=""
+                              fill
+                              className="object-cover object-center"
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            />
+                          </div>
+
+                          <div className="relative z-10 flex w-full flex-col items-center">
+                            <p className="min-h-[44px] max-w-[300px] text-center text-sm leading-relaxed text-white/90 sm:text-base line-clamp-3">
+                              {description}
+                            </p>
+
+                            <div className="my-6 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                              {priceDisplay}
+                            </div>
+
+                            <Link
+                              href={href}
+                              className="btn w-full border-none bg-[#C99E4A] text-base font-bold text-[#0B0E33] shadow-sm transition-all duration-200 hover:bg-[#d5aa50] active:scale-[0.99] rounded-xl h-12 min-h-12 normal-case flex items-center justify-center gap-1.5"
+                            >
+                              <span>Apply for Membership</span>
                               <HugeiconsIcon
-                                icon={ArrowRight01Icon}
+                                icon={ArrowUpRight01Icon}
                                 size={18}
-                                color="currentColor"
-                                strokeWidth={2.2}
+                                color="#0B0E33"
+                                strokeWidth={2.5}
                               />
-                            </span>
+                            </Link>
                           </div>
                         </div>
-
-                        {/* Full card click navigating by slug */}
-                        <Link
-                          href={href}
-                          className="absolute inset-0 z-20 rounded-[24px]"
-                          aria-label={`Explore ${category.name}`}
-                        />
                       </article>
                     );
                   })}

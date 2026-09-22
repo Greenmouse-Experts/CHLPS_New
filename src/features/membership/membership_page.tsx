@@ -12,6 +12,7 @@ const MembershipPage = () => {
     <div className="min-h-screen bg-cream">
       <Header />
       <AboutHeroSection
+        showDefault
         badge="Membership"
         title="A professional home for every stage"
         accent="of loss prevention."
