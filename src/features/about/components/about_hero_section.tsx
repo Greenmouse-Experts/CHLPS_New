@@ -9,6 +9,8 @@ import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderSubText from "@/components/HeaderSubText";
+import HeaderText from "@/components/HeaderText";
 
 type AboutHeroSectionProps = {
   badge?: string;
@@ -78,6 +80,12 @@ export default function AboutHeroSection({
                 </div>
               </Reveal>
             ) : null}
+            <HeaderText
+              textWhite
+              notCenter
+              left="A professional home for every stage"
+              right="of loss prevention."
+            />
 
             {/*<Reveal delay={80}>
               <h1
@@ -93,7 +101,6 @@ export default function AboutHeroSection({
                 ) : null}
               </h1>
             </Reveal>*/}
-
             {children || cta ? (
               <div className={children ? "w-full max-w-[26.5rem]" : undefined}>
                 {children ? (
