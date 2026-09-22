@@ -4,6 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
+import HeaderText from "@/components/HeaderText";
 
 export default function LeadershipDevelopmentSection() {
   return (
@@ -16,14 +17,9 @@ export default function LeadershipDevelopmentSection() {
           <div className="rounded-tr-[1.75rem] rounded-bl-[1.75rem] bg-white px-6 py-8 shadow-[inset_0_4px_20px_0_rgba(0,0,0,0.25)] sm:rounded-tr-[2rem] sm:rounded-bl-[2rem] sm:px-8 sm:py-10 lg:px-12 lg:py-12 xl:px-14 xl:py-14">
             <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.2fr)_auto_minmax(0,0.8fr)] lg:gap-10 xl:gap-14">
               <div className="min-w-0">
-                <span
-                  className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
-                  style={{ "--cut": "0.55rem" } as CSSProperties}
-                >
-                  Leadership Development
-                </span>
+                <HeaderText left="leadership" right="development" notCenter />
 
-                <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
+                <h2 className="mt-5 text-2xl font-medium leading-tight tracking-tight text-primary ">
                   Build the capability to lead beyond the technical role.
                 </h2>
 
@@ -41,7 +37,7 @@ export default function LeadershipDevelopmentSection() {
               />
 
               <div className="min-w-0 border-t border-[#E4E2EC] pt-8 lg:border-t-0 lg:pt-0">
-                <h3 className="text-[1.25rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-[1.5rem] lg:text-[1.75rem] xl:text-[1.875rem]">
+                <h3 className="text-[1.25rem] font-medium leading-tight tracking-tight text-primary sm:text-[1.5rem] lg:text-[1.75rem] xl:text-[1.875rem]">
                   Develop your next professional advantage.
                 </h3>
 
