@@ -65,23 +65,14 @@ export default function AboutHeroSection({
         />
       </div>
 
-      <PageContainer className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-28">
+      <PageContainer className="relative z-10  py-8">
         <div
           className={`grid items-center gap-10 lg:gap-14 ${
             hasExtra ? "lg:grid-cols-[1fr_auto]" : ""
           }`}
         >
           <div>
-            {badge ? (
-              <Reveal>
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 backdrop-blur-xs">
-                  <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-                  <span className=" font-semibold tracking-wider text-white uppercase sm:">
-                    {badge}
-                  </span>
-                </div>
-              </Reveal>
-            ) : null}
+            {badge ? <></> : null}
             {showDefault && (
               <div className="max-w-xl">
                 <HeaderText
