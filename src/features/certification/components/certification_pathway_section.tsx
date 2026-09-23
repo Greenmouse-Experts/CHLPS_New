@@ -274,12 +274,13 @@ export default function CertificationPathwaySection() {
                         </div>
 
                         {/* Gold Action Button (DaisyUI btn) */}
-                        <button
+                        <Link
+                          href={enrollHref}
                           type="button"
-                          onClick={() =>
-                            handleEnrollClick(programme, firstCourse)
-                          }
-                          disabled={isEnrolling}
+                          // onClick={() =>
+                          //   handleEnrollClick(programme, firstCourse)
+                          // }
+                          // disabled={isEnrolling}
                           className="btn w-full border-none bg-[#C99E4A] text-base font-bold text-[#0B0E33] shadow-sm transition-all duration-200 hover:bg-[#d5aa50] active:scale-[0.99] disabled:opacity-75 rounded-xl h-12 min-h-12"
                         >
                           {isEnrolling ? (
@@ -298,7 +299,7 @@ export default function CertificationPathwaySection() {
                               />
                             </div>
                           )}
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </article>
