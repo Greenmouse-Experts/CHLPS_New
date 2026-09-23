@@ -5,12 +5,13 @@ import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 export default function CertificationSupportSection() {
   return (
     <section
       id="how-we-support-you"
-      className="relative overflow-hidden bg-[#130F47] py-12 lg:py-16"
+      className="relative overflow-hidden bg-[#130F47] p-4"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
@@ -25,31 +26,11 @@ export default function CertificationSupportSection() {
       <PageContainer className="relative z-10">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14 xl:gap-20">
           <Reveal className="flex justify-center lg:justify-start">
-            <Image
-              src={Assets.images.checkGold}
-              alt=""
-              width={1254}
-              height={1254}
-              sizes="(max-width: 1024px) 18rem, 26rem"
-              className="h-auto w-full max-w-[18rem] sm:max-w-[22rem] lg:max-w-[26rem] xl:max-w-[28rem]"
-            />
+            <img src={"/assets/images/fade_logo.png"} alt="" />
           </Reveal>
 
           <div className="min-w-0">
-            <Reveal>
-              <span
-                className="cut-tr-bl inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-primary sm:px-4 sm:py-2 sm:text-[20px]"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                How We Support You
-              </span>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-white sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
-                How We Support You
-              </h2>
-            </Reveal>
+            <HeaderText left="How We" right="Support You" notCenter textWhite />
 
             <Reveal delay={160}>
               <div className="mt-4 max-w-[40rem] space-y-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-[17px] xl:text-[18px]">
@@ -64,7 +45,7 @@ export default function CertificationSupportSection() {
                 </p>
               </div>
             </Reveal>
-
+            {/*
             <Reveal delay={220}>
               <div className="mt-7">
                 <a
@@ -75,7 +56,7 @@ export default function CertificationSupportSection() {
                   <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} />
                 </a>
               </div>
-            </Reveal>
+            </Reveal>*/}
           </div>
         </div>
       </PageContainer>
