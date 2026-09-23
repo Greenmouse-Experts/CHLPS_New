@@ -58,7 +58,7 @@ export default function CertificationDetailsHeroSection({
                 <button
                   type="button"
                   onClick={onEnroll}
-                  className="mt-7 inline-flex h-11 items-center gap-2 rounded-full bg-secondary px-6  font-bold text-[#0A1542] shadow-sm transition-all duration-200 hover:brightness-105 active:scale-[0.99] sm:mt-8 sm:h-12 sm:px-7 sm:text-[14px]"
+                  className="btn btn-secondary text-xs rounded-full mt-5"
                 >
                   <span>Enroll Now</span>
                   <HugeiconsIcon

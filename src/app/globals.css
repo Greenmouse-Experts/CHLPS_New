@@ -6,7 +6,7 @@
     default: true;
     prefersdark: false;
     color-scheme: "light";
-
+    --depth: 0;
     --color-primary: #211a73;
     --color-primary-content: #ffffff;
     --color-secondary: #cda54e;
