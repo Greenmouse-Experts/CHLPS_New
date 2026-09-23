@@ -148,9 +148,9 @@ export default function CertificationDetailsPage({
               onEnroll={handleEnrollClick}
             />
             <CertificationDetailsRequirementsSection detail={detail} />
+            <CertificationDetailsOutcomeSection detail={detail} />
             <Curriculum id={detail.courseId || id || detail.id} />
             <CertificationDetailsStudiesSection detail={detail} />
-            <CertificationDetailsOutcomeSection detail={detail} />
             <CertificationDetailsBenefitsListSection detail={detail} />
 
             {/* Direct Stripe Enrollment Modal */}
