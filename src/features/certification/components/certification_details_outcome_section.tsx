@@ -7,6 +7,7 @@ import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
 import type { CertificationDetail } from "@/features/certification/certification_details";
+import HeaderText from "@/components/HeaderText";
 
 export default function CertificationDetailsOutcomeSection({
   detail,
@@ -43,27 +44,19 @@ export default function CertificationDetailsOutcomeSection({
               </div>
 
               <div className="flex flex-col justify-center bg-[#0A1542] px-6 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">
-                {detail.outcomeBadge && (
-                  <span
-                    className="cut-tr-bl inline-block self-start bg-secondary px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#0A1542] sm:px-3.5 sm:"
-                    style={{ "--cut": "0.45rem" } as CSSProperties}
-                  >
-                    {detail.outcomeBadge}
+                <h2 className="uppercase text-secondary text-4xl font-semibold">
+                  {detail.outcomeBadge.split(" ")[0]}{" "}
+                  <span className="text-white">
+                    {detail.outcomeBadge.split(" ")[1]} Certification
                   </span>
-                )}
-
-                {detail.outcomeTitle && (
-                  <h2 className="mt-5 whitespace-pre-line text-[1.75rem]  leading-[1.12] tracking-tight text-white sm:mt-6 sm:text-[2.15rem] lg:text-[2.35rem] xl:text-[2.55rem]">
-                    {detail.outcomeTitle}
-                  </h2>
-                )}
+                </h2>
 
                 {detail.outcomeBody && detail.outcomeBody.length > 0 && (
                   <div className="mt-5 max-w-[28rem] space-y-4 sm:mt-6">
                     {detail.outcomeBody.map((paragraph) => (
                       <p
                         key={paragraph}
-                        className="text-[14px] leading-[1.7] text-white/90 sm:text-[15px]"
+                        className=" leading-[1.7] text-white/90 "
                       >
                         {paragraph}
                       </p>
