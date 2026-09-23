@@ -29,6 +29,7 @@ const exploreLinks = [
 
 const supportLinks = [
   { label: "FAQs", href: "/faq" },
+  { label: "Cookie Policy", href: "/policies?tab=cookies" },
   { label: "Privacy Policy", href: "/policies?tab=privacy" },
   { label: "Terms Of Use", href: "/policies?tab=terms" },
   // { label: "Terms Of Use", href: "/policies?tab=terms" },

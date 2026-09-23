@@ -9,7 +9,7 @@ export default function PoliciesHeroSection() {
     <section className="relative z-10 w-full overflow-hidden bg-[#000B2E]">
       <div className="absolute inset-0">
         <Image
-          src={Assets.images.privacyHero}
+          src={"/assets/images/policy.png"}
           alt=""
           fill
           priority
@@ -22,14 +22,14 @@ export default function PoliciesHeroSection() {
       <PageContainer className="relative h-full">
         <div className="flex h-full items-center py-12 sm:py-14 lg:min-h-[22.5rem] lg:py-16 xl:min-h-[24.5rem] xl:py-[4.25rem]">
           <div className="w-full">
-            <Reveal>
+            {/*<Reveal>
               <span
                 className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:"
                 style={{ "--cut": "0.55rem" } as CSSProperties}
               >
                 Policy Center
               </span>
-            </Reveal>
+            </Reveal>*/}
 
             <Reveal delay={80}>
               <h1 className="mt-5 text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
