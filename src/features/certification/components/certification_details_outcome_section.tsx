@@ -29,18 +29,15 @@ export default function CertificationDetailsOutcomeSection({
         <Reveal>
           <article className="overflow-hidden rounded-[1.75rem] border border-[#D4B56A] bg-[#F6F5FB] lg:rounded-[2rem]">
             <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
-              <div className="flex items-center justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-8">
-                <div className="relative w-full max-w-[36rem]">
-                  <Image
-                    src={imgSrc}
-                    alt={`${detail.abbr} certificate`}
-                    width={3456}
-                    height={2316}
-                    unoptimized
-                    onError={() => setImgSrc(Assets.images.clpaCertificate)}
-                    className="h-auto w-full rounded-[0.9rem] object-contain shadow-[0_16px_36px_rgba(10,21,66,0.18)] sm:rounded-[1.05rem]"
-                  />
-                </div>
+              <div className="relative w-full ">
+                <img
+                  src={"/assets/images/cert.png"}
+                  alt={`${detail.abbr} certificate`}
+                  width={3456}
+                  height={2316}
+                  onError={() => setImgSrc("/assets/images/cert.png")}
+                  className="h-auto w-full rounded-[0.9rem] object-contain shadow-[0_16px_36px_rgba(10,21,66,0.18)] sm:rounded-[1.05rem]"
+                />
               </div>
 
               <div className="flex flex-col justify-center bg-[#0A1542] px-6 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">

@@ -26,20 +26,15 @@ export default function CertificationDetailsEnrollSection({
             <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
               <div className="flex items-center bg-white px-6 py-9 sm:px-8 sm:py-11 lg:px-10 lg:py-12">
                 <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
-                  <span className="flex h-[5rem] w-[5rem] shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] bg-[#F3F0FC] sm:h-[5.5rem] sm:w-[5.5rem] sm:rounded-[1.4rem]">
-                    <Image
-                      src={badgeSrc}
-                      alt={`${detail.abbr} badge`}
-                      width={320}
-                      height={368}
-                      unoptimized
-                      onError={() =>
-                        setBadgeSrc(Assets.images.certificates.clpa)
-                      }
-                      className="h-[3.5rem] w-auto object-contain sm:h-[3.9rem]"
-                    />
-                  </span>
-                  <h2 className="whitespace-pre-line text-[1.35rem] font-medium leading-[1.25] text-[#241B5E] sm:text-[1.65rem] lg:text-[1.85rem]">
+                  <img
+                    src={badgeSrc}
+                    alt={`${detail.abbr} badge`}
+                    width={520}
+                    height={368}
+                    onError={() => setBadgeSrc(Assets.images.certificates.clpa)}
+                    className="size-22 lg:size-40"
+                  />
+                  <h2 className="whitespace-pre-line text-[1.35rem] font-medium leading-[1.25] text-[#241B5E] text-lg">
                     {detail.cardTitle}
                   </h2>
                 </div>
