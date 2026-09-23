@@ -32,7 +32,7 @@ export default function HowWeAreGovernedSection() {
             <HeaderText left="How" right="We Are Governed" notCenter />
 
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2rem] xl:text-[2.25rem]">
+              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2rem] xl:text-[2.25rem] text-primary">
                 Clear direction, oversight and delivery.
               </h2>
             </Reveal>

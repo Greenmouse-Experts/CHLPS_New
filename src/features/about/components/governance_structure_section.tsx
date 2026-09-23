@@ -12,6 +12,7 @@ import PageContainer from "@/features/components/page_container";
 import Image from "next/image";
 import { Assets } from "@/lib/assets";
 import HeaderText from "@/components/HeaderText";
+import HeaderSubText from "@/components/HeaderSubText";
 
 type StructureCard = {
   icon: IconSvgElement;
@@ -59,26 +60,15 @@ const cards: StructureCard[] = [
 
 export default function GovernanceStructureSection() {
   return (
-    <section id="governance-structure" className="bg-[#F5F4F1] py-16 lg:py-20">
+    <section id="governance-structure" className="bg-[#F7EFD9] py-16 lg:py-20">
       <PageContainer>
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-          <div className="min-w-0">
-            <HeaderText left="Governance" right="Structure" notCenter />
-
-            <Reveal delay={80}>
-              <h2 className="mt-5 max-w-[13em] text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">
-                Two functions. One professional mandate.
-              </h2>
-            </Reveal>
-          </div>
-
-          <Reveal delay={160} className="min-w-0 lg:max-w-[34rem] lg:shrink-0">
-            <p className="text-[15px] leading-relaxed text-[#676672] sm:text-base">
-              Governance and management work together to keep ChLPS Canada
-              strategically focused, professionally credible and operationally
-              effective.
-            </p>
-          </Reveal>
+        <div className="flex flex-col gap-5 w0full">
+          <HeaderText left="Governance" right="Structure" />
+          <HeaderSubText smallWidth>
+            Governance and management work together to keep ChLPS Canada
+            strategically focused, professionally credible and operationally
+            effective.
+          </HeaderSubText>
         </div>
 
         <RevealGroup className="mt-8 grid gap-4 lg:mt-10 lg:grid-cols-2 lg:gap-5">

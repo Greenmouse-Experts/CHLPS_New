@@ -18,16 +18,15 @@ export default function LeadershipSection() {
     <section id="leadership" className="bg-[#F4F3F8] py-16 lg:py-20">
       <PageContainer>
         <div className="flex flex-col items-center text-center">
-          <HeaderText left="Our" right="Leadership" notCenter />
-
           <Reveal delay={80}>
             <h2 className="mt-5 max-w-[13em] text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">
-              Leadership built on standards and service.
+              <span className="text-primary">Leadership built on </span> <br />
+              <span className="text-secondary">standards and service.</span>
             </h2>
           </Reveal>
 
           <Reveal delay={160}>
-            <p className="mt-4 max-w-[34rem] text-[15px] leading-relaxed text-[#676672] sm:text-base">
+            <p className="mt-4 max-w-[34rem] text-[15px] leading-relaxed  sm:text-base">
               The governance page identifies the following leaders responsible
               for Board oversight and executive management within ChLPS Canada.
             </p>
@@ -55,10 +54,7 @@ export default function LeadershipSection() {
               </div>
 
               <div className="flex flex-1 flex-col p-5">
-                <span
-                  className="cut-tr-bl inline-block self-start bg-secondary px-2 py-1 text-[9px] font-bold uppercase tracking-[0.08em] text-primary sm:text-[10px]"
-                  style={{ "--cut": "0.4rem" } as CSSProperties}
-                >
+                <span className="text-primary font-semibold">
                   {leader.role}
                 </span>
 
