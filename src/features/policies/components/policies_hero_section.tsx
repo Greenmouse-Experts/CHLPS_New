@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 export default function PoliciesHeroSection() {
   return (
@@ -30,12 +31,17 @@ export default function PoliciesHeroSection() {
                 Policy Center
               </span>
             </Reveal>*/}
-
+            {/*<HeaderText
+              left="policies & professional"
+              right="standards"
+              textWhite
+              notCenter
+            />*/}
             <Reveal delay={80}>
               <h1 className="mt-5 text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] lg:mt-6 xl:leading-[1.08]">
                 Policies &amp; Professional
                 <br />
-                Standards
+                <span className="text-secondary"> Standards</span>
               </h1>
             </Reveal>
 
