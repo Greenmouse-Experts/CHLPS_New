@@ -13,6 +13,7 @@ const MembershipPage = () => {
       <Header />
       <AboutHeroSection
         showDefault
+        padding={true}
         badge="Membership"
         title="A professional home for every stage"
         accent="of loss prevention."

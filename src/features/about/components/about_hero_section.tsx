@@ -25,6 +25,7 @@ type AboutHeroSectionProps = {
   cta?: { label: string; href?: string; onClick?: () => void };
   children?: ReactNode;
   showDefault?: boolean;
+  padding?: boolean;
 };
 
 export default function AboutHeroSection({
@@ -40,6 +41,7 @@ export default function AboutHeroSection({
   cta,
   children,
   showDefault = false,
+  padding = false,
 }: AboutHeroSectionProps) {
   const [imageSrc, setImageSrc] = useState(image);
 
@@ -65,7 +67,7 @@ export default function AboutHeroSection({
         />
       </div>
 
-      <PageContainer className="relative z-10  py-8">
+      <PageContainer className={`relative z-10 ${padding ? "py-20" : "py-8"}`}>
         <div
           className={`grid items-center gap-10 lg:gap-14 ${
             hasExtra ? "lg:grid-cols-[1fr_auto]" : ""
