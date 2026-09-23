@@ -85,11 +85,11 @@ export default function NeedForLossPreventionSection() {
         </div>
 
         {/* 6 Cards Grid (2 columns) */}
-        <RevealGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8 max-w-7xl mx-auto">
+        <RevealGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8 max-w-5xl mx-auto">
           {NEED_FOR_LOSS_PREVENTION_CARDS.map((card, index) => (
             <article
               key={card.title}
-              className="reveal relative isolate flex flex-col items-center justify-center overflow-hidden rounded-[24px] bg-white px-6 py-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:px-8 sm:py-10  ring-secondary ring-2 xl:h-[350px] xl:w-[647px]
+              className="reveal relative isolate flex flex-col items-center justify-center overflow-hidden rounded-[24px] bg-white px-6 py-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:px-8 sm:py-10  ring-secondary ring-2
               "
               style={revealStyle(index)}
             >
