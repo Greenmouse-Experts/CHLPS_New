@@ -1,6 +1,7 @@
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
+import HeaderText from "@/components/HeaderText";
 
 export type MembershipJoinNowCard = {
   title: string;
@@ -33,12 +34,12 @@ export default function MembershipJoinNowSection({
       <PageContainer>
         <Reveal>
           <div className="rounded-[1.75rem] bg-white p-6 shadow-[0_16px_40px_rgba(33,26,115,0.06)] sm:p-10 lg:rounded-[2rem] lg:p-12 xl:p-14">
-            {title ? (
+            {/*{title ? (
               <h2 className="text-[1.75rem] font-medium leading-tight tracking-tight text-[#221A7A] sm:text-3xl lg:text-[2.35rem] xl:text-[46px]">
                 {title}
               </h2>
-            ) : null}
-
+            ) : null}*/}
+            <HeaderText left="why should i" right="join now?" notCenter />
             {hasParagraphs ? (
               <div className="mt-5 max-w-[54rem] space-y-4 sm:mt-6">
                 {paragraphs.map((paragraph) => (

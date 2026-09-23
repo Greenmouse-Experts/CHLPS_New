@@ -4,6 +4,7 @@ import type { IconSvgElement } from "@hugeicons/react";
 import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
+import HeaderText from "@/components/HeaderText";
 
 export type MembershipHelpCard = {
   icon: IconSvgElement;
@@ -32,26 +33,7 @@ export default function MembershipHelpSection({
     <section className="bg-white py-16 md:py-24">
       <PageContainer>
         <div className="mx-auto flex max-w-[46rem] flex-col items-center text-center">
-          <Reveal>
-            <span
-              className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
-              style={{ "--cut": "0.55rem" } as CSSProperties}
-            >
-              {badge}
-            </span>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <h2 className="mt-5 sm:max-w-[590px] text-[1.75rem] font-medium leading-tight tracking-tight text-[#221A7A] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
-              {title}
-            </h2>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <p className="mt-4 text-[15px] leading-relaxed text-[#6D6885] sm:text-[17px] lg:mt-5">
-              {body}
-            </p>
-          </Reveal>
+          <HeaderText left={"How will certified"} right="membership help me?" />
         </div>
 
         <RevealGroup className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
