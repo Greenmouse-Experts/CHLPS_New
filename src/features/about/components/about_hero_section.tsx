@@ -17,6 +17,7 @@ type AboutHeroSectionProps = {
   title: string;
   accent?: string;
   body?: string;
+  fixedHeight?: boolean;
   titleWidth?: string;
   bodyWidth?: string;
   image?: string;
@@ -33,6 +34,7 @@ export default function AboutHeroSection({
   title,
   accent,
   body,
+  fixedHeight = false,
   titleWidth,
   bodyWidth,
   image = Assets.images.heroBg2,
@@ -67,7 +69,9 @@ export default function AboutHeroSection({
         />
       </div>
 
-      <PageContainer className={`relative z-10 ${padding ? "py-20" : "py-8"}`}>
+      <PageContainer
+        className={`relative z-10 ${padding ? "py-20" : "py-8"} ${fixedHeight ? "min-h-[380px]" : ""}`}
+      >
         <div
           className={`grid items-center gap-10 lg:gap-14 ${
             hasExtra ? "lg:grid-cols-[1fr_auto]" : ""

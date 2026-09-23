@@ -10,6 +10,8 @@ const GovernancePage = () => {
     <div className="min-h-screen bg-cream">
       <Header />
       <AboutHeroSection
+        fixedHeight
+        padding
         badge="Our Governance"
         title="Leadership built on"
         accent="standards & service."

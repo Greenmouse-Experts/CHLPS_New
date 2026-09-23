@@ -61,13 +61,6 @@ export default function MissionVisionSection() {
               </h2>
             </Reveal>
           </div>
-
-          <Reveal delay={160} className="min-w-0 lg:max-w-[21rem] lg:shrink-0">
-            <p className="text-[15px] leading-relaxed text-[#676672] sm:text-base">
-              Strengthening loss prevention through standards, education, ethics
-              and recognition.
-            </p>
-          </Reveal>
         </div>
 
         <RevealGroup className="mt-6 grid gap-4 lg:mt-7 lg:grid-cols-2 lg:gap-5">

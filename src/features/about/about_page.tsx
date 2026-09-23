@@ -11,6 +11,8 @@ const AboutPage = () => {
     <div className="min-h-screen bg-cream">
       <Header />
       <AboutHeroSection
+        padding
+        fixedHeight
         badge="About CHLPS Canada"
         title="Advancing modern"
         accent="loss prevention."
