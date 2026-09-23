@@ -29,7 +29,7 @@ export default function HowWeAreGovernedSection() {
       <PageContainer className="relative z-10">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12 xl:gap-16">
           <div className="flex min-w-0 flex-col">
-            <HeaderText left="How" right="We Are Governed" notCenter />
+            <HeaderText left="How We Are " right="Governed" notCenter />
 
             <Reveal delay={80}>
               <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2rem] xl:text-[2.25rem] text-primary">
