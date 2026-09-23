@@ -89,7 +89,7 @@ export default function NeedForLossPreventionSection() {
           {NEED_FOR_LOSS_PREVENTION_CARDS.map((card, index) => (
             <article
               key={card.title}
-              className="reveal relative isolate flex flex-col items-center justify-center overflow-hidden rounded-[24px] bg-white px-6 py-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:px-8 sm:py-10  ring-secondary ring-2
+              className="reveal relative isolate flex flex-col items-center justify-center overflow-hidden rounded-[24px] bg-white px-6 py-8 text-center transition-transform duration-200 hover:-translate-y-1 sm:px-8 sm:py-10  ring-secondary ring-2 xl:h-[350px] xl:w-[647px]
               "
               style={revealStyle(index)}
             >
