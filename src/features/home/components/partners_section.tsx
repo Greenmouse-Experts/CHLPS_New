@@ -7,20 +7,20 @@ import HeaderText from "@/components/HeaderText";
 import HeaderSubText from "@/components/HeaderSubText";
 
 const partners = [
-  {
-    src: Assets.images.partnerLogos.p1,
-    alt: "Central Board of Education Canada",
-  },
-  {
-    src: Assets.images.partnerLogos.p2,
-    alt: "The Security Institute",
-  },
+  // {
+  //   src: Assets.images.partnerLogos.p1,
+  //   alt: "Central Board of Education Canada",
+  // },
+  // {
+  //   src: Assets.images.partnerLogos.p2,
+  //   alt: "The Security Institute",
+  // },
   {
     src: Assets.images.partnerLogos.p3,
     alt: "Security Industry Standards",
   },
   {
-    src: Assets.images.partnerLogos.p4,
+    src: "/assets/images/guard_master_logo.png",
     alt: "Guardmaster Institute",
   },
   {
@@ -43,7 +43,7 @@ function PartnerCard({ src, alt }: { src: string; alt: string }) {
         alt={alt}
         width={645}
         height={150}
-        className="h-[3.75rem] w-auto max-w-full object-contain sm:h-[4.25rem]"
+        className="h-[5.75rem] w-auto max-w-full object-contain sm:h-[6.25rem]"
       />
     </div>
   );
@@ -53,7 +53,7 @@ export default function PartnersSection() {
   return (
     <section
       id="partners"
-      className="relative overflow-hidden bg-[#FFFFFF] py-16 md:py-24"
+      className="relative overflow-hidden bg-[#FFFFFF] py-16 "
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
