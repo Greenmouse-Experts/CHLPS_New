@@ -150,7 +150,8 @@ export default function CertificationSection() {
                     const buttonText = `Enroll for ${programme.title}`;
 
                     return (
-                      <article
+                      <Link
+                        href={href}
                         id={`certification-${rawId}`}
                         key={programme.id || programme.slug || index}
                         className="reveal relative flex h-full flex-col items-center overflow-hidden rounded-2xl bg-white px-6 py-8 text-center shadow-[0_10px_30px_rgba(48,45,57,0.06)] sm:px-8 sm:py-10 ring-secondary ring"
@@ -197,7 +198,7 @@ export default function CertificationSection() {
                             </span>
                           </Link>
                         </div>
-                      </article>
+                      </Link>
                     );
                   })}
                 </RevealGroup>

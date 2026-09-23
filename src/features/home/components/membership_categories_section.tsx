@@ -140,7 +140,8 @@ export default function MembershipCategoriesSection() {
                     const cta = `Become a ${category.name}`;
 
                     return (
-                      <article
+                      <Link
+                        href={href}
                         id={`membership-${category.slug || category.id}`}
                         key={category.id || category.slug || index}
                         className="reveal relative flex h-full flex-col items-center overflow-hidden rounded-[26px] bg-[#141549] px-6 py-8 text-center sm:px-8 sm:py-10 shadow-[0_12px_36px_rgba(20,21,73,0.18)]"
@@ -187,7 +188,7 @@ export default function MembershipCategoriesSection() {
                             </Link>
                           </div>
                         </div>
-                      </article>
+                      </Link>
                     );
                   })}
                 </RevealGroup>

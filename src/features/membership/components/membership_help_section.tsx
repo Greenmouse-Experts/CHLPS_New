@@ -5,6 +5,7 @@ import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import HeaderText from "@/components/HeaderText";
+import { Check } from "lucide-react";
 
 export type MembershipHelpCard = {
   icon: IconSvgElement;
@@ -43,13 +44,14 @@ export default function MembershipHelpSection({
               className="reveal flex h-full flex-col rounded-tl-[24px] rounded-br-[24px] border border-[#CDA54E] bg-white p-5 shadow-[0_10px_28px_rgba(33,26,115,0.06)] sm:p-6"
               style={revealStyle(index)}
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#EEEAF8] sm:h-14 sm:w-14">
-                <HugeiconsIcon
-                  icon={card.icon}
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center ring-secondary ring rounded-full bg-[#EEEAF8] sm:h-14 sm:w-14">
+                <Check />
+                {/*<HugeiconsIcon
+                  icon={}
                   size={24}
                   color="#211A73"
                   strokeWidth={1.8}
-                />
+                />*/}
               </span>
               <h3 className="mt-8 text-[17px] font-bold leading-tight tracking-tight text-[#221A7A] sm:mt-10 sm:text-[20px] lg:text-[24px]">
                 {card.title}

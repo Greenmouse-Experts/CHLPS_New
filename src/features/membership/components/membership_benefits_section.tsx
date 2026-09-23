@@ -121,7 +121,7 @@ export default function MembershipBenefitsSection() {
             return (
               <article
                 key={benefit.title}
-                className={`reveal flex h-full flex-col rounded-tl-[1.75rem] rounded-br-[1.75rem] p-5 sm:p-6 ${toneClass[benefit.tone]}`}
+                className={`reveal flex h-full flex-col rounded-tl-[1.75rem] rounded-br-[1.75rem] ring  ring-secondary p-5 sm:p-6 ${toneClass[benefit.tone]}`}
                 style={revealStyle(index)}
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-[0_6px_16px_rgba(33,26,115,0.08)] sm:h-14 sm:w-14">
