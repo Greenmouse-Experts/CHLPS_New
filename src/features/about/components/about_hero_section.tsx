@@ -70,7 +70,7 @@ export default function AboutHeroSection({
       </div>
 
       <PageContainer
-        className={`relative z-10 ${padding ? "py-20" : "py-8"} ${fixedHeight ? "min-h-[380px]" : ""}`}
+        className={`relative z-10 ${padding ? "py-20" : "py-8"} ${fixedHeight ? "min-h-[480px]" : ""}`}
       >
         <div
           className={`grid items-center gap-10 lg:gap-14 ${

@@ -58,7 +58,7 @@ export default function MembershipRequirementsSection({
       : "grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2";
 
   return (
-    <section className="bg-[#F7F6FB] py-16 md:py-24">
+    <section className="bg-[#F7F6FB] py-16 md:py-24 derma">
       <PageContainer>
         <RevealGroup className={gridClass}>
           {activeColumns.map((column, index) => {

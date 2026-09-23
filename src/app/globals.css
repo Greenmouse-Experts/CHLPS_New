@@ -433,3 +433,7 @@ body {
 .partners-marquee:hover .partners-marquee-track {
     animation-play-state: paused;
 }
+
+@utility derma {
+    @apply border-t border-b border-current/20;
+}
