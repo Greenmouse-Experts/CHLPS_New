@@ -20,7 +20,6 @@ export default function CertificationHeroSection() {
           sizes="100vw"
           className="object-cover object-[right_center]"
         />
-        <div className="absolute inset-0 bg-[#000E21]/75" />
       </div>
 
       <PageContainer className="relative h-full">
