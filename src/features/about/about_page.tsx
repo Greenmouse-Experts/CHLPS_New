@@ -40,8 +40,9 @@ const AboutPage = () => {
         </div>
       </AboutHeroSection>
       <OurStorySection />
-      <OurCoreValuesSection />
       <MissionVisionSection />
+      <OurCoreValuesSection />
+
       {/*<GuidingValuesSection />*/}
       <WhyChooseSection />
       <Footer />
