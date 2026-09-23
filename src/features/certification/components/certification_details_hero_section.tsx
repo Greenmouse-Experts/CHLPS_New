@@ -85,7 +85,7 @@ export default function CertificationDetailsHeroSection({
             </Reveal>
           </div>
 
-          <Reveal
+          {/*<Reveal
             delay={80}
             className="flex w-full min-w-0 justify-center lg:justify-end"
           >
@@ -98,7 +98,7 @@ export default function CertificationDetailsHeroSection({
                 className="mx-auto"
               />
             </div>
-          </Reveal>
+          </Reveal>*/}
         </div>
       </PageContainer>
     </section>
