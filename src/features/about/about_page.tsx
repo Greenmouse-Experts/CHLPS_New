@@ -7,6 +7,7 @@ import WhyChooseSection from "@/features/about/components/why_choose_section";
 import Footer from "@/features/components/footer";
 import CoreValuesSection from "../home/components/core_values_section";
 import OurCoreValuesSection from "../home/components/our_core_values_section";
+import HeaderText from "@/components/HeaderText";
 
 const AboutPage = () => {
   return (
@@ -19,7 +20,25 @@ const AboutPage = () => {
         title="Advancing modern"
         accent="loss prevention."
         body="A credible professional home for loss prevention, security, risk and related professionals."
-      />
+      >
+        <div>
+          <HeaderText
+            smallSize
+            left="about"
+            right="chlps canada"
+            textWhite
+            notCenter
+          />
+          <h2 className="text-white text-4xl font-semibold">
+            Advancing modern <br />
+            <span className="text-secondary">Loss prevention</span>
+          </h2>
+          <p className="text-white text-lg">
+            A credible professional home for loss prevention, security, risk and
+            related professionals.
+          </p>
+        </div>
+      </AboutHeroSection>
       <OurStorySection />
       <OurCoreValuesSection />
       <MissionVisionSection />
