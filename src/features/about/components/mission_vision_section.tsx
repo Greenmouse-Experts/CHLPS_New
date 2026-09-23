@@ -6,6 +6,7 @@ import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import HeaderText from "@/components/HeaderText";
+import HeaderSubText from "@/components/HeaderSubText";
 
 type StatementCard = {
   icon: IconSvgElement;
@@ -51,16 +52,12 @@ export default function MissionVisionSection() {
   return (
     <section id="mission-vision" className="bg-[#F5F4F0] py-16 lg:py-20">
       <PageContainer>
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-          <div className="min-w-0">
-            <HeaderText left="Mission" right="and Vision" notCenter />
-
-            <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
-                A clear direction for a stronger profession.
-              </h2>
-            </Reveal>
-          </div>
+        <div className="">
+          <HeaderText left="Mission" right="and Vision" />
+          <HeaderSubText smallWidth>
+            Strengthening loss prevention through standards, education, ethics
+            and recognition.
+          </HeaderSubText>
         </div>
 
         <RevealGroup className="mt-6 grid gap-4 lg:mt-7 lg:grid-cols-2 lg:gap-5">
