@@ -5,6 +5,8 @@ import MissionVisionSection from "@/features/about/components/mission_vision_sec
 import GuidingValuesSection from "@/features/about/components/guiding_values_section";
 import WhyChooseSection from "@/features/about/components/why_choose_section";
 import Footer from "@/features/components/footer";
+import CoreValuesSection from "../home/components/core_values_section";
+import OurCoreValuesSection from "../home/components/our_core_values_section";
 
 const AboutPage = () => {
   return (
@@ -19,6 +21,7 @@ const AboutPage = () => {
         body="A credible professional home for loss prevention, security, risk and related professionals."
       />
       <OurStorySection />
+      <OurCoreValuesSection />
       <MissionVisionSection />
       {/*<GuidingValuesSection />*/}
       <WhyChooseSection />
