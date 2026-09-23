@@ -9,7 +9,7 @@ export default function PoliciesHeroSection() {
     <section className="relative z-10 w-full overflow-hidden bg-[#000B2E]">
       <div className="absolute inset-0">
         <Image
-          src={"/assets/images/policy.png"}
+          src={"assets/images/policy.png"}
           alt=""
           fill
           priority
