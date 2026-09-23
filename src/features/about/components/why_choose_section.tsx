@@ -67,7 +67,7 @@ const toneClass = {
 
 export default function WhyChooseSection() {
   return (
-    <section id="why-choose-us" className="py-16  derma">
+    <section id="why-choose-us" className="py-8  derma">
       <PageContainer>
         <div className="grid gap-10  bg=[#F0EDF9] ">
           <div className="flex justify-center items-center text-center flex-col">

@@ -53,7 +53,7 @@ export default function PartnersSection() {
   return (
     <section
       id="partners"
-      className="relative overflow-hidden bg-[#FFFFFF] py-16 "
+      className="relative overflow-hidden bg-[#FFFFFF] py-8 "
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image

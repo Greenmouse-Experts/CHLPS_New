@@ -21,7 +21,7 @@ export default function PoliciesHeroSection() {
       </div>
 
       <PageContainer className="relative h-full">
-        <div className="flex h-full items-center py-12 sm:py-14 lg:min-h-[22.5rem] lg:py-16 xl:min-h-[24.5rem] xl:py-[4.25rem]">
+        <div className="flex h-full items-center py-12 sm:py-14 lg:min-h-[22.5rem] lg:py-8 xl:min-h-[24.5rem] xl:py-[4.25rem]">
           <div className="w-full">
             {/*<Reveal>
               <span

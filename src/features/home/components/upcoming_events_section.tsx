@@ -227,7 +227,7 @@ export default function UpcomingEventsSection() {
   const [featuredEvent, ...otherEvents] = upcomingEvents;
 
   return (
-    <section id="events" className="bg-cream py-16 md:py-24">
+    <section id="events" className="bg-cream py-8 md:py-24">
       <PageContainer>
         <div className="flex items-center justify-center">
           <div className="max-w-5xl flex flex-col items-center justify-center">

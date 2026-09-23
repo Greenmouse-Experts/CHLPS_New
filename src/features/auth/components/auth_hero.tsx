@@ -22,7 +22,7 @@ export default function AuthHero({
         sizes="100vw"
       />
       <div className="absolute inset-0 bg-primary/70" />
-      <div className="relative z-10 mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-20">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 py-8 md:px-10 md:py-20">
         <span
           className="cut-tr inline-block bg-secondary px-3 py-1.5  font-bold uppercase tracking-[0.14em] text-[#111E2A]"
           style={{ "--cut": "0.55rem" } as CSSProperties}

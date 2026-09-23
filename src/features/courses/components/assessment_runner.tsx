@@ -126,13 +126,13 @@ function Quiz({
 
   if (loading) {
     return (
-      <p className="py-16 text-center text-text/50">Loading questions...</p>
+      <p className="py-8 text-center text-text/50">Loading questions...</p>
     );
   }
 
   if (questions.length === 0) {
     return (
-      <p className="py-16 text-center text-text/55">
+      <p className="py-8 text-center text-text/55">
         No questions are available for this assessment.
       </p>
     );
@@ -279,7 +279,7 @@ function Results({
 
   if (loading) {
     return (
-      <p className="py-16 text-center text-text/50">Loading your result...</p>
+      <p className="py-8 text-center text-text/50">Loading your result...</p>
     );
   }
 

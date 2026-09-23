@@ -107,7 +107,7 @@ export default function MembershipLevelsSection() {
   return (
     <section
       id="membership-levels"
-      className="relative overflow-hidden bg-[#F4F3F8] py-16 md:py-24"
+      className="relative overflow-hidden bg-[#F4F3F8] py-8 md:py-24"
     >
       <div
         aria-hidden

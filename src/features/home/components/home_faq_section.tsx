@@ -42,11 +42,11 @@ export default function HomeFaqSection({
   };
 
   return (
-    <section id="faq" className="bg-[#FAF9F5] py-16 md:py-24">
+    <section id="faq" className="bg-[#FAF9F5] py-8 md:py-24">
       <PageContainer>
         {/* Top Dark Banner */}
         <Reveal>
-          <div className="relative isolate overflow-hidden rounded-[26px] bg-[#1B1454] px-6 py-12 text-center text-white shadow-[0_16px_40px_rgba(27,20,84,0.18)] sm:px-10 sm:py-16 md:rounded-[32px] lg:px-16 ">
+          <div className="relative isolate overflow-hidden rounded-[26px] bg-[#1B1454] px-6 py-12 text-center text-white shadow-[0_16px_40px_rgba(27,20,84,0.18)] sm:px-10 sm:py-8 md:rounded-[32px] lg:px-16 ">
             {/* Background faint decorative question mark */}
             <div
               aria-hidden="true"

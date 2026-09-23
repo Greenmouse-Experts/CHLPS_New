@@ -19,7 +19,7 @@ export default function CertificationDetailsEnrollSection({
 }) {
   const [badgeSrc, setBadgeSrc] = useState(detail.badge);
   return (
-    <section className="bg-[#EFEDF4] py-12 sm:py-14 lg:py-16 ">
+    <section className="bg-[#EFEDF4] py-12 sm:py-14 lg:py-8 ">
       <PageContainer>
         <Reveal>
           <article className="overflow-hidden rounded-[1.75rem] ring ring-secondary bg-white shadow-[0_18px_50px_rgba(33,26,115,0.08)] lg:rounded-[2rem]">

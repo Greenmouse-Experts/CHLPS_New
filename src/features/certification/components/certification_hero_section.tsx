@@ -23,7 +23,7 @@ export default function CertificationHeroSection() {
       </div>
 
       <PageContainer className="relative h-full">
-        <div className="flex h-full items-center py-12 sm:py-14 lg:min-h-[28rem] lg:py-16 xl:min-h-[32rem] xl:py-20">
+        <div className="flex h-full items-center py-12 sm:py-14 lg:min-h-[28rem] lg:py-8 xl:min-h-[32rem] xl:py-20">
           <div className="w-full">
             <HeaderText
               left="certification"

@@ -44,7 +44,7 @@ const VerifyPage = () => {
         }
         description="Please wait while we verify your email address."
       />
-      <section className="px-6 py-16">
+      <section className="px-6 py-8">
         <div className="mx-auto max-w-md rounded-2xl border border-sand bg-white p-8 text-center">
           <h2 className="text-2xl font-medium text-primary">
             {status === "success"

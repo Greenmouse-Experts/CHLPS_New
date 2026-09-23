@@ -50,7 +50,7 @@ const cards: StatementCard[] = [
 
 export default function MissionVisionSection() {
   return (
-    <section id="mission-vision" className="bg-[#F5F4F0] py-16 ">
+    <section id="mission-vision" className="bg-[#F5F4F0] py-8 ">
       <PageContainer>
         <div className="">
           <HeaderText left="Mission" right="and Vision" />

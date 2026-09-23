@@ -47,7 +47,7 @@ export default function EventDetailHeroSection({
       </div>
 
       <PageContainer className="relative h-full">
-        <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[22rem] lg:py-16 xl:min-h-[26rem] xl:py-20">
+        <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[22rem] lg:py-8 xl:min-h-[26rem] xl:py-20">
           <div className="w-full">
             <Reveal>
               <div className="flex flex-wrap items-center gap-2">

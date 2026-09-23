@@ -29,7 +29,7 @@ const benefits: Benefit[] = [
 
 export default function ProfessionalDevelopmentSection() {
   return (
-    <section className="bg-cream py-14 sm:py-16 ">
+    <section className="bg-cream py-14 sm:py-8 ">
       <PageContainer>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>

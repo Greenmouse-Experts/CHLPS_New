@@ -24,12 +24,12 @@ export default function CertificationDetailsOutcomeSection({
   }
 
   return (
-    <section className="bg-white py-14 sm:py-16 ">
+    <section className="bg-white py-14 sm:py-8 ">
       <PageContainer>
         <Reveal>
           <article className="overflow-hidden rounded-[1.75rem] border border-[#D4B56A] bg-[#F6F5FB] lg:rounded-[2rem]">
             <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
-              <div className="flex items-center justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+              <div className="flex items-center justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-8">
                 <div className="relative w-full max-w-[36rem]">
                   <Image
                     src={imgSrc}

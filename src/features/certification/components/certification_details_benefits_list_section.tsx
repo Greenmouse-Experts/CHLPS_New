@@ -16,7 +16,7 @@ export default function CertificationDetailsBenefitsSection({
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#FAF7EC] py-16 sm:py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-[#FAF7EC] py-8 sm:py-20 lg:py-24">
       <div className="absolute inset-0">
         <Image
           src={Assets.images.certificateDetailsBenefitsBg}

@@ -102,7 +102,7 @@ export default function WhatOurMembersSaySection({
 
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#FAF9F5] bg-cover bg-center py-16 md:py-24"
+      className="relative isolate overflow-hidden bg-[#FAF9F5] bg-cover bg-center py-8 md:py-24"
       style={{ backgroundImage: "url('/assets/images/reviews_bg.png')" }}
     >
       <PageContainer>

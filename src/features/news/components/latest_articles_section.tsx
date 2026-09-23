@@ -89,7 +89,7 @@ export default function LatestArticlesSection() {
   }, [postsQuery.data, selectedTag, search]);
 
   return (
-    <section id="latest-articles" className="bg-[#FAF9F6] py-14 sm:py-16 ">
+    <section id="latest-articles" className="bg-[#FAF9F6] py-14 sm:py-8 ">
       <PageContainer>
         {/* Header & Search Bar */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -180,7 +180,7 @@ export default function LatestArticlesSection() {
             query={postsQuery}
             loadingText="Loading latest articles..."
             emptyState={
-              <div className="rounded-2xl border border-dashed border-[#D2CEDF] bg-white py-16 text-center">
+              <div className="rounded-2xl border border-dashed border-[#D2CEDF] bg-white py-8 text-center">
                 <p className="text-base font-semibold text-[#0A1542]">
                   No articles published yet
                 </p>
@@ -193,7 +193,7 @@ export default function LatestArticlesSection() {
             {() => {
               if (filteredArticles.length === 0) {
                 return (
-                  <div className="rounded-2xl border border-dashed border-[#D2CEDF] bg-white py-16 text-center">
+                  <div className="rounded-2xl border border-dashed border-[#D2CEDF] bg-white py-8 text-center">
                     <p className="text-base font-semibold text-[#0A1542]">
                       No matching articles found
                     </p>

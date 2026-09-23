@@ -42,10 +42,7 @@ const features: {
 
 export default function WhyJoinSection() {
   return (
-    <section
-      id="why-join"
-      className="bg-cream py-12 sm:py-16 md:py-20 lg:py-24"
-    >
+    <section id="why-join" className="bg-cream py-12 sm:py-8 md:py-20 lg:py-24">
       <PageContainer>
         <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-10 xl:grid-cols-[minmax(0,620px)_minmax(0,1fr)] xl:gap-14 2xl:gap-16">
           <div className="flex min-w-0 flex-col">

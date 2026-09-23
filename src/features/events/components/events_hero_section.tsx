@@ -32,8 +32,8 @@ export default function EventsHeroSection({
         <div
           className={`flex h-full items-center py-10 sm:py-12 ${
             compact
-              ? "lg:min-h-[22rem] lg:py-14 xl:min-h-[24rem] xl:py-16"
-              : "lg:min-h-[28rem] lg:py-16 xl:min-h-[32rem] xl:py-20"
+              ? "lg:min-h-[22rem] lg:py-14 xl:min-h-[24rem] xl:py-8"
+              : "lg:min-h-[28rem] lg:py-8 xl:min-h-[32rem] xl:py-20"
           }`}
         >
           <div className="w-full">

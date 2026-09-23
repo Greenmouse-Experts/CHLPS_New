@@ -33,7 +33,7 @@ export default function MembershipQuestionsSection({
   const items = questions.map((q) => (typeof q === "string" ? q : q.question));
   return <></>;
   return (
-    <section className="bg-[#F8F7FC] py-16 md:py-20 border-t border-[#E7E4F0]">
+    <section className="bg-[#F8F7FC] py-8 md:py-20 border-t border-[#E7E4F0]">
       <PageContainer>
         <div className="mx-auto flex max-w-[46rem] flex-col items-center text-center">
           <Reveal>

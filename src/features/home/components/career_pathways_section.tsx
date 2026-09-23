@@ -126,7 +126,7 @@ function CareerCard({ career }: { career: Career }) {
 
 export default function CareerPathwaysSection() {
   return (
-    <section id="careers" className="relative overflow-hidden py-16 md:py-24">
+    <section id="careers" className="relative overflow-hidden py-8 md:py-24">
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <Image
           src={Assets.images.careerPathwaysBg}

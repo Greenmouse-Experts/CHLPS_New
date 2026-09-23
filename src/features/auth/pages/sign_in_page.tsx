@@ -37,7 +37,7 @@ const SignInPage = () => {
         description="Sign in to continue your professional training, access your programs, and manage your member profile."
       />
 
-      <section className="px-6 py-16 md:px-16">
+      <section className="px-6 py-8 md:px-16">
         <div className="mx-auto max-w-2xl rounded-2xl border border-sand bg-white p-8 md:p-14">
           <div className="mb-12 flex flex-col items-center">
             <Link
@@ -104,7 +104,11 @@ const SignInPage = () => {
               loading={isLoading}
               className="mt-1 h-[50px]"
               rightIcon={
-                <HugeiconsIcon icon={ArrowRight01Icon} size={16} color="currentColor" />
+                <HugeiconsIcon
+                  icon={ArrowRight01Icon}
+                  size={16}
+                  color="currentColor"
+                />
               }
             >
               Sign in

@@ -52,7 +52,7 @@ export default function Curriculum({ id, sections = [] }: CurriculumProps) {
     <>
       <section
         id="curriculum"
-        className="scroll-mt-24 bg-[#FAF9F5] py-16 md:py-24"
+        className="scroll-mt-24 bg-[#FAF9F5] py-8 md:py-24"
       >
         <PageContainer className="mx-auto px-4 sm:px-6">
           {/* Section Header */}

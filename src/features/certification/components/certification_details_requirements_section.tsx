@@ -19,7 +19,7 @@ export default function CertificationDetailsRequirementsSection({
   }
 
   return (
-    <section className="bg-white py-14 sm:py-16 ">
+    <section className="bg-white py-14 sm:py-8 ">
       <PageContainer>
         <Reveal>
           <article

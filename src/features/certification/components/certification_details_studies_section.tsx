@@ -52,7 +52,7 @@ export default function CertificationDetailsStudiesSection({
   const title = detail.studiesTitle || "Course Outcomes";
 
   return (
-    <section className="bg-[#F4F3F8] border-t border-b border-current/30 py-14 sm:py-16 ">
+    <section className="bg-[#F4F3F8] border-t border-b border-current/30 py-14 sm:py-8 ">
       <PageContainer>
         <div className="flex flex-col items-center text-center">
           <HeaderText left="learning" right="outcomes" switch />

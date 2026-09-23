@@ -75,7 +75,7 @@ const RegisterPage = () => {
         description="Join professionals advancing their careers in corporate security, loss prevention, and risk management."
       />
 
-      <section className="px-6 py-16 md:px-16">
+      <section className="px-6 py-8 md:px-16">
         <div className="mx-auto max-w-2xl rounded-2xl border border-sand bg-white p-8 md:p-14">
           <div className="mb-12 flex flex-col items-center">
             <Link
@@ -91,7 +91,8 @@ const RegisterPage = () => {
               />
             </Link>
             <h2 className="mt-8 text-center text-2xl font-medium text-primary md:text-3xl">
-              Begin your learning <span className="text-secondary">journey</span>
+              Begin your learning{" "}
+              <span className="text-secondary">journey</span>
             </h2>
             <p className="mt-2 max-w-sm text-center text-text/70">
               Create your profile to access programs, certifications, and member
@@ -187,17 +188,21 @@ const RegisterPage = () => {
               checked={formik.values.agree}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              error={
-                formik.touched.agree ? formik.errors.agree : undefined
-              }
+              error={formik.touched.agree ? formik.errors.agree : undefined}
               label={
                 <span>
                   I have read and agreed to the CHLPS{" "}
-                  <Link href="/policies?tab=privacy" className="font-medium text-primary underline">
+                  <Link
+                    href="/policies?tab=privacy"
+                    className="font-medium text-primary underline"
+                  >
                     Privacy Policy
                   </Link>{" "}
                   and{" "}
-                  <Link href="/policies?tab=terms" className="font-medium text-primary underline">
+                  <Link
+                    href="/policies?tab=terms"
+                    className="font-medium text-primary underline"
+                  >
                     Terms of Use
                   </Link>
                 </span>
@@ -212,7 +217,11 @@ const RegisterPage = () => {
               loading={isLoading}
               className="mt-1 h-[50px]"
               rightIcon={
-                <HugeiconsIcon icon={ArrowRight01Icon} size={16} color="currentColor" />
+                <HugeiconsIcon
+                  icon={ArrowRight01Icon}
+                  size={16}
+                  color="currentColor"
+                />
               }
             >
               Create account
@@ -255,7 +264,11 @@ const RegisterPage = () => {
             fullWidth
             className="mt-8"
             rightIcon={
-              <HugeiconsIcon icon={ArrowRight01Icon} size={16} color="currentColor" />
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={16}
+                color="currentColor"
+              />
             }
             onClick={() => {
               setModalOpen(false);

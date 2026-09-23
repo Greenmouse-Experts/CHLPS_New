@@ -19,7 +19,7 @@ export default function PastEventsSection({
   }
 
   return (
-    <section id="past-events" className="bg-[#F3F5F8] py-14 md:py-16 ">
+    <section id="past-events" className="bg-[#F3F5F8] py-14 md:py-8 ">
       <PageContainer>
         <EventSectionHeader
           icon={HistoryIcon}

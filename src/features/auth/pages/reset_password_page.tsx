@@ -31,7 +31,7 @@ const ResetPasswordPage = () => {
         }
         description="Enter the email associated with your member account and we will send a reset link."
       />
-      <section className="px-6 py-16">
+      <section className="px-6 py-8">
         <div className="mx-auto max-w-md rounded-2xl border border-sand bg-white p-8">
           <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5">
             <TextField

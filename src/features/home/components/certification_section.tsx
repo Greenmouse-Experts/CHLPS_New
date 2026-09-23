@@ -85,7 +85,7 @@ export default function CertificationSection() {
   return (
     <section
       id="certification"
-      className="relative overflow-hidden bg-cream py-16 md:py-24"
+      className="relative overflow-hidden bg-cream py-8 md:py-24"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <Image
