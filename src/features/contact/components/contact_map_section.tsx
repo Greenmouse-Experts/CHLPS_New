@@ -32,7 +32,9 @@ export default function ContactMapSection() {
                     Our Location
                   </span>
                   <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0D154B] sm:text-3xl">
-                    Find Chlps Institute
+                    {/*Find Chlps Institute*/}
+                    We are Here:{" "}
+                    <span className="text-secondary">ChLPS-Canada</span>
                   </h2>
 
                   <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

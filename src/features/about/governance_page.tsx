@@ -12,6 +12,7 @@ const GovernancePage = () => {
       <AboutHeroSection
         fixedHeight
         padding
+        image="/assets/images/gov.jpeg"
         badge="Our Governance"
         title="Leadership built on"
         accent="standards & service."

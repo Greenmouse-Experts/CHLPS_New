@@ -106,7 +106,7 @@ export default function OurStorySection() {
             <div className="relative">
               <div className="overflow-hidden rounded-[1.75rem]">
                 <Image
-                  src={Assets.images.ourStory}
+                  src={"/assets/images/found.jpeg"}
                   alt="ChLPS Canada members in conversation outside an office building"
                   width={3064}
                   height={3540}

@@ -54,7 +54,7 @@ export default function HowWeAreGovernedSection() {
           <Reveal delay={120} className="min-w-0">
             <div className="relative pb-14 sm:pb-16 lg:pb-[4.5rem]">
               <Image
-                src={Assets.images.howWeAreGoverned}
+                src={"/assets/images/flag.png"}
                 alt="A loss prevention manager and analyst reviewing operations on a tablet"
                 width={1536}
                 height={1024}
