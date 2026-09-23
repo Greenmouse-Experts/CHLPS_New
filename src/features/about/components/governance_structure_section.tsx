@@ -11,6 +11,7 @@ import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import Image from "next/image";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 type StructureCard = {
   icon: IconSvgElement;
@@ -62,14 +63,7 @@ export default function GovernanceStructureSection() {
       <PageContainer>
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="min-w-0">
-            <Reveal>
-              <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                Governance Structure
-              </span>
-            </Reveal>
+            <HeaderText left="Governance" right="Structure" notCenter />
 
             <Reveal delay={80}>
               <h2 className="mt-5 max-w-[13em] text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">

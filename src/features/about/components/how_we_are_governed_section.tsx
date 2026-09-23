@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 const paragraphs = [
   "ChLPS Canada operates through a governance structure in which the Board of Directors works alongside the Association Management Team. Together, they support the Association's mission, professional standards and long-term development.",
@@ -28,14 +29,7 @@ export default function HowWeAreGovernedSection() {
       <PageContainer className="relative z-10">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12 xl:gap-16">
           <div className="flex min-w-0 flex-col">
-            <Reveal>
-              <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                How We Are Governed
-              </span>
-            </Reveal>
+            <HeaderText left="How" right="We Are Governed" notCenter />
 
             <Reveal delay={80}>
               <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2rem] xl:text-[2.25rem]">

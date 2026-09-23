@@ -11,6 +11,7 @@ import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 const paragraphs = [
   "Founded in 2021, ChLPS Canada is a federally incorporated not-for-profit association advancing professional competence, ethics and business understanding in loss prevention.",
@@ -59,14 +60,7 @@ export default function OurStorySection() {
       <PageContainer className="relative z-10">
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-14">
           <div className="flex min-w-0 flex-col">
-            <Reveal>
-              <span
-                className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-2 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                Our Story
-              </span>
-            </Reveal>
+            <HeaderText left="Our" right="Story" notCenter />
 
             <Reveal delay={80}>
               <h2 className="mt-5 max-w-[490px] text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">
