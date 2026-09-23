@@ -60,7 +60,7 @@ const cards: StructureCard[] = [
 
 export default function GovernanceStructureSection() {
   return (
-    <section id="governance-structure" className="bg-[#F7EFD9] py-16 lg:py-20">
+    <section id="governance-structure" className="bg-[#F7EFD9] py-16 ">
       <PageContainer>
         <div className="flex flex-col gap-5 w0full">
           <HeaderText left="Governance" right="Structure" />

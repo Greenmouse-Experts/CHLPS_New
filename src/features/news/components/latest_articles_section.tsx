@@ -89,10 +89,7 @@ export default function LatestArticlesSection() {
   }, [postsQuery.data, selectedTag, search]);
 
   return (
-    <section
-      id="latest-articles"
-      className="bg-[#FAF9F6] py-14 sm:py-16 lg:py-20"
-    >
+    <section id="latest-articles" className="bg-[#FAF9F6] py-14 sm:py-16 ">
       <PageContainer>
         {/* Header & Search Bar */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">

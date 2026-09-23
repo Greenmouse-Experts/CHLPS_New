@@ -11,7 +11,7 @@ export default function CertificationMattersSection() {
   return (
     <section
       id="why-certification-matters"
-      className="relative overflow-hidden bg-white py-16 lg:py-20"
+      className="relative overflow-hidden bg-white py-16 "
     >
       <PageContainer className="relative z-10">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">

@@ -45,7 +45,7 @@ export default function OurStorySection() {
   return (
     <section
       id="our-story"
-      className="relative overflow-hidden bg-white py-16 lg:py-20"
+      className="relative overflow-hidden bg-white py-16 "
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <Image

@@ -24,7 +24,7 @@ export default function CertificationDetailsOutcomeSection({
   }
 
   return (
-    <section className="bg-white py-14 sm:py-16 lg:py-20">
+    <section className="bg-white py-14 sm:py-16 ">
       <PageContainer>
         <Reveal>
           <article className="overflow-hidden rounded-[1.75rem] border border-[#D4B56A] bg-[#F6F5FB] lg:rounded-[2rem]">

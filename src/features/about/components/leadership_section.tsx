@@ -15,7 +15,7 @@ export default function LeadershipSection() {
   const [activeLeader, setActiveLeader] = useState<Leader | null>(null);
 
   return (
-    <section id="leadership" className="bg-[#F4F3F8] py-16 lg:py-20">
+    <section id="leadership" className="bg-[#F4F3F8] py-16 ">
       <PageContainer>
         <div className="flex flex-col items-center text-center">
           <Reveal delay={80}>

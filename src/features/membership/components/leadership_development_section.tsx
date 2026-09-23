@@ -8,10 +8,7 @@ import HeaderText from "@/components/HeaderText";
 
 export default function LeadershipDevelopmentSection() {
   return (
-    <section
-      id="leadership-development"
-      className="bg-[#EEEAF8] py-16 lg:py-20"
-    >
+    <section id="leadership-development" className="bg-[#EEEAF8] py-16 ">
       <PageContainer>
         <Reveal className="mx-auto max-w-[1378px]">
           <div className="rounded-tr-[1.75rem] rounded-bl-[1.75rem] bg-white px-6 py-8 shadow-[inset_0_4px_20px_0_rgba(0,0,0,0.25)] sm:rounded-tr-[2rem] sm:rounded-bl-[2rem] sm:px-8 sm:py-10 lg:px-12 lg:py-12 xl:px-14 xl:py-14">

@@ -51,7 +51,7 @@ export default function LiveEventsSection({
   }
 
   return (
-    <section id="live-events" className="bg-white py-14 md:py-16 lg:py-20">
+    <section id="live-events" className="bg-white py-14 md:py-16 ">
       <PageContainer>
         <EventSectionHeader
           icon={Wifi01Icon}

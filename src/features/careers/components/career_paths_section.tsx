@@ -66,7 +66,7 @@ function CareerPathCard({
 
 export default function CareerPathsSection() {
   return (
-    <section id="career-paths" className="bg-white py-14 sm:py-16 lg:py-20">
+    <section id="career-paths" className="bg-white py-14 sm:py-16 ">
       <PageContainer>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>

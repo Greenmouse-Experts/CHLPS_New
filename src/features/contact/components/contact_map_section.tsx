@@ -14,7 +14,7 @@ const GOOGLE_MAPS_LINK =
 
 export default function ContactMapSection() {
   return (
-    <section id="find-us" className="bg-[#FAF8F3] py-12 sm:py-16 lg:py-20">
+    <section id="find-us" className="bg-[#FAF8F3] py-12 sm:py-16 ">
       <PageContainer>
         <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-8 xl:gap-10">
           {/* Left Card: Location & Interactive Map */}

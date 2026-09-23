@@ -50,7 +50,7 @@ export default function WhoShouldJoinSection() {
   return (
     <section
       id="who-should-join"
-      className="relative overflow-hidden bg-white py-16 lg:py-20"
+      className="relative overflow-hidden bg-white py-16 "
     >
       <PageContainer className="relative z-10">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12 xl:gap-16">

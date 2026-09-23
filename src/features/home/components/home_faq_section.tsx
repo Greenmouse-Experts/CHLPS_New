@@ -46,7 +46,7 @@ export default function HomeFaqSection({
       <PageContainer>
         {/* Top Dark Banner */}
         <Reveal>
-          <div className="relative isolate overflow-hidden rounded-[26px] bg-[#1B1454] px-6 py-12 text-center text-white shadow-[0_16px_40px_rgba(27,20,84,0.18)] sm:px-10 sm:py-16 md:rounded-[32px] lg:px-16 lg:py-20">
+          <div className="relative isolate overflow-hidden rounded-[26px] bg-[#1B1454] px-6 py-12 text-center text-white shadow-[0_16px_40px_rgba(27,20,84,0.18)] sm:px-10 sm:py-16 md:rounded-[32px] lg:px-16 ">
             {/* Background faint decorative question mark */}
             <div
               aria-hidden="true"
