@@ -7,10 +7,10 @@ import HeaderText from "@/components/HeaderText";
 import HeaderSubText from "@/components/HeaderSubText";
 
 const partners = [
-  // {
-  //   src: Assets.images.partnerLogos.p1,
-  //   alt: "Central Board of Education Canada",
-  // },
+  {
+    src: "/assets/images/sbp_new.png",
+    alt: "standard_best_practie",
+  },
   // {
   //   src: Assets.images.partnerLogos.p2,
   //   alt: "The Security Institute",
@@ -28,7 +28,7 @@ const partners = [
     alt: "American Council of Training and Development",
   },
   {
-    src: Assets.images.partnerLogos.p6,
+    src: "/assets/images/qhe_new.png",
     alt: "QAHE Association Accredited",
   },
 ] as const;
