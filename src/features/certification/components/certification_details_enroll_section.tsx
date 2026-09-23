@@ -19,10 +19,10 @@ export default function CertificationDetailsEnrollSection({
 }) {
   const [badgeSrc, setBadgeSrc] = useState(detail.badge);
   return (
-    <section className="bg-[#EFEDF4] py-12 sm:py-14 lg:py-16">
+    <section className="bg-[#EFEDF4] py-12 sm:py-14 lg:py-16 ">
       <PageContainer>
         <Reveal>
-          <article className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_50px_rgba(33,26,115,0.08)] lg:rounded-[2rem]">
+          <article className="overflow-hidden rounded-[1.75rem] ring ring-secondary bg-white shadow-[0_18px_50px_rgba(33,26,115,0.08)] lg:rounded-[2rem]">
             <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
               <div className="flex items-center bg-white px-6 py-9 sm:px-8 sm:py-11 lg:px-10 lg:py-12">
                 <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
@@ -67,7 +67,7 @@ export default function CertificationDetailsEnrollSection({
                     <button
                       type="button"
                       onClick={onEnroll}
-                      className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-white text-[14px] font-bold text-[#2F2683] shadow-sm transition-all duration-200 hover:brightness-95 active:scale-[0.99] sm:mt-7 sm:h-12"
+                      className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-secondary text-[14px] font-bold text-[#2F2683] shadow-sm transition-all duration-200 hover:brightness-95 active:scale-[0.99] sm:mt-7 sm:h-12"
                     >
                       <span>Enroll Now</span>
                       <HugeiconsIcon
@@ -79,7 +79,7 @@ export default function CertificationDetailsEnrollSection({
                   ) : (
                     <Link
                       href={detail.enrollHref}
-                      className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-white text-[14px] font-bold text-[#2F2683] transition-opacity duration-200 hover:opacity-90 sm:mt-7 sm:h-12"
+                      className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-secondary text-[14px] font-bold text-[#2F2683] transition-opacity duration-200 hover:opacity-90 sm:mt-7 sm:h-12"
                     >
                       <span>Enroll Now</span>
                       <HugeiconsIcon
