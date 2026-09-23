@@ -64,18 +64,20 @@ export default function CertificationDetailsEnrollSection({
                   )}
 
                   {onEnroll ? (
-                    <button
-                      type="button"
-                      onClick={onEnroll}
-                      className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-secondary text-[14px] font-bold text-[#2F2683] shadow-sm transition-all duration-200 hover:brightness-95 active:scale-[0.99] sm:mt-7 sm:h-12"
-                    >
-                      <span>Enroll Now</span>
-                      <HugeiconsIcon
-                        icon={ArrowUpRight01Icon}
-                        size={16}
-                        strokeWidth={2.2}
-                      />
-                    </button>
+                    <>
+                      <button
+                        type="button"
+                        onClick={onEnroll}
+                        className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-secondary text-[14px] font-bold text-[#2F2683] shadow-sm transition-all duration-200 hover:brightness-95 active:scale-[0.99] sm:mt-7 sm:h-12"
+                      >
+                        <span>Enroll Now</span>
+                        <HugeiconsIcon
+                          icon={ArrowUpRight01Icon}
+                          size={16}
+                          strokeWidth={2.2}
+                        />
+                      </button>
+                    </>
                   ) : (
                     <Link
                       href={detail.enrollHref}
