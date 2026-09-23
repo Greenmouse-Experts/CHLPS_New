@@ -67,50 +67,27 @@ const toneClass = {
 
 export default function WhyChooseSection() {
   return (
-    <section id="why-choose-us" className="bg-white py-16 lg:py-20">
+    <section id="why-choose-us" className="py-16 lg:py-20 derma">
       <PageContainer>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:items-start lg:gap-12 xl:gap-16">
-          <div className="flex min-w-0 flex-col">
+        <div className="grid gap-10  bg=[#F0EDF9]">
+          <div className="flex justify-center items-center text-center flex-col">
             <HeaderText left="Why" right="Choose Us" notCenter />
-
-            <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">
-                Built for lasting development.
-              </h2>
-            </Reveal>
-
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[29rem] text-[15px] leading-relaxed text-[#676672] sm:text-base lg:mt-5">
+              <p className="mt-4 max-w-[29rem]  leading-relaxed lg:mt-5">
                 ChLPS Canada combines professional recognition, continuous
                 learning, ethical standards, industry representation and a
                 connected community around one progressive career pathway.
               </p>
             </Reveal>
-
-            <Reveal delay={240}>
-              <Link
-                href="/membership"
-                className="mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5  font-semibold text-white transition-opacity duration-200 hover:opacity-90 sm: lg:mt-7"
-              >
-                Explore membership
-                <HugeiconsIcon
-                  icon={ArrowUpRight01Icon}
-                  size={16}
-                  color="currentColor"
-                  strokeWidth={2}
-                />
-              </Link>
-            </Reveal>
           </div>
-
           <RevealGroup className="grid min-w-0 gap-3 sm:grid-cols-2 sm:gap-4">
             {benefits.map((benefit, index) => (
               <article
                 key={benefit.title}
-                className={`reveal flex h-full flex-col rounded-2xl border border-[#CDA54E] p-5 sm:p-6 ${toneClass[benefit.tone]}`}
+                className={`reveal flex h-full flex-col rounded-2xl border border-[#CDA54E] p-5 sm:p-6  text-center`}
                 style={revealStyle(index)}
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white sm:h-14 sm:w-14">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white sm:h-14 sm:w-14 mx-auto ring ring-secondary">
                   <HugeiconsIcon
                     icon={benefit.icon}
                     size={24}
@@ -123,12 +100,24 @@ export default function WhyChooseSection() {
                   {benefit.title}
                 </h3>
 
-                <p className="mt-2 text-[14px] leading-relaxed text-[#747277] sm:text-[15px]">
-                  {benefit.body}
-                </p>
+                <p className="mt-2 ">{benefit.body}</p>
               </article>
             ))}
           </RevealGroup>
+          <Reveal delay={240} className="w-full flex flex-col">
+            <Link
+              href="/membership"
+              className="mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5  font-semibold text-white transition-opacity duration-200 hover:opacity-90 sm: lg:mt-7 mx-auto"
+            >
+              Explore membership
+              <HugeiconsIcon
+                icon={ArrowUpRight01Icon}
+                size={16}
+                color="currentColor"
+                strokeWidth={2}
+              />
+            </Link>
+          </Reveal>
         </div>
       </PageContainer>
     </section>

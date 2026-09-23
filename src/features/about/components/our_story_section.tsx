@@ -63,7 +63,7 @@ export default function OurStorySection() {
             <HeaderText left="Our" right="Story" notCenter />
 
             <Reveal delay={80}>
-              <h2 className="mt-5 max-w-[490px] text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">
+              <h2 className="mt-5 max-w-[490px] text-[1.75rem] font-medium leading-tight tracking-tight text-primary sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">
                 Built to strengthen the profession behind resilient
                 organizations.
               </h2>
@@ -72,10 +72,7 @@ export default function OurStorySection() {
             <Reveal delay={160}>
               <div className="mt-5 flex max-w-[31rem] flex-col gap-4 lg:mt-6">
                 {paragraphs.map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className="text-[15px] leading-relaxed text-[#5B5A66] sm:text-base"
-                  >
+                  <p key={paragraph} className="leading-relaxed  sm:text-base">
                     {paragraph}
                   </p>
                 ))}
@@ -86,7 +83,7 @@ export default function OurStorySection() {
               {highlights.map((highlight, index) => (
                 <article
                   key={highlight.title}
-                  className="reveal flex h-full flex-col rounded-2xl bg-[#F5F4F1] p-4 sm:p-5 border border-[#1C166214]"
+                  className="reveal flex h-full flex-col ring ring-secondary rounded-2xl bg-[#F5F4F1] p-4 sm:p-5 border border-[#1C166214]"
                   style={revealStyle(index)}
                 >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white">
