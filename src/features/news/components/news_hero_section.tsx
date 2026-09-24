@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 export default function NewsHeroSection() {
   return (
@@ -23,12 +24,7 @@ export default function NewsHeroSection() {
         <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[28rem] lg:py-8 xl:min-h-[30rem] xl:py-20">
           <div className="w-full">
             <Reveal>
-              <span
-                className="cut-bl-tr inline-block bg-secondary px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#211A73] sm:px-4 sm:py-2 sm:"
-                style={{ "--cut": "0.55rem" } as CSSProperties}
-              >
-                Content Hub
-              </span>
+              <HeaderText left="News" right="&amp; Blog" />
             </Reveal>
 
             <Reveal delay={80}>
