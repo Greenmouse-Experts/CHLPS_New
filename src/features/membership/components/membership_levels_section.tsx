@@ -125,7 +125,7 @@ export default function MembershipLevelsSection() {
       <PageContainer className="relative z-10">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="flex w-full flex-col">
-            <HeaderText left="find your membership" right="grade" />
+            <HeaderText left="find your" right="membership grade" />
             <HeaderSubText>
               Six membership routes for professionals and organizations at every
               stage.
