@@ -38,8 +38,8 @@ export default function CertificationHeroSection() {
                   The Association of Chartered Loss Prevention Specialists of
                   Canada provides professional certification and skill
                   development programs through which you can become a Certified
-                  Professional, earning the prestigious CLPO, CLPA, or ChLPS
-                  certifications.
+                  Professional, earning the prestigious CLPO, CLPA, CLPM, or
+                  ChLPS certifications.
                 </p>
                 <p>
                   Our commitment to professional development is reflected in
