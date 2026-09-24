@@ -136,7 +136,7 @@ export default function OurCoreValuesSection() {
                   >
                     <HugeiconsIcon
                       icon={value.icon}
-                      size={22}
+                      size={18}
                       color="currentColor"
                       strokeWidth={2}
                     />
@@ -144,10 +144,10 @@ export default function OurCoreValuesSection() {
 
                   {/* Text Content */}
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-xl font-bold leading-snug text-[#1E1758] ">
+                    <h3 className="text-[14px] font-bold leading-snug text-[#1E1758] ">
                       {value.title}
                     </h3>
-                    <p className="mt-0.5 text-base">{value.description}</p>
+                    <p className="mt-0.5 text-[14px]">{value.description}</p>
                   </div>
                 </article>
               );
