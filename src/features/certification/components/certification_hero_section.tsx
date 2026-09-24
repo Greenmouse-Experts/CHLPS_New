@@ -26,10 +26,11 @@ export default function CertificationHeroSection() {
         <div className="flex h-full items-center py-12 sm:py-14 lg:min-h-[28rem] lg:py-8 xl:min-h-[32rem] xl:py-20">
           <div className="w-full">
             <HeaderText
-              left="certification"
+              left="Our certification"
               right="pathways"
               notCenter
               textWhite
+              notUppercase
             />
             <Reveal delay={160}>
               <div className=" max-w-[740px] space-y-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
@@ -46,24 +47,6 @@ export default function CertificationHeroSection() {
                   (CLPO™), Certified Loss Prevention Associate (CLPA™), and
                   Chartered Loss Prevention Specialist (ChLPS™).
                 </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={220}>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a
-                  href="#pathways"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-secondary px-7  font-bold text-[#111E2A] shadow-sm transition-all hover:brightness-95 active:scale-[0.99]"
-                >
-                  <span>Enroll Now</span>
-                  <HugeiconsIcon icon={ArrowDown01Icon} size={16} />
-                </a>
-                <a
-                  href="#program-benefits"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-white/30 bg-white/10 px-6  font-medium text-white backdrop-blur-xs transition-colors hover:bg-white/20"
-                >
-                  Program Benefits
-                </a>
               </div>
             </Reveal>
           </div>

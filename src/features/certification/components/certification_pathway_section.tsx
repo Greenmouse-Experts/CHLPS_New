@@ -230,10 +230,10 @@ export default function CertificationPathwaySection() {
                     className="card group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#C99E4A] bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
                   >
                     {/* Top White Section: Circular Gold Ring Seal & Title */}
-                    <div className="flex flex-1 flex-col items-center justify-between bg-white px-6 pt-9 pb-8 text-center sm:px-8 sm:pt-10 sm:pb-9">
+                    <div className="flex flex-1 flex-col items-center justify-between bg-white text-center py-3">
                       <Link
                         href={enrollHref}
-                        className="group/link flex flex-col items-center"
+                        className="group/link flex flex-col items-center space-y-3"
                         aria-label={`View details for ${displayTitle}`}
                       >
                         {/* Circular Gold Ring Seal */}
@@ -248,14 +248,14 @@ export default function CertificationPathwaySection() {
                         </div>
 
                         {/* Certification Title */}
-                        <h3 className="mt-6 text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] sm:mt-7 sm:text-2xl">
+                        <h3 className=" text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] ">
                           {displayTitle}
                         </h3>
                       </Link>
                     </div>
 
                     {/* Bottom Dark Navy Section: Description, Price & Gold Enroll Button */}
-                    <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] px-6 py-8 text-center sm:px-8 sm:py-9">
+                    <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] p-3 text-center ">
                       {/* Subtle ambient gradient wave */}
                       <div
                         aria-hidden
@@ -269,7 +269,7 @@ export default function CertificationPathwaySection() {
                         </p>
 
                         {/* Price */}
-                        <div className="my-6 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                        <div className="my-2 text-center text-2xl font-bold tracking-tight text-white sm:text-3xl">
                           {priceDisplay}
                         </div>
 
@@ -281,7 +281,7 @@ export default function CertificationPathwaySection() {
                           //   handleEnrollClick(programme, firstCourse)
                           // }
                           // disabled={isEnrolling}
-                          className="btn w-full border-none bg-[#C99E4A] text-base font-bold text-[#0B0E33] shadow-sm transition-all duration-200 hover:bg-[#d5aa50] active:scale-[0.99] disabled:opacity-75 rounded-xl h-12 min-h-12"
+                          className="btn btn-secondary btn-block"
                         >
                           {isEnrolling ? (
                             <div className="flex items-center gap-2">
