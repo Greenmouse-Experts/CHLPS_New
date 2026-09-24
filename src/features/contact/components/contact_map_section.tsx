@@ -18,7 +18,7 @@ export default function ContactMapSection() {
       <PageContainer>
         <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-8 xl:gap-10">
           {/* Left Card: Location & Interactive Map */}
-          <Reveal className="h-full">
+          <Reveal className="h-full ">
             <div className="card relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-base-200/80 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
               {/* Subtle background ambient contour glow */}
               <div
@@ -77,10 +77,10 @@ export default function ContactMapSection() {
                       Pinned Location
                     </span>
                     <h4 className="mt-2 text-sm font-bold text-[#0D154B]">
-                      ChLPS Institute
+                      ChLPS-canada
                     </h4>
                     <p className="mt-1 text-xs leading-relaxed text-base-content/70">
-                      Victoria Avenue, Windsor
+                      405 Victoria Avenue, Windsor
                       <br />
                       Ontario N9A 4N1, Canada
                     </p>
@@ -99,7 +99,7 @@ export default function ContactMapSection() {
                     Send A Message
                   </span>
                   <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0D154B] sm:text-3xl">
-                    Tell us what you need
+                    How many we help You
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-base-content/70">
                     Complete the form below and our admissions or support team
