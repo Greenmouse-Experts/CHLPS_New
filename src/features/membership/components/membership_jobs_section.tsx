@@ -37,7 +37,7 @@ export default function MembershipJobsSection({
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="w-full">
             <HeaderText left="career" right="opportunities" />
-            <HeaderSubText>{body}</HeaderSubText>
+            <HeaderSubText smallWidth>{body}</HeaderSubText>
           </div>
         </div>
 
