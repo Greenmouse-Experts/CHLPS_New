@@ -66,9 +66,9 @@ export default function OurStorySection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <div className=" flex max-w-[31rem] flex-col gap-4 ">
+              <div className=" flex max-w-[31rem] flex-col gap-2 ">
                 {paragraphs.map((paragraph) => (
-                  <p key={paragraph} className="leading-relaxed  sm:text-base">
+                  <p key={paragraph} className=" sm:text-base">
                     {paragraph}
                   </p>
                 ))}
@@ -79,7 +79,7 @@ export default function OurStorySection() {
               {highlights.map((highlight, index) => (
                 <article
                   key={highlight.title}
-                  className="reveal flex h-full flex-col ring ring-secondary rounded-2xl bg-[#F5F4F1] p-4 sm:p-5 border border-[#1C166214]"
+                  className="reveal flex h-full flex-col ring ring-secondary rounded-2xl bg-[#F5F4F1] p-3 border border-[#1C166214]"
                   style={revealStyle(index)}
                 >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white">
@@ -93,9 +93,7 @@ export default function OurStorySection() {
                   <h3 className=" text-base font-bold leading-tight text-primary sm:text-[18px]">
                     {highlight.title}
                   </h3>
-                  <p className="mt-2  leading-relaxed text-[#6E6B78]">
-                    {highlight.body}
-                  </p>
+                  <p className="mt-2 ">{highlight.body}</p>
                 </article>
               ))}
             </RevealGroup>
