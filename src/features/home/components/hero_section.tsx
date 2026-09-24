@@ -13,7 +13,7 @@ import {
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 
-const SLIDE_MS = 6000;
+const SLIDE_MS = 30000;
 const FADE_MS = 1400;
 
 type HeroSlide = {
