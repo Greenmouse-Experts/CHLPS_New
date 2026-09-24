@@ -56,7 +56,7 @@ export const WHY_JOIN_CHLPS_CARDS: WhyJoinCardItem[] = [
 
 export default function WhyJoinChlpsSection() {
   return (
-    <section className="bg-white py-14 sm:py-18 ">
+    <section className="bg-white py-8">
       <PageContainer>
         {/* Header */}
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
