@@ -53,18 +53,18 @@ export default function MissionVisionSection() {
     <section id="mission-vision" className="bg-[#F5F4F0] py-8 ">
       <PageContainer>
         <div className="">
-          <HeaderText left="Mission" right="and Vision" />
+          <HeaderText left="Mission and " right="Vision" />
           <HeaderSubText smallWidth>
             Strengthening loss prevention through standards, education, ethics
             and recognition.
           </HeaderSubText>
         </div>
 
-        <RevealGroup className="mt-6 grid gap-4 lg:mt-7 lg:grid-cols-2 lg:gap-5">
+        <RevealGroup className="mt-6 grid gap-4 lg:mt-7 lg:grid-cols-2 lg:gap-5 max-w-7xl mx-auto">
           {cards.map((card, index) => (
             <article
               key={card.label}
-              className={`reveal relative overflow-hidden rounded-[1.25rem] border border-t-[3px] p-6 sm:p-8 lg:p-9 ${card.border} ${card.card}`}
+              className={`reveal relative overflow-hidden rounded-[1.25rem] border border-t-[3px] p-6 ${card.border} ${card.card}`}
               style={revealStyle(index)}
             >
               <span
