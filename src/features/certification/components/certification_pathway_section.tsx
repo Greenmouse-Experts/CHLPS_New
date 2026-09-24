@@ -203,9 +203,7 @@ export default function CertificationPathwaySection() {
                   .replace(/™/g, "")
                   .trim();
                 const hasAbbrPrefix = rawClean.toUpperCase().startsWith(abbr);
-                const displayTitle = hasAbbrPrefix
-                  ? rawClean
-                  : `${abbr} – ${rawClean}`;
+                const displayTitle = rawClean;
 
                 const rawPrice =
                   firstCourse?.price != null ? Number(firstCourse.price) : null;
@@ -222,7 +220,7 @@ export default function CertificationPathwaySection() {
                   "The globally recognized IFPO certification — the gold standard for protection professionals.";
 
                 const isEnrolling = checkingEnrollCourseId === firstCourse?.id;
-
+                const abbr_cta = programme.title.split(" ")[0];
                 return (
                   <article
                     key={programme.id || index}
