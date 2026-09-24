@@ -73,18 +73,18 @@ export default function WhyChooseSection() {
           <div className="flex justify-center items-center text-center flex-col">
             <HeaderText left="Why" right="Choose Us" notCenter />
             <Reveal delay={160}>
-              <p className=" max-w-[29rem]  leading-relaxed lg:mt-5">
+              <p className=" max-w-xl  leading-relaxed lg:mt-5">
                 ChLPS Canada combines professional recognition, continuous
                 learning, ethical standards, industry representation and a
                 connected community around one progressive career pathway.
               </p>
             </Reveal>
           </div>
-          <RevealGroup className="grid min-w-0 gap-3 sm:grid-cols-2 sm:gap-4">
+          <RevealGroup className="grid min-w-0 gap-3 sm:grid-cols-2 sm:gap-4 max-w-5xl mx-auto">
             {benefits.map((benefit, index) => (
               <article
                 key={benefit.title}
-                className={`reveal flex h-full flex-col rounded-2xl border border-[#CDA54E] p-5 sm:p-6  text-center`}
+                className={`reveal flex h-full flex-col rounded-2xl border border-[#CDA54E] p-5 sm:p-6  text-center bg-white`}
                 style={revealStyle(index)}
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white sm:h-14 sm:w-14 mx-auto ring ring-secondary">
