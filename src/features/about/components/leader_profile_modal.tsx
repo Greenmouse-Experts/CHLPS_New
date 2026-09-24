@@ -138,12 +138,7 @@ export default function LeaderProfileModal({
             contentIn ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
           }`}
         >
-          <span
-            className="cut-tr-bl inline-block bg-secondary px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-primary sm:"
-            style={{ "--cut": "0.5rem" } as CSSProperties}
-          >
-            {leader.role}
-          </span>
+          <span className="text-primary font-semibold mb-2">{leader.role}</span>
 
           <h3
             id={`${leader.id}-name`}
