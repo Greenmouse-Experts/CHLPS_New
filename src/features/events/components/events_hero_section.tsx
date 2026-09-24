@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 type EventsHeroSectionProps = {
   title?: string;
@@ -11,7 +12,7 @@ type EventsHeroSectionProps = {
 
 export default function EventsHeroSection({
   title = "Events",
-  body = "Discover events that connect and advance professionals.",
+  body = "Events and Professional Practice Updates: Stay informed through industry events, professional forums, emerging Loss Prevention trends, regulatory developments, evolving technologies, best practices, expert insights, and important updates shaping the loss prevention profession.",
   compact = false,
 }: EventsHeroSectionProps) {
   return (
@@ -38,9 +39,10 @@ export default function EventsHeroSection({
         >
           <div className="w-full">
             <Reveal>
-              <h1 className="text-[2rem]  leading-[1.12] tracking-tight text-white sm:text-[48px] xl:leading-[1.08]">
-                {title}
-              </h1>
+              <h2 className="text-white text-3xl">
+                Events and Professional <br />
+                <span className="text-secondary">Practice Updates</span>
+              </h2>
             </Reveal>
 
             <Reveal delay={80}>
