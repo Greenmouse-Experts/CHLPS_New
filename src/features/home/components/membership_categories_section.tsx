@@ -168,7 +168,7 @@ export default function MembershipCategoriesSection() {
                           <h3 className="mt-6 text-xl font-bold leading-snug text-white sm:text-2xl lg:text-[28px]">
                             {category.name}
                           </h3>
-                          <p className="mt-3.5 max-w-sm text-[14px] font-normal leading-relaxed text-[#FFFFFFCC] sm:text-[16px] line-clamp-3">
+                          <p className="mt-3.5 max-w-sm text-[14px] font-normal leading-relaxed text-white sm:text-[16px] line-clamp-3">
                             {category.description}
                           </p>
                           <div className="mt-auto pt-6 w-full flex justify-center">
