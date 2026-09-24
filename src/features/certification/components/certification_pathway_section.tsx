@@ -248,7 +248,7 @@ export default function CertificationPathwaySection() {
                         </div>
 
                         {/* Certification Title */}
-                        <h3 className=" text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] ">
+                        <h3 className=" text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] max-w-2/3 line-clamp-2 ">
                           {displayTitle}
                         </h3>
                       </Link>

@@ -15,7 +15,7 @@ export default function CertificationMattersSection() {
     >
       <PageContainer className="relative z-10">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
-          <div className="flex min-w-0 flex-col">
+          <div className="flex min-w-0 flex-col h-full">
             <HeaderText notCenter left="why certification" right="matters" />
             {/*<Reveal>
               <span
@@ -27,7 +27,7 @@ export default function CertificationMattersSection() {
             </Reveal>*/}
 
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[40px]">
+              <h2 className="text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515]">
                 An Investment in Your Career
               </h2>
             </Reveal>
@@ -42,20 +42,7 @@ export default function CertificationMattersSection() {
                 complex challenges of the industry.
               </p>
             </Reveal>
-
-            <Reveal delay={220}>
-              <div className="mt-6 sm:mt-8">
-                <a
-                  href="#pathways"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-6  font-semibold text-white shadow-sm transition-all hover:bg-primary/90"
-                >
-                  <span>Enroll in a Certification</span>
-                  <HugeiconsIcon icon={ArrowUpRight01Icon} size={16} />
-                </a>
-              </div>
-            </Reveal>
           </div>
-
           <Reveal delay={120} className="min-w-0">
             <div className="overflow-hidden rounded-br-[4.5rem] lg:rounded-br-[25px]">
               <Image
