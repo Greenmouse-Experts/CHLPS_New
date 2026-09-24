@@ -123,7 +123,7 @@ export default function WhatOurMembersSaySection({
           {testimonials.map((testimonial, index) => (
             <article
               key={testimonial.id}
-              className="reveal flex flex-col justify-between rounded-[28px] border-2 border-[#1E1758] bg-white p-7 shadow-[inset_0_4px_0_0_#1E1758,0_12px_28px_rgba(30,23,88,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[inset_0_4px_0_0_#1E1758,0_18px_36px_rgba(30,23,88,0.13)] sm:p-8"
+              className="reveal flex flex-col justify-between rounded-[28px] border-2 border-[#1E1758] bg-white p-3 shadow-[inset_0_4px_0_0_#1E1758,0_12px_28px_rgba(30,23,88,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[inset_0_4px_0_0_#1E1758,0_18px_36px_rgba(30,23,88,0.13)] "
               style={revealStyle(index)}
             >
               {/* Top: Stars + Quote Icon + Body Text */}
@@ -135,14 +135,14 @@ export default function WhatOurMembersSaySection({
                 </div>
 
                 {/* Quote Text */}
-                <p className="mt-5 text-sm font-normal leading-[1.68] text-[#1E1758] ">
+                <p className="mt-2 text-sm font-normal leading-[1.68] text-[#1E1758] ">
                   {testimonial.quote}
                 </p>
               </div>
 
               {/* Bottom: Horizontal Divider + Author Info */}
               <div>
-                <hr className="my-6 border-t border-[#DDE5F0]" />
+                <hr className="my-2 border-t border-[#DDE5F0]" />
 
                 <div className="flex items-center gap-4 sm:gap-5">
                   <TestimonialAvatar
