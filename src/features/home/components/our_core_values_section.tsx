@@ -101,7 +101,7 @@ export default function OurCoreValuesSection() {
               </div>
 
               {/* Floating "Our 6 guiding values" circle badge */}
-              <div className="absolute -right-4 top-10 z-20 flex h-28 w-28 flex-col items-center justify-center rounded-full border-[5px] border-white bg-[#CDA54E] p-2 text-center text-[#1E1758] shadow-[0_14px_32px_rgba(205,165,78,0.38)] sm:-right-6 sm:top-14 sm:h-36 sm:w-36 sm:border-[6px] lg:-right-8 lg:top-16 lg:h-40 lg:w-40">
+              <div className="absolute -right-4 top-10 z-20 flex h-28 w-28 flex-col items-center justify-center rounded-full border-[5px] border-white bg-[#CDA54E] p-2 text-center text-[#1E1758] shadow-[0_14px_32px_rgba(205,165,78,0.38)] sm:-right-6 sm:top-14 sm:h-36 sm:w-36 sm:border-[6px] lg:-right-8 lg:top-16 lg:h-40 lg:w-40 capitalize">
                 <span className="text-[14px] font-bold leading-snug sm:text-[16px] lg:text-[18px]">
                   Our 6
                 </span>

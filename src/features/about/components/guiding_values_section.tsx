@@ -5,11 +5,14 @@ import { Assets } from "@/lib/assets";
 
 export default function GuidingValuesSection() {
   return (
-    <section id="values" className="overflow-x-clip bg-white pt-16 sm:pt-20 lg:pt-24">
+    <section
+      id="values"
+      className="overflow-x-clip bg-white pt-16 sm:pt-20 lg:pt-24"
+    >
       <PageContainer>
         <div className="mx-auto flex flex-col items-center mb-5 text-center">
           <Reveal>
-            <h2 className="text-[1.125rem] font-medium uppercase leading-snug tracking-[0.12em] sm:text-[1.375rem] lg:text-[40px]">
+            <h2 className="text-[1.125rem] font-medium uppercase leading-snug tracking-[0.12em] sm:text-[1.375rem] lg:text-[40px] capitalize">
               <span className="text-secondary">Our six core</span>{" "}
               <span className="text-primary">guiding values</span>
             </h2>
