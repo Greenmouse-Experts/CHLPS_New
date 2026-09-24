@@ -69,11 +69,11 @@ export default function WhyChooseSection() {
   return (
     <section id="why-choose-us" className="py-8  derma">
       <PageContainer>
-        <div className="grid gap-10  bg=[#F0EDF9] ">
+        <div className="grid   bg=[#F0EDF9] gap-4 ">
           <div className="flex justify-center items-center text-center flex-col">
             <HeaderText left="Why" right="Choose Us" notCenter />
             <Reveal delay={160}>
-              <p className=" max-w-xl  leading-relaxed lg:mt-5">
+              <p className=" max-w-xl  leading-relaxed ">
                 ChLPS Canada combines professional recognition, continuous
                 learning, ethical standards, industry representation and a
                 connected community around one progressive career pathway.

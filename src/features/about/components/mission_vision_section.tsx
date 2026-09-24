@@ -84,7 +84,7 @@ export default function MissionVisionSection() {
                   />
                 </span>
                 <h3
-                  className={`text-[15px] font-bold uppercase tracking-[0.06em] sm:text-[18px] lg:text-[19px] ${card.labelColor}`}
+                  className={`font-black uppercase tracking-[0.06em] text-xl  ${card.labelColor} `}
                 >
                   {card.label}
                 </h3>
