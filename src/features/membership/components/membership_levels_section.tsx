@@ -211,7 +211,7 @@ export default function MembershipLevelsSection() {
                         className="card group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#C99E4A] bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
                       >
                         {/* Top White Section: Circular Gold Ring Badge & Title */}
-                        <div className="flex flex-1 flex-col items-center justify-between bg-white px-6 pt-9 pb-8 text-center sm:px-8 sm:pt-10 sm:pb-9">
+                        <div className="flex flex-1 flex-col items-center justify-between bg-white text-center  p-2">
                           <Link
                             href={href}
                             className="group/link flex flex-col items-center"
@@ -222,14 +222,14 @@ export default function MembershipLevelsSection() {
                               alt={`${category.name} badge`}
                               cropLogo={isCorporate}
                             />
-                            <h3 className="mt-6 text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] sm:mt-7 sm:text-2xl">
+                            <h3 className="mt-3 text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] sm:mt-3 sm:text-2xl">
                               {displayName}
                             </h3>
                           </Link>
                         </div>
 
                         {/* Bottom Dark Navy Section: Description, Price & Gold Action Button */}
-                        <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] px-6 py-8 text-center sm:px-8 sm:py-9">
+                        <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] text-center p-3">
                           {/* Background Image: membership_catigory_card.png */}
                           <div
                             aria-hidden
@@ -249,13 +249,13 @@ export default function MembershipLevelsSection() {
                               {description}
                             </p>
 
-                            <div className="my-6 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                            <div className="my-3 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
                               {priceDisplay}
                             </div>
 
                             <Link
                               href={href}
-                              className="btn w-full border-none bg-[#C99E4A] text-base font-bold text-[#0B0E33] shadow-sm transition-all duration-200 hover:bg-[#d5aa50] active:scale-[0.99] rounded-xl h-12 min-h-12 normal-case flex items-center justify-center gap-1.5"
+                              className="btn btn-secondary btn-block "
                             >
                               <span>Apply for Membership</span>
                               <HugeiconsIcon

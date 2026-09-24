@@ -27,6 +27,7 @@ type AboutHeroSectionProps = {
   children?: ReactNode;
   showDefault?: boolean;
   padding?: boolean;
+  notUppercase?: boolean;
 };
 
 export default function AboutHeroSection({
@@ -41,6 +42,7 @@ export default function AboutHeroSection({
   imageAlt = "CHLPS Canada professionals standing together in an office",
   imageClassName = "object-cover object-[right_15%]",
   cta,
+  notUppercase,
   children,
   showDefault = false,
   padding = false,
@@ -70,7 +72,7 @@ export default function AboutHeroSection({
       </div>
 
       <PageContainer
-        className={`relative z-10 ${padding ? "py-20" : "py-8"} ${fixedHeight ? "min-h-[480px]" : ""}`}
+        className={`relative z-10 ${padding ? "py-20" : "py-8"} ${fixedHeight ? "min-h-[520px]" : ""}`}
       >
         <div
           className={`grid items-center gap-10 lg:gap-14 ${
@@ -83,6 +85,7 @@ export default function AboutHeroSection({
               <div className="max-w-xl">
                 <HeaderText
                   textWhite
+                  notUppercase
                   notCenter
                   left="A professional home for every stage"
                   right="of loss prevention."

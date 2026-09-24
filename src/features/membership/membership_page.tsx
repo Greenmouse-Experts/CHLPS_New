@@ -15,6 +15,7 @@ const MembershipPage = () => {
         showDefault
         padding={true}
         badge="Membership"
+        notUppercase
         title="A professional home for every stage"
         accent="of loss prevention."
         body="Build professional standing through membership, certification and continuous learning."
@@ -23,6 +24,7 @@ const MembershipPage = () => {
         imageClassName="object-cover object-[right_center]"
         titleWidth="730px"
         bodyWidth="450px"
+        fixedHeight
         cta={{ label: "Become a Member", href: "/dashboard/register" }}
       />
       <MembershipLevelsSection />
