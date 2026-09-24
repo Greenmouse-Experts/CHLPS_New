@@ -18,16 +18,16 @@ export default function MembershipCareerPathwaysSection({
   }
 
   return (
-    <section className="bg-[#F4F3F9] py-8  max-w-7xl mx-auto">
+    <section className="bg-[#F4F3F9] py-8">
       <PageContainer>
         <Reveal>
-          <div className="rounded-[1.75rem] bg-white p-6 shadow-[0_16px_40px_rgba(33,26,115,0.06)] sm:p-10 lg:rounded-[2rem] lg:p-12 xl:p-14">
+          <div className="rounded-[1.75rem] bg-white  shadow-[0_16px_40px_rgba(33,26,115,0.06)] lg:rounded-[2rem]  p-6 max-w-7xl mx-auto">
             <h2 className="text-[1.75rem] font-medium leading-tight tracking-tight text-[#221A7A] sm:text-3xl lg:text-[2.35rem] xl:text-[40px]">
               <span>Career Pathways for</span>{" "}
               <span className="text-secondary"> {gradeTitle}s</span>
             </h2>
 
-            <RevealGroup className="mt-6 sm:mt-8">
+            <RevealGroup className="mt-2">
               <ul className="flex flex-col gap-2.5 sm:gap-3">
                 {items.map((item, index) => (
                   <li

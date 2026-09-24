@@ -54,7 +54,7 @@ export default function MembershipJoinNowSection({
             ) : null}
 
             {hasTags ? (
-              <div className="mt-6 flex flex-wrap gap-2.5 sm:mt-7">
+              <div className=" flex flex-wrap gap-2.5 my-2">
                 {tags.map((tag) => (
                   <span
                     key={tag}
@@ -67,7 +67,7 @@ export default function MembershipJoinNowSection({
             ) : null}
 
             {hasCards ? (
-              <RevealGroup className="mt-8 grid grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4">
+              <RevealGroup className="mt-2 grid grid-cols-1 gap-3  sm:grid-cols-2 sm:gap-4">
                 {cards.map((card, index) => (
                   <article
                     key={card.title}
