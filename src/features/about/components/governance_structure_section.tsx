@@ -62,7 +62,7 @@ export default function GovernanceStructureSection() {
   return (
     <section id="governance-structure" className="bg-[#F7EFD9] py-8 ">
       <PageContainer>
-        <div className="flex flex-col gap-5 w0full">
+        <div className="flex flex-col gap-2 w0full">
           <HeaderText left="Governance" right="Structure" />
           <HeaderSubText smallWidth>
             Governance and management work together to keep ChLPS Canada
@@ -71,7 +71,7 @@ export default function GovernanceStructureSection() {
           </HeaderSubText>
         </div>
 
-        <RevealGroup className="mt-8 grid gap-4 lg:mt-10 lg:grid-cols-2 lg:gap-5">
+        <RevealGroup className="mt-4 grid gap-4  lg:grid-cols-2 lg:gap-5">
           {cards.map((card, index) => (
             <article
               key={card.title}
@@ -111,7 +111,7 @@ export default function GovernanceStructureSection() {
                 </span>
 
                 <h3
-                  className={`mt-8 text-xl font-bold leading-tight tracking-tight sm:text-2xl lg:mt-10 lg:text-[1.875rem] xl:text-[2.25rem] ${card.titleColor}`}
+                  className={`text-xl font-bold leading-tight tracking-tight sm:text-2xl mt-4 lg:text-[1.875rem] xl:text-[2.25rem] ${card.titleColor}`}
                 >
                   {card.title}
                 </h3>

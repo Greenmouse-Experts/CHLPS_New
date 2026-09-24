@@ -4,6 +4,7 @@ import HowWeAreGovernedSection from "@/features/about/components/how_we_are_gove
 import GovernanceStructureSection from "@/features/about/components/governance_structure_section";
 import LeadershipSection from "@/features/about/components/leadership_section";
 import Footer from "@/features/components/footer";
+import HeaderText from "@/components/HeaderText";
 
 const GovernancePage = () => {
   return (
@@ -18,7 +19,25 @@ const GovernancePage = () => {
         accent="standards & service."
         body="ChLPS Canada is led by its Board and Management Team, providing strategic oversight and effective operations."
         bodyWidth="30rem"
-      />
+      >
+        <div>
+          <HeaderText
+            smallSize
+            left="our"
+            right="governance"
+            textWhite
+            notCenter
+          />
+          <h2 className="text-white text-4xl font-semibold">
+            Leadership built on <br />
+            <span className="text-secondary">Standards & Service</span>
+          </h2>
+          <p className="text-white text-lg">
+            ChLPS Canada is led by its Board and Management Team, providing
+            strategic oversight and effective operations.
+          </p>
+        </div>
+      </AboutHeroSection>
       <HowWeAreGovernedSection />
       <GovernanceStructureSection />
       <LeadershipSection />

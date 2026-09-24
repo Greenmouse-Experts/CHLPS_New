@@ -32,13 +32,13 @@ export default function HowWeAreGovernedSection() {
             <HeaderText left="How We Are " right="Governed" notCenter />
 
             <Reveal delay={80}>
-              <h2 className="mt-5 text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515] sm:text-3xl lg:mt-6 lg:text-[2rem] xl:text-[2.25rem] text-primary">
+              <h2 className=" text-xl font-medium leading-tight tracking-tight text-[#151515]   text-primary">
                 Clear direction, oversight and delivery.
               </h2>
             </Reveal>
 
             <Reveal delay={160}>
-              <div className="mt-5 flex max-w-[34rem] flex-col gap-4 lg:mt-6">
+              <div className=" flex max-w-[34rem] flex-col gap-4 mt-2">
                 {paragraphs.map((paragraph) => (
                   <p
                     key={paragraph}

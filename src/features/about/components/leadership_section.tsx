@@ -43,14 +43,19 @@ export default function LeadershipSection() {
               className="reveal group flex h-full flex-col overflow-hidden rounded-[1.25rem] bg-white text-left transition-shadow duration-200 hover:shadow-[0_18px_40px_-24px_rgba(33,26,115,0.45)]"
               style={revealStyle(index)}
             >
-              <div className="relative aspect-[10/9] w-full overflow-hidden">
-                <Image
+              <div className="relative aspect-[10/10] w-full overflow-hidden">
+                <img
+                  className="origin-top object-cover object-top  transition-transform  duration-500 group-hover:scale-[1.03]"
+                  src={leader.photo}
+                  alt={`${leader.name}, ${leader.role}`}
+                ></img>
+                {/*<Image
                   src={leader.photo}
                   alt={`${leader.name}, ${leader.role}`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
-                  className="origin-top object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                />
+                  className="origin-top object-cover object-top  transition-transform duration-500 group-hover:scale-[1.03]"
+                />*/}
               </div>
 
               <div className="flex flex-1 flex-col p-5">
