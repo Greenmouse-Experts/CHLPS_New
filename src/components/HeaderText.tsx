@@ -9,6 +9,7 @@ export default function HeaderText(props: {
   notUppercase?: boolean;
   notCenter?: boolean;
   bold?: boolean;
+  marginBottom?: boolean;
 }) {
   const {
     textWhite = false,
@@ -16,12 +17,13 @@ export default function HeaderText(props: {
     smallSize,
     notUppercase = false,
     bold = true,
+    marginBottom = true,
   } = props;
   return (
     <>
       <Reveal delay={80}>
         <h2
-          className={`${textWhite ? "text-white" : !props.switch ? "text-primary" : "text-secondary"} ${props.notUppercase ? "" : "uppercase"}  xl:font-5xl ${bold ? "font-bold" : ""} ${!notCenter ? "text-center" : ""} ${smallSize ? "text-lg" : "text-xl lg:text-3xl"}  `}
+          className={`${textWhite ? "text-white" : !props.switch ? "text-primary" : "text-secondary"} ${props.notUppercase ? "" : "uppercase"}  xl:font-5xl ${bold ? "font-bold" : ""} ${!notCenter ? "text-center" : ""} ${smallSize ? "text-lg" : "text-xl lg:text-3xl"}  ${marginBottom ? "mb-3" : ""}`}
         >
           {props.left}{" "}
           {props.right && (
