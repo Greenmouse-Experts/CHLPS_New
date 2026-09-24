@@ -105,7 +105,7 @@ export default function WhatOurMembersSaySection({
       className="relative isolate overflow-hidden bg-[#FAF9F5] bg-cover bg-center py-8 "
       style={{ backgroundImage: "url('/assets/images/reviews_bg.png')" }}
     >
-      <PageContainer>
+      <PageContainer className="">
         {/* Section Header */}
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <HeaderText left="WHAT OUR" right="MEMBERS SAY" />
@@ -119,7 +119,7 @@ export default function WhatOurMembersSaySection({
         </div>
 
         {/* Testimonial Cards Grid */}
-        <RevealGroup className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+        <RevealGroup className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 max-w-7xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <article
               key={testimonial.id}

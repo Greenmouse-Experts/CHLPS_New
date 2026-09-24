@@ -164,7 +164,7 @@ export default function CareerPathwaysSection() {
           </HeaderSubText>
         </div>
 
-        <RevealGroup className="mx-auto mt-10 grid max-w-xl auto-rows-fr grid-cols-1 gap-3 sm:mt-8 sm:max-w-none sm:grid-cols-2 sm:gap-4 lg:mt-14 lg:max-w-5xl lg:gap-x-5 lg:gap-y-4 xl:max-w-[1180px]">
+        <RevealGroup className="mx-auto mt-10 grid max-w-xl auto-rows-fr grid-cols-1 gap-3 sm:mt-8 sm:max-w-none sm:grid-cols-2 sm:gap-4  lg:max-w-5xl lg:gap-x-5 lg:gap-y-4 xl:max-w-[1180px]">
           {careers.map((career, index) => (
             <div
               key={career.title}
