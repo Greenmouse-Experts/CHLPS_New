@@ -119,7 +119,7 @@ export default function WhatOurMembersSaySection({
         </div>
 
         {/* Testimonial Cards Grid */}
-        <RevealGroup className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 max-w-7xl mx-auto">
+        <RevealGroup className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <article
               key={testimonial.id}
