@@ -40,7 +40,7 @@ export default function LeadershipSection() {
               type="button"
               onClick={() => setActiveLeader(leader)}
               aria-label={`View profile of ${leader.name}`}
-              className="reveal group flex h-full flex-col overflow-hidden rounded-[1.25rem] bg-white text-left transition-shadow duration-200 hover:shadow-[0_18px_40px_-24px_rgba(33,26,115,0.45)]"
+              className="reveal group flex h-full flex-col overflow-hidden rounded-[1.25rem] bg-white text-left transition-shadow cursor-pointer duration-200 hover:shadow-[0_18px_40px_-24px_rgba(33,26,115,0.45)]"
               style={revealStyle(index)}
             >
               <div className="relative aspect-[10/10] w-full overflow-hidden">

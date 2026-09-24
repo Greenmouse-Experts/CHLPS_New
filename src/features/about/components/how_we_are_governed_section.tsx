@@ -68,7 +68,7 @@ export default function HowWeAreGovernedSection() {
                   <h3 className=" font-semibold uppercase tracking-[0.06em] text-secondary ]">
                     Governance Approach
                   </h3>
-                  <p className="mt-2 leading-relaxed text-white/85 ">
+                  <p className="mt-2  leading-relaxed text-white/85 ">
                     Strategic leadership from the Board is supported by
                     structured operational management across the Association.
                   </p>
