@@ -16,7 +16,7 @@ export default function CertificationDetailsBenefitsSection({
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#FAF7EC] py-8 sm:py-20 ">
+    <section className="relative overflow-hidden bg-[#FAF7EC] p-10 ">
       <div className="absolute inset-0">
         <Image
           src={Assets.images.certificateDetailsBenefitsBg}
@@ -30,7 +30,7 @@ export default function CertificationDetailsBenefitsSection({
 
       <PageContainer className="relative z-10">
         <Reveal>
-          <article className="rounded-[1.75rem] bg-white px-5 py-8 shadow-[0_18px_40px_rgba(34,26,122,0.06)] sm:rounded-[2rem] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+          <article className="rounded-[1.75rem] bg-white  shadow-[0_18px_40px_rgba(34,26,122,0.06)] sm:rounded-[2rem] p-6 max-w-7xl mx-auto">
             <h2 className="text-[1.5rem] font-medium leading-tight tracking-tight text-[#221A7A] sm:text-[1.85rem] lg:text-[2.15rem]">
               {detail.benefitsTitle}
             </h2>
