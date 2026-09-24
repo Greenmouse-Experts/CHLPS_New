@@ -21,7 +21,7 @@ export default function HeaderText(props: {
     <>
       <Reveal delay={80}>
         <h2
-          className={`${textWhite ? "text-white" : !props.switch ? "text-primary" : "text-secondary"} ${props.notUppercase ? "" : "uppercase"}  xl:font-5xl font-bold ${!notCenter ? "text-center" : ""} ${smallSize ? "text-lg" : "text-3xl"}  `}
+          className={`${textWhite ? "text-white" : !props.switch ? "text-primary" : "text-secondary"} ${props.notUppercase ? "" : "uppercase"}  xl:font-5xl ${bold ? "font-bold" : ""} ${!notCenter ? "text-center" : ""} ${smallSize ? "text-lg" : "text-3xl"}  `}
         >
           {props.left}{" "}
           {props.right && (

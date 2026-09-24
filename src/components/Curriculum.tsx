@@ -58,7 +58,7 @@ export default function Curriculum({ id, sections = [] }: CurriculumProps) {
           </div>
 
           {/* Curriculum Accordion List */}
-          <div className="mt-10 md:mt-8">
+          <div className="mt-4">
             {id ? (
               <QueryCompLayout
                 query={query}
