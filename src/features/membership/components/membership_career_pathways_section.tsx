@@ -18,7 +18,7 @@ export default function MembershipCareerPathwaysSection({
   }
 
   return (
-    <section className="bg-[#F4F3F9] py-8 md:py-24">
+    <section className="bg-[#F4F3F9] py-8 ">
       <PageContainer>
         <Reveal>
           <div className="rounded-[1.75rem] bg-white p-6 shadow-[0_16px_40px_rgba(33,26,115,0.06)] sm:p-10 lg:rounded-[2rem] lg:p-12 xl:p-14">

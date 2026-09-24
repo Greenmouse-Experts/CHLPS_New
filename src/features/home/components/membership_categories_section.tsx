@@ -96,7 +96,7 @@ export default function MembershipCategoriesSection() {
   });
 
   return (
-    <section id="membership" className="bg-[#F5F5F5] py-8 md:py-24">
+    <section id="membership" className="bg-[#F5F5F5] py-8 ">
       <PageContainer>
         <div className="flex items-center justify-center">
           <div className="max-w-5xl flex items-center justify-center flex-col">

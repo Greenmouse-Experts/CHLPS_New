@@ -159,7 +159,7 @@ export default function CertificationPathwaySection() {
   );
 
   return (
-    <section id="pathways" className="bg-[#FAF9FD] py-8 sm:py-20 lg:py-24">
+    <section id="pathways" className="bg-[#FAF9FD] py-8 sm:py-20 ">
       <PageContainer>
         <div className="flex flex-col items-center text-center">
           <HeaderText left="certification" right="levels" />

@@ -35,7 +35,7 @@ export default function CertificationBenefitsSection() {
   return (
     <section
       id="program-benefits"
-      className="relative overflow-hidden bg-[#F7F6FB] py-8 md:py-24"
+      className="relative overflow-hidden bg-[#F7F6FB] py-8 "
     >
       <PageContainer className="relative z-10">
         <HeaderText left="How Our Programs" right="benefits you" />

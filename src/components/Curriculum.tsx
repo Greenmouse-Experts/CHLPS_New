@@ -50,10 +50,7 @@ export default function Curriculum({ id, sections = [] }: CurriculumProps) {
 
   return (
     <>
-      <section
-        id="curriculum"
-        className="scroll-mt-24 bg-[#FAF9F5] py-8 md:py-24"
-      >
+      <section id="curriculum" className="scroll-mt-24 bg-[#FAF9F5] py-8 ">
         <PageContainer className="mx-auto px-4 sm:px-6">
           {/* Section Header */}
           <div className="flex flex-col items-center justify-center text-center">

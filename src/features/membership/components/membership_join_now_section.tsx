@@ -30,7 +30,7 @@ export default function MembershipJoinNowSection({
   }
 
   return (
-    <section className="bg-[#F8F5EC] py-8 md:py-24 border border-[#6D688580]">
+    <section className="bg-[#F8F5EC] py-8  border border-[#6D688580]">
       <PageContainer>
         <Reveal>
           <div className="rounded-[1.75rem] bg-white p-6 shadow-[0_16px_40px_rgba(33,26,115,0.06)] sm:p-10 lg:rounded-[2rem] lg:p-12 xl:p-14">

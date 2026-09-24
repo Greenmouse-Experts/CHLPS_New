@@ -32,7 +32,7 @@ export default function MembershipJobsSection({
   }
 
   return (
-    <section className="bg-white py-8 md:py-24">
+    <section className="bg-white py-8 ">
       <PageContainer>
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="w-full">

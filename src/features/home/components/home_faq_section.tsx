@@ -42,7 +42,7 @@ export default function HomeFaqSection({
   };
 
   return (
-    <section id="faq" className="bg-[#FAF9F5] py-8 md:py-24">
+    <section id="faq" className="bg-[#FAF9F5] py-8 ">
       <PageContainer>
         {/* Top Dark Banner */}
         <Reveal>

@@ -63,7 +63,7 @@ export const NEED_FOR_LOSS_PREVENTION_CARDS: NeedCardItem[] = [
 
 export default function NeedForLossPreventionSection() {
   return (
-    <section id="need-for-lp" className="bg-cream py-8 md:py-24">
+    <section id="need-for-lp" className="bg-cream py-8 ">
       <PageContainer>
         {/* Section Header */}
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">

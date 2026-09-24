@@ -69,7 +69,7 @@ const coreValues: CoreValueItem[] = [
 
 export default function OurCoreValuesSection() {
   return (
-    <section id="core-values" className="bg-white py-8 md:py-24 derma">
+    <section id="core-values" className="bg-white py-8  derma">
       <PageContainer>
         {/* Section Header */}
         <div className="flex items-center justify-center">

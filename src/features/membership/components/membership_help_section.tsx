@@ -31,7 +31,7 @@ export default function MembershipHelpSection({
   }
 
   return (
-    <section className="bg-white py-8 md:py-24">
+    <section className="bg-white py-8 ">
       <PageContainer>
         <div className="mx-auto flex max-w-[46rem] flex-col items-center text-center">
           <HeaderText left={"How will certified"} right="membership help me?" />

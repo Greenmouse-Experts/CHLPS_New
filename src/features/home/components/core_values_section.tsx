@@ -186,7 +186,7 @@ export default function CoreValuesSection() {
         </div>
       </div>
 
-      <PageContainer className="relative z-10 py-8 md:py-24">
+      <PageContainer className="relative z-10 py-8 ">
         <Reveal className="flex justify-center">
           <span
             className="cut-tr-bl inline-block bg-[#6B65C4] px-3.5 py-1.5 text-[15px] font-bold uppercase tracking-[0.14em] text-white sm:text-[20px]"
