@@ -62,7 +62,7 @@ export default function ContactMapSection() {
                 </div>
 
                 {/* Map Container with Pinned Location Overlay */}
-                <div className="relative mt-6 min-h-[340px] flex-1 overflow-hidden rounded-2xl border border-base-200 shadow-xs sm:min-h-[400px]">
+                <div className="relative mt-6 min-h-[340px] flex-1 overflow-hidden rounded-2xl border border-base-200 shadow-xs sm:min-h-[400px] ">
                   <iframe
                     src={MAP_EMBED}
                     title="Map showing the ChLPS Canada office on Victoria Avenue, Windsor, Ontario"
@@ -91,8 +91,8 @@ export default function ContactMapSection() {
           </Reveal>
 
           {/* Right Card: Send A Message Form */}
-          <Reveal delay={100} className="h-full">
-            <div className="card relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-base-200/80 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+          <Reveal delay={100} className="h-full ">
+            <div className="card relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-base-200/80 bg-white p-6 shadow-sm sm:p-8 lg:p-10 ring ring-secondary ">
               <div className="relative z-10 flex flex-col justify-between flex-1">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-[#2B3582]">
