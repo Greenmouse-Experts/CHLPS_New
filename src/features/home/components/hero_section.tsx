@@ -209,7 +209,7 @@ export default function HeroSection() {
                       </h1>
 
                       <p
-                        className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]"
+                        className=" max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]"
                         dangerouslySetInnerHTML={{ __html: slide.body }}
                       />
 

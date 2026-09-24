@@ -59,7 +59,7 @@ export default function HomeFaqSection({
               Frequently Asked <span className="text-[#CDA54E]">Questions</span>
             </h2>
 
-            <p className="relative z-10 mx-auto mt-4 max-w-2xl  leading-relaxed text-[#D0CDE0] sm:text-base md:mt-5">
+            <p className="relative z-10 mx-auto  max-w-2xl  leading-relaxed text-[#D0CDE0] sm:text-base md:mt-5">
               Find answers to common questions about our programs,
               certifications, accreditations, and how we can help you advance
               your career.

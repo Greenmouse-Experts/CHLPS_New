@@ -26,14 +26,14 @@ export default function LeadershipSection() {
           </Reveal>
 
           <Reveal delay={160}>
-            <p className="mt-4 max-w-[34rem] text-[15px] leading-relaxed  sm:text-base">
+            <p className=" max-w-[34rem] text-[15px] leading-relaxed  sm:text-base">
               The governance page identifies the following leaders responsible
               for Board oversight and executive management within ChLPS Canada.
             </p>
           </Reveal>
         </div>
 
-        <RevealGroup className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+        <RevealGroup className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3">
           {leaders.map((leader, index) => (
             <button
               key={leader.id}

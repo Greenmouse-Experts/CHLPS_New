@@ -155,7 +155,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-base-200 text-base-content/60">
               <HugeiconsIcon icon={ShieldCheckIcon} size={32} />
             </div>
-            <h3 className="mt-4 text-xl font-bold text-[#0D154B]">
+            <h3 className=" text-xl font-bold text-[#0D154B]">
               Application Not Found
             </h3>
             <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
@@ -316,7 +316,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
                   </div>
 
                   {application.description && (
-                    <p className="mt-4 text-sm leading-relaxed text-base-content/80">
+                    <p className=" text-sm leading-relaxed text-base-content/80">
                       {application.description}
                     </p>
                   )}
@@ -387,7 +387,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
                       </span>
                     </div>
 
-                    <div className="mt-4 divide-y divide-base-200/60">
+                    <div className=" divide-y divide-base-200/60">
                       {application.answers.map((item, idx) => (
                         <div
                           key={item.questionId || idx}
@@ -548,7 +548,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
                       </div>
                     </div>
 
-                    <div className="mt-4 space-y-3 text-xs">
+                    <div className=" space-y-3 text-xs">
                       <div className="flex justify-between text-base-content/70">
                         <span>Current Stage:</span>
                         <span className="font-bold text-[#0D154B]">
@@ -597,7 +597,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
                     verification, or membership fees:
                   </p>
 
-                  <div className="mt-4 flex flex-col gap-2">
+                  <div className=" flex flex-col gap-2">
                     <Link
                       href="/dashboard/support"
                       className="btn btn-outline btn-sm justify-start gap-2 rounded-xl border-base-300 normal-case text-xs font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"

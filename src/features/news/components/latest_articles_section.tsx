@@ -208,7 +208,7 @@ export default function LatestArticlesSection() {
                           setSearch("");
                           setSelectedTag("all");
                         }}
-                        className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2  font-semibold text-white shadow-sm hover:opacity-90"
+                        className=" inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2  font-semibold text-white shadow-sm hover:opacity-90"
                       >
                         Reset filters
                       </button>

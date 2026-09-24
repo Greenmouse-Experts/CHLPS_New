@@ -33,7 +33,7 @@ export default function CertificationMattersSection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[36rem] text-[15px] leading-relaxed text-[#5B5A66] sm:text-base lg:mt-5 lg:text-[17px] xl:text-[18px]">
+              <p className=" max-w-[36rem] text-[15px] leading-relaxed text-[#5B5A66] sm:text-base lg:mt-5 lg:text-[17px] xl:text-[18px]">
                 Achieving any of our certifications is not just a milestone;
                 it&apos;s an investment in your loss prevention and corporate
                 security career. The rigorous training and assessments

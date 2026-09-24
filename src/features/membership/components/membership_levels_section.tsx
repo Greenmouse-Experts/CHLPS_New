@@ -133,7 +133,7 @@ export default function MembershipLevelsSection() {
           </div>
         </div>
 
-        <div className="mt-10 sm:mt-12">
+        <div className="mt-10 sm:mt-8">
           <QueryCompLayout
             query={query}
             loadingText="Loading membership levels..."

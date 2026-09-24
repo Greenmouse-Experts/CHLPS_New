@@ -137,7 +137,7 @@ export default function AtAGlanceSection({
               </h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[500px] text-[15px] leading-relaxed text-[#383740] sm:text-[20px] lg:mt-5">
+              <p className=" max-w-[500px] text-[15px] leading-relaxed text-[#383740] sm:text-[20px] lg:mt-5">
                 {body}
               </p>
             </Reveal>

@@ -75,7 +75,7 @@ export default function OurCoreValuesSection() {
         <div className="flex items-center justify-center">
           <div className="flex max-w-5xl flex-col items-center justify-center text-center">
             <HeaderText left="OUR" right="CORE VALUES" />
-            <div className="mt-4">
+            <div className="">
               <HeaderSubText smallWidth>
                 Six values shape the way ChLPS Canada leads, serves members and
                 upholds professional trust.
@@ -85,7 +85,7 @@ export default function OurCoreValuesSection() {
         </div>
 
         {/* 2-Column Content */}
-        <div className="mt-12 grid items-center gap-10 lg:mt-16 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+        <div className=" grid items-center gap-10 lg:mt-4 lg:grid-cols-2 lg:gap-12 xl:gap-16">
           {/* Left: Image with floating "Our 6 guiding values" badge */}
           <Reveal className="relative mx-auto w-full max-w-[540px] lg:max-w-none">
             <div className="relative">

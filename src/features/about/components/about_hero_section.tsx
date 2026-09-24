@@ -87,7 +87,7 @@ export default function AboutHeroSection({
                   left="A professional home for every stage"
                   right="of loss prevention."
                 />
-                <p className="text-white text-xl mt-4">
+                <p className="text-white text-xl ">
                   Build professional standing through membership,
                   <br /> certification and continous learning
                 </p>

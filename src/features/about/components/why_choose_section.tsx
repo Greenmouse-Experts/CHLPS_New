@@ -73,7 +73,7 @@ export default function WhyChooseSection() {
           <div className="flex justify-center items-center text-center flex-col">
             <HeaderText left="Why" right="Choose Us" notCenter />
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[29rem]  leading-relaxed lg:mt-5">
+              <p className=" max-w-[29rem]  leading-relaxed lg:mt-5">
                 ChLPS Canada combines professional recognition, continuous
                 learning, ethical standards, industry representation and a
                 connected community around one progressive career pathway.

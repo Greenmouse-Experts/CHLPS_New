@@ -38,7 +38,7 @@ export default function NewsHeroSection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[520px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
+              <p className=" max-w-[520px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
                 Choose content that answers your questions, learn from admired
                 professionals, and gain exclusive insights to excel in your
                 role.

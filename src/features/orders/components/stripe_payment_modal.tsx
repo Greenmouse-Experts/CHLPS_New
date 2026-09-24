@@ -108,7 +108,7 @@ function CheckoutForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+    <form onSubmit={handleSubmit} className=" space-y-4">
       <PaymentElement />
       {errorMessage && (
         <div className="rounded-lg bg-red-50 p-3  text-red-700">
@@ -118,7 +118,7 @@ function CheckoutForm({
       <button
         type="submit"
         disabled={!stripe || isProcessing}
-        className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#221A7A] px-4 font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+        className=" flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#221A7A] px-4 font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {isProcessing ? (
           <>

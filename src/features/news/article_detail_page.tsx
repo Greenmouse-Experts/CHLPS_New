@@ -230,7 +230,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
 
                     {/* Article tags footer */}
                     {article.tags && article.tags.length > 0 ? (
-                      <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-[#EAE7F2] pt-6">
+                      <div className="mt-8 flex flex-wrap items-center gap-2 border-t border-[#EAE7F2] pt-6">
                         <span className="flex items-center gap-1.5  font-semibold text-[#7B788B]">
                           <HugeiconsIcon
                             icon={Tag01Icon}

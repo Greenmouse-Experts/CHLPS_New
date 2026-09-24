@@ -324,7 +324,7 @@ export default function CertificationAssessmentPage({
                       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#189D52] text-white shadow-sm">
                         <HugeiconsIcon icon={CheckmarkCircle02Icon} size={36} />
                       </div>
-                      <h2 className="mt-4 text-xl font-bold text-[#0E582E] sm:text-2xl">
+                      <h2 className=" text-xl font-bold text-[#0E582E] sm:text-2xl">
                         Assessment Completed
                       </h2>
                       <p className="mt-2 max-w-lg  text-[#276B45]">

@@ -20,7 +20,7 @@ export default function LeadershipDevelopmentSection() {
                   Build the capability to lead beyond the technical role.
                 </h2>
 
-                <p className="mt-4 max-w-[38rem] text-[15px] leading-relaxed text-[#676672] sm:text-base lg:mt-5">
+                <p className=" max-w-[38rem] text-[15px] leading-relaxed text-[#676672] sm:text-base lg:mt-5">
                   For senior loss prevention professionals, advanced development
                   supports stronger leadership, strategic thinking, professional
                   partnerships and better decision-making in complex
@@ -38,7 +38,7 @@ export default function LeadershipDevelopmentSection() {
                   Develop your next professional advantage.
                 </h3>
 
-                <p className="mt-3 text-[15px] leading-relaxed text-[#676672] sm:text-base lg:mt-4">
+                <p className="mt-3 text-[15px] leading-relaxed text-[#676672] sm:text-base lg:">
                   Explore certification and advanced learning designed to
                   complement your membership journey and support progression
                   into supervisory, managerial and strategic roles.

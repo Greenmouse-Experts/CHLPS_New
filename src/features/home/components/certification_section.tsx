@@ -117,7 +117,7 @@ export default function CertificationSection() {
           </div>
         </div>
 
-        <div className="mt-10 sm:mt-12">
+        <div className="mt-10 sm:mt-8">
           <QueryCompLayout
             query={query}
             loadingText="Loading certification programs..."

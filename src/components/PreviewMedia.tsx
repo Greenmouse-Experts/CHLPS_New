@@ -117,7 +117,7 @@ export default function PreviewMedia({ sub }: { sub: CourseContentSub }) {
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#1E1758]/10 text-[#1E1758]">
           <Lock className="h-8 w-8 text-[#1E1758]" />
         </div>
-        <h4 className="mt-4 text-lg font-bold text-[#1E1758]">
+        <h4 className=" text-lg font-bold text-[#1E1758]">
           Preview Not Available
         </h4>
         <p className="mt-2 max-w-md  text-[#7A778B] leading-relaxed">
@@ -153,7 +153,7 @@ export default function PreviewMedia({ sub }: { sub: CourseContentSub }) {
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#1E1758]/10 text-[#1E1758]">
           <ClipboardList className="h-8 w-8 text-[#1E1758]" />
         </div>
-        <h4 className="mt-4 text-lg font-bold text-[#1E1758]">
+        <h4 className=" text-lg font-bold text-[#1E1758]">
           Module Knowledge Assessment
         </h4>
         <p className="mt-2 max-w-md  text-[#7A778B] leading-relaxed">

@@ -117,7 +117,7 @@ export default function GovernanceStructureSection() {
                 </h3>
 
                 <p
-                  className={`mt-4 text-[15px] leading-relaxed sm:text-base ${card.bodyColor}`}
+                  className={` text-[15px] leading-relaxed sm:text-base ${card.bodyColor}`}
                 >
                   {card.body}
                 </p>

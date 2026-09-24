@@ -96,7 +96,7 @@ export default function MissionVisionSection() {
                 {card.title}
               </p>
 
-              <p className="relative mt-4 text-[15px] leading-relaxed text-[#676672] sm:text-base">
+              <p className="relative  text-[15px] leading-relaxed text-[#676672] sm:text-base">
                 {card.body}
               </p>
             </article>

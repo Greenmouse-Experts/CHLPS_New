@@ -196,7 +196,7 @@ export default function CoreValuesSection() {
           </span>
         </Reveal>
 
-        <div className="mt-10 lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.2fr)] lg:items-start lg:gap-12 lg:mt-12 xl:gap-16">
+        <div className="mt-10 lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.2fr)] lg:items-start lg:gap-12 lg:mt-8 xl:gap-16">
           <div
             ref={leftRef}
             className="lg:sticky lg:top-[6.5rem] lg:z-10 lg:self-start"

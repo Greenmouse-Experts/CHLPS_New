@@ -48,7 +48,7 @@ export default function CertificationBenefitsSection() {
           </Reveal>*/}
         </div>
 
-        <RevealGroup className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        <RevealGroup className="mt-10 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {benefits.map((benefit, index) => (
             <article
               key={benefit.body}

@@ -61,7 +61,7 @@ export default function WhyJoinChlpsSection() {
         {/* Header */}
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <HeaderText left="WHY JOIN" right="CHLPS-CANADA" />
-          <div className="mt-4">
+          <div className="">
             <HeaderSubText>
               Advance your expertise, strengthen your professional credibility,
               and become part of a community committed to excellence in Loss
@@ -75,7 +75,7 @@ export default function WhyJoinChlpsSection() {
         </div>
 
         {/* 6 Cards Grid */}
-        <RevealGroup className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <RevealGroup className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {WHY_JOIN_CHLPS_CARDS.map((card, index) => (
             <article
               key={card.title}
@@ -115,7 +115,7 @@ export default function WhyJoinChlpsSection() {
         </RevealGroup>
 
         {/* Bottom CTA Button */}
-        <Reveal delay={120} className="mt-10 flex justify-center sm:mt-12">
+        <Reveal delay={120} className="mt-10 flex justify-center sm:mt-8">
           <Link
             href="/membership"
             className="inline-flex items-center gap-3 rounded-full bg-secondary px-8 py-3.5 text-[15px] font-bold text-white shadow-[0_6px_20px_rgba(205,165,78,0.35)] transition-all duration-200 hover:brightness-105 active:scale-[0.99]"

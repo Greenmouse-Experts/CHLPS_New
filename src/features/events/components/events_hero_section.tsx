@@ -44,7 +44,7 @@ export default function EventsHeroSection({
             </Reveal>
 
             <Reveal delay={80}>
-              <p className="mt-4 max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
+              <p className=" max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
                 {body}
               </p>
             </Reveal>

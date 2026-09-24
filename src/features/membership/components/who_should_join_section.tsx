@@ -85,7 +85,7 @@ export default function WhoShouldJoinSection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[36rem] text-[15px] leading-relaxed text-[#5B5A66] sm:text-base lg:mt-5">
+              <p className=" max-w-[36rem] text-[15px] leading-relaxed text-[#5B5A66] sm:text-base lg:mt-5">
                 Whether you are discovering the profession, building practical
                 experience, strengthening your standing or leading teams, ChLPS
                 Canada provides a membership route designed around your stage of

@@ -46,7 +46,7 @@ export default function MembershipQuestionsSection({
           </Reveal>
 
           <Reveal delay={80}>
-            <h2 className="mt-4 text-[1.75rem] font-bold leading-tight tracking-tight text-[#221A7A] sm:text-3xl lg:text-[38px]">
+            <h2 className=" text-[1.75rem] font-bold leading-tight tracking-tight text-[#221A7A] sm:text-3xl lg:text-[38px]">
               Application Questions
             </h2>
           </Reveal>

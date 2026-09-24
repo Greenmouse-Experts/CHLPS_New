@@ -111,7 +111,7 @@ export default function QueryCompLayout<TData>(
           <button
             type="button"
             onClick={() => query.refetch?.()}
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2  font-semibold text-white shadow-sm transition-all hover:opacity-90 active:scale-95 cursor-pointer"
+            className=" inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2  font-semibold text-white shadow-sm transition-all hover:opacity-90 active:scale-95 cursor-pointer"
           >
             <RefreshCcw className="h-3.5 w-3.5" />
             Try Again

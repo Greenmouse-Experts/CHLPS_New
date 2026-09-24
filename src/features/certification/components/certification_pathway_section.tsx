@@ -166,7 +166,7 @@ export default function CertificationPathwaySection() {
         </div>
 
         {isLoading && (
-          <div className="mt-12 text-center text-[#554F7A]">
+          <div className="mt-8 text-center text-[#554F7A]">
             <span className="loading loading-dots loading-lg text-primary" />
             <p className="mt-3 text-sm text-[#554F7A]">
               Loading certification pathways...
@@ -175,7 +175,7 @@ export default function CertificationPathwaySection() {
         )}
 
         {!isLoading && programs.length === 0 && (
-          <div className="card mx-auto mt-12 max-w-lg border border-dashed border-[#D2CEDF] bg-white p-8 text-center text-[#554F7A]">
+          <div className="card mx-auto mt-8 max-w-lg border border-dashed border-[#D2CEDF] bg-white p-8 text-center text-[#554F7A]">
             <p className="text-base font-medium">
               No certification programs currently available.
             </p>
@@ -183,7 +183,7 @@ export default function CertificationPathwaySection() {
         )}
 
         {!isLoading && programs.length > 0 && (
-          <div className="mt-12 sm:mt-16">
+          <div className="mt-8 sm:mt-4">
             <RevealGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {programs.map((programme, index) => {
                 const abbr = extractAbbr(programme.title);

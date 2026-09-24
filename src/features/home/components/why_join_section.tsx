@@ -55,12 +55,12 @@ export default function WhyJoinSection() {
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-4 text-[1.625rem] font-medium leading-[1.15] tracking-tight text-[#151515] sm:mt-5 sm:text-[1.75rem] md:text-[2rem] lg:mt-6 lg:text-[2.25rem] xl:text-[40px] xl:leading-tight">
+              <h2 className=" text-[1.625rem] font-medium leading-[1.15] tracking-tight text-[#151515] sm:mt-5 sm:text-[1.75rem] md:text-[2rem] lg:mt-6 lg:text-[2.25rem] xl:text-[40px] xl:leading-tight">
                 For professionals ready to grow.
               </h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-3.5 text-[15px] leading-relaxed text-[#383740] sm:mt-4 sm:text-base md:text-[17px] lg:mt-5 lg:text-[20px] xl:text-[24px] xl:leading-[1.55]">
+              <p className="mt-3.5 text-[15px] leading-relaxed text-[#383740] sm: sm:text-base md:text-[17px] lg:mt-5 lg:text-[20px] xl:text-[24px] xl:leading-[1.55]">
                 ChLPS Canada connects professional recognition with the
                 knowledge, standards, community and development opportunities
                 needed to grow from entry-level practice into leadership.
@@ -97,7 +97,7 @@ export default function WhyJoinSection() {
                     strokeWidth={1.8}
                   />
                 </div>
-                <h3 className="mt-4 text-lg font-bold leading-tight tracking-tight text-[#151515] sm:mt-5 sm:text-xl md:text-[22px] lg:text-2xl xl:text-[30px]">
+                <h3 className=" text-lg font-bold leading-tight tracking-tight text-[#151515] sm:mt-5 sm:text-xl md:text-[22px] lg:text-2xl xl:text-[30px]">
                   {feature.title}
                 </h3>
                 <p className="mt-1.5  leading-relaxed text-[#676672] sm:mt-2 sm: md:text-[15px] lg:text-[17px] xl:text-[20px]">

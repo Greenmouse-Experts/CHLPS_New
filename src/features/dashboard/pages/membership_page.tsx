@@ -176,7 +176,7 @@ export default function MembershipDashboardPage() {
                   color="currentColor"
                 />
               </div>
-              <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
+              <h3 className=" text-xl font-bold text-[#0D154B] sm:text-2xl">
                 No Membership Applications Yet
               </h3>
               <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
@@ -384,7 +384,7 @@ function MembershipApplicationCard({
         </div>
 
         {/* Title and ID */}
-        <div className="mt-4">
+        <div className="">
           <h4 className="text-lg font-bold leading-snug text-[#0D154B]">
             {application.name}
           </h4>
@@ -396,7 +396,7 @@ function MembershipApplicationCard({
         </div>
 
         {/* Details List */}
-        <div className="mt-4 space-y-2 rounded-xl bg-base-100/60 p-3 text-xs">
+        <div className=" space-y-2 rounded-xl bg-base-100/60 p-3 text-xs">
           <div className="flex items-center justify-between text-base-content/70">
             <span>Applied Date:</span>
             <span className="font-semibold text-base-content">

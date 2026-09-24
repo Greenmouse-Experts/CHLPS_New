@@ -31,9 +31,7 @@ export default function EventsPage({ initialEvents }: EventsPageProps) {
       <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F3F5F8] text-[#161058]">
         <HugeiconsIcon icon={Calendar03Icon} size={28} />
       </div>
-      <h3 className="mt-4 text-lg font-bold text-[#161058]">
-        No Events Scheduled
-      </h3>
+      <h3 className=" text-lg font-bold text-[#161058]">No Events Scheduled</h3>
       <p className="mt-2  ">
         There are currently no events published. Please check back soon for
         upcoming sessions and conferences.

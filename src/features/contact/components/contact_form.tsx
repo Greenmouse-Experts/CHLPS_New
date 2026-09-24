@@ -84,7 +84,7 @@ export default function ContactForm() {
       </div>
 
       {/* Row 2: Email & Phone */}
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className=" grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
             Email
@@ -112,7 +112,7 @@ export default function ContactForm() {
       </div>
 
       {/* Row 3: Interested In */}
-      <div className="mt-4">
+      <div className="">
         <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
           Interested In
         </label>
@@ -134,7 +134,7 @@ export default function ContactForm() {
       </div>
 
       {/* Row 4: Message */}
-      <div className="mt-4">
+      <div className="">
         <label className="label-text mb-1.5 block text-xs font-semibold text-base-content/80">
           Message
         </label>

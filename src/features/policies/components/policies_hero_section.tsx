@@ -46,7 +46,7 @@ export default function PoliciesHeroSection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[440px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
+              <p className=" max-w-[440px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
                 Review the policies, privacy practices and professional
                 standards that guide how ChLPS Canada operates and supports its
                 professional community.

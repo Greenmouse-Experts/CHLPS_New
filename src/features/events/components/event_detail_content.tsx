@@ -63,7 +63,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
           <h1 className="mt-2.5 text-[1.85rem] font-medium leading-[1.12] tracking-tight text-[#161058] sm:text-[50px] xl:text-[70px]">
             {event.title}
           </h1>
-          <p className="mt-3 text-[20px] leading-relaxed text-[#333041] sm:mt-4 sm:text-[24px]">
+          <p className="mt-3 text-[20px] leading-relaxed text-[#333041] sm: sm:text-[24px]">
             {event.description}
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
           Event details
         </h2>
 
-        <div className="mt-4 rounded-[28px] bg-white px-5 py-5 sm:px-6 sm:py-6 border border-[#E8E2F0]">
+        <div className=" rounded-[28px] bg-white px-5 py-5 sm:px-6 sm:py-6 border border-[#E8E2F0]">
           <div className="flex flex-col gap-4">
             <DetailMetaRow
               icon={Calendar03Icon}
@@ -91,7 +91,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
           </div>
         </div>
 
-        <div className="mt-3 rounded-[1.15rem] bg-white px-5 py-5 sm:mt-4 sm:px-6 sm:py-6 border border-[#E0DAF1]">
+        <div className="mt-3 rounded-[1.15rem] bg-white px-5 py-5 sm: sm:px-6 sm:py-6 border border-[#E0DAF1]">
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9A97A8]">
             Ticket
           </p>

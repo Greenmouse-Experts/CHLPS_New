@@ -33,7 +33,7 @@ export default function CertificationSupportSection() {
             <HeaderText left="How We" right="Support You" notCenter textWhite />
 
             <Reveal delay={160}>
-              <div className="mt-4 max-w-[40rem] space-y-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-[17px] xl:text-[18px]">
+              <div className=" max-w-[40rem] space-y-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-[17px] xl:text-[18px]">
                 <p>
                   We guide you at every stage with expert-led training,
                   practical resources, and ongoing professional support.

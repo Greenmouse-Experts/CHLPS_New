@@ -109,7 +109,7 @@ export default function WhatOurMembersSaySection({
         {/* Section Header */}
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <HeaderText left="WHAT OUR" right="MEMBERS SAY" />
-          <div className="mt-4">
+          <div className="">
             <HeaderSubText>
               Discover how CHLPS Canada is making a real difference in the
               careers and professional journeys of Loss Prevention professionals
@@ -119,7 +119,7 @@ export default function WhatOurMembersSaySection({
         </div>
 
         {/* Testimonial Cards Grid */}
-        <RevealGroup className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+        <RevealGroup className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
           {testimonials.map((testimonial, index) => (
             <article
               key={testimonial.id}

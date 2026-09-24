@@ -187,7 +187,7 @@ function EventListCard({ event, index }: { event: ChlpsEvent; index: number }) {
 
 function UpcomingEventsSkeleton() {
   return (
-    <div className="mt-10 grid items-stretch gap-5 lg:mt-12 lg:grid-cols-2 lg:gap-6 xl:gap-8">
+    <div className="mt-10 grid items-stretch gap-5 lg:mt-8 lg:grid-cols-2 lg:gap-6 xl:gap-8">
       <div className="min-h-[20rem] animate-pulse rounded-[1.5rem] bg-primary/10" />
       <div className="flex flex-col gap-4">
         {[0, 1, 2].map((index) => (
@@ -247,7 +247,7 @@ export default function UpcomingEventsSection() {
           <UpcomingEventsSkeleton />
         ) : (
           <div
-            className={`mt-10 grid items-stretch gap-5 lg:mt-12 lg:gap-6 xl:gap-8 ${
+            className={`mt-10 grid items-stretch gap-5 lg:mt-8 lg:gap-6 xl:gap-8 ${
               otherEvents.length > 0 ? "lg:grid-cols-2" : ""
             }`}
           >

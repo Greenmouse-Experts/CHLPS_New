@@ -48,7 +48,7 @@ export default function CertificationDetailsEnrollSection({
                     </p>
                   )}
                   {detail.feeNow && (
-                    <p className="mt-4  leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
+                    <p className="  leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">
                       {detail.feeNow}
                     </p>
                   )}

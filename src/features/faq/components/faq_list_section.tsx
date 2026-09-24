@@ -174,7 +174,7 @@ export default function FaqListSection({
         )}
 
         <Reveal delay={160}>
-          <div className="mt-10 flex flex-col gap-4 rounded-[1.75rem] bg-[#0A1542] px-6 py-6 sm:mt-12 sm:flex-row sm:items-center sm:justify-between sm:rounded-full sm:px-8 sm:py-5 lg:px-10">
+          <div className="mt-10 flex flex-col gap-4 rounded-[1.75rem] bg-[#0A1542] px-6 py-6 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:rounded-full sm:px-8 sm:py-5 lg:px-10">
             <div>
               <p className="text-[1.35rem]  italic leading-tight text-white sm:text-[1.5rem]">
                 Still have a question?

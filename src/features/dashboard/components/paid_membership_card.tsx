@@ -27,7 +27,7 @@ export default function PaidMembershipCard({
           <div className="skeleton h-5 w-40 rounded" />
           <div className="skeleton h-6 w-20 rounded-full" />
         </div>
-        <div className="mt-4 flex flex-col gap-2">
+        <div className=" flex flex-col gap-2">
           <div className="skeleton h-7 w-3/4 rounded" />
           <div className="skeleton h-4 w-1/2 rounded" />
         </div>

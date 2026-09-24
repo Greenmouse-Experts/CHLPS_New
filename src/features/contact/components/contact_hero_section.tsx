@@ -32,7 +32,7 @@ export default function ContactHeroSection() {
             />
 
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[460px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
+              <p className=" max-w-[460px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
                 Connect with ChLPS Canada for membership, certification, events
                 and general enquiries.
               </p>

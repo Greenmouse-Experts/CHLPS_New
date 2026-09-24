@@ -68,7 +68,7 @@ export default function NeedForLossPreventionSection() {
         {/* Section Header */}
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <HeaderText left="THE NEED FOR" right="LOSS PREVENTION" />
-          <div className="mt-4">
+          <div className="">
             <HeaderSubText>
               Effective Loss Prevention protects assets, preserves
               profitability, strengthens resilience, and safeguards
@@ -85,7 +85,7 @@ export default function NeedForLossPreventionSection() {
         </div>
 
         {/* 6 Cards Grid (2 columns) */}
-        <RevealGroup className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8 max-w-5xl mx-auto">
+        <RevealGroup className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8 max-w-5xl mx-auto">
           {NEED_FOR_LOSS_PREVENTION_CARDS.map((card, index) => (
             <article
               key={card.title}
@@ -113,7 +113,7 @@ export default function NeedForLossPreventionSection() {
               </div>
 
               {/* Title */}
-              <h3 className="relative z-10 mt-4 text-[19px] font-bold leading-snug text-[#151515] sm:text-[21px]">
+              <h3 className="relative z-10  text-[19px] font-bold leading-snug text-[#151515] sm:text-[21px]">
                 {card.title}
               </h3>
 

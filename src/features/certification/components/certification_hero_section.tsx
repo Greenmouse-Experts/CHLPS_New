@@ -32,7 +32,7 @@ export default function CertificationHeroSection() {
               textWhite
             />
             <Reveal delay={160}>
-              <div className="mt-4 max-w-[740px] space-y-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
+              <div className=" max-w-[740px] space-y-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
                 <p>
                   The Association of Chartered Loss Prevention Specialists of
                   Canada provides professional certification and skill

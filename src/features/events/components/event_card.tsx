@@ -63,7 +63,7 @@ export default function EventCard({
             {event.description}
           </p>
 
-          <EventMeta event={event} className="mt-4" />
+          <EventMeta event={event} className="" />
 
           <div className="mt-5 lg:mt-auto lg:pt-5">
             <ViewDetailsButton href={eventHref(event)} fullWidth />

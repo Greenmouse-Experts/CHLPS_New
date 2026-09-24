@@ -40,7 +40,7 @@ export default function CareerHeroSection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-4 max-w-[520px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
+              <p className=" max-w-[520px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
                 Build a rewarding and fulfilling career protecting people,
                 assets, information, profits and organizational values across
                 every industry.

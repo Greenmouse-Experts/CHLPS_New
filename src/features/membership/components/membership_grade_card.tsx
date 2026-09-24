@@ -85,7 +85,7 @@ export default function MembershipGradeCard({
         </p>
 
         {price !== undefined && price !== null ? (
-          <div className="mt-4 flex flex-col items-center rounded-2xl border border-[#DCD6EC] bg-white/90 px-4 py-2.5 shadow-sm">
+          <div className=" flex flex-col items-center rounded-2xl border border-[#DCD6EC] bg-white/90 px-4 py-2.5 shadow-sm">
             <div className="flex items-baseline gap-1.5">
               <span className=" font-bold uppercase tracking-wider text-[#6D6885]">
                 {currency}
@@ -112,7 +112,7 @@ export default function MembershipGradeCard({
             type="button"
             onClick={onApply}
             disabled={isApplying}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-secondary py-2.5 px-4  font-bold text-[#111E2A] transition hover:brightness-95 disabled:opacity-50"
+            className=" flex w-full items-center justify-center gap-2 rounded-full bg-secondary py-2.5 px-4  font-bold text-[#111E2A] transition hover:brightness-95 disabled:opacity-50"
           >
             {isApplying ? "Checking Eligibility..." : "Apply for Grade"}
           </button>

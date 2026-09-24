@@ -147,7 +147,7 @@ export default function LeaderProfileModal({
 
           <h3
             id={`${leader.id}-name`}
-            className="mt-4 text-[1.625rem] font-bold leading-[1.1] tracking-tight text-primary sm:text-[2rem] lg:text-[2.25rem]"
+            className=" text-[1.625rem] font-bold leading-[1.1] tracking-tight text-primary sm:text-[2rem] lg:text-[2.25rem]"
           >
             {leader.name}
           </h3>
@@ -172,7 +172,7 @@ export default function LeaderProfileModal({
               Areas of Expertise
             </h4>
 
-            <ul className="mt-4 flex flex-wrap gap-2.5">
+            <ul className=" flex flex-wrap gap-2.5">
               {leader.expertise.map((item) => (
                 <li
                   key={item}
@@ -189,7 +189,7 @@ export default function LeaderProfileModal({
               Professional Profile
             </h4>
 
-            <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+            <div className=" grid gap-2.5 sm:grid-cols-2">
               {leader.profile.map((item) => (
                 <article
                   key={item.title}

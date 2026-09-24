@@ -91,7 +91,7 @@ export default function OurStorySection() {
                       strokeWidth={1.8}
                     />
                   </span>
-                  <h3 className="mt-4 text-base font-bold leading-tight text-primary sm:text-[18px]">
+                  <h3 className=" text-base font-bold leading-tight text-primary sm:text-[18px]">
                     {highlight.title}
                   </h3>
                   <p className="mt-2  leading-relaxed text-[#6E6B78]">

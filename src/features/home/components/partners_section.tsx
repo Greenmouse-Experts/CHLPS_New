@@ -84,7 +84,7 @@ export default function PartnersSection() {
         </div>
       </PageContainer>
 
-      <div className="partners-marquee relative z-10 mt-12 overflow-hidden sm:mt-16">
+      <div className="partners-marquee relative z-10 mt-8 overflow-hidden sm:mt-4">
         <div className="partners-marquee-track flex items-center gap-3 sm:gap-4 lg:gap-5">
           {marqueePartners.map((partner, index) => (
             <PartnerCard
