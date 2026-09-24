@@ -62,9 +62,9 @@ export default function HowWeAreGovernedSection() {
               <div className="absolute bottom-0 right-2 w-[85%] max-w-[390px] sm:right-3 lg:-right-3">
                 <span
                   aria-hidden
-                  className="absolute inset-0 translate-x-2 -translate-y-2 rounded-[1.25rem] bg-secondary"
+                  className="absolute inset-0 translate-x-2 rounded-tr-none rounded-b-2xl bg-secondary"
                 />
-                <div className="relative rounded-[1.25rem] bg-primary p-5 sm:p-6">
+                <div className="relative rounded-b-xl rounded-tl-2xl bg-primary p-5 sm:p-6">
                   <h3 className=" font-semibold uppercase tracking-[0.06em] text-secondary sm:text-[20px] lg:text-[24px]">
                     Governance Approach
                   </h3>
