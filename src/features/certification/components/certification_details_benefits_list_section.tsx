@@ -35,7 +35,7 @@ export default function CertificationDetailsBenefitsSection({
               {detail.benefitsTitle}
             </h2>
 
-            <ul className="mt-6 flex flex-col gap-3 sm:mt-7 sm:gap-3.5">
+            <ul className=" flex flex-col gap-3 mt-2 sm:gap-3.5">
               {detail.benefits.map((item) => (
                 <li
                   key={item}

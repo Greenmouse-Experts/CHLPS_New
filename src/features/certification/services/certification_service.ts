@@ -221,11 +221,11 @@ export function transformProgramToCertificationDetail(
 
   const fee =
     typeof price === "number" && price > 0
-      ? `CAD $${price.toLocaleString()}`
+      ? `CA $${price.toLocaleString()}`
       : "";
   const feeNow =
     typeof price === "number" && price > 0
-      ? `One-time enrollment fee of CAD $${price.toLocaleString()}`
+      ? `One-time enrollment fee of CA $${price.toLocaleString()}`
       : "";
   const feeExpiry = "Accredited CHLPS Canada Professional Certification.";
 
@@ -300,7 +300,8 @@ export function transformProgramToCertificationDetail(
     coverImage:
       program.coverImage && program.coverImage.startsWith("http")
         ? program.coverImage
-        : effectiveCourse?.coverImage && effectiveCourse.coverImage.startsWith("http")
+        : effectiveCourse?.coverImage &&
+            effectiveCourse.coverImage.startsWith("http")
           ? effectiveCourse.coverImage
           : undefined,
     bannerImage:
@@ -344,7 +345,11 @@ export async function fetchPublicProgramById(
       const raw = res.data;
       if (raw && typeof raw === "object") {
         const obj = raw as Record<string, unknown>;
-        if (obj.data && typeof obj.data === "object" && !Array.isArray(obj.data)) {
+        if (
+          obj.data &&
+          typeof obj.data === "object" &&
+          !Array.isArray(obj.data)
+        ) {
           return obj.data as unknown as ApiProgramItem;
         }
         return obj as unknown as ApiProgramItem;

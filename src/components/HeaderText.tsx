@@ -8,12 +8,14 @@ export default function HeaderText(props: {
   smallSize?: boolean;
   notUppercase?: boolean;
   notCenter?: boolean;
+  bold?: boolean;
 }) {
   const {
     textWhite = false,
     notCenter = false,
     smallSize,
     notUppercase = false,
+    bold = true,
   } = props;
   return (
     <>

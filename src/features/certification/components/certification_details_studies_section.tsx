@@ -18,6 +18,7 @@ import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 import HeaderText from "@/components/HeaderText";
+import { Check } from "lucide-react";
 
 const outcomeIcons: IconSvgElement[] = [
   Shield01Icon,
@@ -72,7 +73,7 @@ export default function CertificationDetailsStudiesSection({
           </Reveal>*/}
         </div>
 
-        <RevealGroup className="mt-8 grid grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-3.5 lg:gap-4">
+        <RevealGroup className="mt-2 grid grid-cols-1 gap-3  sm:grid-cols-2 sm:gap-3.5 lg:gap-4">
           {outcomes.map((outcome, index) => (
             <article
               key={`${outcome}-${index}`}
@@ -80,14 +81,15 @@ export default function CertificationDetailsStudiesSection({
               style={revealStyle(index)}
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#221A7A] sm:h-10 sm:w-10">
-                <HugeiconsIcon
+                <Check size={16} color="#FFFFFF" strokeWidth={2.2} />
+                {/*<HugeiconsIcon
                   icon={
                     outcomeIcons[index % outcomeIcons.length] ?? Shield01Icon
                   }
                   size={16}
                   color="#FFFFFF"
                   strokeWidth={2.2}
-                />
+                />*/}
               </span>
               <h3 className="min-w-0  font-medium leading-snug text-[#221A7A] sm:text-[14px]">
                 {outcome}

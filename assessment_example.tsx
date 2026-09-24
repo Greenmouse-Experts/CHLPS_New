@@ -62,8 +62,8 @@ const detail = {
   heroBody:
     "The Certified Loss Prevention Manager (CLPM) certification is aimed at individuals who have some experience in loss prevention and are in or aspiring to supervisory roles within the field. This management-level certification builds upon the intermediate knowledge gained in the CLPO certification and provides more in-depth training in advanced supervisory and management aspects of loss prevention.",
   cardTitle: "CLPM – Certified Loss Prevention Manager™",
-  fee: "CAD $670",
-  feeNow: "One-time enrollment fee of CAD $670",
+  fee: "CA $670",
+  feeNow: "One-time enrollment fee of CA $670",
   feeExpiry: "Accredited CHLPS Canada Professional Certification.",
   enrollHref:
     "/dashboard/register?program=7de9a1f6-f54b-47fd-ac2f-d1574137758b",

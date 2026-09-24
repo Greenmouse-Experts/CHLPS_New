@@ -310,7 +310,7 @@ export default function CertificationAssessmentPage({
                           Program Fee
                         </span>
                         <span className="text-lg font-bold text-[#161058] sm:text-xl">
-                          CAD ${detail.price.toLocaleString()}
+                          CA ${detail.price.toLocaleString()}
                         </span>
                       </div>
                     )}

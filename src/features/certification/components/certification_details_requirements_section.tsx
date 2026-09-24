@@ -28,13 +28,9 @@ export default function CertificationDetailsRequirementsSection({
           >
             <div className="flex flex-col items-center text-center">
               <HeaderText left="entry" right="requirements" switch />
-
-              <h2 className="mt-5 text-[1.35rem] font-medium leading-snug tracking-tight text-[#221A7A] sm:mt-6 sm:text-[1.75rem] lg:whitespace-nowrap lg:text-[1.85rem]">
-                {detail.requirementsTitle}
-              </h2>
             </div>
 
-            <ul className="mt-7 flex flex-col gap-2.5 sm:mt-8 sm:gap-3">
+            <ul className="mt-2 flex flex-col gap-2.5 sm:mt-8 sm:gap-3">
               {detail.requirements.map((item) => (
                 <li
                   key={item}
