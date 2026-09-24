@@ -94,16 +94,9 @@ export default function LatestArticlesSection() {
         {/* Header & Search Bar */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <Reveal className="min-w-0">
-            <span className=" font-bold uppercase tracking-[0.14em] text-primary">
-              Insights &amp; Analysis
-            </span>
             <h2 className="mt-2 text-[1.85rem] font-medium leading-[1.1] tracking-tight text-[#0A1542] sm:text-[2.25rem] lg:text-[40px]">
               Latest Articles
             </h2>
-            <p className="mt-2 text-[14px]  sm:text-[16px]">
-              Practical guidance, industry research, and expert loss prevention
-              perspectives.
-            </p>
           </Reveal>
 
           {/* Search Bar */}

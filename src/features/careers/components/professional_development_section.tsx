@@ -6,6 +6,7 @@ import { Reveal, RevealGroup } from "@/features/components/reveal";
 import { revealStyle } from "@/features/components/reveal_style";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
+import HeaderText from "@/components/HeaderText";
 
 type Benefit = {
   icon: LucideIcon;
@@ -32,19 +33,12 @@ export default function ProfessionalDevelopmentSection() {
     <section className="bg-cream py-14 sm:py-8 ">
       <PageContainer>
         <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <span
-              className="cut-tr-bl inline-block bg-lilac px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#6B65C4] sm:"
-              style={{ "--cut": "0.5rem" } as CSSProperties}
-            >
-              Professional Development
-            </span>
-          </Reveal>
-
           <Reveal delay={80}>
-            <h2 className="mt-5 text-[1.625rem] font-normal leading-tight tracking-tight text-primary sm:text-[2rem] lg:text-[2.25rem]">
-              Build Skills. Earn Recognition. Progress.
-            </h2>
+            <h2 className="mt-5 text-[1.625rem] font-normal leading-tight tracking-tight text-primary sm:text-[2rem] lg:text-[2.25rem]"></h2>
+            <HeaderText
+              left="Build Skills."
+              right="Earn Recognition. Progress."
+            />
           </Reveal>
         </div>
 

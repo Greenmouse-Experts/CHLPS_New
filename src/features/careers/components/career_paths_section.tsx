@@ -9,6 +9,7 @@ import {
   careerPaths,
   type CareerPath,
 } from "@/features/careers/careers_data";
+import HeaderText from "@/components/HeaderText";
 
 function CareerPathCard({
   career,
@@ -69,19 +70,8 @@ export default function CareerPathsSection() {
     <section id="career-paths" className="bg-white py-14 sm:py-8 ">
       <PageContainer>
         <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <span
-              className="cut-tr-bl inline-block bg-lilac px-3.5 py-1.5  font-bold uppercase tracking-[0.14em] text-[#6B65C4] sm:"
-              style={{ "--cut": "0.5rem" } as CSSProperties}
-            >
-              Career Opportunities
-            </span>
-          </Reveal>
-
           <Reveal delay={80}>
-            <h2 className="mt-5 text-[1.75rem] font-normal leading-tight tracking-tight text-primary sm:text-[2.25rem] lg:text-[2.5rem]">
-              Explore Career Paths
-            </h2>
+            <HeaderText left="Explore Career " right="Paths" />
           </Reveal>
 
           <Reveal delay={160}>
