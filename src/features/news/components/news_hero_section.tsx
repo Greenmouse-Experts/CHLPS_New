@@ -24,7 +24,13 @@ export default function NewsHeroSection() {
         <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[28rem] lg:py-8 xl:min-h-[30rem] xl:py-20">
           <div className="w-full">
             <Reveal>
-              <HeaderText notCenter textWhite left="News" right="&amp; Blog" />
+              <HeaderText
+                notUppercase
+                notCenter
+                textWhite
+                left="News"
+                right="&amp; Blog"
+              />
             </Reveal>
 
             <Reveal delay={160}>
