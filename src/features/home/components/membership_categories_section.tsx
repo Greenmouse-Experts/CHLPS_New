@@ -171,10 +171,10 @@ export default function MembershipCategoriesSection() {
                           <p className="mt-3.5 max-w-sm text-[14px] font-normal leading-relaxed text-[#FFFFFFCC] sm:text-[16px] line-clamp-3">
                             {category.description}
                           </p>
-                          <div className="mt-auto pt-8 w-full flex justify-center">
+                          <div className="mt-auto pt-6 w-full flex justify-center">
                             <Link
                               href={href}
-                              className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#CDA54E] px-6 py-3 text-[14px] font-semibold text-[#141549] shadow-md transition-all duration-200 hover:brightness-105 hover:scale-[1.02] sm:px-7 sm:py-3.5 sm:text-[15px]"
+                              className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#CDA54E] px-6 py-2 text-[14px] font-semibold text-white shadow-md transition-all duration-200 hover:brightness-105 hover:scale-[1.02] sm:px-7  sm:text-[15px]"
                             >
                               <span>{cta}</span>
                               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-[#141549] transition-transform duration-200 group-hover:translate-x-0.5">
