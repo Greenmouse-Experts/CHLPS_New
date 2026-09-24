@@ -97,7 +97,7 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-auto lg:max-w-[22.5rem]">
             <Link href="/" className="inline-block">
               <Image
-                src={Assets.images.fullLogo}
+                src={"/assets/images/footer_logo.png"}
                 alt="Association of Chartered Loss Prevention Specialists of Canada"
                 width={1993}
                 height={789}
