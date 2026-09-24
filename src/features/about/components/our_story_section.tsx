@@ -56,18 +56,17 @@ export default function OurStorySection() {
 
       <PageContainer className="relative z-10">
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-14">
-          <div className="flex min-w-0 flex-col">
+          <div className="flex min-w-0 flex-col space-y-2">
             <HeaderText left="Our" right="Story" notCenter />
-
             <Reveal delay={80}>
-              <h2 className="mt-5 max-w-[490px] text-[1.75rem] font-medium leading-tight tracking-tight text-primary sm:text-3xl lg:mt-6 lg:text-[2.35rem] xl:text-[2.5rem]">
+              <h2 className=" max-w-[490px]  font-medium leading-tight tracking-tight text-primary text-xl">
                 Built to strengthen the profession behind resilient
                 organizations.
               </h2>
             </Reveal>
 
             <Reveal delay={160}>
-              <div className="mt-5 flex max-w-[31rem] flex-col gap-4 lg:mt-6">
+              <div className=" flex max-w-[31rem] flex-col gap-4 ">
                 {paragraphs.map((paragraph) => (
                   <p key={paragraph} className="leading-relaxed  sm:text-base">
                     {paragraph}
@@ -76,7 +75,7 @@ export default function OurStorySection() {
               </div>
             </Reveal>
 
-            <RevealGroup className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:mt-8">
+            <RevealGroup className=" grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 ">
               {highlights.map((highlight, index) => (
                 <article
                   key={highlight.title}
