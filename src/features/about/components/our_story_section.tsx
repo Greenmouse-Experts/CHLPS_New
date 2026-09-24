@@ -66,7 +66,7 @@ export default function OurStorySection() {
             </Reveal>
 
             <Reveal delay={160}>
-              <div className=" flex max-w-[31rem] flex-col gap-2 ">
+              <div className=" flex max-w-[31rem] flex-col gap-3 ">
                 {paragraphs.map((paragraph) => (
                   <p key={paragraph} className=" sm:text-base">
                     {paragraph}
@@ -90,7 +90,7 @@ export default function OurStorySection() {
                       strokeWidth={1.8}
                     />
                   </span>
-                  <h3 className=" text-base font-bold leading-tight text-primary sm:text-[18px]">
+                  <h3 className="mt-2 text-base font-bold leading-tight text-primary sm:text-[18px]">
                     {highlight.title}
                   </h3>
                   <p className="mt-2 ">{highlight.body}</p>
@@ -103,7 +103,7 @@ export default function OurStorySection() {
             <div className="relative">
               <div className="overflow-hidden rounded-[1.75rem]">
                 <Image
-                  src={"/assets/images/found.jpeg"}
+                  src={"/assets/images/our_story.png"}
                   alt="ChLPS Canada members in conversation outside an office building"
                   width={3064}
                   height={3540}
