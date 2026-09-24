@@ -111,7 +111,7 @@ export default function GovernanceStructureSection() {
                 </span>
 
                 <h3
-                  className={`text-xl font-bold leading-tight tracking-tight sm:text-2xl mt-4 lg:text-[1.875rem] xl:text-[2.25rem] ${card.titleColor}`}
+                  className={`text-xl font-bold leading-tight tracking-tight sm:text-2xl mt-4  xl:text-3xl ${card.titleColor}`}
                 >
                   {card.title}
                 </h3>
