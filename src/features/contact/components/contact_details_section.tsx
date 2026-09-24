@@ -44,7 +44,7 @@ export default function ContactDetailsSection() {
             const cardContent = (
               <div
                 style={revealStyle(index * 90)}
-                className="card relative flex-1 rounded-2xl border border-base-200/80 bg-gradient-to-b from-[#F7F9FD] to-white p-6 pt-9 text-center shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                className="card relative flex-1 rounded-2xl border border-base-200/80 bg-gradient-to-b from-[#F7F9FD] to-white p-6 pt-9 text-center shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-lg xl:h-full"
               >
                 {/* Floating Circular Dark Navy Icon */}
                 <div className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border-2 border-white bg-[#0D154B] text-white shadow-md">
