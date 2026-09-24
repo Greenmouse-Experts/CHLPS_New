@@ -20,7 +20,7 @@ const GovernancePage = () => {
         body="ChLPS Canada is led by its Board and Management Team, providing strategic oversight and effective operations."
         bodyWidth="30rem"
       >
-        <div>
+        <div className="space-y-2">
           <HeaderText
             smallSize
             left="our"
