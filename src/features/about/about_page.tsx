@@ -31,7 +31,7 @@ const AboutPage = () => {
           />
           <h2 className="text-white text-4xl font-semibold">
             Advancing modern <br />
-            <span className="text-secondary">Loss prevention</span>
+            <span className="text-secondary">loss prevention</span>
           </h2>
           <p className="text-white text-lg">
             A credible professional home for loss prevention, security, risk and
