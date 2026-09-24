@@ -27,7 +27,7 @@ export default function CertificationMattersSection() {
             </Reveal>*/}
 
             <Reveal delay={80}>
-              <h2 className="text-[1.75rem] font-medium leading-tight tracking-tight text-[#151515]">
+              <h2 className="text-[1.75rem] font-medium leading-tight tracking-tight text-primary">
                 An Investment in Your Career
               </h2>
             </Reveal>
