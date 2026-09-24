@@ -131,7 +131,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                 if (!article) return null;
 
                 return (
-                  <article className="mx-auto max-w-4xl">
+                  <article className="mx-auto max-w-6xl">
                     {/* Header meta */}
                     <div className="flex flex-wrap items-center gap-3">
                       <span className="rounded-full bg-secondary/90 px-3.5 py-1  font-bold uppercase tracking-[0.14em] text-[#211A73]">
@@ -159,7 +159,7 @@ export default function ArticleDetailPage({ id }: { id: string }) {
                     </div>
 
                     {/* Article Title */}
-                    <h1 className="mt-5 text-[2rem] font-bold leading-[1.2] tracking-tight text-[#0A1542] sm:text-[2.5rem] lg:text-[3rem]">
+                    <h1 className="mt-5 text-[1.5rem] font-bold leading-[1.2] tracking-tight text-[#0A1542] ">
                       {article.title}
                     </h1>
 
