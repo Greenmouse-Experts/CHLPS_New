@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
@@ -110,6 +111,24 @@ export default function CertificationPathwaySection() {
         `/dashboard/sign-in?redirect=${encodeURIComponent(detailHref)}`,
       );
       return;
+    }
+
+    // Check course purchase eligibility first: only members can pay for courses
+    setCheckingEnrollCourseId(course.id);
+    try {
+      const eligibilityRes = await orderService.checkCoursePurchaseEligibility();
+      if (!eligibilityRes.data?.isEligible) {
+        toast.error(
+          eligibilityRes.data?.message ||
+            "An active, unexpired membership is required to purchase courses. Only members can enroll in courses.",
+        );
+        router.push("/membership");
+        return;
+      }
+    } catch {
+      // Continue
+    } finally {
+      setCheckingEnrollCourseId(null);
     }
 
     const appQuestions = (course as any).applicationQuestions ?? [];

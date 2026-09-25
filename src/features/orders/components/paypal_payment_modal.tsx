@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import {
   PayPalScriptProvider,
@@ -250,6 +251,24 @@ export default function PaypalPaymentModal({
   const [createdOrder, setCreatedOrder] =
     useState<OrderCreateResponseData | null>(null);
 
+  const hasCourses = Boolean(courses && courses.length > 0);
+
+  // Check course purchase eligibility: only active members can purchase courses
+  const eligibilityQuery = useQuery({
+    queryKey: ["course-purchase-eligibility"],
+    queryFn: async () => {
+      const res = await orderService.checkCoursePurchaseEligibility();
+      return res.data;
+    },
+    enabled: isOpen && hasCourses,
+    staleTime: 30 * 1000,
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
+
+  const isEligible = !hasCourses || (eligibilityQuery.data?.isEligible ?? true);
+  const isCheckingEligibility = hasCourses && eligibilityQuery.isLoading;
+
   const rawAmount =
     estimatedAmount ||
     [...courses, ...memberships].reduce(
@@ -317,6 +336,14 @@ export default function PaypalPaymentModal({
   const currency = getPayPalCurrency(previewData?.currency);
 
   const handleProceedToPayment = async () => {
+    if (hasCourses && eligibilityQuery.data && !eligibilityQuery.data.isEligible) {
+      toast.error(
+        eligibilityQuery.data.message ||
+          "An active, unexpired membership is required to purchase courses. Only members can enroll.",
+      );
+      return;
+    }
+
     setIsCreatingOrder(true);
     try {
       // Execute preview and create order on backend
@@ -377,7 +404,40 @@ export default function PaypalPaymentModal({
         </div>
 
         {/* Modal Body */}
-        {step === "preview" ? (
+        {hasCourses && eligibilityQuery.data && !eligibilityQuery.data.isEligible ? (
+          <div className="mt-5 space-y-4">
+            <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-5 text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-amber-600">
+                <HugeiconsIcon icon={LockKeyIcon} size={28} />
+              </div>
+              <h4 className="mt-3 text-base font-bold text-[#0D154B] sm:text-lg">
+                Active Membership Required
+              </h4>
+              <p className="mt-2 text-xs sm:text-sm text-base-content/75 leading-relaxed max-w-sm mx-auto">
+                {eligibilityQuery.data.message ||
+                  "Only active CHLPS members can enroll in and purchase certification courses. An active, unexpired membership is required."}
+              </p>
+            </div>
+
+            <div className="mt-6 flex flex-col gap-2.5">
+              <Link
+                href="/membership"
+                onClick={onClose}
+                className="btn btn-primary btn-md w-full rounded-2xl text-sm font-bold text-white normal-case shadow-sm gap-2 flex items-center justify-center"
+              >
+                <span>Explore Memberships</span>
+                <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
+              </Link>
+              <button
+                type="button"
+                onClick={onClose}
+                className="btn btn-ghost btn-sm rounded-xl text-xs font-semibold text-base-content/60 hover:text-base-content"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : step === "preview" ? (
           <div className="mt-5 space-y-4">
             <p className="text-sm text-base-content/70">
               Review your order breakdown before proceeding to secure PayPal

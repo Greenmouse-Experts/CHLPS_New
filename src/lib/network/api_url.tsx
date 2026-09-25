@@ -57,6 +57,7 @@ export class ApiUrls {
     return `/student-memberships/student/${studentId}`;
   }
   static myStudentMemberships = "/student-memberships/mine";
+  static coursePurchaseEligibility = "/student-memberships/course-purchase-eligibility";
 
   static courseReviews(id: string) {
     return `/reviews/fetch-course-reviews/${id}`;

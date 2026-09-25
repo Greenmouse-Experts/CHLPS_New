@@ -270,3 +270,15 @@ export interface MembershipApplication {
   createdDate?: string;
   updatedDate?: string;
 }
+
+export interface CoursePurchaseEligibility {
+  isEligible: boolean;
+  message?: string;
+  hasActiveMembership?: boolean;
+  membership?: {
+    id?: string;
+    name?: string;
+    status?: string;
+    expiresAt?: string;
+  };
+}

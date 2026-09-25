@@ -12,6 +12,7 @@ import type {
   SubmitCourseApplicationPayload,
   MembershipApplication,
   SubmitMembershipApplicationPayload,
+  CoursePurchaseEligibility,
 } from "@/types/orders";
 
 export class OrderService {
@@ -19,6 +20,66 @@ export class OrderService {
 
   constructor() {
     this.api = new ApiService();
+  }
+
+  /**
+   * Check course purchase eligibility
+   * Business rule: Only active members can purchase courses.
+   * Endpoint: GET /student-memberships/course-purchase-eligibility
+   */
+  async checkCoursePurchaseEligibility(): Promise<ApiResponse<CoursePurchaseEligibility>> {
+    try {
+      const response = await this.api.getData<any>(
+        ApiUrls.coursePurchaseEligibility,
+      );
+
+      if (response.success) {
+        const raw = response.data;
+        const isEligible =
+          typeof raw === "boolean"
+            ? raw
+            : typeof raw?.isEligible === "boolean"
+              ? raw.isEligible
+              : typeof raw?.eligible === "boolean"
+                ? raw.eligible
+                : typeof raw?.hasActiveMembership === "boolean"
+                  ? raw.hasActiveMembership
+                  : true;
+
+        const message =
+          raw?.message ||
+          response.message ||
+          (isEligible
+            ? "You are eligible to purchase courses."
+            : "An active, unexpired membership is required to purchase courses.");
+
+        return ok({
+          isEligible,
+          message,
+          hasActiveMembership: isEligible,
+          membership: raw?.membership,
+        });
+      }
+
+      const msg =
+        response.message ||
+        "An active, unexpired membership is required to purchase courses.";
+      return ok({
+        isEligible: false,
+        message: msg,
+        hasActiveMembership: false,
+      });
+    } catch (error: any) {
+      const msg =
+        error?.response?.data?.message ||
+        error?.message ||
+        "An active, unexpired membership is required to purchase courses.";
+      return ok({
+        isEligible: false,
+        message: msg,
+        hasActiveMembership: false,
+      });
+    }
   }
 
   /**
@@ -106,6 +167,17 @@ export class OrderService {
     preview: OrderPreviewCalculations;
     order: OrderCreateResponseData;
   }> {
+    // Check course purchase eligibility first: only members can pay for courses
+    if (params.courses && params.courses.length > 0) {
+      const eligibility = await this.checkCoursePurchaseEligibility();
+      if (!eligibility.data?.isEligible) {
+        throw new Error(
+          eligibility.data?.message ||
+            "An active, unexpired membership is required to purchase courses. Only members can enroll in courses.",
+        );
+      }
+    }
+
     const rawEstimated = params.estimatedAmount ?? 0;
 
     // Step A: Preview
