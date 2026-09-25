@@ -3,6 +3,7 @@
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import type { MembershipType } from "@/features/membership/membership_types";
+import Membership from "@/app/membership/page";
 
 export default function MembershipCertificationImage(props: {
   membership: MembershipType;
@@ -22,9 +23,6 @@ export default function MembershipCertificationImage(props: {
 
   const bodyParagraphs = membership.certificationText
     ? membership.certificationText
-        .split(/\n+/)
-        .map((p) => p.trim())
-        .filter(Boolean)
     : [
         `Congratulations on earning the ${rawTitle} professional certification. This achievement reflects your dedication to professional growth and readiness to contribute confidently to modern loss prevention work. The certification enhances your credibility, strengthens your operational skills, and positions you for roles in retail security.`,
         `Certification holders gain improved employability, access to industry networks, and a solid foundation for advanced certifications. It is a meaningful step toward a rewarding career in loss prevention and corporate security.`,
@@ -32,6 +30,7 @@ export default function MembershipCertificationImage(props: {
 
   return (
     <section className="bg-white py-14 sm:py-8">
+      {/*{JSON.stringify(membership.certificationText)}*/}
       <PageContainer>
         <Reveal>
           <article className="overflow-hidden rounded-[1.75rem] border border-secondary ring-1 ring-secondary bg-white shadow-[0_20px_50px_rgba(22,16,88,0.06)] lg:rounded-[2rem]">
@@ -54,14 +53,7 @@ export default function MembershipCertificationImage(props: {
                 </h2>
 
                 <div className="mt-5 space-y-4 sm:mt-6">
-                  {bodyParagraphs.map((paragraph, index) => (
-                    <p
-                      key={index}
-                      className="text-sm leading-relaxed text-white/90 sm:text-base"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
+                  <p className="text-white">{membership.certificationText}</p>
                 </div>
               </div>
             </div>
