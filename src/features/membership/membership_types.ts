@@ -46,6 +46,8 @@ export type MembershipType = {
   badge: string;
   banner?: string | null;
   bannerText?: string | null;
+  certificationImage?: string | null;
+  certificationText?: string | null;
   cropLogo?: boolean;
   indicatorColor: string;
   metaDescription: string;
@@ -239,6 +241,18 @@ export function transformMembershipApiToType(
       ? apiMembership.applicationQuestions
       : undefined;
 
+  const certificationImage =
+    apiMembership.certificationImage &&
+    typeof apiMembership.certificationImage === "string" &&
+    apiMembership.certificationImage.startsWith("http")
+      ? apiMembership.certificationImage
+      : undefined;
+
+  const certificationText =
+    typeof apiMembership.certificationText === "string"
+      ? apiMembership.certificationText
+      : undefined;
+
   return {
     id: (normalizedKey || "student") as MembershipTypeId,
     membershipId: apiMembership.id,
@@ -250,6 +264,8 @@ export function transformMembershipApiToType(
     badge,
     banner: apiMembership.banner || null,
     bannerText: apiMembership.bannerText || null,
+    certificationImage,
+    certificationText,
     indicatorColor,
     metaDescription: apiMembership.description,
     price: apiMembership.price,
