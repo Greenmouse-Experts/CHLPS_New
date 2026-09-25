@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -26,6 +26,11 @@ import {
   transformEventApiToChlpsEvent,
 } from "@/features/events/services/event_service";
 import EventTicketModal from "@/features/events/components/event_ticket_modal";
+import {
+  EventCardBackdrop,
+  EventMeta,
+  ImageOverlayBadge,
+} from "@/features/events/components/event_ui";
 import type { EventRegistration } from "@/types/events";
 import type { ChlpsEvent } from "@/features/events/events_data";
 
@@ -344,15 +349,36 @@ function EventRegistrationCard({
     event?.location?.toLowerCase() === "online" ||
     Boolean(event?.meetingLink);
 
-  const dateFormatted = formatEventDate(event?.startDate, event?.endDate);
-  const timeFormatted = formatEventTime(event?.startTime, event?.endTime);
+  const eventView: ChlpsEvent = useMemo(() => {
+    if (event) {
+      return transformEventApiToChlpsEvent(event);
+    }
+    return {
+      id: registration.eventId || registration.id,
+      title: "Professional Event",
+      description: "CHLPS Event Registration",
+      category: "Event",
+      status: "upcoming",
+      access: "free",
+      date: formatEventDate(registration.registrationDate),
+      time: "",
+      duration: "",
+      location: isVirtual ? "Online" : "In-Person",
+      ticketPrice: "Free",
+      image: Assets.images.upcomingEvent,
+      imageAlt: "Event Banner",
+      gallery: [],
+      raw: event,
+    } as ChlpsEvent;
+  }, [event, registration, isVirtual]);
 
-  const categoryName =
-    typeof event?.category === "object"
-      ? event?.category?.name
-      : event?.category || "Event";
+  const [imgSrc, setImgSrc] = useState(eventView.image);
 
-  // Status badge config
+  useEffect(() => {
+    setImgSrc(eventView.image);
+  }, [eventView.image]);
+
+  // Status badge configuration
   const statusConfig: Record<
     string,
     { label: string; badgeClass: string; icon: any }
@@ -386,105 +412,87 @@ function EventRegistrationCard({
   };
 
   return (
-    <article className="card border border-base-200/80 bg-white shadow-xs rounded-3xl overflow-hidden hover:shadow-md transition-shadow flex flex-col justify-between">
-      <div>
-        {/* Card Header & Category */}
-        <div className="p-5 pb-3">
-          <div className="flex items-center justify-between gap-2">
-            <span className="badge badge-primary badge-outline text-xs font-semibold px-2.5 py-1">
-              {categoryName}
-            </span>
-            <span
-              className={`badge badge-sm text-xs font-bold gap-1 px-2.5 py-1 ${status.badgeClass}`}
-            >
-              <HugeiconsIcon icon={status.icon} size={12} />
-              <span>{status.label}</span>
-            </span>
-          </div>
-
-          <h3 className="mt-3 text-base font-bold text-[#0D154B] sm:text-lg leading-snug line-clamp-2">
-            {event?.name || "Professional Event"}
-          </h3>
-
-          <p className="mt-1.5 text-xs text-base-content/70 line-clamp-2 leading-relaxed">
-            {event?.description || "Association event session."}
-          </p>
-        </div>
-
-        {/* Date, Time, Location metadata */}
-        <div className="px-5 py-3 border-t border-b border-base-200/60 bg-base-50/60 space-y-2 text-xs text-base-content/80">
-          <div className="flex items-center gap-2">
-            <HugeiconsIcon
-              icon={Calendar03Icon}
-              size={15}
-              className="text-primary shrink-0"
-            />
-            <span className="font-medium">{dateFormatted || "Upcoming"}</span>
-          </div>
-
-          {timeFormatted && (
-            <div className="flex items-center gap-2">
-              <HugeiconsIcon
-                icon={Clock01Icon}
-                size={15}
-                className="text-primary shrink-0"
-              />
-              <span>{timeFormatted}</span>
-            </div>
-          )}
-
-          <div className="flex items-center gap-2">
-            <HugeiconsIcon
-              icon={isVirtual ? ComputerIcon : Location01Icon}
-              size={15}
-              className="text-primary shrink-0"
-            />
-            <span className="truncate">
-              {isVirtual ? "Virtual Event (Online)" : event?.location || "In-Person"}
-            </span>
-          </div>
-
-          <div className="flex items-center justify-between pt-1">
-            <span className="text-xs text-base-content/60">Ticket No:</span>
-            <span className="font-mono text-xs font-bold text-primary">
-              {registration.ticketNumber || `REG-${registration.id.slice(0, 8)}`}
-            </span>
-          </div>
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-[0_12px_36px_rgba(22,16,88,0.1)] ring-1 ring-black/[0.04] transition-all duration-300 hover:shadow-[0_16px_44px_rgba(22,16,88,0.14)]">
+      {/* Top Banner Image with 16:10 aspect ratio matching public EventCard */}
+      <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden">
+        <Image
+          src={imgSrc}
+          alt={eventView.imageAlt}
+          fill
+          unoptimized
+          onError={() => setImgSrc(Assets.images.upcomingEvent)}
+          className="object-cover transition-transform duration-300 hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+        />
+        <div className="absolute left-3 top-3 sm:left-4 sm:top-4 flex flex-wrap items-center gap-2">
+          <ImageOverlayBadge event={eventView} />
+          <span
+            className={`badge badge-sm text-xs font-bold gap-1 px-2.5 py-0.5 shadow-sm ${status.badgeClass}`}
+          >
+            <HugeiconsIcon icon={status.icon} size={12} />
+            <span>{status.label}</span>
+          </span>
         </div>
       </div>
 
-      {/* Card Actions */}
-      <div className="p-5 pt-4 space-y-2">
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onViewPass}
-            className="btn btn-outline btn-primary btn-sm flex-1 rounded-xl text-xs font-bold normal-case gap-1.5"
-          >
-            <HugeiconsIcon icon={Ticket01Icon} size={14} />
-            <span>Digital Pass</span>
-          </button>
+      {/* Card Content with Certificate Backdrop */}
+      <div className="relative flex flex-1 flex-col overflow-hidden px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
+        <EventCardBackdrop />
 
-          <Link
-            href={`/dashboard/events/${registration.id}`}
-            className="btn btn-primary btn-sm flex-1 rounded-xl text-xs font-bold text-white normal-case shadow-xs gap-1.5"
-          >
-            <span>Details</span>
-            <HugeiconsIcon icon={ArrowRight01Icon} size={14} />
-          </Link>
+        <div className="relative z-10 flex flex-1 flex-col">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#8A8A96]">
+              {eventView.category}
+            </p>
+            <span className="badge badge-sm badge-ghost border border-base-300 font-mono text-xs font-bold text-primary">
+              {registration.ticketNumber || `REG-${registration.id.slice(0, 8)}`}
+            </span>
+          </div>
+
+          <h3 className="mt-2 text-base font-semibold leading-snug tracking-tight text-[#161058] sm:text-lg lg:min-h-[3.2rem]">
+            {eventView.title}
+          </h3>
+
+          <p className="mt-2 line-clamp-3 text-xs sm:text-sm leading-relaxed text-base-content/70">
+            {eventView.description}
+          </p>
+
+          <EventMeta event={eventView} className="mt-4" />
+
+          {/* Action Buttons */}
+          <div className="mt-5 flex flex-col gap-2.5 lg:mt-auto lg:pt-5">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={onViewPass}
+                className="btn btn-outline btn-primary btn-sm flex-1 rounded-xl text-xs font-bold normal-case gap-1.5"
+              >
+                <HugeiconsIcon icon={Ticket01Icon} size={14} />
+                <span>Digital Pass</span>
+              </button>
+
+              <Link
+                href={`/dashboard/events/${registration.id}`}
+                className="btn btn-primary btn-sm flex-1 rounded-xl text-xs font-bold text-white normal-case shadow-xs gap-1.5 flex items-center justify-center"
+              >
+                <span>View Details</span>
+                <HugeiconsIcon icon={ArrowRight01Icon} size={14} />
+              </Link>
+            </div>
+
+            {isVirtual && event?.meetingLink && registration.status !== "Cancelled" && (
+              <a
+                href={event.meetingLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost btn-xs w-full text-xs text-primary font-semibold hover:bg-primary/10 gap-1 justify-center normal-case"
+              >
+                <span>Join Virtual Room</span>
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={12} />
+              </a>
+            )}
+          </div>
         </div>
-
-        {isVirtual && event?.meetingLink && registration.status !== "Cancelled" && (
-          <a
-            href={event.meetingLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-ghost btn-xs w-full text-xs text-primary font-semibold hover:bg-primary/10 gap-1 justify-center"
-          >
-            <span>Join Meeting</span>
-            <HugeiconsIcon icon={ArrowUpRight01Icon} size={12} />
-          </a>
-        )}
       </div>
     </article>
   );
