@@ -24,6 +24,8 @@ export interface ApiCourseItem {
   banner?: string | null;
   bannerText?: string | null;
   certificationBenefits?: string[];
+  certificationImage?: string | null;
+  certificationText?: string | null;
   entryRequirements?: string[];
   applicationQuestions?: Array<{ id?: string; question: string }>;
   courseOutcomes?: ApiCourseOutcome[];
@@ -274,10 +276,23 @@ export function transformProgramToCertificationDetail(
     `${abbr} certification holders gain enhanced professional credibility, access to elite industry networks, and a structured pathway toward senior and specialized designations.`,
   ];
 
+  const certificationImage =
+    effectiveCourse?.certificationImage &&
+    typeof effectiveCourse.certificationImage === "string" &&
+    effectiveCourse.certificationImage.startsWith("http")
+      ? effectiveCourse.certificationImage
+      : undefined;
+
+  const certificationText =
+    typeof effectiveCourse?.certificationText === "string"
+      ? effectiveCourse.certificationText
+      : undefined;
+
   const outcomeImage =
-    course?.coverImage && course.coverImage.startsWith("http")
+    certificationImage ||
+    (course?.coverImage && course.coverImage.startsWith("http")
       ? course.coverImage
-      : Assets.images.clpaCertificate;
+      : Assets.images.clpaCertificate);
 
   // Benefits
   const rawBenefits =
@@ -308,6 +323,8 @@ export function transformProgramToCertificationDetail(
       effectiveCourse?.banner && effectiveCourse.banner.startsWith("http")
         ? effectiveCourse.banner
         : undefined,
+    certificationImage,
+    certificationText,
     heroTitle,
     heroBody,
     cardTitle,
