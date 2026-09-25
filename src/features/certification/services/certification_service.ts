@@ -374,41 +374,9 @@ export async function fetchProgramById(
   // 1. Direct fetch using GET /programs/public/:id
   const directProgram = await fetchPublicProgramById(trimmed);
   if (directProgram && (directProgram.id || directProgram.title)) {
-    let effectiveCourse = directProgram.courses?.[0];
-    const outcomes =
-      effectiveCourse?.courseOutcomes ?? (effectiveCourse as any)?.outcomes;
-    if (!outcomes || outcomes.length === 0) {
-      try {
-        const courses = await fetchPublicCourses();
-        const matchedCourse = courses.find((c) => {
-          if (effectiveCourse?.id && c.id === effectiveCourse.id) return true;
-          const p = c.program;
-          const pId =
-            typeof p === "object" && p
-              ? p.id || p.slug
-              : typeof p === "string"
-                ? p
-                : undefined;
-          return (
-            pId === directProgram.id ||
-            (directProgram.slug && pId === directProgram.slug)
-          );
-        });
-        if (matchedCourse) {
-          effectiveCourse = {
-            ...effectiveCourse,
-            ...matchedCourse,
-            courseOutcomes:
-              matchedCourse.courseOutcomes ?? (matchedCourse as any).outcomes,
-          };
-        }
-      } catch (e) {
-        console.error("Error enriching course outcomes:", e);
-      }
-    }
     return transformProgramToCertificationDetail(
       directProgram,
-      effectiveCourse,
+      directProgram.courses?.[0],
     );
   }
 

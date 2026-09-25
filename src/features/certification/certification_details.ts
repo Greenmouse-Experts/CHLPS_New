@@ -29,6 +29,8 @@ export type CertificationDetail = {
   applicationQuestions?: Array<{ id?: string; question: string }>;
   coverImage?: string;
   bannerImage?: string;
+  certificationImage?: string;
+  certificationText?: string;
 };
 
 export const CERTIFICATION_DETAIL: CertificationDetail = {

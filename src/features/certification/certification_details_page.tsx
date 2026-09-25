@@ -75,7 +75,8 @@ export default function CertificationDetailsPage({
     // Check course purchase eligibility first: only members can pay for courses
     setIsCheckingEnrollment(true);
     try {
-      const eligibilityRes = await orderService.checkCoursePurchaseEligibility();
+      const eligibilityRes =
+        await orderService.checkCoursePurchaseEligibility();
       if (!eligibilityRes.data?.isEligible) {
         toast.error(
           eligibilityRes.data?.message ||
@@ -171,7 +172,10 @@ export default function CertificationDetailsPage({
             <CertificationDetailsStudiesSection detail={detail} />
             <Curriculum id={detail.courseId || id || detail.id} />
 
-            <CertificationDetailsOutcomeSection detail={detail} />
+            <CertificationDetailsOutcomeSection
+              detail={detail}
+              imgUrl={detail.certificationImage}
+            />
             <CertificationDetailsBenefitsListSection detail={detail} />
 
             {/* Direct PayPal Enrollment Modal */}
