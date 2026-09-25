@@ -25,10 +25,11 @@ export default function ContactHeroSection() {
         <div className="flex h-full items-center py-10 sm:py-12 lg:min-h-[24rem] lg:py-14 xl:min-h-[26rem] xl:py-8">
           <div className="w-full">
             <HeaderText
-              left="We're Here "
+              left="How may we"
               textWhite
+              notUppercase
               notCenter
-              right="to Help"
+              right="help you?"
             />
 
             <Reveal delay={160}>

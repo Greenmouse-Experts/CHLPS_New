@@ -54,8 +54,8 @@ const variantStyles: Record<ButtonVariant, string> = {
   ].join(" "),
 
   success: [
-    "bg-[#38CB89] text-white border-transparent",
-    "hover:bg-[#2db577] active:bg-[#25a067]",
+    "bg-[#15803D] text-white border-transparent",
+    "hover:bg-[#166534] active:bg-[#14532D]",
     "disabled:opacity-50 disabled:cursor-not-allowed",
   ].join(" "),
 };

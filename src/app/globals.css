@@ -21,7 +21,7 @@
     --color-base-300: #e7e9eb;
     --color-base-content: #302d39;
 
-    --color-success: #38cb89;
+    --color-success: #15803d;
     --color-success-content: #ffffff;
     --color-warning: #eed202;
     --color-warning-content: #302d39;
@@ -56,6 +56,7 @@ html {
     --color-lilac: #eeeaf8;
     --color-cream: #f9f5ec;
     --color-sand: #f0ede7;
+    --color-success: #15803d;
 }
 
 @theme inline {
@@ -68,6 +69,7 @@ html {
     --color-lilac: #eeeaf8;
     --color-cream: #f9f5ec;
     --color-sand: #f0ede7;
+    --color-success: #15803d;
     --font-sans: var(--font-como);
     --max-width-page: 1728px;
     --text-base: 19px;

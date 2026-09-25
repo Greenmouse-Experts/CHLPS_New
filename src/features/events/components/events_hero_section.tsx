@@ -1,18 +1,28 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
-import HeaderText from "@/components/HeaderText";
 
 type EventsHeroSectionProps = {
   title?: string;
-  body?: string;
+  body?: ReactNode;
   compact?: boolean;
 };
 
 export default function EventsHeroSection({
   title = "Events",
-  body = "Events and Professional Practice Updates: Stay informed through industry events, professional forums, emerging Loss Prevention trends, regulatory developments, evolving technologies, best practices, expert insights, and important updates shaping the loss prevention profession.",
+  body = (
+    <>
+      <span className="text-secondary">
+        Events and Professional Practice Updates
+      </span>
+      : Stay informed through industry events, professional forums, emerging
+      Loss Prevention trends, regulatory developments, evolving technologies,
+      best practices, expert insights, and important updates shaping the loss
+      prevention profession.
+    </>
+  ),
   compact = false,
 }: EventsHeroSectionProps) {
   return (
@@ -46,9 +56,18 @@ export default function EventsHeroSection({
             </Reveal>
 
             <Reveal delay={80}>
-              <p className=" max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
-                {body}
-              </p>
+              {typeof body === "string" ? (
+                <p
+                  className="max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]"
+                  dangerouslySetInnerHTML={{
+                    __html: body.replaceAll("className=", "class="),
+                  }}
+                />
+              ) : (
+                <p className="max-w-[740px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
+                  {body}
+                </p>
+              )}
             </Reveal>
           </div>
         </div>
