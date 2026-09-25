@@ -38,22 +38,22 @@ export default function LegalPage() {
         <div className="space-y-3">
           <HeaderText
             smallSize
-            left="legal &"
-            right="accreditations"
+            left="about"
+            right="chlps canaga"
             textWhite
             notCenter
           />
           <h1 className="text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
-            Institutional Standing & <br />
-            <span className="text-secondary">Legal Framework</span>
+            Our Legal Status <br />
+            <span className="text-secondary"> and our Accreditations</span>
           </h1>
-          <p className="max-w-xl text-sm leading-relaxed text-white/90 sm:text-base">
-            The Association of Chartered Loss Prevention Specialists of Canada
-            is a federally incorporated professional institute under the Canada
-            Not-for-profit Corporations Act. We hold prestigious global
-            accreditations ensuring our certifications, training programs, and
-            memberships operate with institutional integrity and worldwide
-            credibility.
+          <p className="max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base">
+            Explore the legal standing and professional recognitions of the
+            Association of Chartered Loss Prevention Specialists of Canada. Our
+            federal incorporation, institutional accreditation, professional
+            certification organization accreditation, and continuing
+            professional development provider registration reflect our
+            commitment to governance, quality, and professional standards.
           </p>
         </div>
       </AboutHeroSection>
