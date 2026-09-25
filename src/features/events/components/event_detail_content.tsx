@@ -26,6 +26,7 @@ import {
 import { eventRegistrationService } from "../services/event_registration_service";
 import EventPaymentModal from "./event_payment_modal";
 import EventTicketModal from "./event_ticket_modal";
+import FreeEventRegistrationModal from "./free_event_registration_modal";
 
 function DetailMetaRow({
   icon,
@@ -71,12 +72,26 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
   const view = getEventDetailView(event);
   const eventId = event.raw?.id || event.id;
 
-  const { isRegistered, registration } = useEventRegistrationStatus(eventId);
+  const { isRegistered, registration, refetch } =
+    useEventRegistrationStatus(eventId);
   const joinMutation = useJoinFreeEvent();
 
+  const [isFreeModalOpen, setIsFreeModalOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
   const [confirmedTicketNum, setConfirmedTicketNum] = useState<string>("");
+
+  // Handle auto-opening free registration if redirected back from sign-in
+  useEffect(() => {
+    if (
+      searchParams?.get("register") === "free" &&
+      token &&
+      view.isFree &&
+      !isRegistered
+    ) {
+      setIsFreeModalOpen(true);
+    }
+  }, [searchParams, token, view.isFree, isRegistered]);
 
   // Handle return from PayPal redirect if any
   useEffect(() => {
@@ -91,19 +106,21 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
         if (res.success) {
           toast.success("Payment verified! Your ticket has been confirmed.");
           setConfirmedTicketNum(paymentRef);
+          refetch();
           setIsTicketModalOpen(true);
         }
       });
     }
-  }, [searchParams]);
+  }, [searchParams, refetch]);
 
   const handleActionClick = async () => {
     // 1. If not authenticated, prompt sign-in with redirect back
     if (!token) {
+      const queryParam = view.isFree ? "?register=free" : "";
       const currentPath =
         typeof window !== "undefined"
-          ? window.location.pathname
-          : `/events/${event.id}`;
+          ? `${window.location.pathname}${queryParam}`
+          : `/events/${event.id}${queryParam}`;
       router.push(
         `/dashboard/sign-in?redirect=${encodeURIComponent(currentPath)}`,
       );
@@ -116,20 +133,9 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
       return;
     }
 
-    // 3. If Free Event -> Register immediately
+    // 3. If Free Event -> Open Free Registration Confirmation Modal
     if (view.isFree) {
-      try {
-        const result = await joinMutation.mutateAsync(eventId);
-        toast.success("Successfully registered for this event!");
-        const ticketNum =
-          result?.ticketNumber ||
-          result?.id ||
-          `TK-${eventId.slice(0, 8).toUpperCase()}`;
-        setConfirmedTicketNum(ticketNum);
-        setIsTicketModalOpen(true);
-      } catch (err: any) {
-        toast.error(err.message || "Failed to complete event registration.");
-      }
+      setIsFreeModalOpen(true);
       return;
     }
 
@@ -153,18 +159,34 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
           <p className="mt-3 text-base leading-relaxed text-[#333041] sm:text-lg">
             {event.description}
           </p>
+
+          <hr className="my-8 border-base-200" />
+
+          {/* Agenda / Overview */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold tracking-tight text-[#071649] sm:text-2xl">
+              About This Event
+            </h2>
+            <div className="prose max-w-none text-base-content/80">
+              <p className="text-sm sm:text-base leading-relaxed">
+                {(event.raw as any)?.overview ||
+                  event.description ||
+                  "Join industry practitioners and chartered specialists for an engaging session designed to expand operational capabilities, governance readiness, and security excellence."}
+              </p>
+            </div>
+          </section>
         </div>
       </article>
 
-      {/* Sidebar: Details & Ticket Checkout */}
-      <aside className="rounded-3xl bg-[#EFECFB] p-4 sm:p-5 lg:p-6 border border-[#E0DAF1] space-y-3">
-        <h2 className="text-xl font-bold tracking-tight text-[#071649] sm:text-2xl">
-          Event Details
-        </h2>
+      {/* Sidebar: Event Metadata & Registration Action */}
+      <aside className="space-y-5 lg:sticky lg:top-24">
+        {/* Meta card */}
+        <div className="rounded-2xl bg-white px-5 py-5 sm:px-6 sm:py-6 border border-[#E0DAF1]">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-[#071649]">
+            Event Information
+          </h3>
 
-        {/* Date, Time & Venue */}
-        <div className="rounded-2xl bg-white px-5 py-5 sm:px-6 sm:py-6 border border-[#E8E2F0]">
-          <div className="flex flex-col gap-4">
+          <div className="mt-4 space-y-4">
             <DetailMetaRow
               icon={Calendar03Icon}
               label="Date"
@@ -270,6 +292,23 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
         </div>
       </aside>
 
+      {/* Free Event Registration Confirmation Modal */}
+      <FreeEventRegistrationModal
+        isOpen={isFreeModalOpen}
+        onClose={() => setIsFreeModalOpen(false)}
+        event={event}
+        onSuccess={(result) => {
+          setIsFreeModalOpen(false);
+          const ticketNum =
+            result?.ticketNumber ||
+            result?.id ||
+            `TK-${eventId.slice(0, 8).toUpperCase()}`;
+          setConfirmedTicketNum(ticketNum);
+          refetch();
+          setIsTicketModalOpen(true);
+        }}
+      />
+
       {/* PayPal Payment Modal for Paid Events */}
       <EventPaymentModal
         isOpen={isPaymentModalOpen}
@@ -277,6 +316,8 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
         event={event}
         onSuccess={(ref) => {
           if (ref) setConfirmedTicketNum(ref);
+          refetch();
+          setIsTicketModalOpen(true);
         }}
       />
 

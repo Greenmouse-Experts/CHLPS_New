@@ -17,7 +17,12 @@ export function useMyEventRegistrations() {
     queryFn: async () => {
       const res = await eventRegistrationService.getMyEventRegistrations();
       if (res.success && res.data) {
-        return res.data;
+        if (Array.isArray(res.data)) {
+          return res.data;
+        }
+        if (Array.isArray((res.data as any).items)) {
+          return (res.data as any).items as EventRegistration[];
+        }
       }
       return [] as EventRegistration[];
     },
@@ -28,12 +33,19 @@ export function useMyEventRegistrations() {
 }
 
 export function useEventRegistrationStatus(eventId?: string) {
-  const { data: registrations = [], isLoading } = useMyEventRegistrations();
+  const {
+    data: registrations = [],
+    isLoading,
+    refetch,
+  } = useMyEventRegistrations();
+
+  const list = Array.isArray(registrations) ? registrations : [];
 
   const registration = eventId
-    ? registrations.find(
+    ? list.find(
         (reg) =>
           reg.eventId === eventId ||
+          reg.id === eventId ||
           reg.event?.id === eventId ||
           reg.event?.slug === eventId,
       )
@@ -47,6 +59,7 @@ export function useEventRegistrationStatus(eventId?: string) {
     isRegistered,
     registration,
     isLoading,
+    refetch,
   };
 }
 
