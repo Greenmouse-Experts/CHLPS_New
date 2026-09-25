@@ -17,7 +17,7 @@ import type { CertificationDetail } from "@/features/certification/certification
 import { fetchProgramById } from "@/features/certification/services/certification_service";
 import QueryCompLayout from "@/components/QueryCompLayout";
 import { useAppSelector } from "@/lib/store/store";
-import { StripePaymentModal } from "@/features/orders";
+import { PaypalPaymentModal } from "@/features/orders";
 import { orderService } from "@/features/orders/services/order_service";
 
 type CertificationDetailsPageProps = {
@@ -31,7 +31,7 @@ export default function CertificationDetailsPage({
 }: CertificationDetailsPageProps) {
   const router = useRouter();
   const token = useAppSelector((state) => state.user.token);
-  const [isStripeModalOpen, setIsStripeModalOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isCheckingEnrollment, setIsCheckingEnrollment] = useState(false);
   const [applicationId, setApplicationId] = useState<string | undefined>(
     undefined,
@@ -74,7 +74,7 @@ export default function CertificationDetailsPage({
     const appQuestions = detail.applicationQuestions ?? [];
     // If course has no questionnaire/assessment questions, open payment modal directly
     if (appQuestions.length === 0) {
-      setIsStripeModalOpen(true);
+      setIsPaymentModalOpen(true);
       return;
     }
 
@@ -87,7 +87,7 @@ export default function CertificationDetailsPage({
       if (appRes.success && appRes.data?.id) {
         // Completed attempt exists -> load payment modal with applicationId
         setApplicationId(appRes.data.id);
-        setIsStripeModalOpen(true);
+        setIsPaymentModalOpen(true);
       } else {
         // No attempts or not completed -> go to assessment page
         router.push(`/certification/${id || detail.id}/assessment`);
@@ -155,16 +155,16 @@ export default function CertificationDetailsPage({
             <CertificationDetailsOutcomeSection detail={detail} />
             <CertificationDetailsBenefitsListSection detail={detail} />
 
-            {/* Direct Stripe Enrollment Modal */}
-            {isStripeModalOpen && detail.courseId && (
-              <StripePaymentModal
-                isOpen={isStripeModalOpen}
-                onClose={() => setIsStripeModalOpen(false)}
+            {/* Direct PayPal Enrollment Modal */}
+            {isPaymentModalOpen && detail.courseId && (
+              <PaypalPaymentModal
+                isOpen={isPaymentModalOpen}
+                onClose={() => setIsPaymentModalOpen(false)}
                 title={`Enroll in ${detail.heroTitle.replace(/\n/g, " ")}`}
                 courses={coursesForModal}
                 estimatedAmount={detail.price ?? 0}
                 onSuccess={() => {
-                  setIsStripeModalOpen(false);
+                  setIsPaymentModalOpen(false);
                   router.push("/dashboard/courses?payment=success");
                 }}
               />

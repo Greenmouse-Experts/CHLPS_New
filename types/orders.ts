@@ -13,7 +13,12 @@ export type PaymentStatus =
   | "failed"
   | "cancelled"
   | "refunded";
-export type PaymentGateway = "paystack" | "stripe" | "bank_transfer" | "manual";
+export type PaymentGateway =
+  | "paypal"
+  | "paystack"
+  | "stripe"
+  | "bank_transfer"
+  | "manual";
 
 export interface OrderItem {
   id: string;
@@ -170,9 +175,12 @@ export interface OrderCreateResponseData {
   thirdPartyRef?: string;
   authorization_url?: string;
   authorizationUrl?: string;
+  approvalUrl?: string;
+  approval_url?: string;
+  paypalOrderId?: string;
   clientSecret?: string;
   paymentIntentId?: string;
-  gateway?: "stripe" | "paystack";
+  gateway?: "paypal" | "stripe" | "paystack";
 }
 
 export interface OrderConfirmResponseData {

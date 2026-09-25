@@ -10,6 +10,9 @@ export interface EventRegistrationPaymentResult {
   thirdPartyRef?: string;
   authorization_url?: string;
   authorizationUrl?: string;
+  approvalUrl?: string;
+  approval_url?: string;
+  paypalOrderId?: string;
   clientSecret?: string;
   paymentIntentId?: string;
   amount?: number;

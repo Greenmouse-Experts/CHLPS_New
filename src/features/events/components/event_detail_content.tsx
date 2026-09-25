@@ -78,7 +78,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
   const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
   const [confirmedTicketNum, setConfirmedTicketNum] = useState<string>("");
 
-  // Handle return from external Stripe Checkout redirect if any
+  // Handle return from PayPal redirect if any
   useEffect(() => {
     const paymentStatus = searchParams?.get("payment");
     const paymentRef =
@@ -270,7 +270,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
         </div>
       </aside>
 
-      {/* Stripe Payment Modal for Paid Events */}
+      {/* PayPal Payment Modal for Paid Events */}
       <EventPaymentModal
         isOpen={isPaymentModalOpen}
         onClose={() => setIsPaymentModalOpen(false)}

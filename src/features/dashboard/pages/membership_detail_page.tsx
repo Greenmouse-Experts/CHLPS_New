@@ -26,7 +26,7 @@ import { DashboardLayout } from "@/components";
 import { Assets } from "@/lib/assets";
 import { RootState } from "@/lib/store/store";
 import { useUserMembershipApplicationDetail } from "../domain/data/hooks/user_membership_hooks";
-import { StripePaymentModal } from "@/features/orders";
+import { PaypalPaymentModal } from "@/features/orders";
 
 export default function MembershipDetailPage({ id }: { id: string }) {
   const user = useSelector((state: RootState) => state.user);
@@ -621,9 +621,9 @@ export default function MembershipDetailPage({ id }: { id: string }) {
         )}
       </div>
 
-      {/* Stripe Payment Modal for Approved Applications */}
+      {/* PayPal Payment Modal for Approved Applications */}
       {isPaymentModalOpen && application && (
-        <StripePaymentModal
+        <PaypalPaymentModal
           isOpen={isPaymentModalOpen}
           onClose={() => setIsPaymentModalOpen(false)}
           title={`Join ${application.name}`}

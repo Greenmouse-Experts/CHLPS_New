@@ -22,7 +22,7 @@ import {
 } from "@/features/membership/membership_types";
 import { orderService } from "@/features/orders/services/order_service";
 import { useAppSelector } from "@/lib/store/store";
-import { StripePaymentModal } from "@/features/orders";
+import { PaypalPaymentModal } from "@/features/orders";
 
 type MembershipTypePageProps = {
   membership?: MembershipType;
@@ -227,9 +227,9 @@ export default function MembershipTypePage({
                 />
               ) : null}
 
-              {/* Stripe Payment Modal */}
+              {/* PayPal Payment Modal */}
               {isStripeModalOpen && current.membershipId && (
-                <StripePaymentModal
+                <PaypalPaymentModal
                   isOpen={isStripeModalOpen}
                   onClose={() => setIsStripeModalOpen(false)}
                   title={`Join ${current.gradeTitle || current.title}`}

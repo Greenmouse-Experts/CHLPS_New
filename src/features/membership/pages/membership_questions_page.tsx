@@ -22,7 +22,7 @@ import { fetchPublicMembershipBySlugOrId } from "@/features/membership/services/
 import { transformMembershipApiToType } from "@/features/membership/membership_types";
 import { orderService } from "@/features/orders/services/order_service";
 import { useAppSelector } from "@/lib/store/store";
-import { StripePaymentModal } from "@/features/orders";
+import { PaypalPaymentModal } from "@/features/orders";
 import QueryCompLayout from "@/components/QueryCompLayout";
 
 interface MembershipQuestionsPageProps {
@@ -208,7 +208,7 @@ export default function MembershipQuestionsPage({
         if (resolvedAppId) {
           setApplicationId(resolvedAppId);
         }
-        // Immediately load the Stripe payment modal
+        // Immediately load the PayPal payment modal
         setIsPaymentModalOpen(true);
       } else {
         toast.error(
@@ -495,9 +495,9 @@ export default function MembershipQuestionsPage({
         </div>
       </main>
 
-      {/* Stripe Payment Modal for Membership */}
+      {/* PayPal Payment Modal for Membership */}
       {isPaymentModalOpen && membershipId && (
-        <StripePaymentModal
+        <PaypalPaymentModal
           isOpen={isPaymentModalOpen}
           onClose={() => setIsPaymentModalOpen(false)}
           title={`Join ${detail?.gradeTitle || detail?.title || "Membership"}`}

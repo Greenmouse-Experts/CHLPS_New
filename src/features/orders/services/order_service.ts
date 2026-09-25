@@ -59,7 +59,7 @@ export class OrderService {
 
   /**
    * 2. CREATE ORDER
-   * Generates order record and provides Stripe / Paystack checkout reference.
+   * Generates order record and provides PayPal checkout reference.
    * Endpoint: POST /orders/create
    */
   async createOrder(
@@ -161,7 +161,7 @@ export class OrderService {
 
   /**
    * 4. CONFIRM ORDER
-   * Verifies the third-party payment reference (Stripe / Paystack) and unlocks purchased content.
+   * Verifies the third-party payment reference (PayPal) and unlocks purchased content.
    * Endpoint: POST /orders/confirm/:thirdPartyRef
    */
   async confirmOrder(

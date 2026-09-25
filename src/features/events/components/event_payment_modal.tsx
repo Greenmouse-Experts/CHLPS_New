@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
-  Elements,
-  PaymentElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from "@paypal/react-paypal-js";
 import { toast } from "sonner";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -22,7 +21,7 @@ import {
   ComputerIcon,
   ArrowRight01Icon,
 } from "@hugeicons/core-free-icons";
-import { getStripe } from "@/lib/stripe";
+import { getPayPalClientId, getPayPalCurrency } from "@/lib/paypal";
 import {
   eventRegistrationService,
   type EventRegistrationPaymentResult,
@@ -37,122 +36,177 @@ interface EventPaymentModalProps {
 }
 
 /**
- * Inner Stripe Elements Form for Event Ticket
+ * Inner PayPal Buttons for Event Ticket Checkout
  */
-function EventStripeForm({
-  clientSecret,
-  ticketRef,
+function EventPayPalButtons({
   event,
-  onSuccess,
+  paymentData,
+  numericAmount,
+  currency = "CAD",
+  onPaymentSuccess,
   onClose,
 }: {
-  clientSecret: string;
-  ticketRef: string;
   event: ChlpsEvent;
-  onSuccess?: (ref: string) => void;
+  paymentData: EventRegistrationPaymentResult;
+  numericAmount: number;
+  currency: string;
+  onPaymentSuccess: (ticketRef: string) => void;
   onClose: () => void;
 }) {
-  const stripe = useStripe();
-  const elements = useElements();
+  const [{ isPending }] = usePayPalScriptReducer();
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const eventId = event.raw?.id || event.id;
+  const ticketRef =
+    paymentData.ticketNumber ||
+    paymentData.reference ||
+    `TK-${eventId.slice(0, 6).toUpperCase()}`;
 
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setIsProcessing(true);
-    setErrorMessage(null);
-
-    const eventId = event.raw?.id || event.id;
-    const returnUrl = `${window.location.origin}/events/${eventId}?payment=success&ref=${encodeURIComponent(ticketRef)}`;
-
-    const result = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: returnUrl,
-      },
-      redirect: "if_required",
-    });
-
-    if (result.error) {
-      setErrorMessage(
-        result.error.message || "Payment could not be completed.",
-      );
-      toast.error(result.error.message || "Payment failed");
-      setIsProcessing(false);
-      return;
-    }
-
-    if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
-      try {
-        await eventRegistrationService.confirmEventPayment(
-          result.paymentIntent.id,
-        );
-        toast.success("Payment confirmed! Your ticket has been issued.");
-        onSuccess?.(ticketRef);
-      } catch {
-        toast.success("Payment received. Confirming your event registration...");
-        onSuccess?.(ticketRef);
-      } finally {
-        setIsProcessing(false);
-      }
-    }
-  };
+  const safeAmount = Number(numericAmount.toFixed(2));
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="space-y-4">
       {errorMessage && (
-        <div className="alert alert-error rounded-xl p-3 text-sm text-white">
+        <div className="alert alert-error rounded-2xl p-3 text-sm text-white">
           <span>{errorMessage}</span>
         </div>
       )}
 
-      <div className="rounded-xl border border-base-200 bg-base-50 p-4">
-        <PaymentElement />
-      </div>
+      {isPending ? (
+        <div className="flex flex-col items-center justify-center gap-2 py-8 text-center">
+          <HugeiconsIcon
+            icon={Loading03Icon}
+            size={24}
+            className="animate-spin text-primary"
+          />
+          <p className="text-sm text-base-content/60">
+            Connecting to PayPal secure checkout...
+          </p>
+        </div>
+      ) : (
+        <div className="relative z-10 w-full min-h-[140px]">
+          <PayPalButtons
+            style={{
+              layout: "vertical",
+              color: "gold",
+              shape: "rect",
+              label: "paypal",
+              height: 48,
+            }}
+            disabled={isProcessing}
+            createOrder={async (data, actions) => {
+              setErrorMessage(null);
+              setIsProcessing(true);
 
-      <div className="flex items-center justify-between pt-2">
-        <button
-          type="button"
-          onClick={onClose}
-          disabled={isProcessing}
-          className="btn btn-ghost btn-sm rounded-xl text-xs font-semibold"
-        >
-          Cancel
-        </button>
+              // If backend provides a direct PayPal approval redirect URL
+              const redirectUrl =
+                paymentData.authorization_url ||
+                paymentData.authorizationUrl ||
+                paymentData.approvalUrl ||
+                paymentData.approval_url;
 
-        <button
-          type="submit"
-          disabled={!stripe || isProcessing}
-          className="btn btn-primary btn-md rounded-xl text-sm font-bold text-white normal-case shadow-sm gap-2"
-        >
-          {isProcessing ? (
-            <>
-              <HugeiconsIcon
-                icon={Loading03Icon}
-                size={18}
-                className="animate-spin"
-              />
-              <span>Processing Payment...</span>
-            </>
-          ) : (
-            <>
-              <HugeiconsIcon icon={LockKeyIcon} size={16} />
-              <span>Confirm & Pay {event.ticketPrice}</span>
-            </>
-          )}
-        </button>
-      </div>
-    </form>
+              if (redirectUrl) {
+                window.location.href = redirectUrl;
+                return "";
+              }
+
+              if (paymentData.paypalOrderId) {
+                return paymentData.paypalOrderId;
+              }
+
+              return actions.order.create({
+                intent: "CAPTURE",
+                purchase_units: [
+                  {
+                    reference_id: ticketRef,
+                    description: `Event Ticket: ${event.title}`,
+                    amount: {
+                      currency_code: currency.toUpperCase(),
+                      value: safeAmount.toString(),
+                    },
+                  },
+                ],
+              });
+            }}
+            onApprove={async (data, actions) => {
+              setIsProcessing(true);
+              try {
+                if (actions && actions.order) {
+                  await actions.order.capture();
+                }
+
+                const transactionRef =
+                  data.orderID || paymentData.reference || ticketRef;
+
+                try {
+                  await eventRegistrationService.confirmEventPayment(
+                    transactionRef,
+                  );
+                } catch (confirmErr) {
+                  console.warn(
+                    "Backend payment verification notice:",
+                    confirmErr,
+                  );
+                }
+
+                toast.success(
+                  "Payment confirmed! Your ticket has been issued.",
+                );
+                onPaymentSuccess(ticketRef);
+              } catch (err: any) {
+                const msg =
+                  err?.message || "Payment confirmation failed with PayPal.";
+                setErrorMessage(msg);
+                toast.error(msg);
+              } finally {
+                setIsProcessing(false);
+              }
+            }}
+            onError={(err: any) => {
+              console.error("PayPal ticket error:", err);
+              const msg =
+                err?.message ||
+                "A PayPal communication error occurred. Please try again.";
+              setErrorMessage(msg);
+              toast.error(msg);
+              setIsProcessing(false);
+            }}
+            onCancel={() => {
+              toast.info("PayPal ticket checkout was cancelled.");
+              setIsProcessing(false);
+            }}
+          />
+        </div>
+      )}
+
+      {/* Fallback button if backend returned PayPal approval URL */}
+      {(paymentData.authorization_url ||
+        paymentData.authorizationUrl ||
+        paymentData.approvalUrl ||
+        paymentData.approval_url) && (
+        <div className="pt-2 text-center">
+          <a
+            href={
+              paymentData.authorization_url ||
+              paymentData.authorizationUrl ||
+              paymentData.approvalUrl ||
+              paymentData.approval_url
+            }
+            className="btn btn-outline btn-primary btn-sm rounded-xl text-xs gap-1.5"
+          >
+            <span>Complete via PayPal Page</span>
+            <HugeiconsIcon icon={ArrowRight01Icon} size={14} />
+          </a>
+        </div>
+      )}
+    </div>
   );
 }
 
 /**
  * Main Event Payment & Ticket Purchase Modal
+ * Exclusively powered by PayPal
  */
 export default function EventPaymentModal({
   isOpen,
@@ -161,12 +215,14 @@ export default function EventPaymentModal({
   onSuccess,
 }: EventPaymentModalProps) {
   const router = useRouter();
-  const [step, setStep] = useState<"preview" | "stripe" | "confirmed">("preview");
+  const [step, setStep] = useState<"preview" | "paypal" | "confirmed">(
+    "preview",
+  );
   const [isInitiating, setIsInitiating] = useState(false);
   const [paymentData, setPaymentData] =
     useState<EventRegistrationPaymentResult | null>(null);
-  const [confirmedTicketNumber, setConfirmedTicketNumber] = useState<string>("");
-  const [stripePromise] = useState(() => getStripe());
+  const [confirmedTicketNumber, setConfirmedTicketNumber] =
+    useState<string>("");
 
   useEffect(() => {
     if (!isOpen) {
@@ -183,6 +239,16 @@ export default function EventPaymentModal({
   const isVirtual =
     event.location && event.location.trim().toLowerCase() === "online";
 
+  // Parse raw price or strip currency symbols
+  const numericPrice = (() => {
+    if (typeof event.ticketPrice === "number") return event.ticketPrice;
+    const cleaned = String(event.ticketPrice || "").replace(/[^0-9.]/g, "");
+    const parsed = parseFloat(cleaned);
+    return isNaN(parsed) ? 50 : parsed;
+  })();
+
+  const currency = getPayPalCurrency();
+
   const handleProceedToPayment = async () => {
     setIsInitiating(true);
     try {
@@ -193,45 +259,38 @@ export default function EventPaymentModal({
       );
 
       if (!res.success || !res.data) {
-        throw new Error(res.message || "Failed to initiate ticket registration.");
+        throw new Error(
+          res.message || "Failed to initiate ticket registration.",
+        );
       }
 
       const data = res.data;
       setPaymentData(data);
 
-      const redirectUrl = data.authorization_url || data.authorizationUrl;
+      const redirectUrl =
+        data.authorization_url ||
+        data.authorizationUrl ||
+        data.approvalUrl ||
+        data.approval_url;
 
-      // If backend provides an external checkout URL (Stripe Checkout / Paystack), redirect
-      if (redirectUrl && !data.clientSecret) {
+      // If backend provides an external checkout redirect URL directly
+      if (redirectUrl) {
         window.location.href = redirectUrl;
         return;
       }
 
-      // If clientSecret is returned, transition to embedded Stripe form
-      if (data.clientSecret) {
-        setStep("stripe");
-      } else if (redirectUrl) {
-        window.location.href = redirectUrl;
-      } else {
-        // Direct confirmation if no payment required / instant registration
-        const ticketNum =
-          data.ticketNumber ||
-          data.reference ||
-          `TK-${eventId.slice(0, 6).toUpperCase()}`;
-        setConfirmedTicketNumber(ticketNum);
-        setStep("confirmed");
-        toast.success("Event registration successful!");
-        onSuccess?.(ticketNum);
-      }
+      setStep("paypal");
     } catch (err: any) {
-      toast.error(err.message || "Failed to start payment process.");
+      toast.error(err.message || "Failed to start PayPal checkout.");
     } finally {
       setIsInitiating(false);
     }
   };
 
   const handlePaymentSuccess = (ticketRef: string) => {
-    setConfirmedTicketNumber(ticketRef || `TK-${eventId.slice(0, 6).toUpperCase()}`);
+    setConfirmedTicketNumber(
+      ticketRef || `TK-${eventId.slice(0, 6).toUpperCase()}`,
+    );
     setStep("confirmed");
     onSuccess?.(ticketRef);
   };
@@ -242,12 +301,14 @@ export default function EventPaymentModal({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-base-200 pb-4">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600">
               <HugeiconsIcon icon={CreditCardIcon} size={22} />
             </span>
             <div>
               <h3 className="text-lg font-bold text-[#0D154B] sm:text-xl">
-                {step === "confirmed" ? "Ticket Confirmed" : "Event Ticket Checkout"}
+                {step === "confirmed"
+                  ? "Ticket Confirmed"
+                  : "PayPal Ticket Checkout"}
               </h3>
               <p className="text-xs text-base-content/60">
                 Association of Chartered Loss Prevention Specialists
@@ -263,39 +324,38 @@ export default function EventPaymentModal({
           </button>
         </div>
 
-        {/* Step: Preview */}
+        {/* STEP 1: PREVIEW */}
         {step === "preview" && (
-          <div className="mt-5 space-y-5">
-            {/* Event Summary Card */}
-            <div className="rounded-2xl border border-base-200 bg-base-50/70 p-4 sm:p-5">
-              <span className="badge badge-primary badge-outline text-xs font-semibold uppercase tracking-wider mb-2">
-                {event.category || "Event"}
+          <div className="mt-5 space-y-4">
+            <div className="rounded-2xl border border-base-200 bg-base-50 p-4 space-y-3">
+              <span className="badge badge-primary badge-outline text-xs font-semibold px-2.5 py-1">
+                {event.category}
               </span>
-              <h4 className="text-base font-bold text-[#0D154B] leading-snug sm:text-lg">
+              <h4 className="text-base font-bold text-[#0D154B] leading-snug">
                 {event.title}
               </h4>
 
-              <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2 text-xs text-base-content/80">
-                <div className="flex items-center gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-base-200/80 text-xs text-base-content/70">
+                <div className="flex items-center gap-1.5">
                   <HugeiconsIcon
                     icon={Calendar03Icon}
-                    size={16}
+                    size={14}
                     className="text-primary shrink-0"
                   />
                   <span>{event.date}</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   <HugeiconsIcon
                     icon={Clock01Icon}
-                    size={16}
+                    size={14}
                     className="text-primary shrink-0"
                   />
                   <span>{event.time}</span>
                 </div>
-                <div className="flex items-center gap-2 sm:col-span-2">
+                <div className="flex items-center gap-1.5 sm:col-span-2">
                   <HugeiconsIcon
                     icon={isVirtual ? ComputerIcon : Location01Icon}
-                    size={16}
+                    size={14}
                     className="text-primary shrink-0"
                   />
                   <span className="truncate">{event.location}</span>
@@ -303,36 +363,47 @@ export default function EventPaymentModal({
               </div>
             </div>
 
-            {/* Price Breakdown */}
-            <div className="rounded-2xl border border-base-200 bg-white p-4 space-y-2">
-              <div className="flex items-center justify-between text-xs text-base-content/70">
-                <span>Standard Admission Ticket</span>
-                <span>{event.ticketPrice}</span>
+            <div className="rounded-2xl border border-base-200 bg-[#F9F8FE] p-4">
+              <div className="flex justify-between items-center text-sm text-base-content/70">
+                <span>Standard Ticket Access:</span>
+                <span className="font-semibold text-base-content">
+                  ${numericPrice.toLocaleString()} {currency}
+                </span>
               </div>
-              <div className="flex items-center justify-between text-xs text-base-content/70">
-                <span>Processing & Platform Fee</span>
-                <span className="text-success font-medium">Included</span>
-              </div>
-              <div className="divider my-1" />
-              <div className="flex items-center justify-between text-base font-bold text-[#0D154B] sm:text-lg">
-                <span>Total Amount</span>
-                <span className="text-primary">{event.ticketPrice}</span>
+              <div className="mt-2.5 flex justify-between items-center border-t border-base-200/80 pt-2.5">
+                <span className="text-sm font-bold text-[#0D154B]">
+                  Total Payment:
+                </span>
+                <span className="text-lg font-extrabold text-primary">
+                  ${numericPrice.toLocaleString()} {currency}
+                </span>
               </div>
             </div>
 
-            {/* Security note */}
-            <div className="flex items-center gap-2 text-xs text-base-content/60 px-1">
-              <HugeiconsIcon icon={LockKeyIcon} size={14} className="text-success" />
-              <span>Payments are processed securely via Stripe with 256-bit encryption.</span>
+            <div className="flex items-center gap-2 text-xs text-base-content/60">
+              <HugeiconsIcon
+                icon={CheckmarkCircle02Icon}
+                size={16}
+                className="text-emerald-500 shrink-0"
+              />
+              <span>
+                Instant electronic ticket pass upon completing PayPal payment.
+              </span>
             </div>
 
-            {/* Actions */}
-            <div className="pt-2 flex flex-col gap-2.5">
+            <div className="flex items-center justify-between gap-3 pt-3">
+              <button
+                type="button"
+                onClick={onClose}
+                className="btn btn-ghost btn-md flex-1 rounded-2xl text-sm font-semibold"
+              >
+                Cancel
+              </button>
               <button
                 type="button"
                 onClick={handleProceedToPayment}
                 disabled={isInitiating}
-                className="btn btn-primary btn-block h-12 min-h-12 rounded-xl text-sm font-bold text-white normal-case shadow-sm gap-2"
+                className="btn btn-primary btn-md flex-1 rounded-2xl text-sm font-bold text-white normal-case shadow-sm gap-2"
               >
                 {isInitiating ? (
                   <>
@@ -341,122 +412,104 @@ export default function EventPaymentModal({
                       size={18}
                       className="animate-spin"
                     />
-                    <span>Connecting to Payment Gateway...</span>
+                    <span>Connecting to PayPal...</span>
                   </>
                 ) : (
                   <>
-                    <span>Proceed to Payment</span>
+                    <span>Proceed to PayPal</span>
                     <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
                   </>
                 )}
               </button>
-
-              <button
-                type="button"
-                onClick={onClose}
-                disabled={isInitiating}
-                className="btn btn-ghost btn-sm rounded-xl text-xs font-semibold text-base-content/70"
-              >
-                Cancel
-              </button>
             </div>
           </div>
         )}
 
-        {/* Step: Stripe Elements Payment */}
-        {step === "stripe" && paymentData?.clientSecret && (
+        {/* STEP 2: PAYPAL CHECKOUT */}
+        {step === "paypal" && paymentData && (
           <div className="mt-5 space-y-4">
-            <div className="flex items-center justify-between rounded-xl bg-primary/5 p-3 text-xs">
-              <span className="text-base-content/70">Paying for:</span>
-              <span className="font-bold text-[#0D154B]">{event.ticketPrice}</span>
+            <div className="rounded-2xl border border-base-200 bg-base-50 p-4">
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-base-content/70">Ticket:</span>
+                <span className="font-bold text-primary text-base">
+                  ${numericPrice.toLocaleString()} {currency}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-base-content/60 truncate">
+                {event.title}
+              </p>
             </div>
 
-            <Elements
-              stripe={stripePromise}
+            <PayPalScriptProvider
               options={{
-                clientSecret: paymentData.clientSecret,
-                appearance: {
-                  theme: "stripe",
-                  variables: {
-                    colorPrimary: "#0D154B",
-                    colorBackground: "#ffffff",
-                    colorText: "#0D154B",
-                    borderRadius: "12px",
-                  },
-                },
+                clientId: getPayPalClientId(),
+                currency: currency.toUpperCase(),
+                intent: "capture",
+                components: "buttons",
               }}
             >
-              <EventStripeForm
-                clientSecret={paymentData.clientSecret}
-                ticketRef={
-                  paymentData.reference ||
-                  paymentData.ticketNumber ||
-                  `TK-${eventId.slice(0, 6).toUpperCase()}`
-                }
+              <EventPayPalButtons
                 event={event}
-                onSuccess={handlePaymentSuccess}
+                paymentData={paymentData}
+                numericAmount={numericPrice}
+                currency={currency}
+                onPaymentSuccess={handlePaymentSuccess}
                 onClose={onClose}
               />
-            </Elements>
+            </PayPalScriptProvider>
+
+            <button
+              type="button"
+              onClick={() => setStep("preview")}
+              className="btn btn-ghost btn-sm w-full rounded-xl text-xs text-base-content/60 hover:text-base-content"
+            >
+              Back to Ticket Summary
+            </button>
           </div>
         )}
 
-        {/* Step: Confirmed / Ticket Pass */}
+        {/* STEP 3: CONFIRMED */}
         {step === "confirmed" && (
-          <div className="mt-6 text-center space-y-5">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-success/15 text-success">
+          <div className="mt-6 space-y-5 text-center">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-500">
               <HugeiconsIcon icon={CheckmarkCircle02Icon} size={36} />
             </div>
 
             <div>
-              <h4 className="text-xl font-bold text-[#0D154B] sm:text-2xl">
-                You&apos;re Officially Registered!
+              <h4 className="text-lg font-bold text-[#0D154B] sm:text-xl">
+                Registration Confirmed!
               </h4>
-              <p className="mt-1.5 text-xs text-base-content/70 sm:text-sm">
-                Your ticket has been confirmed. A calendar invitation and access
-                link have been dispatched to your email.
+              <p className="mt-1 text-sm text-base-content/70">
+                You are registered for <strong>{event.title}</strong>.
               </p>
             </div>
 
-            {/* Ticket Pass Slip */}
-            <div className="rounded-2xl border-2 border-dashed border-[#C99E4A] bg-[#FAF8F5] p-5 text-left">
-              <div className="flex items-center justify-between border-b border-base-200/80 pb-3">
-                <span className="text-xs uppercase tracking-wider text-base-content/60 font-semibold">
-                  Ticket Reference
-                </span>
-                <span className="font-mono text-xs font-bold text-[#0D154B]">
-                  {confirmedTicketNumber || `TK-${eventId.slice(0, 8).toUpperCase()}`}
-                </span>
-              </div>
-
-              <div className="mt-3 space-y-1.5">
-                <h5 className="text-sm font-bold text-[#0D154B]">
-                  {event.title}
-                </h5>
-                <p className="text-xs text-base-content/70">
-                  {event.date} • {event.time}
-                </p>
-                <p className="text-xs text-primary font-medium">
-                  {event.location}
-                </p>
-              </div>
+            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-4 text-center">
+              <span className="text-xs uppercase tracking-wider text-emerald-800 font-bold">
+                Ticket Reference
+              </span>
+              <p className="mt-1 font-mono text-base font-extrabold text-emerald-900 tracking-wide">
+                {confirmedTicketNumber ||
+                  paymentData?.ticketNumber ||
+                  `TK-${eventId.slice(0, 6).toUpperCase()}`}
+              </p>
             </div>
 
-            <div className="pt-2 flex flex-col gap-2">
+            <div className="flex flex-col gap-2 pt-2">
               <button
                 type="button"
                 onClick={() => {
                   onClose();
-                  router.push("/dashboard");
+                  router.push("/dashboard/membership");
                 }}
-                className="btn btn-primary btn-block h-12 min-h-12 rounded-xl text-sm font-bold text-white normal-case shadow-sm"
+                className="btn btn-primary btn-md w-full rounded-2xl text-sm font-bold text-white normal-case shadow-sm"
               >
-                Go to Dashboard
+                Go to Student Dashboard
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="btn btn-ghost btn-sm rounded-xl text-xs font-semibold text-base-content/70"
+                className="btn btn-ghost btn-sm text-xs font-semibold text-base-content/70"
               >
                 Close
               </button>

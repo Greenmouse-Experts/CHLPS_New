@@ -21,7 +21,7 @@ import { Button } from "@/components/ui";
 import { fetchProgramById } from "@/features/certification/services/certification_service";
 import { orderService } from "@/features/orders/services/order_service";
 import { useAppSelector } from "@/lib/store/store";
-import { StripePaymentModal } from "@/features/orders";
+import { PaypalPaymentModal } from "@/features/orders";
 import QueryCompLayout from "@/components/QueryCompLayout";
 
 interface CertificationAssessmentPageProps {
@@ -205,7 +205,7 @@ export default function CertificationAssessmentPage({
         if (resolvedAppId) {
           setApplicationId(resolvedAppId);
         }
-        // Immediately load the Stripe payment modal as requested
+        // Immediately load the PayPal payment modal as requested
         setIsPaymentModalOpen(true);
       } else {
         toast.error(
@@ -491,9 +491,9 @@ export default function CertificationAssessmentPage({
         </div>
       </main>
 
-      {/* Stripe Payment Modal (Loaded immediately upon completion) */}
+      {/* PayPal Payment Modal (Loaded immediately upon completion) */}
       {detail?.courseId && (
-        <StripePaymentModal
+        <PaypalPaymentModal
           isOpen={isPaymentModalOpen}
           onClose={() => setIsPaymentModalOpen(false)}
           title={`Enroll in ${detail.heroTitle.replace(/\n/g, " ")}`}

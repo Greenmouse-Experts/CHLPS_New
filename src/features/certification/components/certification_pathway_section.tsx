@@ -17,7 +17,7 @@ import {
 } from "@/features/certification/services/certification_menu_service";
 import { resolveCertificationHref } from "@/features/certification/certification_details";
 import { useAppSelector } from "@/lib/store/store";
-import { StripePaymentModal } from "@/features/orders";
+import { PaypalPaymentModal } from "@/features/orders";
 import { orderService } from "@/features/orders/services/order_service";
 import type { Course } from "@/types";
 import HeaderText from "@/components/HeaderText";
@@ -307,9 +307,9 @@ export default function CertificationPathwaySection() {
           </div>
         )}
 
-        {/* Stripe Payment Modal for Direct Enrollment */}
+        {/* PayPal Payment Modal for Direct Enrollment */}
         {selectedCheckout && (
-          <StripePaymentModal
+          <PaypalPaymentModal
             isOpen={Boolean(selectedCheckout)}
             onClose={() => setSelectedCheckout(null)}
             title={`Enroll in ${selectedCheckout.title}`}
