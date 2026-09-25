@@ -80,6 +80,8 @@ export function useJoinFreeEvent() {
   });
 }
 
+export const useRegisterFreeEvent = useJoinFreeEvent;
+
 export function useRegisterPaidEvent() {
   const queryClient = useQueryClient();
 

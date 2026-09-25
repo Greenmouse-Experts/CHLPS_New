@@ -85,9 +85,9 @@ export class EventRegistrationService {
   }
 
   /**
-   * 2. Instant Join for Free Event
-   * Calls POST /event-registrations/:eventId/join
-   * Directly issues attendance pass and confirmation.
+   * 2. Free Event Registration
+   * Calls POST /event-registrations/:eventId/register
+   * Directly issues attendance pass and confirmation for free events.
    */
   async joinFreeEvent(
     eventId: string,
@@ -96,7 +96,7 @@ export class EventRegistrationService {
       const response = await this.api.postData<
         Record<string, unknown>,
         EventRegistrationResult
-      >(ApiUrls.eventJoin(eventId), {});
+      >(ApiUrls.eventRegister(eventId), {});
 
       if (response.success && response.data) {
         const raw = response.data as any;
@@ -121,6 +121,15 @@ export class EventRegistrationService {
         error?.response?.status || 500,
       );
     }
+  }
+
+  /**
+   * Alias for joinFreeEvent -> POST /event-registrations/:eventId/register
+   */
+  async registerFreeEvent(
+    eventId: string,
+  ): Promise<ApiResponse<EventRegistrationResult>> {
+    return this.joinFreeEvent(eventId);
   }
 
   /**
