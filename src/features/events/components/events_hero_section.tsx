@@ -14,12 +14,9 @@ export default function EventsHeroSection({
   title = "Events",
   body = (
     <>
-      <span className="text-secondary">
-        Events and Professional Practice Updates
-      </span>
-      : Stay informed through industry events, professional forums, emerging
-      Loss Prevention trends, regulatory developments, evolving technologies,
-      best practices, expert insights, and important updates shaping the loss
+      Stay informed through industry events, professional forums, emerging Loss
+      Prevention trends, regulatory developments, evolving technologies, best
+      practices, expert insights, and important updates shaping the loss
       prevention profession.
     </>
   ),
@@ -50,8 +47,11 @@ export default function EventsHeroSection({
           <div className="w-full">
             <Reveal>
               <h2 className="text-white text-3xl">
-                Events and Professional <br />
-                <span className="text-secondary">Practice Updates</span>
+                Events and <br />
+                <span className="text-secondary">
+                  {" "}
+                  Professional Practice Updates
+                </span>
               </h2>
             </Reveal>
 

@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "6f810678-93cd-4143-8d60-688c6d1ea034",
+    "_postman_id": "c7e05ab1-c494-4863-8ba7-aa0a0e51600a",
     "name": "Chlps Institute API",
     "description": "API documentation for Chlps Institute backend",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -92,7 +92,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -160,7 +160,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -228,7 +228,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -310,7 +310,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -407,7 +407,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -504,7 +504,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -601,7 +601,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -669,7 +669,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -776,7 +776,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -880,7 +880,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -964,7 +964,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -1068,7 +1068,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -1138,7 +1138,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -1206,7 +1206,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -1274,7 +1274,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -1361,7 +1361,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -1450,7 +1450,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -1549,7 +1549,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -1651,7 +1651,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -1702,7 +1702,7 @@
                             "create"
                           ]
                         },
-                        "description": "Initialize a new course order with Paystack payment"
+                        "description": "Initialize a new order with the configured payment provider"
                       },
                       "response": [
                         {
@@ -1748,7 +1748,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -1795,7 +1795,7 @@
                                 }
                               ]
                             },
-                            "description": "Confirm order after successful Paystack payment"
+                            "description": "Confirm an order after successful payment"
                           },
                           "response": [
                             {
@@ -1835,7 +1835,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -1905,7 +1905,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -1973,7 +1973,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -2041,7 +2041,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -2128,7 +2128,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -2217,7 +2217,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -2306,7 +2306,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -2395,7 +2395,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -2484,7 +2484,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -2573,7 +2573,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -2662,7 +2662,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -2751,7 +2751,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -2850,7 +2850,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -2937,7 +2937,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -3007,7 +3007,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3104,7 +3104,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3172,7 +3172,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3240,7 +3240,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3308,7 +3308,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3376,7 +3376,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3444,7 +3444,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3531,7 +3531,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -3589,7 +3589,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -3642,7 +3642,60 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "paypal",
+                      "item": [
+                        {
+                          "name": "Orders Webhook Controller handle Paypal Webhook",
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/orders/webhook/paypal",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                "webhook",
+                                "paypal"
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "201",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/orders/webhook/paypal",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "orders",
+                                    "webhook",
+                                    "paypal"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": null
                             }
                           ]
                         }
@@ -3729,7 +3782,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3831,7 +3884,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -3856,7 +3909,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/courses/fetch-courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                          "raw": "{{baseUrl}}/api/v1/courses/fetch-courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -3868,44 +3921,44 @@
                           ],
                           "query": [
                             {
+                              "description": "Page number for pagination",
                               "key": "page",
-                              "value": "1",
-                              "description": "Page number for pagination"
+                              "value": "1"
                             },
                             {
+                              "description": "Number of items per page",
                               "key": "pageSize",
-                              "value": "10",
-                              "description": "Number of items per page"
+                              "value": "10"
                             },
                             {
+                              "description": "Field to order by",
                               "key": "orderBy",
-                              "value": "string",
-                              "description": "Field to order by"
+                              "value": "string"
                             },
                             {
+                              "description": "Sort order direction",
                               "key": "sortOrder",
-                              "value": "DESC",
-                              "description": "Sort order direction"
+                              "value": "DESC"
                             },
                             {
+                              "description": "General search across course title, short description, and full description",
                               "key": "search",
-                              "value": "string",
-                              "description": "General search across course title, short description, and full description"
+                              "value": "string"
                             },
                             {
+                              "description": "Filter by course title (partial match)",
                               "key": "title",
-                              "value": "string",
-                              "description": "Filter by course title (partial match)"
+                              "value": "string"
                             },
                             {
+                              "description": "Filter by course slug (partial match)",
                               "key": "slug",
-                              "value": "introduction-to-programming",
-                              "description": "Filter by course slug (partial match)"
+                              "value": "introduction-to-programming"
                             },
                             {
+                              "description": "Filter by exact price",
                               "key": "price",
-                              "value": "5945.289344224058",
-                              "description": "Filter by exact price"
+                              "value": "8960.093428540438"
                             }
                           ]
                         },
@@ -3924,7 +3977,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/courses/fetch-courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                              "raw": "{{baseUrl}}/api/v1/courses/fetch-courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -3973,7 +4026,7 @@
                                 {
                                   "description": "Filter by exact price",
                                   "key": "price",
-                                  "value": "5945.289344224058"
+                                  "value": "8960.093428540438"
                                 }
                               ]
                             }
@@ -3983,7 +4036,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -4011,7 +4064,7 @@
                             "method": "GET",
                             "header": [],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/courses/public/featured?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                              "raw": "{{baseUrl}}/api/v1/courses/public/featured?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -4024,44 +4077,44 @@
                               ],
                               "query": [
                                 {
+                                  "description": "Page number for pagination",
                                   "key": "page",
-                                  "value": "1",
-                                  "description": "Page number for pagination"
+                                  "value": "1"
                                 },
                                 {
+                                  "description": "Number of items per page",
                                   "key": "pageSize",
-                                  "value": "10",
-                                  "description": "Number of items per page"
+                                  "value": "10"
                                 },
                                 {
+                                  "description": "Field to order by",
                                   "key": "orderBy",
-                                  "value": "string",
-                                  "description": "Field to order by"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Sort order direction",
                                   "key": "sortOrder",
-                                  "value": "DESC",
-                                  "description": "Sort order direction"
+                                  "value": "DESC"
                                 },
                                 {
+                                  "description": "General search across course title, short description, and full description",
                                   "key": "search",
-                                  "value": "string",
-                                  "description": "General search across course title, short description, and full description"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Filter by course title (partial match)",
                                   "key": "title",
-                                  "value": "string",
-                                  "description": "Filter by course title (partial match)"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Filter by course slug (partial match)",
                                   "key": "slug",
-                                  "value": "introduction-to-programming",
-                                  "description": "Filter by course slug (partial match)"
+                                  "value": "introduction-to-programming"
                                 },
                                 {
+                                  "description": "Filter by exact price",
                                   "key": "price",
-                                  "value": "5945.289344224058",
-                                  "description": "Filter by exact price"
+                                  "value": "8960.093428540438"
                                 }
                               ]
                             },
@@ -4080,7 +4133,7 @@
                                   }
                                 ],
                                 "url": {
-                                  "raw": "{{baseUrl}}/api/v1/courses/public/featured?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                                  "raw": "{{baseUrl}}/api/v1/courses/public/featured?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                                   "host": [
                                     "{{baseUrl}}"
                                   ],
@@ -4130,7 +4183,7 @@
                                     {
                                       "description": "Filter by exact price",
                                       "key": "price",
-                                      "value": "5945.289344224058"
+                                      "value": "8960.093428540438"
                                     }
                                   ]
                                 }
@@ -4140,7 +4193,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -4229,7 +4282,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -4315,7 +4368,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -4337,7 +4390,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/courses/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                          "raw": "{{baseUrl}}/api/v1/courses/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -4349,44 +4402,44 @@
                           ],
                           "query": [
                             {
+                              "description": "Page number for pagination",
                               "key": "page",
-                              "value": "1",
-                              "description": "Page number for pagination"
+                              "value": "1"
                             },
                             {
+                              "description": "Number of items per page",
                               "key": "pageSize",
-                              "value": "10",
-                              "description": "Number of items per page"
+                              "value": "10"
                             },
                             {
+                              "description": "Field to order by",
                               "key": "orderBy",
-                              "value": "string",
-                              "description": "Field to order by"
+                              "value": "string"
                             },
                             {
+                              "description": "Sort order direction",
                               "key": "sortOrder",
-                              "value": "DESC",
-                              "description": "Sort order direction"
+                              "value": "DESC"
                             },
                             {
+                              "description": "General search across course title, short description, and full description",
                               "key": "search",
-                              "value": "string",
-                              "description": "General search across course title, short description, and full description"
+                              "value": "string"
                             },
                             {
+                              "description": "Filter by course title (partial match)",
                               "key": "title",
-                              "value": "string",
-                              "description": "Filter by course title (partial match)"
+                              "value": "string"
                             },
                             {
+                              "description": "Filter by course slug (partial match)",
                               "key": "slug",
-                              "value": "introduction-to-programming",
-                              "description": "Filter by course slug (partial match)"
+                              "value": "introduction-to-programming"
                             },
                             {
+                              "description": "Filter by exact price",
                               "key": "price",
-                              "value": "5945.289344224058",
-                              "description": "Filter by exact price"
+                              "value": "8960.093428540438"
                             }
                           ]
                         },
@@ -4405,7 +4458,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/courses/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                              "raw": "{{baseUrl}}/api/v1/courses/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -4454,7 +4507,7 @@
                                 {
                                   "description": "Filter by exact price",
                                   "key": "price",
-                                  "value": "5945.289344224058"
+                                  "value": "8960.093428540438"
                                 }
                               ]
                             }
@@ -4464,7 +4517,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -4551,7 +4604,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         },
@@ -4659,7 +4712,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -4681,7 +4734,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/courses/instructor?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                          "raw": "{{baseUrl}}/api/v1/courses/instructor?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -4693,44 +4746,44 @@
                           ],
                           "query": [
                             {
+                              "description": "Page number for pagination",
                               "key": "page",
-                              "value": "1",
-                              "description": "Page number for pagination"
+                              "value": "1"
                             },
                             {
+                              "description": "Number of items per page",
                               "key": "pageSize",
-                              "value": "10",
-                              "description": "Number of items per page"
+                              "value": "10"
                             },
                             {
+                              "description": "Field to order by",
                               "key": "orderBy",
-                              "value": "string",
-                              "description": "Field to order by"
+                              "value": "string"
                             },
                             {
+                              "description": "Sort order direction",
                               "key": "sortOrder",
-                              "value": "DESC",
-                              "description": "Sort order direction"
+                              "value": "DESC"
                             },
                             {
+                              "description": "General search across course title, short description, and full description",
                               "key": "search",
-                              "value": "string",
-                              "description": "General search across course title, short description, and full description"
+                              "value": "string"
                             },
                             {
+                              "description": "Filter by course title (partial match)",
                               "key": "title",
-                              "value": "string",
-                              "description": "Filter by course title (partial match)"
+                              "value": "string"
                             },
                             {
+                              "description": "Filter by course slug (partial match)",
                               "key": "slug",
-                              "value": "introduction-to-programming",
-                              "description": "Filter by course slug (partial match)"
+                              "value": "introduction-to-programming"
                             },
                             {
+                              "description": "Filter by exact price",
                               "key": "price",
-                              "value": "5945.289344224058",
-                              "description": "Filter by exact price"
+                              "value": "8960.093428540438"
                             }
                           ]
                         },
@@ -4749,7 +4802,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/courses/instructor?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                              "raw": "{{baseUrl}}/api/v1/courses/instructor?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -4798,7 +4851,7 @@
                                 {
                                   "description": "Filter by exact price",
                                   "key": "price",
-                                  "value": "5945.289344224058"
+                                  "value": "8960.093428540438"
                                 }
                               ]
                             }
@@ -4808,7 +4861,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -4890,7 +4943,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -4996,7 +5049,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -5073,7 +5126,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -5189,7 +5242,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -5213,7 +5266,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                      "raw": "{{baseUrl}}/api/v1/courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -5224,44 +5277,44 @@
                       ],
                       "query": [
                         {
+                          "description": "Page number for pagination",
                           "key": "page",
-                          "value": "1",
-                          "description": "Page number for pagination"
+                          "value": "1"
                         },
                         {
+                          "description": "Number of items per page",
                           "key": "pageSize",
-                          "value": "10",
-                          "description": "Number of items per page"
+                          "value": "10"
                         },
                         {
+                          "description": "Field to order by",
                           "key": "orderBy",
-                          "value": "string",
-                          "description": "Field to order by"
+                          "value": "string"
                         },
                         {
+                          "description": "Sort order direction",
                           "key": "sortOrder",
-                          "value": "DESC",
-                          "description": "Sort order direction"
+                          "value": "DESC"
                         },
                         {
+                          "description": "General search across course title, short description, and full description",
                           "key": "search",
-                          "value": "string",
-                          "description": "General search across course title, short description, and full description"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by course title (partial match)",
                           "key": "title",
-                          "value": "string",
-                          "description": "Filter by course title (partial match)"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by course slug (partial match)",
                           "key": "slug",
-                          "value": "introduction-to-programming",
-                          "description": "Filter by course slug (partial match)"
+                          "value": "introduction-to-programming"
                         },
                         {
+                          "description": "Filter by exact price",
                           "key": "price",
-                          "value": "5945.289344224058",
-                          "description": "Filter by exact price"
+                          "value": "8960.093428540438"
                         }
                       ]
                     },
@@ -5280,7 +5333,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                          "raw": "{{baseUrl}}/api/v1/courses?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -5328,7 +5381,7 @@
                             {
                               "description": "Filter by exact price",
                               "key": "price",
-                              "value": "5945.289344224058"
+                              "value": "8960.093428540438"
                             }
                           ]
                         }
@@ -5338,7 +5391,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -5438,7 +5491,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -5466,7 +5519,7 @@
                             "method": "GET",
                             "header": [],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/course-content/by-course/:id?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                              "raw": "{{baseUrl}}/api/v1/course-content/by-course/:id?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -5479,44 +5532,44 @@
                               ],
                               "query": [
                                 {
+                                  "description": "Page number for pagination",
                                   "key": "page",
-                                  "value": "1",
-                                  "description": "Page number for pagination"
+                                  "value": "1"
                                 },
                                 {
+                                  "description": "Number of items per page",
                                   "key": "pageSize",
-                                  "value": "10",
-                                  "description": "Number of items per page"
+                                  "value": "10"
                                 },
                                 {
+                                  "description": "Field to order by",
                                   "key": "orderBy",
-                                  "value": "string",
-                                  "description": "Field to order by"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Sort order direction",
                                   "key": "sortOrder",
-                                  "value": "DESC",
-                                  "description": "Sort order direction"
+                                  "value": "DESC"
                                 },
                                 {
+                                  "description": "General search across course title, short description, and full description",
                                   "key": "search",
-                                  "value": "string",
-                                  "description": "General search across course title, short description, and full description"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Filter by course title (partial match)",
                                   "key": "title",
-                                  "value": "string",
-                                  "description": "Filter by course title (partial match)"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Filter by course slug (partial match)",
                                   "key": "slug",
-                                  "value": "introduction-to-programming",
-                                  "description": "Filter by course slug (partial match)"
+                                  "value": "introduction-to-programming"
                                 },
                                 {
+                                  "description": "Filter by exact price",
                                   "key": "price",
-                                  "value": "5945.289344224058",
-                                  "description": "Filter by exact price"
+                                  "value": "8960.093428540438"
                                 }
                               ],
                               "variable": [
@@ -5542,7 +5595,7 @@
                                   }
                                 ],
                                 "url": {
-                                  "raw": "{{baseUrl}}/api/v1/course-content/by-course/:id?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=5945.289344224058",
+                                  "raw": "{{baseUrl}}/api/v1/course-content/by-course/:id?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&title=string&slug=introduction-to-programming&price=8960.093428540438",
                                   "host": [
                                     "{{baseUrl}}"
                                   ],
@@ -5592,7 +5645,7 @@
                                     {
                                       "description": "Filter by exact price",
                                       "key": "price",
-                                      "value": "5945.289344224058"
+                                      "value": "8960.093428540438"
                                     }
                                   ],
                                   "variable": [
@@ -5609,7 +5662,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -5693,7 +5746,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -5799,7 +5852,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -5876,7 +5929,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -5968,7 +6021,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -6054,7 +6107,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -6092,7 +6145,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"mediaType\": \"image\",\n  \"previewUrl\": \"string\"\n}",
+                          "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"mediaType\": \"document\",\n  \"previewUrl\": \"string\"\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -6132,7 +6185,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"mediaType\": \"image\",\n  \"previewUrl\": \"string\"\n}",
+                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"mediaType\": \"document\",\n  \"previewUrl\": \"string\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -6158,7 +6211,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -6245,7 +6298,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -6329,7 +6382,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -6355,7 +6408,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"assessment\"\n}",
+                          "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"video\"\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -6402,7 +6455,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"assessment\"\n}",
+                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"video\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -6435,7 +6488,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -6512,7 +6565,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -6546,7 +6599,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"assessment\"\n}",
+                              "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"video\"\n}",
                               "options": {
                                 "raw": {
                                   "headerFamily": "json",
@@ -6594,7 +6647,7 @@
                                 ],
                                 "body": {
                                   "mode": "raw",
-                                  "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"assessment\"\n}",
+                                  "raw": "{\n  \"title\": \"Lesson 1: Variables\",\n  \"course\": {},\n  \"courseContent\": {},\n  \"duration\": 30,\n  \"media\": \"string\",\n  \"previewUrl\": \"string\",\n  \"mediaType\": \"video\"\n}",
                                   "options": {
                                     "raw": {
                                       "headerFamily": "json",
@@ -6628,7 +6681,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -6727,7 +6780,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -6829,7 +6882,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -6916,7 +6969,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -7005,7 +7058,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -7123,7 +7176,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         },
@@ -7202,7 +7255,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -7306,7 +7359,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -7393,7 +7446,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -7458,7 +7511,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -7540,7 +7593,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -7573,24 +7626,24 @@
                       ],
                       "query": [
                         {
+                          "description": "Page number for pagination",
                           "key": "page",
-                          "value": "1",
-                          "description": "Page number for pagination"
+                          "value": "1"
                         },
                         {
+                          "description": "Number of items per page",
                           "key": "pageSize",
-                          "value": "10",
-                          "description": "Number of items per page"
+                          "value": "10"
                         },
                         {
+                          "description": "Field to order by",
                           "key": "orderBy",
-                          "value": "string",
-                          "description": "Field to order by"
+                          "value": "string"
                         },
                         {
+                          "description": "Sort order direction",
                           "key": "sortOrder",
-                          "value": "DESC",
-                          "description": "Sort order direction"
+                          "value": "DESC"
                         }
                       ]
                     },
@@ -7647,7 +7700,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -7747,7 +7800,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -7815,7 +7868,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -7824,6 +7877,90 @@
                 {
                   "name": "public",
                   "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Fetch a published program",
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/programs/public/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "programs",
+                                "public",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                                  "description": "Program UUID"
+                                }
+                              ]
+                            },
+                            "description": "Get a specific published program by ID (public)"
+                          },
+                          "response": [
+                            {
+                              "name": "200",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/programs/public/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "programs",
+                                    "public",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id",
+                                      "value": "550e8400-e29b-41d4-a716-446655440000",
+                                      "description": "Program UUID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": null
+                            }
+                          ]
+                        }
+                      ]
+                    },
                     {
                       "name": "Fetch all programs (public)",
                       "request": {
@@ -7883,7 +8020,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -7965,7 +8102,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -8071,7 +8208,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -8148,7 +8285,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -8211,7 +8348,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -8282,7 +8419,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -8350,7 +8487,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -8418,7 +8555,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -8486,7 +8623,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -8573,7 +8710,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -8643,7 +8780,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -8711,7 +8848,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -8779,7 +8916,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -8876,7 +9013,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -8972,7 +9109,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -9040,7 +9177,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -9108,7 +9245,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -9176,7 +9313,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -9263,7 +9400,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -9352,7 +9489,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -9431,7 +9568,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -9537,7 +9674,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -9614,7 +9751,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -9701,7 +9838,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -9790,7 +9927,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -9884,7 +10021,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -9970,7 +10107,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -10051,7 +10188,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -10121,7 +10258,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -10197,8 +10334,7 @@
                               "formdata": [
                                 {
                                   "key": "template",
-                                  "type": "file",
-                                  "src": []
+                                  "type": "file"
                                 },
                                 {
                                   "key": "name",
@@ -10225,7 +10361,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -10281,7 +10417,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -10332,7 +10468,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -10383,7 +10519,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -10434,7 +10570,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -10445,6 +10581,74 @@
             {
               "name": "student-memberships",
               "item": [
+                {
+                  "name": "course-purchase-eligibility",
+                  "item": [
+                    {
+                      "name": "Check course purchase eligibility",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/student-memberships/course-purchase-eligibility",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "student-memberships",
+                            "course-purchase-eligibility"
+                          ]
+                        },
+                        "description": "An active, unexpired membership is required to purchase courses"
+                      },
+                      "response": [
+                        {
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/student-memberships/course-purchase-eligibility",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "student-memberships",
+                                "course-purchase-eligibility"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": null
+                        }
+                      ]
+                    }
+                  ]
+                },
                 {
                   "name": "stats",
                   "item": [
@@ -10507,7 +10711,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -10594,7 +10798,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -10683,7 +10887,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -10762,7 +10966,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -10784,7 +10988,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/student-memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&studentId=string&membershipId=string&status=pending_approval",
+                      "raw": "{{baseUrl}}/api/v1/student-memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&studentId=string&membershipId=string&status=active",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -10795,39 +10999,39 @@
                       ],
                       "query": [
                         {
+                          "description": "Page number for pagination",
                           "key": "page",
-                          "value": "1",
-                          "description": "Page number for pagination"
+                          "value": "1"
                         },
                         {
+                          "description": "Number of items per page",
                           "key": "pageSize",
-                          "value": "10",
-                          "description": "Number of items per page"
+                          "value": "10"
                         },
                         {
+                          "description": "Field to order by",
                           "key": "orderBy",
-                          "value": "string",
-                          "description": "Field to order by"
+                          "value": "string"
                         },
                         {
+                          "description": "Sort order direction",
                           "key": "sortOrder",
-                          "value": "DESC",
-                          "description": "Sort order direction"
+                          "value": "DESC"
                         },
                         {
+                          "description": "Filter by student UUID",
                           "key": "studentId",
-                          "value": "string",
-                          "description": "Filter by student UUID"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by membership UUID",
                           "key": "membershipId",
-                          "value": "string",
-                          "description": "Filter by membership UUID"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by status",
                           "key": "status",
-                          "value": "pending_approval",
-                          "description": "Filter by status"
+                          "value": "active"
                         }
                       ]
                     },
@@ -10846,7 +11050,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/student-memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&studentId=string&membershipId=string&status=pending_approval",
+                          "raw": "{{baseUrl}}/api/v1/student-memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&studentId=string&membershipId=string&status=active",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -10889,7 +11093,7 @@
                             {
                               "description": "Filter by status",
                               "key": "status",
-                              "value": "pending_approval"
+                              "value": "active"
                             }
                           ]
                         }
@@ -10899,7 +11103,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -10953,7 +11157,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -11032,7 +11236,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -11135,7 +11339,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -11209,7 +11413,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -11300,7 +11504,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 },
@@ -11360,7 +11564,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -11430,7 +11634,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -11503,7 +11707,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -11517,7 +11721,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/events/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Completed&eligibility=Specific Membership Type",
+                          "raw": "{{baseUrl}}/api/v1/events/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Cancelled&eligibility=Members Only",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -11529,33 +11733,33 @@
                           ],
                           "query": [
                             {
+                              "description": "Page number for pagination",
                               "key": "page",
-                              "value": "1",
-                              "description": "Page number for pagination"
+                              "value": "1"
                             },
                             {
+                              "description": "Number of items per page",
                               "key": "pageSize",
-                              "value": "10",
-                              "description": "Number of items per page"
+                              "value": "10"
                             },
                             {
+                              "description": "Field to order by",
                               "key": "orderBy",
-                              "value": "string",
-                              "description": "Field to order by"
+                              "value": "string"
                             },
                             {
+                              "description": "Sort order direction",
                               "key": "sortOrder",
-                              "value": "DESC",
-                              "description": "Sort order direction"
+                              "value": "DESC"
                             },
                             {
                               "key": "search",
                               "value": "string"
                             },
                             {
+                              "description": "EventCategory UUID",
                               "key": "categoryId",
-                              "value": "string",
-                              "description": "EventCategory UUID"
+                              "value": "string"
                             },
                             {
                               "key": "format",
@@ -11563,11 +11767,11 @@
                             },
                             {
                               "key": "status",
-                              "value": "Completed"
+                              "value": "Cancelled"
                             },
                             {
                               "key": "eligibility",
-                              "value": "Specific Membership Type"
+                              "value": "Members Only"
                             }
                           ]
                         }
@@ -11579,7 +11783,7 @@
                             "method": "GET",
                             "header": [],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/events/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Completed&eligibility=Specific Membership Type",
+                              "raw": "{{baseUrl}}/api/v1/events/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Cancelled&eligibility=Members Only",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -11625,11 +11829,11 @@
                                 },
                                 {
                                   "key": "status",
-                                  "value": "Completed"
+                                  "value": "Cancelled"
                                 },
                                 {
                                   "key": "eligibility",
-                                  "value": "Specific Membership Type"
+                                  "value": "Members Only"
                                 }
                               ]
                             }
@@ -11639,7 +11843,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -11723,7 +11927,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -11761,24 +11965,24 @@
                               ],
                               "query": [
                                 {
+                                  "description": "Page number for pagination",
                                   "key": "page",
-                                  "value": "1",
-                                  "description": "Page number for pagination"
+                                  "value": "1"
                                 },
                                 {
+                                  "description": "Number of items per page",
                                   "key": "pageSize",
-                                  "value": "10",
-                                  "description": "Number of items per page"
+                                  "value": "10"
                                 },
                                 {
+                                  "description": "Field to order by",
                                   "key": "orderBy",
-                                  "value": "string",
-                                  "description": "Field to order by"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Sort order direction",
                                   "key": "sortOrder",
-                                  "value": "DESC",
-                                  "description": "Sort order direction"
+                                  "value": "DESC"
                                 }
                               ],
                               "variable": [
@@ -11848,7 +12052,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -11958,7 +12162,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -12057,7 +12261,7 @@
                                       "_postman_previewlanguage": "text",
                                       "header": [],
                                       "cookie": [],
-                                      "body": ""
+                                      "body": null
                                     }
                                   ]
                                 }
@@ -12145,7 +12349,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -12252,7 +12456,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         },
@@ -12285,24 +12489,24 @@
                               ],
                               "query": [
                                 {
+                                  "description": "Page number for pagination",
                                   "key": "page",
-                                  "value": "1",
-                                  "description": "Page number for pagination"
+                                  "value": "1"
                                 },
                                 {
+                                  "description": "Number of items per page",
                                   "key": "pageSize",
-                                  "value": "10",
-                                  "description": "Number of items per page"
+                                  "value": "10"
                                 },
                                 {
+                                  "description": "Field to order by",
                                   "key": "orderBy",
-                                  "value": "string",
-                                  "description": "Field to order by"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Sort order direction",
                                   "key": "sortOrder",
-                                  "value": "DESC",
-                                  "description": "Sort order direction"
+                                  "value": "DESC"
                                 }
                               ],
                               "variable": [
@@ -12372,7 +12576,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -12448,7 +12652,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -12551,7 +12755,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -12625,7 +12829,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -12653,7 +12857,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"name\": \"Annual Members Webinar\",\n  \"description\": \"Details about the event\",\n  \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"startDate\": \"2026-09-15\",\n  \"startTime\": \"10:00\",\n  \"endDate\": \"2026-09-16\",\n  \"endTime\": \"17:00\",\n  \"format\": \"Physical\",\n  \"registrationRequired\": true,\n  \"eligibility\": \"Everyone\",\n  \"price\": 0,\n  \"currency\": \"CAD\",\n  \"organizerName\": \"CHLPS Institute\",\n  \"contactEmail\": \"contact@chlps.ca\",\n  \"status\": \"Draft\",\n  \"coverImage\": \"string\",\n  \"images\": [\n    \"string\",\n    \"string\"\n  ],\n  \"meetingLink\": \"https://meet.example.com/abc\",\n  \"location\": \"123 Main St, Windsor\",\n  \"registrationOpens\": \"2026-08-01T00:00:00.000Z\",\n  \"registrationCloses\": \"2026-09-10T00:00:00.000Z\",\n  \"maximumAttendees\": 100,\n  \"requiredMembershipIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contactPhone\": \"+1234567890\"\n}",
+                      "raw": "{\n  \"name\": \"Annual Members Webinar\",\n  \"description\": \"Details about the event\",\n  \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"startDate\": \"2026-09-15\",\n  \"startTime\": \"10:00\",\n  \"endDate\": \"2026-09-16\",\n  \"endTime\": \"17:00\",\n  \"format\": \"Virtual\",\n  \"registrationRequired\": true,\n  \"eligibility\": \"Members Only\",\n  \"price\": 0,\n  \"currency\": \"CAD\",\n  \"organizerName\": \"CHLPS Institute\",\n  \"contactEmail\": \"contact@chlps.ca\",\n  \"status\": \"Draft\",\n  \"coverImage\": \"string\",\n  \"images\": [\n    \"string\",\n    \"string\"\n  ],\n  \"meetingLink\": \"https://meet.example.com/abc\",\n  \"location\": \"123 Main St, Windsor\",\n  \"registrationOpens\": \"2026-08-01T00:00:00.000Z\",\n  \"registrationCloses\": \"2026-09-10T00:00:00.000Z\",\n  \"maximumAttendees\": 100,\n  \"requiredMembershipIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contactPhone\": \"+1234567890\"\n}",
                       "options": {
                         "raw": {
                           "headerFamily": "json",
@@ -12691,7 +12895,7 @@
                         ],
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n  \"name\": \"Annual Members Webinar\",\n  \"description\": \"Details about the event\",\n  \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"startDate\": \"2026-09-15\",\n  \"startTime\": \"10:00\",\n  \"endDate\": \"2026-09-16\",\n  \"endTime\": \"17:00\",\n  \"format\": \"Physical\",\n  \"registrationRequired\": true,\n  \"eligibility\": \"Everyone\",\n  \"price\": 0,\n  \"currency\": \"CAD\",\n  \"organizerName\": \"CHLPS Institute\",\n  \"contactEmail\": \"contact@chlps.ca\",\n  \"status\": \"Draft\",\n  \"coverImage\": \"string\",\n  \"images\": [\n    \"string\",\n    \"string\"\n  ],\n  \"meetingLink\": \"https://meet.example.com/abc\",\n  \"location\": \"123 Main St, Windsor\",\n  \"registrationOpens\": \"2026-08-01T00:00:00.000Z\",\n  \"registrationCloses\": \"2026-09-10T00:00:00.000Z\",\n  \"maximumAttendees\": 100,\n  \"requiredMembershipIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contactPhone\": \"+1234567890\"\n}",
+                          "raw": "{\n  \"name\": \"Annual Members Webinar\",\n  \"description\": \"Details about the event\",\n  \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"startDate\": \"2026-09-15\",\n  \"startTime\": \"10:00\",\n  \"endDate\": \"2026-09-16\",\n  \"endTime\": \"17:00\",\n  \"format\": \"Virtual\",\n  \"registrationRequired\": true,\n  \"eligibility\": \"Members Only\",\n  \"price\": 0,\n  \"currency\": \"CAD\",\n  \"organizerName\": \"CHLPS Institute\",\n  \"contactEmail\": \"contact@chlps.ca\",\n  \"status\": \"Draft\",\n  \"coverImage\": \"string\",\n  \"images\": [\n    \"string\",\n    \"string\"\n  ],\n  \"meetingLink\": \"https://meet.example.com/abc\",\n  \"location\": \"123 Main St, Windsor\",\n  \"registrationOpens\": \"2026-08-01T00:00:00.000Z\",\n  \"registrationCloses\": \"2026-09-10T00:00:00.000Z\",\n  \"maximumAttendees\": 100,\n  \"requiredMembershipIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contactPhone\": \"+1234567890\"\n}",
                           "options": {
                             "raw": {
                               "headerFamily": "json",
@@ -12716,7 +12920,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 },
@@ -12736,7 +12940,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/events?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Completed&eligibility=Specific Membership Type",
+                      "raw": "{{baseUrl}}/api/v1/events?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Cancelled&eligibility=Members Only",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -12747,33 +12951,33 @@
                       ],
                       "query": [
                         {
+                          "description": "Page number for pagination",
                           "key": "page",
-                          "value": "1",
-                          "description": "Page number for pagination"
+                          "value": "1"
                         },
                         {
+                          "description": "Number of items per page",
                           "key": "pageSize",
-                          "value": "10",
-                          "description": "Number of items per page"
+                          "value": "10"
                         },
                         {
+                          "description": "Field to order by",
                           "key": "orderBy",
-                          "value": "string",
-                          "description": "Field to order by"
+                          "value": "string"
                         },
                         {
+                          "description": "Sort order direction",
                           "key": "sortOrder",
-                          "value": "DESC",
-                          "description": "Sort order direction"
+                          "value": "DESC"
                         },
                         {
                           "key": "search",
                           "value": "string"
                         },
                         {
+                          "description": "EventCategory UUID",
                           "key": "categoryId",
-                          "value": "string",
-                          "description": "EventCategory UUID"
+                          "value": "string"
                         },
                         {
                           "key": "format",
@@ -12781,11 +12985,11 @@
                         },
                         {
                           "key": "status",
-                          "value": "Completed"
+                          "value": "Cancelled"
                         },
                         {
                           "key": "eligibility",
-                          "value": "Specific Membership Type"
+                          "value": "Members Only"
                         }
                       ]
                     }
@@ -12803,7 +13007,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/events?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Completed&eligibility=Specific Membership Type",
+                          "raw": "{{baseUrl}}/api/v1/events?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&categoryId=string&format=Virtual&status=Cancelled&eligibility=Members Only",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -12848,11 +13052,11 @@
                             },
                             {
                               "key": "status",
-                              "value": "Completed"
+                              "value": "Cancelled"
                             },
                             {
                               "key": "eligibility",
-                              "value": "Specific Membership Type"
+                              "value": "Members Only"
                             }
                           ]
                         }
@@ -12862,7 +13066,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -12949,7 +13153,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -13030,7 +13234,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -13121,7 +13325,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -13209,7 +13413,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -13300,7 +13504,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -13378,7 +13582,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -13412,24 +13616,24 @@
                           ],
                           "query": [
                             {
+                              "description": "Page number for pagination",
                               "key": "page",
-                              "value": "1",
-                              "description": "Page number for pagination"
+                              "value": "1"
                             },
                             {
+                              "description": "Number of items per page",
                               "key": "pageSize",
-                              "value": "10",
-                              "description": "Number of items per page"
+                              "value": "10"
                             },
                             {
+                              "description": "Field to order by",
                               "key": "orderBy",
-                              "value": "string",
-                              "description": "Field to order by"
+                              "value": "string"
                             },
                             {
+                              "description": "Sort order direction",
                               "key": "sortOrder",
-                              "value": "DESC",
-                              "description": "Sort order direction"
+                              "value": "DESC"
                             }
                           ]
                         }
@@ -13486,7 +13690,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -13527,24 +13731,24 @@
                               ],
                               "query": [
                                 {
+                                  "description": "Page number for pagination",
                                   "key": "page",
-                                  "value": "1",
-                                  "description": "Page number for pagination"
+                                  "value": "1"
                                 },
                                 {
+                                  "description": "Number of items per page",
                                   "key": "pageSize",
-                                  "value": "10",
-                                  "description": "Number of items per page"
+                                  "value": "10"
                                 },
                                 {
+                                  "description": "Field to order by",
                                   "key": "orderBy",
-                                  "value": "string",
-                                  "description": "Field to order by"
+                                  "value": "string"
                                 },
                                 {
+                                  "description": "Sort order direction",
                                   "key": "sortOrder",
-                                  "value": "DESC",
-                                  "description": "Sort order direction"
+                                  "value": "DESC"
                                 }
                               ]
                             }
@@ -13602,7 +13806,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -13706,7 +13910,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -13774,7 +13978,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -13842,7 +14046,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -13958,7 +14162,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -14047,7 +14251,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -14146,7 +14350,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -14214,7 +14418,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -14301,7 +14505,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -14371,7 +14575,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -14458,7 +14662,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -14576,7 +14780,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -14665,7 +14869,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -14783,7 +14987,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -14887,7 +15091,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -14974,7 +15178,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -15063,7 +15267,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -15152,7 +15356,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -15241,7 +15445,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -15316,7 +15520,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -15384,7 +15588,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -15476,7 +15680,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 },
@@ -15537,7 +15741,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -15656,7 +15860,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         },
@@ -15735,7 +15939,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -15853,7 +16057,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -15949,7 +16153,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -16012,7 +16216,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -16104,7 +16308,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -16183,7 +16387,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -16260,7 +16464,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -16352,7 +16556,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 },
@@ -16413,7 +16617,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -16453,24 +16657,24 @@
                           ],
                           "query": [
                             {
+                              "description": "Page number for pagination",
                               "key": "page",
-                              "value": "1",
-                              "description": "Page number for pagination"
+                              "value": "1"
                             },
                             {
+                              "description": "Number of items per page",
                               "key": "pageSize",
-                              "value": "10",
-                              "description": "Number of items per page"
+                              "value": "10"
                             },
                             {
+                              "description": "Field to order by",
                               "key": "orderBy",
-                              "value": "string",
-                              "description": "Field to order by"
+                              "value": "string"
                             },
                             {
+                              "description": "Sort order direction",
                               "key": "sortOrder",
-                              "value": "DESC",
-                              "description": "Sort order direction"
+                              "value": "DESC"
                             }
                           ]
                         },
@@ -16528,7 +16732,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -16610,7 +16814,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -16716,7 +16920,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -16793,7 +16997,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -16890,7 +17094,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -17006,7 +17210,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -17100,7 +17304,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 },
@@ -17120,7 +17324,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/faqs?page=1&pageSize=10&orderBy=string&sortOrder=DESC&question=string&answer=string&published=5945.289344224058",
+                      "raw": "{{baseUrl}}/api/v1/faqs?page=1&pageSize=10&orderBy=string&sortOrder=DESC&question=string&answer=string&published=8960.093428540438",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -17131,39 +17335,39 @@
                       ],
                       "query": [
                         {
+                          "description": "Page number for pagination",
                           "key": "page",
-                          "value": "1",
-                          "description": "Page number for pagination"
+                          "value": "1"
                         },
                         {
+                          "description": "Number of items per page",
                           "key": "pageSize",
-                          "value": "10",
-                          "description": "Number of items per page"
+                          "value": "10"
                         },
                         {
+                          "description": "Field to order by",
                           "key": "orderBy",
-                          "value": "string",
-                          "description": "Field to order by"
+                          "value": "string"
                         },
                         {
+                          "description": "Sort order direction",
                           "key": "sortOrder",
-                          "value": "DESC",
-                          "description": "Sort order direction"
+                          "value": "DESC"
                         },
                         {
+                          "description": "Filter by question (partial match)",
                           "key": "question",
-                          "value": "string",
-                          "description": "Filter by question (partial match)"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by answer (partial match)",
                           "key": "answer",
-                          "value": "string",
-                          "description": "Filter by answer (partial match)"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by published status (0 or 1)",
                           "key": "published",
-                          "value": "5945.289344224058",
-                          "description": "Filter by published status (0 or 1)"
+                          "value": "8960.093428540438"
                         }
                       ]
                     },
@@ -17182,7 +17386,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/faqs?page=1&pageSize=10&orderBy=string&sortOrder=DESC&question=string&answer=string&published=5945.289344224058",
+                          "raw": "{{baseUrl}}/api/v1/faqs?page=1&pageSize=10&orderBy=string&sortOrder=DESC&question=string&answer=string&published=8960.093428540438",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -17225,7 +17429,7 @@
                             {
                               "description": "Filter by published status (0 or 1)",
                               "key": "published",
-                              "value": "5945.289344224058"
+                              "value": "8960.093428540438"
                             }
                           ]
                         }
@@ -17235,7 +17439,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -17335,7 +17539,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -17403,7 +17607,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -17490,7 +17694,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -17512,7 +17716,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/memberships/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=NGN",
+                          "raw": "{{baseUrl}}/api/v1/memberships/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=USD",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -17524,44 +17728,44 @@
                           ],
                           "query": [
                             {
+                              "description": "Page number for pagination",
                               "key": "page",
-                              "value": "1",
-                              "description": "Page number for pagination"
+                              "value": "1"
                             },
                             {
+                              "description": "Number of items per page",
                               "key": "pageSize",
-                              "value": "10",
-                              "description": "Number of items per page"
+                              "value": "10"
                             },
                             {
+                              "description": "Field to order by",
                               "key": "orderBy",
-                              "value": "string",
-                              "description": "Field to order by"
+                              "value": "string"
                             },
                             {
+                              "description": "Sort order direction",
                               "key": "sortOrder",
-                              "value": "DESC",
-                              "description": "Sort order direction"
+                              "value": "DESC"
                             },
                             {
+                              "description": "General search across membership name and description",
                               "key": "search",
-                              "value": "string",
-                              "description": "General search across membership name and description"
+                              "value": "string"
                             },
                             {
+                              "description": "Filter by membership name (partial match)",
                               "key": "name",
-                              "value": "string",
-                              "description": "Filter by membership name (partial match)"
+                              "value": "string"
                             },
                             {
+                              "description": "Filter by membership status",
                               "key": "status",
-                              "value": "closed",
-                              "description": "Filter by membership status"
+                              "value": "closed"
                             },
                             {
+                              "description": "Filter by currency",
                               "key": "currency",
-                              "value": "NGN",
-                              "description": "Filter by currency"
+                              "value": "USD"
                             }
                           ]
                         },
@@ -17580,7 +17784,7 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/api/v1/memberships/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=NGN",
+                              "raw": "{{baseUrl}}/api/v1/memberships/public?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=USD",
                               "host": [
                                 "{{baseUrl}}"
                               ],
@@ -17629,7 +17833,7 @@
                                 {
                                   "description": "Filter by currency",
                                   "key": "currency",
-                                  "value": "NGN"
+                                  "value": "USD"
                                 }
                               ]
                             }
@@ -17639,7 +17843,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -17707,7 +17911,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -17775,7 +17979,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -17904,7 +18108,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             },
@@ -17993,7 +18197,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -18103,7 +18307,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -18229,7 +18433,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             },
@@ -18318,7 +18522,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -18428,7 +18632,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -18559,7 +18763,7 @@
                                       "_postman_previewlanguage": "text",
                                       "header": [],
                                       "cookie": [],
-                                      "body": ""
+                                      "body": null
                                     }
                                   ]
                                 },
@@ -18650,7 +18854,7 @@
                                       "_postman_previewlanguage": "text",
                                       "header": [],
                                       "cookie": [],
-                                      "body": ""
+                                      "body": null
                                     }
                                   ]
                                 }
@@ -18762,7 +18966,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -18890,7 +19094,7 @@
                                       "_postman_previewlanguage": "text",
                                       "header": [],
                                       "cookie": [],
-                                      "body": ""
+                                      "body": null
                                     }
                                   ]
                                 },
@@ -18981,7 +19185,7 @@
                                       "_postman_previewlanguage": "text",
                                       "header": [],
                                       "cookie": [],
-                                      "body": ""
+                                      "body": null
                                     }
                                   ]
                                 }
@@ -19093,7 +19297,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -19221,7 +19425,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             },
@@ -19310,7 +19514,7 @@
                                   "_postman_previewlanguage": "text",
                                   "header": [],
                                   "cookie": [],
-                                  "body": ""
+                                  "body": null
                                 }
                               ]
                             }
@@ -19420,7 +19624,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -19499,7 +19703,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -19605,7 +19809,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -19682,7 +19886,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -19779,7 +19983,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -19895,7 +20099,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -19919,7 +20123,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=NGN",
+                      "raw": "{{baseUrl}}/api/v1/memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=USD",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -19930,44 +20134,44 @@
                       ],
                       "query": [
                         {
+                          "description": "Page number for pagination",
                           "key": "page",
-                          "value": "1",
-                          "description": "Page number for pagination"
+                          "value": "1"
                         },
                         {
+                          "description": "Number of items per page",
                           "key": "pageSize",
-                          "value": "10",
-                          "description": "Number of items per page"
+                          "value": "10"
                         },
                         {
+                          "description": "Field to order by",
                           "key": "orderBy",
-                          "value": "string",
-                          "description": "Field to order by"
+                          "value": "string"
                         },
                         {
+                          "description": "Sort order direction",
                           "key": "sortOrder",
-                          "value": "DESC",
-                          "description": "Sort order direction"
+                          "value": "DESC"
                         },
                         {
+                          "description": "General search across membership name and description",
                           "key": "search",
-                          "value": "string",
-                          "description": "General search across membership name and description"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by membership name (partial match)",
                           "key": "name",
-                          "value": "string",
-                          "description": "Filter by membership name (partial match)"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by membership status",
                           "key": "status",
-                          "value": "closed",
-                          "description": "Filter by membership status"
+                          "value": "closed"
                         },
                         {
+                          "description": "Filter by currency",
                           "key": "currency",
-                          "value": "NGN",
-                          "description": "Filter by currency"
+                          "value": "USD"
                         }
                       ]
                     },
@@ -19986,7 +20190,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=NGN",
+                          "raw": "{{baseUrl}}/api/v1/memberships?page=1&pageSize=10&orderBy=string&sortOrder=DESC&search=string&name=string&status=closed&currency=USD",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -20034,7 +20238,7 @@
                             {
                               "description": "Filter by currency",
                               "key": "currency",
-                              "value": "NGN"
+                              "value": "USD"
                             }
                           ]
                         }
@@ -20044,7 +20248,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -20144,7 +20348,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -20226,7 +20430,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -20332,7 +20536,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     },
@@ -20409,7 +20613,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -20442,34 +20646,34 @@
                       ],
                       "query": [
                         {
+                          "description": "Page number for pagination",
                           "key": "page",
-                          "value": "1",
-                          "description": "Page number for pagination"
+                          "value": "1"
                         },
                         {
+                          "description": "Number of items per page",
                           "key": "pageSize",
-                          "value": "10",
-                          "description": "Number of items per page"
+                          "value": "10"
                         },
                         {
+                          "description": "Field to order by",
                           "key": "orderBy",
-                          "value": "string",
-                          "description": "Field to order by"
+                          "value": "string"
                         },
                         {
+                          "description": "Sort order direction",
                           "key": "sortOrder",
-                          "value": "DESC",
-                          "description": "Sort order direction"
+                          "value": "DESC"
                         },
                         {
+                          "description": "Filter by membership type name (partial match)",
                           "key": "name",
-                          "value": "string",
-                          "description": "Filter by membership type name (partial match)"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by published state (e.g. published=true or 1)",
                           "key": "published",
-                          "value": "true",
-                          "description": "Filter by published state (e.g. published=true or 1)"
+                          "value": "true"
                         }
                       ]
                     },
@@ -20536,7 +20740,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
@@ -20636,7 +20840,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -20723,7 +20927,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -20788,7 +20992,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -20875,7 +21079,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -20988,7 +21192,7 @@
                               "_postman_previewlanguage": "text",
                               "header": [],
                               "cookie": [],
-                              "body": ""
+                              "body": null
                             }
                           ]
                         }
@@ -21067,7 +21271,7 @@
                           "_postman_previewlanguage": "text",
                           "header": [],
                           "cookie": [],
-                          "body": ""
+                          "body": null
                         }
                       ]
                     }
@@ -21089,7 +21293,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/v1/membership-applications?page=1&pageSize=10&orderBy=string&sortOrder=DESC&status=rejected&studentId=string&membershipId=string",
+                      "raw": "{{baseUrl}}/api/v1/membership-applications?page=1&pageSize=10&orderBy=string&sortOrder=DESC&status=pending&studentId=string&membershipId=string",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -21100,39 +21304,39 @@
                       ],
                       "query": [
                         {
+                          "description": "Page number for pagination",
                           "key": "page",
-                          "value": "1",
-                          "description": "Page number for pagination"
+                          "value": "1"
                         },
                         {
+                          "description": "Number of items per page",
                           "key": "pageSize",
-                          "value": "10",
-                          "description": "Number of items per page"
+                          "value": "10"
                         },
                         {
+                          "description": "Field to order by",
                           "key": "orderBy",
-                          "value": "string",
-                          "description": "Field to order by"
+                          "value": "string"
                         },
                         {
+                          "description": "Sort order direction",
                           "key": "sortOrder",
-                          "value": "DESC",
-                          "description": "Sort order direction"
+                          "value": "DESC"
                         },
                         {
+                          "description": "Filter by application status",
                           "key": "status",
-                          "value": "rejected",
-                          "description": "Filter by application status"
+                          "value": "pending"
                         },
                         {
+                          "description": "Filter by student UUID",
                           "key": "studentId",
-                          "value": "string",
-                          "description": "Filter by student UUID"
+                          "value": "string"
                         },
                         {
+                          "description": "Filter by membership UUID",
                           "key": "membershipId",
-                          "value": "string",
-                          "description": "Filter by membership UUID"
+                          "value": "string"
                         }
                       ]
                     },
@@ -21151,7 +21355,7 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/api/v1/membership-applications?page=1&pageSize=10&orderBy=string&sortOrder=DESC&status=rejected&studentId=string&membershipId=string",
+                          "raw": "{{baseUrl}}/api/v1/membership-applications?page=1&pageSize=10&orderBy=string&sortOrder=DESC&status=pending&studentId=string&membershipId=string",
                           "host": [
                             "{{baseUrl}}"
                           ],
@@ -21184,7 +21388,7 @@
                             {
                               "description": "Filter by application status",
                               "key": "status",
-                              "value": "rejected"
+                              "value": "pending"
                             },
                             {
                               "description": "Filter by student UUID",
@@ -21204,7 +21408,7 @@
                       "_postman_previewlanguage": "text",
                       "header": [],
                       "cookie": [],
-                      "body": ""
+                      "body": null
                     }
                   ]
                 }
