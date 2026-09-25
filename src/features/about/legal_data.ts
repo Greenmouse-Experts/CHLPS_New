@@ -1,82 +1,58 @@
-export interface LegalCertificateItem {
+export interface LegalCardItem {
   id: string;
-  title: string;
-  badge: string;
-  subtitle: string;
-  authority: string;
-  registrationNumber?: string;
-  issueDate?: string;
-  validity?: string;
+  titleHighlight: string;
+  titleNormal: string;
+  titleBreak?: boolean;
   image: string;
-  summary: string;
-  highlights: string[];
+  imageAlt: string;
+  imageOnLeft: boolean;
+  description: string;
 }
 
-export const LEGAL_CERTIFICATES: LegalCertificateItem[] = [
+export const LEGAL_CARDS: LegalCardItem[] = [
   {
     id: "incorporation",
-    title: "Certificate of Incorporation",
-    badge: "Federal Not-for-Profit",
-    subtitle: "Canada Not-for-profit Corporations Act",
-    authority: "Corporations Canada / Industry Canada",
-    registrationNumber: "1352698-4",
+    titleHighlight: "Canada Chartered &",
+    titleNormal: "Professional Association",
+    titleBreak: true,
     image: "/lega/cert_1.png",
-    summary:
-      "Official Certificate of Incorporation issued under the Canada Not-for-profit Corporations Act (Loi canadienne sur les organisations à but non lucratif), formally establishing the Association of Chartered Loss Prevention Specialists of Canada as a recognized national legal entity.",
-    highlights: [
-      "Federal Canadian Corporate Charter",
-      "Official Corporate Dénomination: Association of Chartered Loss Prevention Specialists of Canada",
-      "Statutory Governance & Compliance Framework",
-    ],
+    imageAlt:
+      "Canada Chartered & Professional Association Certificate of Incorporation",
+    imageOnLeft: true,
+    description:
+      "The Association of Chartered Loss Prevention Specialists of Canada is federally incorporated under the Canada Not-For-profit Corporations Act (CNCA). As a chartered professional association, we operate within a framework for governance, accountability, legal compliance and requirements set forth by the CNCA. This foundation supports our mission to advance loss prevention (LP) practice through membership, education, certification, and the promotion of ethical standards for LP practitioners across Canada and internationally.",
   },
   {
-    id: "cpd-provider",
-    title: "Approved CPD Provider Certificate",
-    badge: "CPD Standards Office",
-    subtitle: "Continuing Professional Development Accreditation",
-    authority: "The CPD Standards Office (UK / International)",
-    registrationNumber: "#788789",
-    issueDate: "14/11/2025",
+    id: "cpd-group",
+    titleHighlight: "CPD-GROUP",
+    titleNormal: "UK APPROVED",
+    titleBreak: false,
     image: "/lega/cert_2.png",
-    summary:
-      "Global accreditation by the CPD Standards Office recognizing CHLPS Canada as an Approved CPD Provider. This certification confirms our professional learning activities, assessments, and certifications adhere to rigorous international continuous learning criteria.",
-    highlights: [
-      "CPD Approved Provider #788789",
-      "Recognized Continuing Professional Development credits",
-      "Quality-assured instructional delivery and evaluation",
-    ],
+    imageAlt: "CPD-GROUP UK Approved Certificate",
+    imageOnLeft: false,
+    description:
+      "The Association of Chartered Loss Prevention Specialists of Canada is a registered CPD Provider with The CPD Group, United Kingdom. This status reflects our commitment to structured continuing professional development and meaningful learning for loss prevention practitioners. Through relevant education, certification pathways, continuing professional education and skills development, we support our members and certifications holders in maintaining competence and responding to the changing demands of their profession.",
   },
   {
-    id: "actd-accreditation",
-    title: "ACTD Certificate of Accreditation",
-    badge: "International Accreditation",
-    subtitle: "American Council of Training and Development",
-    authority: "American Council of Training and Development (ACTD)",
-    registrationNumber: "Reg No. 1352698-4",
+    id: "actd-usa",
+    titleHighlight: "ACTD-USA",
+    titleNormal: "Accreditation",
+    titleBreak: false,
     image: "/lega/cert_3.png",
-    summary:
-      "Accreditation as a Professional Certification Organization in Canada granted by the American Council of Training and Development (ACTD), confirming compliance with international standards for training curriculum and professional designation award.",
-    highlights: [
-      "International Recognition for Professional Certifications",
-      "Adherence to Global Curriculum Benchmarks",
-      "Standardized Assessment & Evaluation Integrity",
-    ],
+    imageAlt: "ACTD-USA Certificate of Accreditation",
+    imageOnLeft: true,
+    description:
+      "The Association of Chartered Loss Prevention Specialists of Canada is accredited by the American Council of Training and Development (ACTD USA) as a Professional Certification Organization. This accreditation reflects our commitment to high quality, industry relevant loss prevention education, supported by effective learning practices, LP Body of Knowledge, qualified instructors, rigorous professional standards compliance, and operational excellence throughout our training and certification programs, and membership activities.",
   },
   {
-    id: "quality-assurance",
-    title: "Institutional Quality Assurance Accreditation",
-    badge: "Higher Education Quality",
-    subtitle: "Pre-Tertiary and Higher Education Quality Assurance",
-    authority: "Quality Assurance Accreditation Committee",
-    registrationNumber: "Institution ID: 120938",
-    validity: "Valid until 20 September 2027",
+    id: "qahe",
+    titleHighlight: "QAHE",
+    titleNormal: "Accreditation",
+    titleBreak: false,
     image: "/lega/cert_4.png",
-    summary:
-      "Institutional accreditation certifying that CHLPS Canada has met all prescribed quality assurance standards concerning educational quality, curriculum depth, institutional integrity, and public accountability.",
-    highlights: [
-      "Institution ID: 120938",
-      "Comprehensive Institutional Integrity Verification",
-      "Standards-backed Curriculum & Competency Pathways",
-    ],
+    imageAlt: "QAHE Institutional Accreditation Certificate",
+    imageOnLeft: false,
+    description:
+      "The Association of Chartered Loss Prevention Specialists of Canada holds institutional accreditation from the International Association for Quality Assurance in Pre-Tertiary and Higher Education (QAHE). This recognition and accreditation reflect our commitment to sound quality assurance, professional standards, and continuous improvement in loss prevention education and certification. We remain dedicated to relevant learning, credible assessment, and meaningful professional development for loss prevention practitioners.",
   },
 ];
