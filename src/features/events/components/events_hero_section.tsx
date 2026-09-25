@@ -49,9 +49,10 @@ export default function EventsHeroSection({
               <h2 className="text-white text-3xl">
                 Events and <br />
                 <span className="text-secondary">
-                  {" "}
-                  Professional Practice Updates
-                </span>
+                  {""}
+                  Professional Practice
+                </span>{" "}
+                Updates
               </h2>
             </Reveal>
 

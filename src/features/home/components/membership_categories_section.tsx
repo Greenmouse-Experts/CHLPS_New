@@ -137,7 +137,7 @@ export default function MembershipCategoriesSection() {
                   {categories.map((category, index) => {
                     const { badge, cropLogo } = getBadgeDetails(category);
                     const href = `/membership/${category.slug || category.id}`;
-                    const cta = `Become ${category.slug?.includes("affiliate") ? "an" : "a"}  ${category.name.replace("ship", "")}`;
+                    const cta = `Become ${category.slug?.includes("affiliate") || category.slug?.includes("associate") ? "an" : "a"}  ${category.name.replace("ship", "")}`;
 
                     return (
                       <Link
