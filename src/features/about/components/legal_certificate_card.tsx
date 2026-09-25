@@ -14,13 +14,13 @@ export default function LegalCertificateCard({
   const fullTitle = `${card.titleHighlight} ${card.titleNormal}`;
 
   const imageElement = (
-    <div className="relative flex min-h-[380px] items-center justify-center bg-white p-6 sm:min-h-[440px] sm:p-10 lg:min-h-[480px] lg:p-12">
+    <div className="relative flex min-h-[380px] items-center justify-center bg-white p-4 sm:min-h-[440px] sm:p-10 lg:min-h-[480px] ">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={card.image}
         alt={card.imageAlt || fullTitle}
         onClick={() => onPreview?.(card.image, fullTitle)}
-        className="max-h-[420px] w-auto max-w-full cursor-pointer rounded-lg object-contain drop-shadow-sm transition-transform duration-300 hover:scale-[1.02]"
+        className="max-h-[520px] w-auto max-w-full cursor-pointer rounded-lg object-contain drop-shadow-sm transition-transform duration-300 hover:scale-[1.02]"
         title="Click to view document"
       />
     </div>
