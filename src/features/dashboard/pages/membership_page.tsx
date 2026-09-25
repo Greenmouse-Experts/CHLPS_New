@@ -6,13 +6,11 @@ import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowRight01Icon,
+  ArrowUpRight01Icon,
   Award01Icon,
-  Calendar03Icon,
-  CheckmarkCircle02Icon,
   Clock01Icon,
   File01Icon,
   ShieldCheckIcon,
-  SparklesIcon,
 } from "@hugeicons/core-free-icons";
 import { DashboardLayout } from "@/components";
 import { Assets } from "@/lib/assets";
@@ -160,9 +158,9 @@ export default function MembershipDashboardPage() {
 
         {/* Content Section */}
         {isLoading ? (
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 3 }).map((_, idx) => (
-              <div key={idx} className="skeleton h-64 rounded-2xl" />
+              <div key={idx} className="skeleton h-96 rounded-[28px]" />
             ))}
           </div>
         ) : applications.length === 0 ? (
@@ -176,7 +174,7 @@ export default function MembershipDashboardPage() {
                   color="currentColor"
                 />
               </div>
-              <h3 className=" text-xl font-bold text-[#0D154B] sm:text-2xl">
+              <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
                 No Membership Applications Yet
               </h3>
               <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
@@ -297,7 +295,7 @@ export default function MembershipDashboardPage() {
             </div>
 
             {/* Application Cards Grid */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filteredApplications.map((app) => (
                 <MembershipApplicationCard key={app.id} application={app} />
               ))}
@@ -318,6 +316,15 @@ function MembershipApplicationCard({
   const isRemote =
     badgeSrc.startsWith("http://") || badgeSrc.startsWith("https://");
 
+  const isCorporate =
+    (application.name || "").toLowerCase().includes("corporate") ||
+    (application.slug || "").toLowerCase().includes("corporate");
+
+  const cleanName = (application.name || "").replace(/Member$/i, "").trim();
+  const displayName = cleanName.toLowerCase().endsWith("membership")
+    ? cleanName
+    : `${cleanName} Membership`;
+
   const statusConfig = useMemo(() => {
     switch (application.status) {
       case "active":
@@ -325,18 +332,21 @@ function MembershipApplicationCard({
           label: "Active Member",
           badgeClass: "badge-success text-white",
           dotColor: "bg-white",
+          actionText: "View Membership",
         };
       case "approved":
         return {
-          label: "Approved (Payment Pending)",
+          label: "Approved",
           badgeClass: "badge-info text-white",
           dotColor: "bg-white",
+          actionText: "Complete Enrollment",
         };
       case "rejected":
         return {
-          label: "Application Declined",
+          label: "Declined",
           badgeClass: "badge-error text-white",
           dotColor: "bg-white",
+          actionText: "View Application",
         };
       case "under_review":
       case "pending":
@@ -345,36 +355,43 @@ function MembershipApplicationCard({
           label: "Under Review",
           badgeClass: "badge-warning text-amber-950",
           dotColor: "bg-amber-900",
+          actionText: "Track Application",
         };
     }
   }, [application.status]);
 
   const priceText = useMemo(() => {
     if (application.price != null && !isNaN(Number(application.price))) {
-      const cur = application.currency === "USD" ? "$" : "CA$";
+      const cur =
+        application.currency === "USD"
+          ? "$"
+          : application.currency === "NGN"
+            ? "₦"
+            : "CA$";
       return `${cur}${Number(application.price).toLocaleString()}`;
     }
     return "CA$595";
   }, [application.price, application.currency]);
 
-  return (
-    <div className="card relative flex flex-col justify-between overflow-hidden rounded-2xl border border-base-200/80 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C99E4A]/60 hover:shadow-md">
-      <div>
-        {/* Top: Badge and Status */}
-        <div className="flex items-start justify-between gap-3">
-          <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 border-[#C99E4A] bg-white p-1.5 shadow-xs">
-            <Image
-              src={badgeSrc}
-              alt={application.name}
-              fill
-              sizes="56px"
-              unoptimized={isRemote}
-              className="object-contain p-1"
-            />
-          </div>
+  const description =
+    application.description ||
+    "The globally recognized IFPO certification — the gold standard for protection professionals.";
 
+  const href = `/dashboard/membership/${application.id}`;
+
+  return (
+    <article className="card group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#C99E4A] bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+      {/* Top White Section: Header with Status & Ref, Circular Gold Ring Badge, and Title */}
+      <div className="flex flex-1 flex-col items-center justify-between bg-white px-5 pt-5 pb-6 text-center sm:px-6 sm:pt-6">
+        {/* Status Badge & Ref row */}
+        <div className="flex w-full items-center justify-between gap-2 pb-3">
+          <span className="font-mono text-xs font-semibold text-base-content/60">
+            Ref:{" "}
+            {application.memberNumber ||
+              application.id.slice(0, 8).toUpperCase()}
+          </span>
           <span
-            className={`badge ${statusConfig.badgeClass} gap-1.5 px-3 py-2 text-xs font-semibold`}
+            className={`badge ${statusConfig.badgeClass} gap-1.5 px-2.5 py-1 text-xs font-semibold shadow-xs`}
           >
             <span
               className={`h-1.5 w-1.5 rounded-full ${statusConfig.dotColor}`}
@@ -383,62 +400,90 @@ function MembershipApplicationCard({
           </span>
         </div>
 
-        {/* Title and ID */}
-        <div className="">
-          <h4 className="text-lg font-bold leading-snug text-[#0D154B]">
-            {application.name}
-          </h4>
-          <p className="mt-1 font-mono text-xs text-base-content/60">
-            Ref:{" "}
-            {application.memberNumber ||
-              application.id.slice(0, 10).toUpperCase()}
-          </p>
-        </div>
-
-        {/* Details List */}
-        <div className=" space-y-2 rounded-xl bg-base-100/60 p-3 text-xs">
-          <div className="flex items-center justify-between text-base-content/70">
-            <span>Applied Date:</span>
-            <span className="font-semibold text-base-content">
-              {application.appliedDate
-                ? new Date(application.appliedDate).toLocaleDateString(
-                    undefined,
-                    {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    },
-                  )
-                : "Recent"}
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-base-content/70">
-            <span>Validity / Term:</span>
-            <span className="font-semibold text-base-content">
-              {application.duration || "1 Year"}
-            </span>
-          </div>
-          <div className="flex items-center justify-between text-base-content/70">
-            <span>Annual Fee:</span>
-            <span className="font-bold text-[#0D154B]">{priceText}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Action Footer */}
-      <div className="mt-6 flex flex-col gap-2 pt-2">
+        {/* Circular Gold Ring Badge & Title */}
         <Link
-          href={`/dashboard/membership/${application.id}`}
-          className="btn btn-outline btn-sm w-full gap-2 rounded-xl border-base-300 normal-case text-xs font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
+          href={href}
+          className="group/link flex flex-col items-center w-full"
+          aria-label={`View details for ${displayName}`}
         >
-          <span>View Application Details</span>
-          <HugeiconsIcon
-            icon={ArrowRight01Icon}
-            size={14}
-            color="currentColor"
-          />
+          <div className="relative mx-auto flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-2 border-[#C99E4A] bg-white p-2.5 shadow-xs transition-transform duration-300 group-hover:scale-105 sm:h-28 sm:w-28">
+            <Image
+              src={badgeSrc}
+              alt={`${application.name} badge`}
+              fill
+              sizes="(max-width: 640px) 96px, 112px"
+              unoptimized={isRemote}
+              className={`p-2 ${isCorporate ? "object-cover object-left" : "object-contain"}`}
+            />
+          </div>
+
+          <h3 className="mt-3 text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] sm:text-2xl">
+            {displayName}
+          </h3>
         </Link>
       </div>
-    </div>
+
+      {/* Bottom Dark Navy Section: Image background, Metadata strip, Description, Price & Gold Action Button */}
+      <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] px-5 py-6 text-center sm:px-6 sm:py-7">
+        {/* Background Image: membership_catigory_card.png */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+          <Image
+            src={Assets.images.membershipCardBg}
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+
+        <div className="relative z-10 flex w-full flex-col items-center">
+          {/* Added difference for dashboard: Application Details Pill */}
+          <div className="mb-3 grid w-full grid-cols-2 gap-2 rounded-xl bg-white/10 p-2.5 text-xs text-white/90 backdrop-blur-xs">
+            <div className="flex flex-col items-start px-1 text-left">
+              <span className="text-white/60">Applied Date</span>
+              <span className="font-semibold text-white">
+                {application.appliedDate
+                  ? new Date(application.appliedDate).toLocaleDateString(
+                      undefined,
+                      {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      },
+                    )
+                  : "Recent"}
+              </span>
+            </div>
+            <div className="flex flex-col items-end px-1 text-right">
+              <span className="text-white/60">Validity Term</span>
+              <span className="font-semibold text-white">
+                {application.duration || "1 Year"}
+              </span>
+            </div>
+          </div>
+
+          <p className="min-h-[40px] max-w-[300px] text-center text-sm leading-relaxed text-white/90 line-clamp-2">
+            {description}
+          </p>
+
+          <div className="my-3 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            {priceText}
+          </div>
+
+          <Link
+            href={href}
+            className="btn btn-secondary btn-block h-12 min-h-12 rounded-xl text-base font-bold text-[#0B0E33] normal-case shadow-sm transition-all duration-200 hover:brightness-95 flex items-center justify-center gap-1.5"
+          >
+            <span>{statusConfig.actionText}</span>
+            <HugeiconsIcon
+              icon={ArrowUpRight01Icon}
+              size={18}
+              color="#0B0E33"
+              strokeWidth={2.5}
+            />
+          </Link>
+        </div>
+      </div>
+    </article>
   );
 }

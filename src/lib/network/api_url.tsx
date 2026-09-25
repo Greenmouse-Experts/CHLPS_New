@@ -86,7 +86,32 @@ export class ApiUrls {
     return `/memberships/public/${slug}`;
   }
   static publicEvents = "/events/public";
+  static publicEvent(slug: string) {
+    return `/events/public/slug/${slug}`;
+  }
   static publicEventCategories = "/event-categories/public";
+
+  // Event Registrations & Payment
+  static eventRegister(eventId: string) {
+    return `/event-registrations/${eventId}/register`;
+  }
+  static eventJoin(eventId: string) {
+    return `/event-registrations/${eventId}/join`;
+  }
+  static eventInvitationAccept(token: string) {
+    return `/event-registrations/invitation/${token}/accept`;
+  }
+  static eventConfirm(thirdPartyRef: string) {
+    return `/event-registrations/confirm/${thirdPartyRef}`;
+  }
+  static myEventRegistrations = "/event-registrations/my";
+  static myEventRegistration(registrationId: string) {
+    return `/event-registrations/my/${registrationId}`;
+  }
+  static cancelEventRegistration(registrationId: string) {
+    return `/event-registrations/my/${registrationId}/cancel`;
+  }
+
   static faqsPublished = "/faqs/published";
   static publicTestimonialsCurated = "/testimonials/curated";
   static publicTestimonialsPublished = "/testimonials/published";

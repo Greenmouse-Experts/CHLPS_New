@@ -12,7 +12,7 @@ export default function GuidingValuesSection() {
       <PageContainer>
         <div className="mx-auto flex flex-col items-center mb-5 text-center">
           <Reveal>
-            <h2 className="text-[1.125rem] font-medium uppercase leading-snug tracking-[0.12em] sm:text-[1.375rem] lg:text-[40px] capitalize">
+            <h2 className="text-[1.125rem] font-medium uppercase leading-snug tracking-[0.12em] sm:text-[1.375rem] lg:text-[40px] ">
               <span className="text-secondary">Our six core</span>{" "}
               <span className="text-primary">guiding values</span>
             </h2>
