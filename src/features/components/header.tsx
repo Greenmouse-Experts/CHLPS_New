@@ -387,6 +387,7 @@ export default function Header() {
           items: [
             { label: "Our History", href: "/about-us" },
             { label: "Our Governance", href: "/about-us/governance" },
+            { label: "Legal & Accreditations", href: "/about-us/legal" },
           ],
         },
       },
