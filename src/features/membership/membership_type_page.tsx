@@ -23,6 +23,7 @@ import {
 import { orderService } from "@/features/orders/services/order_service";
 import { useAppSelector } from "@/lib/store/store";
 import { PaypalPaymentModal } from "@/features/orders";
+import MembershipCertificationImage from "./components/certification_image";
 
 type MembershipTypePageProps = {
   membership?: MembershipType;
@@ -219,14 +220,13 @@ export default function MembershipTypePage({
                   onApply={() => handleApplyClick(current)}
                 />
               ) : null}
-
               {current.careerPathways && current.careerPathways.length > 0 ? (
                 <MembershipCareerPathwaysSection
                   gradeTitle={current.gradeTitle}
                   items={current.careerPathways}
                 />
               ) : null}
-
+              <MembershipCertificationImage membership={current} />
               {/* PayPal Payment Modal */}
               {isStripeModalOpen && current.membershipId && (
                 <PaypalPaymentModal

@@ -10,43 +10,59 @@ export default function MembershipCertificationImage(props: {
 }) {
   const { membership, imgUrl } = props;
   const imgSrc =
-    membership.certificationImage ||
-    imgUrl ||
-    (membership.badge && membership.badge.startsWith("http")
-      ? membership.badge
-      : undefined);
+    membership.certificationImage || imgUrl || "/assets/images/cert.png";
 
-  if (!imgSrc) {
-    return null;
-  }
+  const rawTitle =
+    membership.gradeTitle || membership.title || "Student Membership";
+  const titleWords = rawTitle.trim().split(/\s+/);
+  const titleLead =
+    titleWords.length > 1 ? titleWords.slice(0, -1).join(" ") : titleWords[0];
+  const titleAccent =
+    titleWords.length > 1 ? titleWords[titleWords.length - 1] : "Membership";
 
-  const title = membership.gradeTitle || membership.title || "Membership";
+  const bodyParagraphs = membership.certificationText
+    ? membership.certificationText
+        .split(/\n+/)
+        .map((p) => p.trim())
+        .filter(Boolean)
+    : [
+        `Congratulations on earning the ${rawTitle} professional certification. This achievement reflects your dedication to professional growth and readiness to contribute confidently to modern loss prevention work. The certification enhances your credibility, strengthens your operational skills, and positions you for roles in retail security.`,
+        `Certification holders gain improved employability, access to industry networks, and a solid foundation for advanced certifications. It is a meaningful step toward a rewarding career in loss prevention and corporate security.`,
+      ];
 
   return (
     <section className="bg-white py-14 sm:py-8">
       <PageContainer>
         <Reveal>
-          <article className="overflow-hidden rounded-[1.75rem] border border-[#D4B56A] bg-[#F6F5FB] lg:rounded-[2rem]">
-            <div className="grid items-center lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
-              <div className="relative flex items-center justify-center p-6 sm:p-8">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+          <article className="overflow-hidden rounded-[1.75rem] border border-secondary ring-1 ring-secondary bg-white shadow-[0_20px_50px_rgba(22,16,88,0.06)] lg:rounded-[2rem]">
+            <div className="grid items-center lg:grid-cols-2 grid ">
+              {/* Left Side: Framed Certificate */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="h-[505px] p-5 flex items-center justify-center">
                 <img
                   src={imgSrc}
-                  alt={`${title} Certificate`}
-                  className="h-auto w-full max-w-xl rounded-[0.9rem] object-contain shadow-[0_16px_36px_rgba(10,21,66,0.18)] sm:rounded-[1.05rem]"
+                  alt={`${rawTitle} Certificate`}
+                  className="h-full rounded-xl bg-white object-contain"
                 />
               </div>
 
-              <div className="flex flex-col justify-center bg-[#0A1542] px-6 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">
-                <h2 className="text-3xl font-semibold uppercase text-secondary sm:text-4xl">
-                  {title} <span className="text-white">Certificate</span>
+              {/* Right Side: Navy Content Panel */}
+              <div className="flex h-full flex-col justify-center bg-[#0A1542] px-6 py-10 sm:px-10 sm:py-12 lg:px-12 lg:py-14">
+                <h2 className="text-3xl font-semibold text-white sm:text-4xl">
+                  {titleLead}{" "}
+                  <span className="text-secondary">{titleAccent}</span>
                 </h2>
-                {membership.certificationText}
-                {/*{membership.gradeBody && (
-                  <p className="mt-5 max-w-[28rem] text-sm leading-[1.7] text-white/90 sm:mt-6 sm:text-base">
-                    {membership.gradeBody}
-                  </p>
-                )}*/}
+
+                <div className="mt-5 space-y-4 sm:mt-6">
+                  {bodyParagraphs.map((paragraph, index) => (
+                    <p
+                      key={index}
+                      className="text-sm leading-relaxed text-white/90 sm:text-base"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           </article>
