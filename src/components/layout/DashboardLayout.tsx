@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   BookOpen01Icon,
+  Calendar03Icon,
   ChartHistogramIcon,
   DashboardSquare01Icon,
   Logout01Icon,
@@ -57,6 +58,13 @@ const NAV_ITEMS: NavItem[] = [
     href: "/dashboard/courses",
     icon: (
       <HugeiconsIcon icon={BookOpen01Icon} size={16} color="currentColor" />
+    ),
+  },
+  {
+    label: "My Events",
+    href: "/dashboard/events",
+    icon: (
+      <HugeiconsIcon icon={Calendar03Icon} size={16} color="currentColor" />
     ),
   },
   {
