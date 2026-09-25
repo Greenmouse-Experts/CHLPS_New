@@ -46,8 +46,8 @@ export default function CertificationDetailsOutcomeSection(props: {
                 <h2 className="text-3xl font-semibold uppercase text-secondary sm:text-4xl">
                   {badgeFirst} <span className="text-white">{badgeRest}</span>
                 </h2>
-
-                {detail.outcomeBody && detail.outcomeBody.length > 0 && (
+                {detail.certificationText}
+                {/*{detail.outcomeBody && detail.outcomeBody.length > 0 && (
                   <div className="mt-5 max-w-[28rem] space-y-4 sm:mt-6">
                     {detail.outcomeBody.map((paragraph, index) => (
                       <p
@@ -58,7 +58,7 @@ export default function CertificationDetailsOutcomeSection(props: {
                       </p>
                     ))}
                   </div>
-                )}
+                )}*/}
               </div>
             </div>
           </article>

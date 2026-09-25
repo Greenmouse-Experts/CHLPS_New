@@ -41,12 +41,12 @@ export default function MembershipCertificationImage(props: {
                 <h2 className="text-3xl font-semibold uppercase text-secondary sm:text-4xl">
                   {title} <span className="text-white">Certificate</span>
                 </h2>
-
-                {membership.gradeBody && (
+                {membership.certificationText}
+                {/*{membership.gradeBody && (
                   <p className="mt-5 max-w-[28rem] text-sm leading-[1.7] text-white/90 sm:mt-6 sm:text-base">
                     {membership.gradeBody}
                   </p>
-                )}
+                )}*/}
               </div>
             </div>
           </article>
