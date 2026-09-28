@@ -3,11 +3,33 @@ import { ApiUrls } from "@/lib/network/api_url";
 import { ApiResponse, ok, fail } from "@/lib/network/entity/api_response";
 import type { EventRegistration } from "@/types/events";
 
+export interface EventRegistrationTransaction {
+  id: string;
+  reference: string;
+  thirdPartyRef: string;
+  status: string;
+  amount: number;
+  subAmount?: number;
+  narration?: string;
+  gateway?: string;
+  purpose?: string;
+  sessionId?: string;
+  createdDate?: string;
+  authorization_url?: string;
+  authorizationUrl?: string;
+  approvalUrl?: string;
+  approval_url?: string;
+  [key: string]: any;
+}
+
 export interface EventRegistrationPaymentResult {
+  transaction?: EventRegistrationTransaction;
+  registration?: any;
   registrationId?: string;
   ticketNumber?: string;
   reference?: string;
   thirdPartyRef?: string;
+  sessionId?: string;
   authorization_url?: string;
   authorizationUrl?: string;
   approvalUrl?: string;
@@ -16,8 +38,10 @@ export interface EventRegistrationPaymentResult {
   clientSecret?: string;
   paymentIntentId?: string;
   amount?: number;
+  subAmount?: number;
   currency?: string;
   status?: string;
+  [key: string]: any;
 }
 
 export interface EventRegistrationResult {
@@ -63,9 +87,40 @@ export class EventRegistrationService {
 
       if (response.success && response.data) {
         const raw = response.data as any;
-        const actualData: EventRegistrationPaymentResult = raw.data ?? raw;
+        const actualData: any = raw.data ?? raw;
+        const trx: EventRegistrationTransaction | undefined =
+          actualData.transaction || actualData.trx;
+
+        const formattedData: EventRegistrationPaymentResult = {
+          ...actualData,
+          transaction: trx,
+          reference: trx?.reference || actualData.reference,
+          thirdPartyRef: trx?.thirdPartyRef || actualData.thirdPartyRef,
+          sessionId:
+            trx?.sessionId ||
+            actualData.sessionId ||
+            actualData.paypalOrderId,
+          paypalOrderId:
+            trx?.sessionId ||
+            actualData.sessionId ||
+            actualData.paypalOrderId,
+          amount: trx?.amount ?? actualData.amount,
+          subAmount: trx?.subAmount ?? actualData.subAmount,
+          currency: actualData.currency || "CAD",
+          status: trx?.status || actualData.status,
+          authorization_url:
+            (trx as any)?.authorization_url ||
+            (trx as any)?.authorizationUrl ||
+            (trx as any)?.approvalUrl ||
+            (trx as any)?.approval_url ||
+            actualData.authorization_url ||
+            actualData.authorizationUrl ||
+            actualData.approvalUrl ||
+            actualData.approval_url,
+        };
+
         return ok(
-          actualData,
+          formattedData,
           raw.message || response.message || "Event registration initiated",
         );
       }
@@ -136,11 +191,14 @@ export class EventRegistrationService {
    * 3. Confirm Event Payment
    * Calls POST /event-registrations/confirm/:thirdPartyRef
    */
-  async confirmEventPayment(thirdPartyRef: string): Promise<ApiResponse<any>> {
+  async confirmEventPayment(
+    thirdPartyRef: string,
+    payload: Record<string, any> = {},
+  ): Promise<ApiResponse<any>> {
     try {
       const response = await this.api.postData<Record<string, unknown>, any>(
         ApiUrls.eventConfirm(thirdPartyRef),
-        {},
+        payload,
       );
 
       if (response.success) {

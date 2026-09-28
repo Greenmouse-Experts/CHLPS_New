@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { IconSvgElement } from "@hugeicons/react";
@@ -93,23 +93,68 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
     }
   }, [searchParams, token, view.isFree, isRegistered]);
 
+  const hasVerifiedPaymentRef = useRef(false);
+
   // Handle return from PayPal redirect if any
   useEffect(() => {
     const paymentStatus = searchParams?.get("payment");
-    const paymentRef =
+    const urlToken = searchParams?.get("token");
+    const urlPayerId = searchParams?.get("PayerID");
+    const queryPaymentRef =
       searchParams?.get("ref") ||
       searchParams?.get("reference") ||
+      searchParams?.get("thirdPartyRef") ||
       searchParams?.get("payment_intent");
 
-    if (paymentStatus === "success" && paymentRef) {
-      eventRegistrationService.confirmEventPayment(paymentRef).then((res) => {
-        if (res.success) {
-          toast.success("Payment verified! Your ticket has been confirmed.");
-          setConfirmedTicketNum(paymentRef);
-          refetch();
-          setIsTicketModalOpen(true);
-        }
-      });
+    let storedPayment: any = null;
+    if (typeof window !== "undefined") {
+      try {
+        const raw = sessionStorage.getItem("chlps_pending_event_payment");
+        if (raw) storedPayment = JSON.parse(raw);
+      } catch {}
+    }
+
+    const thirdPartyRef =
+      queryPaymentRef ||
+      storedPayment?.thirdPartyRef ||
+      storedPayment?.reference ||
+      urlToken;
+
+    if (
+      (paymentStatus === "success" || urlToken) &&
+      thirdPartyRef &&
+      !hasVerifiedPaymentRef.current
+    ) {
+      hasVerifiedPaymentRef.current = true;
+      eventRegistrationService
+        .confirmEventPayment(thirdPartyRef, {
+          orderId: urlToken,
+          payerId: urlPayerId,
+          sessionId: storedPayment?.sessionId,
+        })
+        .then((res) => {
+          if (res.success) {
+            toast.success("Payment verified! Your ticket has been confirmed.");
+            const ticketNum =
+              res.data?.ticketNumber ||
+              res.data?.registration?.ticketNumber ||
+              storedPayment?.reference ||
+              thirdPartyRef;
+            setConfirmedTicketNum(ticketNum);
+            refetch();
+            setIsTicketModalOpen(true);
+            if (typeof window !== "undefined") {
+              sessionStorage.removeItem("chlps_pending_event_payment");
+              const cleanUrl = window.location.pathname;
+              window.history.replaceState({}, document.title, cleanUrl);
+            }
+          } else {
+            toast.error(res.message || "Payment verification failed.");
+          }
+        })
+        .catch((err) => {
+          console.error("Payment confirmation error:", err);
+        });
     }
   }, [searchParams, refetch]);
 
@@ -315,6 +360,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
         onClose={() => setIsPaymentModalOpen(false)}
         event={event}
         onSuccess={(ref) => {
+          setIsPaymentModalOpen(false);
           if (ref) setConfirmedTicketNum(ref);
           refetch();
           setIsTicketModalOpen(true);
