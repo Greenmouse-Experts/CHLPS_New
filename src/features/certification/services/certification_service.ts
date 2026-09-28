@@ -202,15 +202,12 @@ export function transformProgramToCertificationDetail(
     ? cleanTitle
     : `${cleanTitle} Certification`;
 
-  // Hero body
-  let heroBody = "";
-  if (course?.shortDesc) {
-    heroBody = stripHtml(course.shortDesc);
-  } else if (program.description) {
-    heroBody = stripHtml(program.description);
-  } else if (course?.fullDesc) {
-    heroBody = stripHtml(course.fullDesc).slice(0, 320) + "...";
-  }
+  // Hero body (preserves rich text for modal view and clamped hero preview)
+  const heroBody =
+    course?.fullDesc?.trim() ||
+    program.description?.trim() ||
+    course?.shortDesc?.trim() ||
+    "";
 
   // Card title
   const cardTitle = `${abbr} – ${cleanTitle.replace(/\s*\([^)]*\)/g, "").trim()}`;

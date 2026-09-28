@@ -42,7 +42,9 @@ export async function generateMetadata({
   if (detail) {
     return {
       title: `${detail.cardTitle.replace(/\n/g, " ")} | CHLPS Canada`,
-      description: detail.heroBody,
+      description: detail.heroBody
+        ? detail.heroBody.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
+        : "",
       openGraph: detail.badge
         ? {
             images: [{ url: detail.badge }],
