@@ -10,7 +10,7 @@ import Footer from "@/features/components/footer";
 import CertificationDetailsHeroSection from "@/features/certification/components/certification_details_hero_section";
 import CertificationDetailsEnrollSection from "@/features/certification/components/certification_details_enroll_section";
 import CertificationDetailsRequirementsSection from "@/features/certification/components/certification_details_requirements_section";
-import CertificationDetailsStudiesSection from "@/features/certification/components/certification_details_studies_section";
+import CertificationDetailsLearningOutcomesSection from "@/features/certification/components/certification_details_learning_outcomes_section";
 import CertificationDetailsOutcomeSection from "@/features/certification/components/certification_details_outcome_section";
 import CertificationDetailsBenefitsListSection from "@/features/certification/components/certification_details_benefits_list_section";
 import Curriculum from "@/components/Curriculum";
@@ -169,7 +169,7 @@ export default function CertificationDetailsPage({
             />
             <CertificationDetailsRequirementsSection detail={detail} />
 
-            <CertificationDetailsStudiesSection detail={detail} />
+            <CertificationDetailsLearningOutcomesSection detail={detail} />
             <Curriculum id={detail.courseId || id || detail.id} />
 
             <CertificationDetailsOutcomeSection
