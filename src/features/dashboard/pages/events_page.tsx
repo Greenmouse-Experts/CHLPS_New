@@ -343,6 +343,11 @@ function EventRegistrationCard({
   registration: EventRegistration;
   onViewPass: () => void;
 }) {
+  const registrationId =
+    (registration as any)?.registrationId ||
+    registration?.id ||
+    (registration as any)?._id ||
+    "";
   const event = registration.event;
   const isVirtual =
     event?.format === "Virtual" ||
@@ -414,7 +419,10 @@ function EventRegistrationCard({
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-[0_12px_36px_rgba(22,16,88,0.1)] ring-1 ring-black/[0.04] transition-all duration-300 hover:shadow-[0_16px_44px_rgba(22,16,88,0.14)]">
       {/* Top Banner Image with 16:10 aspect ratio matching public EventCard */}
-      <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden">
+      <Link
+        href={`/dashboard/events/${registrationId}`}
+        className="relative block aspect-[16/10] w-full shrink-0 overflow-hidden"
+      >
         <Image
           src={imgSrc}
           alt={eventView.imageAlt}
@@ -433,7 +441,7 @@ function EventRegistrationCard({
             <span>{status.label}</span>
           </span>
         </div>
-      </div>
+      </Link>
 
       {/* Card Content with Certificate Backdrop */}
       <div className="relative flex flex-1 flex-col overflow-hidden px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5">
@@ -445,13 +453,15 @@ function EventRegistrationCard({
               {eventView.category}
             </p>
             <span className="badge badge-sm badge-ghost border border-base-300 font-mono text-xs font-bold text-primary">
-              {registration.ticketNumber || `REG-${registration.id.slice(0, 8)}`}
+              {registration.ticketNumber || `REG-${(registrationId || "").slice(0, 8)}`}
             </span>
           </div>
 
-          <h3 className="mt-2 text-base font-semibold leading-snug tracking-tight text-[#161058] sm:text-lg lg:min-h-[3.2rem]">
-            {eventView.title}
-          </h3>
+          <Link href={`/dashboard/events/${registrationId}`}>
+            <h3 className="mt-2 text-base font-semibold leading-snug tracking-tight text-[#161058] sm:text-lg lg:min-h-[3.2rem] hover:underline">
+              {eventView.title}
+            </h3>
+          </Link>
 
           <p className="mt-2 line-clamp-3 text-xs sm:text-sm leading-relaxed text-base-content/70">
             {eventView.description}
@@ -472,7 +482,7 @@ function EventRegistrationCard({
               </button>
 
               <Link
-                href={`/dashboard/events/${registration.id}`}
+                href={`/dashboard/events/${registrationId}`}
                 className="btn btn-primary btn-sm flex-1 rounded-xl text-xs font-bold text-white normal-case shadow-xs gap-1.5 flex items-center justify-center"
               >
                 <span>View Details</span>

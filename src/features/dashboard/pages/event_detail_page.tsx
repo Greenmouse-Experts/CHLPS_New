@@ -32,7 +32,8 @@ import {
   calculateEventDuration,
   transformEventApiToChlpsEvent,
 } from "@/features/events/services/event_service";
-import EventTicketModal from "@/features/events/components/event_ticket_modal";
+import Modal, { type ModalHandle } from "@/components/DialogModal";
+import { useRef } from "react";
 import type { EventRegistration } from "@/types/events";
 import type { ChlpsEvent } from "@/features/events/events_data";
 
@@ -48,8 +49,8 @@ export default function DashboardEventDetailPage({
   const user = useAppSelector((state) => state.user);
   const token = user.token;
 
-  const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
-  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const ticketModalRef = useRef<ModalHandle>(null);
+  const cancelModalRef = useRef<ModalHandle>(null);
 
   // Fetch all registrations to resolve by id or eventId
   const registrationsQuery = useQuery({
@@ -112,7 +113,7 @@ export default function DashboardEventDetailPage({
     },
     onSuccess: () => {
       toast.success("Event registration cancelled successfully.");
-      setIsCancelModalOpen(false);
+      cancelModalRef.current?.close();
       queryClient.invalidateQueries({ queryKey: ["my-event-registrations"] });
       queryClient.invalidateQueries({
         queryKey: ["my-event-registration", id],
@@ -250,7 +251,7 @@ export default function DashboardEventDetailPage({
             {!isCancelled && (
               <button
                 type="button"
-                onClick={() => setIsTicketModalOpen(true)}
+                onClick={() => ticketModalRef.current?.open()}
                 className="btn btn-primary btn-sm rounded-xl text-xs font-bold text-white normal-case shadow-xs gap-1.5"
               >
                 <HugeiconsIcon icon={Ticket01Icon} size={14} />
@@ -525,7 +526,7 @@ export default function DashboardEventDetailPage({
                 {!isCancelled && (
                   <button
                     type="button"
-                    onClick={() => setIsTicketModalOpen(true)}
+                    onClick={() => ticketModalRef.current?.open()}
                     className="btn btn-primary btn-block h-11 min-h-11 rounded-xl text-xs font-bold text-white normal-case shadow-xs gap-1.5"
                   >
                     <HugeiconsIcon icon={Ticket01Icon} size={15} />
@@ -578,7 +579,7 @@ export default function DashboardEventDetailPage({
 
                   <button
                     type="button"
-                    onClick={() => setIsCancelModalOpen(true)}
+                    onClick={() => cancelModalRef.current?.open()}
                     className="btn btn-ghost btn-sm w-full rounded-xl text-xs font-semibold text-error hover:bg-error/10 normal-case"
                   >
                     Cancel Registration
@@ -599,68 +600,173 @@ export default function DashboardEventDetailPage({
         )}
       </div>
 
-      {/* Full Ticket Modal */}
+      {/* Full Ticket Modal using DialogModal */}
       {eventView && (
-        <EventTicketModal
-          isOpen={isTicketModalOpen}
-          onClose={() => setIsTicketModalOpen(false)}
-          event={eventView}
-          registration={registration}
-          ticketNumber={registration?.ticketNumber}
-        />
-      )}
+        <Modal
+          ref={ticketModalRef}
+          title="Event Pass & Ticket"
+          maxWidth="max-w-lg"
+          actions={
+            <div className="flex w-full items-center justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => ticketModalRef.current?.close()}
+                className="btn btn-ghost btn-sm rounded-xl text-xs font-semibold"
+              >
+                Close
+              </button>
+            </div>
+          }
+        >
+          <div className="space-y-5">
+            {/* Ticket Card Slip */}
+            <div className="rounded-2xl border-2 border-[#C99E4A] bg-[#FAF8F5] p-5 shadow-xs">
+              <div className="flex items-center justify-between border-b border-[#C99E4A]/30 pb-3">
+                <span className="badge badge-success badge-sm text-white font-semibold text-xs">
+                  {status.label || "Confirmed"}
+                </span>
+                <div className="text-right">
+                  <span className="block text-xs uppercase tracking-wider text-base-content/60">
+                    Ticket No.
+                  </span>
+                  <span className="font-mono text-xs font-bold text-[#0D154B]">
+                    {registration?.ticketNumber ||
+                      `TK-${(eventView.raw?.id || eventView.id || "").slice(0, 8).toUpperCase()}`}
+                  </span>
+                </div>
+              </div>
 
-      {/* Cancellation Confirmation Modal */}
-      {isCancelModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs animate-in fade-in duration-200">
-          <div className="relative w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl transition-all border border-base-200">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-error/10 text-error">
-              <HugeiconsIcon icon={AlertCircleIcon} size={28} />
+              <div className="mt-4 space-y-3">
+                <span className="badge badge-primary badge-outline text-xs font-semibold">
+                  {categoryName}
+                </span>
+
+                <h4 className="text-base font-bold text-[#0D154B] sm:text-lg leading-snug">
+                  {eventView.title}
+                </h4>
+
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 pt-2 text-xs text-base-content/80">
+                  <div className="flex items-center gap-2">
+                    <HugeiconsIcon
+                      icon={Calendar03Icon}
+                      size={16}
+                      className="text-primary shrink-0"
+                    />
+                    <span>{dateFormatted}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <HugeiconsIcon
+                      icon={Clock01Icon}
+                      size={16}
+                      className="text-primary shrink-0"
+                    />
+                    <span>{timeFormatted}</span>
+                  </div>
+                  <div className="flex items-center gap-2 sm:col-span-2">
+                    <HugeiconsIcon
+                      icon={isVirtual ? ComputerIcon : Location01Icon}
+                      size={16}
+                      className="text-primary shrink-0"
+                    />
+                    <span className="truncate">
+                      {isVirtual
+                        ? "Online / Virtual Event"
+                        : event?.location || "In-Person"}
+                    </span>
+                  </div>
+                </div>
+
+                {event?.meetingLink && (
+                  <div className="mt-3 rounded-xl bg-primary/10 p-3 text-xs text-primary">
+                    <p className="font-semibold">Virtual Access Link:</p>
+                    <a
+                      href={event.meetingLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline break-all hover:text-primary-focus"
+                    >
+                      {event.meetingLink}
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
 
-            <h3 className="mt-4 text-center text-lg font-bold text-[#0D154B]">
-              Cancel Event Registration?
-            </h3>
-
-            <p className="mt-2 text-center text-xs sm:text-sm text-base-content/70 leading-relaxed">
-              Are you sure you want to cancel your attendance for{" "}
-              <strong>{event?.name}</strong>? Your ticket pass will be voided
-              and virtual session access will be revoked.
-            </p>
-
-            <div className="mt-6 flex items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={() => setIsCancelModalOpen(false)}
-                disabled={cancelMutation.isPending}
-                className="btn btn-ghost btn-md flex-1 rounded-2xl text-sm font-semibold"
-              >
-                Keep Registration
-              </button>
-
-              <button
-                type="button"
-                onClick={() => registration && cancelMutation.mutate(registration.id)}
-                disabled={cancelMutation.isPending}
-                className="btn btn-error btn-md flex-1 rounded-2xl text-sm font-bold text-white normal-case shadow-sm gap-2"
-              >
-                {cancelMutation.isPending ? (
-                  <>
-                    <HugeiconsIcon
-                      icon={Loading03Icon}
-                      size={16}
-                      className="animate-spin"
-                    />
-                    <span>Cancelling...</span>
-                  </>
-                ) : (
-                  <span>Yes, Cancel</span>
-                )}
-              </button>
+            {/* Important Notes */}
+            <div className="text-xs text-base-content/70 space-y-1 bg-base-200/50 p-3.5 rounded-xl border border-base-200">
+              <p className="font-semibold text-base-content">
+                Important Event Information:
+              </p>
+              <p>
+                Please present your ticket number or digital confirmation upon
+                check-in. Virtual attendees will receive reminders before the session starts.
+              </p>
             </div>
           </div>
-        </div>
+        </Modal>
       )}
+
+      {/* Cancellation Confirmation Modal using DialogModal */}
+      <Modal
+        ref={cancelModalRef}
+        title="Cancel Event Registration"
+        maxWidth="max-w-md"
+        actions={
+          <div className="flex w-full items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => cancelModalRef.current?.close()}
+              disabled={cancelMutation.isPending}
+              className="btn btn-ghost flex-1 rounded-xl text-sm font-semibold"
+            >
+              Keep Registration
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                const regId =
+                  (registration as any)?.registrationId ||
+                  registration?.id ||
+                  (registration as any)?._id ||
+                  id;
+                if (regId) cancelMutation.mutate(regId);
+              }}
+              disabled={cancelMutation.isPending}
+              className="btn btn-error flex-1 rounded-xl text-sm font-bold text-white normal-case shadow-sm gap-2"
+            >
+              {cancelMutation.isPending ? (
+                <>
+                  <HugeiconsIcon
+                    icon={Loading03Icon}
+                    size={16}
+                    className="animate-spin"
+                  />
+                  <span>Cancelling...</span>
+                </>
+              ) : (
+                <span>Yes, Cancel</span>
+              )}
+            </button>
+          </div>
+        }
+      >
+        <div className="flex flex-col items-center text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-error/10 text-error">
+            <HugeiconsIcon icon={AlertCircleIcon} size={28} />
+          </div>
+
+          <h3 className="mt-4 text-center text-lg font-bold text-[#0D154B]">
+            Cancel Event Registration?
+          </h3>
+
+          <p className="mt-2 text-center text-xs sm:text-sm text-base-content/70 leading-relaxed">
+            Are you sure you want to cancel your attendance for{" "}
+            <strong>{event?.name}</strong>? Your ticket pass will be voided
+            and virtual session access will be revoked.
+          </p>
+        </div>
+      </Modal>
     </DashboardLayout>
   );
 }
