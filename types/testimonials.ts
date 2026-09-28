@@ -6,12 +6,17 @@
 import { BaseEntity, PaginationQueryDto } from "./common";
 
 export interface TestimonialItem extends BaseEntity {
-  name: string;
+  name?: string;
+  displayName?: string;
   role?: string;
+  jobTitle?: string;
   avatar?: string;
+  photoUrl?: string;
+  organization?: string;
+  location?: string;
   testimony: string;
   rating?: number;
-  isPublished: boolean;
+  isPublished?: boolean;
   user?: {
     id: string;
     firstName: string;
@@ -24,8 +29,13 @@ export interface CreateTestimonialDto {
   testimony: string;
   rating?: number;
   name?: string;
+  displayName?: string;
   role?: string;
+  jobTitle?: string;
   avatar?: string;
+  photoUrl?: string;
+  organization?: string;
+  location?: string;
 }
 
 export interface UpdateTestimonialAvailabilityDto {

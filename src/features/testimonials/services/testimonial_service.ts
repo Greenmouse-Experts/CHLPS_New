@@ -16,7 +16,8 @@ function extractList(payload: unknown): TestimonialItem[] {
     if (obj.data && typeof obj.data === "object") {
       const inner = obj.data as Record<string, unknown>;
       if (Array.isArray(inner.data)) return inner.data as TestimonialItem[];
-      if (Array.isArray(inner.results)) return inner.results as TestimonialItem[];
+      if (Array.isArray(inner.results))
+        return inner.results as TestimonialItem[];
     }
   }
 
@@ -42,21 +43,45 @@ function toMemberTestimonial(
   index: number,
 ): MemberTestimonial {
   const user = item.user;
-  const name =
-    item.name?.trim() ||
-    [user?.firstName, user?.lastName].filter(Boolean).join(" ").trim();
+  const rawItem = item as Record<string, any>;
 
-  const testimony = (item.testimony ?? "").trim();
+  const name =
+    rawItem.displayName?.trim() ||
+    rawItem.name?.trim() ||
+    [user?.firstName, user?.lastName].filter(Boolean).join(" ").trim() ||
+    "ChLPS Member";
+
+  const testimony = (rawItem.testimony ?? "").trim();
   const quote =
     testimony && !/^[“"']/.test(testimony) ? `“${testimony}”` : testimony;
 
+  const role =
+    rawItem.jobTitle?.trim() ||
+    rawItem.role?.trim() ||
+    rawItem.title?.trim() ||
+    "ChLPS Member";
+
+  const rawOrg = (rawItem.organization ?? "").trim();
+  const rawLoc = (rawItem.location ?? "").trim();
+  const cleanOrg = rawOrg.replace(/,\s*$/, "");
+  const cleanLoc = rawLoc.replace(/,\s*$/, "");
+
   return {
-    id: String(item.id || index),
+    id: String(rawItem.id || index),
     quote,
     name,
-    role: item.role?.trim() || "ChLPS Member",
-    rating: item.rating && item.rating > 0 ? item.rating : 5,
-    avatar: item.avatar || user?.picture || "",
+    role,
+    organization: cleanOrg || undefined,
+    location: cleanLoc || undefined,
+    rating:
+      typeof rawItem.rating === "number" && rawItem.rating > 0
+        ? rawItem.rating
+        : 5,
+    avatar:
+      rawItem.photoUrl?.trim() ||
+      rawItem.avatar?.trim() ||
+      user?.picture?.trim() ||
+      "",
     initials: getInitials(name),
   };
 }
