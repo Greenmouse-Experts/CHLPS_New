@@ -39,7 +39,7 @@ export default function LegalPage() {
           <HeaderText
             smallSize
             left="about"
-            right="chlps canaga"
+            right="chlps canada"
             textWhite
             notCenter
           />

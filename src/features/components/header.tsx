@@ -545,14 +545,15 @@ export default function Header() {
             </nav>
 
             <button
-              className="header-menu-btn p-1 text-primary"
+              className="header-menu-btn p-1 text-primary transition-opacity hover:opacity-80"
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-label="Toggle navigation menu"
               aria-expanded={mobileOpen}
             >
               <HugeiconsIcon
                 icon={mobileOpen ? Cancel01Icon : Menu01Icon}
-                size={22}
+                size={26}
+                strokeWidth={2.5}
                 color="currentColor"
               />
             </button>
@@ -606,17 +607,34 @@ export default function Header() {
                       }
                       closeAll();
                     }}
-                    className=" font-medium text-text hover:text-primary"
+                    className="flex items-center justify-between py-1 font-medium text-text transition-colors hover:text-primary"
                   >
-                    {item.label}
-                    <LinkPendingIndicator />
+                    <span className="flex items-center">
+                      {item.label}
+                      <LinkPendingIndicator />
+                    </span>
+                    {item.menu && (
+                      <span
+                        className={`inline-flex transition-transform duration-200 ${
+                          openMenu === item.label
+                            ? "rotate-180 text-primary"
+                            : "text-text/60"
+                        }`}
+                      >
+                        <HugeiconsIcon
+                          icon={ArrowDown01Icon}
+                          size={18}
+                          strokeWidth={2.4}
+                          color="currentColor"
+                        />
+                      </span>
+                    )}
                   </Link>
                   {item.menu && openMenu === item.label ? (
                     item.menu.type === "mega" ? (
                       <div className="flex flex-col pl-1">
                         {item.menu.columns.flat().length > 0 ? (
                           item.menu.columns
-
                             .flat()
                             .map((child) => (
                               <MegaLink
@@ -626,13 +644,32 @@ export default function Header() {
                               />
                             ))
                         ) : (
-                          <span className="py-2  italic text-text/50">
+                          <span className="py-2 italic text-text/50">
                             No {item.label.toLowerCase()} currently available.
                           </span>
                         )}
+                        {item.menu.cta && (
+                          <div className="pt-2 pl-3 pb-1">
+                            <Link
+                              href={item.menu.cta.href}
+                              onClick={closeAll}
+                              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary/10 px-4 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+                            >
+                              <span>{item.menu.cta.label}</span>
+                              <HugeiconsIcon
+                                icon={ArrowUpRight01Icon}
+                                size={13}
+                                color="currentColor"
+                                strokeWidth={2.2}
+                              />
+                            </Link>
+                          </div>
+                        )}
                       </div>
                     ) : (
-                      <CompactPanel menu={item.menu} onNavigate={closeAll} />
+                      <div className="pl-1">
+                        <CompactPanel menu={item.menu} onNavigate={closeAll} />
+                      </div>
                     )
                   ) : null}
                 </div>
