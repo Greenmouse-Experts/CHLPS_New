@@ -1,7 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import { Reveal } from "@/features/components/reveal";
 import PageContainer from "@/features/components/page_container";
+import Modal, { type ModalHandle } from "@/components/DialogModal";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 
 export default function CertificationDetailsOutcomeSection(props: {
@@ -9,13 +11,22 @@ export default function CertificationDetailsOutcomeSection(props: {
   imgUrl?: string;
 }) {
   const { detail, imgUrl } = props;
+  const modalRef = useRef<ModalHandle>(null);
+
   const imgSrc =
     detail.certificationImage ||
     imgUrl ||
     detail.outcomeImage ||
     "/assets/images/cert.png";
 
+  const textContent =
+    detail.certificationText?.trim() ||
+    (Array.isArray(detail.outcomeBody) && detail.outcomeBody.length > 0
+      ? detail.outcomeBody.join("\n\n")
+      : "");
+
   if (
+    !textContent &&
     (!detail.outcomeBody || detail.outcomeBody.length === 0) &&
     !detail.outcomeTitle
   ) {
@@ -26,6 +37,7 @@ export default function CertificationDetailsOutcomeSection(props: {
   const badgeFirst = badgeParts[0] || detail.abbr;
   const badgeRest =
     badgeParts.slice(1).join(" ") || "Professional Certification";
+  const modalTitle = `${badgeFirst} ${badgeRest}`;
 
   return (
     <section className="bg-white py-14 sm:py-8">
@@ -46,14 +58,54 @@ export default function CertificationDetailsOutcomeSection(props: {
                 <h2 className="text-3xl font-semibold uppercase text-secondary sm:text-4xl">
                   {badgeFirst} <span className="text-white">{badgeRest}</span>
                 </h2>
-                <p className="mt-5 max-w-[28rem] space-y-4 sm:mt-6 text-white">
-                  {detail.certificationText}
-                </p>
+
+                {textContent && (
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => modalRef.current?.open()}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        modalRef.current?.open();
+                      }
+                    }}
+                    className="group mt-5 max-w-[28rem] cursor-pointer text-left transition-opacity hover:opacity-95 sm:mt-6"
+                    title="Click to read full details"
+                  >
+                    <p className="line-clamp-8 whitespace-pre-line text-sm leading-relaxed text-white/95 sm:text-base">
+                      {textContent}
+                    </p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-secondary group-hover:underline">
+                      Read more
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </article>
         </Reveal>
       </PageContainer>
+
+      {/* Full Outcome Text Modal */}
+      <Modal
+        ref={modalRef}
+        title={modalTitle}
+        maxWidth="max-w-3xl"
+        actions={
+          <button
+            type="button"
+            className="btn btn-sm btn-ghost"
+            onClick={() => modalRef.current?.close()}
+          >
+            Close
+          </button>
+        }
+      >
+        <div className="max-w-none whitespace-pre-line text-sm leading-relaxed text-base-content/90 sm:text-base">
+          {textContent}
+        </div>
+      </Modal>
     </section>
   );
 }
