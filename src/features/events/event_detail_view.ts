@@ -34,7 +34,7 @@ export function isEventPassed(event: ChlpsEvent): boolean {
 
 export function getEventDetailView(event: ChlpsEvent) {
   const isPast = isEventPassed(event);
-  const isLive = !isPast && event.status === "live";
+  const isLive = false;
   const isFree = event.access === "free";
   const isVirtual = Boolean(
     event.location && event.location.trim().toLowerCase() === "online",

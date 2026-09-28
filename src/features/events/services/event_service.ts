@@ -139,25 +139,19 @@ export function calculateEventDuration(
 }
 
 /**
- * Determine if event is currently live, upcoming, or past based on dates.
+ * Determine if event is upcoming or past based on dates and status.
  */
 export function determineEventStatus(apiEvent: EventItem): EventStatus {
-  if (apiEvent.status?.toLowerCase() === "completed") {
+  if (
+    apiEvent.status?.toLowerCase() === "completed" ||
+    apiEvent.status?.toLowerCase() === "past"
+  ) {
     return "past";
   }
 
   const now = new Date();
 
-  let start: Date | null = null;
   let end: Date | null = null;
-
-  if (apiEvent.startDate) {
-    const timePart = apiEvent.startTime
-      ? `T${apiEvent.startTime.length === 5 ? apiEvent.startTime + ":00" : apiEvent.startTime}`
-      : "T00:00:00";
-    const d = new Date(`${apiEvent.startDate}${timePart}`);
-    if (!isNaN(d.getTime())) start = d;
-  }
 
   if (apiEvent.endDate) {
     const timePart = apiEvent.endTime
@@ -165,16 +159,18 @@ export function determineEventStatus(apiEvent: EventItem): EventStatus {
       : "T23:59:59";
     const d = new Date(`${apiEvent.endDate}${timePart}`);
     if (!isNaN(d.getTime())) end = d;
-  } else if (start) {
-    end = new Date(start.getTime() + 4 * 60 * 60 * 1000);
+  } else if (apiEvent.startDate) {
+    const timePart = apiEvent.startTime
+      ? `T${apiEvent.startTime.length === 5 ? apiEvent.startTime + ":00" : apiEvent.startTime}`
+      : "T23:59:59";
+    const d = new Date(`${apiEvent.startDate}${timePart}`);
+    if (!isNaN(d.getTime())) end = d;
   }
 
   if (end && now > end) {
     return "past";
   }
-  if (start && end && now >= start && now <= end) {
-    return "live";
-  }
+
   return "upcoming";
 }
 

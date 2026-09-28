@@ -68,10 +68,6 @@ export function LiveBadge({ className = "" }: { className?: string }) {
 }
 
 export function ImageOverlayBadge({ event }: { event: ChlpsEvent }) {
-  if (event.status === "live") {
-    return <LiveBadge />;
-  }
-
   if (event.status === "past") {
     return (
       <span className="inline-flex rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-primary shadow-sm">

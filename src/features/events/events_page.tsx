@@ -6,7 +6,6 @@ import { Calendar03Icon } from "@hugeicons/core-free-icons";
 import Header from "@/features/components/header";
 import Footer from "@/features/components/footer";
 import EventsHeroSection from "@/features/events/components/events_hero_section";
-import LiveEventsSection from "@/features/events/components/live_events_section";
 import UpcomingEventsSection from "@/features/events/components/upcoming_events_section";
 import PastEventsSection from "@/features/events/components/past_events_section";
 import QueryCompLayout from "@/components/QueryCompLayout";
@@ -55,15 +54,11 @@ export default function EventsPage({ initialEvents }: EventsPageProps) {
             return emptyState;
           }
 
-          const liveEvents = list.filter((e) => e.status === "live");
           const upcomingEvents = list.filter((e) => e.status === "upcoming");
           const pastEvents = list.filter((e) => e.status === "past");
 
           return (
             <>
-              {liveEvents.length > 0 && (
-                <LiveEventsSection events={liveEvents} />
-              )}
               {upcomingEvents.length > 0 && (
                 <UpcomingEventsSection events={upcomingEvents} />
               )}

@@ -1,6 +1,6 @@
 import type { EventItem } from "@/types";
 
-export type EventStatus = "live" | "upcoming" | "past";
+export type EventStatus = "upcoming" | "past";
 export type EventAccess = "free" | "paid";
 export type EventCategory =
   | "Webinar"
@@ -59,7 +59,7 @@ export const events: ChlpsEvent[] = [
     description:
       "An applied masterclass exploring retail risk, asset protection and practical approaches to reducing preventable loss.",
     category: "Masterclass",
-    status: "live",
+    status: "upcoming",
     access: "paid",
     date: "07 Sep 2026",
     time: "10:00 AM",
@@ -78,7 +78,7 @@ export const events: ChlpsEvent[] = [
     description:
       "A live professional forum focused on leadership, operational resilience and practical approaches to modern loss prevention.",
     category: "Professional Forum",
-    status: "live",
+    status: "upcoming",
     access: "free",
     date: "07 Sep 2026",
     time: "12:00 PM",
