@@ -1,5 +1,12 @@
 import { Assets } from "@/lib/assets";
 
+export type JobOpportunity = {
+  id?: string;
+  title: string;
+  description?: string;
+  body?: string;
+};
+
 export type CertificationDetail = {
   id?: string;
   programId?: string;
@@ -26,6 +33,7 @@ export type CertificationDetail = {
   outcomeImage: string;
   benefitsTitle: string;
   benefits: string[];
+  jobOpportunities?: JobOpportunity[];
   applicationQuestions?: Array<{ id?: string; question: string }>;
   coverImage?: string;
   bannerImage?: string;
@@ -87,6 +95,44 @@ export const CERTIFICATION_DETAIL: CertificationDetail = {
     "Establishes a structured pathway toward the Certified Loss Prevention Officer (CLPO) and Specialist (ChLPS) credentials",
     "Includes access to CHLPS Canada professional resources, community forums, and continuing education opportunities",
     "Demonstrates commitment to professional standards, ethical conduct, and ongoing career development",
+  ],
+  jobOpportunities: [
+    {
+      id: "clpa-job-1",
+      title: "Loss Prevention Associate",
+      description:
+        "Support store or facility asset protection, monitor surveillance systems, and execute inventory audit checks.",
+    },
+    {
+      id: "clpa-job-2",
+      title: "Retail Security Officer",
+      description:
+        "Perform access control, patrol premises, identify suspicious behaviors, and respond to floor incidents.",
+    },
+    {
+      id: "clpa-job-3",
+      title: "Inventory & Shrinkage Specialist",
+      description:
+        "Track inventory discrepancies, analyze stock variance, and ensure compliance with supply chain loss prevention guidelines.",
+    },
+    {
+      id: "clpa-job-4",
+      title: "Asset Protection Specialist",
+      description:
+        "Protect organizational physical and digital assets while working directly with operations and compliance teams.",
+    },
+    {
+      id: "clpa-job-5",
+      title: "Security Operations Dispatcher",
+      description:
+        "Coordinate surveillance coverage, review access logs, and assist in incident reporting and documentation.",
+    },
+    {
+      id: "clpa-job-6",
+      title: "Compliance & Safety Officer",
+      description:
+        "Audit operational compliance with safety and loss prevention protocols across commercial and logistics facilities.",
+    },
   ],
 };
 

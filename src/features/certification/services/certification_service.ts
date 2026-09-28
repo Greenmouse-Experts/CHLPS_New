@@ -3,6 +3,13 @@ import { ApiUrls } from "@/lib/network/api_url";
 import { Assets } from "@/lib/assets";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 
+export interface ApiJobOpportunity {
+  id?: string;
+  title: string;
+  description?: string;
+  body?: string;
+}
+
 export interface ApiCourseOutcome {
   id?: string;
   description: string;
@@ -29,6 +36,7 @@ export interface ApiCourseItem {
   entryRequirements?: string[];
   applicationQuestions?: Array<{ id?: string; question: string }>;
   courseOutcomes?: ApiCourseOutcome[];
+  jobOpportunities?: ApiJobOpportunity[];
   program?: { id?: string; title?: string; slug?: string } | string;
 }
 
@@ -44,6 +52,7 @@ export interface ApiProgramItem {
   isPublished?: boolean;
   createdDate?: string;
   courses?: ApiCourseItem[];
+  jobOpportunities?: ApiJobOpportunity[];
 }
 
 const BADGE_MAP: Record<string, string> = {
@@ -330,6 +339,26 @@ export function transformProgramToCertificationDetail(
 
   const benefits = rawBenefits.filter(Boolean);
 
+  // Career / Job Opportunities
+  const rawJobs =
+    course?.jobOpportunities && course.jobOpportunities.length > 0
+      ? course.jobOpportunities
+      : program.courses?.[0]?.jobOpportunities &&
+          program.courses[0].jobOpportunities.length > 0
+        ? program.courses[0].jobOpportunities
+        : (program as any)?.jobOpportunities ?? [];
+
+  const jobOpportunities = Array.isArray(rawJobs)
+    ? rawJobs
+        .map((j: any) => ({
+          id: j.id,
+          title: (j.title || "").trim(),
+          description: (j.description || j.body || "").trim(),
+          body: (j.description || j.body || "").trim(),
+        }))
+        .filter((j: any) => Boolean(j.title))
+    : [];
+
   return {
     id: programId,
     programId,
@@ -369,6 +398,7 @@ export function transformProgramToCertificationDetail(
     outcomeImage,
     benefitsTitle: `Benefits of the ${abbr} Certification`,
     benefits,
+    jobOpportunities,
     applicationQuestions: effectiveCourse?.applicationQuestions ?? [],
   };
 }

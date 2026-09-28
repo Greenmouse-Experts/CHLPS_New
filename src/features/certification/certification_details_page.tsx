@@ -13,6 +13,7 @@ import CertificationDetailsRequirementsSection from "@/features/certification/co
 import CertificationDetailsLearningOutcomesSection from "@/features/certification/components/certification_details_learning_outcomes_section";
 import CertificationDetailsOutcomeSection from "@/features/certification/components/certification_details_outcome_section";
 import CertificationDetailsBenefitsListSection from "@/features/certification/components/certification_details_benefits_list_section";
+import CertificationDetailsJobsSection from "@/features/certification/components/certification_details_jobs_section";
 import Curriculum from "@/components/Curriculum";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 import { fetchProgramById } from "@/features/certification/services/certification_service";
@@ -177,6 +178,7 @@ export default function CertificationDetailsPage({
               imgUrl={detail.certificationImage}
             />
             <CertificationDetailsBenefitsListSection detail={detail} />
+            <CertificationDetailsJobsSection detail={detail} />
 
             {/* Direct PayPal Enrollment Modal */}
             {isPaymentModalOpen && detail.courseId && (

@@ -115,12 +115,11 @@ export default function CertificationDetailsLearningOutcomesSection({
         <div className="flex flex-col items-center text-center">
           <Reveal delay={80}>
             <h2 className="text-2xl font-bold tracking-wide uppercase sm:text-3xl lg:text-4xl">
-              <span className="text-[#18124A]">LEARNING</span>{" "}
-              <span className="text-[#C8A854]">OUTCOME</span>
+              <span className="text-primary">LEARNING</span>{" "}
+              <span className="text-secondary">OUTCOME</span>
             </h2>
           </Reveal>
         </div>
-
         <RevealGroup className="mt-8 grid grid-cols-1 gap-3.5 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:gap-5">
           {outcomes.map((outcome, index) => (
             <article
@@ -128,7 +127,7 @@ export default function CertificationDetailsLearningOutcomesSection({
               className="reveal flex items-center gap-4 rounded-2xl border border-[#E5D7B5] bg-white px-5 py-4 shadow-[0_2px_6px_rgba(0,0,0,0.02)] transition-shadow duration-200 hover:shadow-md sm:px-6 sm:py-5"
               style={revealStyle(index)}
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#18124A] text-white sm:h-10 sm:w-10">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-white sm:h-10 sm:w-10">
                 <Check className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.8} />
               </span>
               <p className="min-w-0 text-sm font-semibold leading-snug text-[#18124A] sm:text-[15px]">
