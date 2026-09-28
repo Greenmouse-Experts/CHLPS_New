@@ -13,10 +13,34 @@ import Modal, { type ModalHandle } from "@/components/DialogModal";
 
 function formatRichText(content?: string) {
   if (!content) return "";
-  const trimmed = content.trim();
-  const hasHtml = /<[a-z][\s\S]*>/i.test(trimmed);
-  if (hasHtml) return trimmed;
-  return trimmed
+  let cleaned = content.trim();
+
+  // Strip Figma metadata and buffer junk spans
+  cleaned = cleaned.replace(
+    /<span[^>]*data-(?:metadata|buffer)[^>]*>[\s\S]*?<\/span>/gi,
+    "",
+  );
+
+  // Strip embedded <style> tags
+  cleaned = cleaned.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
+
+  // Strip obsolete <font> tags while preserving text content
+  cleaned = cleaned.replace(/<\/?font[^>]*>/gi, "");
+
+  // Strip hardcoded color and background-color inline styles from external pastes
+  cleaned = cleaned.replace(
+    /style=(["'])(.*?)\1/gi,
+    (_match, quote, styleContent) => {
+      const filtered = styleContent
+        .replace(/(?:^|;)\s*(?:color|background-color)\s*:[^;]*/gi, "")
+        .trim();
+      return filtered ? `style=${quote}${filtered}${quote}` : "";
+    },
+  );
+
+  const hasHtml = /<[a-z][\s\S]*>/i.test(cleaned);
+  if (hasHtml) return cleaned;
+  return cleaned
     .split(/\n\n+/)
     .map((paragraph) => `<p>${paragraph.replace(/\n/g, "<br />")}</p>`)
     .join("");
@@ -80,7 +104,7 @@ export default function CertificationDetailsHeroSection({
                   title="Click to read full description"
                 >
                   <div
-                    className="line-clamp-5 text-[14px] leading-[1.75] text-white/95 sm:text-[15px] sm:leading-[1.7] [&_p]:inline [&_p]:mr-1.5 [&_li]:inline [&_li]:mr-1.5"
+                    className="line-clamp-5 text-[14px] leading-[1.75] text-white sm:text-[15px] sm:leading-[1.7] [&_*]:!text-white [&_p]:inline [&_p]:mr-1.5 [&_li]:inline [&_li]:mr-1.5 [&_span]:!text-white [&_strong]:!text-white [&_a]:!text-white"
                     dangerouslySetInnerHTML={{ __html: formattedBody }}
                   />
                   <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-secondary group-hover:underline">

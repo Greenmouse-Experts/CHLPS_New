@@ -173,6 +173,33 @@ function stripHtml(html: string): string {
     .trim();
 }
 
+export function cleanRichText(content?: string): string {
+  if (!content) return "";
+  let cleaned = content.trim();
+
+  // Strip Figma metadata and buffer junk spans
+  cleaned = cleaned.replace(/<span[^>]*data-(?:metadata|buffer)[^>]*>[\s\S]*?<\/span>/gi, "");
+
+  // Strip embedded <style> tags
+  cleaned = cleaned.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
+
+  // Strip obsolete <font> tags while preserving text content
+  cleaned = cleaned.replace(/<\/?font[^>]*>/gi, "");
+
+  // Strip hardcoded color and background-color inline styles from external pastes
+  cleaned = cleaned.replace(
+    /style=(["'])(.*?)\1/gi,
+    (_match, quote, styleContent) => {
+      const filtered = styleContent
+        .replace(/(?:^|;)\s*(?:color|background-color)\s*:[^;]*/gi, "")
+        .trim();
+      return filtered ? `style=${quote}${filtered}${quote}` : "";
+    },
+  );
+
+  return cleaned.trim();
+}
+
 /**
  * Converts a live API Program and associated Course into CertificationDetail.
  */
@@ -203,11 +230,12 @@ export function transformProgramToCertificationDetail(
     : `${cleanTitle} Certification`;
 
   // Hero body (preserves rich text for modal view and clamped hero preview)
-  const heroBody =
+  const rawBody =
     course?.fullDesc?.trim() ||
     program.description?.trim() ||
     course?.shortDesc?.trim() ||
     "";
+  const heroBody = cleanRichText(rawBody);
 
   // Card title
   const cardTitle = `${abbr} – ${cleanTitle.replace(/\s*\([^)]*\)/g, "").trim()}`;
