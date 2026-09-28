@@ -43,9 +43,9 @@ export default function LegalPage() {
             textWhite
             notCenter
           />
-          <h1 className="text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
+          <h1 className="text-3xl  text-white sm:text-4xl lg:text-5xl">
             Our Legal Status <br />
-            <span className="text-secondary"> and our Accreditations</span>
+            <span className="text-secondary"> and Accreditations</span>
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base">
             Explore the legal standing and professional recognitions of the
