@@ -43,6 +43,11 @@ export interface UserMembershipDetail {
   name: string;
   slug?: string;
   status: UserMembershipStatus | string;
+  rawStatus?: string;
+  reviewedBy?: string | null;
+  reviewedAt?: string | null;
+  rejectReason?: string | null;
+  orderId?: string | null;
   tier?: string;
   appliedDate?: string;
   updatedDate?: string;
@@ -150,6 +155,11 @@ export class MembershipRepository {
             name,
             slug,
             status,
+            rawStatus: app.status,
+            reviewedBy: app.reviewedBy,
+            reviewedAt: app.reviewedAt,
+            rejectReason: app.rejectReason,
+            orderId: app.orderId,
             tier: name,
             appliedDate: app.createdDate,
             updatedDate: app.updatedDate,

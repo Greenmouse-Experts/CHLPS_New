@@ -10,6 +10,7 @@ import {
   ArrowLeft01Icon,
   ArrowRight01Icon,
   Award01Icon,
+  Cancel01Icon,
   Calendar03Icon,
   CheckmarkCircle02Icon,
   Clock01Icon,
@@ -50,8 +51,8 @@ export default function MembershipDetailPage({ id }: { id: string }) {
       case "approved":
         return {
           stepIndex: 2,
-          label: "Approved (Payment Pending)",
-          badgeClass: "badge-info text-white",
+          label: "Approved",
+          badgeClass: "bg-emerald-600 text-white border-emerald-600",
           dotColor: "bg-white",
           title: "Application Approved",
           description:
@@ -60,11 +61,12 @@ export default function MembershipDetailPage({ id }: { id: string }) {
       case "rejected":
         return {
           stepIndex: 1,
-          label: "Declined",
+          label: "Rejected",
           badgeClass: "badge-error text-white",
           dotColor: "bg-white",
-          title: "Application Not Approved",
+          title: "Application Rejected",
           description:
+            application.rejectReason ||
             "Your application was not approved at this time. Please reach out to support for feedback on prerequisites or documentation.",
         };
       case "under_review":
@@ -184,7 +186,9 @@ export default function MembershipDetailPage({ id }: { id: string }) {
                           ? Award01Icon
                           : application.status === "approved"
                             ? SecurityCheckIcon
-                            : Clock01Icon
+                            : application.status === "rejected"
+                              ? Cancel01Icon
+                              : Clock01Icon
                       }
                       size={24}
                     />
@@ -196,6 +200,24 @@ export default function MembershipDetailPage({ id }: { id: string }) {
                     <p className="mt-1 text-sm text-base-content/70">
                       {statusConfig?.description}
                     </p>
+                    {application.status === "rejected" && application.rejectReason && (
+                      <div className="mt-3 rounded-xl border border-rose-200 bg-rose-50/80 p-3 text-xs text-rose-800">
+                        <span className="font-bold">Reason for decision: </span>
+                        <span>{application.rejectReason}</span>
+                      </div>
+                    )}
+                    {application.reviewedAt && (
+                      <p className="mt-2 text-xs text-base-content/60">
+                        Reviewed on:{" "}
+                        <span className="font-semibold text-base-content/80">
+                          {new Date(application.reviewedAt).toLocaleDateString(undefined, {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </span>
+                      </p>
+                    )}
                   </div>
                 </div>
 

@@ -8,8 +8,10 @@ import {
   ArrowRight01Icon,
   ArrowUpRight01Icon,
   Award01Icon,
+  Cancel01Icon,
   Clock01Icon,
   File01Icon,
+  SecurityCheckIcon,
   ShieldCheckIcon,
 } from "@hugeicons/core-free-icons";
 import { DashboardLayout } from "@/components";
@@ -21,7 +23,7 @@ import type { UserMembershipDetail } from "../domain/repository/membership_repos
 
 export default function MembershipDashboardPage() {
   const { applications, isLoading, refetch } = useUserMembershipApplications();
-  const [filter, setFilter] = useState<"all" | "active" | "review">("all");
+  const [filter, setFilter] = useState<"all" | "approved" | "rejected" | "review" | "active">("all");
   const [publicMemberships, setPublicMemberships] = useState<Membership[]>([]);
   const [loadingTiers, setLoadingTiers] = useState(false);
 
@@ -35,19 +37,32 @@ export default function MembershipDashboardPage() {
   }, [isLoading, applications.length]);
 
   const filteredApplications = useMemo(() => {
+    if (filter === "approved") {
+      return applications.filter((app) => app.status === "approved");
+    }
+    if (filter === "rejected") {
+      return applications.filter((app) => app.status === "rejected");
+    }
     if (filter === "active") {
       return applications.filter((app) => app.status === "active");
     }
     if (filter === "review") {
       return applications.filter(
-        (app) =>
-          app.status === "under_review" ||
-          app.status === "pending" ||
-          app.status === "approved",
+        (app) => app.status === "under_review" || app.status === "pending",
       );
     }
     return applications;
   }, [applications, filter]);
+
+  const approvedCount = useMemo(
+    () => applications.filter((a) => a.status === "approved").length,
+    [applications],
+  );
+
+  const rejectedCount = useMemo(
+    () => applications.filter((a) => a.status === "rejected").length,
+    [applications],
+  );
 
   const activeCount = useMemo(
     () => applications.filter((a) => a.status === "active").length,
@@ -57,10 +72,7 @@ export default function MembershipDashboardPage() {
   const reviewCount = useMemo(
     () =>
       applications.filter(
-        (a) =>
-          a.status === "under_review" ||
-          a.status === "pending" ||
-          a.status === "approved",
+        (a) => a.status === "under_review" || a.status === "pending",
       ).length,
     [applications],
   );
@@ -94,7 +106,7 @@ export default function MembershipDashboardPage() {
         </div>
 
         {/* Top Summary Stats */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
             <div className="flex items-center justify-between">
               <div>
@@ -119,15 +131,15 @@ export default function MembershipDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                  Active Memberships
+                  Approved
                 </p>
-                <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#10B981]">
-                  {isLoading ? "-" : activeCount}
+                <h3 className="mt-1 text-2xl font-bold tracking-tight text-emerald-600">
+                  {isLoading ? "-" : approvedCount}
                 </h3>
               </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-success/15 text-success">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-600">
                 <HugeiconsIcon
-                  icon={Award01Icon}
+                  icon={SecurityCheckIcon}
                   size={20}
                   color="currentColor"
                 />
@@ -139,15 +151,35 @@ export default function MembershipDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                  In Review / Approved
+                  Rejected
                 </p>
-                <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#D97706]">
-                  {isLoading ? "-" : reviewCount}
+                <h3 className="mt-1 text-2xl font-bold tracking-tight text-rose-600">
+                  {isLoading ? "-" : rejectedCount}
                 </h3>
               </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-warning/15 text-warning">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-500/15 text-rose-600">
                 <HugeiconsIcon
-                  icon={Clock01Icon}
+                  icon={Cancel01Icon}
+                  size={20}
+                  color="currentColor"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
+                  {activeCount > 0 ? "Active Memberships" : "Under Review"}
+                </p>
+                <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#0D154B]">
+                  {isLoading ? "-" : activeCount > 0 ? activeCount : reviewCount}
+                </h3>
+              </div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/15 text-amber-600">
+                <HugeiconsIcon
+                  icon={activeCount > 0 ? Award01Icon : Clock01Icon}
                   size={20}
                   color="currentColor"
                 />
@@ -272,26 +304,52 @@ export default function MembershipDashboardPage() {
               </button>
               <button
                 type="button"
-                onClick={() => setFilter("active")}
+                onClick={() => setFilter("approved")}
                 className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                  filter === "active"
+                  filter === "approved"
                     ? "btn-primary text-white"
                     : "btn-ghost text-base-content/70 hover:text-base-content"
                 }`}
               >
-                Active Credentials ({activeCount})
+                Approved ({approvedCount})
               </button>
               <button
                 type="button"
-                onClick={() => setFilter("review")}
+                onClick={() => setFilter("rejected")}
                 className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                  filter === "review"
+                  filter === "rejected"
                     ? "btn-primary text-white"
                     : "btn-ghost text-base-content/70 hover:text-base-content"
                 }`}
               >
-                Under Review / Approved ({reviewCount})
+                Rejected ({rejectedCount})
               </button>
+              {activeCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setFilter("active")}
+                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                    filter === "active"
+                      ? "btn-primary text-white"
+                      : "btn-ghost text-base-content/70 hover:text-base-content"
+                  }`}
+                >
+                  Active ({activeCount})
+                </button>
+              )}
+              {reviewCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setFilter("review")}
+                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                    filter === "review"
+                      ? "btn-primary text-white"
+                      : "btn-ghost text-base-content/70 hover:text-base-content"
+                  }`}
+                >
+                  Under Review ({reviewCount})
+                </button>
+              )}
             </div>
 
             {/* Application Cards Grid */}
@@ -337,16 +395,16 @@ function MembershipApplicationCard({
       case "approved":
         return {
           label: "Approved",
-          badgeClass: "badge-info text-white",
+          badgeClass: "bg-emerald-600 text-white border-emerald-600",
           dotColor: "bg-white",
           actionText: "Complete Enrollment",
         };
       case "rejected":
         return {
-          label: "Declined",
+          label: "Rejected",
           badgeClass: "badge-error text-white",
           dotColor: "bg-white",
-          actionText: "View Application",
+          actionText: "View Details",
         };
       case "under_review":
       case "pending":
@@ -455,12 +513,23 @@ function MembershipApplicationCard({
               </span>
             </div>
             <div className="flex flex-col items-end px-1 text-right">
-              <span className="text-white/60">Validity Term</span>
+              <span className="text-white/60">
+                {application.status === "rejected" ? "Decision" : "Validity Term"}
+              </span>
               <span className="font-semibold text-white">
-                {application.duration || "1 Year"}
+                {application.status === "rejected"
+                  ? "Rejected"
+                  : application.duration || "1 Year"}
               </span>
             </div>
           </div>
+
+          {application.status === "rejected" && application.rejectReason && (
+            <div className="mb-3 w-full rounded-xl border border-rose-400/30 bg-rose-950/40 p-2.5 text-left text-xs text-rose-200">
+              <span className="font-semibold text-rose-100">Reason: </span>
+              <span className="line-clamp-2">{application.rejectReason}</span>
+            </div>
+          )}
 
           <p className="min-h-[40px] max-w-[300px] text-center text-sm leading-relaxed text-white/90 line-clamp-2">
             {description}

@@ -258,17 +258,35 @@ export interface SubmitMembershipApplicationPayload {
 
 export interface MembershipApplication {
   id: string;
+  orderId?: string;
   membershipId?: string;
   membership?: {
     id: string;
     name?: string;
     slug?: string;
+    description?: string;
+    price?: number;
+    currency?: string;
+    duration?: string;
+    autoRenewal?: boolean;
+    renewalPrice?: number;
+    renewalPeriod?: string;
+    benefits?: string[];
+    eligibilityCriteria?: string[];
+    image?: string;
+    banner?: string;
+    certificationImage?: string;
+    certificationText?: string;
     applicationQuestions?: Array<{ id?: string; question: string }>;
   };
   answers?: MembershipApplicationAnswer[];
   status?: string;
+  reviewedBy?: string | null;
+  reviewedAt?: string | null;
+  rejectReason?: string | null;
   createdDate?: string;
   updatedDate?: string;
+  deletedDate?: string | null;
 }
 
 export interface CoursePurchaseEligibility {
