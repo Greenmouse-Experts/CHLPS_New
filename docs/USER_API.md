@@ -4,7 +4,7 @@
 **Target Audience**: Frontend Engineers, Mobile Developers, QA & Integration Partners  
 **Platform**: CHLPS Student Portal & Public Web Platform (`CHLPS_New`)  
 **Scope**: Public Catalog, Student Account, LMS Player, Checkout/Orders, Events, Memberships, Certificates & Notifications  
-**Reference Collection**: `Chlps Institute API.postman_collection.json` (76 Student & Public-Facing Endpoints)  
+**Reference Collection**: `Chlps Institute API.postman_collection.json` (88 Student & Public-Facing Endpoints)  
 **Related Audit**: [ADMIN_API_AUDIT.md](file:///home/destiny/Documents/projects/CHLPS_New/docs/ADMIN_API_AUDIT.md) (Admin Back-Office Scope)
 
 ---
@@ -23,19 +23,22 @@ Unlike the Admin Portal which governs back-office CMS operations, instructor man
 | Category / Domain | Endpoints | Auth Type | Primary Consumers |
 | :--- | :---: | :--- | :--- |
 | **Authentication & Profile** | 9 | Public / Bearer JWT | Sign Up, Sign In, Profile, Password Reset |
-| **Public Catalog & Discovery** | 7 | Public / Optional JWT | Course Grid, Featured Courses, Section Previews |
+| **Public Catalog & Discovery** | 8 | Public / Optional JWT | Course Grid, Featured Courses, Single Course, Section Previews |
+| **Course Screening Questionnaires** | 3 | Bearer JWT (Student) | Course Application Submit, Fetch My Application, Fetch All Mine |
 | **LMS Player & Assessments** | 8 | Bearer JWT (Student) | Purchased Courses, Lesson Progress, Quizzes, Results |
 | **Reviews & Ratings** | 3 | Public / Bearer JWT | Course Feedback Submission & Public Reviews |
 | **Student Analytics & Timeline** | 3 | Bearer JWT (Student) | Study Hours, Course Status Breakdown, Timeline |
 | **Checkout, Orders & Payments** | 6 | Bearer JWT (Student) | Order Preview, Create Order, Verify Payment, History |
-| **Certificates & Credentialing** | 5 | Public / Bearer JWT | Generate Async Job, Poll Status, Verify Number |
-| **Memberships & Verification** | 6 | Public / Bearer JWT | Grade Discovery, Active Tier, Document Vault |
+| **Certificates & Credentialing** | 6 | Public / Bearer JWT | My Certificates, Course Cert, Generate Async Job, Poll Status, Verify |
+| **Membership Applications & Screening**| 3 | Bearer JWT (Student) | Submit Questionnaire, My Applications, Application by ID |
+| **Enrolled Student Memberships** | 3 | Bearer JWT (Student) | My Memberships, Eligibility Check, History |
+| **Public Memberships & Document Vault**| 6 | Public / Bearer JWT | Tier Catalog, Slug Details, Enums, Document Vault |
 | **Events & Attendee Ticketing** | 11 | Public / Bearer JWT | Event Discovery, Ticket Booking, Invites, Passes |
-| **Programs, Blog & CMS Content** | 8 | Public | Programs Directory, Blog Feed, Tags, Testimonials |
+| **Programs, Blog & CMS Content** | 10 | Public | Programs Catalog, Program by ID, Blog Feed, Tags, Curated Testimonials |
 | **Notifications & Alerts** | 5 | Bearer JWT (Student) | Student Feed, Unread Counter, Read Status |
-| **Media & File Uploads** | 4 | Public / Form-Data | Avatar Image, Document PDF Uploads |
+| **Media & File Uploads** | 4 | Public / Form-Data | Image, Doc, Audio, Video Uploads |
 | **Support & Inquiries** | 2 | Public / Bearer JWT | Contact Form & Direct Inquiries |
-| **Total User Endpoints** | **77** | | |
+| **Total User Endpoints** | **88** | | |
 
 ---
 
@@ -213,6 +216,38 @@ Content-Type: application/json
 #### 3.2.4 Fetch Course Preview Section (`GET /course-content/public/slug/:slug` & `GET /course-content/public/:id`)
 - **Access**: Public
 - **Description**: Retrieves public previewable curriculum modules (syllabus tree, module names, free preview lessons).
+
+#### 3.2.5 Course Screening Questionnaires & Prerequisites (`/course-applications`)
+Certain specialized courses require prerequisite screening responses prior to checkout:
+
+- **Submit Course Questionnaire (`POST /course-applications/submit`)**:
+  - **Access**: Bearer JWT (Student)
+  - **Description**: Answers every mandatory yes/no screening question for a course before checkout eligibility is unlocked.
+  - **Request Body**:
+```json
+{
+  "courseId": "550e8400-e29b-41d4-a716-446655440000",
+  "answers": [
+    {
+      "questionId": "q-uuid-001",
+      "answer": true
+    },
+    {
+      "questionId": "q-uuid-002",
+      "answer": true
+    }
+  ]
+}
+```
+  - **Response `201 Created`**: Returns created application record.
+
+- **Fetch My Course Application (`GET /course-applications/mine/:courseId`)**:
+  - **Access**: Bearer JWT (Student)
+  - **Description**: Returns the authenticated student's submitted application for a course. Returns `null` if not yet submitted.
+
+- **Fetch All My Course Applications (`GET /course-applications/mine`)**:
+  - **Access**: Bearer JWT (Student)
+  - **Description**: Retrieves all submitted course questionnaires and approval statuses for the student.
 
 ---
 
@@ -413,7 +448,31 @@ Content-Type: application/json
 
 ### 3.6 Certificates & Credential Verification
 
-#### 3.6.1 Request Certificate Generation (`POST /certificates/generate`)
+#### 3.6.1 Fetch My Earned Certificates (`GET /certificates/my`)
+- **Access**: Bearer JWT (Student)
+- **Description**: Returns all earned certificates of completion across completed courses and verified professional memberships.
+- **Response `200 OK`**:
+```json
+{
+  "statusCode": 200,
+  "data": [
+    {
+      "id": "cert-uuid-1",
+      "certificateNumber": "CHLPS-CLP-2026-0891",
+      "courseId": "course-uuid-1",
+      "courseTitle": "Certified Logistics Professional",
+      "fileUrl": "https://res.cloudinary.com/chlps/certificates/cert-0891.pdf",
+      "issuedAt": "2026-09-02T16:00:00Z"
+    }
+  ]
+}
+```
+
+#### 3.6.2 Get Certificate by Course (`GET /certificates/course/:courseId`)
+- **Access**: Bearer JWT (Student)
+- **Description**: Checks whether a certificate already exists for a specific completed course (returns `null` if not yet generated).
+
+#### 3.6.3 Request Certificate Generation (`POST /certificates/generate`)
 - **Access**: Bearer JWT (Student)
 - **Description**: Initiates asynchronous generation of PDF certificate upon 100% course completion.
 - **Request Body**:
@@ -434,7 +493,7 @@ Content-Type: application/json
   }
   ```
 
-#### 3.6.2 Poll Certificate Job Status (`GET /certificates/generate/:jobId/status`)
+#### 3.6.4 Poll Certificate Job Status (`GET /certificates/generate/:jobId/status`)
 - **Access**: Bearer JWT (Student)
 - **Response `200 OK`**:
   ```json
@@ -453,40 +512,185 @@ Content-Type: application/json
   }
   ```
 
-#### 3.6.3 Public Certificate Verification (`GET /certificates/verify/:certificateNumber`)
+#### 3.6.5 Public Certificate Verification (`GET /certificates/verify/:certificateNumber`)
 - **Access**: Public
 - **Description**: Used by employers and regulatory bodies to verify student authenticity.
 - **Response `200 OK`**: Returns graduate name, course title, issuance date, credential status (`Active` / `Revoked`).
 
 ---
 
-### 3.7 Memberships & Verification Document Vault
+### 3.7 Memberships, Applications & Verification Document Vault
+
+The membership architecture consists of three interconnected subsystems:
+1. **Public Catalog & Tiers**: Grade discovery, criteria checklist, fee structures, and application questionnaires.
+2. **Membership Applications & Screening**: Questionnaire submission, admin review, rejection reasons, and approval workflows.
+3. **Student Enrolled Memberships**: Active membership records, license validity, member credentials, and course purchase eligibility.
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                               Membership Lifecycle Flow                                │
+│                                                                                        │
+│  [GET /memberships/public] ──> [Select Tier & Review Criteria] ──> [Complete Application]│
+│                                                                           │            │
+│  [POST /membership-applications/submit] <─────────────────────────────────┘            │
+│                 │                                                                      │
+│                 ▼                                                                      │
+│  [Status: pending_approval] ──> [GET /membership-applications/mine]                    │
+│                 │                                                                      │
+│        ┌────────┴──────────────────┐                                                   │
+│        ▼                           ▼                                                   │
+│  [status: approved]          [status: rejected]                                        │
+│        │                           │                                                   │
+│        ▼                           ▼                                                   │
+│  [Complete Payment]          [View rejectReason & Resubmit]                            │
+│        │                                                                               │
+│        ▼                                                                               │
+│  [GET /student-memberships/mine] (status: active, membershipId, certificateIssued)     │
+│        │                                                                               │
+│        ▼                                                                               │
+│  [GET /student-memberships/course-purchase-eligibility] ──> [Eligible to Buy Courses]  │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
 #### 3.7.1 Public Membership Tiers (`GET /memberships/public`)
 - **Access**: Public
-- **Query Params**: `search`, `status`, `currency`, `requiredDocument`
-- **Description**: Returns all published membership grades (e.g., Student, Associate, Full Member, Fellow) along with pricing, criteria checklist, and benefits.
+- **Query Params**: `page`, `pageSize`, `search`, `status` (`published`), `currency` (`USD`, `CAD`, `NGN`, `GBP`, `EUR`)
+- **Description**: Returns all published membership tiers (Student, Affiliate, Licentiate, Associate, Full Member / Certified, Corporate) along with pricing, eligibility criteria, and benefits.
 
 #### 3.7.2 Single Membership by Slug (`GET /memberships/public/:slug`)
 - **Access**: Public
-- **Description**: Returns tier breakdown, including sub-components:
-  - `job-opportunities`: Career advantages.
-  - `how-membership-helps`: Practical skill advantages.
-  - `why-join-now`: Highlights and cards.
+- **Description**: Returns comprehensive membership details with nested sub-resources:
+  - `jobOpportunities`: Array of career advantages.
+  - `howMembershipHelps`: Array of professional competency items.
+  - `whyJoinNow`: Highlight pills (`highlights`) and info cards (`cards`).
+  - `applicationQuestions`: Screening yes/no questionnaire items.
 
-#### 3.7.3 Student Enrolled Memberships (`GET /memberships/my-memberships`)
-- **Access**: Bearer JWT (Student)
-- **Description**: Active membership plan, renewal dates, and status.
+#### 3.7.3 Membership Enums (`GET /memberships/enums`)
+- **Access**: Public
+- **Description**: Returns system-wide supported currencies, durations, renewal periods, and application status enums.
 
-#### 3.7.4 Student Document Vault (`/student-documents`)
+#### 3.7.4 Membership Applications & Screening (`/membership-applications`)
+
+- **Submit Membership Questionnaire (`POST /membership-applications/submit`)**:
+  - **Access**: Bearer JWT (Student)
+  - **Description**: Submits screening answers for a membership application. Both `true` and `false` answers are accepted; administrator reviews responses before granting final activation.
+  - **Request Body**:
+```json
+{
+  "membershipId": "550e8400-e29b-41d4-a716-446655440000",
+  "answers": [
+    {
+      "questionId": "q-uuid-001",
+      "answer": true
+    },
+    {
+      "questionId": "q-uuid-002",
+      "answer": true
+    }
+  ]
+}
+```
+  - **Response `201 Created`**:
+```json
+{
+  "statusCode": 201,
+  "message": "Application submitted successfully",
+  "data": {
+    "id": "app-uuid-101",
+    "membershipId": "550e8400-e29b-41d4-a716-446655440000",
+    "status": "pending_approval",
+    "submittedAt": "2026-09-28T12:00:00Z"
+  }
+}
+```
+
+- **Fetch My Application for a Membership (`GET /membership-applications/mine/:membershipId`)**:
+  - **Access**: Bearer JWT (Student)
+  - **Description**: Returns the authenticated student's application record for a specific membership ID. Returns `null` or empty if not yet submitted.
+  - **Response `200 OK`**:
+```json
+{
+  "statusCode": 200,
+  "data": {
+    "id": "app-uuid-101",
+    "membershipId": "550e8400-e29b-41d4-a716-446655440000",
+    "membership": {
+      "name": "Certified Member (CLMP)",
+      "slug": "certified-member",
+      "price": 75000,
+      "currency": "CAD"
+    },
+    "status": "pending_approval",
+    "rejectReason": null,
+    "reviewedAt": null,
+    "answers": [
+      {
+        "questionId": "q-uuid-001",
+        "questionText": "Do you hold a bachelor degree in logistics or related field?",
+        "answer": true
+      }
+    ]
+  }
+}
+```
+
+- **Fetch All My Applications (`GET /membership-applications/mine`)**:
+  - **Access**: Bearer JWT (Student)
+  - **Description**: Returns all membership applications submitted by the logged-in student, including their review statuses.
+  - **Application Status Enum**:
+    | Status | Description | UI Action |
+    | :--- | :--- | :--- |
+    | `pending_approval` | Application is currently under committee review | Badge: Warning / "Under Review" |
+    | `approved` | Application approved by administrator; ready for payment | Badge: Success / "Approved" (Show "Complete Payment") |
+    | `active` | Payment confirmed; active valid membership grant | Badge: Success / "Active" |
+    | `rejected` | Application rejected by administrator with reason | Badge: Error / "Rejected" (Displays `rejectReason`) |
+    | `expired` | Membership annual/term validity elapsed | Badge: Neutral / "Expired" (Show "Renew") |
+    | `cancelled` | Application or membership revoked | Badge: Neutral / "Cancelled" |
+
+#### 3.7.5 Enrolled Student Memberships (`/student-memberships`)
+
+- **Fetch My Enrolled Memberships (`GET /student-memberships/mine` & `GET /memberships/my-memberships`)**:
+  - **Access**: Bearer JWT (Student)
+  - **Description**: Returns all active and historical enrolled memberships for the authenticated student.
+  - **Response `200 OK`**:
+```json
+{
+  "statusCode": 200,
+  "data": [
+    {
+      "id": "sm-uuid-01",
+      "membershipId": "550e8400-e29b-41d4-a716-446655440000",
+      "membershipName": "Certified Member (CLMP)",
+      "membershipSlug": "certified-member",
+      "memberNumber": "CHLPS-MEM-2026-0042",
+      "status": "active",
+      "startDate": "2026-09-01T00:00:00Z",
+      "expiryDate": "2027-08-31T23:59:59Z",
+      "autoRenewal": true,
+      "certificateIssued": true
+    }
+  ]
+}
+```
+
+- **Check Course Purchase Eligibility (`GET /student-memberships/course-purchase-eligibility`)**:
+  - **Access**: Bearer JWT (Student)
+  - **Description**: Validates whether the student holds an active, unexpired membership required to purchase restricted professional certification courses.
+  - **Response `200 OK`**: `{ "statusCode": 200, "data": { "isEligible": true, "membershipTier": "Certified" } }`
+
+- **Fetch Student Membership History (`GET /student-memberships/student/:studentId`)**:
+  - **Access**: Bearer JWT (Student / Admin)
+  - **Description**: Returns all memberships held by a specific student UUID.
+
+#### 3.7.6 Student Document Vault (`/student-documents`)
 - **Submit Document (`POST /student-documents/submit`)**:
   - Request:
-    ```json
-    {
-      "documentType": "Passport",
-      "fileUrl": "https://res.cloudinary.com/chlps/docs/passport.pdf"
-    }
-    ```
+```json
+{
+  "documentType": "Passport",
+  "fileUrl": "https://res.cloudinary.com/chlps/docs/passport.pdf"
+}
+```
 - **Fetch My Documents (`GET /student-documents`)**: List submitted verification docs with approval states (`pending`, `verified`, `rejected`).
 - **Delete Document (`DELETE /student-documents/:id`)**: Remove document if not yet bound to an approved membership.
 
@@ -544,10 +748,14 @@ Content-Type: application/json
 | Endpoint | Method | Access | Description |
 | :--- | :---: | :---: | :--- |
 | `/programs/public` | `GET` | Public | Complete directory of degree and diploma programs |
+| `/programs/public/:id` | `GET` | Public | Single program details by UUID |
+| `/programs/fetch-programs` | `GET` | Bearer JWT | Paginated list of academic programs for students and instructors |
 | `/blog/view-posts` | `GET` | Public | Paginated published news articles and industry insights |
 | `/blog/view-post/:id` | `GET` | Public | Single article payload with author, tags, and rich content |
 | `/blog/view-tags` | `GET` | Public | Published tag cloud for category filtering |
 | `/testimonials/published` | `GET` | Public | Published graduate and member success stories |
+| `/testimonials/curated` | `GET` | Public | Curated testimonials showcased in "What Our Members Say" section |
+| `/testimonials` | `POST` | Bearer JWT (Student) | Submit student testimonial / feedback for administrator review |
 | `/faqs/published` | `GET` | Public | Public knowledge base grouped by category |
 | `/contact-me` | `POST` | Public | Public contact form submission |
 | `/user/send-contact-message`| `POST` | Public | General contact inquiry submission |
@@ -566,8 +774,10 @@ Content-Type: application/json
 
 ### 3.11 File & Media Uploads
 
-- `POST /upload/image`: Multipart form-data with file field `image`. Returns CDN image URL for profile avatars.
-- `POST /upload/doc`: Multipart form-data with file field `doc`. Returns CDN document URL for KYC verification.
+- `POST /upload/image`: Multipart form-data with file field `image`. Returns CDN image URL for profile avatars, testimonials, and course assets.
+- `POST /upload/doc`: Multipart form-data with file field `doc`. Returns CDN document URL for KYC verification and student qualifications.
+- `POST /upload/video`: Multipart form-data with file field `video`. Uploads video media asset to cloud storage.
+- `POST /upload/audio`: Multipart form-data with file field `audio`. Uploads audio podcast/lecture asset.
 
 ---
 
@@ -591,8 +801,11 @@ The frontend application under `src/` maps cleanly to the User API specification
 | `/dashboard/support` | `src/features/support/` | `POST /contact-me`, `GET /faqs/published` |
 | `/events` | `src/features/events/` | `GET /events/public`, `GET /event-categories/public` |
 | `/events/[id]` | `src/features/events/` | `GET /events/public/slug/:slug`, `POST /event-registrations/:eventId/register`, `POST /event-registrations/:eventId/join` |
-| `/membership` | `src/features/membership/` | `GET /memberships/public`, `GET /memberships/my-memberships` |
-| `/membership/[id]` | `src/features/membership/` | `GET /memberships/public/:slug`, `POST /student-documents/submit` |
+| `/membership` | `src/features/membership/` | `GET /memberships/public`, `GET /memberships/enums` |
+| `/membership/[id]` | `src/features/membership/` | `GET /memberships/public/:slug`, `POST /student-documents/submit`, `POST /membership-applications/submit` |
+| `/dashboard/my-applications` | `src/features/dashboard/` | `GET /membership-applications/mine` |
+| `/dashboard/my-applications/[id]` | `src/features/dashboard/` | `GET /membership-applications/mine/:membershipId`, `GET /memberships/public/:slug` |
+| `/dashboard/my-memberships` | `src/features/dashboard/` | `GET /student-memberships/mine`, `GET /memberships/my-memberships` |
 | `/certification` | `src/features/certification/`| `GET /certificates/my`, `POST /certificates/generate`, `GET /certificates/verify/:certificateNumber` |
 
 ### 4.2 Central Network Configuration
@@ -635,6 +848,25 @@ export class ApiUrls {
   }
   static createCourseReview = "/reviews/create-course-review";
   
+  // Course and Membership Applications / Screening
+  static courseApplicationSubmit = "/course-applications/submit";
+  static myCourseApplication(courseId: string) {
+    return `/course-applications/mine/${courseId}`;
+  }
+  static myCourseApplications = "/course-applications/mine";
+  static membershipApplicationSubmit = "/membership-applications/submit";
+  static myMembershipApplication(membershipId: string) {
+    return `/membership-applications/mine/${membershipId}`;
+  }
+  static myMembershipApplications = "/membership-applications/mine";
+
+  // Student Memberships
+  static studentMembershipsByStudent(studentId: string) {
+    return `/student-memberships/student/${studentId}`;
+  }
+  static myStudentMemberships = "/student-memberships/mine";
+  static coursePurchaseEligibility = "/student-memberships/course-purchase-eligibility";
+
   static generateCertificate = "/certificates/generate";
   static certificateJobStatus(jobId: string) {
     return `/certificates/generate/${jobId}/status`;
@@ -648,6 +880,7 @@ export class ApiUrls {
   }
   
   static faqsPublished = "/faqs/published";
+  static publicTestimonialsCurated = "/testimonials/curated";
   static contactMe = "/contact-me";
 }
 ```
