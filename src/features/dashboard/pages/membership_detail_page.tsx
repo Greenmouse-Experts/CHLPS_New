@@ -140,7 +140,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
   );
 
   return (
-    <DashboardLayout title="Membership Details">
+    <DashboardLayout title="Application Details">
       <div className="space-y-6">
         {/* Back Navigation Bar */}
         <div className="flex items-center justify-between">
@@ -149,7 +149,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
             className="btn btn-ghost btn-sm gap-2 rounded-xl text-xs font-semibold text-base-content/80 normal-case hover:text-base-content"
           >
             <HugeiconsIcon icon={ArrowLeft01Icon} size={16} />
-            <span>Back to My Memberships</span>
+            <span>Back to My Applications</span>
           </Link>
 
           {application && (
@@ -221,21 +221,27 @@ export default function MembershipDetailPage({ id }: { id: string }) {
                     <p className="mt-1 text-sm text-base-content/70">
                       {statusConfig?.description}
                     </p>
-                    {application.status === "rejected" && application.rejectReason && (
-                      <div className="mt-3 rounded-xl border border-rose-200 bg-rose-50/80 p-3 text-xs text-rose-800">
-                        <span className="font-bold">Reason for decision: </span>
-                        <span>{application.rejectReason}</span>
-                      </div>
-                    )}
+                    {application.status === "rejected" &&
+                      application.rejectReason && (
+                        <div className="mt-3 rounded-xl border border-rose-200 bg-rose-50/80 p-3 text-xs text-rose-800">
+                          <span className="font-bold">
+                            Reason for decision:{" "}
+                          </span>
+                          <span>{application.rejectReason}</span>
+                        </div>
+                      )}
                     {application.reviewedAt && (
                       <p className="mt-2 text-xs text-base-content/60">
                         Reviewed on:{" "}
                         <span className="font-semibold text-base-content/80">
-                          {new Date(application.reviewedAt).toLocaleDateString(undefined, {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
+                          {new Date(application.reviewedAt).toLocaleDateString(
+                            undefined,
+                            {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            },
+                          )}
                         </span>
                       </p>
                     )}
@@ -674,7 +680,9 @@ export default function MembershipDetailPage({ id }: { id: string }) {
           estimatedAmount={application.price ?? 595}
           onSuccess={() => {
             setIsPaymentModalOpen(false);
-            toast.success("Payment completed successfully! Refreshing status...");
+            toast.success(
+              "Payment completed successfully! Refreshing status...",
+            );
             refetch();
           }}
         />

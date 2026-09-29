@@ -96,6 +96,36 @@ function resolveBadge(needle: string, remoteImage?: string): string {
   return Assets.icons.logo;
 }
 
+export function normalizeMembershipStatus(
+  raw?: string | null,
+): UserMembershipStatus {
+  const s = (raw || "").toLowerCase().trim();
+  if (s === "pending_approval" || s === "under_review" || s === "pending") {
+    return "pending_approval";
+  }
+  if (
+    s === "active" ||
+    s === "confirmed" ||
+    s === "paid" ||
+    s === "successful"
+  ) {
+    return "active";
+  }
+  if (s === "expired") {
+    return "expired";
+  }
+  if (s === "cancelled" || s === "canceled") {
+    return "cancelled";
+  }
+  if (s === "approved" || s === "accepted") {
+    return "approved";
+  }
+  if (s === "rejected" || s === "declined") {
+    return "rejected";
+  }
+  return "pending_approval";
+}
+
 export class MembershipRepository {
   private api = new ApiService();
   private orderService = new OrderService();
@@ -110,30 +140,6 @@ export class MembershipRepository {
     try {
       const itemsMap = new Map<string, UserMembershipDetail>();
 
-      // Helper function to normalize API status strings to canonical UserMembershipStatus
-      const normalizeStatus = (raw?: string | null): UserMembershipStatus => {
-        const s = (raw || "").toLowerCase().trim();
-        if (s === "pending_approval" || s === "under_review" || s === "pending") {
-          return "pending_approval";
-        }
-        if (s === "active" || s === "confirmed" || s === "paid" || s === "successful") {
-          return "active";
-        }
-        if (s === "expired") {
-          return "expired";
-        }
-        if (s === "cancelled" || s === "canceled") {
-          return "cancelled";
-        }
-        if (s === "approved" || s === "accepted") {
-          return "approved";
-        }
-        if (s === "rejected" || s === "declined") {
-          return "rejected";
-        }
-        return "pending_approval";
-      };
-
       // 1. Fetch user's membership applications
       const appRes = await this.orderService.fetchMyMembershipApplications();
       if (appRes.success && appRes.data && Array.isArray(appRes.data)) {
@@ -142,7 +148,7 @@ export class MembershipRepository {
           const membershipId = app.membershipId || mem?.id || app.id;
           const slug = mem?.slug;
           const name = mem?.name || "Membership Application";
-          const status = normalizeStatus(app.status);
+          const status = normalizeMembershipStatus(app.status);
 
           const questionsMap = new Map<string, string>();
           if (
@@ -190,7 +196,10 @@ export class MembershipRepository {
       }
 
       // Build lookup maps for existing items: by membershipId and by slug
-      const findExistingKey = (targetId?: string, targetSlug?: string): string | undefined => {
+      const findExistingKey = (
+        targetId?: string,
+        targetSlug?: string,
+      ): string | undefined => {
         if (!targetId && !targetSlug) return undefined;
         for (const [key, val] of itemsMap.entries()) {
           if (targetId && val.membershipId === targetId) return key;
@@ -261,68 +270,37 @@ export class MembershipRepository {
           }
         }
       } catch {
-        // Continue even if transaction fetch fails
+        // Continue with applications only
       }
 
-      // 3. Check student-memberships endpoint (/student-memberships/mine or student/:userId)
-      try {
-        const studentMemEndpoint = userId
-          ? ApiUrls.studentMembershipsByStudent(userId)
-          : ApiUrls.myStudentMemberships;
-
-        const directRes = await this.api.getData<any>(studentMemEndpoint);
-        if (directRes.success && directRes.data) {
-          const rawList = Array.isArray(directRes.data)
-            ? directRes.data
-            : (directRes.data?.data ?? []);
-          for (const sub of rawList) {
-            if (sub.membership) {
-              const mem = sub.membership;
-              const existingKey = findExistingKey(mem.id, mem.slug);
-              const subStatus = normalizeStatus(sub.status);
-              const memberNum = `CHLPS-${(sub.id || userId || mem.id).slice(0, 8).toUpperCase()}`;
-
-              if (existingKey) {
-                const existing = itemsMap.get(existingKey)!;
-                itemsMap.set(existingKey, {
-                  ...existing,
-                  status: subStatus,
-                  rawStatus: sub.status,
-                  startDate: sub.startDate || existing.startDate,
-                  expiryDate: sub.expiryDate || existing.expiryDate,
-                  memberNumber: existing.memberNumber || memberNum,
-                });
-              } else {
-                const id = sub.id || mem.id;
-                itemsMap.set(id, {
-                  id,
-                  membershipId: mem.id,
-                  name: mem.name || "ChLPS Membership",
-                  slug: mem.slug,
-                  status: subStatus,
-                  rawStatus: sub.status,
-                  tier: mem.name,
-                  appliedDate: sub.createdDate,
-                  startDate: sub.startDate,
-                  expiryDate: sub.expiryDate,
-                  currency: mem.currency || "CAD",
-                  price: mem.price,
-                  duration: mem.duration || "1 Year",
-                  memberNumber: memberNum,
-                  badge: resolveBadge(
-                    `${mem.slug || ""} ${mem.name}`,
-                    mem.image,
-                  ),
-                });
-              }
+      // 3. Fallback: If no applications exist, show public membership options as draft cards
+      if (itemsMap.size === 0) {
+        try {
+          const publicRes = await fetchPublicMemberships();
+          if (publicRes && publicRes.length > 0) {
+            for (const pub of publicRes) {
+              itemsMap.set(pub.id, {
+                id: pub.id,
+                membershipId: pub.id,
+                name: pub.name,
+                slug: pub.slug,
+                status: "pending_approval",
+                tier: pub.name,
+                description: pub.description,
+                price: pub.price,
+                currency: pub.currency || "CAD",
+                duration: pub.duration || "1 Year",
+                badge: resolveBadge(`${pub.slug || ""} ${pub.name}`, pub.image),
+                benefits: pub.benefits || [],
+                eligibilityCriteria: pub.eligibilityCriteria || [],
+              });
             }
           }
+        } catch {
+          // Ignore fallback errors
         }
-      } catch {
-        // Continue
       }
 
-      // Convert map to array and sort by applied date descending
       const list = Array.from(itemsMap.values()).sort((a, b) => {
         const da = a.appliedDate ? new Date(a.appliedDate).getTime() : 0;
         const db = b.appliedDate ? new Date(b.appliedDate).getTime() : 0;
@@ -339,13 +317,140 @@ export class MembershipRepository {
   }
 
   /**
-   * Fetches full individual membership application by ID, application ID, or slug.
+   * Helper to map a raw MembershipApplication object into UserMembershipDetail
+   * and enrich it with public membership criteria and details.
+   */
+  private async mapAndEnrichApplication(
+    app: any,
+  ): Promise<UserMembershipDetail> {
+    const mem = app.membership;
+    const membershipId = app.membershipId || mem?.id || app.id;
+    const slug = mem?.slug;
+    const name = mem?.name || "Membership Application";
+    const status = normalizeMembershipStatus(app.status);
+
+    const questionsMap = new Map<string, string>();
+    if (mem?.applicationQuestions && Array.isArray(mem.applicationQuestions)) {
+      for (const q of mem.applicationQuestions) {
+        if (q.id) questionsMap.set(q.id, q.question);
+      }
+    }
+
+    const answers = (app.answers || []).map((ans: any) => ({
+      questionId: ans.questionId,
+      questionText: questionsMap.get(ans.questionId) || "",
+      answer: ans.answer,
+    }));
+
+    const detail: UserMembershipDetail = {
+      id: app.id,
+      applicationId: app.id,
+      membershipId,
+      name,
+      slug,
+      status,
+      rawStatus: app.status,
+      reviewedBy: app.reviewedBy,
+      reviewedAt: app.reviewedAt,
+      rejectReason: app.rejectReason,
+      orderId: app.orderId,
+      tier: name,
+      appliedDate: app.createdDate,
+      updatedDate: app.updatedDate,
+      currency: (mem as any)?.currency || "CAD",
+      price: (mem as any)?.price,
+      duration: (mem as any)?.duration || "1 Year",
+      description: (mem as any)?.description,
+      badge: resolveBadge(`${slug || ""} ${name}`, (mem as any)?.image),
+      benefits: (mem as any)?.benefits || [],
+      eligibilityCriteria: (mem as any)?.eligibilityCriteria || [],
+      answers,
+    };
+
+    // Enrich with public membership data (questions, benefits, description) if missing or partial
+    const lookupSlug = slug || membershipId;
+    if (lookupSlug) {
+      try {
+        const publicMem = await fetchPublicMembershipBySlug(lookupSlug);
+        if (publicMem) {
+          if (
+            publicMem.applicationQuestions &&
+            Array.isArray(publicMem.applicationQuestions)
+          ) {
+            for (const q of publicMem.applicationQuestions) {
+              if (q.id) questionsMap.set(q.id, q.question);
+            }
+          }
+
+          const enrichedAnswers = (detail.answers || []).map((ans) => ({
+            questionId: ans.questionId,
+            questionText:
+              ans.questionText || questionsMap.get(ans.questionId) || "",
+            answer: ans.answer,
+          }));
+
+          return {
+            ...detail,
+            name: publicMem.name || detail.name,
+            tier: publicMem.name || detail.tier,
+            slug: publicMem.slug || detail.slug,
+            description: detail.description || publicMem.description,
+            benefits:
+              detail.benefits && detail.benefits.length > 0
+                ? detail.benefits
+                : publicMem.benefits || [],
+            eligibilityCriteria:
+              detail.eligibilityCriteria &&
+              detail.eligibilityCriteria.length > 0
+                ? detail.eligibilityCriteria
+                : publicMem.eligibilityCriteria || [],
+            price: detail.price ?? publicMem.price,
+            currency: detail.currency || publicMem.currency || "CAD",
+            duration: detail.duration || publicMem.duration || "1 Year",
+            badge:
+              detail.badge ||
+              resolveBadge(
+                `${publicMem.slug || ""} ${publicMem.name}`,
+                publicMem.image,
+              ),
+            answers: enrichedAnswers,
+          };
+        }
+      } catch {
+        // Return detail as is
+      }
+    }
+
+    return detail;
+  }
+
+  /**
+   * Fetches full individual membership application by membership ID or application ID.
+   * Primary route: GET /membership-applications/mine/:membershipId
+   * Fallbacks:
+   * 1. Check user applications list (if id was application UUID or matched slug)
+   * 2. Public membership detail (for direct view/not_applied state)
    */
   async getMyMembershipApplicationById(
     id: string,
     userId?: string,
   ): Promise<ApiResponse<UserMembershipDetail | null>> {
     try {
+      if (!id) return ok(null);
+
+      // 1. Try direct endpoint: GET /membership-applications/mine/:membershipId
+      try {
+        const directRes =
+          await this.orderService.fetchMyMembershipApplication(id);
+        if (directRes.success && directRes.data && directRes.data.id) {
+          const enriched = await this.mapAndEnrichApplication(directRes.data);
+          return ok(enriched);
+        }
+      } catch {
+        // Direct call failed or returned 404, fallback to search across all applications
+      }
+
+      // 2. Fallback: Search user's full applications list (handles when id is applicationId or slug)
       const allRes = await this.getMyMembershipApplications(userId);
       let match: UserMembershipDetail | undefined;
 
@@ -359,8 +464,30 @@ export class MembershipRepository {
         );
       }
 
-      // If we found the match, enrich it with full public membership details (questions, benefits)
+      // If we found a match from all applications:
       if (match) {
+        // If it has a membershipId distinct from the passed id, try fetching direct with membershipId
+        if (match.membershipId && match.membershipId !== id) {
+          try {
+            const directMemRes =
+              await this.orderService.fetchMyMembershipApplication(
+                match.membershipId,
+              );
+            if (
+              directMemRes.success &&
+              directMemRes.data &&
+              directMemRes.data.id
+            ) {
+              const enriched = await this.mapAndEnrichApplication(
+                directMemRes.data,
+              );
+              return ok(enriched);
+            }
+          } catch {
+            // Keep using match
+          }
+        }
+
         const lookupSlug = match.slug || match.membershipId;
         if (lookupSlug) {
           try {
@@ -414,7 +541,7 @@ export class MembershipRepository {
         return ok(match);
       }
 
-      // Fallback: If not found in user applications, try fetching public membership
+      // 3. Fallback: If not found in user applications, try fetching public membership
       // to allow viewing requirements and applying directly
       try {
         const publicMem = await fetchPublicMembershipBySlug(id);
@@ -449,11 +576,6 @@ export class MembershipRepository {
   }
 
   /**
-   * Fetches the student's active/paid membership from student memberships,
-   * confirmed orders, or approved membership applications.
-   * Kept for backwards compatibility with the main dashboard.
-   */
-  /**
    * Fetches only active or enrolled memberships for the user directly
    * from /student-memberships/mine or /student-memberships/student/:userId.
    */
@@ -462,29 +584,6 @@ export class MembershipRepository {
   ): Promise<ApiResponse<UserMembershipDetail[]>> {
     try {
       const itemsMap = new Map<string, UserMembershipDetail>();
-
-      const normalizeStatus = (raw?: string | null): UserMembershipStatus => {
-        const s = (raw || "").toLowerCase().trim();
-        if (s === "pending_approval" || s === "under_review" || s === "pending") {
-          return "pending_approval";
-        }
-        if (s === "active" || s === "confirmed" || s === "paid" || s === "successful") {
-          return "active";
-        }
-        if (s === "expired") {
-          return "expired";
-        }
-        if (s === "cancelled" || s === "canceled") {
-          return "cancelled";
-        }
-        if (s === "approved" || s === "accepted") {
-          return "approved";
-        }
-        if (s === "rejected" || s === "declined") {
-          return "rejected";
-        }
-        return "active";
-      };
 
       // 1. Check student-memberships endpoint
       try {
@@ -500,7 +599,7 @@ export class MembershipRepository {
           for (const sub of rawList) {
             if (sub.membership) {
               const mem = sub.membership;
-              const subStatus = normalizeStatus(sub.status);
+              const subStatus = normalizeMembershipStatus(sub.status);
               const memberNum = `CHLPS-${(sub.id || userId || mem.id).slice(0, 8).toUpperCase()}`;
               const id = sub.id || mem.id;
 
@@ -548,7 +647,8 @@ export class MembershipRepository {
                     .replace(/[^a-zA-Z0-9]/g, "")
                     .slice(-8)
                     .toUpperCase()}`;
-                  const startDate = order.createdDate || new Date().toISOString();
+                  const startDate =
+                    order.createdDate || new Date().toISOString();
                   const startObj = new Date(startDate);
                   const expiryObj = new Date(startObj);
                   expiryObj.setFullYear(expiryObj.getFullYear() + 1);
@@ -570,7 +670,8 @@ export class MembershipRepository {
                       orderNumber: order.number,
                       memberNumber,
                       startDate: existing.startDate || startDate,
-                      expiryDate: existing.expiryDate || expiryObj.toISOString(),
+                      expiryDate:
+                        existing.expiryDate || expiryObj.toISOString(),
                       price: it.price ?? existing.price,
                     });
                   } else {
@@ -604,8 +705,14 @@ export class MembershipRepository {
       }
 
       const list = Array.from(itemsMap.values()).sort((a, b) => {
-        const da = a.startDate || a.appliedDate ? new Date(a.startDate || a.appliedDate!).getTime() : 0;
-        const db = b.startDate || b.appliedDate ? new Date(b.startDate || b.appliedDate!).getTime() : 0;
+        const da =
+          a.startDate || a.appliedDate
+            ? new Date(a.startDate || a.appliedDate!).getTime()
+            : 0;
+        const db =
+          b.startDate || b.appliedDate
+            ? new Date(b.startDate || b.appliedDate!).getTime()
+            : 0;
         return db - da;
       });
 
