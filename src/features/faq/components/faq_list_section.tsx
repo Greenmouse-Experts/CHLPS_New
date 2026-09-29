@@ -188,7 +188,7 @@ export default function FaqListSection({
             </p>
           </div>
         ) : (
-          <div className="mt-8 grid grid-cols-1 items-start gap-4 sm:gap-5 md:mt-10 lg:grid-cols-2 lg:gap-6">
+          <RevealGroup className="mt-8 grid grid-cols-1 items-start gap-4 sm:gap-5 md:mt-10 lg:grid-cols-2 lg:gap-6">
             {/* Left Column */}
             <div className="flex flex-col gap-4 sm:gap-5">
               {left.map((item, index) => (
@@ -201,7 +201,6 @@ export default function FaqListSection({
                 />
               ))}
             </div>
-
             {/* Right Column */}
             <div className="flex flex-col gap-4 sm:gap-5">
               {right.map((item, index) => (
@@ -214,7 +213,7 @@ export default function FaqListSection({
                 />
               ))}
             </div>
-          </div>
+          </RevealGroup>
         )}
 
         {/* Still Have Questions Contact Bar matching Mockup */}
