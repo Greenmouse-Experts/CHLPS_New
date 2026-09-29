@@ -17,3 +17,6 @@ export { Checkbox } from "./FormControls";
 export type { CheckboxProps } from "./FormControls";
 
 export { Modal, ConfirmModal } from "./Modal";
+
+export { UrlTabber, useUrlTab } from "./UrlTabber";
+export type { TabItem, TabVariant, UrlTabberProps } from "./UrlTabber";

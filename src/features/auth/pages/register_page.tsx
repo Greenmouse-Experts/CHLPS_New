@@ -35,6 +35,11 @@ const RegisterPage = () => {
       lastName: "",
       email: "",
       phone: "",
+      placeOfWork: "",
+      officialDesignation: "",
+      currentEducationOrProfessionalQualification: "",
+      country: "Canada",
+      stateProvince: "",
       password: "",
       confirmPassword: "",
       agree: false,
@@ -53,6 +58,12 @@ const RegisterPage = () => {
         email: values.email,
         phone,
         password: values.password,
+        placeOfWork: values.placeOfWork,
+        officialDesignation: values.officialDesignation,
+        currentEducationOrProfessionalQualification:
+          values.currentEducationOrProfessionalQualification,
+        country: values.country,
+        stateProvince: values.stateProvince,
       });
 
       if (success) {
@@ -76,7 +87,7 @@ const RegisterPage = () => {
       />
 
       <section className="px-6 py-8 md:px-16">
-        <div className="mx-auto max-w-2xl rounded-2xl border border-sand bg-white p-8 md:p-14">
+        <div className="mx-auto max-w-5xl rounded-2xl border border-sand bg-white p-8 md:p-14">
           <div className="mb-12 flex flex-col items-center">
             <Link
               href="/"
@@ -101,6 +112,7 @@ const RegisterPage = () => {
           </div>
 
           <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5">
+            {/* Name Fields */}
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <TextField
                 name="firstName"
@@ -128,60 +140,145 @@ const RegisterPage = () => {
               />
             </div>
 
+            {/* Email & Phone */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <TextField
+                name="email"
+                label="Email"
+                type="email"
+                placeholder="Enter email"
+                required
+                size="lg"
+                value={formik.values.email}
+                error={formik.errors.email}
+                touched={formik.touched.email}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+
+              <PhoneField
+                name="phone"
+                label="Phone number"
+                placeholder="Enter phone number"
+                required
+                size="lg"
+                countryCode={countryCode}
+                value={formik.values.phone}
+                error={formik.errors.phone}
+                touched={formik.touched.phone}
+                onBlur={formik.handleBlur}
+                onChange={(value) => formik.setFieldValue("phone", value)}
+                onCountryChange={(country) => {
+                  setCountryCode(country.code);
+                  if (country.name) {
+                    formik.setFieldValue("country", country.name);
+                  }
+                }}
+              />
+            </div>
+
+            {/* Workplace & Official Designation */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <TextField
+                name="placeOfWork"
+                label="Place of Work / Organization"
+                placeholder="e.g. ABC Security Ltd"
+                required
+                size="lg"
+                value={formik.values.placeOfWork}
+                error={formik.errors.placeOfWork}
+                touched={formik.touched.placeOfWork}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+
+              <TextField
+                name="officialDesignation"
+                label="Official Designation"
+                placeholder="e.g. Loss Prevention Officer"
+                required
+                size="lg"
+                value={formik.values.officialDesignation}
+                error={formik.errors.officialDesignation}
+                touched={formik.touched.officialDesignation}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+            </div>
+
+            {/* Current Education or Professional Qualification */}
             <TextField
-              name="email"
-              label="Email"
-              type="email"
-              placeholder="Enter email"
+              name="currentEducationOrProfessionalQualification"
+              label="Current Education / Professional Qualification"
+              placeholder="e.g. BSc Criminology / CPP / PSP"
               required
               size="lg"
-              value={formik.values.email}
-              error={formik.errors.email}
-              touched={formik.touched.email}
+              value={formik.values.currentEducationOrProfessionalQualification}
+              error={formik.errors.currentEducationOrProfessionalQualification}
+              touched={
+                formik.touched.currentEducationOrProfessionalQualification
+              }
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />
 
-            <PhoneField
-              name="phone"
-              label="Phone number"
-              placeholder="Enter phone number"
-              required
-              size="lg"
-              countryCode={countryCode}
-              value={formik.values.phone}
-              error={formik.errors.phone}
-              touched={formik.touched.phone}
-              onBlur={formik.handleBlur}
-              onChange={(value) => formik.setFieldValue("phone", value)}
-              onCountryChange={(country) => setCountryCode(country.code)}
-            />
+            {/* Country & State/Province */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <TextField
+                name="country"
+                label="Country"
+                placeholder="e.g. Canada"
+                required
+                size="lg"
+                value={formik.values.country}
+                error={formik.errors.country}
+                touched={formik.touched.country}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
 
-            <PasswordField
-              name="password"
-              label="Password"
-              placeholder="Enter password"
-              required
-              size="lg"
-              value={formik.values.password}
-              error={formik.errors.password}
-              touched={formik.touched.password}
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-            />
+              <TextField
+                name="stateProvince"
+                label="State / Province"
+                placeholder="e.g. Ontario"
+                required
+                size="lg"
+                value={formik.values.stateProvince}
+                error={formik.errors.stateProvince}
+                touched={formik.touched.stateProvince}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+            </div>
 
-            <PasswordField
-              name="confirmPassword"
-              label="Confirm password"
-              placeholder="Confirm password"
-              required
-              size="lg"
-              value={formik.values.confirmPassword}
-              error={formik.errors.confirmPassword}
-              touched={formik.touched.confirmPassword}
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-            />
+            {/* Password Fields */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <PasswordField
+                name="password"
+                label="Password"
+                placeholder="Enter password"
+                required
+                size="lg"
+                value={formik.values.password}
+                error={formik.errors.password}
+                touched={formik.touched.password}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+
+              <PasswordField
+                name="confirmPassword"
+                label="Confirm password"
+                placeholder="Confirm password"
+                required
+                size="lg"
+                value={formik.values.confirmPassword}
+                error={formik.errors.confirmPassword}
+                touched={formik.touched.confirmPassword}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+            </div>
 
             <Checkbox
               name="agree"

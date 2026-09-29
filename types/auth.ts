@@ -10,6 +10,19 @@ export interface SignInDto {
   password: string;
 }
 
+export interface SignUpDto {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  password: string;
+  placeOfWork?: string;
+  officialDesignation?: string;
+  currentEducationOrProfessionalQualification?: string;
+  country?: string;
+  stateProvince?: string;
+}
+
 export interface SignInResponseData {
   token: string;
   user: AdminUser;

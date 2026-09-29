@@ -1,5 +1,5 @@
 import MembershipDashboardPage from "@/features/dashboard/pages/membership_page";
 
 export default function MyApplicationsPage() {
-  return <MembershipDashboardPage />;
+  return <MembershipDashboardPage initialTab="applications" />;
 }

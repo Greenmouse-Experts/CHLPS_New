@@ -34,7 +34,7 @@ const heroSlides: HeroSlide[] = [
       "data:image/jpeg;base64,/9j/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAIABgDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAMEBv/EABkQAAMBAQEAAAAAAAAAAAAAAAABAgNBIf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERMf/aAAwDAQACEQMRAD8AyJPhosvegDvBiy3VTVrgAJ4ev//Z",
     alt: "CHLPS professionals standing together",
     title: "About",
-    accent: "Our Association",
+    accent: "ChLPS-Canada™",
     body: `The Association of Chartered Loss Prevention Specialists (ChLPS-Canada™) is Canada’s professional body dedicated to advancing loss prevention and asset protection practice through professional education, recognized certification pathways, industry standards, and global best practices, across retail, corporate, supply chain, financial services, and diverse business environments. <span class="font-bold">We Are ChLPS-Canada™</span>`,
     primary: { label: "Explore Membership", href: "#membership" },
     secondary: {

@@ -9,6 +9,11 @@ export interface RegisterPayload {
   email: string;
   phone: string;
   password: string;
+  placeOfWork?: string;
+  officialDesignation?: string;
+  currentEducationOrProfessionalQualification?: string;
+  country?: string;
+  stateProvince?: string;
 }
 
 export interface ResetPasswordRequestPayload {
