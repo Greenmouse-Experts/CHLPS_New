@@ -98,7 +98,7 @@ export function useUserEnrolledMemberships() {
   const query = useQuery<UserMembershipDetail[]>({
     queryKey: ["user-enrolled-memberships", user?.userId],
     queryFn: async () => {
-      const res = await repo.getMyEnrolledMemberships(user.userId);
+      const res = await repo.getMyEnrolledMemberships();
       return res.success && res.data ? res.data : [];
     },
     enabled: Boolean(user?.userId),

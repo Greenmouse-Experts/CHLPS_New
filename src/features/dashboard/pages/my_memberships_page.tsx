@@ -15,40 +15,24 @@ import { DashboardLayout } from "@/components";
 import { Assets } from "@/lib/assets";
 import { useUserEnrolledMemberships } from "../domain/data/hooks/user_membership_hooks";
 import type { UserMembershipDetail } from "../domain/repository/membership_repository";
+import { useQuery } from "@tanstack/react-query";
+import PageLoader from "@/components/PageLoader";
+import simpleApiClient from "@/lib/network/simpleApi";
 
 export default function MyMembershipsPage() {
-  const { memberships, isLoading, refetch } = useUserEnrolledMemberships();
+  // const query = useUserEnrolledMemberships();
+  //
+  const query = useQuery({
+    queryKey: ["memberships"],
+    queryFn: async () => {
+      let resp = await simpleApiClient.get("memberships/my-memberships");
+      return resp.data;
+    },
+  });
+  const { isLoading, isFetching, data, refetch } = query;
   const [filter, setFilter] = useState<
     "all" | "active" | "expired" | "cancelled"
   >("all");
-
-  const filteredMemberships = useMemo(() => {
-    if (filter === "active") {
-      return memberships.filter((m) => m.status === "active");
-    }
-    if (filter === "expired") {
-      return memberships.filter((m) => m.status === "expired");
-    }
-    if (filter === "cancelled") {
-      return memberships.filter((m) => m.status === "cancelled");
-    }
-    return memberships;
-  }, [memberships, filter]);
-
-  const activeCount = useMemo(
-    () => memberships.filter((m) => m.status === "active").length,
-    [memberships],
-  );
-
-  const expiredCount = useMemo(
-    () => memberships.filter((m) => m.status === "expired").length,
-    [memberships],
-  );
-
-  const cancelledCount = useMemo(
-    () => memberships.filter((m) => m.status === "cancelled").length,
-    [memberships],
-  );
 
   return (
     <DashboardLayout title="My Memberships">
@@ -91,187 +75,79 @@ export default function MyMembershipsPage() {
           </div>
         </div>
 
-        {/* Top Summary Stats */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                  Total Enrolled
-                </p>
-                <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#0D154B]">
-                  {isLoading ? "-" : memberships.length}
-                </h3>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <HugeiconsIcon
-                  icon={ShieldCheckIcon}
-                  size={20}
-                  color="currentColor"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                  Active in Good Standing
-                </p>
-                <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#10B981]">
-                  {isLoading ? "-" : activeCount}
-                </h3>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-success/15 text-success">
-                <HugeiconsIcon
-                  icon={Award01Icon}
-                  size={20}
-                  color="currentColor"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                  Expired / Cancelled
-                </p>
-                <h3 className="mt-1 text-2xl font-bold tracking-tight text-base-content/80">
-                  {isLoading ? "-" : expiredCount + cancelledCount}
-                </h3>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-base-200 text-base-content/70">
-                <HugeiconsIcon
-                  icon={Clock01Icon}
-                  size={20}
-                  color="currentColor"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Content Section */}
-        {isLoading ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="flex h-80 flex-col justify-between rounded-2xl border border-base-200 bg-white p-6 shadow-xs"
-              >
-                <div className="space-y-4">
-                  <div className="h-6 w-1/3 animate-pulse rounded-lg bg-base-200" />
-                  <div className="h-10 w-3/4 animate-pulse rounded-lg bg-base-200" />
-                </div>
-                <div className="h-10 w-full animate-pulse rounded-xl bg-base-200" />
-              </div>
-            ))}
-          </div>
-        ) : memberships.length === 0 ? (
-          /* Empty state */
-          <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs sm:p-12">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C99E4A]/15 text-[#C99E4A]">
-              <HugeiconsIcon
-                icon={ShieldCheckIcon}
-                size={32}
-                color="currentColor"
-              />
-            </div>
-            <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
-              No Enrolled Memberships Yet
-            </h3>
-            <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
-              You do not have any active or confirmed membership subscriptions
-              currently enrolled. Submit an application or check your existing
-              applications to get started.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/dashboard/my-applications"
-                className="btn btn-primary btn-md rounded-xl normal-case text-sm font-semibold gap-2 shadow-sm"
-              >
-                <span>Track Applications</span>
-                <HugeiconsIcon
-                  icon={ArrowRight01Icon}
-                  size={16}
-                  color="currentColor"
-                />
-              </Link>
-              <Link
-                href="/membership"
-                className="btn btn-outline btn-md rounded-xl border-base-300 normal-case text-sm font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
-              >
-                <span>Explore Membership Grades</span>
-              </Link>
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-6">
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-2 border-b border-base-200 pb-3">
-              <button
-                type="button"
-                onClick={() => setFilter("all")}
-                className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                  filter === "all"
-                    ? "btn-primary text-white"
-                    : "btn-ghost text-base-content/70 hover:text-base-content"
-                }`}
-              >
-                All ({memberships.length})
-              </button>
-              {activeCount > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setFilter("active")}
-                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                    filter === "active"
-                      ? "btn-primary text-white"
-                      : "btn-ghost text-base-content/70 hover:text-base-content"
-                  }`}
-                >
-                  Active ({activeCount})
-                </button>
-              )}
-              {cancelledCount > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setFilter("cancelled")}
-                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                    filter === "cancelled"
-                      ? "btn-primary text-white"
-                      : "btn-ghost text-base-content/70 hover:text-base-content"
-                  }`}
-                >
-                  Cancelled ({cancelledCount})
-                </button>
-              )}
-              {expiredCount > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setFilter("expired")}
-                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                    filter === "expired"
-                      ? "btn-primary text-white"
-                      : "btn-ghost text-base-content/70 hover:text-base-content"
-                  }`}
-                >
-                  Expired ({expiredCount})
-                </button>
-              )}
-            </div>
-
-            {/* Memberships Cards Grid */}
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredMemberships.map((mem) => (
-                <EnrolledMembershipCard key={mem.id} membership={mem} />
-              ))}
-            </div>
-          </div>
-        )}
+        <PageLoader query={query}>
+          {(data) => {
+            return (
+              <>
+                {isLoading ? (
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {[1, 2, 3].map((i) => (
+                      <div
+                        key={i}
+                        className="flex h-80 flex-col justify-between rounded-2xl border border-base-200 bg-white p-6 shadow-xs"
+                      >
+                        <div className="space-y-4">
+                          <div className="h-6 w-1/3 animate-pulse rounded-lg bg-base-200" />
+                          <div className="h-10 w-3/4 animate-pulse rounded-lg bg-base-200" />
+                        </div>
+                        <div className="h-10 w-full animate-pulse rounded-xl bg-base-200" />
+                      </div>
+                    ))}
+                  </div>
+                ) : data.length === 0 ? (
+                  /* Empty state */
+                  <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs sm:p-12">
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C99E4A]/15 text-[#C99E4A]">
+                      <HugeiconsIcon
+                        icon={ShieldCheckIcon}
+                        size={32}
+                        color="currentColor"
+                      />
+                    </div>
+                    <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
+                      No Enrolled Memberships Yet
+                    </h3>
+                    <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
+                      You do not have any active or confirmed membership
+                      subscriptions currently enrolled. Submit an application or
+                      check your existing applications to get started.
+                    </p>
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                      <Link
+                        href="/dashboard/my-applications"
+                        className="btn btn-primary btn-md rounded-xl normal-case text-sm font-semibold gap-2 shadow-sm"
+                      >
+                        <span>Track Applications</span>
+                        <HugeiconsIcon
+                          icon={ArrowRight01Icon}
+                          size={16}
+                          color="currentColor"
+                        />
+                      </Link>
+                      <Link
+                        href="/membership"
+                        className="btn btn-outline btn-md rounded-xl border-base-300 normal-case text-sm font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
+                      >
+                        <span>Explore Membership Grades</span>
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {/* Filter Tabs */}
+                    {/* Memberships Cards Grid */}
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                      {data.map((mem: any) => (
+                        <EnrolledMembershipCard key={mem.id} membership={mem} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            );
+          }}
+        </PageLoader>
       </div>
     </DashboardLayout>
   );
@@ -327,6 +203,7 @@ function EnrolledMembershipCard({
           >
             <span className="h-1.5 w-1.5 rounded-full bg-white" />
             {isActive ? "Active" : isExpired ? "Expired" : "Cancelled"}
+            {/*{membership.status`}*/}
           </span>
         </div>
 

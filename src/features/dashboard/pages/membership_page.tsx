@@ -56,7 +56,7 @@ export default function MembershipDashboardPage() {
         (app) =>
           app.status === "pending_approval" ||
           app.status === "under_review" ||
-          app.status === ("pending" as any),
+          app.status === "pending",
       );
     }
     if (filter === "rejected") {
@@ -87,7 +87,7 @@ export default function MembershipDashboardPage() {
         (a) =>
           a.status === "pending_approval" ||
           a.status === "under_review" ||
-          a.status === ("pending" as any),
+          a.status === "pending",
       ).length,
     [applications],
   );
@@ -122,30 +122,17 @@ export default function MembershipDashboardPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <Link
-              href="/dashboard/membership"
-              className="btn btn-ghost btn-sm rounded-xl normal-case text-xs font-semibold text-[#0D154B] hover:bg-base-200"
-            >
-              <HugeiconsIcon
-                icon={ShieldCheckIcon}
-                size={15}
-                color="currentColor"
-              />
-              <span>My Memberships</span>
-            </Link>
-            <Link
-              href="/membership"
-              className="btn btn-outline btn-sm rounded-xl border-base-300 normal-case text-xs font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
-            >
-              <span>Explore All Grades</span>
-              <HugeiconsIcon
-                icon={ArrowRight01Icon}
-                size={14}
-                color="currentColor"
-              />
-            </Link>
-          </div>
+          <Link
+            href="/membership"
+            className="btn btn-outline btn-sm rounded-xl border-base-300 normal-case text-xs font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
+          >
+            <span>Explore All Grades</span>
+            <HugeiconsIcon
+              icon={ArrowRight01Icon}
+              size={14}
+              color="currentColor"
+            />
+          </Link>
         </div>
 
         {/* Top Summary Stats */}
@@ -324,8 +311,7 @@ export default function MembershipDashboardPage() {
                         />
                       </Link>
                     </div>
-                  ))}
-                  
+                  ))}{" "}
                 </div>
               )}
             </div>
@@ -496,6 +482,7 @@ function MembershipApplicationCard({
         };
       case "pending_approval":
       case "under_review":
+      case "pending":
       default:
         return {
           label: "Pending Approval",
@@ -546,7 +533,7 @@ function MembershipApplicationCard({
           </span>
         </div>
 
-        {/* Circular Gold Badge Image */}
+        {/* Circular Gold Ring Badge & Title */}
         <Link
           href={href}
           className="group/link flex flex-col items-center w-full"
@@ -559,7 +546,7 @@ function MembershipApplicationCard({
               fill
               sizes="(max-width: 640px) 96px, 112px"
               unoptimized={isRemote}
-              className="p-2 object-contain"
+              className={`p-2 ${isCorporate ? "object-cover object-left" : "object-contain"}`}
             />
           </div>
 
@@ -604,16 +591,12 @@ function MembershipApplicationCard({
               <span className="text-white/60">
                 {application.status === "rejected"
                   ? "Decision"
-                  : application.status === "cancelled"
-                    ? "Status"
-                    : "Validity Term"}
+                  : "Validity Term"}
               </span>
               <span className="font-semibold text-white">
                 {application.status === "rejected"
                   ? "Rejected"
-                  : application.status === "cancelled"
-                    ? "Cancelled"
-                    : application.duration || "1 Year"}
+                  : application.duration || "1 Year"}
               </span>
             </div>
           </div>

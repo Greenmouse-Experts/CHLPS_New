@@ -7,6 +7,7 @@ import {
   fetchPublicMemberships,
 } from "@/features/membership/services/membership_service";
 import { Assets } from "@/lib/assets";
+import simpleApiClient from "@/lib/network/simpleApi";
 
 export type UserMembershipStatus =
   | "active"
@@ -587,153 +588,11 @@ export class MembershipRepository {
    * Fetches only active or enrolled memberships for the user directly
    * from /student-memberships/mine or /student-memberships/student/:userId.
    */
-  async getMyEnrolledMemberships(
-    userId?: string,
-  ): Promise<ApiResponse<UserMembershipDetail[]>> {
-    try {
-      const itemsMap = new Map<string, UserMembershipDetail>();
-
-      // 1. Check student-memberships endpoint
-      try {
-        const studentMemEndpoint = userId
-          ? ApiUrls.studentMembershipsByStudent(userId)
-          : ApiUrls.myStudentMemberships;
-
-        const directRes = await this.api.getData<any>(studentMemEndpoint);
-        if (directRes.success && directRes.data) {
-          const rawList = Array.isArray(directRes.data)
-            ? directRes.data
-            : (directRes.data?.data ?? []);
-          for (const sub of rawList) {
-            if (sub.membership) {
-              const mem = sub.membership;
-              const subStatus = normalizeMembershipStatus(sub.status);
-              const memberNum = `CHLPS-${(sub.id || userId || mem.id).slice(0, 8).toUpperCase()}`;
-              const id = sub.id || mem.id;
-
-              itemsMap.set(id, {
-                id,
-                membershipId: mem.id,
-                name: mem.name || "ChLPS Membership",
-                slug: mem.slug,
-                status: subStatus,
-                rawStatus: sub.status,
-                tier: mem.name,
-                appliedDate: sub.createdDate,
-                startDate: sub.startDate,
-                expiryDate: sub.expiryDate,
-                currency: mem.currency || "CAD",
-                price: mem.price,
-                duration: mem.duration || "1 Year",
-                memberNumber: memberNum,
-                badge: resolveBadge(`${mem.slug || ""} ${mem.name}`, mem.image),
-                benefits: mem.benefits || [],
-                eligibilityCriteria: mem.eligibilityCriteria || [],
-                description: mem.description,
-              });
-            }
-          }
-        }
-      } catch {
-        // Fallback to transactions
-      }
-
-      // 2. Also check confirmed/paid student transactions for membership purchases
-      try {
-        const trxRes = await this.orderService.fetchStudentTransactions();
-        if (trxRes.success && trxRes.data && trxRes.data.length > 0) {
-          for (const order of trxRes.data) {
-            const isPaid =
-              order.status?.toLowerCase() === "confirmed" ||
-              order.status?.toLowerCase() === "successful";
-
-            if (isPaid && order.orderItems && order.orderItems.length > 0) {
-              for (const it of order.orderItems) {
-                if (it.membership) {
-                  const mem = it.membership;
-                  const memberNumber = `CHLPS-${(order.number || mem.id)
-                    .replace(/[^a-zA-Z0-9]/g, "")
-                    .slice(-8)
-                    .toUpperCase()}`;
-                  const startDate =
-                    order.createdDate || new Date().toISOString();
-                  const startObj = new Date(startDate);
-                  const expiryObj = new Date(startObj);
-                  expiryObj.setFullYear(expiryObj.getFullYear() + 1);
-
-                  // Find if already present
-                  let existingKey: string | undefined;
-                  for (const [key, val] of itemsMap.entries()) {
-                    if (val.membershipId === mem.id || val.slug === mem.slug) {
-                      existingKey = key;
-                      break;
-                    }
-                  }
-
-                  if (existingKey) {
-                    const existing = itemsMap.get(existingKey)!;
-                    const isAuthoritative =
-                      existing.status === "cancelled" ||
-                      existing.status === "expired";
-                    itemsMap.set(existingKey, {
-                      ...existing,
-                      status: isAuthoritative ? existing.status : "active",
-                      orderNumber: order.number,
-                      memberNumber,
-                      startDate: existing.startDate || startDate,
-                      expiryDate:
-                        existing.expiryDate || expiryObj.toISOString(),
-                      price: it.price ?? existing.price,
-                    });
-                  } else {
-                    const id = order.id || mem.id;
-                    itemsMap.set(id, {
-                      id,
-                      membershipId: mem.id,
-                      name: mem.name || "ChLPS Membership",
-                      slug: mem.slug,
-                      status: "active",
-                      rawStatus: "active",
-                      tier: mem.name,
-                      appliedDate: order.createdDate,
-                      startDate,
-                      expiryDate: expiryObj.toISOString(),
-                      currency: "CAD",
-                      price: it.price || order.trx?.amount,
-                      duration: "1 Year",
-                      orderNumber: order.number,
-                      memberNumber,
-                      badge: resolveBadge(`${mem.slug || ""} ${mem.name}`),
-                    });
-                  }
-                }
-              }
-            }
-          }
-        }
-      } catch {
-        // Ignore
-      }
-
-      const list = Array.from(itemsMap.values()).sort((a, b) => {
-        const da =
-          a.startDate || a.appliedDate
-            ? new Date(a.startDate || a.appliedDate!).getTime()
-            : 0;
-        const db =
-          b.startDate || b.appliedDate
-            ? new Date(b.startDate || b.appliedDate!).getTime()
-            : 0;
-        return db - da;
-      });
-
-      return ok(list);
-    } catch (error: any) {
-      return fail(
-        error?.message || "Failed to fetch enrolled memberships.",
-        500,
-      );
-    }
+  async getMyEnrolledMemberships(): Promise<
+    ApiResponse<UserMembershipDetail[]>
+  > {
+    let resp = await simpleApiClient.get("memberships/my-memberships");
+    return resp.data;
   }
 
   async getUserPaidMembership(
