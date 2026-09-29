@@ -23,7 +23,7 @@ import type { UserMembershipDetail } from "../domain/repository/membership_repos
 
 export default function MembershipDashboardPage() {
   const { applications, isLoading, refetch } = useUserMembershipApplications();
-  const [filter, setFilter] = useState<"all" | "approved" | "rejected" | "review" | "active">("all");
+  const [filter, setFilter] = useState<"all" | "active" | "approved" | "pending_approval" | "rejected" | "expired" | "cancelled">("all");
   const [publicMemberships, setPublicMemberships] = useState<Membership[]>([]);
   const [loadingTiers, setLoadingTiers] = useState(false);
 
@@ -37,25 +37,50 @@ export default function MembershipDashboardPage() {
   }, [isLoading, applications.length]);
 
   const filteredApplications = useMemo(() => {
+    if (filter === "active") {
+      return applications.filter((app) => app.status === "active");
+    }
     if (filter === "approved") {
       return applications.filter((app) => app.status === "approved");
+    }
+    if (filter === "pending_approval") {
+      return applications.filter(
+        (app) =>
+          app.status === "pending_approval" ||
+          app.status === "under_review" ||
+          app.status === "pending",
+      );
     }
     if (filter === "rejected") {
       return applications.filter((app) => app.status === "rejected");
     }
-    if (filter === "active") {
-      return applications.filter((app) => app.status === "active");
+    if (filter === "expired") {
+      return applications.filter((app) => app.status === "expired");
     }
-    if (filter === "review") {
-      return applications.filter(
-        (app) => app.status === "under_review" || app.status === "pending",
-      );
+    if (filter === "cancelled") {
+      return applications.filter((app) => app.status === "cancelled");
     }
     return applications;
   }, [applications, filter]);
 
+  const activeCount = useMemo(
+    () => applications.filter((a) => a.status === "active").length,
+    [applications],
+  );
+
   const approvedCount = useMemo(
     () => applications.filter((a) => a.status === "approved").length,
+    [applications],
+  );
+
+  const pendingApprovalCount = useMemo(
+    () =>
+      applications.filter(
+        (a) =>
+          a.status === "pending_approval" ||
+          a.status === "under_review" ||
+          a.status === "pending",
+      ).length,
     [applications],
   );
 
@@ -64,16 +89,13 @@ export default function MembershipDashboardPage() {
     [applications],
   );
 
-  const activeCount = useMemo(
-    () => applications.filter((a) => a.status === "active").length,
+  const expiredCount = useMemo(
+    () => applications.filter((a) => a.status === "expired").length,
     [applications],
   );
 
-  const reviewCount = useMemo(
-    () =>
-      applications.filter(
-        (a) => a.status === "under_review" || a.status === "pending",
-      ).length,
+  const cancelledCount = useMemo(
+    () => applications.filter((a) => a.status === "cancelled").length,
     [applications],
   );
 
@@ -131,6 +153,26 @@ export default function MembershipDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
+                  Active Memberships
+                </p>
+                <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#10B981]">
+                  {isLoading ? "-" : activeCount}
+                </h3>
+              </div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-success/15 text-success">
+                <HugeiconsIcon
+                  icon={Award01Icon}
+                  size={20}
+                  color="currentColor"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
                   Approved
                 </p>
                 <h3 className="mt-1 text-2xl font-bold tracking-tight text-emerald-600">
@@ -151,35 +193,15 @@ export default function MembershipDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                  Rejected
+                  Pending Approval
                 </p>
-                <h3 className="mt-1 text-2xl font-bold tracking-tight text-rose-600">
-                  {isLoading ? "-" : rejectedCount}
-                </h3>
-              </div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-500/15 text-rose-600">
-                <HugeiconsIcon
-                  icon={Cancel01Icon}
-                  size={20}
-                  color="currentColor"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                  {activeCount > 0 ? "Active Memberships" : "Under Review"}
-                </p>
-                <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#0D154B]">
-                  {isLoading ? "-" : activeCount > 0 ? activeCount : reviewCount}
+                <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#D97706]">
+                  {isLoading ? "-" : pendingApprovalCount}
                 </h3>
               </div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/15 text-amber-600">
                 <HugeiconsIcon
-                  icon={activeCount > 0 ? Award01Icon : Clock01Icon}
+                  icon={Clock01Icon}
                   size={20}
                   color="currentColor"
                 />
@@ -300,29 +322,7 @@ export default function MembershipDashboardPage() {
                     : "btn-ghost text-base-content/70 hover:text-base-content"
                 }`}
               >
-                All Applications ({applications.length})
-              </button>
-              <button
-                type="button"
-                onClick={() => setFilter("approved")}
-                className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                  filter === "approved"
-                    ? "btn-primary text-white"
-                    : "btn-ghost text-base-content/70 hover:text-base-content"
-                }`}
-              >
-                Approved ({approvedCount})
-              </button>
-              <button
-                type="button"
-                onClick={() => setFilter("rejected")}
-                className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                  filter === "rejected"
-                    ? "btn-primary text-white"
-                    : "btn-ghost text-base-content/70 hover:text-base-content"
-                }`}
-              >
-                Rejected ({rejectedCount})
+                All ({applications.length})
               </button>
               {activeCount > 0 && (
                 <button
@@ -337,17 +337,69 @@ export default function MembershipDashboardPage() {
                   Active ({activeCount})
                 </button>
               )}
-              {reviewCount > 0 && (
+              {approvedCount > 0 && (
                 <button
                   type="button"
-                  onClick={() => setFilter("review")}
+                  onClick={() => setFilter("approved")}
                   className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                    filter === "review"
+                    filter === "approved"
                       ? "btn-primary text-white"
                       : "btn-ghost text-base-content/70 hover:text-base-content"
                   }`}
                 >
-                  Under Review ({reviewCount})
+                  Approved ({approvedCount})
+                </button>
+              )}
+              {pendingApprovalCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setFilter("pending_approval")}
+                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                    filter === "pending_approval"
+                      ? "btn-primary text-white"
+                      : "btn-ghost text-base-content/70 hover:text-base-content"
+                  }`}
+                >
+                  Pending Approval ({pendingApprovalCount})
+                </button>
+              )}
+              {expiredCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setFilter("expired")}
+                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                    filter === "expired"
+                      ? "btn-primary text-white"
+                      : "btn-ghost text-base-content/70 hover:text-base-content"
+                  }`}
+                >
+                  Expired ({expiredCount})
+                </button>
+              )}
+              {cancelledCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setFilter("cancelled")}
+                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                    filter === "cancelled"
+                      ? "btn-primary text-white"
+                      : "btn-ghost text-base-content/70 hover:text-base-content"
+                  }`}
+                >
+                  Cancelled ({cancelledCount})
+                </button>
+              )}
+              {rejectedCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setFilter("rejected")}
+                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                    filter === "rejected"
+                      ? "btn-primary text-white"
+                      : "btn-ghost text-base-content/70 hover:text-base-content"
+                  }`}
+                >
+                  Rejected ({rejectedCount})
                 </button>
               )}
             </div>
@@ -387,7 +439,7 @@ function MembershipApplicationCard({
     switch (application.status) {
       case "active":
         return {
-          label: "Active Member",
+          label: "Active",
           badgeClass: "badge-success text-white",
           dotColor: "bg-white",
           actionText: "View Membership",
@@ -399,6 +451,20 @@ function MembershipApplicationCard({
           dotColor: "bg-white",
           actionText: "Complete Enrollment",
         };
+      case "expired":
+        return {
+          label: "Expired",
+          badgeClass: "badge-ghost text-base-content/70 border-base-300",
+          dotColor: "bg-base-content/50",
+          actionText: "Renew Membership",
+        };
+      case "cancelled":
+        return {
+          label: "Cancelled",
+          badgeClass: "badge-neutral text-white",
+          dotColor: "bg-white",
+          actionText: "View Details",
+        };
       case "rejected":
         return {
           label: "Rejected",
@@ -406,11 +472,12 @@ function MembershipApplicationCard({
           dotColor: "bg-white",
           actionText: "View Details",
         };
+      case "pending_approval":
       case "under_review":
       case "pending":
       default:
         return {
-          label: "Under Review",
+          label: "Pending Approval",
           badgeClass: "badge-warning text-amber-950",
           dotColor: "bg-amber-900",
           actionText: "Track Application",

@@ -10,13 +10,14 @@ import { Assets } from "@/lib/assets";
 
 export type UserMembershipStatus =
   | "active"
-  | "confirmed"
-  | "pending"
-  | "under_review"
+  | "pending_approval"
   | "approved"
   | "expired"
   | "cancelled"
-  | "rejected";
+  | "rejected"
+  | "pending"
+  | "under_review"
+  | "confirmed";
 
 export interface UserPaidMembership {
   id: string;
@@ -109,6 +110,30 @@ export class MembershipRepository {
     try {
       const itemsMap = new Map<string, UserMembershipDetail>();
 
+      // Helper function to normalize API status strings to canonical UserMembershipStatus
+      const normalizeStatus = (raw?: string | null): UserMembershipStatus => {
+        const s = (raw || "").toLowerCase().trim();
+        if (s === "pending_approval" || s === "under_review" || s === "pending") {
+          return "pending_approval";
+        }
+        if (s === "active" || s === "confirmed" || s === "paid" || s === "successful") {
+          return "active";
+        }
+        if (s === "expired") {
+          return "expired";
+        }
+        if (s === "cancelled" || s === "canceled") {
+          return "cancelled";
+        }
+        if (s === "approved" || s === "accepted") {
+          return "approved";
+        }
+        if (s === "rejected" || s === "declined") {
+          return "rejected";
+        }
+        return "pending_approval";
+      };
+
       // 1. Fetch user's membership applications
       const appRes = await this.orderService.fetchMyMembershipApplications();
       if (appRes.success && appRes.data && Array.isArray(appRes.data)) {
@@ -117,20 +142,7 @@ export class MembershipRepository {
           const membershipId = app.membershipId || mem?.id || app.id;
           const slug = mem?.slug;
           const name = mem?.name || "Membership Application";
-          const rawStatus = (app.status || "under_review").toLowerCase();
-
-          let status: UserMembershipStatus = "under_review";
-          if (rawStatus === "approved" || rawStatus === "accepted") {
-            status = "approved";
-          } else if (
-            rawStatus === "paid" ||
-            rawStatus === "active" ||
-            rawStatus === "confirmed"
-          ) {
-            status = "active";
-          } else if (rawStatus === "rejected" || rawStatus === "declined") {
-            status = "rejected";
-          }
+          const status = normalizeStatus(app.status);
 
           const questionsMap = new Map<string, string>();
           if (
@@ -177,6 +189,16 @@ export class MembershipRepository {
         }
       }
 
+      // Build lookup maps for existing items: by membershipId and by slug
+      const findExistingKey = (targetId?: string, targetSlug?: string): string | undefined => {
+        if (!targetId && !targetSlug) return undefined;
+        for (const [key, val] of itemsMap.entries()) {
+          if (targetId && val.membershipId === targetId) return key;
+          if (targetSlug && val.slug && val.slug === targetSlug) return key;
+        }
+        return undefined;
+      };
+
       // 2. Fetch student transactions for confirmed/paid membership orders
       try {
         const trxRes = await this.orderService.fetchStudentTransactions();
@@ -190,19 +212,7 @@ export class MembershipRepository {
               for (const it of order.orderItems) {
                 if (it.membership) {
                   const mem = it.membership;
-                  const targetId = mem.id;
-
-                  // Find if an existing application maps to this membership
-                  let existingKey: string | undefined;
-                  for (const [key, val] of itemsMap.entries()) {
-                    if (
-                      val.membershipId === targetId ||
-                      (val.slug && val.slug === mem.slug)
-                    ) {
-                      existingKey = key;
-                      break;
-                    }
-                  }
+                  const existingKey = findExistingKey(mem.id, mem.slug);
 
                   const startDate =
                     order.createdDate || new Date().toISOString();
@@ -232,7 +242,7 @@ export class MembershipRepository {
                       membershipId: mem.id,
                       name: mem.name || "ChLPS Membership",
                       slug: mem.slug,
-                      status: isPaid ? "active" : "pending",
+                      status: isPaid ? "active" : "pending_approval",
                       tier: mem.name,
                       appliedDate: order.createdDate,
                       startDate,
@@ -254,71 +264,62 @@ export class MembershipRepository {
         // Continue even if transaction fetch fails
       }
 
-      // 3. Check student-memberships direct endpoint if userId exists
-      if (userId) {
-        try {
-          const directRes = await this.api.getData<any>(
-            ApiUrls.studentMembershipsByStudent(userId),
-          );
-          if (directRes.success && directRes.data) {
-            const rawList = Array.isArray(directRes.data)
-              ? directRes.data
-              : (directRes.data?.data ?? []);
-            for (const sub of rawList) {
-              if (sub.membership) {
-                const mem = sub.membership;
-                let existingKey: string | undefined;
-                for (const [key, val] of itemsMap.entries()) {
-                  if (
-                    val.membershipId === mem.id ||
-                    (val.slug && val.slug === mem.slug)
-                  ) {
-                    existingKey = key;
-                    break;
-                  }
-                }
+      // 3. Check student-memberships endpoint (/student-memberships/mine or student/:userId)
+      try {
+        const studentMemEndpoint = userId
+          ? ApiUrls.studentMembershipsByStudent(userId)
+          : ApiUrls.myStudentMemberships;
 
-                const isActive =
-                  sub.status === "active" || sub.status === "confirmed";
-                const memberNum = `CHLPS-${(sub.id || userId).slice(0, 8).toUpperCase()}`;
+        const directRes = await this.api.getData<any>(studentMemEndpoint);
+        if (directRes.success && directRes.data) {
+          const rawList = Array.isArray(directRes.data)
+            ? directRes.data
+            : (directRes.data?.data ?? []);
+          for (const sub of rawList) {
+            if (sub.membership) {
+              const mem = sub.membership;
+              const existingKey = findExistingKey(mem.id, mem.slug);
+              const subStatus = normalizeStatus(sub.status);
+              const memberNum = `CHLPS-${(sub.id || userId || mem.id).slice(0, 8).toUpperCase()}`;
 
-                if (existingKey) {
-                  const existing = itemsMap.get(existingKey)!;
-                  itemsMap.set(existingKey, {
-                    ...existing,
-                    status: isActive ? "active" : existing.status,
-                    startDate: sub.startDate || existing.startDate,
-                    expiryDate: sub.expiryDate || existing.expiryDate,
-                    memberNumber: existing.memberNumber || memberNum,
-                  });
-                } else {
-                  const id = sub.id || mem.id;
-                  itemsMap.set(id, {
-                    id,
-                    membershipId: mem.id,
-                    name: mem.name || "ChLPS Membership",
-                    slug: mem.slug,
-                    status: isActive ? "active" : sub.status || "pending",
-                    tier: mem.name,
-                    appliedDate: sub.createdDate,
-                    startDate: sub.startDate,
-                    expiryDate: sub.expiryDate,
-                    currency: mem.currency || "CAD",
-                    price: mem.price,
-                    duration: mem.duration || "1 Year",
-                    memberNumber: memberNum,
-                    badge: resolveBadge(
-                      `${mem.slug || ""} ${mem.name}`,
-                      mem.image,
-                    ),
-                  });
-                }
+              if (existingKey) {
+                const existing = itemsMap.get(existingKey)!;
+                itemsMap.set(existingKey, {
+                  ...existing,
+                  status: subStatus,
+                  rawStatus: sub.status,
+                  startDate: sub.startDate || existing.startDate,
+                  expiryDate: sub.expiryDate || existing.expiryDate,
+                  memberNumber: existing.memberNumber || memberNum,
+                });
+              } else {
+                const id = sub.id || mem.id;
+                itemsMap.set(id, {
+                  id,
+                  membershipId: mem.id,
+                  name: mem.name || "ChLPS Membership",
+                  slug: mem.slug,
+                  status: subStatus,
+                  rawStatus: sub.status,
+                  tier: mem.name,
+                  appliedDate: sub.createdDate,
+                  startDate: sub.startDate,
+                  expiryDate: sub.expiryDate,
+                  currency: mem.currency || "CAD",
+                  price: mem.price,
+                  duration: mem.duration || "1 Year",
+                  memberNumber: memberNum,
+                  badge: resolveBadge(
+                    `${mem.slug || ""} ${mem.name}`,
+                    mem.image,
+                  ),
+                });
               }
             }
           }
-        } catch {
-          // Continue
         }
+      } catch {
+        // Continue
       }
 
       // Convert map to array and sort by applied date descending

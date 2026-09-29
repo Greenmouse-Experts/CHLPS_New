@@ -41,7 +41,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
       case "active":
         return {
           stepIndex: 3,
-          label: "Active Member",
+          label: "Active",
           badgeClass: "badge-success text-white",
           dotColor: "bg-white",
           title: "Membership Active",
@@ -58,6 +58,26 @@ export default function MembershipDetailPage({ id }: { id: string }) {
           description:
             "Congratulations! Your application has been approved by the admissions committee. Please complete the enrollment payment to activate your credentials.",
         };
+      case "expired":
+        return {
+          stepIndex: 3,
+          label: "Expired",
+          badgeClass: "badge-ghost text-base-content/70 border-base-300",
+          dotColor: "bg-base-content/50",
+          title: "Membership Expired",
+          description:
+            "Your membership term has concluded. Renew today to maintain continuous chartered privileges and credentials.",
+        };
+      case "cancelled":
+        return {
+          stepIndex: 1,
+          label: "Cancelled",
+          badgeClass: "badge-neutral text-white",
+          dotColor: "bg-white",
+          title: "Membership Cancelled",
+          description:
+            "This membership application or subscription has been cancelled.",
+        };
       case "rejected":
         return {
           stepIndex: 1,
@@ -69,15 +89,16 @@ export default function MembershipDetailPage({ id }: { id: string }) {
             application.rejectReason ||
             "Your application was not approved at this time. Please reach out to support for feedback on prerequisites or documentation.",
         };
+      case "pending_approval":
       case "under_review":
       case "pending":
       default:
         return {
           stepIndex: 1,
-          label: "Under Review",
+          label: "Pending Approval",
           badgeClass: "badge-warning text-amber-950",
           dotColor: "bg-amber-900",
-          title: "Application Under Review",
+          title: "Application Pending Approval",
           description:
             "Your application has been received and is currently under review by our credentialing committee. Standard review turnaround is 2–3 business days.",
         };
