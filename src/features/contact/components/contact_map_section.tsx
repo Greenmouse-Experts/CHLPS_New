@@ -77,7 +77,7 @@ export default function ContactMapSection() {
                       Pinned Location
                     </span>
                     <h4 className="mt-2 text-sm font-bold text-[#0D154B]">
-                      ChLPS-canada
+                      ChLPS-Canada
                     </h4>
                     <p className="mt-1 text-xs leading-relaxed text-base-content/70">
                       405 Victoria Avenue, Windsor

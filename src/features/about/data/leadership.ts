@@ -30,6 +30,7 @@ export const leaders: Leader[] = [
       "CMC",
       "PCI",
       "CPP",
+      "ChLPs",
     ],
     summary:
       "Corporate security, enterprise risk and resilience professional with global experience spanning investigations, crisis management and business continuity.",
@@ -73,7 +74,16 @@ export const leaders: Leader[] = [
     name: "Joseph Okpotu",
     role: "Member, Board of Directors",
     photo: Assets.images.leadership.josephOkpotu,
-    credentials: ["MBA", "ACIPM", "ADSOM", "CPP", "PCI", "PSP", "PFSO"],
+    credentials: [
+      "MBA",
+      "ACIPM",
+      "ADSOM",
+      "CPP",
+      "PCI",
+      "PSP",
+      "PFSO",
+      "ChLPs",
+    ],
     summary:
       "Security and loss prevention specialist with more than two decades of experience across physical security, investigations, emergency management and training.",
     biography: [
@@ -129,6 +139,8 @@ export const leaders: Leader[] = [
       "MCMI",
       "CMgr",
       "CPP",
+      "LPC",
+      "ChLPs",
     ],
     summary:
       "Multidisciplinary security, risk, resilience and compliance professional with extensive experience in auditing, investigations and professional education.",

@@ -54,13 +54,13 @@ const NAV_ITEMS: NavItem[] = [
       <HugeiconsIcon icon={ShieldCheckIcon} size={16} color="currentColor" />
     ),
   },
-  {
-    label: "My Applications",
-    href: "/dashboard/my-applications",
-    icon: (
-      <HugeiconsIcon icon={File01Icon} size={16} color="currentColor" />
-    ),
-  },
+  // {
+  //   label: "My Applications",
+  //   href: "/dashboard/my-applications",
+  //   icon: (
+  //     <HugeiconsIcon icon={File01Icon} size={16} color="currentColor" />
+  //   ),
+  // },
   {
     label: "My Courses",
     href: "/dashboard/courses",
@@ -254,7 +254,12 @@ function DashboardHeader({
           onClick={onMenuToggle}
           className="flex h-8 w-8 items-center justify-center rounded-lg text-white hover:bg-white/10 md:hidden"
         >
-          <HugeiconsIcon icon={Menu01Icon} size={22} strokeWidth={2.5} color="currentColor" />
+          <HugeiconsIcon
+            icon={Menu01Icon}
+            size={22}
+            strokeWidth={2.5}
+            color="currentColor"
+          />
         </button>
         {title && (
           <span className=" font-semibold tracking-wide text-white uppercase">

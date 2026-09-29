@@ -17,9 +17,11 @@ export type TabVariant = "pills" | "underline" | "segmented" | "cards";
 
 export interface UrlTabberProps {
   tabs: TabItem[];
+  activeTab?: string;
   defaultTab?: string;
   paramKey?: string;
   variant?: TabVariant;
+  size?: "sm" | "md" | "lg";
   className?: string;
   tabClassName?: string;
   activeTabClassName?: string;
@@ -49,9 +51,11 @@ export function useUrlTab(defaultTab?: string, paramKey: string = "tab") {
 
 function UrlTabberContent({
   tabs,
+  activeTab,
   defaultTab,
   paramKey = "tab",
   variant = "segmented",
+  size = "md",
   className,
   tabClassName,
   activeTabClassName,
@@ -63,7 +67,8 @@ function UrlTabberContent({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const activeTabId = searchParams.get(paramKey) || defaultTab || tabs[0]?.id;
+  const activeTabId =
+    activeTab || searchParams.get(paramKey) || defaultTab || tabs[0]?.id;
 
   const handleTabClick = (tabId: string, disabled?: boolean) => {
     if (disabled || tabId === activeTabId) return;

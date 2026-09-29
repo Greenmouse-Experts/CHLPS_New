@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, Suspense } from "react";
+import { useMemo, useState, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -26,8 +26,6 @@ import {
   type UserMembershipDetail,
   type UserEnrolledMembership,
 } from "../domain/repository/membership_repository";
-import { fetchPublicMemberships } from "@/features/membership/services/membership_service";
-import type { Membership } from "@/types";
 
 type EnrolledFilter = "all" | "active" | "cancelled" | "expired";
 type ApplicationFilter =
@@ -60,17 +58,6 @@ function MembershipDashboardContent({
     query: appQuery,
   } = useUserMembershipApplications();
   const [appFilter, setAppFilter] = useState<ApplicationFilter>("all");
-  const [publicMemberships, setPublicMemberships] = useState<Membership[]>([]);
-  const [loadingTiers, setLoadingTiers] = useState(false);
-
-  useEffect(() => {
-    if (!applicationsLoading && applications.length === 0) {
-      setLoadingTiers(true);
-      fetchPublicMemberships()
-        .then((data) => setPublicMemberships(data))
-        .finally(() => setLoadingTiers(false));
-    }
-  }, [applicationsLoading, applications.length]);
 
   // Tab definitions
   const tabs: TabItem[] = useMemo(
@@ -99,34 +86,27 @@ function MembershipDashboardContent({
     [enrolledList.length, applications.length],
   );
 
-  // Application Filtered list & counts
+  // Filtered enrolled memberships
+  const filteredEnrolled = useMemo(() => {
+    if (enrolledFilter === "all") return enrolledList;
+    return enrolledList.filter((m) => {
+      const s = (m.status || "").toLowerCase();
+      if (enrolledFilter === "active")
+        return s === "active" || s === "confirmed";
+      if (enrolledFilter === "cancelled")
+        return s === "cancelled" || s === "canceled";
+      if (enrolledFilter === "expired") return s === "expired";
+      return true;
+    });
+  }, [enrolledList, enrolledFilter]);
+
+  // Filtered applications
   const filteredApplications = useMemo(() => {
-    if (appFilter === "active") {
-      return applications.filter((app) => app.status === "active");
-    }
-    if (appFilter === "approved") {
-      return applications.filter((app) => app.status === "approved");
-    }
-    if (appFilter === "pending_approval") {
-      return applications.filter(
-        (app) =>
-          app.status === "pending_approval" ||
-          app.status === "under_review" ||
-          app.status === "pending",
-      );
-    }
-    if (appFilter === "rejected") {
-      return applications.filter((app) => app.status === "rejected");
-    }
-    if (appFilter === "expired") {
-      return applications.filter((app) => app.status === "expired");
-    }
-    if (appFilter === "cancelled") {
-      return applications.filter((app) => app.status === "cancelled");
-    }
-    return applications;
+    if (appFilter === "all") return applications;
+    return applications.filter((app) => app.status === appFilter);
   }, [applications, appFilter]);
 
+  // Metrics for Applications Tab
   const activeAppCount = useMemo(
     () => applications.filter((a) => a.status === "active").length,
     [applications],
@@ -146,29 +126,38 @@ function MembershipDashboardContent({
     [applications],
   );
 
+  const activeEnrolledCount = useMemo(
+    () =>
+      enrolledList.filter(
+        (m) =>
+          (m.status || "").toLowerCase() === "active" ||
+          (m.status || "").toLowerCase() === "confirmed",
+      ).length,
+    [enrolledList],
+  );
+
   return (
     <DashboardLayout title="Membership & Applications">
-      <div className="space-y-8">
-        {/* Page Header */}
+      <div className="space-y-6">
+        {/* Top Header & Overview */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-[#0D154B] sm:text-2xl">
-              Professional Memberships & Applications
-            </h2>
+            <h1 className="text-2xl font-bold tracking-tight text-[#0D154B] sm:text-3xl">
+              Membership & Applications
+            </h1>
             <p className="mt-1 text-sm text-base-content/70">
-              Manage your active designations, digital credentials, and track
-              the status of submitted applications.
+              Manage your professional credentials, membership subscriptions,
+              and track application assessments.
             </p>
           </div>
-
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-3">
             <Link
               href="/membership"
-              className="btn btn-outline btn-sm rounded-xl border-base-300 normal-case text-xs font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
+              className="btn btn-outline btn-sm rounded-xl normal-case text-xs font-semibold gap-1.5"
             >
-              <span>Explore All Grades</span>
+              <span>Explore Grades</span>
               <HugeiconsIcon
-                icon={ArrowRight01Icon}
+                icon={ArrowUpRight01Icon}
                 size={14}
                 color="currentColor"
               />
@@ -176,200 +165,130 @@ function MembershipDashboardContent({
           </div>
         </div>
 
-        {/* Primary URL Tabber Navigation */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-base-200 pb-4">
-          <UrlTabber
-            tabs={tabs}
-            defaultTab={initialTab}
-            paramKey="tab"
-            variant="segmented"
-          />
-        </div>
+        {/* Tab Switcher */}
+        <UrlTabber
+          tabs={tabs}
+          activeTab={activeTab}
+          onChange={setActiveTab}
+          paramKey="tab"
+          variant="segmented"
+          size="md"
+          className="max-w-md"
+        />
 
-        {/* Tab 1: My Enrolled Memberships */}
+        {/* ========================================================================= */}
+        {/* TAB 1: ENROLLED MEMBERSHIPS                                               */}
+        {/* ========================================================================= */}
         {activeTab === "memberships" && (
           <div className="space-y-6">
-            <PageLoader query={enrolledQuery.query}>
-              {(data: UserEnrolledMembership[]) => {
-                const list = Array.isArray(data) ? data : [];
+            {/* Filter Pills for Enrolled Memberships */}
+            {enrolledList.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 border-b border-base-200 pb-3">
+                <button
+                  type="button"
+                  onClick={() => setEnrolledFilter("all")}
+                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                    enrolledFilter === "all"
+                      ? "btn-primary text-white"
+                      : "btn-ghost text-base-content/70 hover:text-base-content"
+                  }`}
+                >
+                  All ({enrolledList.length})
+                </button>
+                {activeEnrolledCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setEnrolledFilter("active")}
+                    className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                      enrolledFilter === "active"
+                        ? "btn-primary text-white"
+                        : "btn-ghost text-base-content/70 hover:text-base-content"
+                    }`}
+                  >
+                    Active ({activeEnrolledCount})
+                  </button>
+                )}
+              </div>
+            )}
 
-                if (list.length === 0) {
-                  return (
-                    <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs sm:p-12">
-                      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C99E4A]/15 text-[#C99E4A]">
-                        <HugeiconsIcon
-                          icon={ShieldCheckIcon}
-                          size={32}
-                          color="currentColor"
-                        />
-                      </div>
-                      <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
-                        No Enrolled Memberships Yet
-                      </h3>
-                      <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
-                        You do not have any active or confirmed membership
-                        subscriptions currently enrolled. Check your application
-                        status or explore membership grades.
-                      </p>
-                      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                        <button
-                          type="button"
-                          onClick={() => setActiveTab("applications")}
-                          className="btn btn-primary btn-md rounded-xl normal-case text-sm font-semibold gap-2 shadow-sm"
-                        >
-                          <span>Track Applications</span>
-                          <HugeiconsIcon
-                            icon={ArrowRight01Icon}
-                            size={16}
-                            color="currentColor"
-                          />
-                        </button>
-                        <Link
-                          href="/membership"
-                          className="btn btn-outline btn-md rounded-xl border-base-300 normal-case text-sm font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
-                        >
-                          <span>Explore Membership Grades</span>
-                        </Link>
-                      </div>
-                    </div>
-                  );
-                }
-
-                const activeCount = list.filter(
-                  (m) => m.status === "active",
-                ).length;
-                const cancelledCount = list.filter(
-                  (m) => m.status === "cancelled" || m.status === "canceled",
-                ).length;
-                const expiredCount = list.filter(
-                  (m) => m.status === "expired",
-                ).length;
-
-                const filteredList = list.filter((item) => {
-                  if (enrolledFilter === "all") return true;
-                  if (enrolledFilter === "active")
-                    return item.status === "active";
-                  if (enrolledFilter === "cancelled")
-                    return (
-                      item.status === "cancelled" || item.status === "canceled"
-                    );
-                  if (enrolledFilter === "expired")
-                    return item.status === "expired";
-                  return true;
-                });
-
-                return (
-                  <div className="space-y-6">
-                    {/* Filter Pills */}
-                    <div className="flex flex-wrap items-center gap-2 border-b border-base-200/80 pb-3">
-                      <button
-                        type="button"
-                        onClick={() => setEnrolledFilter("all")}
-                        className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                          enrolledFilter === "all"
-                            ? "btn-primary shadow-xs"
-                            : "btn-ghost text-base-content/70 hover:bg-base-200"
-                        }`}
-                      >
-                        <span>All</span>
-                        <span className="badge badge-sm rounded-lg opacity-80">
-                          {list.length}
-                        </span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setEnrolledFilter("active")}
-                        className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                          enrolledFilter === "active"
-                            ? "btn-primary shadow-xs"
-                            : "btn-ghost text-base-content/70 hover:bg-base-200"
-                        }`}
-                      >
-                        <span>Active</span>
-                        <span className="badge badge-sm rounded-lg opacity-80">
-                          {activeCount}
-                        </span>
-                      </button>
-
-                      {cancelledCount > 0 && (
-                        <button
-                          type="button"
-                          onClick={() => setEnrolledFilter("cancelled")}
-                          className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                            enrolledFilter === "cancelled"
-                              ? "btn-primary shadow-xs"
-                              : "btn-ghost text-base-content/70 hover:bg-base-200"
-                          }`}
-                        >
-                          <span>Cancelled</span>
-                          <span className="badge badge-sm rounded-lg opacity-80">
-                            {cancelledCount}
-                          </span>
-                        </button>
-                      )}
-
-                      {expiredCount > 0 && (
-                        <button
-                          type="button"
-                          onClick={() => setEnrolledFilter("expired")}
-                          className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                            enrolledFilter === "expired"
-                              ? "btn-primary shadow-xs"
-                              : "btn-ghost text-base-content/70 hover:bg-base-200"
-                          }`}
-                        >
-                          <span>Expired</span>
-                          <span className="badge badge-sm rounded-lg opacity-80">
-                            {expiredCount}
-                          </span>
-                        </button>
-                      )}
-                    </div>
-
-                    {/* Cards Grid */}
-                    {filteredList.length === 0 ? (
-                      <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs">
-                        <p className="text-sm font-medium text-base-content/70">
-                          No memberships matching &quot;{enrolledFilter}&quot;.
-                        </p>
-                        <div className="mt-4 flex justify-center">
-                          <button
-                            type="button"
-                            onClick={() => setEnrolledFilter("all")}
-                            className="btn btn-ghost btn-sm rounded-xl normal-case text-xs font-semibold text-[#0D154B]"
-                          >
-                            Reset Filter
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {filteredList.map((mem) => (
-                          <EnrolledMembershipCard
-                            key={mem.id}
-                            membership={mem}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }}
-            </PageLoader>
+            {/* Enrolled Content */}
+            {enrolledQuery.isLoading ? (
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {Array.from({ length: 3 }).map((_, idx) => (
+                  <div key={idx} className="skeleton h-96 rounded-[28px]" />
+                ))}
+              </div>
+            ) : enrolledList.length === 0 ? (
+              <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs sm:p-12">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C99E4A]/15 text-[#C99E4A]">
+                  <HugeiconsIcon
+                    icon={ShieldCheckIcon}
+                    size={32}
+                    color="currentColor"
+                  />
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
+                  No Active Memberships Found
+                </h3>
+                <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
+                  You do not currently have any active enrolled memberships.
+                  Explore available professional membership grades or track your
+                  existing application status.
+                </p>
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                  <Link
+                    href="/membership"
+                    className="btn btn-primary btn-md rounded-xl normal-case text-sm font-semibold gap-2 shadow-sm"
+                  >
+                    <span>Browse Membership Grades</span>
+                    <HugeiconsIcon
+                      icon={ArrowRight01Icon}
+                      size={16}
+                      color="currentColor"
+                    />
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("applications")}
+                    className="btn btn-outline btn-md rounded-xl normal-case text-sm font-semibold gap-2"
+                  >
+                    <span>View Applications</span>
+                    <HugeiconsIcon
+                      icon={File01Icon}
+                      size={16}
+                      color="currentColor"
+                    />
+                  </button>
+                </div>
+              </div>
+            ) : filteredEnrolled.length === 0 ? (
+              <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs">
+                <p className="text-sm text-base-content/70">
+                  No enrolled memberships matching the selected filter.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredEnrolled.map((item) => (
+                  <EnrolledMembershipCard key={item.id} membership={item} />
+                ))}
+              </div>
+            )}
           </div>
         )}
 
-        {/* Tab 2: My Applications */}
+        {/* ========================================================================= */}
+        {/* TAB 2: APPLICATIONS                                                      */}
+        {/* ========================================================================= */}
         {activeTab === "applications" && (
-          <div className="space-y-8">
-            {/* Summary Stat Cards */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-6">
+            {/* Summary Metrics */}
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                      Total Applications
+                      Total Submitted
                     </p>
                     <h3 className="mt-1 text-2xl font-bold tracking-tight text-[#0D154B]">
                       {applicationsLoading ? "-" : applications.length}
@@ -454,93 +373,34 @@ function MembershipDashboardContent({
                 ))}
               </div>
             ) : applications.length === 0 ? (
-              <div className="space-y-8">
-                <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs sm:p-12">
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C99E4A]/15 text-[#C99E4A]">
+              <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs sm:p-12">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C99E4A]/15 text-[#C99E4A]">
+                  <HugeiconsIcon
+                    icon={ShieldCheckIcon}
+                    size={32}
+                    color="currentColor"
+                  />
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
+                  No Membership Applications Yet
+                </h3>
+                <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
+                  You haven&apos;t applied for any membership grade yet.
+                  Complete an eligibility assessment to join the Association of
+                  Chartered Loss Prevention Specialists.
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <Link
+                    href="/membership"
+                    className="btn btn-primary btn-md rounded-xl normal-case text-sm font-semibold gap-2 shadow-sm"
+                  >
+                    <span>Explore Membership Grades</span>
                     <HugeiconsIcon
-                      icon={ShieldCheckIcon}
-                      size={32}
+                      icon={ArrowRight01Icon}
+                      size={16}
                       color="currentColor"
                     />
-                  </div>
-                  <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
-                    No Membership Applications Yet
-                  </h3>
-                  <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
-                    You haven&apos;t applied for any membership grade yet.
-                    Complete an eligibility assessment to join the Association
-                    of Chartered Loss Prevention Specialists.
-                  </p>
-                  <div className="mt-6 flex justify-center">
-                    <Link
-                      href="/membership"
-                      className="btn btn-primary btn-md rounded-xl normal-case text-sm font-semibold gap-2 shadow-sm"
-                    >
-                      <span>Explore Membership Grades</span>
-                      <HugeiconsIcon
-                        icon={ArrowRight01Icon}
-                        size={16}
-                        color="currentColor"
-                      />
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Available Categories */}
-                <div>
-                  <div className="mb-4">
-                    <h3 className="text-lg font-bold text-[#0D154B]">
-                      Available Membership Categories
-                    </h3>
-                    <p className="text-sm text-base-content/70">
-                      Select a grade suited to your career stage and experience
-                      to apply:
-                    </p>
-                  </div>
-
-                  {loadingTiers ? (
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                      {Array.from({ length: 3 }).map((_, i) => (
-                        <div key={i} className="skeleton h-56 rounded-2xl" />
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                      {publicMemberships.map((tier) => (
-                        <div
-                          key={tier.id}
-                          className="card border border-base-200/80 bg-white p-6 shadow-xs transition hover:border-[#C99E4A]/50 hover:shadow-md"
-                        >
-                          <div className="flex items-start justify-between gap-3">
-                            <span className="badge badge-ghost text-xs font-semibold text-base-content/70">
-                              {tier.duration || "Annual"}
-                            </span>
-                            <span className="text-base font-bold text-[#0D154B]">
-                              {tier.currency}{" "}
-                              {Number(tier.price || 0).toLocaleString()}
-                            </span>
-                          </div>
-                          <h4 className="mt-3 text-base font-bold text-[#0D154B]">
-                            {tier.name}
-                          </h4>
-                          <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-base-content/70">
-                            {tier.description}
-                          </p>
-                          <Link
-                            href={`/membership/${tier.slug || tier.id}`}
-                            className="btn btn-outline btn-sm mt-5 rounded-xl border-base-300 normal-case text-xs font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
-                          >
-                            <span>View Requirements & Apply</span>
-                            <HugeiconsIcon
-                              icon={ArrowRight01Icon}
-                              size={14}
-                              color="currentColor"
-                            />
-                          </Link>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  </Link>
                 </div>
               </div>
             ) : (
