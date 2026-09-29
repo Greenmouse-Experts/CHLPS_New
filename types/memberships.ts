@@ -81,7 +81,7 @@ export interface Membership extends BaseEntity {
   name: string;
   slug?: string;
   description: string;
-  type: string | MembershipType | { id: string; name: string };
+  type?: string | MembershipType | { id: string; name: string };
   eligibilityCriteria: string[];
   price: number;
   currency: MembershipCurrency;
@@ -212,6 +212,21 @@ export interface StudentMembershipStats {
   totalExpired: number;
   totalCancelled: number;
   upcomingRenewals: number;
+}
+
+/* Enrolled User Memberships (from /memberships/my-memberships) */
+export interface UserEnrolledMembership {
+  id: string;
+  orderItemId?: string;
+  applicationId?: string;
+  status: "active" | "cancelled" | "expired" | "pending" | string;
+  startDate?: string;
+  endDate?: string;
+  createdDate: string;
+  updatedDate?: string;
+  deletedDate?: string | null;
+  membership: Membership;
+  memberNumber?: string;
 }
 
 export interface MembershipsQueryDto extends PaginationQueryDto {

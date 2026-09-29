@@ -8,6 +8,9 @@ import {
 } from "@/features/membership/services/membership_service";
 import { Assets } from "@/lib/assets";
 import simpleApiClient from "@/lib/network/simpleApi";
+import type { UserEnrolledMembership } from "@/types";
+
+export type { UserEnrolledMembership };
 
 export type UserMembershipStatus =
   | "active"
@@ -81,20 +84,29 @@ const badgeMap: Record<string, string> = {
   corporate: Assets.icons.logo,
 };
 
-function resolveBadge(needle: string, remoteImage?: string): string {
+export function resolveMembershipBadge(
+  slugOrName?: string,
+  remoteImage?: string | null,
+): string {
   if (
     remoteImage &&
-    (remoteImage.startsWith("http") || remoteImage.startsWith("/"))
+    (remoteImage.startsWith("http://") ||
+      remoteImage.startsWith("https://") ||
+      remoteImage.startsWith("/"))
   ) {
     return remoteImage;
   }
-  const clean = needle.toLowerCase();
+  const clean = (slugOrName || "").toLowerCase();
   for (const [key, asset] of Object.entries(badgeMap)) {
     if (clean.includes(key)) {
       return asset;
     }
   }
   return Assets.icons.logo;
+}
+
+function resolveBadge(needle: string, remoteImage?: string): string {
+  return resolveMembershipBadge(needle, remoteImage);
 }
 
 export function normalizeMembershipStatus(
@@ -586,13 +598,29 @@ export class MembershipRepository {
 
   /**
    * Fetches only active or enrolled memberships for the user directly
-   * from /student-memberships/mine or /student-memberships/student/:userId.
+   * from /memberships/my-memberships.
    */
   async getMyEnrolledMemberships(): Promise<
-    ApiResponse<UserMembershipDetail[]>
+    ApiResponse<UserEnrolledMembership[]>
   > {
-    let resp = await simpleApiClient.get("memberships/my-memberships");
-    return resp.data;
+    try {
+      const resp = await simpleApiClient.get("memberships/my-memberships");
+      const payload = resp.data;
+      let list: UserEnrolledMembership[] = [];
+      if (Array.isArray(payload)) {
+        list = payload;
+      } else if (payload && Array.isArray(payload.data)) {
+        list = payload.data;
+      } else if (payload && payload.data && Array.isArray(payload.data.data)) {
+        list = payload.data.data;
+      }
+      return ok(list);
+    } catch (error: any) {
+      return fail(
+        error?.message || "Failed to fetch enrolled memberships.",
+        500,
+      );
+    }
   }
 
   async getUserPaidMembership(

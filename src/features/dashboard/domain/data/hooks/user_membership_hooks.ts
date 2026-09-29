@@ -7,6 +7,7 @@ import {
   MembershipRepository,
   type UserPaidMembership,
   type UserMembershipDetail,
+  type UserEnrolledMembership,
 } from "../../repository/membership_repository";
 
 /**
@@ -89,19 +90,18 @@ export function useUserMembershipApplicationDetail(id: string) {
 }
 
 /**
- * Fetches user's active/enrolled student memberships (from /student-memberships).
+ * Fetches user's active/enrolled student memberships (from /memberships/my-memberships).
  */
 export function useUserEnrolledMemberships() {
   const user = useSelector((state: RootState) => state.user);
   const repo = new MembershipRepository();
 
-  const query = useQuery<UserMembershipDetail[]>({
+  const query = useQuery<UserEnrolledMembership[]>({
     queryKey: ["user-enrolled-memberships", user?.userId],
     queryFn: async () => {
       const res = await repo.getMyEnrolledMemberships();
       return res.success && res.data ? res.data : [];
     },
-    enabled: Boolean(user?.userId),
     staleTime: 1000 * 60 * 2, // 2 minutes
   });
 
@@ -109,6 +109,7 @@ export function useUserEnrolledMemberships() {
     isLoading: query.isLoading,
     isFetching: query.isFetching,
     memberships: query.data ?? [],
+    data: query.data ?? [],
     refetch: query.refetch,
     query,
   };
