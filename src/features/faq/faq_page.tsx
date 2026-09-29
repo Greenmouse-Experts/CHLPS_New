@@ -1,6 +1,5 @@
 import Header from "@/features/components/header";
 import Footer from "@/features/components/footer";
-import FaqHeroSection from "@/features/faq/components/faq_hero_section";
 import FaqListSection from "@/features/faq/components/faq_list_section";
 import type { PublicFaq } from "@/features/faq/faq_data";
 
@@ -10,10 +9,11 @@ export default function FaqPage({
   initialFaqs?: PublicFaq[];
 }) {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FAF9F5]">
       <Header />
-      <FaqHeroSection />
-      <FaqListSection initialFaqs={initialFaqs} />
+      <main className="py-6 sm:py-8">
+        <FaqListSection initialFaqs={initialFaqs} />
+      </main>
       <Footer />
     </div>
   );
