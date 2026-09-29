@@ -87,3 +87,29 @@ export function useUserMembershipApplicationDetail(id: string) {
     query,
   };
 }
+
+/**
+ * Fetches user's active/enrolled student memberships (from /student-memberships).
+ */
+export function useUserEnrolledMemberships() {
+  const user = useSelector((state: RootState) => state.user);
+  const repo = new MembershipRepository();
+
+  const query = useQuery<UserMembershipDetail[]>({
+    queryKey: ["user-enrolled-memberships", user?.userId],
+    queryFn: async () => {
+      const res = await repo.getMyEnrolledMemberships(user.userId);
+      return res.success && res.data ? res.data : [];
+    },
+    enabled: Boolean(user?.userId),
+    staleTime: 1000 * 60 * 2, // 2 minutes
+  });
+
+  return {
+    isLoading: query.isLoading,
+    isFetching: query.isFetching,
+    memberships: query.data ?? [],
+    refetch: query.refetch,
+    query,
+  };
+}

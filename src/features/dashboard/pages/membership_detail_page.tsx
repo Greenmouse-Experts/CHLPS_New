@@ -145,7 +145,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
         {/* Back Navigation Bar */}
         <div className="flex items-center justify-between">
           <Link
-            href="/dashboard/membership"
+            href="/dashboard/my-applications"
             className="btn btn-ghost btn-sm gap-2 rounded-xl text-xs font-semibold text-base-content/80 normal-case hover:text-base-content"
           >
             <HugeiconsIcon icon={ArrowLeft01Icon} size={16} />
@@ -187,10 +187,10 @@ export default function MembershipDetailPage({ id }: { id: string }) {
             </p>
             <div className="mt-6 flex justify-center">
               <Link
-                href="/dashboard/membership"
+                href="/dashboard/my-applications"
                 className="btn btn-primary btn-sm rounded-xl normal-case text-xs font-semibold"
               >
-                Return to My Memberships
+                Return to My Applications
               </Link>
             </div>
           </div>

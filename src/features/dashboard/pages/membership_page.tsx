@@ -100,13 +100,13 @@ export default function MembershipDashboardPage() {
   );
 
   return (
-    <DashboardLayout title="My Memberships">
+    <DashboardLayout title="My Applications">
       <div className="space-y-8">
         {/* Page Subheader */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-xl font-bold tracking-tight text-[#0D154B] sm:text-2xl">
-              Membership Applications & Status
+              My Membership Applications
             </h2>
             <p className="mt-1 text-sm text-base-content/70">
               Track the progress of your submitted membership applications and
@@ -502,7 +502,7 @@ function MembershipApplicationCard({
     application.description ||
     "The globally recognized IFPO certification — the gold standard for protection professionals.";
 
-  const href = `/dashboard/membership/${application.id}`;
+  const href = `/dashboard/my-applications/${application.id}`;
 
   return (
     <article className="card group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#C99E4A] bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">

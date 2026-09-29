@@ -1,5 +1,5 @@
-import MembershipDashboardPage from "@/features/dashboard/pages/membership_page";
+import MyMembershipsPage from "@/features/dashboard/pages/my_memberships_page";
 
-export default function Page() {
-  return <MembershipDashboardPage />;
+export default function MembershipPage() {
+  return <MyMembershipsPage />;
 }

@@ -17,6 +17,7 @@ import {
   SidebarLeft01Icon,
   ShoppingBag01Icon,
   CustomerSupportIcon,
+  File01Icon,
   ShieldCheckIcon,
 } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/tokens";
@@ -51,6 +52,13 @@ const NAV_ITEMS: NavItem[] = [
     href: "/dashboard/membership",
     icon: (
       <HugeiconsIcon icon={ShieldCheckIcon} size={16} color="currentColor" />
+    ),
+  },
+  {
+    label: "My Applications",
+    href: "/dashboard/my-applications",
+    icon: (
+      <HugeiconsIcon icon={File01Icon} size={16} color="currentColor" />
     ),
   },
   {
