@@ -30,7 +30,7 @@ export const leaders: Leader[] = [
       "CMC",
       "PCI",
       "CPP",
-      "ChLPs",
+      "ChLPS",
     ],
     summary:
       "Corporate security, enterprise risk and resilience professional with global experience spanning investigations, crisis management and business continuity.",
@@ -82,7 +82,7 @@ export const leaders: Leader[] = [
       "PCI",
       "PSP",
       "PFSO",
-      "ChLPs",
+      "ChLPS",
     ],
     summary:
       "Security and loss prevention specialist with more than two decades of experience across physical security, investigations, emergency management and training.",
