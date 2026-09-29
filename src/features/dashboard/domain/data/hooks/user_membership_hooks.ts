@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/store/store";
 import {
@@ -14,34 +14,24 @@ import {
  */
 export function useUserMembership() {
   const user = useSelector((state: RootState) => state.user);
-  const [isLoading, setIsLoading] = useState(true);
-  const [membership, setMembership] = useState<UserPaidMembership | null>(null);
+  const repo = new MembershipRepository();
 
-  const fetchMembership = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const repo = new MembershipRepository();
+  const query = useQuery<UserPaidMembership | null>({
+    queryKey: ["user-membership", user?.userId],
+    queryFn: async () => {
       const res = await repo.getUserPaidMembership(user.userId);
-      if (res.success) {
-        setMembership(res.data);
-      } else {
-        setMembership(null);
-      }
-    } catch {
-      setMembership(null);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user.userId]);
-
-  useEffect(() => {
-    fetchMembership();
-  }, [fetchMembership]);
+      return res.success && res.data ? res.data : null;
+    },
+    enabled: Boolean(user?.userId),
+    staleTime: 1000 * 60 * 2, // 2 minutes
+  });
 
   return {
-    isLoading,
-    membership,
-    refetch: fetchMembership,
+    isLoading: query.isLoading,
+    isFetching: query.isFetching,
+    membership: query.data ?? null,
+    refetch: query.refetch,
+    query,
   };
 }
 
@@ -50,34 +40,24 @@ export function useUserMembership() {
  */
 export function useUserMembershipApplications() {
   const user = useSelector((state: RootState) => state.user);
-  const [isLoading, setIsLoading] = useState(true);
-  const [applications, setApplications] = useState<UserMembershipDetail[]>([]);
+  const repo = new MembershipRepository();
 
-  const fetchApplications = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const repo = new MembershipRepository();
+  const query = useQuery<UserMembershipDetail[]>({
+    queryKey: ["user-membership-applications", user?.userId],
+    queryFn: async () => {
       const res = await repo.getMyMembershipApplications(user.userId);
-      if (res.success && res.data) {
-        setApplications(res.data);
-      } else {
-        setApplications([]);
-      }
-    } catch {
-      setApplications([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [user.userId]);
-
-  useEffect(() => {
-    fetchApplications();
-  }, [fetchApplications]);
+      return res.success && res.data ? res.data : [];
+    },
+    enabled: Boolean(user?.userId),
+    staleTime: 1000 * 60 * 2, // 2 minutes
+  });
 
   return {
-    isLoading,
-    applications,
-    refetch: fetchApplications,
+    isLoading: query.isLoading,
+    isFetching: query.isFetching,
+    applications: query.data ?? [],
+    refetch: query.refetch,
+    query,
   };
 }
 
@@ -86,36 +66,24 @@ export function useUserMembershipApplications() {
  */
 export function useUserMembershipApplicationDetail(id: string) {
   const user = useSelector((state: RootState) => state.user);
-  const [isLoading, setIsLoading] = useState(true);
-  const [application, setApplication] = useState<UserMembershipDetail | null>(
-    null,
-  );
+  const repo = new MembershipRepository();
 
-  const fetchDetail = useCallback(async () => {
-    if (!id) return;
-    try {
-      setIsLoading(true);
-      const repo = new MembershipRepository();
+  const query = useQuery<UserMembershipDetail | null>({
+    queryKey: ["user-membership-application-detail", id, user?.userId],
+    queryFn: async () => {
+      if (!id) return null;
       const res = await repo.getMyMembershipApplicationById(id, user.userId);
-      if (res.success) {
-        setApplication(res.data);
-      } else {
-        setApplication(null);
-      }
-    } catch {
-      setApplication(null);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [id, user.userId]);
-
-  useEffect(() => {
-    fetchDetail();
-  }, [fetchDetail]);
+      return res.success && res.data ? res.data : null;
+    },
+    enabled: Boolean(id) && Boolean(user?.userId),
+    staleTime: 1000 * 60 * 2, // 2 minutes
+  });
 
   return {
-    isLoading,
-    application,
-    refetch: fetchDetail,
+    isLoading: query.isLoading,
+    isFetching: query.isFetching,
+    application: query.data ?? null,
+    refetch: query.refetch,
+    query,
   };
 }
