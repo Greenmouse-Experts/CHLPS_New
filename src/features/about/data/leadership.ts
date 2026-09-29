@@ -132,6 +132,7 @@ export const leaders: Leader[] = [
       "CFI",
       "CAMS",
       "CFCS",
+      "LPC",
       "ChLPS",
       "CBRM",
       "ABCP",
@@ -139,8 +140,6 @@ export const leaders: Leader[] = [
       "MCMI",
       "CMgr",
       "CPP",
-      "LPC",
-      "ChLPs",
     ],
     summary:
       "Multidisciplinary security, risk, resilience and compliance professional with extensive experience in auditing, investigations and professional education.",
