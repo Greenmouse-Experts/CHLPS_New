@@ -235,9 +235,17 @@ export class MembershipRepository {
 
                   if (existingKey) {
                     const existing = itemsMap.get(existingKey)!;
+                    const isTerminal =
+                      existing.status === "cancelled" ||
+                      existing.status === "rejected" ||
+                      existing.status === "expired";
                     itemsMap.set(existingKey, {
                       ...existing,
-                      status: isPaid ? "active" : existing.status,
+                      status: isTerminal
+                        ? existing.status
+                        : isPaid
+                          ? "active"
+                          : existing.status,
                       orderNumber: order.number,
                       memberNumber,
                       startDate,
@@ -664,9 +672,12 @@ export class MembershipRepository {
 
                   if (existingKey) {
                     const existing = itemsMap.get(existingKey)!;
+                    const isAuthoritative =
+                      existing.status === "cancelled" ||
+                      existing.status === "expired";
                     itemsMap.set(existingKey, {
                       ...existing,
-                      status: "active",
+                      status: isAuthoritative ? existing.status : "active",
                       orderNumber: order.number,
                       memberNumber,
                       startDate: existing.startDate || startDate,

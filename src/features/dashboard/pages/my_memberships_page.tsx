@@ -8,9 +8,7 @@ import {
   ArrowRight01Icon,
   ArrowUpRight01Icon,
   Award01Icon,
-  Calendar03Icon,
   Clock01Icon,
-  File01Icon,
   ShieldCheckIcon,
 } from "@hugeicons/core-free-icons";
 import { DashboardLayout } from "@/components";
@@ -20,13 +18,13 @@ import type { UserMembershipDetail } from "../domain/repository/membership_repos
 
 export default function MyMembershipsPage() {
   const { memberships, isLoading, refetch } = useUserEnrolledMemberships();
-  const [filter, setFilter] = useState<"all" | "active" | "expired" | "cancelled">("all");
+  const [filter, setFilter] = useState<
+    "all" | "active" | "expired" | "cancelled"
+  >("all");
 
   const filteredMemberships = useMemo(() => {
     if (filter === "active") {
-      return memberships.filter(
-        (m) => m.status === "active" || m.status === "confirmed",
-      );
+      return memberships.filter((m) => m.status === "active");
     }
     if (filter === "expired") {
       return memberships.filter((m) => m.status === "expired");
@@ -38,10 +36,7 @@ export default function MyMembershipsPage() {
   }, [memberships, filter]);
 
   const activeCount = useMemo(
-    () =>
-      memberships.filter(
-        (m) => m.status === "active" || m.status === "confirmed",
-      ).length,
+    () => memberships.filter((m) => m.status === "active").length,
     [memberships],
   );
 
@@ -62,10 +57,11 @@ export default function MyMembershipsPage() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-xl font-bold tracking-tight text-[#0D154B] sm:text-2xl">
-              My Active Memberships & Credentials
+              My Active Memberships
             </h2>
             <p className="mt-1 text-sm text-base-content/70">
-              Manage your active chartered credentials, member identification, and validity terms.
+              Manage your enrolled professional memberships, view digital
+              credentials, and review certificate standings.
             </p>
           </div>
 
@@ -74,14 +70,18 @@ export default function MyMembershipsPage() {
               href="/dashboard/my-applications"
               className="btn btn-ghost btn-sm rounded-xl normal-case text-xs font-semibold text-[#0D154B] hover:bg-base-200"
             >
-              <HugeiconsIcon icon={File01Icon} size={15} color="currentColor" />
               <span>View Applications</span>
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={14}
+                color="currentColor"
+              />
             </Link>
             <Link
               href="/membership"
               className="btn btn-outline btn-sm rounded-xl border-base-300 normal-case text-xs font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
             >
-              <span>Explore Grades</span>
+              <span>Explore All Grades</span>
               <HugeiconsIcon
                 icon={ArrowRight01Icon}
                 size={14}
@@ -92,7 +92,7 @@ export default function MyMembershipsPage() {
         </div>
 
         {/* Top Summary Stats */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div className="card border border-base-200/80 bg-white p-5 shadow-xs">
             <div className="flex items-center justify-between">
               <div>
@@ -137,7 +137,7 @@ export default function MyMembershipsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
-                  Expired / Inactive
+                  Expired / Cancelled
                 </p>
                 <h3 className="mt-1 text-2xl font-bold tracking-tight text-base-content/80">
                   {isLoading ? "-" : expiredCount + cancelledCount}
@@ -163,42 +163,48 @@ export default function MyMembershipsPage() {
                 className="flex h-80 flex-col justify-between rounded-2xl border border-base-200 bg-white p-6 shadow-xs"
               >
                 <div className="space-y-4">
-                  <div className="skeleton h-6 w-1/3 rounded-lg" />
-                  <div className="skeleton mx-auto h-24 w-24 rounded-full" />
-                  <div className="skeleton mx-auto h-6 w-2/3 rounded-lg" />
+                  <div className="h-6 w-1/3 animate-pulse rounded-lg bg-base-200" />
+                  <div className="h-10 w-3/4 animate-pulse rounded-lg bg-base-200" />
                 </div>
-                <div className="skeleton h-10 w-full rounded-xl" />
+                <div className="h-10 w-full animate-pulse rounded-xl bg-base-200" />
               </div>
             ))}
           </div>
         ) : memberships.length === 0 ? (
-          /* Empty State: Prompt to view applications or join */
+          /* Empty state */
           <div className="card border border-base-200/80 bg-white p-8 text-center shadow-xs sm:p-12">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#C99E4A]/15 text-[#C99E4A]">
               <HugeiconsIcon
                 icon={ShieldCheckIcon}
                 size={32}
                 color="currentColor"
               />
             </div>
-            <h3 className="mt-4 text-lg font-bold text-[#0D154B] sm:text-xl">
-              No Active Memberships Found
+            <h3 className="mt-4 text-xl font-bold text-[#0D154B] sm:text-2xl">
+              No Enrolled Memberships Yet
             </h3>
             <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
-              You do not have any active chartered memberships yet. Check your application status or explore grades to apply.
+              You do not have any active or confirmed membership subscriptions
+              currently enrolled. Submit an application or check your existing
+              applications to get started.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/dashboard/my-applications"
-                className="btn btn-outline btn-md rounded-xl normal-case text-sm font-semibold"
+                className="btn btn-primary btn-md rounded-xl normal-case text-sm font-semibold gap-2 shadow-sm"
               >
-                Track My Applications
+                <span>Track Applications</span>
+                <HugeiconsIcon
+                  icon={ArrowRight01Icon}
+                  size={16}
+                  color="currentColor"
+                />
               </Link>
               <Link
                 href="/membership"
-                className="btn btn-primary btn-md rounded-xl normal-case text-sm font-semibold text-white"
+                className="btn btn-outline btn-md rounded-xl border-base-300 normal-case text-sm font-semibold text-[#0D154B] hover:border-[#0D154B] hover:bg-[#0D154B] hover:text-white"
               >
-                Explore Membership Grades
+                <span>Explore Membership Grades</span>
               </Link>
             </div>
           </div>
@@ -217,28 +223,17 @@ export default function MyMembershipsPage() {
               >
                 All ({memberships.length})
               </button>
-              <button
-                type="button"
-                onClick={() => setFilter("active")}
-                className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                  filter === "active"
-                    ? "btn-primary text-white"
-                    : "btn-ghost text-base-content/70 hover:text-base-content"
-                }`}
-              >
-                Active ({activeCount})
-              </button>
-              {expiredCount > 0 && (
+              {activeCount > 0 && (
                 <button
                   type="button"
-                  onClick={() => setFilter("expired")}
+                  onClick={() => setFilter("active")}
                   className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
-                    filter === "expired"
+                    filter === "active"
                       ? "btn-primary text-white"
                       : "btn-ghost text-base-content/70 hover:text-base-content"
                   }`}
                 >
-                  Expired ({expiredCount})
+                  Active ({activeCount})
                 </button>
               )}
               {cancelledCount > 0 && (
@@ -254,9 +249,22 @@ export default function MyMembershipsPage() {
                   Cancelled ({cancelledCount})
                 </button>
               )}
+              {expiredCount > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setFilter("expired")}
+                  className={`btn btn-sm rounded-xl normal-case text-xs font-semibold ${
+                    filter === "expired"
+                      ? "btn-primary text-white"
+                      : "btn-ghost text-base-content/70 hover:text-base-content"
+                  }`}
+                >
+                  Expired ({expiredCount})
+                </button>
+              )}
             </div>
 
-            {/* Membership Cards Grid */}
+            {/* Memberships Cards Grid */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filteredMemberships.map((mem) => (
                 <EnrolledMembershipCard key={mem.id} membership={mem} />
@@ -283,8 +291,9 @@ function EnrolledMembershipCard({
     ? cleanName
     : `${cleanName} Membership`;
 
-  const isActive =
-    membership.status === "active" || membership.status === "confirmed";
+  const isActive = membership.status === "active";
+  const isCancelled = membership.status === "cancelled";
+  const isExpired = membership.status === "expired";
 
   const expiryFormatted = membership.expiryDate
     ? new Date(membership.expiryDate).toLocaleDateString(undefined, {
@@ -292,7 +301,9 @@ function EnrolledMembershipCard({
         day: "numeric",
         year: "numeric",
       })
-    : "1 Year Term";
+    : isCancelled
+      ? "Cancelled"
+      : "1 Year Term";
 
   const href = `/dashboard/membership/${membership.id}`;
 
@@ -302,19 +313,20 @@ function EnrolledMembershipCard({
       <div className="flex flex-1 flex-col items-center justify-between bg-white px-5 pt-5 pb-6 text-center sm:px-6 sm:pt-6">
         <div className="flex w-full items-center justify-between gap-2 pb-3">
           <span className="font-mono text-xs font-semibold text-base-content/60">
-            ID: {membership.memberNumber || membership.id.slice(0, 8).toUpperCase()}
+            ID:{" "}
+            {membership.memberNumber || membership.id.slice(0, 8).toUpperCase()}
           </span>
           <span
             className={`badge ${
               isActive
                 ? "badge-success text-white"
-                : membership.status === "expired"
+                : isExpired
                   ? "badge-ghost text-base-content/70"
                   : "badge-neutral text-white"
             } gap-1.5 px-2.5 py-1 text-xs font-semibold shadow-xs`}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-white" />
-            {isActive ? "Active" : membership.status === "expired" ? "Expired" : "Cancelled"}
+            {isActive ? "Active" : isExpired ? "Expired" : "Cancelled"}
           </span>
         </div>
 
@@ -369,8 +381,12 @@ function EnrolledMembershipCard({
               </span>
             </div>
             <div className="flex flex-col items-end px-1 text-right">
-              <span className="text-white/60">Valid Until</span>
-              <span className="font-semibold text-white">{expiryFormatted}</span>
+              <span className="text-white/60">
+                {isCancelled ? "Status" : "Valid Until"}
+              </span>
+              <span className="font-semibold text-white">
+                {expiryFormatted}
+              </span>
             </div>
           </div>
 
@@ -378,7 +394,9 @@ function EnrolledMembershipCard({
             href={href}
             className="btn btn-secondary btn-block h-12 min-h-12 rounded-xl text-base font-bold text-[#0B0E33] normal-case shadow-sm transition-all duration-200 hover:brightness-95 flex items-center justify-center gap-1.5"
           >
-            <span>View Membership Credentials</span>
+            <span>
+              {isCancelled ? "View Details" : "View Membership Credentials"}
+            </span>
             <HugeiconsIcon
               icon={ArrowUpRight01Icon}
               size={18}
