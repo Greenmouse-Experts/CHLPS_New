@@ -834,12 +834,12 @@ function MembershipApplicationCard({
             </div>
           </div>
 
-          {application.status === "rejected" && application.rejectReason && (
+          {/*{application.status === "rejected" && application.rejectReason && (
             <div className="mb-3 w-full rounded-xl border border-rose-400/30 bg-rose-950/40 p-2.5 text-left text-xs text-rose-200">
               <span className="font-semibold text-rose-100">Reason: </span>
               <span className="line-clamp-2">{application.rejectReason}</span>
             </div>
-          )}
+          )}*/}
 
           <p className="min-h-[40px] max-w-[300px] text-center text-sm leading-relaxed text-white/90 line-clamp-2">
             {description}
