@@ -73,7 +73,7 @@ export class EventRegistrationService {
     try {
       const defaultCallback =
         typeof window !== "undefined"
-          ? `${window.location.origin}/orders/callback?type=event&eventId=${eventId}`
+          ? `${window.location.origin}/events/payment-callback?eventId=${eventId}`
           : "";
 
       const payload = {
