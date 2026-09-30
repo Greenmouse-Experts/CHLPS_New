@@ -31,6 +31,14 @@ const partners = [
     src: "/assets/images/qhe_new.png",
     alt: "QAHE Association Accredited",
   },
+  {
+    src: "/pat_6.png",
+    alt: "",
+  },
+  {
+    src: "/pat_7.png",
+    alt: "",
+  },
 ] as const;
 
 const marqueePartners = [...partners, ...partners];
