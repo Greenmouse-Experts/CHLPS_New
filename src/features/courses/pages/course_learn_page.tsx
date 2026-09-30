@@ -176,9 +176,13 @@ const CourseLearnPage = ({ id }: { id: string }) => {
                         Program: {course.course.program.title}
                       </p>
                     )}
-                    <p className="whitespace-pre-line leading-relaxed text-text/60">
-                      {course.course.shortDesc}
-                    </p>
+                    <div
+                      className="whitespace-pre-line leading-relaxed text-text/60"
+                      //@ts-ignore
+                      dangerouslySetInnerHTML={{
+                        __html: course.course.shortDesc as string,
+                      }}
+                    ></div>
                   </div>
                 </div>
               ) : (
