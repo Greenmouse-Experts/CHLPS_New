@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type UserRole = "admin" | "sub-admin" | "instructor" | "student" | string;
+export type UserRole =
+  | "admin"
+  | "sub-admin"
+  | "instructor"
+  | "student"
+  | string;
 
 export interface UserState {
   email?: string;
@@ -15,6 +20,11 @@ export interface UserState {
   phoneNumber?: string | null;
   avatar?: string | null;
   address?: string | null;
+  placeOfWork?: string | null;
+  officialDesignation?: string | null;
+  currentEducationOrProfessionalQualification?: string | null;
+  country?: string | null;
+  stateProvince?: string | null;
   facebookUrl?: string | null;
   twitterUrl?: string | null;
   linkedinUrl?: string | null;
@@ -35,6 +45,11 @@ const initialState: UserState = {
   avatar: "",
   loginAt: null,
   address: "",
+  placeOfWork: "",
+  officialDesignation: "",
+  currentEducationOrProfessionalQualification: "",
+  country: "",
+  stateProvince: "",
   facebookUrl: "",
   twitterUrl: "",
   linkedinUrl: "",

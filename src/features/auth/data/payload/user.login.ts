@@ -23,8 +23,14 @@ export interface ResetPasswordRequestPayload {
 export interface UpdateProfilePayload {
   firstName?: string;
   lastName?: string;
+  phone?: string;
   picture?: string;
   address?: string;
+  placeOfWork?: string;
+  officialDesignation?: string;
+  currentEducationOrProfessionalQualification?: string;
+  country?: string;
+  stateProvince?: string;
   facebookUrl?: string;
   twitterUrl?: string;
   linkedinUrl?: string;
