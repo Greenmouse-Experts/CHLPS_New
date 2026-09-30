@@ -31,6 +31,7 @@ export interface UserPaidMembership {
   orderNumber?: string;
   benefits?: string[];
   certificateUrl?: string;
+  certificateId?: string;
   autoRenewal?: boolean;
   memberNumber?: string;
 }
@@ -62,6 +63,8 @@ export interface UserMembershipDetail {
   orderNumber?: string;
   memberNumber?: string;
   autoRenewal?: boolean;
+  certificateUrl?: string;
+  certificateId?: string;
   answers?: Array<{
     questionId: string;
     questionText?: string;
@@ -99,38 +102,33 @@ export function resolveMembershipBadge(
   return Assets.icons.logo;
 }
 
-function resolveBadge(needle: string, remoteImage?: string): string {
-  return resolveMembershipBadge(needle, remoteImage);
+function resolveBadge(slugOrName?: string, remoteImage?: string | null) {
+  return resolveMembershipBadge(slugOrName, remoteImage);
 }
 
-export function normalizeMembershipStatus(
-  raw?: string | null,
-): UserMembershipStatus {
-  const s = (raw || "").toLowerCase().trim();
-  if (s === "pending_approval" || s === "under_review" || s === "pending") {
-    return "pending_approval";
+function normalizeMembershipStatus(status: any): UserMembershipStatus {
+  if (!status) return "pending_approval";
+  const s = String(status).toLowerCase().trim();
+  switch (s) {
+    case "active":
+    case "confirmed":
+      return "active";
+    case "approved":
+      return "approved";
+    case "expired":
+      return "expired";
+    case "cancelled":
+    case "canceled":
+      return "cancelled";
+    case "rejected":
+    case "declined":
+      return "rejected";
+    case "pending_approval":
+    case "under_review":
+    case "pending":
+    default:
+      return "pending_approval";
   }
-  if (
-    s === "active" ||
-    s === "confirmed" ||
-    s === "paid" ||
-    s === "successful"
-  ) {
-    return "active";
-  }
-  if (s === "expired") {
-    return "expired";
-  }
-  if (s === "cancelled" || s === "canceled") {
-    return "cancelled";
-  }
-  if (s === "approved" || s === "accepted") {
-    return "approved";
-  }
-  if (s === "rejected" || s === "declined") {
-    return "rejected";
-  }
-  return "pending_approval";
 }
 
 function mapRawApplicationToDetail(app: any): UserMembershipDetail {
@@ -180,6 +178,12 @@ function mapRawApplicationToDetail(app: any): UserMembershipDetail {
     ),
     benefits: mem.benefits || [],
     eligibilityCriteria: mem.eligibilityCriteria || [],
+    certificateUrl:
+      app.certificateUrl ||
+      app.certificate?.certificateUrl ||
+      mem.certificateUrl,
+    certificateId:
+      app.certificateId || app.certificate?.certificateId || mem.certificateId,
     answers,
   };
 }
@@ -249,12 +253,10 @@ export class MembershipRepository {
         const match = allRes.data.find(
           (item: any) =>
             item.id === id ||
-            item.applicationId === id ||
             item.membershipId === id ||
-            (item.membership?.id && item.membership.id === id) ||
-            (item.membership?.slug && item.membership.slug === id),
+            item.applicationId === id ||
+            item.membership?.id === id,
         );
-
         if (match) {
           return ok(mapRawApplicationToDetail(match));
         }
@@ -263,118 +265,86 @@ export class MembershipRepository {
       return ok(null);
     } catch (error: any) {
       return fail(
-        error?.message || "Failed to load membership application details.",
+        error?.message || "Failed to fetch membership application.",
         500,
       );
     }
   }
 
   /**
-   * Fetches only active or enrolled memberships for the user directly
-   * from /memberships/my-memberships.
+   * Fetches the user's primary active membership.
    */
-  async getMyEnrolledMemberships(): Promise<
+  async getUserPaidMembership(
+    _userId?: string,
+  ): Promise<ApiResponse<UserPaidMembership | null>> {
+    try {
+      const res = await this.getMyMembershipApplications();
+      if (!res.success || !res.data) {
+        return ok(null);
+      }
+
+      const activeApp =
+        res.data.find((a) => a.status === "active") ||
+        res.data.find((a) => a.status === "approved") ||
+        res.data[0];
+
+      if (!activeApp) return ok(null);
+
+      return ok({
+        id: activeApp.id,
+        name: activeApp.name,
+        slug: activeApp.slug,
+        status: activeApp.status as UserMembershipStatus,
+        tier: activeApp.tier,
+        startDate: activeApp.startDate,
+        expiryDate: activeApp.expiryDate,
+        currency: activeApp.currency,
+        price: activeApp.price,
+        duration: activeApp.duration,
+        memberNumber: activeApp.memberNumber,
+        certificateUrl: activeApp.certificateUrl,
+        certificateId: activeApp.certificateId,
+      });
+    } catch (error: any) {
+      return fail(error?.message || "Failed to fetch active membership.", 500);
+    }
+  }
+
+  /**
+   * Fetches all enrolled memberships of the student.
+   * Endpoint: GET /student-memberships/mine
+   */
+  async getMyStudentMemberships(): Promise<
     ApiResponse<UserEnrolledMembership[]>
   > {
     try {
-      const resp = await simpleApiClient.get("memberships/my-memberships");
-      const payload = resp.data;
+      const res = await simpleApiClient.get("student-memberships/mine");
+      const raw = res?.data ?? res;
       let list: UserEnrolledMembership[] = [];
-      if (Array.isArray(payload)) {
-        list = payload;
-      } else if (payload && Array.isArray(payload.data)) {
-        list = payload.data;
-      } else if (payload && payload.data && Array.isArray(payload.data.data)) {
-        list = payload.data.data;
+      if (Array.isArray(raw)) {
+        list = raw;
+      } else if (Array.isArray(raw.data)) {
+        list = raw.data;
       }
       return ok(list);
     } catch (error: any) {
       return fail(
-        error?.message || "Failed to fetch enrolled memberships.",
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to fetch enrolled memberships.",
         500,
       );
     }
   }
 
   /**
-   * Gets user's active paid membership from /memberships/my-memberships or /membership-applications/mine.
+   * Alias for getMyStudentMemberships
    */
-  async getUserPaidMembership(
-    userId?: string,
-  ): Promise<ApiResponse<UserPaidMembership | null>> {
-    try {
-      // 1. Check enrolled memberships from /memberships/my-memberships
-      const enrolledRes = await this.getMyEnrolledMemberships();
-      if (
-        enrolledRes.success &&
-        enrolledRes.data &&
-        enrolledRes.data.length > 0
-      ) {
-        const activeEnrolled =
-          enrolledRes.data.find(
-            (item) => (item.status || "").toLowerCase() === "active",
-          ) || enrolledRes.data[0];
-
-        if (activeEnrolled) {
-          const mem = activeEnrolled.membership;
-          return ok({
-            id: activeEnrolled.id,
-            name: mem?.name || "ChLPS Membership",
-            slug: mem?.slug,
-            status: "active",
-            tier: mem?.name,
-            startDate: activeEnrolled.startDate || activeEnrolled.createdDate,
-            expiryDate: activeEnrolled.endDate,
-            currency: mem?.currency || "CAD",
-            price: mem?.price,
-            duration: mem?.duration || "1 Year",
-            orderNumber: activeEnrolled.orderItemId,
-            benefits: mem?.benefits || [],
-            autoRenewal: mem?.autoRenewal ?? true,
-            memberNumber:
-              activeEnrolled.memberNumber ||
-              `CHLPS-${activeEnrolled.id.slice(0, 8).toUpperCase()}`,
-          });
-        }
-      }
-
-      // 2. Otherwise check applications from /membership-applications/mine
-      const all = await this.getMyMembershipApplications(userId);
-      if (all.success && all.data && all.data.length > 0) {
-        const active =
-          all.data.find((item) => item.status === "active") ||
-          all.data.find((item) => item.status === "approved");
-
-        if (active) {
-          return ok({
-            id: active.membershipId || active.id,
-            name: active.name,
-            slug: active.slug,
-            status: (active.status === "active"
-              ? "active"
-              : "pending") as UserMembershipStatus,
-            tier: active.tier || active.name,
-            startDate: active.startDate || active.appliedDate,
-            expiryDate: active.expiryDate,
-            currency: active.currency || "CAD",
-            price: active.price,
-            duration: active.duration || "1 Year",
-            orderNumber: active.orderNumber,
-            benefits: active.benefits || [],
-            autoRenewal: active.autoRenewal ?? true,
-            memberNumber:
-              active.memberNumber ||
-              `CHLPS-${active.id.slice(0, 8).toUpperCase()}`,
-          });
-        }
-      }
-
-      return ok(null);
-    } catch (error: any) {
-      return fail(
-        error?.message || "Failed to load membership information.",
-        500,
-      );
-    }
+  async getMyEnrolledMemberships(): Promise<
+    ApiResponse<UserEnrolledMembership[]>
+  > {
+    return this.getMyStudentMemberships();
   }
 }
+
+export const membershipRepository = new MembershipRepository();

@@ -694,7 +694,7 @@ function MembershipApplicationCard({
           label: "Approved",
           badgeClass: "bg-emerald-600 text-white border-emerald-600",
           dotColor: "bg-white",
-          actionText: "Complete Enrollment",
+          actionText: "Generate Certificate",
         };
       case "expired":
         return {

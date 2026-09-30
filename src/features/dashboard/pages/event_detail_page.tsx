@@ -222,7 +222,7 @@ export default function DashboardEventDetailPage({
       <div className="space-y-6">
         {/* Navigation Breadcrumb & Back Action */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-base-200/80 pb-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-base-content/60">
+          <div className="flex items-center gap-2 text-xs font-semibold text-base-content/90">
             <Link
               href="/dashboard/events"
               className="flex items-center gap-1 text-primary hover:underline"
@@ -241,7 +241,7 @@ export default function DashboardEventDetailPage({
               <Link
                 href={`/events/${event.slug || event.id}`}
                 target="_blank"
-                className="btn btn-ghost btn-sm rounded-xl text-xs font-semibold gap-1 text-base-content/70 hover:text-base-content"
+                className="btn btn-ghost btn-sm rounded-xl text-xs font-semibold gap-1 text-base-content/90 hover:text-base-content"
               >
                 <span>View Public Page</span>
                 <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
@@ -282,7 +282,7 @@ export default function DashboardEventDetailPage({
             <h3 className="mt-4 text-lg font-bold text-[#0D154B] sm:text-xl">
               Registration Not Found
             </h3>
-            <p className="mx-auto mt-2 max-w-md text-sm text-base-content/70">
+            <p className="mx-auto mt-2 max-w-md text-sm text-base-content/90">
               The event registration you requested could not be located or may
               have been removed.
             </p>
@@ -318,7 +318,7 @@ export default function DashboardEventDetailPage({
                   {event?.name || "Professional Event"}
                 </h1>
 
-                <p className="mt-3 text-sm sm:text-base leading-relaxed text-base-content/80">
+                <p className="mt-3 text-sm sm:text-base leading-relaxed text-base-content/90">
                   {event?.description ||
                     "Join industry practitioners and chartered specialists for an engaging session designed to expand operational capabilities, governance readiness, and security excellence."}
                 </p>
@@ -330,7 +330,7 @@ export default function DashboardEventDetailPage({
                       <HugeiconsIcon icon={Calendar03Icon} size={18} />
                     </span>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-base-content/90">
                         Date
                       </p>
                       <p className="mt-0.5 text-sm font-bold text-[#0D154B]">
@@ -344,7 +344,7 @@ export default function DashboardEventDetailPage({
                       <HugeiconsIcon icon={Clock01Icon} size={18} />
                     </span>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-base-content/90">
                         Time & Duration
                       </p>
                       <p className="mt-0.5 text-sm font-bold text-[#0D154B]">
@@ -362,7 +362,7 @@ export default function DashboardEventDetailPage({
                       />
                     </span>
                     <div className="min-w-0">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-base-content/60">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-base-content/90">
                         {isVirtual ? "Virtual Access" : "Location"}
                       </p>
                       <p className="mt-0.5 text-sm font-bold text-[#0D154B] truncate">
@@ -390,8 +390,8 @@ export default function DashboardEventDetailPage({
                     />
                     <p>
                       Please have your <strong>Ticket Reference</strong> ready
-                      upon check-in. Digital passes can be presented on your mobile
-                      device.
+                      upon check-in. Digital passes can be presented on your
+                      mobile device.
                     </p>
                   </div>
 
@@ -428,8 +428,8 @@ export default function DashboardEventDetailPage({
                       className="text-primary shrink-0 mt-0.5"
                     />
                     <p>
-                      Session reminders and post-event resource materials will be
-                      sent to your registered email address.
+                      Session reminders and post-event resource materials will
+                      be sent to your registered email address.
                     </p>
                   </div>
                 </div>
@@ -441,7 +441,7 @@ export default function DashboardEventDetailPage({
                   <h4 className="text-sm font-bold uppercase tracking-wider text-[#0D154B]">
                     Event Host & Support
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-base-content/80">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-base-content/90">
                     {event?.organizerName && (
                       <div className="flex items-center gap-2">
                         <HugeiconsIcon
@@ -478,7 +478,7 @@ export default function DashboardEventDetailPage({
               <div className="card border-2 border-[#C99E4A] bg-[#FAF8F5] p-6 rounded-3xl shadow-sm space-y-4">
                 <div className="flex items-center justify-between border-b border-[#C99E4A]/30 pb-3">
                   <div>
-                    <span className="block text-xs uppercase tracking-wider text-base-content/60">
+                    <span className="block text-xs uppercase tracking-wider text-base-content/90">
                       Admission Pass
                     </span>
                     <span className="font-mono text-sm font-bold text-[#0D154B]">
@@ -493,9 +493,9 @@ export default function DashboardEventDetailPage({
                   </span>
                 </div>
 
-                <div className="space-y-2 text-xs text-base-content/80">
+                <div className="space-y-2 text-xs text-base-content/90">
                   <div className="flex justify-between py-1 border-b border-[#C99E4A]/20">
-                    <span className="text-base-content/60">Attendee:</span>
+                    <span className="text-base-content/90">Attendee:</span>
                     <span className="font-semibold text-[#0D154B]">
                       {registration.user?.fullName ||
                         user.fullName ||
@@ -507,14 +507,14 @@ export default function DashboardEventDetailPage({
                   </div>
 
                   <div className="flex justify-between py-1 border-b border-[#C99E4A]/20">
-                    <span className="text-base-content/60">Email:</span>
+                    <span className="text-base-content/90">Email:</span>
                     <span className="font-semibold truncate max-w-[150px]">
                       {registration.user?.email || user.email || "—"}
                     </span>
                   </div>
 
                   <div className="flex justify-between py-1 border-b border-[#C99E4A]/20">
-                    <span className="text-base-content/60">Registered On:</span>
+                    <span className="text-base-content/90">Registered On:</span>
                     <span>
                       {registration.registrationDate
                         ? formatEventDate(registration.registrationDate)
@@ -542,7 +542,7 @@ export default function DashboardEventDetailPage({
                     <HugeiconsIcon icon={ComputerIcon} size={18} />
                     <span>Virtual Meeting Access</span>
                   </div>
-                  <p className="text-xs text-base-content/70">
+                  <p className="text-xs text-base-content/90">
                     Access the interactive live broadcast when the session
                     commences.
                   </p>
@@ -590,9 +590,7 @@ export default function DashboardEventDetailPage({
               {isCancelled && (
                 <div className="alert alert-error rounded-2xl p-4 text-xs text-white">
                   <HugeiconsIcon icon={Cancel01Icon} size={16} />
-                  <span>
-                    Your registration for this event was cancelled.
-                  </span>
+                  <span>Your registration for this event was cancelled.</span>
                 </div>
               )}
             </aside>
@@ -626,7 +624,7 @@ export default function DashboardEventDetailPage({
                   {status.label || "Confirmed"}
                 </span>
                 <div className="text-right">
-                  <span className="block text-xs uppercase tracking-wider text-base-content/60">
+                  <span className="block text-xs uppercase tracking-wider text-base-content/90">
                     Ticket No.
                   </span>
                   <span className="font-mono text-xs font-bold text-[#0D154B]">
@@ -645,7 +643,7 @@ export default function DashboardEventDetailPage({
                   {eventView.title}
                 </h4>
 
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 pt-2 text-xs text-base-content/80">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 pt-2 text-xs text-base-content/90">
                   <div className="flex items-center gap-2">
                     <HugeiconsIcon
                       icon={Calendar03Icon}
@@ -693,13 +691,14 @@ export default function DashboardEventDetailPage({
             </div>
 
             {/* Important Notes */}
-            <div className="text-xs text-base-content/70 space-y-1 bg-base-200/50 p-3.5 rounded-xl border border-base-200">
+            <div className="text-xs text-base-content/90 space-y-1 bg-base-200/50 p-3.5 rounded-xl border border-base-200">
               <p className="font-semibold text-base-content">
                 Important Event Information:
               </p>
               <p>
                 Please present your ticket number or digital confirmation upon
-                check-in. Virtual attendees will receive reminders before the session starts.
+                check-in. Virtual attendees will receive reminders before the
+                session starts.
               </p>
             </div>
           </div>
@@ -760,10 +759,10 @@ export default function DashboardEventDetailPage({
             Cancel Event Registration?
           </h3>
 
-          <p className="mt-2 text-center text-xs sm:text-sm text-base-content/70 leading-relaxed">
+          <p className="mt-2 text-center text-xs sm:text-sm text-base-content/90 leading-relaxed">
             Are you sure you want to cancel your attendance for{" "}
-            <strong>{event?.name}</strong>? Your ticket pass will be voided
-            and virtual session access will be revoked.
+            <strong>{event?.name}</strong>? Your ticket pass will be voided and
+            virtual session access will be revoked.
           </p>
         </div>
       </Modal>
