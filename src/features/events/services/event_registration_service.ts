@@ -73,7 +73,7 @@ export class EventRegistrationService {
     try {
       const defaultCallback =
         typeof window !== "undefined"
-          ? `${window.location.origin}/events/${eventId}?payment=success`
+          ? `${window.location.origin}/orders/callback?type=event&eventId=${eventId}`
           : "";
 
       const payload = {
@@ -97,13 +97,9 @@ export class EventRegistrationService {
           reference: trx?.reference || actualData.reference,
           thirdPartyRef: trx?.thirdPartyRef || actualData.thirdPartyRef,
           sessionId:
-            trx?.sessionId ||
-            actualData.sessionId ||
-            actualData.paypalOrderId,
+            trx?.sessionId || actualData.sessionId || actualData.paypalOrderId,
           paypalOrderId:
-            trx?.sessionId ||
-            actualData.sessionId ||
-            actualData.paypalOrderId,
+            trx?.sessionId || actualData.sessionId || actualData.paypalOrderId,
           amount: trx?.amount ?? actualData.amount,
           subAmount: trx?.subAmount ?? actualData.subAmount,
           currency: actualData.currency || "CAD",

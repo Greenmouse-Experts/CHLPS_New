@@ -3,3 +3,4 @@ export * from "./hooks/use_paypal_checkout";
 export * from "./hooks/use_stripe_checkout";
 export { default as PaypalPaymentModal } from "./components/paypal_payment_modal";
 export { default as StripePaymentModal } from "./components/paypal_payment_modal";
+export { default as OrderCallbackPage } from "./pages/order_callback_page";

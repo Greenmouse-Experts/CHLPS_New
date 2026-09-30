@@ -27,7 +27,9 @@ export class OrderService {
    * Business rule: Only active members can purchase courses.
    * Endpoint: GET /student-memberships/course-purchase-eligibility
    */
-  async checkCoursePurchaseEligibility(): Promise<ApiResponse<CoursePurchaseEligibility>> {
+  async checkCoursePurchaseEligibility(): Promise<
+    ApiResponse<CoursePurchaseEligibility>
+  > {
     try {
       const response = await this.api.getData<any>(
         ApiUrls.coursePurchaseEligibility,
@@ -202,9 +204,7 @@ export class OrderService {
       params.memberships.length > 0 &&
       (!params.courses || params.courses.length === 0),
     );
-    const defaultSuccessPath = isMembershipOnly
-      ? "/dashboard/purchase-history?payment=success"
-      : "/dashboard/courses?payment=success";
+    const defaultSuccessPath = `/orders/confirm?type=${isMembershipOnly ? "membership" : "course"}`;
 
     const defaultCallback =
       typeof window !== "undefined"
