@@ -28,16 +28,30 @@ import { DashboardLayout } from "@/components";
 import { Assets } from "@/lib/assets";
 import { RootState } from "@/lib/store/store";
 import simpleApiClient from "@/lib/network/simpleApi";
-import { useUserMembershipApplicationDetail } from "../domain/data/hooks/user_membership_hooks";
+import {
+  useUserMembershipApplicationDetail,
+  useMembershipCertificate,
+} from "../domain/data/hooks/user_membership_hooks";
 import { PaypalPaymentModal } from "@/features/orders";
 
 export default function MembershipDetailPage({ id }: { id: string }) {
   const user = useSelector((state: RootState) => state.user);
   const { application, isLoading, refetch } =
     useUserMembershipApplicationDetail(id);
+
+  const targetMembershipId = application?.membershipId || application?.id || id;
+  const {
+    certificateUrl: fetchedCertUrl,
+    isLoading: isCertLoading,
+    refetch: refetchCert,
+  } = useMembershipCertificate(targetMembershipId, user?.userId);
+
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isGeneratingCert, setIsGeneratingCert] = useState(false);
   const [generatedCertUrl, setGeneratedCertUrl] = useState<string | null>(null);
+
+  const effectiveCertificateUrl =
+    generatedCertUrl || fetchedCertUrl || application?.certificateUrl;
 
   const statusConfig = useMemo(() => {
     if (!application) return null;
@@ -60,7 +74,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
           dotColor: "bg-white",
           title: "Application Approved",
           description:
-            "Congratulations! Your application has been approved by the admissions committee. You can now generate your official certificate.",
+            "Congratulations! Your application has been approved by the admissions committee. You can now generate and download your official certificate.",
         };
       case "expired":
         return {
@@ -163,6 +177,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
         toast.success("Certificate generated successfully!");
         setIsGeneratingCert(false);
         refetch();
+        refetchCert();
         return;
       }
 
@@ -195,6 +210,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
               setIsGeneratingCert(false);
               toast.success("Certificate generated successfully!");
               refetch();
+              refetchCert();
               return;
             }
 
@@ -221,6 +237,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
       );
       setIsGeneratingCert(false);
       refetch();
+      refetchCert();
     } catch (err: any) {
       setIsGeneratingCert(false);
       toast.error(
@@ -345,9 +362,9 @@ export default function MembershipDetailPage({ id }: { id: string }) {
 
                 {application.status === "approved" && (
                   <div className="flex shrink-0 items-center gap-3">
-                    {generatedCertUrl || application.certificateUrl ? (
+                    {effectiveCertificateUrl ? (
                       <a
-                        href={generatedCertUrl || application.certificateUrl}
+                        href={effectiveCertificateUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-primary btn-md gap-2 rounded-xl text-sm font-semibold normal-case shadow-sm"
@@ -750,6 +767,20 @@ export default function MembershipDetailPage({ id }: { id: string }) {
                         </span>
                       </div>
                     </div>
+
+                    {effectiveCertificateUrl && (
+                      <div className="relative z-10 mt-5 border-t border-white/10 pt-4">
+                        <a
+                          href={effectiveCertificateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-secondary btn-sm w-full gap-2 rounded-xl text-xs font-bold normal-case shadow-sm"
+                        >
+                          <HugeiconsIcon icon={Download01Icon} size={15} />
+                          <span>Download Official Certificate</span>
+                        </a>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   /* Action / Status Box for Pending or Approved */
@@ -785,11 +816,9 @@ export default function MembershipDetailPage({ id }: { id: string }) {
 
                     {application.status === "approved" ? (
                       <div className="mt-6 space-y-3">
-                        {generatedCertUrl || application.certificateUrl ? (
+                        {effectiveCertificateUrl ? (
                           <a
-                            href={
-                              generatedCertUrl || application.certificateUrl
-                            }
+                            href={effectiveCertificateUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn-primary btn-md w-full gap-2 rounded-xl text-sm font-semibold normal-case shadow-sm"
@@ -882,6 +911,7 @@ export default function MembershipDetailPage({ id }: { id: string }) {
               "Payment completed successfully! Refreshing status...",
             );
             refetch();
+            refetchCert();
           }}
         />
       )}

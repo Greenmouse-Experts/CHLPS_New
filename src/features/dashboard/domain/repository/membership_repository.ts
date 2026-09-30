@@ -72,6 +72,16 @@ export interface UserMembershipDetail {
   }>;
 }
 
+export interface MembershipCertificateResult {
+  certificateUrl?: string;
+  certificateId?: string;
+  certificateNumber?: string;
+  issuedDate?: string;
+  membershipId?: string;
+  studentId?: string;
+  [key: string]: any;
+}
+
 const badgeMap: Record<string, string> = {
   student: Assets.images.membership.student,
   affiliate: Assets.images.membership.affiliate,
@@ -129,6 +139,56 @@ function normalizeMembershipStatus(status: any): UserMembershipStatus {
     default:
       return "pending_approval";
   }
+}
+
+function extractCertificateData(
+  payload: any,
+): MembershipCertificateResult | null {
+  if (!payload) return null;
+  const raw = payload?.data?.data ?? payload?.data ?? payload;
+
+  if (Array.isArray(raw)) {
+    if (raw.length === 0) return null;
+    const cert = raw[0];
+    const url = cert.certificateUrl || cert.url || cert.fileUrl;
+    if (url) {
+      return {
+        certificateUrl: url,
+        certificateId: cert.id || cert.certificateId || cert.certificateNumber,
+        certificateNumber: cert.certificateNumber,
+        issuedDate: cert.issuedDate || cert.createdAt,
+        ...cert,
+      };
+    }
+    return null;
+  }
+
+  if (typeof raw === "object") {
+    const url =
+      raw.certificateUrl ||
+      raw.url ||
+      raw.fileUrl ||
+      raw.certificate?.certificateUrl ||
+      raw.certificate?.url;
+    const id =
+      raw.id ||
+      raw.certificateId ||
+      raw.certificateNumber ||
+      raw.certificate?.id;
+    if (url || id) {
+      return {
+        certificateUrl: url,
+        certificateId: id,
+        certificateNumber:
+          raw.certificateNumber || raw.certificate?.certificateNumber,
+        issuedDate:
+          raw.issuedDate || raw.createdAt || raw.certificate?.issuedDate,
+        ...raw,
+      };
+    }
+  }
+
+  return null;
 }
 
 function mapRawApplicationToDetail(app: any): UserMembershipDetail {
@@ -308,6 +368,87 @@ export class MembershipRepository {
     } catch (error: any) {
       return fail(error?.message || "Failed to fetch active membership.", 500);
     }
+  }
+
+  /**
+   * Fetches specific membership certificate using candidate endpoints:
+   * 1. GET /certificates/membership/:membershipId
+   * 2. GET /certificates/student/:studentId/membership/:membershipId
+   * 3. GET /certificates/membership/:membershipId/all
+   * 4. GET /certificates?type=membership
+   */
+  async getMembershipCertificate(
+    membershipId: string,
+    studentId?: string,
+  ): Promise<ApiResponse<MembershipCertificateResult | null>> {
+    if (!membershipId) return ok(null);
+
+    // 1. Direct candidate: GET /certificates/membership/:membershipId
+    try {
+      const res1: any = await simpleApiClient.get(
+        `certificates/membership/${membershipId}`,
+      );
+      const parsed1 = extractCertificateData(res1);
+      if (parsed1?.certificateUrl) {
+        return ok(parsed1);
+      }
+    } catch {
+      // Continue to next endpoint
+    }
+
+    // 2. Candidate: GET /certificates/membership/:membershipId/all
+    try {
+      const res2: any = await simpleApiClient.get(
+        `certificates/membership/${membershipId}/all`,
+      );
+      const parsed2 = extractCertificateData(res2);
+      if (parsed2?.certificateUrl) {
+        return ok(parsed2);
+      }
+    } catch {
+      // Continue to next endpoint
+    }
+
+    // 3. Candidate: GET /certificates/student/:studentId/membership/:membershipId
+    if (studentId) {
+      try {
+        const res3: any = await simpleApiClient.get(
+          `certificates/student/${studentId}/membership/${membershipId}`,
+        );
+        const parsed3 = extractCertificateData(res3);
+        if (parsed3?.certificateUrl) {
+          return ok(parsed3);
+        }
+      } catch {
+        // Continue to next endpoint
+      }
+    }
+
+    // 4. Candidate: Filter on general certificates endpoint: GET /certificates?type=membership
+    try {
+      const res4: any = await simpleApiClient.get("certificates", {
+        params: { type: "membership" },
+      });
+      const raw4 = res4?.data?.data ?? res4?.data ?? res4;
+      if (Array.isArray(raw4)) {
+        const match = raw4.find(
+          (c: any) =>
+            c.membershipId === membershipId ||
+            c.applicationId === membershipId ||
+            c.membership?.id === membershipId,
+        );
+        if (match) {
+          const parsed4 = extractCertificateData(match);
+          if (parsed4?.certificateUrl) {
+            return ok(parsed4);
+          }
+        }
+      }
+    } catch {
+      // No certificate found
+    }
+
+    return ok(null);
   }
 
   /**

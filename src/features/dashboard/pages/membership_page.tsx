@@ -694,7 +694,7 @@ function MembershipApplicationCard({
           label: "Approved",
           badgeClass: "bg-emerald-600 text-white border-emerald-600",
           dotColor: "bg-white",
-          actionText: "Generate Certificate",
+          actionText: "View Membership",
         };
       case "expired":
         return {
@@ -752,8 +752,8 @@ function MembershipApplicationCard({
   return (
     <article className="card group relative flex flex-col justify-between overflow-hidden rounded-[28px] border-2 border-[#C99E4A] bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
       {/* Top White Section */}
-      <div className="flex flex-1 flex-col items-center justify-between bg-white px-5 pt-5 pb-6 text-center sm:px-6 sm:pt-6">
-        <div className="flex w-full items-center justify-between gap-2 pb-3">
+      <div className="flex flex-1 flex-col items-center justify-between bg-white p-4">
+        <div className="flex w-full items-center justify-between gap-2 ">
           <span className="font-mono text-xs font-semibold text-base-content/60">
             Ref:{" "}
             {application.memberNumber ||
@@ -785,14 +785,12 @@ function MembershipApplicationCard({
             />
           </div>
 
-          <h3 className="mt-3 text-xl font-bold leading-snug tracking-tight text-[#161058] transition-colors duration-200 group-hover/link:text-[#0A1542] sm:text-2xl">
-            {displayName}
-          </h3>
+          <h3 className="mt-3 text-lg font-bold">{displayName}</h3>
         </Link>
       </div>
 
       {/* Bottom Dark Navy Section */}
-      <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] px-5 py-6 text-center sm:px-6 sm:py-7">
+      <div className="relative flex flex-col items-center overflow-hidden bg-[#0B0E33] p-4">
         <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
           <Image
             src={Assets.images.membershipCardBg}
@@ -845,14 +843,11 @@ function MembershipApplicationCard({
             {description}
           </p>
 
-          <div className="my-3 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <div className="my-1 text-center text-2xl font-bold tracking-tight text-white ">
             {priceText}
           </div>
 
-          <Link
-            href={href}
-            className="btn btn-secondary btn-block h-12 min-h-12 rounded-xl text-base font-bold text-[#0B0E33] normal-case shadow-sm transition-all duration-200 hover:brightness-95 flex items-center justify-center gap-1.5"
-          >
+          <Link href={href} className="btn btn-secondary btn-block">
             <span>{statusConfig.actionText}</span>
             <HugeiconsIcon
               icon={ArrowUpRight01Icon}

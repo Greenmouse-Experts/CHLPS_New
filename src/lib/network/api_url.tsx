@@ -57,16 +57,32 @@ export class ApiUrls {
     return `/student-memberships/student/${studentId}`;
   }
   static myStudentMemberships = "/student-memberships/mine";
-  static coursePurchaseEligibility = "/student-memberships/course-purchase-eligibility";
+  static coursePurchaseEligibility =
+    "/student-memberships/course-purchase-eligibility";
 
   static courseReviews(id: string) {
     return `/reviews/fetch-course-reviews/${id}`;
   }
   static createCourseReview = "/reviews/create-course-review";
 
+  // Certificates
   static generateCertificate = "/certificates/generate";
   static certificateJobStatus(jobId: string) {
     return `/certificates/generate/${jobId}/status`;
+  }
+  static certificates(params?: { type?: string }) {
+    return params?.type
+      ? `/certificates?type=${encodeURIComponent(params.type)}`
+      : `/certificates`;
+  }
+  static membershipCertificate(membershipId: string) {
+    return `/certificates/membership/${membershipId}`;
+  }
+  static membershipCertificatesAll(membershipId: string) {
+    return `/certificates/membership/${membershipId}/all`;
+  }
+  static studentMembershipCertificate(studentId: string, membershipId: string) {
+    return `/certificates/student/${studentId}/membership/${membershipId}`;
   }
 
   static notificationsUnread = "/notifications/unread";

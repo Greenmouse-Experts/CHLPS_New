@@ -8,6 +8,7 @@ import {
   type UserPaidMembership,
   type UserMembershipDetail,
   type UserEnrolledMembership,
+  type MembershipCertificateResult,
 } from "../../repository/membership_repository";
 
 /**
@@ -84,6 +85,37 @@ export function useUserMembershipApplicationDetail(id: string) {
     isLoading: query.isLoading,
     isFetching: query.isFetching,
     application: query.data ?? null,
+    refetch: query.refetch,
+    query,
+  };
+}
+
+/**
+ * Fetches specific membership certificate for an application or enrolled membership.
+ */
+export function useMembershipCertificate(
+  membershipId?: string,
+  studentId?: string,
+) {
+  const repo = new MembershipRepository();
+
+  const query = useQuery<MembershipCertificateResult | null>({
+    queryKey: ["membership-certificate", membershipId, studentId],
+    queryFn: async () => {
+      if (!membershipId) return null;
+      const res = await repo.getMembershipCertificate(membershipId, studentId);
+      return res.success && res.data ? res.data : null;
+    },
+    enabled: Boolean(membershipId),
+    staleTime: 1000 * 60 * 2, // 2 minutes
+  });
+
+  return {
+    isLoading: query.isLoading,
+    isFetching: query.isFetching,
+    certificate: query.data ?? null,
+    certificateUrl: query.data?.certificateUrl,
+    certificateId: query.data?.certificateId,
     refetch: query.refetch,
     query,
   };
