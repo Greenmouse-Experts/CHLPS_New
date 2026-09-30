@@ -98,7 +98,7 @@ export default function ContactMapSection() {
                   <span className="text-xs font-bold uppercase tracking-wider text-[#2B3582]">
                     Send A Message
                   </span>
-                  <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0D154B] sm:text-3xl">
+                  <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0D154B] sm:text-3xl capitalize">
                     How may we help You
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-base-content/70">
