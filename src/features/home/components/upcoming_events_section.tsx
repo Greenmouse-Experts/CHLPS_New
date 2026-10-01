@@ -161,7 +161,7 @@ function EventListCard({ event, index }: { event: ChlpsEvent; index: number }) {
     >
       <EventIconBadge icon={getCategoryIcon(event.category)} />
       <div className="min-w-0 flex-1">
-        <h3 className="line-clamp-2 text-[20px] font-medium leading-snug text-primary sm:text-[30px]">
+        <h3 className="line-clamp-2 text-lg font-medium leading-snug text-primary ">
           {event.title}
         </h3>
         <p className="mt-1 line-clamp-2  leading-relaxed text-[#686673] sm:text-[18px]">
