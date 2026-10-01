@@ -119,7 +119,7 @@ function FeaturedEventCard({ event }: { event: ChlpsEvent }) {
           fill
           unoptimized
           onError={() => setFailedImage(event.image)}
-          className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+          className="object-contain transition-transform ring ring-secondary duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
@@ -130,7 +130,7 @@ function FeaturedEventCard({ event }: { event: ChlpsEvent }) {
           >
             {event.category}
           </span>
-          <h3 className="mt-3 line-clamp-2 text-2xl font-bold leading-tight tracking-tight text-white sm:text-[45px]">
+          <h3 className="mt-3 line-clamp-2 text-xl font-bold leading-tight tracking-tight text-white ">
             {event.title}
           </h3>
           <p className="mt-1.5 max-w-md line-clamp-3  leading-relaxed text-white/90 sm:text-[18px]">
