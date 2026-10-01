@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Assets } from "@/lib/assets";
+import Modal, { type ModalHandle } from "@/components/DialogModal";
 
 type MembershipGradeCardProps = {
   badge: string;
@@ -36,6 +37,7 @@ export default function MembershipGradeCard({
   isApplying = false,
 }: MembershipGradeCardProps) {
   const [imgSrc, setImgSrc] = useState(badge);
+  const readMoreModalRef = useRef<ModalHandle>(null);
 
   useEffect(() => {
     setImgSrc(badge);
@@ -83,6 +85,15 @@ export default function MembershipGradeCard({
         <p className="mt-2.5  leading-relaxed text-[#5F5878] sm:text-[15px] line-clamp-2">
           {body}
         </p>
+        {body ? (
+          <button
+            type="button"
+            onClick={() => readMoreModalRef.current?.open()}
+            className="mt-1.5 text-[13px] font-semibold text-[#221A7A] underline underline-offset-2 transition hover:opacity-70"
+          >
+            Read more
+          </button>
+        ) : null}
 
         {price !== undefined && price !== null ? (
           <div className=" flex flex-col items-center rounded-2xl border border-[#DCD6EC] bg-white/90 px-4 py-2.5 shadow-sm">
@@ -118,6 +129,12 @@ export default function MembershipGradeCard({
           </button>
         ) : null}*/}
       </div>
+
+      <Modal ref={readMoreModalRef} title={title}>
+        <p className="whitespace-pre-line leading-relaxed text-[#5F5878]">
+          {body}
+        </p>
+      </Modal>
     </article>
   );
 }
