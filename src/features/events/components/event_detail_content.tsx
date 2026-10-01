@@ -198,7 +198,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
           <p className="text-sm font-semibold uppercase tracking-wider text-secondary sm:text-base">
             {view.typeLabel}
           </p>
-          <h1 className="mt-2.5 text-2xl font-bold leading-tight tracking-tight text-[#161058] sm:text-4xl xl:text-5xl">
+          <h1 className="mt-2.5 text-2xl font-bold leading-tight tracking-tight text-[#161058] ">
             {event.title}
           </h1>
           <p className="mt-3 text-base leading-relaxed text-[#333041] sm:text-lg">

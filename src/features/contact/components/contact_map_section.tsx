@@ -99,7 +99,7 @@ export default function ContactMapSection() {
                     Send A Message
                   </span>
                   <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-[#0D154B] sm:text-3xl capitalize">
-                    How may we help You
+                    How may we help You?
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-base-content/70">
                     Complete the form below and our admissions or support team

@@ -124,7 +124,7 @@ export default function AboutHeroSection({
                       <button
                         type="button"
                         onClick={cta.onClick}
-                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5  font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm: lg:mt-7 ${
+                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5  font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 cursor-pointer sm:h-12 sm:px-6 sm: lg:mt-7 ${
                           children
                             ? "flex h-11 w-full justify-center"
                             : "inline-flex h-11"
@@ -141,7 +141,7 @@ export default function AboutHeroSection({
                     ) : (
                       <Link
                         href={cta.href || "#"}
-                        className={`mt-6 items-center gap-2 rounded-full bg-secondary px-5  font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm: lg:mt-7 ${
+                        className={`mt-6 items-center gap-2 cursor-pointer rounded-full bg-secondary px-5  font-semibold text-[#111E2A] transition-all duration-200 hover:brightness-95 sm:h-12 sm:px-6 sm: lg:mt-7 ${
                           children
                             ? "flex h-11 w-full justify-center"
                             : "inline-flex h-11"
