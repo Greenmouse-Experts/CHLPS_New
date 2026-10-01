@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link, { useLinkStatus } from "next/link";
+import { useRouter } from "next/navigation";
 import {
   FormEvent,
   useEffect,
@@ -320,6 +321,7 @@ function NavLink({
 }
 
 export default function Header() {
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [query, setQuery] = useState("");
@@ -428,6 +430,14 @@ export default function Header() {
 
   function handleSearch(e: FormEvent) {
     e.preventDefault();
+    const trimmed = query.trim();
+    setOpenMenu(null);
+    setMobileOpen(false);
+    if (trimmed) {
+      router.push(`/search?q=${encodeURIComponent(trimmed)}`);
+    } else {
+      router.push("/search");
+    }
   }
 
   useEffect(() => {
