@@ -39,7 +39,9 @@ export default function SearchPageView() {
 
   // Section item counts for tabs
   const [membershipCount, setMembershipCount] = useState<number | null>(null);
-  const [certificationCount, setCertificationCount] = useState<number | null>(null);
+  const [certificationCount, setCertificationCount] = useState<number | null>(
+    null,
+  );
   const [eventCount, setEventCount] = useState<number | null>(null);
 
   useEffect(() => {
@@ -101,17 +103,13 @@ export default function SearchPageView() {
 
         <PageContainer>
           <div className="relative mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-secondary backdrop-blur-md">
-              <HugeiconsIcon icon={SparklesIcon} size={14} />
-              Unified Search
-            </span>
-
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
               Search <span className="text-secondary">ChLPS Canada</span>
             </h1>
 
             <p className="mx-auto mt-3 max-w-xl text-sm text-white/75 sm:text-base">
-              Find memberships, professional certifications, training programs, and industry events in one place.
+              Find memberships, professional certifications, training programs,
+              and industry events in one place.
             </p>
 
             {/* Main Search Input Form */}
@@ -176,10 +174,13 @@ export default function SearchPageView() {
             <h2 className="text-base font-semibold text-text/80">
               {activeQuery ? (
                 <>
-                  Results for &ldquo;<span className="font-bold text-primary">{activeQuery}</span>&rdquo;
+                  Results for &ldquo;
+                  <span className="font-bold text-primary">{activeQuery}</span>
+                  &rdquo;
                   {membershipCount !== null && (
                     <span className="ml-2 text-xs font-normal text-text/50">
-                      ({totalResults} total {totalResults === 1 ? "match" : "matches"})
+                      ({totalResults} total{" "}
+                      {totalResults === 1 ? "match" : "matches"})
                     </span>
                   )}
                 </>
@@ -231,7 +232,8 @@ export default function SearchPageView() {
                   : "bg-white text-text/70 border border-sand hover:bg-sand/20"
               }`}
             >
-              Certifications {certificationCount !== null && `(${certificationCount})`}
+              Certifications{" "}
+              {certificationCount !== null && `(${certificationCount})`}
             </button>
 
             <button
@@ -259,7 +261,8 @@ export default function SearchPageView() {
           )}
 
           {/* Section 2: Certifications / Programs */}
-          {(activeCategory === "all" || activeCategory === "certifications") && (
+          {(activeCategory === "all" ||
+            activeCategory === "certifications") && (
             <CertificationSearchSection
               searchQuery={activeQuery}
               onCountChange={setCertificationCount}
