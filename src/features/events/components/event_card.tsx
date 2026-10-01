@@ -29,7 +29,7 @@ export default function EventCard({
 
   return (
     <article
-      className="reveal flex h-full flex-col overflow-hidden rounded-[16px] bg-white shadow-[0_12px_36px_rgba(22,16,88,0.1)] ring-1 ring-black/[0.04]"
+      className=" flex h-full flex-col overflow-hidden rounded-[16px] bg-white shadow-[0_12px_36px_rgba(22,16,88,0.1)] ring-1 ring-black/[0.04]"
       style={revealStyle(index)}
     >
       <div className="relative aspect-[16/10] w-full shrink-0">

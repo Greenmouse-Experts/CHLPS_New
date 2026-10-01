@@ -7,9 +7,7 @@ import EventCard from "@/features/events/components/event_card";
 import QueryCompLayout from "@/components/QueryCompLayout";
 import type { ChlpsEvent } from "@/features/events/events_data";
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  Calendar01Icon,
-} from "@hugeicons/core-free-icons";
+import { Calendar01Icon } from "@hugeicons/core-free-icons";
 
 interface EventSearchSectionProps {
   searchQuery: string;
@@ -34,7 +32,9 @@ export default function EventSearchSection({
         const locMatch = evt.location?.toLowerCase().includes(term);
         const dateMatch = evt.date?.toLowerCase().includes(term);
 
-        return Boolean(titleMatch || descMatch || catMatch || locMatch || dateMatch);
+        return Boolean(
+          titleMatch || descMatch || catMatch || locMatch || dateMatch,
+        );
       });
     },
   });
@@ -91,7 +91,9 @@ export default function EventSearchSection({
                   No events match &ldquo;{searchQuery}&rdquo;
                 </h3>
                 <p className="mx-auto mt-1 max-w-md text-xs text-text/60">
-                  Try searching for terms like &ldquo;Webinar&rdquo;, &ldquo;Conference&rdquo;, &ldquo;Workshop&rdquo;, or &ldquo;Loss Prevention&rdquo;.
+                  Try searching for terms like &ldquo;Webinar&rdquo;,
+                  &ldquo;Conference&rdquo;, &ldquo;Workshop&rdquo;, or
+                  &ldquo;Loss Prevention&rdquo;.
                 </p>
               </div>
             );
