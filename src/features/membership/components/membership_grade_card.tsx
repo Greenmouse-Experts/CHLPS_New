@@ -89,7 +89,7 @@ export default function MembershipGradeCard({
           <button
             type="button"
             onClick={() => readMoreModalRef.current?.open()}
-            className="mt-1.5 text-[13px] font-semibold text-[#221A7A] underline underline-offset-2 transition hover:opacity-70"
+            className="mb-1.5 btn btn-ghost btn-link btn-secondary "
           >
             Read more
           </button>
