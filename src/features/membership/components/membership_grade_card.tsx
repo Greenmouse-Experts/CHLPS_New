@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Assets } from "@/lib/assets";
 import Modal, { type ModalHandle } from "@/components/DialogModal";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 type MembershipGradeCardProps = {
   badge: string;
@@ -131,9 +132,7 @@ export default function MembershipGradeCard({
       </div>
 
       <Modal ref={readMoreModalRef} title={title}>
-        <p className="whitespace-pre-line leading-relaxed text-[#5F5878] prose">
-          {body}
-        </p>
+        <MarkdownRenderer content={body} />
       </Modal>
     </article>
   );

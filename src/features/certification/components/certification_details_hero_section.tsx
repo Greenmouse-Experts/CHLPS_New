@@ -31,16 +31,15 @@ function formatRichText(content?: string) {
   // Strip hardcoded typography/colour inline styles from external pastes
   // (Figma, Word, Google Docs) so the section's own typography applies.
   cleaned = cleaned.replace(
-    /style=(["'])(.*?)\1/gi,
+    /\s*style=(["'])(.*?)\1/gi,
     (_match, quote, styleContent) => {
       const filtered = styleContent
         .replace(
           /(?:^|;)\s*(?:color|background-color|font-size|font-family|line-height|white-space)\s*:[^;]*/gi,
           "",
         )
-        .replace(/[;\s]+/g, "")
-        .trim();
-      return filtered ? `style=${quote}${styleContent}${quote}` : "";
+        .replace(/^[;\s]+|[;\s]+$/g, "");
+      return filtered ? ` style=${quote}${filtered}${quote}` : "";
     },
   );
 
