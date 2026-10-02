@@ -164,7 +164,7 @@ export default function CertificationDetailsHeroSection({
         }
       >
         <div
-          className="prose prose-sm sm:prose max-w-none text-base-content/90 [&_p]:mb-4 [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_h1]:text-2xl [&_h2]:text-xl [&_h3]:text-lg [&_h4]:text-base [&_strong]:font-bold"
+          className="prose prose-sm sm:prose max-w-none text-base-content/90 [&_p]:mb-4 [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_h1]:text-2xl [&_h2]:text-xl [&_h3]:text-lg [&_h4]:text-base [&_strong]:font-bold prose"
           dangerouslySetInnerHTML={{ __html: formattedBody }}
         />
       </Modal>

@@ -131,7 +131,7 @@ export default function MembershipGradeCard({
       </div>
 
       <Modal ref={readMoreModalRef} title={title}>
-        <p className="whitespace-pre-line leading-relaxed text-[#5F5878]">
+        <p className="whitespace-pre-line leading-relaxed text-[#5F5878] prose">
           {body}
         </p>
       </Modal>
