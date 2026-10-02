@@ -43,9 +43,16 @@ export default function CertificationDetailsEnrollSection({
               <div className="flex items-center bg-[#2F2683] p-4 sm:p-5 lg:p-6">
                 <div className="flex w-full flex-col rounded-[1.35rem] border border-white/20 bg-white/[0.08] px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-xl sm:rounded-[1.5rem] sm:px-6 sm:py-7">
                   {detail.fee && (
-                    <p className="text-[2.55rem] font-bold leading-none tracking-tight text-white sm:text-[2.85rem] lg:text-[3.15rem]">
-                      {detail.fee}
-                    </p>
+                    <div className="flex items-baseline gap-3">
+                      <p className="text-[2.55rem] font-bold leading-none tracking-tight text-white sm:text-[2.85rem] lg:text-[3.15rem]">
+                        {detail.fee}
+                      </p>
+                      {detail.discount && detail.discount > 0 ? (
+                        <span className="text-lg font-medium text-white/60 line-through">
+                          {`CA $${(detail.price! + detail.discount).toLocaleString()}`}
+                        </span>
+                      ) : null}
+                    </div>
                   )}
                   {detail.feeNow && (
                     <p className="  leading-relaxed text-white/90 sm:text-[14px] lg:text-[15px]">

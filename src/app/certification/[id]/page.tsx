@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CertificationDetailsPage from "@/features/certification/certification_details_page";
 import {
+  fetchCertificationBySlug,
   fetchProgramById,
   fetchPublicPrograms,
 } from "@/features/certification/services/certification_service";
@@ -37,13 +38,18 @@ export async function generateMetadata({
   params,
 }: CertificationIdPageProps): Promise<Metadata> {
   const { id } = await params;
-  const detail = await fetchProgramById(id);
+  const detail =
+    (await fetchProgramById(id)) ?? (await fetchCertificationBySlug(id));
 
   if (detail) {
     return {
       title: `${detail.cardTitle.replace(/\n/g, " ")} | CHLPS Canada`,
       description: detail.heroBody
-        ? detail.heroBody.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160)
+        ? detail.heroBody
+            .replace(/<[^>]*>/g, " ")
+            .replace(/\s+/g, " ")
+            .trim()
+            .slice(0, 160)
         : "",
       openGraph: detail.badge
         ? {
@@ -64,7 +70,8 @@ export default async function CertificationIdPage({
   params,
 }: CertificationIdPageProps) {
   const { id } = await params;
-  const detail = await fetchProgramById(id);
+  const detail =
+    (await fetchProgramById(id)) ?? (await fetchCertificationBySlug(id));
 
   if (!detail) {
     notFound();

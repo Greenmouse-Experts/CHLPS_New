@@ -39,9 +39,17 @@ const supportLinks = [
 ];
 
 const socialLinks: { label: string; href: string; icon: IconSvgElement }[] = [
-  { label: "Facebook", href: "#", icon: Facebook01Icon },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/ChLPSCanada",
+    icon: Facebook01Icon,
+  },
   { label: "Instagram", href: "#", icon: InstagramIcon },
-  { label: "LinkedIn", href: "#", icon: Linkedin01Icon },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/chlpscanada/",
+    icon: Linkedin01Icon,
+  },
   { label: "YouTube", href: "#", icon: YoutubeIcon },
 ];
 

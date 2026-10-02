@@ -27,12 +27,16 @@ function formatRichText(content?: string) {
   // Strip obsolete <font> tags while preserving text content
   cleaned = cleaned.replace(/<\/?font[^>]*>/gi, "");
 
-  // Strip hardcoded color and background-color inline styles from external pastes
+  // Strip hardcoded typography/colour inline styles from external pastes
+  // (Figma, Word, Google Docs) so the section's own typography applies.
   cleaned = cleaned.replace(
     /style=(["'])(.*?)\1/gi,
     (_match, quote, styleContent) => {
       const filtered = styleContent
-        .replace(/(?:^|;)\s*(?:color|background-color)\s*:[^;]*/gi, "")
+        .replace(
+          /(?:^|;)\s*(?:color|background-color|font-size|font-family|line-height|white-space)\s*:[^;]*/gi,
+          "",
+        )
         .trim();
       return filtered ? `style=${quote}${filtered}${quote}` : "";
     },

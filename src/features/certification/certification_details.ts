@@ -1,17 +1,67 @@
 import { Assets } from "@/lib/assets";
 
-export type JobOpportunity = {
+export type CertificationJobOpportunity = {
   id?: string;
   title: string;
   description?: string;
   body?: string;
 };
 
+/** @deprecated Use CertificationJobOpportunity instead. */
+export type JobOpportunity = CertificationJobOpportunity;
+
+export type CertificationQuestion = {
+  id?: string;
+  question: string;
+};
+
+/**
+ * Shape of a course as returned by the public program endpoints
+ * (e.g. GET /programs/public/slug/:slug).
+ */
+export type CertificationCourse = {
+  id: string;
+  title: string;
+  slug?: string;
+  shortDesc?: string;
+  fullDesc?: string;
+  price?: number;
+  discount?: number;
+  isPublished?: boolean;
+  featured?: boolean;
+  coverImage?: string;
+  banner?: string | null;
+  bannerText?: string | null;
+  certificationBenefits?: string[];
+  certificationImage?: string | null;
+  certificationText?: string | null;
+  entryRequirements?: string[];
+  applicationQuestions?: CertificationQuestion[];
+  jobOpportunities?: CertificationJobOpportunity[];
+};
+
+/**
+ * Shape of a program as returned by the public program endpoints
+ * (e.g. GET /programs/public/slug/:slug).
+ */
+export type CertificationProgram = {
+  id: string;
+  title: string;
+  slug?: string;
+  isPublished?: boolean;
+  coverImage?: string;
+  description?: string;
+  createdDate?: string;
+  courses?: CertificationCourse[];
+};
+
 export type CertificationDetail = {
   id?: string;
   programId?: string;
   courseId?: string;
+  slug?: string;
   price?: number;
+  discount?: number;
   abbr: string;
   badge: string;
   heroTitle: string;
@@ -23,6 +73,8 @@ export type CertificationDetail = {
   enrollHref: string;
   requirementsTitle: string;
   requirements: string[];
+  audienceTitle?: string;
+  audience?: string[];
   studiesBadge: string;
   studiesTitle: string;
   modules?: string[];
@@ -33,8 +85,8 @@ export type CertificationDetail = {
   outcomeImage: string;
   benefitsTitle: string;
   benefits: string[];
-  jobOpportunities?: JobOpportunity[];
-  applicationQuestions?: Array<{ id?: string; question: string }>;
+  jobOpportunities?: CertificationJobOpportunity[];
+  applicationQuestions?: CertificationQuestion[];
   coverImage?: string;
   bannerImage?: string;
   certificationImage?: string;

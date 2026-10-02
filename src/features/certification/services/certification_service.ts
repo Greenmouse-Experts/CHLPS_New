@@ -1,7 +1,12 @@
 import ApiService from "@/lib/network/api";
 import { ApiUrls } from "@/lib/network/api_url";
 import { Assets } from "@/lib/assets";
-import type { CertificationDetail } from "@/features/certification/certification_details";
+import type {
+  CertificationDetail,
+  CertificationProgram,
+  CertificationCourse,
+} from "@/features/certification/certification_details";
+import simpleApiClient from "@/lib/network/simpleApi";
 
 export interface ApiJobOpportunity {
   id?: string;
@@ -182,12 +187,63 @@ function stripHtml(html: string): string {
     .trim();
 }
 
+/**
+ * Extracts a "who is this for" audience list from a course description.
+ * Matches a bolded/detached heading such as "Who Is X For?" followed by
+ * either `*`/`-` bullet lines or an HTML `<ul>` list.
+ */
+export function extractAudience(description?: string): {
+  title?: string;
+  items: string[];
+} {
+  if (!description) return { items: [] };
+
+  const headingMatch = description.match(
+    /(?:<b>|<strong>|<h[1-6][^>]*>)?\s*(Who\s+Is[^<\n*\-]+?For\?)\s*(?:<\/b>|<\/strong>|<\/h[1-6]>)?/i,
+  );
+  if (!headingMatch) return { items: [] };
+
+  const title = headingMatch[1].trim();
+  const rest = description.slice(
+    (headingMatch.index ?? 0) + headingMatch[0].length,
+  );
+
+  const items: string[] = [];
+
+  // HTML list form
+  const htmlItems = rest.match(/<li[^>]*>([\s\S]*?)<\/li>/gi);
+  if (htmlItems && htmlItems.length > 0) {
+    for (const li of htmlItems) {
+      const text = stripHtml(li);
+      if (text) items.push(text);
+    }
+    return items.length > 0 ? { title, items } : { items: [] };
+  }
+
+  // Plain-text `*` / `-` bullet form
+  for (const line of rest.split(/\r?\n/)) {
+    const text = line.replace(/^\s*[*\u2022-]\s*/, "").trim();
+    if (!text) continue;
+    if (/^[*\u2022-]/.test(line.trim())) {
+      items.push(text);
+    } else if (items.length > 0) {
+      // Stop once bullets end and body prose resumes
+      break;
+    }
+  }
+
+  return items.length > 0 ? { title, items } : { items: [] };
+}
+
 export function cleanRichText(content?: string): string {
   if (!content) return "";
   let cleaned = content.trim();
 
   // Strip Figma metadata and buffer junk spans
-  cleaned = cleaned.replace(/<span[^>]*data-(?:metadata|buffer)[^>]*>[\s\S]*?<\/span>/gi, "");
+  cleaned = cleaned.replace(
+    /<span[^>]*data-(?:metadata|buffer)[^>]*>[\s\S]*?<\/span>/gi,
+    "",
+  );
 
   // Strip embedded <style> tags
   cleaned = cleaned.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
@@ -195,12 +251,16 @@ export function cleanRichText(content?: string): string {
   // Strip obsolete <font> tags while preserving text content
   cleaned = cleaned.replace(/<\/?font[^>]*>/gi, "");
 
-  // Strip hardcoded color and background-color inline styles from external pastes
+  // Strip hardcoded typography/colour inline styles from external pastes
+  // (Figma, Word, Google Docs) so the page's own typography applies.
   cleaned = cleaned.replace(
     /style=(["'])(.*?)\1/gi,
     (_match, quote, styleContent) => {
       const filtered = styleContent
-        .replace(/(?:^|;)\s*(?:color|background-color)\s*:[^;]*/gi, "")
+        .replace(
+          /(?:^|;)\s*(?:color|background-color|font-size|font-family|line-height|white-space)\s*:[^;]*/gi,
+          "",
+        )
         .trim();
       return filtered ? `style=${quote}${filtered}${quote}` : "";
     },
@@ -346,7 +406,7 @@ export function transformProgramToCertificationDetail(
       : program.courses?.[0]?.jobOpportunities &&
           program.courses[0].jobOpportunities.length > 0
         ? program.courses[0].jobOpportunities
-        : (program as any)?.jobOpportunities ?? [];
+        : ((program as any)?.jobOpportunities ?? []);
 
   const jobOpportunities = Array.isArray(rawJobs)
     ? rawJobs
@@ -480,4 +540,156 @@ export async function fetchProgramById(
   }
 
   return null;
+}
+
+export async function fetchCertificationBySlug(
+  idOrSlug: string,
+): Promise<CertificationDetail | null> {
+  try {
+    const resp = await simpleApiClient.get<CertificationProgram>(
+      `/programs/public/slug/${idOrSlug}`,
+    );
+    const program = resp.data as unknown as CertificationProgram;
+    if (!program || !program.id) return null;
+    return transformProgramResponseToCertificationDetail(program);
+  } catch (error) {
+    console.error(`Error fetching certification by slug ${idOrSlug}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Maps a live public program response (GET /programs/public/slug/:slug) to the
+ * flat CertificationDetail shape the certification details UI consumes.
+ *
+ * Unlike transformProgramToCertificationDetail, the raw response already nests
+ * course-level fields directly under its single `courses[]` entry and exposes
+ * no `courseOutcomes` array, so learning outcomes fall back to the section's
+ * programme-specific defaults.
+ */
+export function transformProgramResponseToCertificationDetail(
+  program: CertificationProgram,
+): CertificationDetail {
+  const course: CertificationCourse | undefined = program.courses?.[0];
+
+  const cleanTitle = (program.title || course?.title || "Certification Program")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const abbr = extractProgramAbbreviation(
+    `${cleanTitle} ${course?.title || ""}`,
+  );
+  const lowerAbbr = abbr.toLowerCase();
+  const fallbackBadge = BADGE_MAP[lowerAbbr] || Assets.images.certificates.clpa;
+
+  const coverImage =
+    program.coverImage && program.coverImage.startsWith("http")
+      ? program.coverImage
+      : course?.coverImage && course.coverImage.startsWith("http")
+        ? course.coverImage
+        : undefined;
+
+  const badge = coverImage || fallbackBadge;
+
+  const heroTitle = course?.title?.trim() || cleanTitle;
+
+  const rawBody =
+    course?.fullDesc?.trim() ||
+    course?.shortDesc?.trim() ||
+    program.description?.trim() ||
+    "";
+  const heroBody = cleanRichText(rawBody);
+
+  const audience = extractAudience(course?.shortDesc);
+
+  const cardTitle = `${abbr} – ${cleanTitle.replace(/\s*\([^)]*\)/g, "").trim()}`;
+
+  const price = course?.price;
+  const programId = program.id;
+  const courseId = course?.id;
+
+  const fee =
+    typeof price === "number" && price > 0
+      ? `CA $${price.toLocaleString()}`
+      : "";
+  const feeNow =
+    typeof price === "number" && price > 0
+      ? `One-time enrollment fee of CA $${price.toLocaleString()}`
+      : "";
+  const feeExpiry = "Accredited CHLPS Canada Professional Certification.";
+
+  const enrollHref = `/dashboard/register?program=${programId}`;
+
+  const requirements = (course?.entryRequirements ?? []).filter(Boolean);
+
+  const benefits = (course?.certificationBenefits ?? []).filter(Boolean);
+
+  const certificationImage =
+    course?.certificationImage &&
+    typeof course.certificationImage === "string" &&
+    course.certificationImage.startsWith("http")
+      ? course.certificationImage
+      : undefined;
+
+  const certificationText =
+    typeof course?.certificationText === "string"
+      ? course.certificationText
+      : undefined;
+
+  const outcomeImage =
+    certificationImage ||
+    (course?.coverImage && course.coverImage.startsWith("http")
+      ? course.coverImage
+      : Assets.images.clpaCertificate);
+
+  const jobOpportunities = (course?.jobOpportunities ?? [])
+    .map((job) => ({
+      id: job.id,
+      title: (job.title || "").trim(),
+      description: (job.description || job.body || "").trim(),
+      body: (job.description || job.body || "").trim(),
+    }))
+    .filter((job) => Boolean(job.title));
+
+  return {
+    id: programId,
+    programId,
+    courseId,
+    slug: program.slug,
+    price: typeof price === "number" ? price : undefined,
+    discount:
+      typeof course?.discount === "number" ? course.discount : undefined,
+    abbr,
+    badge,
+    coverImage,
+    bannerImage:
+      course?.banner && course.banner.startsWith("http")
+        ? course.banner
+        : undefined,
+    certificationImage,
+    certificationText,
+    heroTitle,
+    heroBody,
+    cardTitle,
+    fee,
+    feeNow,
+    feeExpiry,
+    enrollHref,
+    requirementsTitle: `Entry Requirements for the ${abbr} Certification`,
+    requirements,
+    audienceTitle: audience.title,
+    audience: audience.items,
+    studiesBadge: `${abbr} Course Outcomes:`,
+    studiesTitle: "Course Outcomes",
+    courseOutcomes: [],
+    modules: [],
+    outcomeBadge: `${abbr} Professional Certification`,
+    outcomeTitle: `${abbr} Professional\nCertification`,
+    outcomeBody: [],
+    outcomeImage,
+    benefitsTitle: `Benefits of the ${abbr} Certification`,
+    benefits,
+    jobOpportunities,
+    applicationQuestions: course?.applicationQuestions ?? [],
+  };
 }

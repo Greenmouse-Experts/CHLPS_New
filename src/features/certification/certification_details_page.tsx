@@ -10,13 +10,14 @@ import Footer from "@/features/components/footer";
 import CertificationDetailsHeroSection from "@/features/certification/components/certification_details_hero_section";
 import CertificationDetailsEnrollSection from "@/features/certification/components/certification_details_enroll_section";
 import CertificationDetailsRequirementsSection from "@/features/certification/components/certification_details_requirements_section";
+import CertificationDetailsAudienceSection from "@/features/certification/components/certification_details_audience_section";
 import CertificationDetailsLearningOutcomesSection from "@/features/certification/components/certification_details_learning_outcomes_section";
 import CertificationDetailsOutcomeSection from "@/features/certification/components/certification_details_outcome_section";
 import CertificationDetailsBenefitsListSection from "@/features/certification/components/certification_details_benefits_list_section";
 import CertificationDetailsJobsSection from "@/features/certification/components/certification_details_jobs_section";
 import Curriculum from "@/components/Curriculum";
 import type { CertificationDetail } from "@/features/certification/certification_details";
-import { fetchProgramById } from "@/features/certification/services/certification_service";
+import { fetchCertificationBySlug } from "@/features/certification/services/certification_service";
 import QueryCompLayout from "@/components/QueryCompLayout";
 import { useAppSelector } from "@/lib/store/store";
 import { PaypalPaymentModal } from "@/features/orders";
@@ -43,7 +44,7 @@ export default function CertificationDetailsPage({
     queryKey: ["public-program", id],
     queryFn: async () => {
       if (!id) return initialDetail ?? null;
-      const data = await fetchProgramById(id);
+      const data = await fetchCertificationBySlug(id);
       return data;
     },
     initialData: initialDetail ?? undefined,
@@ -169,6 +170,7 @@ export default function CertificationDetailsPage({
               onEnroll={handleEnrollClick}
             />
             <CertificationDetailsRequirementsSection detail={detail} />
+            <CertificationDetailsAudienceSection detail={detail} />
 
             <CertificationDetailsLearningOutcomesSection detail={detail} />
             <Curriculum id={detail.courseId || id || detail.id} />

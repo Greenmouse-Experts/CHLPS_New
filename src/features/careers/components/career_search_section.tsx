@@ -47,19 +47,26 @@ export default function CareerSearchSection() {
                 <Search size={15} strokeWidth={2.2} aria-hidden />
                 Career Search
               </p>
-
               <h2 className="mt-3 text-[1.375rem] font-medium leading-tight tracking-tight text-white sm:text-[1.625rem] lg:text-[1.75rem]">
                 Find Opportunities That Match Your Path
               </h2>
-
               <p className="mt-3 max-w-[620px]  leading-relaxed text-white/80 sm:text-[14px]">
                 Search live opportunities across Canada by role, keyword and
                 location, while using the ChLPS career pathways below to
                 understand the membership or certification route that supports
                 your growth.
               </p>
-
-              <form
+              <div
+                className="cj-search-box"
+                data-url="https://widget.careerjet.net/search-box/592b1473253d293431e7cce2a566a6e9"
+              >
+                <input />
+              </div>
+              <iframe
+                className="w-full min-h-[500px]"
+                src="https://widget.careerjet.net/search-box/592b1473253d293431e7cce2a566a6e9"
+              ></iframe>
+              {/*<form
                 onSubmit={handleSubmit}
                 className="mt-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:gap-5"
               >
@@ -118,8 +125,7 @@ export default function CareerSearchSection() {
                   Search Jobs
                   <ArrowRight size={16} strokeWidth={2.2} aria-hidden />
                 </button>
-              </form>
-
+              </form>*/}
               <p className="mt-5  text-white/80">
                 Live job search opens on{" "}
                 <a
