@@ -18,7 +18,7 @@ export default function MarkdownRenderer({
 
   return (
     <div
-      className={`markdown-body text-[16px] leading-relaxed text-[#2C2B36] sm:text-[17px] ${className}`}
+      className={`markdown-body text-[16px ] prose leading-relaxed text-[#2C2B36] sm:text-[17px] ${className}`}
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}

@@ -188,6 +188,24 @@ function stripHtml(html: string): string {
 }
 
 /**
+ * Builds the enroll-card title, prefixing the abbreviation only when it is not
+ * already present — prevents duplicates like "CLPA – CLPA – Certified…".
+ */
+export function buildCardTitle(abbr: string, title: string): string {
+  const base = title
+    .replace(/\s*\([^)]*\)/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const escapedAbbr = abbr.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const alreadyPrefixed = new RegExp(`^${escapedAbbr}\\s*[–-]\\s*`, "i").test(
+    base,
+  );
+
+  return alreadyPrefixed ? base : `${abbr} – ${base}`;
+}
+
+/**
  * Extracts a "who is this for" audience list from a course description.
  * Matches a bolded/detached heading such as "Who Is X For?" followed by
  * either `*`/`-` bullet lines or an HTML `<ul>` list.
@@ -307,7 +325,7 @@ export function transformProgramToCertificationDetail(
   const heroBody = cleanRichText(rawBody);
 
   // Card title
-  const cardTitle = `${abbr} – ${cleanTitle.replace(/\s*\([^)]*\)/g, "").trim()}`;
+  const cardTitle = buildCardTitle(abbr, cleanTitle);
 
   // Fee & Course ID
   const effectiveCourse = course || program.courses?.[0];
@@ -602,7 +620,7 @@ export function transformProgramResponseToCertificationDetail(
 
   const audience = extractAudience(course?.shortDesc);
 
-  const cardTitle = `${abbr} – ${cleanTitle.replace(/\s*\([^)]*\)/g, "").trim()}`;
+  const cardTitle = buildCardTitle(abbr, cleanTitle);
 
   const price = course?.price;
   const programId = program.id;

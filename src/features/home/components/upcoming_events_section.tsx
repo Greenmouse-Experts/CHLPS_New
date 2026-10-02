@@ -119,7 +119,7 @@ function FeaturedEventCard({ event }: { event: ChlpsEvent }) {
           fill
           unoptimized
           onError={() => setFailedImage(event.image)}
-          className="object-contain transition-transform ring ring-secondary duration-500 group-hover:scale-[1.03]"
+          className="object-cover transition-transform ring ring-secondary duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />

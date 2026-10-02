@@ -150,11 +150,15 @@ export const leaders: Leader[] = [
     ],
     expertise: [
       "Corporate Security",
-      "Risk Management",
+      "Enterprise Risk",
+      "Investigations",
       "Business Continuity",
-      "AML & Compliance",
-      "Financial Forensics",
-      "Professional Education",
+      "Crisis Management",
+      "Security Operations",
+      `Loss Prevention`,
+      `Regulatory Compliance`,
+      `Business Strategy`,
+      `Anti-Money Laundering`,
     ],
     profile: [
       {
