@@ -156,7 +156,7 @@ function FeaturedEventCard({ event }: { event: ChlpsEvent }) {
 function EventListCard({ event, index }: { event: ChlpsEvent; index: number }) {
   return (
     <article
-      className="reveal flex flex-1 items-center gap-4 rounded-2xl border border-secondary/35 bg-white p-4 shadow-[0_8px_24px_rgba(48,45,57,0.05)] sm:gap-5 sm:p-5"
+      className="reveal flex flex-1 items-center gap-4 rounded-2xl border border-secondary/35 bg-white shadow-[0_8px_24px_rgba(48,45,57,0.05)] p-4"
       style={revealStyle(index)}
     >
       <EventIconBadge icon={getCategoryIcon(event.category)} />
