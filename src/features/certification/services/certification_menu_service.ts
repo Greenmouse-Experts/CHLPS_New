@@ -143,23 +143,21 @@ export async function fetchProgramsMenuFromApi(): Promise<NavLinkItem[][]> {
   const programs = await fetchLivePrograms();
 
   if (programs.length > 0) {
-    const mapped: NavLinkItem[] = programs.map((item) => {
-      const id = item.id || item._id || item.slug || "";
-      const slug = item.slug || item.id || item._id || "";
-      const label = item.title || item.name || "Program";
+    const mapped: NavLinkItem[] = programs
+      .filter((item) => Boolean(item.slug))
+      .map((item) => {
+        const slug = item.slug as string;
+        const label = item.title || item.name || "Program";
 
-      const href =
-        item.href ||
-        resolveCertificationHref({
-          id,
-          slug,
-        });
+        const href = item.href || resolveCertificationHref({ slug });
 
-      return { label, href };
-    });
+        return { label, href };
+      });
 
-    const half = Math.ceil(mapped.length / 2);
-    return [mapped.slice(0, half), mapped.slice(half)];
+    if (mapped.length > 0) {
+      const half = Math.ceil(mapped.length / 2);
+      return [mapped.slice(0, half), mapped.slice(half)];
+    }
   }
 
   return [[], []];

@@ -221,5 +221,15 @@ export function resolveCertificationHref(item: {
     }
   }
 
+  // Fall back to a slugified title so links stay human-readable and resolve
+  // through the slug endpoint, rather than exposing the raw database id.
+  if (item.title) {
+    const slugified = item.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
+    if (slugified) return `/certification/${slugified}`;
+  }
+
   return `/certification/${item.id || ""}`;
 }
