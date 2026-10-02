@@ -10,6 +10,7 @@ import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 import Modal, { type ModalHandle } from "@/components/DialogModal";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 function formatRichText(content?: string) {
   if (!content) return "";
@@ -37,8 +38,9 @@ function formatRichText(content?: string) {
           /(?:^|;)\s*(?:color|background-color|font-size|font-family|line-height|white-space)\s*:[^;]*/gi,
           "",
         )
+        .replace(/[;\s]+/g, "")
         .trim();
-      return filtered ? `style=${quote}${filtered}${quote}` : "";
+      return filtered ? `style=${quote}${styleContent}${quote}` : "";
     },
   );
 
@@ -48,6 +50,48 @@ function formatRichText(content?: string) {
     .split(/\n\n+/)
     .map((paragraph) => `<p>${paragraph.replace(/\n/g, "<br />")}</p>`)
     .join("");
+}
+
+/**
+ * Converts stored rich text into markdown for the modal renderer.
+ *
+ * Fields arrive as a mix of pasted HTML (Figma/Word) and plain-text markdown
+ * conventions (`*` bullets, `<b>` headings). We normalise both into markdown/
+ * HTML that MarkdownRenderer can render as real headings, bold text and lists.
+ */
+function toMarkdown(content?: string) {
+  const cleaned = formatRichText(content);
+  if (!cleaned) return "";
+
+  // Normalise common HTML tags into their markdown equivalents so they render
+  // as real elements even when nested inside pasted wrapper spans.
+  let text = cleaned
+    .replace(/<\s*b\s*>/gi, "**")
+    .replace(/<\s*\/\s*b\s*>/gi, "**")
+    .replace(/<\s*strong\s*>/gi, "**")
+    .replace(/<\s*\/\s*strong\s*>/gi, "**")
+    .replace(/<\s*br\s*\/?\s*>/gi, "\n")
+    .replace(/<\s*\/\s*(p|div|h[1-6])\s*>/gi, "\n\n");
+
+  // Turn `*` / `-` bullet lines into markdown list items and give bolded
+  // headings their own block so markdown parses them correctly.
+  text = text
+    .split(/\r?\n/)
+    .map((line) => {
+      const bullet = line.match(/^\s*[*\u2022-]\s+(.*)$/);
+      if (bullet) return `- ${bullet[1].trim()}`;
+      return line;
+    })
+    .join("\n");
+
+  // Ensure a blank line before a bolded heading and after a list block so
+  // markdown treats them as separate blocks.
+  text = text
+    .replace(/\n(\*\*[^*\n]+\*\*)\n/g, "\n\n$1\n\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  return text;
 }
 
 export default function CertificationDetailsHeroSection({
@@ -63,6 +107,7 @@ export default function CertificationDetailsHeroSection({
   const modalRef = useRef<ModalHandle>(null);
 
   const formattedBody = formatRichText(detail.heroBody);
+  const markdownBody = toMarkdown(detail.heroBody);
   const modalTitle = detail.heroTitle
     ? detail.heroTitle.replace(/\n/g, " ").trim()
     : "Program Overview";
@@ -167,10 +212,7 @@ export default function CertificationDetailsHeroSection({
           </button>
         }
       >
-        <div
-          className="prose prose-sm sm:prose max-w-none text-base-content/90 [&_p]:mb-4 [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_h1]:text-2xl [&_h2]:text-xl [&_h3]:text-lg [&_h4]:text-base [&_strong]:font-bold prose"
-          dangerouslySetInnerHTML={{ __html: formattedBody }}
-        />
+        <MarkdownRenderer content={markdownBody} />
       </Modal>
     </section>
   );
