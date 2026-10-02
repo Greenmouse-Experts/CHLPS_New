@@ -54,7 +54,7 @@ const SignInPage = () => {
             </Link>
             <h2 className="mt-8 text-center text-2xl font-medium text-primary md:text-3xl">
               Sign in to continue your{" "}
-              <span className="text-secondary">journey</span>
+              <span className="text-secondary">Professional journey</span>
             </h2>
           </div>
 
