@@ -62,15 +62,24 @@ function toMarkdown(content?: string) {
   const cleaned = formatRichText(content);
   if (!cleaned) return "";
 
+  // Strip inline wrapper tags (e.g. pasted Figma/Word <span>) so their text and
+  // any markdown list syntax inside them becomes top-level and actually parses.
+  // Markdown does not interpret syntax inside a raw HTML block.
+  let text = cleaned
+    .replace(/<\s*span[^>]*>/gi, "")
+    .replace(/<\s*\/\s*span\s*>/gi, "")
+    .replace(/<\s*div[^>]*>/gi, "\n")
+    .replace(/<\s*\/\s*div\s*>/gi, "\n\n");
+
   // Normalise common HTML tags into their markdown equivalents so they render
   // as real elements even when nested inside pasted wrapper spans.
-  let text = cleaned
+  text = text
     .replace(/<\s*b\s*>/gi, "**")
     .replace(/<\s*\/\s*b\s*>/gi, "**")
     .replace(/<\s*strong\s*>/gi, "**")
     .replace(/<\s*\/\s*strong\s*>/gi, "**")
     .replace(/<\s*br\s*\/?\s*>/gi, "\n")
-    .replace(/<\s*\/\s*(p|div|h[1-6])\s*>/gi, "\n\n");
+    .replace(/<\s*\/\s*(p|h[1-6])\s*>/gi, "\n\n");
 
   // Turn `*` / `-` bullet lines into markdown list items and give bolded
   // headings their own block so markdown parses them correctly.

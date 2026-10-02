@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, CSSProperties } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
@@ -22,11 +22,17 @@ import QueryCompLayout from "@/components/QueryCompLayout";
 import { useAppSelector } from "@/lib/store/store";
 import { PaypalPaymentModal } from "@/features/orders";
 import { orderService } from "@/features/orders/services/order_service";
+import PageContainer from "../components/page_container";
+import { Reveal } from "../components/reveal";
+import HeaderText from "@/components/HeaderText";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 type CertificationDetailsPageProps = {
   detail?: CertificationDetail | null;
   id?: string;
 };
+const CARD_SHADOW =
+  "0 18px 40px 0 rgba(34, 26, 122, 0.08), inset 0 4px 25px 0 rgba(34, 26, 122, 0.25)";
 
 export default function CertificationDetailsPage({
   detail: initialDetail,
@@ -169,6 +175,27 @@ export default function CertificationDetailsPage({
               detail={detail}
               onEnroll={handleEnrollClick}
             />
+
+            {/*///description*/}
+
+            <section className="bg-white py-14 sm:py-8 ">
+              <PageContainer>
+                <Reveal>
+                  <article
+                    className="mx-auto max-w-[56rem] rounded-[1.75rem] bg-white px-5 py-8 sm:rounded-[2.25rem] sm:px-8 sm:py-10 lg:px-14 lg:py-12"
+                    style={{ boxShadow: CARD_SHADOW } as CSSProperties}
+                  >
+                    <div className="flex flex-col items-center text-center">
+                      <HeaderText left="About" right={detail.abbr} switch />
+
+                      <div className="prose prose-lg">
+                        <MarkdownRenderer content={detail.heroBody} />
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
+              </PageContainer>
+            </section>
             <CertificationDetailsRequirementsSection detail={detail} />
             <CertificationDetailsAudienceSection detail={detail} />
 
