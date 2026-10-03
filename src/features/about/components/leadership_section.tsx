@@ -27,8 +27,12 @@ export default function LeadershipSection() {
 
           <Reveal delay={160}>
             <p className=" max-w-[34rem] text-[15px] leading-relaxed  sm:text-base">
-              The governance page identifies the following leaders responsible
-              for Board oversight and executive management within ChLPS Canada.
+              Our Board of Directors provides strategic leadership, sound
+              governance, and professional oversight, guiding ChLPS Canada’s
+              mission, strengthening organizational integrity and
+              accountability, advancing professional standards, safeguarding
+              stakeholder interests, and supporting sustainable growth and
+              excellence across the Loss Prevention profession in Canada.
             </p>
           </Reveal>
         </div>
