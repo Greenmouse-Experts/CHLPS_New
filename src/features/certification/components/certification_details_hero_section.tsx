@@ -143,7 +143,7 @@ export default function CertificationDetailsHeroSection({
                   title="Click to read full description"
                 >
                   <div
-                    className=" text-[14px] leading-[1.75] text-white sm:text-[15px] sm:leading-[1.7] [&_*]:!text-white [&_p]:inline [&_p]:mr-1.5 [&_li]:inline [&_li]:mr-1.5 [&_span]:!text-white [&_strong]:!text-white [&_a]:!text-white"
+                    className="line-clamp-5 text-[14px] leading-[1.75] text-white sm:text-[15px] sm:leading-[1.7] [&_*]:!text-white [&_p]:inline [&_p]:mr-1.5 [&_li]:inline [&_li]:mr-1.5 [&_span]:!text-white [&_strong]:!text-white [&_a]:!text-white"
                     dangerouslySetInnerHTML={{ __html: formattedBody }}
                   />
                   <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-secondary group-hover:underline">
