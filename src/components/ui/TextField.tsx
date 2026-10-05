@@ -32,7 +32,7 @@ function FieldLabel({
   return (
     <label
       htmlFor={htmlFor}
-      className="mb-1.5 block  font-medium uppercase tracking-[0.12em] text-text/55"
+      className="mb-1.5 block  font-medium uppercase tracking-[0.12em] text-black"
     >
       {children}
       {required && <span className="ml-0.5 text-[#E84D52]">*</span>}
@@ -41,7 +41,7 @@ function FieldLabel({
 }
 
 function FieldHint({ children }: { children: React.ReactNode }) {
-  return <p className="mt-1  text-text/55">{children}</p>;
+  return <p className="mt-1  text-black/55">{children}</p>;
 }
 
 function FieldError({ children }: { children: React.ReactNode }) {
@@ -113,7 +113,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           {leftIcon && (
             <span
               className={cn(
-                "pointer-events-none absolute left-0 flex h-full items-center justify-center text-text/50",
+                "pointer-events-none absolute left-0 flex h-full items-center justify-center text-black",
                 sizes.icon,
               )}
             >
@@ -128,7 +128,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             onChange={onChange}
             required={required}
             className={cn(
-              "w-full rounded-lg border bg-white text-text placeholder:text-text/40",
+              "w-full rounded-lg border bg-white text-black placeholder:text-black/40",
               "transition-colors duration-150 focus:outline-none",
               hasError
                 ? "border-[#E84D52] focus:border-[#E84D52]"
@@ -164,7 +164,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
               <button
                 type="button"
                 onClick={onClear}
-                className="text-text/50 transition-colors hover:text-text"
+                className="text-black transition-colors hover:text-black"
                 tabIndex={-1}
                 aria-label="Clear"
               >
@@ -180,7 +180,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             )}
             {!showClear && rightAction && rightAction}
             {!showClear && !rightAction && rightIcon && (
-              <span className="pointer-events-none text-text/50">
+              <span className="pointer-events-none text-black">
                 {rightIcon}
               </span>
             )}
@@ -209,7 +209,7 @@ const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
       <button
         type="button"
         onClick={() => setShow((value) => !value)}
-        className="text-text/50 transition-colors hover:text-text"
+        className="text-black transition-colors hover:text-black"
         tabIndex={-1}
         aria-label={show ? "Hide password" : "Show password"}
       >

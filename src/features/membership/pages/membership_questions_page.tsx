@@ -505,7 +505,7 @@ export default function MembershipQuestionsPage({
           estimatedAmount={detail?.price ?? 0}
           onSuccess={() => {
             setIsPaymentModalOpen(false);
-            router.push("/dashboard/purchase-history?payment=success");
+            router.push(`/dashboard/membership`);
           }}
         />
       )}
