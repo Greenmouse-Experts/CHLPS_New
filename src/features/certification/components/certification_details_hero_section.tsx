@@ -10,27 +10,43 @@ import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 import Modal, { type ModalHandle } from "@/components/DialogModal";
-import MarkdownRenderer from "@/components/MarkdownRenderer";
+import MarkdownRenderer, {
+  preprocessMarkdown,
+} from "@/components/MarkdownRenderer";
 
 function formatRichText(content?: string) {
   if (!content) return "";
-  let cleaned = content.trim();
+  let text = content.trim();
+
+  // Unescape literal \n if present
+  if (text.includes("\\n") && !text.includes("\n")) {
+    text = text.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n");
+  }
+
+  // Decode XML/HTML newline and whitespace entities
+  text = text
+    .replace(/&#x0*A;/gi, "\n")
+    .replace(/&#0*10;/g, "\n")
+    .replace(/&#x0*D;/gi, "\r")
+    .replace(/&#0*13;/g, "\r")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&#160;/g, " ");
 
   // Strip Figma metadata and buffer junk spans
-  cleaned = cleaned.replace(
+  text = text.replace(
     /<span[^>]*data-(?:metadata|buffer)[^>]*>[\s\S]*?<\/span>/gi,
     "",
   );
 
   // Strip embedded <style> tags
-  cleaned = cleaned.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
+  text = text.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
 
   // Strip obsolete <font> tags while preserving text content
-  cleaned = cleaned.replace(/<\/?font[^>]*>/gi, "");
+  text = text.replace(/<\/?font[^>]*>/gi, "");
 
   // Strip hardcoded typography/colour inline styles from external pastes
   // (Figma, Word, Google Docs) so the section's own typography applies.
-  cleaned = cleaned.replace(
+  text = text.replace(
     /\s*style=(["'])(.*?)\1/gi,
     (_match, quote, styleContent) => {
       const filtered = styleContent
@@ -43,63 +59,29 @@ function formatRichText(content?: string) {
     },
   );
 
-  const hasHtml = /<[a-z][\s\S]*>/i.test(cleaned);
-  if (hasHtml) return cleaned;
-  return cleaned
+  // Convert markdown bold to <strong>
+  text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+
+  // If it already has standard block HTML elements
+  const hasHtml = /<(?:p|div|ul|ol|li|h[1-6]|table|blockquote)[^>]*>/i.test(
+    text,
+  );
+  if (hasHtml) return text;
+
+  // Otherwise convert paragraphs and lists to HTML
+  return text
     .split(/\n\n+/)
-    .map((paragraph) => `<p>${paragraph.replace(/\n/g, "<br />")}</p>`)
-    .join("");
-}
-
-/**
- * Converts stored rich text into markdown for the modal renderer.
- *
- * Fields arrive as a mix of pasted HTML (Figma/Word) and plain-text markdown
- * conventions (`*` bullets, `<b>` headings). We normalise both into markdown/
- * HTML that MarkdownRenderer can render as real headings, bold text and lists.
- */
-function toMarkdown(content?: string) {
-  const cleaned = formatRichText(content);
-  if (!cleaned) return "";
-
-  // Strip inline wrapper tags (e.g. pasted Figma/Word <span>) so their text and
-  // any markdown list syntax inside them becomes top-level and actually parses.
-  // Markdown does not interpret syntax inside a raw HTML block.
-  let text = cleaned
-    .replace(/<\s*span[^>]*>/gi, "")
-    .replace(/<\s*\/\s*span\s*>/gi, "")
-    .replace(/<\s*div[^>]*>/gi, "\n")
-    .replace(/<\s*\/\s*div\s*>/gi, "\n\n");
-
-  // Normalise common HTML tags into their markdown equivalents so they render
-  // as real elements even when nested inside pasted wrapper spans.
-  text = text
-    .replace(/<\s*b\s*>/gi, "**")
-    .replace(/<\s*\/\s*b\s*>/gi, "**")
-    .replace(/<\s*strong\s*>/gi, "**")
-    .replace(/<\s*\/\s*strong\s*>/gi, "**")
-    .replace(/<\s*br\s*\/?\s*>/gi, "\n")
-    .replace(/<\s*\/\s*(p|h[1-6])\s*>/gi, "\n\n");
-
-  // Turn `*` / `-` bullet lines into markdown list items and give bolded
-  // headings their own block so markdown parses them correctly.
-  text = text
-    .split(/\r?\n/)
-    .map((line) => {
-      const bullet = line.match(/^\s*[*\u2022-]\s+(.*)$/);
-      if (bullet) return `- ${bullet[1].trim()}`;
-      return line;
+    .map((block) => {
+      const trimmed = block.trim();
+      if (!trimmed) return "";
+      const lines = trimmed.split(/\r?\n/);
+      const isList = lines.every((l) => /^[*•-]\s+/.test(l.trim()));
+      if (isList) {
+        return `<ul>${lines.map((l) => `<li>${l.replace(/^[*•-]\s+/, "")}</li>`).join("")}</ul>`;
+      }
+      return `<p>${trimmed.replace(/\n/g, "<br />")}</p>`;
     })
-    .join("\n");
-
-  // Ensure a blank line before a bolded heading and after a list block so
-  // markdown treats them as separate blocks.
-  text = text
-    .replace(/\n(\*\*[^*\n]+\*\*)\n/g, "\n\n$1\n\n")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
-
-  return text;
+    .join("");
 }
 
 export default function CertificationDetailsHeroSection({
@@ -115,7 +97,7 @@ export default function CertificationDetailsHeroSection({
   const modalRef = useRef<ModalHandle>(null);
 
   const formattedBody = formatRichText(detail.heroBody);
-  const markdownBody = toMarkdown(detail.heroBody);
+  const markdownBody = preprocessMarkdown(detail.heroBody);
   const modalTitle = detail.heroTitle
     ? detail.heroTitle.replace(/\n/g, " ").trim()
     : "Program Overview";
@@ -161,7 +143,7 @@ export default function CertificationDetailsHeroSection({
                   title="Click to read full description"
                 >
                   <div
-                    className="line-clamp-5 text-[14px] leading-[1.75] text-white sm:text-[15px] sm:leading-[1.7] [&_*]:!text-white [&_p]:inline [&_p]:mr-1.5 [&_li]:inline [&_li]:mr-1.5 [&_span]:!text-white [&_strong]:!text-white [&_a]:!text-white"
+                    className=" text-[14px] leading-[1.75] text-white sm:text-[15px] sm:leading-[1.7] [&_*]:!text-white [&_p]:inline [&_p]:mr-1.5 [&_li]:inline [&_li]:mr-1.5 [&_span]:!text-white [&_strong]:!text-white [&_a]:!text-white"
                     dangerouslySetInnerHTML={{ __html: formattedBody }}
                   />
                   <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-secondary group-hover:underline">
@@ -220,7 +202,13 @@ export default function CertificationDetailsHeroSection({
           </button>
         }
       >
-        <MarkdownRenderer content={markdownBody} />
+        {/*<MarkdownRenderer content={markdownBody} />*/}
+        <div>
+          <div
+            className="prose"
+            dangerouslySetInnerHTML={{ __html: formattedBody }}
+          />
+        </div>
       </Modal>
     </section>
   );
