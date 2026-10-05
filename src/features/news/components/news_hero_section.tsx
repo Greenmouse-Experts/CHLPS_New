@@ -35,9 +35,12 @@ export default function NewsHeroSection() {
 
             <Reveal delay={160}>
               <p className=" max-w-[520px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
-                Choose content that answers your questions, learn from admired
-                professionals, and gain exclusive insights to excel in your
-                role.
+                Stay informed with the latest news, professional insights,
+                industry developments, and thought leadership from ChLPS-Canada.
+                Our News and Blogs provide practical perspectives on emerging
+                Loss Prevention trends, evolving risks, professional practice,
+                organizational protection, career development, and issues
+                shaping the future of the Loss Prevention profession.
               </p>
             </Reveal>
           </div>

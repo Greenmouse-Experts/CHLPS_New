@@ -35,17 +35,14 @@ export default function CertificationHeroSection() {
             <Reveal delay={160}>
               <div className=" max-w-[740px] space-y-4 text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5 lg:text-base xl:text-[20px]">
                 <p>
-                  The Association of Chartered Loss Prevention Specialists of
-                  Canada provides professional certification and skill
-                  development programs through which you can become a Certified
-                  Professional, earning the prestigious CLPO, CLPA, CLPM, or
-                  ChLPS certifications.
-                </p>
-                <p>
-                  Our commitment to professional development is reflected in
-                  these certifications – Certified Loss Prevention Officer
-                  (CLPO™), Certified Loss Prevention Associate (CLPA™), and
-                  Chartered Loss Prevention Specialist (ChLPS™).
+                  ChLPS-Canada certifications provide structured pathways for
+                  Loss Prevention professionals to develop expertise,
+                  demonstrate professional competence, and earn recognized
+                  credentials. From foundational practice to advanced management
+                  and chartered status, our certification programs strengthen
+                  professional credibility, support career progression, promote
+                  ethical practice, and advance excellence across the evolving
+                  Loss Prevention profession.
                 </p>
               </div>
             </Reveal>

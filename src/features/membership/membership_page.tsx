@@ -18,7 +18,7 @@ const MembershipPage = () => {
         notUppercase
         title="A professional home for every stage"
         accent="of loss prevention."
-        body="Build professional standing through membership, certification and continuous learning."
+        body="Membership with ChLPS-Canada connects you to a professional community committed to advancing excellence in Loss Prevention. Through professional recognition, continuous development, industry engagement, knowledge sharing, networking, and access to valuable resources, members strengthen their expertise, enhance professional credibility, expand career opportunities, build meaningful relationships, and contribute to shaping the future of the Loss Prevention profession."
         image={Assets.images.heroBg1}
         imageAlt="CHLPS Canada professionals standing together"
         imageClassName="object-cover object-[right_center]"

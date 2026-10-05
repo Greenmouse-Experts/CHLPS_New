@@ -40,9 +40,13 @@ export default function CareerHeroSection() {
 
             <Reveal delay={160}>
               <p className=" max-w-[520px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
-                Build a rewarding and fulfilling career protecting people,
-                assets, information, profits and organizational values across
-                every industry.
+                The ChLPS-Canada Career Centre supports Loss Prevention
+                professionals at every stage of their career journey. Explore
+                career opportunities, professional development resources,
+                industry guidance, certification pathways, and practical
+                insights designed to strengthen employability, enhance
+                professional competence, support career advancement, and connect
+                talent with opportunities across the Loss Prevention profession.
               </p>
             </Reveal>
           </div>

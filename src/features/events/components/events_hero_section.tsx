@@ -14,10 +14,12 @@ export default function EventsHeroSection({
   title = "Events",
   body = (
     <>
-      Stay informed through industry events, professional forums, emerging Loss
-      Prevention trends, regulatory developments, evolving technologies, best
-      practices, expert insights, and important updates shaping the loss
-      prevention profession.
+      ChLPS-Canada events bring together Loss Prevention professionals, industry
+      leaders, practitioners, and organizations to exchange knowledge, explore
+      emerging challenges, and share practical insights. Through forums,
+      seminars, workshops, and professional engagements, our events strengthen
+      industry connections, encourage continuous learning, and advance
+      professional excellence across the Loss Prevention community
     </>
   ),
   compact = false,

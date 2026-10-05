@@ -34,8 +34,14 @@ const AboutPage = () => {
             <span className="text-secondary">loss prevention</span>
           </h2>
           <p className="text-white text-lg">
-            A credible professional home for loss prevention, security, risk and
-            related professionals.
+            The Association of Chartered Loss Prevention Specialists of Canada,
+            ChLPS-Canada, is a national professional body dedicated to advancing
+            Loss Prevention through professional standards, education,
+            certification, research, ethical practice, and industry
+            collaboration. We develop competent professionals, strengthen
+            organizational Loss Prevention capabilities, and promote the
+            profession as a strategic contributor to business protection,
+            performance, and resilience.
           </p>
         </div>
       </AboutHeroSection>

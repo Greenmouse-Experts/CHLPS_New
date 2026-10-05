@@ -34,8 +34,12 @@ export default function ContactHeroSection() {
 
             <Reveal delay={160}>
               <p className=" max-w-[460px] text-[15px] leading-relaxed text-white/95 sm:text-base lg:mt-5">
-                Connect with ChLPS Canada for membership, certification, events
-                and general enquiries.
+                Connect with ChLPS-Canada for membership, certification,
+                professional development, partnerships, events, and general
+                enquiries. Our team is committed to providing timely
+                information, professional guidance, and responsive support to
+                individuals and organizations seeking to engage with Canada’s
+                Loss Prevention professional community.
               </p>
             </Reveal>
           </div>
