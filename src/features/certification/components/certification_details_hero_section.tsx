@@ -202,12 +202,8 @@ export default function CertificationDetailsHeroSection({
           </button>
         }
       >
-        {/*<MarkdownRenderer content={markdownBody} />*/}
         <div>
-          <div
-            className="prose"
-            dangerouslySetInnerHTML={{ __html: formattedBody }}
-          />
+          <MarkdownRenderer content={markdownBody} />
         </div>
       </Modal>
     </section>
