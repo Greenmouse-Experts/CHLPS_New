@@ -10,9 +10,7 @@ import PageContainer from "@/features/components/page_container";
 import { Assets } from "@/lib/assets";
 import type { CertificationDetail } from "@/features/certification/certification_details";
 import Modal, { type ModalHandle } from "@/components/DialogModal";
-import MarkdownRenderer, {
-  preprocessMarkdown,
-} from "@/components/MarkdownRenderer";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 function formatRichText(content?: string) {
   if (!content) return "";
@@ -97,7 +95,7 @@ export default function CertificationDetailsHeroSection({
   const modalRef = useRef<ModalHandle>(null);
 
   const formattedBody = formatRichText(detail.heroBody);
-  const markdownBody = preprocessMarkdown(detail.heroBody);
+  const markdownBody = detail.heroBody;
   const modalTitle = detail.heroTitle
     ? detail.heroTitle.replace(/\n/g, " ").trim()
     : "Program Overview";

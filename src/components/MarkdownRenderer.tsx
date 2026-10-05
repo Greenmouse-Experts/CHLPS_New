@@ -12,10 +12,10 @@ export interface MarkdownRendererProps {
   fallback?: React.ReactNode;
 }
 
-// Configure marked with GitHub-flavored markdown and line break support
+// Configure marked with GitHub-flavored markdown
 marked.use({
   gfm: true,
-  breaks: true,
+  breaks: false,
 });
 
 export function preprocessMarkdown(content?: string | null): string {
@@ -23,9 +23,7 @@ export function preprocessMarkdown(content?: string | null): string {
   let text = String(content).trim();
 
   // 1. Unescape literal escaped newlines if present (e.g. from JSON serialization "\\n")
-  if (text.includes("\\n") && !text.includes("\n")) {
-    text = text.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n");
-  }
+  text = text.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n");
 
   // 2. Decode XML/HTML character entities for whitespace & newlines
   text = text
@@ -42,18 +40,71 @@ export function preprocessMarkdown(content?: string | null): string {
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
     .replace(/<\/?font[^>]*>/gi, "");
 
-  // 4. Normalise bullet items (lines starting with *, •, -, etc.)
-  text = text
-    .split(/\r?\n/)
-    .map((line) => {
-      const trimmed = line.trim();
-      const bullet = trimmed.match(/^[*•-]\s+(.*)$/);
-      if (bullet) return `* ${bullet[1].trim()}`;
-      return line;
-    })
-    .join("\n");
+  // If text already has block HTML elements (<p>, <div>, etc.), let marked/DOMPurify render as is
+  const hasBlockHtml = /<(?:p|div|ul|ol|li|h[1-6]|table|blockquote)\b/i.test(
+    text,
+  );
+  if (hasBlockHtml) {
+    return text.trim();
+  }
 
-  return text.trim();
+  // 4. Split by lines to ensure intentional paragraphs and lists are properly structured
+  const rawLines = text.split(/\r?\n/);
+  const formattedLines: string[] = [];
+
+  for (let i = 0; i < rawLines.length; i++) {
+    const line = rawLines[i];
+    const trimmed = line.trim();
+
+    // Preserve empty lines
+    if (!trimmed) {
+      if (
+        formattedLines.length > 0 &&
+        formattedLines[formattedLines.length - 1] !== ""
+      ) {
+        formattedLines.push("");
+      }
+      continue;
+    }
+
+    // List item (bullet or numbered)
+    const bulletMatch = trimmed.match(/^([*•-]|\d+[.)])\s+(.*)$/);
+    if (bulletMatch) {
+      const prev = formattedLines[formattedLines.length - 1];
+      // Ensure empty line before starting a list
+      if (
+        prev !== undefined &&
+        prev !== "" &&
+        !/^([*•-]|\d+[.)])\s+/.test(prev)
+      ) {
+        formattedLines.push("");
+      }
+      formattedLines.push(`* ${bulletMatch[2].trim()}`);
+      continue;
+    }
+
+    // Heading or bold title line (e.g. # Title or **Title**)
+    const isHeading =
+      /^#{1,6}\s+/.test(trimmed) || /^\*\*[^*]+\*\*$/.test(trimmed);
+    if (isHeading) {
+      const prev = formattedLines[formattedLines.length - 1];
+      if (prev !== undefined && prev !== "") {
+        formattedLines.push("");
+      }
+      formattedLines.push(trimmed);
+      continue;
+    }
+
+    // Regular paragraph line
+    const prev = formattedLines[formattedLines.length - 1];
+    if (prev !== undefined && prev !== "") {
+      // If previous line was a list item or text line, separate into its own paragraph block
+      formattedLines.push("");
+    }
+    formattedLines.push(trimmed);
+  }
+
+  return formattedLines.join("\n").trim();
 }
 
 export function MarkdownRenderer({
@@ -85,23 +136,20 @@ export function MarkdownRenderer({
   }
 
   return (
-    <div
-      className={cn(
-        "prose prose-sm max-w-none text-base-content/90 font-normal leading-relaxed",
-        "prose-headings:font-bold prose-headings:text-base-content prose-headings:tracking-tight",
-        "prose-p:leading-relaxed prose-p:my-2",
-        "prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline",
-        "prose-strong:font-semibold prose-strong:text-base-content",
-        "prose-ul:my-2 prose-ol:my-2 prose-li:my-0.5",
-        "prose-code:bg-base-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-code:font-mono",
-        "prose-pre:bg-base-300 prose-pre:text-base-content prose-pre:rounded-xl",
-        "prose-blockquote:border-l-primary prose-blockquote:text-base-content/70 prose-blockquote:italic",
-        "prose-table:border-collapse prose-th:border prose-th:border-base-300 prose-th:p-2 prose-th:bg-base-200/50 prose-td:border prose-td:border-base-300 prose-td:p-2",
-        "prose-img:rounded-xl prose-img:border prose-img:border-base-300/60",
-        className,
-      )}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    <div className="w-full border-none">
+      <div
+        className={cn(
+          "prose  max-w-none text-base-content/90 font-normal leading-relaxed",
+          "prose-headings:font-bold prose-headings:text-base-content prose-headings:tracking-tight",
+          "prose-p:leading-relaxed prose-p:my-3",
+          "prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline",
+          "prose-strong:font-semibold prose-strong:text-base-content",
+          "prose-ul:my-3 prose-ol:my-3 prose-li:my-1",
+          className,
+        )}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+    </div>
   );
 }
 
