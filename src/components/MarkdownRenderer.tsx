@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
+import React, { useMemo } from "react";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
 import { cn } from "@/lib/tokens";
 
 export interface MarkdownRendererProps {
@@ -13,11 +12,17 @@ export interface MarkdownRendererProps {
   fallback?: React.ReactNode;
 }
 
+// Configure marked with GitHub-flavored markdown and line break support
+marked.use({
+  gfm: true,
+  breaks: true,
+});
+
 export function preprocessMarkdown(content?: string | null): string {
   if (!content) return "";
-  let text = content.trim();
+  let text = String(content).trim();
 
-  // 1. Unescape literal escaped newlines if present
+  // 1. Unescape literal escaped newlines if present (e.g. from JSON serialization "\\n")
   if (text.includes("\\n") && !text.includes("\n")) {
     text = text.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n");
   }
@@ -31,53 +36,24 @@ export function preprocessMarkdown(content?: string | null): string {
     .replace(/&nbsp;/gi, " ")
     .replace(/&#160;/g, " ");
 
-  // 3. Strip metadata, style, and font tags
+  // 3. Strip metadata, style, and font tags from external paste (Figma / Word)
   text = text
     .replace(/<span[^>]*data-(?:metadata|buffer)[^>]*>[\s\S]*?<\/span>/gi, "")
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
     .replace(/<\/?font[^>]*>/gi, "");
 
-  // 4. Normalise HTML wrappers if mixed with markdown syntax
-  text = text
-    .replace(/<\s*p[^>]*>/gi, "\n\n")
-    .replace(/<\s*\/\s*p\s*>/gi, "\n\n")
-    .replace(/<\s*div[^>]*>/gi, "\n\n")
-    .replace(/<\s*\/\s*div\s*>/gi, "\n\n")
-    .replace(/<\s*span[^>]*>/gi, "")
-    .replace(/<\s*\/\s*span\s*>/gi, "")
-    .replace(/<\s*b\s*>/gi, "**")
-    .replace(/<\s*\/\s*b\s*>/gi, "**")
-    .replace(/<\s*strong\s*>/gi, "**")
-    .replace(/<\s*\/\s*strong\s*>/gi, "**")
-    .replace(/<\s*br\s*\/?\s*>/gi, "\n")
-    .replace(/<\s*\/h([1-6])\s*>/gi, "\n\n")
-    .replace(/<h1[^>]*>/gi, "\n\n# ")
-    .replace(/<h2[^>]*>/gi, "\n\n## ")
-    .replace(/<h3[^>]*>/gi, "\n\n### ")
-    .replace(/<h4[^>]*>/gi, "\n\n#### ")
-    .replace(/<h[56][^>]*>/gi, "\n\n##### ")
-    .replace(/<\s*li[^>]*>/gi, "\n- ")
-    .replace(/<\s*\/\s*li\s*>/gi, "")
-    .replace(/<\s*\/?\s*(ul|ol)[^>]*>/gi, "\n\n");
-
-  // 5. Normalise bullet items (lines starting with *, •, -, etc.)
+  // 4. Normalise bullet items (lines starting with *, •, -, etc.)
   text = text
     .split(/\r?\n/)
     .map((line) => {
       const trimmed = line.trim();
       const bullet = trimmed.match(/^[*•-]\s+(.*)$/);
-      if (bullet) return `- ${bullet[1].trim()}`;
+      if (bullet) return `* ${bullet[1].trim()}`;
       return line;
     })
     .join("\n");
 
-  // 6. Ensure clean spacing around markdown headings and lists
-  text = text
-    .replace(/\n(\*\*[^*\n]+\*\*)\n/g, "\n\n$1\n\n")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
-
-  return text;
+  return text.trim();
 }
 
 export function MarkdownRenderer({
@@ -87,37 +63,45 @@ export function MarkdownRenderer({
   fallback = null,
 }: MarkdownRendererProps) {
   const rawText = content ?? children ?? "";
-  const text = preprocessMarkdown(rawText);
+  const cleanedText = preprocessMarkdown(rawText);
 
-  if (!text || !text.trim()) {
+  const html = useMemo(() => {
+    if (!cleanedText) return "";
+    try {
+      const parsed = marked.parse(cleanedText) as string;
+      if (typeof window !== "undefined") {
+        return DOMPurify.sanitize(parsed, {
+          ADD_ATTR: ["target", "rel"],
+        });
+      }
+      return parsed;
+    } catch {
+      return cleanedText;
+    }
+  }, [cleanedText]);
+
+  if (!cleanedText) {
     return fallback ? <>{fallback}</> : null;
   }
 
   return (
-    <div className="prose">
-      <ReactMarkdown
-      // remarkPlugins={[remarkGfm]}
-      // rehypePlugins={[rehypeRaw]}
-      // components={{
-      //   a: ({ node: _node, href, children: linkChildren, ...props }) => {
-      //     const isExternal =
-      //       href?.startsWith("http://") || href?.startsWith("https://");
-      //     return (
-      //       <a
-      //         href={href}
-      //         target={isExternal ? "_blank" : undefined}
-      //         rel={isExternal ? "noopener noreferrer" : undefined}
-      //         {...props}
-      //       >
-      //         {linkChildren}
-      //       </a>
-      //     );
-      //   },
-      // }}
-      >
-        {text}
-      </ReactMarkdown>
-    </div>
+    <div
+      className={cn(
+        "prose prose-sm max-w-none text-base-content/90 font-normal leading-relaxed",
+        "prose-headings:font-bold prose-headings:text-base-content prose-headings:tracking-tight",
+        "prose-p:leading-relaxed prose-p:my-2",
+        "prose-a:text-primary prose-a:font-medium prose-a:no-underline hover:prose-a:underline",
+        "prose-strong:font-semibold prose-strong:text-base-content",
+        "prose-ul:my-2 prose-ol:my-2 prose-li:my-0.5",
+        "prose-code:bg-base-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-xs prose-code:font-mono",
+        "prose-pre:bg-base-300 prose-pre:text-base-content prose-pre:rounded-xl",
+        "prose-blockquote:border-l-primary prose-blockquote:text-base-content/70 prose-blockquote:italic",
+        "prose-table:border-collapse prose-th:border prose-th:border-base-300 prose-th:p-2 prose-th:bg-base-200/50 prose-td:border prose-td:border-base-300 prose-td:p-2",
+        "prose-img:rounded-xl prose-img:border prose-img:border-base-300/60",
+        className,
+      )}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   );
 }
 

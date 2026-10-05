@@ -185,10 +185,10 @@ export default function CertificationDetailsPage({
                     className="mx-auto max-w-[56rem] rounded-[1.75rem] bg-white px-5 py-8 sm:rounded-[2.25rem] sm:px-8 sm:py-10 lg:px-14 lg:py-12"
                     style={{ boxShadow: CARD_SHADOW } as CSSProperties}
                   >
-                    <div className="flex flex-col items-center text-center">
+                    <div className="flex flex-col items-center">
                       <HeaderText left="About" right={detail.abbr} switch />
 
-                      <div className="prose prose-lg">
+                      <div className="mt-4 w-full text-left">
                         <MarkdownRenderer content={detail.heroBody} />
                       </div>
                     </div>
