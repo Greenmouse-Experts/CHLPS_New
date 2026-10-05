@@ -20,6 +20,7 @@ export default function CertificationDetailsAudienceSection({
     return null;
   }
 
+  return null;
   return (
     <section className="bg-white py-14 sm:py-8">
       <PageContainer>
