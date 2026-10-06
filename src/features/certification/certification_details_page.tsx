@@ -186,7 +186,11 @@ export default function CertificationDetailsPage({
                     style={{ boxShadow: CARD_SHADOW } as CSSProperties}
                   >
                     <div className="flex flex-col items-center">
-                      <HeaderText left="About" right={detail.abbr} switch />
+                      <HeaderText
+                        left="About"
+                        right={`${detail.abbr} certification`}
+                        switch
+                      />
 
                       <div className="mt-4 w-full text-left">
                         <MarkdownRenderer content={detail.heroBody} />

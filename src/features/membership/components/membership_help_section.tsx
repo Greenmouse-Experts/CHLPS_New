@@ -34,7 +34,7 @@ export default function MembershipHelpSection({
     <section className="bg-white py-8 ">
       <PageContainer>
         <div className="mx-auto flex max-w-[46rem] flex-col items-center text-center">
-          <HeaderText left={"How will certified"} right="membership help me?" />
+          <HeaderText left={`How will ${title}`} right="membership help me?" />
         </div>
 
         <RevealGroup className="mt-10 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
