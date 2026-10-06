@@ -75,7 +75,7 @@ function OrderCallbackContent({ routeRef }: OrderCallbackProps) {
     useState<OrderConfirmResponseData | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [attemptCount, setAttemptCount] = useState(0);
-
+  const route = () => {};
   useEffect(() => {
     // If user cancelled, don't attempt server verification
     if (
@@ -357,7 +357,7 @@ function OrderCallbackContent({ routeRef }: OrderCallbackProps) {
               {/* Action Buttons */}
               <div className="space-y-3 pt-2">
                 <Link
-                  href="/dashboard/courses"
+                  href={`${typeParam === "membership" ? "/dashboard/membership" : "/dashboard/courses"}`}
                   className="btn btn-primary btn-block h-13 min-h-13 rounded-2xl text-sm font-bold text-white normal-case shadow-md gap-2 flex items-center justify-center"
                 >
                   <HugeiconsIcon icon={BookOpen01Icon} size={18} />
