@@ -459,7 +459,8 @@ export class MembershipRepository {
     ApiResponse<UserEnrolledMembership[]>
   > {
     try {
-      const res = await simpleApiClient.get("student-memberships/mine");
+      const res = await simpleApiClient.get("memberships/my-memberships");
+      // const res = await simpleApiClient.get("student-memberships/mine");
       const raw = res?.data ?? res;
       let list: UserEnrolledMembership[] = [];
       if (Array.isArray(raw)) {
