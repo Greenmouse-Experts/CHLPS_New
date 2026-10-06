@@ -29,10 +29,6 @@ const AboutPage = () => {
             textWhite
             notCenter
           />
-          <h2 className="text-white text-4xl font-semibold">
-            Advancing modern <br />
-            <span className="text-secondary">loss prevention</span>
-          </h2>
           <p className="text-white text-lg">
             The Association of Chartered Loss Prevention Specialists of Canada,
             ChLPS-Canada, is a national professional body dedicated to advancing

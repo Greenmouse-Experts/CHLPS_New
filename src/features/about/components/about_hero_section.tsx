@@ -90,12 +90,10 @@ export default function AboutHeroSection({
                   left="A professional home for every stage"
                   right="of loss prevention."
                 />
-                <p className="text-white text-xl ">
-                  Build professional standing through membership,
-                  <br /> certification and continous learning
-                </p>
+                <p className="text-white text-xl ">{body}</p>
               </div>
             )}
+
             {/*<Reveal delay={80}>
               <h1
                 className="text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-[40px] xl:text-[48px]"

@@ -29,7 +29,7 @@ export default function NewsHeroSection() {
                 notCenter
                 textWhite
                 left="News"
-                right="&amp; Blog"
+                right="&amp; Blogs"
               />
             </Reveal>
 
