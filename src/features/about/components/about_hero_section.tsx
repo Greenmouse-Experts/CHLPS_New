@@ -14,7 +14,7 @@ import HeaderText from "@/components/HeaderText";
 
 type AboutHeroSectionProps = {
   badge?: string;
-  title: string;
+  title?: string;
   accent?: string;
   body?: string;
   fixedHeight?: boolean;
@@ -83,13 +83,15 @@ export default function AboutHeroSection({
             {badge ? <></> : null}
             {showDefault && (
               <div className="max-w-xl">
-                <HeaderText
-                  textWhite
-                  notUppercase
-                  notCenter
-                  left="A professional home for every stage"
-                  right="of loss prevention."
-                />
+                {title && (
+                  <HeaderText
+                    textWhite
+                    notUppercase
+                    notCenter
+                    left="A professional home for every stage"
+                    right="of loss prevention."
+                  />
+                )}
                 <p className="text-white ">{body}</p>
               </div>
             )}

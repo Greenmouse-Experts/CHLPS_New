@@ -17,8 +17,8 @@ const AboutPage = () => {
         padding
         fixedHeight
         badge="About CHLPS Canada"
-        title="Advancing modern"
-        accent="loss prevention."
+        // title="Advancing modern"
+        // accent="loss prevention."
         body="A credible professional home for loss prevention, security, risk and related professionals."
       >
         <div>
