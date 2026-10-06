@@ -11,7 +11,7 @@ export default function CareersPage() {
       <Header />
       <CareerHeroSection />
       <CareerSearchSection />
-      <CareerPathsSection />
+      {/*<CareerPathsSection />*/}
       <ProfessionalDevelopmentSection />
       <Footer />
     </div>
