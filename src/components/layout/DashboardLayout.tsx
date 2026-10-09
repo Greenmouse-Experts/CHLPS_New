@@ -69,19 +69,20 @@ const NAV_ITEMS: NavItem[] = [
     ),
   },
   {
-    label: "My Events",
-    href: "/dashboard/events",
-    icon: (
-      <HugeiconsIcon icon={Calendar03Icon} size={16} color="currentColor" />
-    ),
-  },
-  {
     label: "Progress",
     href: "/dashboard/progress",
     icon: (
       <HugeiconsIcon icon={ChartHistogramIcon} size={16} color="currentColor" />
     ),
   },
+  {
+    label: "My Events",
+    href: "/dashboard/events",
+    icon: (
+      <HugeiconsIcon icon={Calendar03Icon} size={16} color="currentColor" />
+    ),
+  },
+
   {
     label: "Notifications",
     href: "/dashboard/notifications",

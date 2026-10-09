@@ -142,9 +142,6 @@ function MembershipDashboardContent({
         {/* Top Header & Overview */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-[#0D154B] sm:text-3xl">
-              Membership & Applications
-            </h1>
             <p className="mt-1 text-sm text-base-content/70">
               Manage your professional credentials, membership subscriptions,
               and track application assessments.
