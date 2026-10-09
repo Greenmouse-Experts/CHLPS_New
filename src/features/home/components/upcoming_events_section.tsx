@@ -23,8 +23,9 @@ import HeaderSubText from "@/components/HeaderSubText";
 import { fetchPublicEvents } from "@/features/events/services/event_service";
 import { eventHref } from "@/features/events/components/event_ui";
 import type { ChlpsEvent } from "@/features/events/events_data";
+import EventCard from "@/features/events/components/event_card";
 
-const MAX_EVENTS = 3;
+const MAX_EVENTS = 5;
 
 const CATEGORY_ICONS: { match: RegExp; icon: IconSvgElement }[] = [
   { match: /conference|summit|forum|symposium|congress/i, icon: OfficeIcon },
@@ -251,7 +252,7 @@ export default function UpcomingEventsSection() {
               otherEvents.length > 0 ? "lg:grid-cols-2" : ""
             }`}
           >
-            {featuredEvent && <FeaturedEventCard event={featuredEvent} />}
+            {featuredEvent && <EventCard event={featuredEvent} />}
 
             {otherEvents.length > 0 && (
               <RevealGroup className="flex flex-col gap-4">

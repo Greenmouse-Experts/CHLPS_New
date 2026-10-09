@@ -71,7 +71,7 @@ function MembershipBadge({
     imgSrc.startsWith("http://") || imgSrc.startsWith("https://");
 
   return (
-    <div className="relative mx-auto flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-2 border-[#C99E4A] bg-white p-3 shadow-xs transition-transform duration-300 group-hover:scale-105 sm:h-32 sm:w-32">
+    <div className="relative mx-auto flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-2 border-[#C99E4A] bg-white p-3 shadow-xs transition-transform duration-300 group-hover:scale-105 sm:h-32 sm:w-32 overflow-hidden">
       {cropLogo ? (
         <Image
           src={imgSrc}

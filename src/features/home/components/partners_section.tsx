@@ -78,7 +78,7 @@ export default function PartnersSection() {
           <HeaderText
             switch
             left={"Affiliations &"}
-            right="Partnership"
+            right="Partnerships"
           ></HeaderText>
           <HeaderSubText>
             ChLPS-Canada builds strategic affiliations and partnerships with
