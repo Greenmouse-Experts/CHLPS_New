@@ -124,7 +124,22 @@ export default function HomeFaqSection({
             );
           })}
         </RevealGroup>
-
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/faq"
+            className="group inline-flex items-center gap-3 rounded-full bg-[#1B1454] px-7 py-3.5 text-[14.5px] font-bold text-white shadow-[0_8px_22px_rgba(27,20,84,0.22)] transition-all duration-200 hover:scale-[1.03] hover:bg-[#251C6E] hover:shadow-[0_12px_28px_rgba(27,20,84,0.3)] sm:px-8 sm:py-4 sm:text-[15px]"
+          >
+            <span>View all FAQs</span>
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#1B1454] transition-transform duration-200 group-hover:translate-x-0.5">
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                size={14}
+                color="currentColor"
+                strokeWidth={2.4}
+              />
+            </span>
+          </Link>
+        </div>
         {/* Still Have Questions Contact Bar */}
         <Reveal className="mt-8 md:mt-10">
           <div className="rounded-[22px] border border-[#CDA54E] bg-white p-5 shadow-[0_6px_24px_rgba(205,165,78,0.08)] sm:p-6 lg:p-7">
@@ -185,22 +200,7 @@ export default function HomeFaqSection({
                   </a>
                 </div>
               </div>
-              <div className="mt-10 flex justify-center">
-                <Link
-                  href="/faq"
-                  className="group inline-flex items-center gap-3 rounded-full bg-[#1B1454] px-7 py-3.5 text-[14.5px] font-bold text-white shadow-[0_8px_22px_rgba(27,20,84,0.22)] transition-all duration-200 hover:scale-[1.03] hover:bg-[#251C6E] hover:shadow-[0_12px_28px_rgba(27,20,84,0.3)] sm:px-8 sm:py-4 sm:text-[15px]"
-                >
-                  <span>View all FAQs</span>
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#1B1454] transition-transform duration-200 group-hover:translate-x-0.5">
-                    <HugeiconsIcon
-                      icon={ArrowRight01Icon}
-                      size={14}
-                      color="currentColor"
-                      strokeWidth={2.4}
-                    />
-                  </span>
-                </Link>
-              </div>
+
               {/* Col 4: Visit Website */}
               <div className="flex items-center gap-3.5 pt-5 md:pt-0 lg:pl-6 lg:pt-0">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1B1454] text-white shadow-sm">
