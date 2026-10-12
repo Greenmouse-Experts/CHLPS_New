@@ -27,6 +27,7 @@ import { eventRegistrationService } from "../services/event_registration_service
 import EventPaymentModal from "./event_payment_modal";
 import EventTicketModal from "./event_ticket_modal";
 import FreeEventRegistrationModal from "./free_event_registration_modal";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 function DetailMetaRow({
   icon,
@@ -202,7 +203,7 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
             {event.title}
           </h1>
           <p className="mt-3 text-base leading-relaxed text-[#333041] sm:text-lg">
-            {event.description}
+            <MarkdownRenderer>{event.description}</MarkdownRenderer>
           </p>
 
           <hr className="my-8 border-base-200" />
@@ -214,9 +215,11 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
             </h2>
             <div className="prose max-w-none text-base-content/80">
               <p className="text-sm sm:text-base leading-relaxed">
-                {(event.raw as any)?.overview ||
-                  event.description ||
-                  "Join industry practitioners and chartered specialists for an engaging session designed to expand operational capabilities, governance readiness, and security excellence."}
+                <MarkdownRenderer>
+                  {(event.raw as any)?.overview ||
+                    event.description ||
+                    "Join industry practitioners and chartered specialists for an engaging session designed to expand operational capabilities, governance readiness, and security excellence."}
+                </MarkdownRenderer>
               </p>
             </div>
           </section>
