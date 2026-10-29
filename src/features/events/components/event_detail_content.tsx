@@ -209,20 +209,6 @@ export default function EventDetailContent({ event }: { event: ChlpsEvent }) {
           <hr className="my-8 border-base-200" />
 
           {/* Agenda / Overview */}
-          <section className="space-y-4">
-            <h2 className="text-xl font-bold tracking-tight text-[#071649] sm:text-2xl">
-              About This Event
-            </h2>
-            <div className="prose max-w-none text-base-content/80">
-              <p className="text-sm sm:text-base leading-relaxed">
-                <MarkdownRenderer>
-                  {(event.raw as any)?.overview ||
-                    event.description ||
-                    "Join industry practitioners and chartered specialists for an engaging session designed to expand operational capabilities, governance readiness, and security excellence."}
-                </MarkdownRenderer>
-              </p>
-            </div>
-          </section>
         </div>
       </article>
 
